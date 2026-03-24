@@ -89,19 +89,22 @@
   </section>
 
   <script>
-  const RANKING_API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+<script>
+  const RANKING_API_URL = "ここにあなたの/execのURLを貼る";
 
   function loadRankingsJsonp() {
     const callbackName = "mcBattleRankingCallback";
     const statusEl = document.getElementById("ranking-status");
     const listEl = document.getElementById("ranking-list");
+    const eventsStatusEl = document.getElementById("events-status");
+    const recentEventsListEl = document.getElementById("recent-events-list");
 
     window[callbackName] = function(data) {
       try {
         const rankings = (data.rankings || []).slice(0, 20);
         listEl.innerHTML = "";
 
-        rankings.forEach((item, index) => {
+        rankings.forEach((item) => {
           const li = document.createElement("li");
 
           const mcName =
@@ -123,14 +126,32 @@
               ? Number(scoreRaw).toFixed(2)
               : scoreRaw;
 
-            li.textContent = `${mcName} — ${score}`;
+          li.textContent = `${mcName} — ${score}`;
           listEl.appendChild(li);
         });
 
         statusEl.textContent = `最終取得: ${new Date().toLocaleString("ja-JP")}`;
+
+        const recentEvents = data.recent_events || [];
+        recentEventsListEl.innerHTML = "";
+
+        recentEvents.forEach((event) => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+
+          a.href = "#";
+          a.textContent = `${event.event_date} ${event.event_name}`;
+
+          li.appendChild(a);
+          recentEventsListEl.appendChild(li);
+        });
+
+        eventsStatusEl.textContent = `直近 ${recentEvents.length} 件を表示`;
       } catch (e) {
         statusEl.textContent = "ランキングの描画に失敗しました。";
         statusEl.classList.add("error");
+        eventsStatusEl.textContent = "大会一覧の描画に失敗しました。";
+        eventsStatusEl.classList.add("error");
         console.error(e);
       }
     };
@@ -140,12 +161,15 @@
     script.onerror = function() {
       statusEl.textContent = "ランキングの読み込みに失敗しました。";
       statusEl.classList.add("error");
+      eventsStatusEl.textContent = "大会一覧の読み込みに失敗しました。";
+      eventsStatusEl.classList.add("error");
     };
 
     document.body.appendChild(script);
   }
 
   loadRankingsJsonp();
+</script>
 </script>
 </body>
 </html>
