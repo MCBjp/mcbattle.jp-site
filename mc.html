@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCページ | MC Battle DB</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+      line-height: 1.6;
+      color: #111;
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .muted {
+      color: #666;
+      font-size: 14px;
+    }
+    .error {
+      color: #b00020;
+      font-weight: bold;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    a {
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <p><a href="./">← トップへ戻る</a> / <a href="mcs.html">MC一覧へ</a></p>
+
+  <header>
+    <h1 id="mc-title">MC情報を読み込み中...</h1>
+    <p id="mc-meta" class="muted"></p>
+  </header>
+
+  <section class="card">
+    <h2>基本情報</h2>
+    <ul id="mc-info-list"></ul>
+  </section>
+
+  <section class="card">
+    <h2>出演大会一覧</h2>
+    <p id="appearances-status" class="muted">読み込み中...</p>
+    <ul id="appearances-list"></ul>
+  </section>
+
+  <section class="card">
+    <h2>このMCが勝った相手</h2>
+    <p id="wins-status" class="muted">読み込み中...</p>
+    <ul id="wins-list"></ul>
+  </section>
+
+  <section class="card">
+    <h2>このMCが負けた相手</h2>
+    <p id="losses-status" class="muted">読み込み中...</p>
+    <ul id="losses-list"></ul>
+  </section>
+
+  <script>
+    const API_URL = "ここにあなたの /exec URL を貼る";
+
+    function getMcIdFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("mc_id");
+    }
+
+    function loadMcDetail() {
+      const mcId = getMcIdFromQuery();
+
+      const titleEl = document.getElementById("mc-title");
+      const metaEl = document.getElementById("mc-meta");
+      const infoListEl = document.getElementById("mc-info-list");
+
+      const appearancesStatusEl = document.getElementById("appearances-status");
+      const appearancesListEl = document.getElementById("appearances-list");
+
+      const winsStatusEl = document.getElementById("wins-status");
+      const winsListEl = document.getElementById("wins-list");
+
+      const lossesStatusEl = document.getElementById("losses-status");
+      const lossesListEl = document.getElementById("losses-list");
+
+      if (!mcId) {
+        titleEl.textContent = "MC IDが指定されていません";
+        metaEl.textContent = "";
+        appearancesStatusEl.textContent = "mc_id が見つかりませんでした。";
+        appearancesStatusEl.classList.add("error");
+        return;
+      }
+
+      const callbackName = "mcBattleMcCallback";
+
+      window[callbackName] = function(data) {
+        console.log("mc detail:", data);
+
+        infoListEl.innerHTML = "";
+        appearancesListEl.innerHTML = "";
+        winsListEl.innerHTML = "";
+        lossesListEl.innerHTML = "";
+
+        try {
+          if (data.error) {
+            titleEl.textContent = "MC情報の取得に失敗しました";
+            metaEl.textContent = data.message || "";
+            appearancesStatusEl.textContent = "データ取得エラー";
+            appearancesStatusEl.classList.add("error");
+            winsStatusEl.textContent = "データ取得エラー";
+            winsStatusEl.classList.add("error");
+            lossesStatusEl.textContent = "データ取得エラー";
+            lossesStatusEl.classList.add("error");
+            return;
+          }
+
+          const mc = data.mc || {};
+          const ranking = data.ranking || null;
+          const appearances = Array.isArray(data.appearances) ? data.appearances : [];
+          const wins = Array.isArray(data.wins) ? data.wins : [];
+          const losses = Array.isArray(data.losses) ? data.losses : [];
+
+          titleEl.textContent = mc.mc_name || "MC名不明";
+          metaEl.textContent = mc.mc_yomi || "";
+
+          const infoItems = [
+            ["MC ID", mc.mc_id || ""],
+            ["読み", mc.mc_yomi || ""],
+            ["順位", ranking && ranking.rank ? ranking.rank : ""],
+            ["スコア", ranking && ranking.current_strength_score_v2 ? ranking.current_strength_score_v2 : ""],
+            ["総試合数", ranking && ranking.total_matches ? ranking.total_matches : ""],
+            ["勝ち", ranking && ranking.wins ? ranking.wins : ""],
+            ["負け", ranking && ranking.losses ? ranking.losses : ""]
+          ];
+
+          infoItems.forEach(([label, value]) => {
+            const li = document.createElement("li");
+            li.textContent = `${label}: ${value}`;
+            infoListEl.appendChild(li);
+          });
+
+          appearances.forEach((event) => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = `event.html?event_id=${encodeURIComponent(event.event_id)}`;
+            a.textContent = `${event.event_date || ""} ${event.event_name || event.event_id}`.trim();
+            li.appendChild(a);
+            appearancesListEl.appendChild(li);
+          });
+          appearancesStatusEl.textContent = `${appearances.length}大会を表示`;
+
+          wins.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = `${item.opponent_name || "不明"}｜${item.event_name || item.event_id}｜${item.round_name || ""}`;
+            winsListEl.appendChild(li);
+          });
+          winsStatusEl.textContent = `${wins.length}件を表示`;
+
+          losses.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = `${item.opponent_name || "不明"}｜${item.event_name || item.event_id}｜${item.round_name || ""}`;
+            lossesListEl.appendChild(li);
+          });
+          lossesStatusEl.textContent = `${losses.length}件を表示`;
+        } catch (err) {
+          console.error(err);
+          titleEl.textContent = "MC情報の描画に失敗しました";
+          appearancesStatusEl.textContent = "描画エラー";
+          appearancesStatusEl.classList.add("error");
+          winsStatusEl.textContent = "描画エラー";
+          winsStatusEl.classList.add("error");
+          lossesStatusEl.textContent = "描画エラー";
+          lossesStatusEl.classList.add("error");
+        }
+      };
+
+      const script = document.createElement("script");
+      script.src = `${API_URL}?mc_id=${encodeURIComponent(mcId)}&callback=${callbackName}`;
+      script.onerror = function() {
+        titleEl.textContent = "MC情報の読み込みに失敗しました";
+        appearancesStatusEl.textContent = "JSONP読み込み失敗";
+        appearancesStatusEl.classList.add("error");
+        winsStatusEl.textContent = "JSONP読み込み失敗";
+        winsStatusEl.classList.add("error");
+        lossesStatusEl.textContent = "JSONP読み込み失敗";
+        lossesStatusEl.classList.add("error");
+      };
+
+      document.body.appendChild(script);
+    }
+
+    loadMcDetail();
+  </script>
+</body>
+</html>
