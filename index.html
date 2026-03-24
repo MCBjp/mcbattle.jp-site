@@ -99,21 +99,16 @@
   </section>
 
   <script>
-    const RANKING_API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+  const RANKING_API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
 
-    async function loadRankings() {
-      const statusEl = document.getElementById("ranking-status");
-      const listEl = document.getElementById("ranking-list");
+  function loadRankingsJsonp() {
+    const callbackName = "mcBattleRankingCallback";
+    const statusEl = document.getElementById("ranking-status");
+    const listEl = document.getElementById("ranking-list");
 
+    window[callbackName] = function(data) {
       try {
-        const response = await fetch(RANKING_API_URL);
-        if (!response.ok) {
-          throw new Error("ランキングの取得に失敗しました");
-        }
-
-        const data = await response.json();
         const rankings = (data.rankings || []).slice(0, 20);
-
         listEl.innerHTML = "";
 
         rankings.forEach((item, index) => {
@@ -143,14 +138,24 @@
         });
 
         statusEl.textContent = `最終取得: ${new Date().toLocaleString("ja-JP")}`;
-      } catch (error) {
-        statusEl.textContent = "ランキングの読み込みに失敗しました。";
+      } catch (e) {
+        statusEl.textContent = "ランキングの描画に失敗しました。";
         statusEl.classList.add("error");
-        console.error(error);
+        console.error(e);
       }
-    }
+    };
 
-    loadRankings();
-  </script>
+    const script = document.createElement("script");
+    script.src = `${RANKING_API_URL}?callback=${callbackName}`;
+    script.onerror = function() {
+      statusEl.textContent = "ランキングの読み込みに失敗しました。";
+      statusEl.classList.add("error");
+    };
+
+    document.body.appendChild(script);
+  }
+
+  loadRankingsJsonp();
+</script>
 </body>
 </html>
