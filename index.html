@@ -19,7 +19,7 @@
     section {
       margin-top: 40px;
     }
-    ul {
+    ul, ol {
       padding-left: 20px;
     }
     .card {
@@ -39,6 +39,10 @@
     .muted {
       color: #666;
       font-size: 14px;
+    }
+    .error {
+      color: #b00020;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -80,28 +84,8 @@
   <section>
     <h2>ランキング Top20</h2>
     <div class="card">
-      <ol class="ranking-list">
-        <li>サンプルMC 1 — 1600.00</li>
-        <li>サンプルMC 2 — 1590.00</li>
-        <li>サンプルMC 3 — 1580.00</li>
-        <li>サンプルMC 4 — 1570.00</li>
-        <li>サンプルMC 5 — 1560.00</li>
-        <li>サンプルMC 6 — 1550.00</li>
-        <li>サンプルMC 7 — 1540.00</li>
-        <li>サンプルMC 8 — 1530.00</li>
-        <li>サンプルMC 9 — 1520.00</li>
-        <li>サンプルMC 10 — 1510.00</li>
-        <li>サンプルMC 11 — 1500.00</li>
-        <li>サンプルMC 12 — 1490.00</li>
-        <li>サンプルMC 13 — 1480.00</li>
-        <li>サンプルMC 14 — 1470.00</li>
-        <li>サンプルMC 15 — 1460.00</li>
-        <li>サンプルMC 16 — 1450.00</li>
-        <li>サンプルMC 17 — 1440.00</li>
-        <li>サンプルMC 18 — 1430.00</li>
-        <li>サンプルMC 19 — 1420.00</li>
-        <li>サンプルMC 20 — 1410.00</li>
-      </ol>
+      <p id="ranking-status" class="muted">読み込み中...</p>
+      <ol id="ranking-list" class="ranking-list"></ol>
       <p><a href="#">100位まで見る</a></p>
     </div>
   </section>
@@ -113,5 +97,60 @@
       <a href="#">MC一覧から記録を見る</a>
     </div>
   </section>
+
+  <script>
+    const RANKING_API_URL = "YOUR_APPS_SCRIPT_URL_HERE";
+
+    async function loadRankings() {
+      const statusEl = document.getElementById("ranking-status");
+      const listEl = document.getElementById("ranking-list");
+
+      try {
+        const response = await fetch(RANKING_API_URL);
+        if (!response.ok) {
+          throw new Error("ランキングの取得に失敗しました");
+        }
+
+        const data = await response.json();
+        const rankings = (data.rankings || []).slice(0, 20);
+
+        listEl.innerHTML = "";
+
+        rankings.forEach((item, index) => {
+          const li = document.createElement("li");
+
+          const mcName =
+            item.mc_name ||
+            item.MC ||
+            item.name ||
+            item.Name ||
+            "名前不明";
+
+          const scoreRaw =
+            item.current_strength_score_v2 ??
+            item.current_strength_score ??
+            item.score ??
+            item.Score ??
+            "";
+
+          const score =
+            scoreRaw !== "" && !isNaN(Number(scoreRaw))
+              ? Number(scoreRaw).toFixed(2)
+              : scoreRaw;
+
+          li.textContent = `${index + 1}. ${mcName} — ${score}`;
+          listEl.appendChild(li);
+        });
+
+        statusEl.textContent = `最終取得: ${new Date().toLocaleString("ja-JP")}`;
+      } catch (error) {
+        statusEl.textContent = "ランキングの読み込みに失敗しました。";
+        statusEl.classList.add("error");
+        console.error(error);
+      }
+    }
+
+    loadRankings();
+  </script>
 </body>
 </html>
