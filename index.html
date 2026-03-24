@@ -15,37 +15,55 @@
 
   <section>
     <h2>直近の大会</h2>
-    <div class="card">
-<p id="events-status" class="muted">読み込み中...</p>
-<ul id="recent-events-list"></ul>
-    </div>
-  </section>
+<div class="top-grid">
+  <div class="top-stack">
+    <section class="card">
+      <div class="section-title-row">
+        <h2>直近の大会</h2>
+        <span class="badge">Latest 10</span>
+      </div>
+      <p id="events-status" class="muted status-line">読み込み中...</p>
+      <ul id="recent-events-list" class="list-tight"></ul>
+    </section>
 
-  <section>
-    <h2>ランキングの決定仕様</h2>
-    <div class="card">
+    <section class="card">
+      <div class="section-title-row">
+        <h2>ランキングの決定仕様</h2>
+        <span class="badge">Current v2</span>
+      </div>
       <p>
         1on1本戦の試合結果をもとに、対戦相手の強さ・ラウンド・大会強度などを加味して
-        スコアを算出しています。詳細仕様は今後このページ上でも確認できるようにします。
+        スコアを算出しています。
       </p>
-    </div>
-  </section>
+      <p class="muted">
+        現時点では v2 の公開スコアを採用しています。今後仕様変更があれば、Excel内の仕様シートも更新します。
+      </p>
+    </section>
+  </div>
 
-  <section>
-    <h2>ランキング Top20</h2>
-    <div class="card">
-      <p id="ranking-status" class="muted">読み込み中...</p>
-      <ol id="ranking-list" class="ranking-list"></ol>
-<p><a href="rankings.html">100位まで見る</a></p>
-    </div>
-  </section>
+  <div class="top-stack">
+    <section class="card">
+      <div class="section-title-row">
+        <h2>ランキング Top20</h2>
+        <span class="badge">Top 20</span>
+      </div>
+      <p id="ranking-status" class="muted status-line">読み込み中...</p>
+      <ol id="ranking-list" class="ranking-top-list"></ol>
+      <div class="spacer-sm"></div>
+      <p><a href="rankings.html">100位まで見る</a></p>
+    </section>
 
-  <section>
-    <h2>記録を見る</h2>
-    <div class="card nav-links">
-<a href="events.html">大会一覧から記録を見る</a>
-<a href="mcs.html">MC一覧から記録を見る</a>
-    </div>
+    <section class="card">
+      <div class="section-title-row">
+        <h2>記録を見る</h2>
+      </div>
+      <div class="nav-links">
+        <a href="events.html">大会一覧から記録を見る</a>
+        <a href="mcs.html">MC一覧から記録を見る</a>
+      </div>
+    </section>
+  </div>
+</div>
   </section>
 
 <script>
