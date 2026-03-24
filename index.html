@@ -93,19 +93,32 @@
         }
 
         const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 20) : [];
-        rankings.forEach((item) => {
-          const li = document.createElement("li");
+rankings.forEach((item, index) => {
+  const li = document.createElement("li");
 
-          const mcName = item.mc_name ? String(item.mc_name) : "名前不明";
+  const rankNo = document.createElement("span");
+  rankNo.className = "rank-no";
+  rankNo.textContent = `${item.rank || index + 1}.`;
 
-          const rawScore = item.current_strength_score_v2 ?? "";
-          const score = rawScore !== "" && !isNaN(Number(rawScore))
-            ? Number(rawScore).toFixed(2)
-            : String(rawScore);
+  const rankName = document.createElement("span");
+  rankName.className = "rank-name";
+  rankName.textContent = item.mc_name ? String(item.mc_name) : "名前不明";
 
-          li.textContent = `${mcName} — ${score}`;
-          rankingListEl.appendChild(li);
-        });
+  const rankScore = document.createElement("span");
+  rankScore.className = "rank-score";
+
+  const rawScore = item.current_strength_score_v2 ?? "";
+  rankScore.textContent =
+    rawScore !== "" && !isNaN(Number(rawScore))
+      ? Number(rawScore).toFixed(2)
+      : String(rawScore);
+
+  li.appendChild(rankNo);
+  li.appendChild(rankName);
+  li.appendChild(rankScore);
+
+  rankingListEl.appendChild(li);
+});
 
         rankingStatusEl.textContent = `Top${rankings.length}を表示`;
 
