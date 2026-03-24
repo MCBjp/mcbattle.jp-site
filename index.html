@@ -139,8 +139,8 @@
           const eventDate = event.event_date ? String(event.event_date) : "";
           const eventName = event.event_name ? String(event.event_name) : "大会名不明";
 
-          a.href = "#";
-          a.textContent = `${eventDate} ${eventName}`.trim();
+a.href = `event.html?event_id=${encodeURIComponent(event.event_id)}`;
+a.textContent = `${eventDate} ${eventName}`.trim();
 
           li.appendChild(a);
           recentEventsListEl.appendChild(li);
