@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>大会一覧 | MC Battle DB</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+      line-height: 1.6;
+      color: #111;
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .muted {
+      color: #666;
+      font-size: 14px;
+    }
+    .error {
+      color: #b00020;
+      font-weight: bold;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    a {
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <p><a href="./">← トップへ戻る</a></p>
+
+  <header>
+    <h1>大会一覧</h1>
+    <p class="muted">新しい大会から順に表示しています。</p>
+  </header>
+
+  <section class="card">
+    <p id="events-status" class="muted">読み込み中...</p>
+    <ul id="events-list"></ul>
+  </section>
+
+  <script>
+    const API_URL = "ここにあなたの /exec URL を貼る";
+
+    function loadEventsList() {
+      const callbackName = "mcBattleEventsCallback";
+      const statusEl = document.getElementById("events-status");
+      const listEl = document.getElementById("events-list");
+
+      window[callbackName] = function(data) {
+        console.log("events list:", data);
+
+        listEl.innerHTML = "";
+
+        try {
+          if (data.error) {
+            statusEl.textContent = "大会一覧の取得に失敗しました: " + (data.message || "");
+            statusEl.classList.add("error");
+            return;
+          }
+
+          const events = Array.isArray(data.events) ? data.events : [];
+
+          events.forEach((event) => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+
+            a.href = `event.html?event_id=${encodeURIComponent(event.event_id)}`;
+
+            const date = event.event_date ? String(event.event_date) : "";
+            const name = event.event_name ? String(event.event_name) : "大会名不明";
+            const category = event.event_category ? ` / ${event.event_category}` : "";
+
+            a.textContent = `${date} ${name}${category}`.trim();
+
+            li.appendChild(a);
+            listEl.appendChild(li);
+          });
+
+          statusEl.textContent = `${events.length}大会を表示`;
+        } catch (err) {
+          console.error(err);
+          statusEl.textContent = "大会一覧の描画に失敗しました";
+          statusEl.classList.add("error");
+        }
+      };
+
+      const script = document.createElement("script");
+      script.src = `${API_URL}?mode=events&callback=${callbackName}`;
+      script.onerror = function() {
+        statusEl.textContent = "大会一覧の読み込みに失敗しました";
+        statusEl.classList.add("error");
+      };
+
+      document.body.appendChild(script);
+    }
+
+    loadEventsList();
+  </script>
+</body>
+</html>
