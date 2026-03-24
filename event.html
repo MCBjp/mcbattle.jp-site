@@ -130,12 +130,24 @@ li {
             infoListEl.appendChild(li);
           });
 
+const roundDisplayMap = {
+  "ベスト8": "準々決勝",
+  "準々決勝": "準々決勝",
+  "決勝トーナメント準決勝": "準決勝",
+  "準決勝": "準決勝"
+};
+
+function normalizeDisplayRound(roundName) {
+  const name = String(roundName || "").trim();
+  return roundDisplayMap[name] || name || "ラウンド不明";
+}
+
 const grouped = {};
 
 matches.forEach((match) => {
-  const roundName = match.round_name || "ラウンド不明";
-  if (!grouped[roundName]) grouped[roundName] = [];
-  grouped[roundName].push(match);
+  const displayRound = normalizeDisplayRound(match.round_name);
+  if (!grouped[displayRound]) grouped[displayRound] = [];
+  grouped[displayRound].push(match);
 });
 
 const roundOrder = [
@@ -147,10 +159,8 @@ const roundOrder = [
   "ベスト32",
   "ベスト16",
   "準々決勝",
-  "ベスト8",
   "準決勝",
   "決勝",
-  "決勝トーナメント準決勝",
   "シード戦"
 ];
 
@@ -177,14 +187,31 @@ sortedRoundNames.forEach((roundName) => {
 
     const loserName = match.loser_name || "不明";
     const winnerName = match.winner_name || "不明";
-    const judgeMethod = match.judge_method || "";
+    const judgeMethod = String(match.judge_method || "").trim();
 
-    li.textContent = `【✕】${loserName} × ${winnerName}【◯】｜${judgeMethod}`;
+    li.textContent = judgeMethod
+      ? `【✕】${loserName} × ${winnerName}【◯】｜${judgeMethod}`
+      : `【✕】${loserName} × ${winnerName}【◯】`;
+
     matchesListEl.appendChild(li);
   });
 });
 
-matchesStatusEl.textContent = `${matches.length}試合を表示`;
+const warningMessages = [];
+
+if (grouped["決勝"] && grouped["決勝"].length !== 1) {
+  warningMessages.push(`決勝が ${grouped["決勝"].length} 試合あります`);
+}
+if (grouped["準決勝"] && grouped["準決勝"].length > 2) {
+  warningMessages.push(`準決勝が ${grouped["準決勝"].length} 試合あります`);
+}
+if (grouped["準々決勝"] && grouped["準々決勝"].length > 4) {
+  warningMessages.push(`準々決勝が ${grouped["準々決勝"].length} 試合あります`);
+}
+
+matchesStatusEl.textContent = warningMessages.length > 0
+  ? `${matches.length}試合を表示 / 注意: ${warningMessages.join("、")}`
+  : `${matches.length}試合を表示`;
         } catch (err) {
           console.error(err);
           titleEl.textContent = "大会情報の描画に失敗しました";
