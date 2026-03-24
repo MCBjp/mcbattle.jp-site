@@ -30,6 +30,12 @@
       color: #b00020;
       font-weight: bold;
     }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
     a {
       color: inherit;
     }
@@ -44,40 +50,105 @@
   </header>
 
   <section class="card">
-    <h2>このページについて</h2>
-    <p>
-      これは大会詳細ページの土台です。まずはURLから <code>event_id</code> を受け取って、
-      その値を表示するところまで作っています。
-    </p>
+    <h2>大会情報</h2>
+    <ul id="event-info-list"></ul>
   </section>
 
   <section class="card">
-    <h2>event_id</h2>
-    <p id="event-id-value">取得中...</p>
+    <h2>試合結果</h2>
+    <p id="matches-status" class="muted">読み込み中...</p>
+    <ul id="matches-list"></ul>
   </section>
 
   <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+
     function getEventIdFromQuery() {
       const params = new URLSearchParams(window.location.search);
       return params.get("event_id");
     }
 
-    const eventId = getEventIdFromQuery();
+    function loadEventDetail() {
+      const eventId = getEventIdFromQuery();
 
-    const titleEl = document.getElementById("event-title");
-    const metaEl = document.getElementById("event-meta");
-    const eventIdEl = document.getElementById("event-id-value");
+      const titleEl = document.getElementById("event-title");
+      const metaEl = document.getElementById("event-meta");
+      const infoListEl = document.getElementById("event-info-list");
+      const matchesStatusEl = document.getElementById("matches-status");
+      const matchesListEl = document.getElementById("matches-list");
 
-    if (!eventId) {
-      titleEl.textContent = "大会IDが指定されていません";
-      metaEl.textContent = "";
-      eventIdEl.textContent = "event_id が見つかりませんでした。";
-      eventIdEl.classList.add("error");
-    } else {
-      titleEl.textContent = "大会記録ページ（構築中）";
-      metaEl.textContent = "次の段階で、この event_id を使って大会情報を読み込みます。";
-      eventIdEl.textContent = eventId;
+      if (!eventId) {
+        titleEl.textContent = "大会IDが指定されていません";
+        metaEl.textContent = "";
+        matchesStatusEl.textContent = "event_id が見つかりませんでした。";
+        matchesStatusEl.classList.add("error");
+        return;
+      }
+
+      const callbackName = "mcBattleEventCallback";
+
+      window[callbackName] = function(data) {
+        console.log("event detail:", data);
+
+        infoListEl.innerHTML = "";
+        matchesListEl.innerHTML = "";
+
+        try {
+          if (data.error) {
+            titleEl.textContent = "大会情報の取得に失敗しました";
+            metaEl.textContent = data.message || "";
+            matchesStatusEl.textContent = "データ取得エラー";
+            matchesStatusEl.classList.add("error");
+            return;
+          }
+
+          const event = data.event || {};
+          const matches = Array.isArray(data.matches) ? data.matches : [];
+
+          titleEl.textContent = event.event_name || "大会名不明";
+          metaEl.textContent = `${event.event_date || ""} ${event.event_category || ""}`.trim();
+
+          const infoItems = [
+            ["大会ID", event.event_id || ""],
+            ["開催日", event.event_date || ""],
+            ["カテゴリ", event.event_category || ""],
+            ["賞金総額", event.prize_money_total || ""],
+            ["優勝賞金", event.prize_money_winner || ""]
+          ];
+
+          infoItems.forEach(([label, value]) => {
+            const li = document.createElement("li");
+            li.textContent = `${label}: ${value}`;
+            infoListEl.appendChild(li);
+          });
+
+          matches.forEach((match) => {
+            const li = document.createElement("li");
+            li.textContent = `${match.round_name || ""}｜${match.winner_name || ""} × ${match.loser_name || ""}｜${match.judge_method || ""}`;
+            matchesListEl.appendChild(li);
+          });
+
+          matchesStatusEl.textContent = `${matches.length}試合を表示`;
+        } catch (err) {
+          console.error(err);
+          titleEl.textContent = "大会情報の描画に失敗しました";
+          matchesStatusEl.textContent = "描画エラー";
+          matchesStatusEl.classList.add("error");
+        }
+      };
+
+      const script = document.createElement("script");
+      script.src = `${API_URL}?event_id=${encodeURIComponent(eventId)}&callback=${callbackName}`;
+      script.onerror = function() {
+        titleEl.textContent = "大会情報の読み込みに失敗しました";
+        matchesStatusEl.textContent = "JSONP読み込み失敗";
+        matchesStatusEl.classList.add("error");
+      };
+
+      document.body.appendChild(script);
     }
+
+    loadEventDetail();
   </script>
 </body>
 </html>
