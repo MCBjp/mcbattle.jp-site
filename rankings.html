@@ -9,12 +9,14 @@
     .table-rank {
       width: 100%;
       table-layout: auto;
+      border-collapse: collapse;
     }
 
     .table-rank th,
     .table-rank td {
       white-space: nowrap;
       padding: 8px 10px;
+      vertical-align: middle;
     }
 
     .table-rank th:nth-child(1),
@@ -34,10 +36,21 @@
       text-align: right;
     }
 
-    .table-rank a {
+    .table-rank tbody tr:hover {
+      opacity: 0.92;
+    }
+
+    .table-rank .rank-name-link {
+      display: inline-block;
+      padding: 2px 0;
       color: inherit;
       text-decoration: underline;
+      text-underline-offset: 0.15em;
       white-space: nowrap;
+    }
+
+    .table-rank .rank-name-link:hover {
+      opacity: 0.85;
     }
 
     @media (max-width: 640px) {
@@ -116,6 +129,7 @@
               const a = document.createElement("a");
               a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
               a.textContent = mcName;
+              a.className = "rank-name-link";
               nameTd.appendChild(a);
             } else {
               nameTd.textContent = mcName;
