@@ -333,23 +333,23 @@
           const warningMessages = [];
 
           if (grouped["決勝"] && grouped["決勝"].length !== 1) {
-            warningMessages.push(\`決勝が \${grouped["決勝"].length} 試合あります\`);
+            warningMessages.push(`決勝が ${grouped["決勝"].length} 試合あります`);
           }
           if (grouped["準決勝"] && grouped["準決勝"].length > 2) {
-            warningMessages.push(\`準決勝が \${grouped["準決勝"].length} 試合あります\`);
+            warningMessages.push(`準決勝が ${grouped["準決勝"].length} 試合あります`);
           }
           if (grouped["準々決勝"] && grouped["準々決勝"].length > 4) {
-            warningMessages.push(\`準々決勝が \${grouped["準々決勝"].length} 試合あります\`);
+            warningMessages.push(`準々決勝が ${grouped["準々決勝"].length} 試合あります`);
           }
 
-          matchesStatusEl.textContent = \`\${matches.length}試合を表示\`;
+          matchesStatusEl.textContent = `${matches.length}試合を表示`;
 
           if (warningMessages.length > 0) {
             const note = document.createElement("div");
             note.className = "note-box";
-            note.textContent = \`注意: \${warningMessages.join("、")}\`;
+            note.textContent = `注意: ${warningMessages.join("、")}`;
             matchesListEl.prepend(note);
-            matchesStatusEl.textContent = \`\${matches.length}試合を表示 / 注意: \${warningMessages.join("、")}\`;
+            matchesStatusEl.textContent = `${matches.length}試合を表示 / 注意: ${warningMessages.join("、")}`;
           }
 
           if (matches.length === 0) {
