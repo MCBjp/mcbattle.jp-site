@@ -4,7 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ランキング | MC Battle DB</title>
-<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .table-rank {
+      width: 100%;
+      table-layout: auto;
+    }
+
+    .table-rank th,
+    .table-rank td {
+      white-space: nowrap;
+      padding: 8px 10px;
+    }
+
+    .table-rank th:nth-child(1),
+    .table-rank td:nth-child(1) {
+      width: 1%;
+      text-align: right;
+    }
+
+    .table-rank th:nth-child(2),
+    .table-rank td:nth-child(2) {
+      width: auto;
+    }
+
+    .table-rank th:nth-child(3),
+    .table-rank td:nth-child(3) {
+      width: 1%;
+      text-align: right;
+    }
+
+    .table-rank a {
+      color: inherit;
+      text-decoration: underline;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      .table-rank th,
+      .table-rank td {
+        padding: 6px 8px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <p><a href="./">← トップへ戻る</a></p>
@@ -40,6 +83,7 @@
         console.log("rankings page:", data);
 
         bodyEl.innerHTML = "";
+        statusEl.classList.remove("error");
 
         try {
           if (data.error) {
@@ -68,10 +112,14 @@
 
             rankTd.textContent = rank;
 
-            const a = document.createElement("a");
-            a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
-            a.textContent = mcName;
-            nameTd.appendChild(a);
+            if (mcId) {
+              const a = document.createElement("a");
+              a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
+              a.textContent = mcName;
+              nameTd.appendChild(a);
+            } else {
+              nameTd.textContent = mcName;
+            }
 
             scoreTd.textContent = score;
 
@@ -103,4 +151,4 @@
     loadRankingsPage();
   </script>
 </body>
-</html>S
+</html>
