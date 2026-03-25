@@ -40,6 +40,15 @@
       return Number(normalized).toLocaleString("ja-JP");
     }
 
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     function getChampionName(matches) {
       if (!Array.isArray(matches) || matches.length === 0) return "";
 
@@ -56,11 +65,104 @@
         return normalizedFinalMatch.winner_name;
       }
 
-      const lastWinner = [...matches]
-        .reverse()
-        .find((match) => match && match.winner_name);
-
+      const lastWinner = [...matches].reverse().find((match) => match && match.winner_name);
       return lastWinner ? lastWinner.winner_name : "";
+    }
+
+    function ensureMatchRowStyles() {
+      if (document.getElementById("event-match-row-style")) return;
+
+      const style = document.createElement("style");
+      style.id = "event-match-row-style";
+      style.textContent = `
+        .round-block {
+          margin-top: 20px;
+        }
+
+        .round-heading {
+          margin-bottom: 10px;
+        }
+
+        .match-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .match-list > li {
+          margin: 0 0 10px 0;
+          padding: 10px 12px;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          background: #fff;
+        }
+
+        .match-row-wrap {
+          display: block;
+        }
+
+        .match-row {
+          display: grid;
+          grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr) auto;
+          gap: 8px;
+          align-items: center;
+        }
+
+        .mark {
+          white-space: nowrap;
+          font-weight: 700;
+        }
+
+        .mark-loser,
+        .name-loser {
+          text-align: right;
+        }
+
+        .mark-winner,
+        .name-winner {
+          text-align: left;
+        }
+
+        .name {
+          min-width: 0;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .vs-part {
+          white-space: nowrap;
+          text-align: center;
+          font-weight: 700;
+        }
+
+        .judge-method {
+          margin-top: 6px;
+          font-size: 0.9em;
+          color: #666;
+          text-align: center;
+        }
+
+        .note-box {
+          margin-bottom: 12px;
+          padding: 10px 12px;
+          border-radius: 8px;
+          background: #fff8e1;
+          border: 1px solid #f1d48b;
+        }
+
+        @media (max-width: 640px) {
+          .match-row {
+            grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr) auto;
+            gap: 6px;
+            font-size: 0.95rem;
+          }
+
+          .match-list > li {
+            padding: 8px 10px;
+          }
+        }
+      `;
+      document.head.appendChild(style);
     }
 
     function loadEventDetail() {
@@ -71,6 +173,8 @@
       const infoListEl = document.getElementById("event-info-list");
       const matchesStatusEl = document.getElementById("matches-status");
       const matchesListEl = document.getElementById("matches-list");
+
+      ensureMatchRowStyles();
 
       if (!eventId) {
         titleEl.textContent = "大会IDが指定されていません";
@@ -195,14 +299,22 @@
 
             grouped[roundName].forEach((match) => {
               const li = document.createElement("li");
+              li.className = "match-row-wrap";
 
-              const loserName = match.loser_name || "不明";
-              const winnerName = match.winner_name || "不明";
-              const judgeMethod = String(match.judge_method || "").trim();
+              const loserName = escapeHtml(match.loser_name || "不明");
+              const winnerName = escapeHtml(match.winner_name || "不明");
+              const judgeMethod = escapeHtml(String(match.judge_method || "").trim());
 
-              li.textContent = judgeMethod
-                ? `【✕】${loserName} × ${winnerName}【◯】｜${judgeMethod}`
-                : `【✕】${loserName} × ${winnerName}【◯】`;
+              li.innerHTML = `
+                <div class="match-row">
+                  <span class="mark mark-loser">【✕】</span>
+                  <span class="name name-loser">${loserName}</span>
+                  <span class="vs-part">×</span>
+                  <span class="name name-winner">${winnerName}</span>
+                  <span class="mark mark-winner">【◯】</span>
+                </div>
+                ${judgeMethod ? `<div class="judge-method">判定: ${judgeMethod}</div>` : ""}
+              `;
 
               ul.appendChild(li);
             });
