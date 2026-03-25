@@ -33,6 +33,36 @@
       return params.get("event_id");
     }
 
+    function formatNumberWithComma(value) {
+      if (value === null || value === undefined || value === "") return "";
+      const normalized = String(value).replace(/,/g, "").trim();
+      if (!/^\d+$/.test(normalized)) return String(value);
+      return Number(normalized).toLocaleString("ja-JP");
+    }
+
+    function getChampionName(matches) {
+      if (!Array.isArray(matches) || matches.length === 0) return "";
+
+      const finalMatch = matches.find((match) => String(match.round_name || "").trim() === "決勝");
+      if (finalMatch && finalMatch.winner_name) {
+        return finalMatch.winner_name;
+      }
+
+      const normalizedFinalMatch = matches.find((match) => {
+        const round = String(match.round_name || "").trim();
+        return round === "FINAL" || round === "Final" || round === "final";
+      });
+      if (normalizedFinalMatch && normalizedFinalMatch.winner_name) {
+        return normalizedFinalMatch.winner_name;
+      }
+
+      const lastWinner = [...matches]
+        .reverse()
+        .find((match) => match && match.winner_name);
+
+      return lastWinner ? lastWinner.winner_name : "";
+    }
+
     function loadEventDetail() {
       const eventId = getEventIdFromQuery();
 
@@ -78,19 +108,18 @@
 
           const event = data.event || {};
           const matches = Array.isArray(data.matches) ? data.matches : [];
+          const championName = getChampionName(matches);
+          const formattedWinnerPrize = formatNumberWithComma(event.prize_money_winner);
 
           titleEl.textContent = event.event_name || "大会名不明";
           metaEl.textContent = `${event.event_date || ""} ${event.event_category || ""}`.trim();
 
           const infoItems = [
-            ["大会ID", event.event_id || ""],
             ["開催日", event.event_date || ""],
             ["カテゴリ", event.event_category || ""],
-            ["ステージ", event.event_stage || ""],
-            ["主催", event.organizer || ""],
-            ["賞金総額", event.prize_money_total || ""],
-            ["優勝賞金", event.prize_money_winner || ""],
-            ["備考", event.notes || ""]
+            ["会場", event.event_stage || ""],
+            ["優勝者", championName || ""],
+            ["優勝賞金", formattedWinnerPrize || ""]
           ];
 
           infoItems.forEach(([label, value]) => {
