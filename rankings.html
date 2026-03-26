@@ -10,37 +10,39 @@
       overflow-x: auto;
     }
 
-    .table-rank {
-      display: inline-table;
-      width: auto;
-      table-layout: auto;
+    table.rankings-table {
+      width: fit-content !important;
+      max-width: none !important;
+      min-width: 0 !important;
+      table-layout: auto !important;
       border-collapse: collapse;
+      margin-top: 8px;
     }
 
-    .table-rank th,
-    .table-rank td {
+    table.rankings-table th,
+    table.rankings-table td {
+      width: auto !important;
       white-space: nowrap;
       padding: 6px 8px;
       vertical-align: middle;
     }
 
-    .table-rank th:nth-child(1),
-    .table-rank td:nth-child(1) {
+    table.rankings-table th:nth-child(1),
+    table.rankings-table td:nth-child(1) {
       text-align: right;
     }
 
-    .table-rank th:nth-child(3),
-    .table-rank td:nth-child(3) {
+    table.rankings-table th:nth-child(3),
+    table.rankings-table td:nth-child(3) {
       text-align: right;
     }
 
-    .table-rank tbody tr:hover {
+    table.rankings-table tbody tr:hover {
       opacity: 0.92;
     }
 
     .rank-name-link {
       display: inline-block;
-      padding: 1px 0;
       color: inherit;
       text-decoration: underline;
       text-underline-offset: 0.15em;
@@ -52,8 +54,8 @@
     }
 
     @media (max-width: 640px) {
-      .table-rank th,
-      .table-rank td {
+      table.rankings-table th,
+      table.rankings-table td {
         padding: 5px 6px;
         font-size: 0.93rem;
       }
@@ -71,7 +73,7 @@
   <section class="card">
     <p id="rankings-status" class="muted">読み込み中...</p>
     <div class="rankings-table-wrap">
-      <table class="table-rank">
+      <table class="rankings-table">
         <thead>
           <tr>
             <th>順位</th>
