@@ -15,29 +15,40 @@
     .mcs-list li {
       margin: 0;
       padding: 0;
-      border-bottom: 1px solid currentColor;
-      border-color: rgba(255, 255, 255, 0.12);
+      border-bottom: 1px solid var(--line);
     }
 
     .mcs-list li:last-child {
       border-bottom: none;
     }
 
-    .mc-link {
+    .mc-link,
+    .mc-link-static {
       display: block;
-      padding: 10px 0;
+      padding: 11px 12px;
       color: inherit;
+      border-radius: 10px;
+    }
+
+    .mc-link {
       text-decoration: underline;
       text-underline-offset: 0.15em;
     }
 
     .mc-link:hover {
-      opacity: 0.88;
+      opacity: 0.9;
+      background: rgba(255,255,255,0.03);
+      text-decoration: underline;
+    }
+
+    .mc-link-static {
+      text-decoration: none;
     }
 
     @media (max-width: 640px) {
-      .mc-link {
-        padding: 8px 0;
+      .mc-link,
+      .mc-link-static {
+        padding: 9px 10px;
       }
     }
   </style>
@@ -96,7 +107,7 @@
             if (mcId) {
               li.innerHTML = `<a class="mc-link" href="mc.html?mc_id=${encodeURIComponent(mcId)}">${escapeHtml(name)}</a>`;
             } else {
-              li.innerHTML = `<span class="mc-link">${escapeHtml(name)}</span>`;
+              li.innerHTML = `<span class="mc-link-static">${escapeHtml(name)}</span>`;
             }
 
             listEl.appendChild(li);
