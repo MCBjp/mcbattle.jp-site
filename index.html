@@ -5,180 +5,584 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MC Battle DB</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .home-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 16px 72px;
+    }
+
+    .home-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 28px 26px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(120, 160, 255, 0.18), transparent 28%),
+        radial-gradient(circle at left center, rgba(180, 220, 255, 0.08), transparent 24%),
+        linear-gradient(180deg, rgba(22, 27, 39, 0.96) 0%, rgba(14, 18, 28, 0.98) 100%);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .home-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .home-hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .home-kicker {
+      display: inline-block;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.04);
+      margin-bottom: 14px;
+    }
+
+    .home-title {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      font-weight: 900;
+    }
+
+    .home-title-sub {
+      margin-top: 14px;
+      max-width: 760px;
+      font-size: 1.02rem;
+      color: var(--muted);
+    }
+
+    .home-hero-side {
+      min-width: 170px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-stat {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero-stat-label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .hero-stat-value {
+      display: block;
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .home-lead-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .home-panel {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .home-panel h2 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+    }
+
+    .home-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .home-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .home-action-main,
+    .home-action-sub {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .home-action-main {
+      color: #0b1020;
+      background: linear-gradient(180deg, #eef5ff 0%, #dce9ff 100%);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .home-action-sub {
+      color: var(--accent);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .home-action-main:hover,
+    .home-action-sub:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .home-main-grid {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.9fr) minmax(420px, 1.1fr);
+      gap: 18px;
+      margin-top: 22px;
+      align-items: start;
+    }
+
+    .home-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
+        linear-gradient(180deg, rgba(18, 22, 31, 0.96) 0%, rgba(14, 18, 28, 0.98) 100%);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.28);
+    }
+
+    .home-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .home-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .home-card-title {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .home-card-sub {
+      font-size: 0.8rem;
+      color: var(--accent-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.04);
+      white-space: nowrap;
+    }
+
+    .home-status {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .home-events-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .home-events-list li {
+      margin: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .home-events-list li:last-child {
+      border-bottom: none;
+    }
+
+    .home-events-list a {
+      display: block;
+      padding: 11px 0;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .home-events-list a:hover {
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    .home-event-date {
+      color: var(--accent-dim);
+      font-size: 0.84rem;
+      margin-right: 0.55em;
+      white-space: nowrap;
+    }
+
+    .home-event-name {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 0.14em;
+    }
+
+    .home-ranking-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: rank;
+    }
+
+    .home-ranking-list li {
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .home-ranking-list li:last-child {
+      border-bottom: none;
+    }
+
+    .home-rank-no {
+      font-variant-numeric: tabular-nums;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--accent-dim);
+      letter-spacing: 0.02em;
+    }
+
+    .home-ranking-list li:nth-child(1) .home-rank-no,
+    .home-ranking-list li:nth-child(2) .home-rank-no,
+    .home-ranking-list li:nth-child(3) .home-rank-no {
+      color: var(--accent);
+    }
+
+    .home-rank-name a,
+    .home-rank-name span {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 0.14em;
+      font-weight: 700;
+    }
+
+    .home-rank-score {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent-soft);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .home-bottom-links {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .home-bottom-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .home-bottom-links a:hover {
+      text-decoration: none;
+      background: rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 900px) {
+      .home-hero-top,
+      .home-lead-grid,
+      .home-main-grid {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .home-hero-side {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .home-shell {
+        padding: 18px 12px 52px;
+      }
+
+      .home-hero {
+        padding: 22px 16px 18px;
+        border-radius: 20px;
+      }
+
+      .home-title {
+        font-size: 2.4rem;
+      }
+
+      .home-hero-side {
+        grid-template-columns: 1fr;
+      }
+
+      .home-panel,
+      .home-card {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .home-ranking-list li {
+        grid-template-columns: 42px minmax(0, 1fr) auto;
+        gap: 10px;
+      }
+
+      .home-rank-score {
+        font-size: 0.92rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="page">
-    <header class="page-header card hero">
-      <h1>MC Battle DB</h1>
-      <p class="hero-title-sub">
-        国内主要MCバトルの本戦結果をもとにした記録・ランキングDB
-      </p>
+  <div class="home-shell">
+    <header class="home-hero">
+      <div class="home-hero-top">
+        <div>
+          <span class="home-kicker">JAPANESE MC BATTLE ARCHIVE</span>
+          <h1 class="home-title">MC Battle DB</h1>
+          <p class="home-title-sub">
+            国内主要MCバトルの本戦結果をベースに、記録・検索・ランキングを横断できるデータベース。
+          </p>
+        </div>
 
-      <div class="lead-block">
-        <p>
-          このサイトのランキングは、1on1本戦の試合結果をもとに、
-          対戦相手の強さ、ラウンド、大会強度、直近の結果などを加味して算出しています。
-        </p>
-        <p>
-          単純な優勝回数や賞金総額ではなく、
-          <strong>「今どれだけ強いか」</strong>を、できるだけ合理的に表現することを目指しています。
-        </p>
-        <p>
-          現時点では公開用の <strong>v2スコア</strong> を採用しており、
-          <strong>予選は除外</strong>、<strong>1on1本戦のみ</strong>を対象にしています。
-        </p>
-        <p class="muted spec-note">
-          データや仕様は今後も改善される可能性があります。変更があった場合は、
-          サイト表示と元データの仕様シートの両方に反映します。
-        </p>
+        <div class="home-hero-side">
+          <div class="hero-stat">
+            <span class="hero-stat-label">対象</span>
+            <span class="hero-stat-value">1on1本戦のみ</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-label">ランキング</span>
+            <span class="hero-stat-value">Current v2</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-label">方針</span>
+            <span class="hero-stat-value">今の強さ重視</span>
+          </div>
+        </div>
       </div>
 
-      <div class="top-links-row">
-        <a href="rankings.html">100位まで見る</a>
-        <a href="events.html">大会一覧から記録を見る</a>
-        <a href="mcs.html">MC一覧から記録を見る</a>
+      <div class="home-lead-grid">
+        <div class="home-panel">
+          <h2>このサイトについて</h2>
+          <p>
+            単純な優勝回数や賞金総額ではなく、対戦相手の強さ、ラウンド、大会強度、直近の結果などを踏まえて
+            <strong>「今どれだけ強いか」</strong> を可視化することを目指しています。
+          </p>
+        </div>
+
+        <div class="home-panel">
+          <h2>公開基準</h2>
+          <p>
+            現在は <strong>v2スコア</strong> を採用。<strong>予選は除外</strong>し、<strong>1on1本戦のみ</strong>を対象にしています。
+          </p>
+        </div>
+      </div>
+
+      <div class="home-actions">
+        <a class="home-action-main" href="rankings.html">ランキングを見る</a>
+        <a class="home-action-sub" href="events.html">大会一覧を見る</a>
+        <a class="home-action-sub" href="mcs.html">MC一覧を見る</a>
       </div>
     </header>
 
-    <div class="top-grid">
-      <section class="card compact-card">
-        <div class="section-title-row">
-          <h2>直近の大会</h2>
-          <span class="badge">Latest 10</span>
+    <main class="home-main-grid">
+      <section class="home-card">
+        <div class="home-card-head">
+          <h2 class="home-card-title">直近の大会</h2>
+          <span class="home-card-sub">Latest 10</span>
         </div>
-        <p id="events-status" class="muted status-line">読み込み中...（数秒かかることがあります）</p>
-        <ul id="recent-events-list" class="list-tight events-list"></ul>
+        <p id="events-status" class="home-status">読み込み中...（数秒かかることがあります）</p>
+        <ul id="recent-events-list" class="home-events-list"></ul>
       </section>
 
-      <section class="card compact-card">
-        <div class="section-title-row">
-          <h2>ランキング Top20</h2>
-          <span class="badge">Current v2</span>
+      <section class="home-card">
+        <div class="home-card-head">
+          <h2 class="home-card-title">ランキング Top20</h2>
+          <span class="home-card-sub">Current v2</span>
         </div>
-        <p id="ranking-status" class="muted status-line">読み込み中...（数秒かかることがあります）</p>
-        <ol id="ranking-list" class="ranking-top-list"></ol>
+        <p id="ranking-status" class="home-status">読み込み中...（数秒かかることがあります）</p>
+        <ol id="ranking-list" class="home-ranking-list"></ol>
       </section>
+    </main>
+
+    <div class="home-bottom-links">
+      <a href="rankings.html">Top100を見る</a>
+      <a href="events.html">大会一覧から探す</a>
+      <a href="mcs.html">MC一覧から探す</a>
     </div>
+  </div>
 
-    <script>
-      const RANKING_API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+  <script>
+    const RANKING_API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
 
-      function loadDataJsonp() {
-        const callbackName = "mcBattleDataCallback";
+    function loadDataJsonp() {
+      const callbackName = "mcBattleDataCallback";
 
-        const rankingStatusEl = document.getElementById("ranking-status");
-        const rankingListEl = document.getElementById("ranking-list");
-        const eventsStatusEl = document.getElementById("events-status");
-        const recentEventsListEl = document.getElementById("recent-events-list");
+      const rankingStatusEl = document.getElementById("ranking-status");
+      const rankingListEl = document.getElementById("ranking-list");
+      const eventsStatusEl = document.getElementById("events-status");
+      const recentEventsListEl = document.getElementById("recent-events-list");
 
-        window[callbackName] = function(data) {
-          console.log("JSONP data:", data);
+      window[callbackName] = function(data) {
+        console.log("JSONP data:", data);
 
-          rankingListEl.innerHTML = "";
-          recentEventsListEl.innerHTML = "";
+        rankingListEl.innerHTML = "";
+        recentEventsListEl.innerHTML = "";
 
-          try {
-            if (data.error) {
-              rankingStatusEl.textContent = "データ取得エラー: " + (data.message || "unknown error");
-              rankingStatusEl.classList.add("error");
-              eventsStatusEl.textContent = "データ取得エラー";
-              eventsStatusEl.classList.add("error");
-              return;
+        try {
+          if (data.error) {
+            rankingStatusEl.textContent = "データ取得エラー: " + (data.message || "unknown error");
+            rankingStatusEl.classList.add("error");
+            eventsStatusEl.textContent = "データ取得エラー";
+            eventsStatusEl.classList.add("error");
+            return;
+          }
+
+          const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 20) : [];
+
+          rankings.forEach((item, index) => {
+            const li = document.createElement("li");
+
+            const rankNo = document.createElement("span");
+            rankNo.className = "home-rank-no";
+            rankNo.textContent = `${item.rank || index + 1}.`;
+
+            const rankName = document.createElement("span");
+            rankName.className = "home-rank-name";
+
+            const mcName = item.mc_name ? String(item.mc_name) : "名前不明";
+            const mcId = item.mc_id ? String(item.mc_id) : "";
+
+            if (mcId) {
+              const a = document.createElement("a");
+              a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
+              a.textContent = mcName;
+              rankName.appendChild(a);
+            } else {
+              rankName.textContent = mcName;
             }
 
-            const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 20) : [];
+            const rankScore = document.createElement("span");
+            rankScore.className = "home-rank-score";
 
-            rankings.forEach((item, index) => {
-              const li = document.createElement("li");
+            const rawScore = item.current_strength_score_v2 ?? "";
+            rankScore.textContent =
+              rawScore !== "" && !isNaN(Number(rawScore))
+                ? Number(rawScore).toFixed(2)
+                : String(rawScore);
 
-              const rankNo = document.createElement("span");
-              rankNo.className = "rank-no";
-              rankNo.textContent = `${item.rank || index + 1}.`;
+            li.appendChild(rankNo);
+            li.appendChild(rankName);
+            li.appendChild(rankScore);
 
-              const rankName = document.createElement("span");
-              rankName.className = "rank-name";
+            rankingListEl.appendChild(li);
+          });
 
-              const mcName = item.mc_name ? String(item.mc_name) : "名前不明";
-              const mcId = item.mc_id ? String(item.mc_id) : "";
+          rankingStatusEl.textContent = `Top${rankings.length}を表示`;
 
-              if (mcId) {
-                const a = document.createElement("a");
-                a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
-                a.textContent = mcName;
-                rankName.appendChild(a);
-              } else {
-                rankName.textContent = mcName;
-              }
+          const recentEvents = Array.isArray(data.recent_events) ? data.recent_events : [];
 
-              const rankScore = document.createElement("span");
-              rankScore.className = "rank-score";
+          recentEvents.forEach((event) => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
 
-              const rawScore = item.current_strength_score_v2 ?? "";
-              rankScore.textContent =
-                rawScore !== "" && !isNaN(Number(rawScore))
-                  ? Number(rawScore).toFixed(2)
-                  : String(rawScore);
+            a.href = `event.html?event_id=${encodeURIComponent(event.event_id)}`;
 
-              li.appendChild(rankNo);
-              li.appendChild(rankName);
-              li.appendChild(rankScore);
+            const date = event.event_date ? String(event.event_date) : "";
+            const name = event.event_name ? String(event.event_name) : "大会名不明";
 
-              rankingListEl.appendChild(li);
-            });
+            a.innerHTML = `
+              <span class="home-event-date">${date}</span>
+              <span class="home-event-name">${name}</span>
+            `;
 
-            rankingStatusEl.textContent = `Top${rankings.length}を表示`;
+            li.appendChild(a);
+            recentEventsListEl.appendChild(li);
+          });
 
-            const recentEvents = Array.isArray(data.recent_events) ? data.recent_events : [];
-
-            recentEvents.forEach((event) => {
-              const li = document.createElement("li");
-              const a = document.createElement("a");
-
-              a.href = `event.html?event_id=${encodeURIComponent(event.event_id)}`;
-
-              const eventDate = event.event_date ? String(event.event_date) : "";
-              const eventName = event.event_name ? String(event.event_name) : "大会名不明";
-
-              a.textContent = `${eventDate} ${eventName}`.trim();
-
-              li.appendChild(a);
-              recentEventsListEl.appendChild(li);
-            });
-
-            eventsStatusEl.textContent = `直近${recentEvents.length}件を表示`;
-          } catch (err) {
-            console.error("render error:", err);
-            rankingStatusEl.textContent = "ランキング描画エラー";
-            rankingStatusEl.classList.add("error");
-            eventsStatusEl.textContent = "大会描画エラー";
-            eventsStatusEl.classList.add("error");
-          }
-        };
-
-        const script = document.createElement("script");
-        script.src = `${RANKING_API_URL}?callback=${callbackName}`;
-
-        script.onload = function() {
-          if (rankingListEl.children.length === 0 && recentEventsListEl.children.length === 0) {
-            rankingStatusEl.textContent = "JSONPは読み込めたが callback が実行されていません";
-            rankingStatusEl.classList.add("error");
-            eventsStatusEl.textContent = "JSONPは読み込めたが callback が実行されていません";
-            eventsStatusEl.classList.add("error");
-          }
-        };
-
-        script.onerror = function() {
-          rankingStatusEl.textContent = "JSONP読み込み失敗";
+          eventsStatusEl.textContent = `直近${recentEvents.length}件を表示`;
+        } catch (err) {
+          console.error("render error:", err);
+          rankingStatusEl.textContent = "ランキング描画エラー";
           rankingStatusEl.classList.add("error");
-          eventsStatusEl.textContent = "JSONP読み込み失敗";
+          eventsStatusEl.textContent = "大会描画エラー";
           eventsStatusEl.classList.add("error");
-        };
+        }
+      };
 
-        document.body.appendChild(script);
-      }
+      const script = document.createElement("script");
+      script.src = `${RANKING_API_URL}?callback=${callbackName}`;
 
-      loadDataJsonp();
-    </script>
-  </div>
+      script.onload = function() {
+        if (rankingListEl.children.length === 0 && recentEventsListEl.children.length === 0) {
+          rankingStatusEl.textContent = "JSONPは読み込めたが callback が実行されていません";
+          rankingStatusEl.classList.add("error");
+          eventsStatusEl.textContent = "JSONPは読み込めたが callback が実行されていません";
+          eventsStatusEl.classList.add("error");
+        }
+      };
+
+      script.onerror = function() {
+        rankingStatusEl.textContent = "JSONP読み込み失敗";
+        rankingStatusEl.classList.add("error");
+        eventsStatusEl.textContent = "JSONP読み込み失敗";
+        eventsStatusEl.classList.add("error");
+      };
+
+      document.body.appendChild(script);
+    }
+
+    loadDataJsonp();
+  </script>
 </body>
 </html>
