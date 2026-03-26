@@ -5,25 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>大会記録 | MC Battle DB</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .event-page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 16px 72px;
+    }
+
+    .event-card-inner {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .event-card-inner .muted {
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .event-page {
+        padding: 20px 12px 56px;
+      }
+
+      .event-card-inner {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <p><a href="./">← トップへ戻る</a></p>
+  <div class="event-page">
+    <p><a href="./">← トップへ戻る</a></p>
 
-  <header>
-    <h1 id="event-title">大会情報を読み込み中...</h1>
-    <p id="event-meta" class="muted"></p>
-  </header>
+    <header>
+      <h1 id="event-title">大会情報を読み込み中...</h1>
+      <p id="event-meta" class="muted"></p>
+    </header>
 
-  <section class="card">
-    <h2>大会情報</h2>
-    <ul id="event-info-list" class="meta-list"></ul>
-  </section>
+    <section class="card">
+      <div class="event-card-inner">
+        <h2>大会情報</h2>
+        <ul id="event-info-list" class="meta-list"></ul>
+      </div>
+    </section>
 
-  <section class="card">
-    <h2>試合結果</h2>
-    <p id="matches-status" class="muted">読み込み中...</p>
-    <div id="matches-list"></div>
-  </section>
+    <section class="card">
+      <div class="event-card-inner">
+        <h2>試合結果</h2>
+        <p id="matches-status" class="muted">読み込み中...</p>
+        <div id="matches-list"></div>
+      </div>
+    </section>
+  </div>
 
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
