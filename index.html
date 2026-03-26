@@ -135,7 +135,7 @@
 
     .home-main-grid {
       display: grid;
-      grid-template-columns: minmax(340px, 0.9fr) minmax(420px, 1.1fr);
+      grid-template-columns: minmax(320px, 0.95fr) minmax(320px, 1.05fr);
       gap: 18px;
       margin-top: 22px;
       align-items: start;
@@ -220,16 +220,22 @@
     }
 
     .home-event-date {
+      display: block;
       color: var(--accent-dim);
       font-size: 0.84rem;
-      margin-right: 0.55em;
-      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.35;
+      margin-bottom: 2px;
     }
 
     .home-event-name {
+      display: block;
       color: var(--accent);
       text-decoration: underline;
       text-underline-offset: 0.14em;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .home-ranking-list {
@@ -241,8 +247,8 @@
 
     .home-ranking-list li {
       display: grid;
-      grid-template-columns: 52px minmax(0, 1fr) auto;
-      gap: 12px;
+      grid-template-columns: 52px minmax(0, 12em) auto;
+      gap: 10px;
       align-items: center;
       padding: 11px 0;
       border-bottom: 1px solid var(--line);
@@ -266,12 +272,23 @@
       color: var(--accent);
     }
 
+    .home-rank-name {
+      min-width: 0;
+      max-width: 12em;
+    }
+
     .home-rank-name a,
     .home-rank-name span {
+      display: inline-block;
+      max-width: 12em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       color: var(--accent);
       text-decoration: underline;
       text-underline-offset: 0.14em;
       font-weight: 700;
+      vertical-align: bottom;
     }
 
     .home-rank-score {
@@ -279,6 +296,7 @@
       color: var(--accent-soft);
       font-weight: 700;
       white-space: nowrap;
+      text-align: right;
     }
 
     @media (max-width: 900px) {
@@ -310,8 +328,14 @@
       }
 
       .home-ranking-list li {
-        grid-template-columns: 42px minmax(0, 1fr) auto;
-        gap: 10px;
+        grid-template-columns: 42px minmax(0, 9em) auto;
+        gap: 8px;
+      }
+
+      .home-rank-name,
+      .home-rank-name a,
+      .home-rank-name span {
+        max-width: 9em;
       }
 
       .home-rank-score {
@@ -336,7 +360,6 @@
 
       <div class="home-lead-grid">
         <div class="home-panel">
-          <h2>このサイトについて</h2>
           <p>
             単純な優勝回数や賞金総額ではなく、対戦相手の強さ、ラウンド、大会強度、直近の結果などを踏まえて
             <strong>「今どれだけ強いか」</strong> を可視化することを目指しています。
@@ -363,7 +386,7 @@
       <section class="home-card">
         <div class="home-card-head">
           <h2 class="home-card-title">直近の大会</h2>
-          <span class="home-card-sub">Latest 10</span>
+          <span class="home-card-sub">Latest 5</span>
         </div>
         <p id="events-status" class="home-status">読み込み中...（数秒かかることがあります）</p>
         <ul id="recent-events-list" class="home-events-list"></ul>
@@ -425,9 +448,13 @@
               const a = document.createElement("a");
               a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
               a.textContent = mcName;
+              a.title = mcName;
               rankName.appendChild(a);
             } else {
-              rankName.textContent = mcName;
+              const span = document.createElement("span");
+              span.textContent = mcName;
+              span.title = mcName;
+              rankName.appendChild(span);
             }
 
             const rankScore = document.createElement("span");
@@ -448,7 +475,7 @@
 
           rankingStatusEl.textContent = `Top${rankings.length}を表示`;
 
-          const recentEvents = Array.isArray(data.recent_events) ? data.recent_events : [];
+          const recentEvents = Array.isArray(data.recent_events) ? data.recent_events.slice(0, 5) : [];
 
           recentEvents.forEach((event) => {
             const li = document.createElement("li");
