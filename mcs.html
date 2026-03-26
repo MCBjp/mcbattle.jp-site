@@ -4,7 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MC一覧 | MC Battle DB</title>
-<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .mcs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .mcs-list li {
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid currentColor;
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .mcs-list li:last-child {
+      border-bottom: none;
+    }
+
+    .mc-link {
+      display: block;
+      padding: 10px 0;
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+
+    .mc-link:hover {
+      opacity: 0.88;
+    }
+
+    @media (max-width: 640px) {
+      .mc-link {
+        padding: 8px 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <p><a href="./">← トップへ戻る</a></p>
@@ -16,11 +52,20 @@
 
   <section class="card">
     <p id="mcs-status" class="muted">読み込み中...</p>
-    <ul id="mcs-list"></ul>
+    <ul id="mcs-list" class="mcs-list"></ul>
   </section>
 
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
 
     function loadMcsList() {
       const callbackName = "mcBattleMcsCallback";
@@ -31,6 +76,7 @@
         console.log("mcs list:", data);
 
         listEl.innerHTML = "";
+        statusEl.classList.remove("error");
 
         try {
           if (data.error) {
@@ -43,14 +89,16 @@
 
           mcs.forEach((mc) => {
             const li = document.createElement("li");
-            const a = document.createElement("a");
 
-            a.href = `mc.html?mc_id=${encodeURIComponent(mc.mc_id)}`;
-
+            const mcId = mc.mc_id ? String(mc.mc_id) : "";
             const name = mc.mc_name ? String(mc.mc_name) : "MC名不明";
-            a.textContent = name;
 
-            li.appendChild(a);
+            if (mcId) {
+              li.innerHTML = `<a class="mc-link" href="mc.html?mc_id=${encodeURIComponent(mcId)}">${escapeHtml(name)}</a>`;
+            } else {
+              li.innerHTML = `<span class="mc-link">${escapeHtml(name)}</span>`;
+            }
+
             listEl.appendChild(li);
           });
 
