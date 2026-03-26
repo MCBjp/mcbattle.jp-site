@@ -106,8 +106,9 @@
     .home-action-btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 48px;
+      min-width: 180px;
       padding: 0 18px;
       border-radius: 999px;
       font-weight: 700;
@@ -316,6 +317,10 @@
       .home-rank-score {
         font-size: 0.92rem;
       }
+
+      .home-action-btn {
+        min-width: 100%;
+      }
     }
   </style>
 </head>
@@ -348,6 +353,7 @@
 
       <div class="home-actions">
         <a class="home-action-btn" href="rankings.html">ランキングを見る</a>
+        <a class="home-action-btn" href="prize_rankings.html">獲得賞金ランキングを見る</a>
         <a class="home-action-btn" href="events.html">大会一覧を見る</a>
         <a class="home-action-btn" href="mcs.html">MC一覧を見る</a>
       </div>
