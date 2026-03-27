@@ -6,18 +6,19 @@
   <title>ランキング仕様について | MCBattle.jp</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      overflow-x: hidden;
+    }
+
     .spec-page {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 28px 16px 72px;
+      padding: 24px 14px 64px;
+      overflow-x: hidden;
     }
 
     .spec-hero {
-      margin-bottom: 20px;
-    }
-
-    .spec-hero p:last-child {
-      margin-bottom: 0;
+      margin-bottom: 18px;
     }
 
     .spec-grid {
@@ -33,6 +34,9 @@
         linear-gradient(180deg, var(--panel) 0%, rgba(14, 18, 28, 0.98) 100%);
       box-shadow: var(--shadow);
       padding: 18px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .spec-card h2 {
@@ -72,23 +76,27 @@
       border-radius: 14px;
       background: rgba(255,255,255,0.04);
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       font-family:
         ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
       font-size: 0.95rem;
       line-height: 1.8;
       white-space: pre-wrap;
+      word-break: break-word;
     }
 
     .spec-table-wrap {
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: rgba(255,255,255,0.02);
+      max-width: 100%;
     }
 
     .spec-table {
       width: 100%;
-      min-width: 520px;
+      min-width: 480px;
       border-collapse: collapse;
     }
 
@@ -132,7 +140,7 @@
 
     @media (max-width: 640px) {
       .spec-page {
-        padding: 20px 12px 56px;
+        padding: 18px 10px 52px;
       }
 
       .spec-card {
@@ -141,13 +149,23 @@
       }
 
       .spec-formula {
-        font-size: 0.9rem;
-        padding: 12px 14px;
+        font-size: 0.88rem;
+        padding: 12px 12px;
+        line-height: 1.7;
+      }
+
+      .spec-table {
+        min-width: 420px;
       }
 
       .spec-table th,
       .spec-table td {
         padding: 10px 10px;
+        font-size: 0.92rem;
+      }
+
+      .spec-chip {
+        font-size: 0.86rem;
       }
     }
   </style>
@@ -158,12 +176,6 @@
 
     <header class="spec-hero">
       <h1>ランキング仕様について</h1>
-      <p class="muted">
-        このページは、MCBattle.jpで公開している「今どれだけ強いか」を表すスコアランキングの考え方を、できるだけわかりやすく整理したものです。
-      </p>
-      <p class="muted">
-        FSLスコアや個人の印象と異なる場合がありますが、サイト上では「誰に勝ったか」「いつ勝ったか」を重視した独自基準で算出しています。
-      </p>
     </header>
 
     <div class="spec-grid">
