@@ -172,6 +172,52 @@
       box-shadow: 0 0 18px rgba(0, 0, 0, 0.18);
     }
 
+    .sim-link-card {
+      display: block;
+      width: 100%;
+      margin: 14px 0;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(116, 88, 220, 0.92), rgba(62, 120, 214, 0.92));
+      color: #f7f9ff;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 8px 24px rgba(66, 95, 190, 0.22);
+      transition:
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
+    }
+
+    .sim-link-card:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+      opacity: 0.99;
+      border-color: rgba(255,255,255,0.28);
+      box-shadow: 0 12px 28px rgba(66, 95, 190, 0.28);
+      filter: brightness(1.03);
+    }
+
+    .sim-link-card-small {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      font-weight: 600;
+      color: rgba(247, 249, 255, 0.86);
+    }
+
+    .sim-link-card-main {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.45;
+      font-weight: 800;
+      color: #f7f9ff;
+    }
+
     .home-actions {
       display: flex;
       flex-wrap: wrap;
@@ -632,6 +678,14 @@
         margin-top: 12px;
         gap: 12px;
       }
+
+      .sim-link-card-small {
+        font-size: 0.78rem;
+      }
+
+      .sim-link-card-main {
+        font-size: 0.94rem;
+      }
     }
   </style>
 </head>
@@ -668,6 +722,10 @@
             現在のランキング仕様はこちらです。FSLスコアや個人の印象と異なる場合があります。
           </p>
           <a href="ranking_spec.html" class="spec-link-card">ランキング仕様について</a>
+          <a href="virtual_tournament.html" class="sim-link-card">
+            <span class="sim-link-card-small">8人のMCを選んで戦わせる</span>
+            <span class="sim-link-card-main">仮想MCバトルシミュレーション</span>
+          </a>
           <p>
             この仕様は都度改善を加えていくので、ご意見があればフォームからお便りを下さい。
           </p>
