@@ -92,7 +92,7 @@
       position: absolute;
       top: 52px;
       left: 0;
-      min-width: 220px;
+      min-width: 240px;
       border: 1px solid var(--line);
       border-radius: 16px;
       background:
@@ -183,7 +183,7 @@
 
     .home-main-grid {
       display: grid;
-      grid-template-columns: minmax(260px, 320px) minmax(280px, 360px) minmax(280px, 360px);
+      grid-template-columns: minmax(260px, 320px) minmax(260px, 320px) minmax(280px, 360px) minmax(280px, 360px);
       gap: 18px;
       margin-top: 22px;
       align-items: start;
@@ -210,6 +210,7 @@
       pointer-events: none;
     }
 
+    .home-upcoming-card,
     .home-events-card,
     .home-ranking-card,
     .home-prize-card {
@@ -239,6 +240,7 @@
       font-size: 0.92rem;
     }
 
+    .home-upcoming-list,
     .home-events-list {
       list-style: none;
       padding: 0;
@@ -246,16 +248,19 @@
       width: fit-content;
     }
 
+    .home-upcoming-list li,
     .home-events-list li {
       margin: 0;
       border-bottom: 1px solid var(--line);
       width: fit-content;
     }
 
+    .home-upcoming-list li:last-child,
     .home-events-list li:last-child {
       border-bottom: none;
     }
 
+    .home-upcoming-list a,
     .home-events-list a {
       display: block;
       width: fit-content;
@@ -264,6 +269,7 @@
       text-decoration: none;
     }
 
+    .home-upcoming-list a:hover,
     .home-events-list a:hover {
       text-decoration: none;
       opacity: 0.9;
@@ -300,6 +306,7 @@
 
     .home-ranking-list li,
     .home-prize-list li,
+    .sp-upcoming-list li,
     .sp-events-list li,
     .sp-ranking-list li,
     .sp-prize-list li {
@@ -331,6 +338,7 @@
 
     .home-ranking-list li:last-child,
     .home-prize-list li:last-child,
+    .sp-upcoming-list li:last-child,
     .sp-events-list li:last-child,
     .sp-ranking-list li:last-child,
     .sp-prize-list li:last-child {
@@ -372,6 +380,7 @@
     .home-rank-name span,
     .home-prize-name a,
     .home-prize-name span,
+    .sp-upcoming-list a,
     .sp-events-list a {
       display: inline-block;
       color: var(--accent);
@@ -455,6 +464,7 @@
       margin-top: 0;
     }
 
+    .sp-upcoming-list,
     .sp-events-list,
     .sp-ranking-list,
     .sp-prize-list {
@@ -464,6 +474,7 @@
       width: 100%;
     }
 
+    .sp-upcoming-list a,
     .sp-events-list a {
       display: block;
       width: 100%;
@@ -471,13 +482,21 @@
       text-decoration: none;
     }
 
+    .sp-upcoming-list a:hover,
     .sp-events-list a:hover {
       text-decoration: none;
       opacity: 0.9;
     }
 
+    .sp-upcoming-list .home-event-name,
     .sp-events-list .home-event-name {
       max-width: 100%;
+    }
+
+    @media (max-width: 1300px) {
+      .home-main-grid {
+        grid-template-columns: minmax(260px, 320px) minmax(260px, 320px) minmax(280px, 360px);
+      }
     }
 
     @media (max-width: 1100px) {
@@ -493,6 +512,7 @@
         display: grid;
       }
 
+      .home-upcoming-card,
       .home-events-card,
       .home-ranking-card,
       .home-prize-card {
@@ -500,12 +520,15 @@
         justify-self: stretch;
       }
 
+      .home-upcoming-list,
       .home-events-list,
       .home-ranking-list,
       .home-prize-list {
         width: 100%;
       }
 
+      .home-upcoming-list li,
+      .home-upcoming-list a,
       .home-events-list li,
       .home-events-list a {
         width: 100%;
@@ -564,6 +587,7 @@
         display: block;
       }
 
+      .home-upcoming-card,
       .home-events-card,
       .home-ranking-card,
       .home-prize-card {
@@ -588,8 +612,8 @@
         <div class="hamburger-wrap">
           <button id="hamburger-btn" class="hamburger-btn" type="button" aria-label="メニューを開く">☰</button>
           <nav id="hamburger-menu" class="hamburger-menu">
-            <a href="rankings.html">スコアランキング</a>
-            <a href="prize_rankings.html">獲得賞金ランキング</a>
+            <a href="rankings.html">スコアランキング(全件)</a>
+            <a href="prize_rankings.html">獲得賞金ランキング(全件)</a>
             <a href="events.html">大会一覧</a>
             <a href="mcs.html">MC一覧</a>
           </nav>
@@ -625,9 +649,17 @@
     </header>
 
     <main class="home-main-grid">
+      <section class="home-card home-upcoming-card">
+        <div class="home-card-head">
+          <h2 class="home-card-title">今後開催される大会</h2>
+        </div>
+        <p id="upcoming-status" class="home-status">中身は後ほど追加予定です</p>
+        <ul id="upcoming-events-list" class="home-upcoming-list"></ul>
+      </section>
+
       <section class="home-card home-events-card">
         <div class="home-card-head">
-          <h2 class="home-card-title">直近の大会</h2>
+          <h2 class="home-card-title">直近開催された大会</h2>
         </div>
         <p id="events-status" class="home-status">読み込み中...（数秒かかることがあります）</p>
         <ul id="recent-events-list" class="home-events-list"></ul>
@@ -652,7 +684,15 @@
 
     <section class="sp-collapsible-wrap">
       <details class="sp-accordion">
-        <summary>直近の大会</summary>
+        <summary>今後開催される大会</summary>
+        <div class="sp-accordion-body">
+          <p id="sp-upcoming-status" class="home-status">中身は後ほど追加予定です</p>
+          <ul id="sp-upcoming-events-list" class="sp-upcoming-list"></ul>
+        </div>
+      </details>
+
+      <details class="sp-accordion">
+        <summary>直近開催された大会</summary>
         <div class="sp-accordion-body">
           <p id="sp-events-status" class="home-status">読み込み中...（数秒かかることがあります）</p>
           <ul id="sp-recent-events-list" class="sp-events-list"></ul>
