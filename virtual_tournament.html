@@ -195,7 +195,6 @@
     }
 
     .mode-card {
-      position: relative;
       border: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.04);
       border-radius: 16px;
@@ -619,7 +618,7 @@
       <h1 class="page-title">仮想MCバトルシミュレーション</h1>
       <p class="page-subtitle">
         8人のMCを選んで、仮想トーナメントをシミュレーションできます。<br>
-        まずモードを選び、8人そろったら「結果を見る」を押してください。
+        試合数が少ないMCは補正され、内部はベストオブ3で勝敗を決めます。
       </p>
     </section>
 
@@ -639,11 +638,11 @@
           <div class="mode-grid">
             <div id="mode-current" class="mode-card active" role="button" tabindex="0">
               <span class="mode-card-title">今の強さでシミュレーションする</span>
-              <span class="mode-card-desc">current_score を使って、現時点の強さ寄りで勝敗を計算します。</span>
+              <span class="mode-card-desc">current_score をベースに、試合数補正を入れて計算します。</span>
             </div>
             <div id="mode-peak" class="mode-card" role="button" tabindex="0">
               <span class="mode-card-title">全盛期の強さでシミュレーションする</span>
-              <span class="mode-card-desc">peak_score を使って、全盛期寄りの強さで勝敗を計算します。</span>
+              <span class="mode-card-desc">peak_score をベースに、試合数補正を入れて計算します。</span>
             </div>
           </div>
         </div>
@@ -663,7 +662,7 @@
         <div class="selected-area">
           <div class="selected-header">
             <div class="selected-title">選択中の8人</div>
-            <div class="selected-sub">8人そろうと結果ボタンが有効になります</div>
+            <div class="selected-sub">戦績0のMCは候補に出していません</div>
           </div>
 
           <div id="selected-grid" class="selected-grid"></div>
@@ -845,10 +844,12 @@
 
         const currentScore = Number(row.current_score);
         const peakScore = Number(row.peak_score);
+        const totalMatches = Number(row.total_matches);
 
         strengthMap[mcId] = {
           current_score: isNaN(currentScore) ? 1500 : currentScore,
-          peak_score: isNaN(peakScore) ? (isNaN(currentScore) ? 1500 : currentScore) : peakScore
+          peak_score: isNaN(peakScore) ? (isNaN(currentScore) ? 1500 : currentScore) : peakScore,
+          total_matches: isNaN(totalMatches) ? 0 : totalMatches
         };
       });
     }
@@ -1006,54 +1007,91 @@
       const mcId = String(mc && mc.mc_id ? mc.mc_id : '');
       return strengthMap[mcId] || {
         current_score: 1500,
-        peak_score: 1500
+        peak_score: 1500,
+        total_matches: 0
       };
     }
 
-    function getRatingForMc(mc) {
+    function getReliabilityFactor(totalMatches) {
+      const n = Number(totalMatches) || 0;
+      if (n <= 0) return 0;
+      if (n === 1) return 0.15;
+      if (n === 2) return 0.25;
+      if (n === 3) return 0.35;
+      if (n === 4) return 0.45;
+      if (n === 5) return 0.55;
+      if (n === 6) return 0.62;
+      if (n === 7) return 0.68;
+      if (n === 8) return 0.72;
+      if (n === 9) return 0.76;
+      if (n <= 12) return 0.82;
+      if (n <= 16) return 0.9;
+      if (n <= 19) return 0.96;
+      return 1.0;
+    }
+
+    function getBaseRatingForMc(mc) {
       const strength = getStrengthObject(mc);
       return currentMode === 'peak'
         ? strength.peak_score
         : strength.current_score;
     }
 
-    function calculateWinProbability(ratingA, ratingB) {
-      return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
+    function getAdjustedRatingForMc(mc) {
+      const strength = getStrengthObject(mc);
+      const baseRating = getBaseRatingForMc(mc);
+      const factor = getReliabilityFactor(strength.total_matches);
+      return 1500 + (baseRating - 1500) * factor;
     }
 
-    function pickWinner(a, b) {
-      const ratingA = getRatingForMc(a);
-      const ratingB = getRatingForMc(b);
+    function calculateWinProbability(ratingA, ratingB) {
+      return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 320));
+    }
+
+    function playSingleBout(a, b) {
+      const ratingA = getAdjustedRatingForMc(a);
+      const ratingB = getAdjustedRatingForMc(b);
       const probA = calculateWinProbability(ratingA, ratingB);
       const randomValue = Math.random();
-
-      const winner = randomValue < probA ? a : b;
-      const loser = winner.mc_id === a.mc_id ? b : a;
-      const winnerProb = winner.mc_id === a.mc_id ? probA : (1 - probA);
-
       return {
-        winner: winner,
-        loser: loser,
-        rating_a: ratingA,
-        rating_b: ratingB,
+        winner: randomValue < probA ? a : b,
         probability_a: probA,
         probability_b: 1 - probA,
-        winner_probability: winnerProb
+        rating_a: ratingA,
+        rating_b: ratingB
       };
     }
 
     function createMatch(a, b) {
-      const result = pickWinner(a, b);
+      let winsA = 0;
+      let winsB = 0;
+      let lastBout = null;
+
+      while (winsA < 2 && winsB < 2) {
+        lastBout = playSingleBout(a, b);
+        if (lastBout.winner.mc_id === a.mc_id) {
+          winsA += 1;
+        } else {
+          winsB += 1;
+        }
+      }
+
+      const winner = winsA > winsB ? a : b;
+      const loser = winner.mc_id === a.mc_id ? b : a;
+
       return {
         a: a,
         b: b,
-        winner: result.winner,
-        loser: result.loser,
-        rating_a: result.rating_a,
-        rating_b: result.rating_b,
-        probability_a: result.probability_a,
-        probability_b: result.probability_b,
-        winner_probability: result.winner_probability
+        winner: winner,
+        loser: loser,
+        rating_a: lastBout.rating_a,
+        rating_b: lastBout.rating_b,
+        probability_a: lastBout.probability_a,
+        probability_b: lastBout.probability_b,
+        wins_a: winsA,
+        wins_b: winsB,
+        total_matches_a: getStrengthObject(a).total_matches,
+        total_matches_b: getStrengthObject(b).total_matches
       };
     }
 
@@ -1099,11 +1137,13 @@
           '<div class="match-result-text">' +
             escapeHtml(match.a.mc_name || '') + ' vs ' + escapeHtml(match.b.mc_name || '') +
             ' → <span class="winner-text">' + escapeHtml(match.winner.mc_name || '') + '</span> 勝利' +
+            '（' + match.wins_a + '-' + match.wins_b + '）' +
           '</div>' +
           '<span class="probability-text">' +
             escapeHtml(match.a.mc_name || '') + ' 勝率 ' + formatPercent(match.probability_a) + '% / ' +
             escapeHtml(match.b.mc_name || '') + ' 勝率 ' + formatPercent(match.probability_b) + '%' +
-            ' （レート ' + formatRating(match.rating_a) + ' vs ' + formatRating(match.rating_b) + '）' +
+            ' ｜ 補正後レート ' + formatRating(match.rating_a) + ' vs ' + formatRating(match.rating_b) +
+            ' ｜ 総試合数 ' + match.total_matches_a + ' vs ' + match.total_matches_b +
           '</span>';
 
         container.appendChild(item);
@@ -1122,8 +1162,8 @@
 
       document.getElementById('result-mode-note').textContent =
         result.mode === 'peak'
-          ? 'peak_score を使って全盛期寄りの強さでシミュレーションしています。'
-          : 'current_score を使って現時点の強さでシミュレーションしています。';
+          ? 'peak_score を基準にしつつ、試合数補正と内部ベストオブ3でシミュレーションしています。'
+          : 'current_score を基準にしつつ、試合数補正と内部ベストオブ3でシミュレーションしています。';
 
       renderRoundList('best8-list', result.best8, 'Best8');
       renderRoundList('best4-list', result.best4, 'Best4');
