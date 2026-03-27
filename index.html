@@ -143,6 +143,33 @@
       margin-bottom: 0;
     }
 
+    .spec-link-card {
+      display: block;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      transition:
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        border-color 0.18s ease,
+        background-color 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .spec-link-card:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+      opacity: 0.96;
+      background: rgba(255,255,255,0.07);
+      border-color: var(--line-strong);
+      box-shadow: 0 0 18px rgba(135, 164, 255, 0.08);
+    }
+
     .home-actions {
       display: flex;
       flex-wrap: wrap;
@@ -635,8 +662,12 @@
         <div class="home-panel">
           <h2>公開基準</h2>
           <p>
-            現在は <strong>v2スコア</strong> を採用。<strong>予選は除外</strong>し、<strong>1on1本戦のみ</strong>を対象にしています。
+            現在のランキング仕様はこちらです。FSLのスコアや個人の印象値と異なる場合があります。
           </p>
+          <p>
+            この仕様は都度改善を加えていくので、ご意見があればフォームからお便りを下さい。
+          </p>
+          <a href="ranking_spec.html" class="spec-link-card">ランキング仕様について</a>
         </div>
       </div>
 
@@ -830,8 +861,6 @@
       const spPrizeListEl = document.getElementById("sp-prize-list");
 
       window[rankingCallbackName] = function(data) {
-        console.log("home base data:", data);
-
         rankingListEl.innerHTML = "";
         spRankingListEl.innerHTML = "";
         recentEventsListEl.innerHTML = "";
@@ -870,7 +899,6 @@
           eventsStatusEl.textContent = `直近${recentEvents.length}件を表示`;
           spEventsStatusEl.textContent = `直近${recentEvents.length}件を表示`;
         } catch (err) {
-          console.error("home base render error:", err);
           rankingStatusEl.textContent = "ランキング描画エラー";
           rankingStatusEl.classList.add("error");
           spRankingStatusEl.textContent = "ランキング描画エラー";
@@ -883,8 +911,6 @@
       };
 
       window[prizeCallbackName] = function(data) {
-        console.log("home prize data:", data);
-
         prizeListEl.innerHTML = "";
         spPrizeListEl.innerHTML = "";
 
@@ -907,7 +933,6 @@
           prizeStatusEl.textContent = `Top${rankings.length}を表示`;
           spPrizeStatusEl.textContent = `Top${rankings.length}を表示`;
         } catch (err) {
-          console.error("home prize render error:", err);
           prizeStatusEl.textContent = "獲得賞金ランキング描画エラー";
           prizeStatusEl.classList.add("error");
           spPrizeStatusEl.textContent = "獲得賞金ランキング描画エラー";
