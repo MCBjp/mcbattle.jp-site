@@ -524,6 +524,14 @@
       color: #fff;
     }
 
+    .probability-text {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
     .site-footer {
       margin-top: 34px;
       padding-top: 18px;
@@ -631,11 +639,11 @@
           <div class="mode-grid">
             <div id="mode-current" class="mode-card active" role="button" tabindex="0">
               <span class="mode-card-title">今の強さでシミュレーションする</span>
-              <span class="mode-card-desc">現在ランキングを使って、現時点の強さ寄りで勝敗を計算します。</span>
+              <span class="mode-card-desc">current_score を使って、現時点の強さ寄りで勝敗を計算します。</span>
             </div>
             <div id="mode-peak" class="mode-card" role="button" tabindex="0">
               <span class="mode-card-title">全盛期の強さでシミュレーションする</span>
-              <span class="mode-card-desc">全盛期モード用UIです。現時点では内部計算は暫定で現行スコアを使います。</span>
+              <span class="mode-card-desc">peak_score を使って、全盛期寄りの強さで勝敗を計算します。</span>
             </div>
           </div>
         </div>
@@ -711,8 +719,7 @@
     let filteredCandidates = [];
     let selectedMCs = [];
     let currentMode = 'current';
-    let ratingMapCurrent = {};
-    let ratingMapPeak = {};
+    let strengthMap = {};
     let lastSimulationResult = null;
 
     function escapeHtml(str) {
@@ -785,23 +792,24 @@
     }
 
     async function fetchInitialData() {
-      showStatus('参加候補とランキングを読み込み中...', false);
+      showStatus('参加候補と強さデータを読み込み中...', false);
 
       try {
-        const [candidateData, rankingData] = await Promise.all([
+        const [candidateData, strengthData] = await Promise.all([
           loadJsonp(API_URL + '?mode=virtual_candidates'),
-          loadJsonp(API_URL + '?mode=rankings')
+          loadJsonp(API_URL + '?mode=virtual_strengths')
         ]);
 
         if (candidateData && candidateData.error) {
           throw new Error('候補取得エラー: ' + (candidateData.message || 'unknown'));
         }
-        if (rankingData && rankingData.error) {
-          throw new Error('ランキング取得エラー: ' + (rankingData.message || 'unknown'));
+
+        if (strengthData && strengthData.error) {
+          throw new Error('強さ取得エラー: ' + (strengthData.message || 'unknown'));
         }
 
         allCandidates = Array.isArray(candidateData.candidates) ? candidateData.candidates.slice() : [];
-        buildRatingMaps(rankingData);
+        buildStrengthMap(strengthData);
 
         filteredCandidates = [];
         renderCandidateList(filteredCandidates);
@@ -824,33 +832,29 @@
       }
     }
 
-    function buildRatingMaps(rankingData) {
-      ratingMapCurrent = {};
-      ratingMapPeak = {};
+    function buildStrengthMap(strengthData) {
+      strengthMap = {};
 
-      const rankings = Array.isArray(rankingData && rankingData.rankings) ? rankingData.rankings : [];
+      const rows = Array.isArray(strengthData && strengthData.strengths)
+        ? strengthData.strengths
+        : [];
 
-      rankings.forEach(function(row) {
+      rows.forEach(function(row) {
         const mcId = String(row.mc_id || '');
         if (!mcId) return;
 
-        const score = Number(row.score);
-        const safeScore = isNaN(score) ? 1500 : score;
+        const currentScore = Number(row.current_score);
+        const peakScore = Number(row.peak_score);
 
-        ratingMapCurrent[mcId] = safeScore;
-
-        /* 
-          全盛期用の専用指標APIがまだないため、現時点では暫定で同じ値を入れる。
-          後で peak_score 等のAPIができたらここだけ差し替えればよい。
-        */
-        ratingMapPeak[mcId] = safeScore;
+        strengthMap[mcId] = {
+          current_score: isNaN(currentScore) ? 1500 : currentScore,
+          peak_score: isNaN(peakScore) ? (isNaN(currentScore) ? 1500 : currentScore) : peakScore
+        };
       });
     }
 
     function getModeLabel(mode) {
-      return mode === 'peak'
-        ? '全盛期の強さモード'
-        : '今の強さモード';
+      return mode === 'peak' ? '全盛期の強さモード' : '今の強さモード';
     }
 
     function setMode(mode) {
@@ -998,47 +1002,73 @@
       filterCandidates(input ? input.value : '');
     }
 
-    function getRatingForMc(mc) {
+    function getStrengthObject(mc) {
       const mcId = String(mc && mc.mc_id ? mc.mc_id : '');
+      return strengthMap[mcId] || {
+        current_score: 1500,
+        peak_score: 1500
+      };
+    }
 
-      if (currentMode === 'peak') {
-        return ratingMapPeak[mcId] || 1500;
-      }
+    function getRatingForMc(mc) {
+      const strength = getStrengthObject(mc);
+      return currentMode === 'peak'
+        ? strength.peak_score
+        : strength.current_score;
+    }
 
-      return ratingMapCurrent[mcId] || 1500;
+    function calculateWinProbability(ratingA, ratingB) {
+      return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
     }
 
     function pickWinner(a, b) {
       const ratingA = getRatingForMc(a);
       const ratingB = getRatingForMc(b);
-
-      const probA = 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
+      const probA = calculateWinProbability(ratingA, ratingB);
       const randomValue = Math.random();
 
-      return randomValue < probA ? a : b;
+      const winner = randomValue < probA ? a : b;
+      const loser = winner.mc_id === a.mc_id ? b : a;
+      const winnerProb = winner.mc_id === a.mc_id ? probA : (1 - probA);
+
+      return {
+        winner: winner,
+        loser: loser,
+        rating_a: ratingA,
+        rating_b: ratingB,
+        probability_a: probA,
+        probability_b: 1 - probA,
+        winner_probability: winnerProb
+      };
+    }
+
+    function createMatch(a, b) {
+      const result = pickWinner(a, b);
+      return {
+        a: a,
+        b: b,
+        winner: result.winner,
+        loser: result.loser,
+        rating_a: result.rating_a,
+        rating_b: result.rating_b,
+        probability_a: result.probability_a,
+        probability_b: result.probability_b,
+        winner_probability: result.winner_probability
+      };
     }
 
     function simulateTournament() {
       if (selectedMCs.length !== 8) return null;
 
-      const qf1 = { a: selectedMCs[0], b: selectedMCs[1] };
-      const qf2 = { a: selectedMCs[2], b: selectedMCs[3] };
-      const qf3 = { a: selectedMCs[4], b: selectedMCs[5] };
-      const qf4 = { a: selectedMCs[6], b: selectedMCs[7] };
+      const qf1 = createMatch(selectedMCs[0], selectedMCs[1]);
+      const qf2 = createMatch(selectedMCs[2], selectedMCs[3]);
+      const qf3 = createMatch(selectedMCs[4], selectedMCs[5]);
+      const qf4 = createMatch(selectedMCs[6], selectedMCs[7]);
 
-      qf1.winner = pickWinner(qf1.a, qf1.b);
-      qf2.winner = pickWinner(qf2.a, qf2.b);
-      qf3.winner = pickWinner(qf3.a, qf3.b);
-      qf4.winner = pickWinner(qf4.a, qf4.b);
+      const sf1 = createMatch(qf1.winner, qf2.winner);
+      const sf2 = createMatch(qf3.winner, qf4.winner);
 
-      const sf1 = { a: qf1.winner, b: qf2.winner };
-      const sf2 = { a: qf3.winner, b: qf4.winner };
-
-      sf1.winner = pickWinner(sf1.a, sf1.b);
-      sf2.winner = pickWinner(sf2.a, sf2.b);
-
-      const final = { a: sf1.winner, b: sf2.winner };
-      final.winner = pickWinner(final.a, final.b);
+      const final = createMatch(sf1.winner, sf2.winner);
 
       return {
         mode: currentMode,
@@ -1047,6 +1077,14 @@
         final: [final],
         champion: final.winner
       };
+    }
+
+    function formatPercent(value) {
+      return Math.round(value * 100);
+    }
+
+    function formatRating(value) {
+      return Math.round(value);
     }
 
     function renderRoundList(containerId, matches, labelPrefix) {
@@ -1061,7 +1099,12 @@
           '<div class="match-result-text">' +
             escapeHtml(match.a.mc_name || '') + ' vs ' + escapeHtml(match.b.mc_name || '') +
             ' → <span class="winner-text">' + escapeHtml(match.winner.mc_name || '') + '</span> 勝利' +
-          '</div>';
+          '</div>' +
+          '<span class="probability-text">' +
+            escapeHtml(match.a.mc_name || '') + ' 勝率 ' + formatPercent(match.probability_a) + '% / ' +
+            escapeHtml(match.b.mc_name || '') + ' 勝率 ' + formatPercent(match.probability_b) + '%' +
+            ' （レート ' + formatRating(match.rating_a) + ' vs ' + formatRating(match.rating_b) + '）' +
+          '</span>';
 
         container.appendChild(item);
       });
@@ -1077,13 +1120,10 @@
 
       document.getElementById('result-summary-winner').textContent = result.champion.mc_name || '未決定';
 
-      if (result.mode === 'peak') {
-        document.getElementById('result-mode-note').textContent =
-          '現在は全盛期専用の指標APIが未実装のため、内部計算は暫定で現行スコアを使っています。';
-      } else {
-        document.getElementById('result-mode-note').textContent =
-          '現在ランキングのスコア差を使って勝敗をシミュレーションしています。';
-      }
+      document.getElementById('result-mode-note').textContent =
+        result.mode === 'peak'
+          ? 'peak_score を使って全盛期寄りの強さでシミュレーションしています。'
+          : 'current_score を使って現時点の強さでシミュレーションしています。';
 
       renderRoundList('best8-list', result.best8, 'Best8');
       renderRoundList('best4-list', result.best4, 'Best4');
