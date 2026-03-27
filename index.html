@@ -37,7 +37,10 @@
     }
 
     .home-hero-top {
-      display: block;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 12px;
     }
 
@@ -57,6 +60,63 @@
         serif;
       font-style: italic;
       text-shadow: 0 0 24px rgba(150, 190, 255, 0.08);
+    }
+
+    .hamburger-wrap {
+      display: none;
+      position: relative;
+      z-index: 20;
+    }
+
+    .hamburger-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .hamburger-btn:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hamburger-menu {
+      display: none;
+      position: absolute;
+      top: 52px;
+      left: 0;
+      min-width: 220px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(22, 27, 39, 0.98) 0%, rgba(14, 18, 28, 0.99) 100%);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+      padding: 10px;
+    }
+
+    .hamburger-menu.is-open {
+      display: block;
+    }
+
+    .hamburger-menu a {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .hamburger-menu a:hover {
+      background: rgba(255,255,255,0.06);
+      text-decoration: none;
     }
 
     .home-lead-grid {
@@ -239,12 +299,20 @@
     }
 
     .home-ranking-list li,
-    .home-prize-list li {
+    .home-prize-list li,
+    .sp-events-list li,
+    .sp-ranking-list li,
+    .sp-prize-list li {
       display: grid;
       gap: 8px;
       align-items: center;
       padding: 10px 0;
       border-bottom: 1px solid var(--line);
+      width: 100%;
+    }
+
+    .home-ranking-list li,
+    .home-prize-list li {
       width: fit-content;
     }
 
@@ -256,8 +324,16 @@
       grid-template-columns: 44px minmax(0, 7.2em) auto;
     }
 
+    .sp-ranking-list li,
+    .sp-prize-list li {
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+    }
+
     .home-ranking-list li:last-child,
-    .home-prize-list li:last-child {
+    .home-prize-list li:last-child,
+    .sp-events-list li:last-child,
+    .sp-ranking-list li:last-child,
+    .sp-prize-list li:last-child {
       border-bottom: none;
     }
 
@@ -276,7 +352,13 @@
     .home-ranking-list li:nth-child(3) .home-rank-no,
     .home-prize-list li:nth-child(1) .home-prize-no,
     .home-prize-list li:nth-child(2) .home-prize-no,
-    .home-prize-list li:nth-child(3) .home-prize-no {
+    .home-prize-list li:nth-child(3) .home-prize-no,
+    .sp-ranking-list li:nth-child(1) .home-rank-no,
+    .sp-ranking-list li:nth-child(2) .home-rank-no,
+    .sp-ranking-list li:nth-child(3) .home-rank-no,
+    .sp-prize-list li:nth-child(1) .home-prize-no,
+    .sp-prize-list li:nth-child(2) .home-prize-no,
+    .sp-prize-list li:nth-child(3) .home-prize-no {
       color: var(--accent);
     }
 
@@ -289,17 +371,24 @@
     .home-rank-name a,
     .home-rank-name span,
     .home-prize-name a,
-    .home-prize-name span {
+    .home-prize-name span,
+    .sp-events-list a {
       display: inline-block;
-      max-width: 7.2em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
       color: var(--accent);
       text-decoration: underline;
       text-underline-offset: 0.14em;
       font-weight: 700;
       vertical-align: bottom;
+    }
+
+    .home-rank-name a,
+    .home-rank-name span,
+    .home-prize-name a,
+    .home-prize-name span {
+      max-width: 7.2em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .home-rank-score,
@@ -311,7 +400,7 @@
       text-align: right;
     }
 
-    .sp-ranking-wrap {
+    .sp-collapsible-wrap {
       display: none;
       margin-top: 18px;
     }
@@ -366,6 +455,7 @@
       margin-top: 0;
     }
 
+    .sp-events-list,
     .sp-ranking-list,
     .sp-prize-list {
       list-style: none;
@@ -374,35 +464,19 @@
       width: 100%;
     }
 
-    .sp-ranking-list li,
-    .sp-prize-list li {
-      display: grid;
-      gap: 8px;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--line);
+    .sp-events-list a {
+      display: block;
       width: 100%;
+      padding: 0;
+      text-decoration: none;
     }
 
-    .sp-ranking-list li {
-      grid-template-columns: 40px minmax(0, 1fr) auto;
+    .sp-events-list a:hover {
+      text-decoration: none;
+      opacity: 0.9;
     }
 
-    .sp-prize-list li {
-      grid-template-columns: 40px minmax(0, 1fr) auto;
-    }
-
-    .sp-ranking-list li:last-child,
-    .sp-prize-list li:last-child {
-      border-bottom: none;
-    }
-
-    .sp-ranking-list .home-rank-name,
-    .sp-ranking-list .home-rank-name a,
-    .sp-ranking-list .home-rank-name span,
-    .sp-prize-list .home-prize-name,
-    .sp-prize-list .home-prize-name a,
-    .sp-prize-list .home-prize-name span {
+    .sp-events-list .home-event-name {
       max-width: 100%;
     }
 
@@ -463,12 +537,12 @@
       }
 
       .home-hero {
-        padding: 18px 16px 18px;
+        padding: 14px 14px 18px;
         border-radius: 20px;
       }
 
       .home-title {
-        font-size: 2rem;
+        font-size: 1.65rem;
       }
 
       .home-panel,
@@ -482,17 +556,27 @@
         font-size: 0.92rem;
       }
 
-      .home-action-btn {
-        min-width: 100%;
+      .home-actions {
+        display: none;
       }
 
+      .hamburger-wrap {
+        display: block;
+      }
+
+      .home-events-card,
       .home-ranking-card,
       .home-prize-card {
         display: none;
       }
 
-      .sp-ranking-wrap {
+      .sp-collapsible-wrap {
         display: block;
+      }
+
+      .home-lead-grid {
+        margin-top: 12px;
+        gap: 12px;
       }
     }
   </style>
@@ -501,6 +585,16 @@
   <div class="home-shell">
     <header class="home-hero">
       <div class="home-hero-top">
+        <div class="hamburger-wrap">
+          <button id="hamburger-btn" class="hamburger-btn" type="button" aria-label="メニューを開く">☰</button>
+          <nav id="hamburger-menu" class="hamburger-menu">
+            <a href="rankings.html">スコアランキング</a>
+            <a href="prize_rankings.html">獲得賞金ランキング</a>
+            <a href="events.html">大会一覧</a>
+            <a href="mcs.html">MC一覧</a>
+          </nav>
+        </div>
+
         <div>
           <h1 class="home-title">MCBattle.jp</h1>
         </div>
@@ -556,7 +650,15 @@
       </section>
     </main>
 
-    <section class="sp-ranking-wrap">
+    <section class="sp-collapsible-wrap">
+      <details class="sp-accordion">
+        <summary>直近の大会</summary>
+        <div class="sp-accordion-body">
+          <p id="sp-events-status" class="home-status">読み込み中...（数秒かかることがあります）</p>
+          <ul id="sp-recent-events-list" class="sp-events-list"></ul>
+        </div>
+      </details>
+
       <details class="sp-accordion">
         <summary>スコアランキング Top10</summary>
         <div class="sp-accordion-body">
@@ -650,6 +752,24 @@
       listEl.appendChild(li);
     }
 
+    function appendEventItem(listEl, event) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+
+      a.href = `event.html?event_id=${encodeURIComponent(event.event_id)}`;
+
+      const date = event.event_date ? String(event.event_date) : "";
+      const name = event.event_name ? String(event.event_name) : "大会名不明";
+
+      a.innerHTML = `
+        <span class="home-event-date">${date}</span>
+        <span class="home-event-name">${name}</span>
+      `;
+
+      li.appendChild(a);
+      listEl.appendChild(li);
+    }
+
     function loadHomeData() {
       const rankingCallbackName = "mcBattleDataCallback";
       const prizeCallbackName = "mcBattlePrizeHomeCallback";
@@ -661,6 +781,8 @@
 
       const eventsStatusEl = document.getElementById("events-status");
       const recentEventsListEl = document.getElementById("recent-events-list");
+      const spEventsStatusEl = document.getElementById("sp-events-status");
+      const spRecentEventsListEl = document.getElementById("sp-recent-events-list");
 
       const prizeStatusEl = document.getElementById("prize-status");
       const prizeListEl = document.getElementById("prize-list");
@@ -673,6 +795,7 @@
         rankingListEl.innerHTML = "";
         spRankingListEl.innerHTML = "";
         recentEventsListEl.innerHTML = "";
+        spRecentEventsListEl.innerHTML = "";
 
         try {
           if (data.error) {
@@ -682,6 +805,8 @@
             spRankingStatusEl.classList.add("error");
             eventsStatusEl.textContent = "データ取得エラー";
             eventsStatusEl.classList.add("error");
+            spEventsStatusEl.textContent = "データ取得エラー";
+            spEventsStatusEl.classList.add("error");
             return;
           }
 
@@ -698,24 +823,12 @@
           const recentEvents = Array.isArray(data.recent_events) ? data.recent_events.slice(0, 5) : [];
 
           recentEvents.forEach((event) => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-
-            a.href = `event.html?event_id=${encodeURIComponent(event.event_id)}`;
-
-            const date = event.event_date ? String(event.event_date) : "";
-            const name = event.event_name ? String(event.event_name) : "大会名不明";
-
-            a.innerHTML = `
-              <span class="home-event-date">${date}</span>
-              <span class="home-event-name">${name}</span>
-            `;
-
-            li.appendChild(a);
-            recentEventsListEl.appendChild(li);
+            appendEventItem(recentEventsListEl, event);
+            appendEventItem(spRecentEventsListEl, event);
           });
 
           eventsStatusEl.textContent = `直近${recentEvents.length}件を表示`;
+          spEventsStatusEl.textContent = `直近${recentEvents.length}件を表示`;
         } catch (err) {
           console.error("home base render error:", err);
           rankingStatusEl.textContent = "ランキング描画エラー";
@@ -724,6 +837,8 @@
           spRankingStatusEl.classList.add("error");
           eventsStatusEl.textContent = "大会描画エラー";
           eventsStatusEl.classList.add("error");
+          spEventsStatusEl.textContent = "大会描画エラー";
+          spEventsStatusEl.classList.add("error");
         }
       };
 
@@ -769,6 +884,8 @@
         spRankingStatusEl.classList.add("error");
         eventsStatusEl.textContent = "JSONP読み込み失敗";
         eventsStatusEl.classList.add("error");
+        spEventsStatusEl.textContent = "JSONP読み込み失敗";
+        spEventsStatusEl.classList.add("error");
       };
       document.body.appendChild(rankingScript);
 
@@ -783,6 +900,24 @@
       document.body.appendChild(prizeScript);
     }
 
+    function initHamburgerMenu() {
+      const btn = document.getElementById("hamburger-btn");
+      const menu = document.getElementById("hamburger-menu");
+      if (!btn || !menu) return;
+
+      btn.addEventListener("click", function(event) {
+        event.stopPropagation();
+        menu.classList.toggle("is-open");
+      });
+
+      document.addEventListener("click", function(event) {
+        if (!menu.contains(event.target) && event.target !== btn) {
+          menu.classList.remove("is-open");
+        }
+      });
+    }
+
+    initHamburgerMenu();
     loadHomeData();
   </script>
 </body>
