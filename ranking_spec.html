@@ -64,11 +64,6 @@
       margin: 0 0 8px;
     }
 
-    .spec-note {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
     .spec-formula {
       margin: 12px 0;
       padding: 14px 16px;
@@ -96,7 +91,7 @@
 
     .spec-table {
       width: 100%;
-      min-width: 480px;
+      min-width: 420px;
       border-collapse: collapse;
     }
 
@@ -192,8 +187,7 @@
         <div class="spec-link-row">
           <span class="spec-chip">主役：誰に勝ったか</span>
           <span class="spec-chip">補助：いつ勝ったか</span>
-          <span class="spec-chip">補助：どのラウンドか</span>
-          <span class="spec-chip">補助：大会の強度</span>
+          <span class="spec-chip">補助：どのラウンドで勝ったか</span>
         </div>
       </section>
 
@@ -202,26 +196,16 @@
 
         <h3>含めるもの</h3>
         <ul class="spec-list">
-          <li>1on1の本戦</li>
-          <li>winner_mc_id と loser_mc_id が両方取れている試合</li>
-          <li>同一人物同士ではない試合</li>
-          <li>日付が取れる試合</li>
+          <li>国内の主要な大規模大会のうち、1on1の戦い</li>
         </ul>
 
         <h3>除外するもの</h3>
         <ul class="spec-list">
-          <li>予選</li>
-          <li>BYE / 不戦勝</li>
-          <li>2on2・団体戦</li>
-          <li>勝敗不明の試合</li>
-          <li>重複疑いの試合</li>
-          <li>エキシビション</li>
+          <li>予選(キリがないので)</li>
+          <li>不戦勝(たまにある)</li>
+          <li>2on2・団体戦(複雑になりすぎるので)</li>
+          <li>エキシビション(本気じゃない可能性があるので)</li>
         </ul>
-
-        <p class="spec-note">
-          仕様メモ上は「match_date が存在する試合」を前提にしていますが、現在の再計算処理では実装上、
-          match_date が空でも event_date を補完して処理する形になっています。
-        </p>
       </section>
 
       <section class="spec-card">
@@ -231,13 +215,13 @@
           勝者は上がり、敗者は下がります。
         </p>
         <p>
-          ただし普通のEloをそのまま使うのではなく、ラウンドの重さ・大会の強さ・直近性で更新量を調整しています。
+          ただし普通のEloをそのまま使うのではなく、ラウンドの重さと直近性で更新量を調整しています。
         </p>
 
         <h3>基本式</h3>
         <div class="spec-formula">expectedWinner = 1 / (1 + 10 ^ ((loserRating - winnerRating) / 400))
 
-delta = K × roundWeight × eventWeight × recencyWeight × (1 - expectedWinner)
+delta = K × roundWeight × recencyWeight × (1 - expectedWinner)
 
 winnerRating = winnerRating + delta
 loserRating  = loserRating  - delta</div>
@@ -254,6 +238,7 @@ baseK = 24</div>
         <h2>4. ラウンド係数</h2>
         <p>
           同じ勝ちでも、深いラウンドほど重く扱います。決勝に近い勝利の方が更新量が大きくなります。
+          1回戦の係数1.00から決勝の係数1.42まで、徐々に重みが付くようになっています。
         </p>
 
         <div class="spec-table-wrap">
@@ -280,45 +265,13 @@ baseK = 24</div>
           </table>
         </div>
 
-        <p class="spec-note">
-          実装上は、FINAL / Final / final は「決勝」、ベスト4は「準決勝」、準々決勝は「ベスト8」として正規化しています。
-        </p>
-      </section>
-
-      <section class="spec-card">
-        <h2>5. 大会係数</h2>
         <p>
-          大会によって重みを変えています。大会名やカテゴリから強度を加算する方式です。
-        </p>
-
-        <div class="spec-table-wrap">
-          <table class="spec-table">
-            <thead>
-              <tr>
-                <th>条件</th>
-                <th>係数</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>通常</td><td>1.00</td></tr>
-              <tr><td>ADRENALINE を含む</td><td>最低 1.22</td></tr>
-              <tr><td>真 ADRENALINE を含む</td><td>最低 1.25</td></tr>
-              <tr><td>凱旋 を含む</td><td>最低 1.24</td></tr>
-              <tr><td>KOK を含む</td><td>最低 1.26</td></tr>
-              <tr><td>UMB を含む</td><td>最低 1.28</td></tr>
-              <tr><td>event_category に「全国」</td><td>+0.06</td></tr>
-              <tr><td>event_category に「本戦」</td><td>+0.03</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p class="spec-note">
-          たとえば UMB の全国本戦であれば、1.28 を基礎にカテゴリ加算が入る形です。
+          実装上は、FINAL / Final / final は「決勝」、ベスト4は「準決勝」、準々決勝は「ベスト8」としてまとめて扱っています。
         </p>
       </section>
 
       <section class="spec-card">
-        <h2>6. 直近係数</h2>
+        <h2>5. 直近係数</h2>
         <p>
           このランキングは「今強いか」を見たいので、古い試合より最近の試合を重く扱います。
         </p>
@@ -348,56 +301,23 @@ baseK = 24</div>
       </section>
 
       <section class="spec-card">
-        <h2>7. 何が上がりやすいか</h2>
+        <h2>6. 何が上がりやすいか</h2>
         <ul class="spec-list">
           <li>強い相手に勝つ</li>
           <li>直近の大会で勝つ</li>
           <li>ベスト8以降、特に準決勝・決勝で勝つ</li>
-          <li>大会強度が高い大会で勝つ</li>
         </ul>
 
         <h3>逆に上がりにくいケース</h3>
         <ul class="spec-list">
           <li>格下相手に想定通り勝つだけ</li>
           <li>かなり昔の勝利だけで最近の実績が薄い</li>
-          <li>対象外試合（予選・BYEなど）が多い</li>
+          <li>対象外試合が多い</li>
         </ul>
       </section>
 
       <section class="spec-card">
-        <h2>8. 公開ページ上で見せている主な項目</h2>
-        <p>
-          現在の公開用シート・APIでは、主に以下の項目を表示用に使っています。
-        </p>
-
-        <div class="spec-table-wrap">
-          <table class="spec-table">
-            <thead>
-              <tr>
-                <th>項目</th>
-                <th>意味</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>rank / public_rank_v2</td><td>公開順位</td></tr>
-              <tr><td>mc_id</td><td>MCの内部ID</td></tr>
-              <tr><td>mc_name</td><td>表示名</td></tr>
-              <tr><td>current_strength_score_v2</td><td>現在の強さスコア</td></tr>
-              <tr><td>total_matches</td><td>対象試合数</td></tr>
-              <tr><td>wins</td><td>対象試合内の勝利数</td></tr>
-              <tr><td>losses</td><td>対象試合内の敗北数</td></tr>
-              <tr><td>latest_match_date</td><td>最後に反映された試合日</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p class="spec-note">
-          公開トップやMC詳細では、スコア・総試合数・勝利数・敗北数を中心に見せています。
-        </p>
-      </section>
-
-      <section class="spec-card">
-        <h2>9. 賞金ランキングとの違い</h2>
+        <h2>7. 賞金ランキングとの違い</h2>
         <p>
           スコアランキングは<strong>「今の強さ」</strong>を見るためのものです。
           一方、賞金ランキングは<strong>優勝賞金の合計</strong>を見る別軸です。
@@ -408,7 +328,7 @@ baseK = 24</div>
       </section>
 
       <section class="spec-card">
-        <h2>10. この仕様で起こりうるズレ</h2>
+        <h2>8. この仕様で起こりうるズレ</h2>
         <ul class="spec-list">
           <li>人気・知名度・キャリア評価とは一致しないことがある</li>
           <li>観客印象や“今日の内容”と順位がズレることがある</li>
@@ -423,25 +343,12 @@ baseK = 24</div>
       </section>
 
       <section class="spec-card">
-        <h2>11. 今後の改善方針</h2>
-        <ul class="spec-list">
-          <li>大会強度係数の見直し</li>
-          <li>ラウンド重みの微調整</li>
-          <li>複数日開催イベントへの対応精度向上</li>
-          <li>別名義・改名の扱いの整理</li>
-          <li>監査用の MatchFeed 的な中間表の強化</li>
-        </ul>
-
+        <h2>9. 今後の改善方針</h2>
         <p>
-          ご意見があれば、フォームからお便りをいただけると助かります。
+          重み付けを含めた全体の仕様など、今後も必要に応じて改善をしています。
         </p>
-      </section>
-
-      <section class="spec-card">
-        <h2>12. 一文で言うと</h2>
         <p>
-          MCBattle.jp のスコアランキングは、
-          <strong>加重Eloを中心に、直近重視・大会強度・ラウンド重要度を加味して「今いちばん勝ちやすいMC」を推定する仕組み</strong>です。
+          このMCが高すぎる/低すぎるというだけでも構いません、ご意見があればフォームからお便りをいただけると助かります。
         </p>
       </section>
     </div>
