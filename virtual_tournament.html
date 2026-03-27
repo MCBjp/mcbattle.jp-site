@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>仮想MCバトルシミュレーション 
+  <title>仮想MCバトルシミュレーション | MCBattle.jp</title>
+  <style>
+    :root {
+      --bg: #111418;
+      --bg-2: #171c24;
       --card: #202631;
       --card-2: #262e3b;
       --text: #f3f5f7;
@@ -685,11 +689,6 @@
     }
 
     async function fetchVirtualCandidates() {
-      if (!API_URL || API_URL.indexOf('https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec') !== -1) {
-        showStatus('API_URL が未設定です。virtual_tournament.html 内の API_URL を Apps Script の exec URL に置き換えてください。', true);
-        return;
-      }
-
       const url = API_URL + '?mode=virtual_candidates';
       showStatus('参加候補を読み込み中...', false);
 
@@ -711,9 +710,8 @@
         showStatus(
           '候補データの取得に失敗しました。\n\n' +
           '確認してください:\n' +
-          '1. API_URL が正しいか\n' +
-          '2. Apps Script を再デプロイしたか\n' +
-          '3. Webアプリ公開範囲が「全員」か\n\n' +
+          '1. Apps Script を再デプロイしたか\n' +
+          '2. Webアプリ公開範囲が「全員」か\n\n' +
           '詳細:\n' + (err && err.message ? err.message : String(err)),
           true
         );
@@ -884,8 +882,6 @@
       container.innerHTML = '';
 
       matches.forEach(function(match, index) {
-        const loser = match.winner.mc_id === match.a.mc_id ? match.b : match.a;
-
         const item = document.createElement('div');
         item.className = 'match-result-item';
         item.innerHTML =
