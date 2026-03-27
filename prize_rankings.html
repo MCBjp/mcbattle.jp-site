@@ -6,100 +6,134 @@
   <title>獲得賞金ランキング | MCBattle.jp</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .prize-page {
+    .page-shell {
       max-width: var(--max);
       margin: 0 auto;
       padding: 28px 16px 72px;
     }
 
-    .prize-table-wrap {
-      overflow-x: auto;
+    .page-head {
+      margin-bottom: 18px;
     }
 
-    .prize-table {
-      width: fit-content !important;
-      max-width: none !important;
-      min-width: 0 !important;
-      table-layout: auto !important;
-      border-collapse: collapse;
-      margin-top: 8px;
+    .page-title {
+      margin: 0 0 8px;
     }
 
-    .prize-table th,
-    .prize-table td {
-      width: auto !important;
-      white-space: nowrap;
-      padding: 6px 8px;
-      vertical-align: middle;
+    .page-desc {
+      margin: 0;
+      color: var(--muted);
     }
 
-    .prize-table th:nth-child(1),
-    .prize-table td:nth-child(1),
-    .prize-table th:nth-child(3),
-    .prize-table td:nth-child(3),
-    .prize-table th:nth-child(4),
-    .prize-table td:nth-child(4) {
+    .ranking-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
+        linear-gradient(180deg, rgba(18, 22, 31, 0.96) 0%, rgba(14, 18, 28, 0.98) 100%);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+    }
+
+    .ranking-status {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .ranking-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .ranking-list li {
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ranking-list li:last-child {
+      border-bottom: none;
+    }
+
+    .rank-no {
+      font-variant-numeric: tabular-nums;
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--accent-dim);
       text-align: right;
-      width: 1%;
     }
 
-    .prize-table th:nth-child(2),
-    .prize-table td:nth-child(2) {
-      width: 1%;
+    .ranking-list li:nth-child(1) .rank-no,
+    .ranking-list li:nth-child(2) .rank-no,
+    .ranking-list li:nth-child(3) .rank-no {
+      color: var(--accent);
     }
 
-    .prize-table tbody tr:hover {
-      opacity: 0.92;
+    .rank-name {
+      min-width: 0;
     }
 
-    .prize-name-link {
-      color: inherit;
+    .rank-name a,
+    .rank-name span {
+      display: inline-block;
+      max-width: 100%;
+      color: var(--accent);
       text-decoration: underline;
-      text-underline-offset: 0.15em;
-      white-space: nowrap;
+      text-underline-offset: 0.14em;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
-    .prize-name-link:hover {
-      opacity: 0.85;
+    .rank-money {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent-soft);
+      font-weight: 700;
+      white-space: nowrap;
+      text-align: right;
     }
 
     @media (max-width: 640px) {
-      .prize-page {
+      .page-shell {
         padding: 20px 12px 56px;
       }
 
-      .prize-table th,
-      .prize-table td {
-        padding: 5px 6px;
-        font-size: 0.93rem;
+      .ranking-card {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .ranking-list li {
+        grid-template-columns: 42px minmax(0, 1fr) auto;
+        gap: 8px;
+      }
+
+      .rank-no {
+        font-size: 0.95rem;
+      }
+
+      .rank-money {
+        font-size: 0.92rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="prize-page">
+  <div class="page-shell">
     <p><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
-    <header>
-      <h1>獲得賞金ランキング</h1>
-      <p class="muted">各大会の優勝賞金を、優勝者の獲得額として集計しています。</p>
+    <header class="page-head">
+      <h1 class="page-title">獲得賞金ランキング</h1>
+      <p class="page-desc">優勝回数は表示せず、獲得賞金総額のみを表示しています。</p>
     </header>
 
-    <section class="card">
-      <p id="prize-status" class="muted">読み込み中...</p>
-      <div class="prize-table-wrap">
-        <table class="prize-table">
-          <thead>
-            <tr>
-              <th>順位</th>
-              <th>MC名</th>
-              <th>獲得賞金</th>
-              <th>優勝回数</th>
-            </tr>
-          </thead>
-          <tbody id="prize-body"></tbody>
-        </table>
-      </div>
+    <section class="ranking-card">
+      <p id="ranking-status" class="ranking-status">読み込み中...</p>
+      <ol id="ranking-list" class="ranking-list"></ol>
     </section>
   </div>
 
@@ -112,19 +146,24 @@
     }
 
     function loadPrizeRankings() {
-      const callbackName = "mcBattlePrizeRankingCallback";
-      const statusEl = document.getElementById("prize-status");
-      const bodyEl = document.getElementById("prize-body");
+      const callbackName = "mcBattlePrizeRankingPageCallback";
+      const statusEl = document.getElementById("ranking-status");
+      const listEl = document.getElementById("ranking-list");
 
       window[callbackName] = function(data) {
-        console.log("prize rankings:", data);
-
-        bodyEl.innerHTML = "";
+        console.log("prize ranking page:", data);
+        listEl.innerHTML = "";
         statusEl.classList.remove("error");
 
         try {
+          if (!data) {
+            statusEl.textContent = "レスポンスが空です";
+            statusEl.classList.add("error");
+            return;
+          }
+
           if (data.error) {
-            statusEl.textContent = "獲得賞金ランキングの取得に失敗しました: " + (data.message || "");
+            statusEl.textContent = "データ取得エラー";
             statusEl.classList.add("error");
             return;
           }
@@ -132,40 +171,48 @@
           const rankings = Array.isArray(data.prize_rankings) ? data.prize_rankings : [];
 
           rankings.forEach((item, index) => {
-            const tr = document.createElement("tr");
+            const li = document.createElement("li");
 
-            const rankTd = document.createElement("td");
-            const nameTd = document.createElement("td");
-            const prizeTd = document.createElement("td");
-            const titlesTd = document.createElement("td");
+            const rankNo = document.createElement("span");
+            rankNo.className = "rank-no";
+            rankNo.textContent = `${item.rank || index + 1}.`;
 
-            rankTd.textContent = item.rank || (index + 1);
+            const nameEl = document.createElement("span");
+            nameEl.className = "rank-name";
 
-            if (item.mc_id) {
+            const mcName = item.mc_name ? String(item.mc_name) : "名前不明";
+            const mcId = item.mc_id ? String(item.mc_id) : "";
+
+            if (mcId) {
               const a = document.createElement("a");
-              a.href = `mc.html?mc_id=${encodeURIComponent(item.mc_id)}`;
-              a.textContent = item.mc_name || "名前不明";
-              a.className = "prize-name-link";
-              nameTd.appendChild(a);
+              a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
+              a.textContent = mcName;
+              a.title = mcName;
+              nameEl.appendChild(a);
             } else {
-              nameTd.textContent = item.mc_name || "名前不明";
+              const span = document.createElement("span");
+              span.textContent = mcName;
+              span.title = mcName;
+              nameEl.appendChild(span);
             }
 
-            prizeTd.textContent = formatYen(item.total_prize_money || 0);
-            titlesTd.textContent = item.titles || 0;
+            const moneyEl = document.createElement("span");
+            moneyEl.className = "rank-money";
+            moneyEl.textContent = formatYen(item.total_prize_money || 0);
 
-            tr.appendChild(rankTd);
-            tr.appendChild(nameTd);
-            tr.appendChild(prizeTd);
-            tr.appendChild(titlesTd);
-
-            bodyEl.appendChild(tr);
+            li.appendChild(rankNo);
+            li.appendChild(nameEl);
+            li.appendChild(moneyEl);
+            listEl.appendChild(li);
           });
 
-          statusEl.textContent = `${rankings.length}名を表示`;
+          statusEl.textContent = `${rankings.length}件を表示`;
+          if (rankings.length === 0) {
+            statusEl.textContent = "表示できるデータがありません";
+          }
         } catch (err) {
           console.error(err);
-          statusEl.textContent = "獲得賞金ランキングの描画に失敗しました";
+          statusEl.textContent = "描画エラー";
           statusEl.classList.add("error");
         }
       };
@@ -173,7 +220,7 @@
       const script = document.createElement("script");
       script.src = `${API_URL}?mode=prize_ranking&callback=${callbackName}`;
       script.onerror = function() {
-        statusEl.textContent = "獲得賞金ランキングの読み込みに失敗しました";
+        statusEl.textContent = "JSONP読み込み失敗";
         statusEl.classList.add("error");
       };
 
