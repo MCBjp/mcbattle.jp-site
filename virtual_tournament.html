@@ -16,7 +16,6 @@
       --accent: #5b8cff;
       --accent-2: #7c4dff;
       --danger: #ff6b6b;
-      --success: #42c27f;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
       --radius: 16px;
     }
@@ -217,19 +216,12 @@
       display: block;
       font-size: 0.97rem;
       font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .mode-card-desc {
-      display: block;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.6;
+      margin-bottom: 0;
     }
 
     .search-row {
       display: grid;
-      grid-template-columns: minmax(240px, 1fr) auto auto;
+      grid-template-columns: minmax(220px, 1fr) auto auto;
       gap: 10px;
       align-items: center;
       margin-bottom: 12px;
@@ -237,7 +229,7 @@
 
     .search-input {
       width: 100%;
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: #151a21;
@@ -251,19 +243,21 @@
     }
 
     .count-badge {
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.05);
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       white-space: nowrap;
+      text-align: center;
+      min-width: 58px;
     }
 
     .btn {
       appearance: none;
       border: none;
       border-radius: 999px;
-      padding: 12px 18px;
+      padding: 11px 16px;
       cursor: pointer;
       transition: 0.2s ease;
       font-weight: 700;
@@ -301,7 +295,7 @@
     }
 
     .candidate-title {
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       font-size: 0.98rem;
       font-weight: 700;
     }
@@ -309,15 +303,15 @@
     .candidate-note {
       color: var(--muted);
       font-size: 0.88rem;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       line-height: 1.6;
     }
 
     .candidate-list {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
-      max-height: 280px;
+      gap: 8px;
+      max-height: 220px;
       overflow-y: auto;
       padding-right: 4px;
       margin-bottom: 6px;
@@ -326,14 +320,14 @@
     .candidate-item {
       width: 100%;
       text-align: center;
-      padding: 14px 10px;
-      border-radius: 14px;
+      padding: 10px 8px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.07);
       background: rgba(255, 255, 255, 0.04);
       color: var(--text);
       cursor: pointer;
       transition: 0.18s ease;
-      min-height: 68px;
+      min-height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -355,8 +349,8 @@
     .candidate-name {
       display: block;
       font-weight: 700;
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 0.89rem;
+      line-height: 1.35;
       word-break: break-word;
     }
 
@@ -572,11 +566,6 @@
       line-height: 1.7;
     }
 
-    .winner-text {
-      font-weight: 800;
-      color: #fff;
-    }
-
     .detail-text {
       display: block;
       margin-top: 6px;
@@ -629,12 +618,16 @@
 
     @media (max-width: 760px) {
       .search-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr auto;
+      }
+
+      .search-row .btn-secondary {
+        grid-column: 1 / -1;
       }
 
       .candidate-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        max-height: 240px;
+        max-height: 220px;
       }
 
       .mode-grid {
@@ -728,11 +721,9 @@
           <div class="mode-grid">
             <div id="mode-current" class="mode-card active" role="button" tabindex="0">
               <span class="mode-card-title">今の強さでシミュレーションする</span>
-              <span class="mode-card-desc">current_score を基準に、試合数補正込みで100回まわします。</span>
             </div>
             <div id="mode-peak" class="mode-card" role="button" tabindex="0">
               <span class="mode-card-title">全盛期の強さでシミュレーションする</span>
-              <span class="mode-card-desc">peak_score を基準に、試合数補正込みで100回まわします。</span>
             </div>
           </div>
         </div>
@@ -745,8 +736,8 @@
             placeholder="MC名またはよみがなで検索（2文字以上）"
             autocomplete="off"
           />
-          <div id="selected-count" class="count-badge">0 / 8</div>
-          <button id="clear-btn" class="btn btn-secondary" type="button">選択をクリア</button>
+          <div id="selected-count" class="count-badge">0/8</div>
+          <button id="fill-top100-btn" class="btn btn-secondary" type="button">残りを上位100位からランダム入力</button>
         </div>
 
         <div class="candidate-area">
@@ -769,7 +760,6 @@
         <div class="result-panel">
           <div class="result-actions">
             <button id="simulate-btn" class="btn btn-primary" type="button" disabled>100回シミュレーションする</button>
-            <button id="reshuffle-btn" class="btn btn-secondary" type="button" disabled>もう一度100回まわす</button>
           </div>
 
           <div id="result-summary" class="result-summary">
@@ -816,6 +806,7 @@
     let selectedMCs = [];
     let currentMode = 'current';
     let strengthMap = {};
+    let rankingRows = [];
     let lastSimulationResult = null;
     let isAnimating = false;
 
@@ -907,6 +898,7 @@
 
         allCandidates = Array.isArray(candidateData.candidates) ? candidateData.candidates.slice() : [];
         buildStrengthMap(strengthData);
+        buildRankingRows();
 
         filteredCandidates = [];
         renderCandidateList(filteredCandidates);
@@ -952,12 +944,23 @@
       });
     }
 
+    function buildRankingRows() {
+      rankingRows = allCandidates.slice().sort(function(a, b) {
+        const sa = getStrengthObject(a);
+        const sb = getStrengthObject(b);
+        const ra = currentMode === 'peak' ? sa.peak_score : sa.current_score;
+        const rb = currentMode === 'peak' ? sb.peak_score : sb.current_score;
+        return rb - ra;
+      });
+    }
+
     function setMode(mode) {
       if (isAnimating) return;
 
       currentMode = mode;
       document.getElementById('mode-current').classList.toggle('active', mode === 'current');
       document.getElementById('mode-peak').classList.toggle('active', mode === 'peak');
+      buildRankingRows();
       lastSimulationResult = null;
       clearResultsView();
     }
@@ -1044,10 +1047,27 @@
       clearResultsView();
     }
 
-    function clearSelectedMCs() {
+    function fillRemainingFromTop100() {
       if (isAnimating) return;
+      if (selectedMCs.length >= 8) return;
 
-      selectedMCs = [];
+      buildRankingRows();
+
+      const selectedIds = new Set(selectedMCs.map(function(mc) { return mc.mc_id; }));
+      const pool = rankingRows.slice(0, 100).filter(function(mc) {
+        return !selectedIds.has(mc.mc_id);
+      });
+
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = pool[i];
+        pool[i] = pool[j];
+        pool[j] = tmp;
+      }
+
+      const needed = 8 - selectedMCs.length;
+      selectedMCs = selectedMCs.concat(pool.slice(0, needed));
+
       lastSimulationResult = null;
       renderSelectedGrid();
       refreshCandidateView();
@@ -1082,14 +1102,13 @@
         container.appendChild(slot);
       }
 
-      countEl.textContent = selectedMCs.length + ' / 8';
+      countEl.textContent = selectedMCs.length + '/8';
     }
 
     function updateButtons() {
       const ready = selectedMCs.length === 8 && !isAnimating;
       document.getElementById('simulate-btn').disabled = !ready;
-      document.getElementById('reshuffle-btn').disabled = !ready;
-      document.getElementById('clear-btn').disabled = selectedMCs.length === 0 || isAnimating;
+      document.getElementById('fill-top100-btn').disabled = selectedMCs.length >= 8 || isAnimating;
     }
 
     function refreshCandidateView() {
@@ -1173,15 +1192,10 @@
         a: a,
         b: b,
         winner: winsA > winsB ? a : b,
-        loser: winsA > winsB ? b : a,
         rating_a: lastBout.rating_a,
         rating_b: lastBout.rating_b,
         probability_a: lastBout.probability_a,
-        probability_b: lastBout.probability_b,
-        wins_a: winsA,
-        wins_b: winsB,
-        total_matches_a: getStrengthObject(a).total_matches,
-        total_matches_b: getStrengthObject(b).total_matches
+        probability_b: lastBout.probability_b
       };
     }
 
@@ -1201,9 +1215,21 @@
         best4: [sf1, sf2],
         final: [final],
         champion: final.winner,
-        runner_up: final.loser,
-        semifinal_losers: [sf1.loser, sf2.loser],
-        quarterfinal_losers: [qf1.loser, qf2.loser, qf3.loser, qf4.loser]
+        runner_up: final.winner.mc_id === sf1.winner.mc_id ? sf2.winner : sf1.winner,
+        semifinal_losers: [
+          sf1.winner.mc_id === qf1.winner.mc_id || sf1.winner.mc_id === qf2.winner.mc_id
+            ? (sf1.winner.mc_id === qf1.winner.mc_id ? qf2.winner : qf1.winner)
+            : qf1.winner,
+          sf2.winner.mc_id === qf3.winner.mc_id || sf2.winner.mc_id === qf4.winner.mc_id
+            ? (sf2.winner.mc_id === qf3.winner.mc_id ? qf4.winner : qf3.winner)
+            : qf3.winner
+        ],
+        quarterfinal_losers: [
+          qf1.winner.mc_id === qf1.a.mc_id ? qf1.b : qf1.a,
+          qf2.winner.mc_id === qf2.a.mc_id ? qf2.b : qf2.a,
+          qf3.winner.mc_id === qf3.a.mc_id ? qf3.b : qf3.a,
+          qf4.winner.mc_id === qf4.a.mc_id ? qf4.b : qf4.a
+        ]
       };
     }
 
@@ -1216,11 +1242,7 @@
           wins_b: 0,
           total: 0,
           avg_probability_a: 0,
-          avg_probability_b: 0,
-          avg_rating_a: 0,
-          avg_rating_b: 0,
-          total_matches_a: match.total_matches_a,
-          total_matches_b: match.total_matches_b
+          avg_probability_b: 0
         };
       });
     }
@@ -1232,8 +1254,6 @@
         target[idx].total += 1;
         target[idx].avg_probability_a += match.probability_a;
         target[idx].avg_probability_b += match.probability_b;
-        target[idx].avg_rating_a += match.rating_a;
-        target[idx].avg_rating_b += match.rating_b;
       });
     }
 
@@ -1315,10 +1335,6 @@
       return Math.round((count / TOURNAMENT_RUNS) * 100);
     }
 
-    function formatRating(value) {
-      return Math.round(value);
-    }
-
     function renderStageDistribution(containerId, rows, labelPrefix) {
       const container = document.getElementById(containerId);
       container.innerHTML = '';
@@ -1326,8 +1342,6 @@
       rows.forEach(function(row, index) {
         const avgProbA = row.total ? row.avg_probability_a / row.total : 0;
         const avgProbB = row.total ? row.avg_probability_b / row.total : 0;
-        const avgRatingA = row.total ? row.avg_rating_a / row.total : 1500;
-        const avgRatingB = row.total ? row.avg_rating_b / row.total : 1500;
 
         const item = document.createElement('div');
         item.className = 'match-result-item';
@@ -1340,8 +1354,6 @@
           '<span class="detail-text">' +
             '平均勝率 ' + escapeHtml(row.a.mc_name || '') + ' ' + formatPercent(avgProbA) + '% / ' +
             escapeHtml(row.b.mc_name || '') + ' ' + formatPercent(avgProbB) + '%' +
-            ' ｜ 平均補正後レート ' + formatRating(avgRatingA) + ' vs ' + formatRating(avgRatingB) +
-            ' ｜ 総試合数 ' + row.total_matches_a + ' vs ' + row.total_matches_b +
           '</span>';
 
         container.appendChild(item);
@@ -1351,8 +1363,6 @@
     function renderOverallTable(rows) {
       const container = document.getElementById('overall-prob-table');
       const tableRows = rows.map(function(row) {
-        const strength = getStrengthObject(row.mc);
-        const baseRating = currentMode === 'peak' ? strength.peak_score : strength.current_score;
         const adjustedRating = getAdjustedRatingForMc(row.mc);
 
         return `
@@ -1362,9 +1372,7 @@
             <td class="num">${formatRateFromCount(row.runner_up)}%</td>
             <td class="num">${formatRateFromCount(row.best4)}%</td>
             <td class="num">${formatRateFromCount(row.best8_exit)}%</td>
-            <td class="num">${strength.total_matches}</td>
-            <td class="num">${formatRating(baseRating)}</td>
-            <td class="num">${formatRating(adjustedRating)}</td>
+            <td class="num">${Math.round(adjustedRating)}</td>
           </tr>
         `;
       }).join('');
@@ -1378,8 +1386,6 @@
               <th class="num">準優勝</th>
               <th class="num">Best4敗退</th>
               <th class="num">Best8敗退</th>
-              <th class="num">総試合数</th>
-              <th class="num">元レート</th>
               <th class="num">補正後</th>
             </tr>
           </thead>
@@ -1401,8 +1407,8 @@
 
       document.getElementById('result-summary-winner').textContent = result.favorite ? result.favorite.mc_name : '未決定';
       document.getElementById('result-mode-note').textContent =
-        (result.mode === 'peak' ? 'peak_score' : 'current_score') +
-        ' を基準に、試合数補正・内部ベストオブ3・100回シミュレーションで集計しています。';
+        (result.mode === 'peak' ? '全盛期モード' : '今の強さモード') +
+        ' / 試合数補正・内部ベストオブ3・100回シミュレーション';
 
       renderOverallTable(result.overall);
       renderStageDistribution('best8-list', result.best8, 'Best8');
@@ -1454,6 +1460,7 @@
 
       isAnimating = true;
       updateButtons();
+      refreshCandidateView();
       showStatus('シミュレーションを準備中...', false);
 
       await playCountdown();
@@ -1502,15 +1509,11 @@
         filterCandidates(e.target.value);
       });
 
-      document.getElementById('clear-btn').addEventListener('click', function() {
-        clearSelectedMCs();
+      document.getElementById('fill-top100-btn').addEventListener('click', function() {
+        fillRemainingFromTop100();
       });
 
       document.getElementById('simulate-btn').addEventListener('click', function() {
-        handleSimulate();
-      });
-
-      document.getElementById('reshuffle-btn').addEventListener('click', function() {
         handleSimulate();
       });
 
