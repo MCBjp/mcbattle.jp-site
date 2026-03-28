@@ -232,7 +232,7 @@
       grid-template-columns: minmax(240px, 1fr) auto auto;
       gap: 10px;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .search-input {
@@ -294,6 +294,77 @@
       cursor: not-allowed;
       transform: none;
       filter: none;
+    }
+
+    .candidate-area {
+      margin-bottom: 18px;
+    }
+
+    .candidate-title {
+      margin: 0 0 10px;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .candidate-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .candidate-list {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-bottom: 6px;
+    }
+
+    .candidate-item {
+      width: 100%;
+      text-align: center;
+      padding: 14px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.18s ease;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .candidate-item:hover:not(:disabled) {
+      background: rgba(91, 140, 255, 0.12);
+      border-color: rgba(91, 140, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .candidate-item:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      transform: none;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .candidate-name {
+      display: block;
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .candidate-empty {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      padding: 12px 0;
     }
 
     .selected-area {
@@ -367,76 +438,6 @@
       color: #ffd4d4;
     }
 
-    .candidate-area {
-      margin-top: 6px;
-    }
-
-    .candidate-title {
-      margin: 0 0 12px;
-      font-size: 0.98rem;
-      font-weight: 700;
-    }
-
-    .candidate-note {
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-
-    .candidate-list {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
-      max-height: 420px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .candidate-item {
-      width: 100%;
-      text-align: center;
-      padding: 14px 10px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      cursor: pointer;
-      transition: 0.18s ease;
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .candidate-item:hover:not(:disabled) {
-      background: rgba(91, 140, 255, 0.12);
-      border-color: rgba(91, 140, 255, 0.35);
-      transform: translateY(-1px);
-    }
-
-    .candidate-item:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-      transform: none;
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .candidate-name {
-      display: block;
-      font-weight: 700;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      word-break: break-word;
-    }
-
-    .candidate-empty {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.7;
-      padding: 12px 0;
-    }
-
     .result-panel {
       margin-top: 22px;
     }
@@ -446,6 +447,59 @@
       gap: 10px;
       flex-wrap: wrap;
       margin-bottom: 18px;
+    }
+
+    .countdown-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 10, 14, 0.82);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .countdown-overlay.show {
+      display: flex;
+    }
+
+    .countdown-number {
+      font-size: clamp(72px, 18vw, 180px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      animation: popPulse 1s ease both;
+    }
+
+    .countdown-label {
+      color: var(--muted);
+      font-size: 1rem;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    @keyframes popPulse {
+      0% {
+        transform: scale(0.65) rotate(-10deg);
+        opacity: 0;
+        filter: blur(10px);
+      }
+      20% {
+        transform: scale(1.08) rotate(0deg);
+        opacity: 1;
+        filter: blur(0);
+      }
+      65% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0.92);
+        opacity: 0.15;
+      }
     }
 
     .result-summary {
@@ -580,6 +634,7 @@
 
       .candidate-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-height: 240px;
       }
 
       .mode-grid {
@@ -608,6 +663,7 @@
 
       .candidate-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-height: 220px;
       }
 
       .site-header-inner {
@@ -627,6 +683,11 @@
   </style>
 </head>
 <body>
+  <div id="countdown-overlay" class="countdown-overlay" aria-hidden="true">
+    <div id="countdown-number" class="countdown-number">5</div>
+    <div class="countdown-label">シミュレーション中…</div>
+  </div>
+
   <header class="site-header">
     <div class="site-header-inner">
       <a href="index.html" class="site-logo">MCBattle.jp</a>
@@ -688,6 +749,14 @@
           <button id="clear-btn" class="btn btn-secondary" type="button">選択をクリア</button>
         </div>
 
+        <div class="candidate-area">
+          <h3 class="candidate-title">MC候補</h3>
+          <div class="candidate-note">
+            検索文字数が 0〜1文字の時は候補を表示しません。
+          </div>
+          <div id="candidate-list" class="candidate-list"></div>
+        </div>
+
         <div class="selected-area">
           <div class="selected-header">
             <div class="selected-title">選択中の8人</div>
@@ -695,14 +764,6 @@
           </div>
 
           <div id="selected-grid" class="selected-grid"></div>
-        </div>
-
-        <div class="candidate-area">
-          <h3 class="candidate-title">MC候補</h3>
-          <div class="candidate-note">
-            検索文字数が 0〜1文字の時は候補を表示しません。
-          </div>
-          <div id="candidate-list" class="candidate-list"></div>
         </div>
 
         <div class="result-panel">
@@ -715,6 +776,11 @@
             <span class="result-summary-label">最も優勝確率が高いMC</span>
             <span id="result-summary-winner" class="result-summary-winner">未決定</span>
             <div id="result-mode-note" class="result-mode-note"></div>
+          </div>
+
+          <div id="overall-prob" class="round-result">
+            <h3 class="round-title-lg">全体分布</h3>
+            <div id="overall-prob-table"></div>
           </div>
 
           <div id="round-best8" class="round-result">
@@ -730,11 +796,6 @@
           <div id="round-final" class="round-result">
             <h3 class="round-title-lg">決勝 の対戦分布</h3>
             <div id="final-list" class="match-result-list"></div>
-          </div>
-
-          <div id="overall-prob" class="round-result">
-            <h3 class="round-title-lg">全体分布</h3>
-            <div id="overall-prob-table"></div>
           </div>
         </div>
       </div>
@@ -756,6 +817,7 @@
     let currentMode = 'current';
     let strengthMap = {};
     let lastSimulationResult = null;
+    let isAnimating = false;
 
     function escapeHtml(str) {
       return String(str)
@@ -891,6 +953,8 @@
     }
 
     function setMode(mode) {
+      if (isAnimating) return;
+
       currentMode = mode;
       document.getElementById('mode-current').classList.toggle('active', mode === 'current');
       document.getElementById('mode-peak').classList.toggle('active', mode === 'peak');
@@ -919,7 +983,7 @@
           return selected.mc_id === mc.mc_id;
         });
 
-        const disabled = alreadySelected || selectedMCs.length >= 8;
+        const disabled = alreadySelected || selectedMCs.length >= 8 || isAnimating;
 
         const button = document.createElement('button');
         button.type = 'button';
@@ -954,6 +1018,7 @@
     }
 
     function addSelectedMc(mc) {
+      if (isAnimating) return;
       if (selectedMCs.length >= 8) return;
       if (selectedMCs.some(function(item) { return item.mc_id === mc.mc_id; })) return;
 
@@ -966,6 +1031,8 @@
     }
 
     function removeSelectedMc(mcId) {
+      if (isAnimating) return;
+
       selectedMCs = selectedMCs.filter(function(mc) {
         return mc.mc_id !== mcId;
       });
@@ -978,6 +1045,8 @@
     }
 
     function clearSelectedMCs() {
+      if (isAnimating) return;
+
       selectedMCs = [];
       lastSimulationResult = null;
       renderSelectedGrid();
@@ -1017,10 +1086,10 @@
     }
 
     function updateButtons() {
-      const ready = selectedMCs.length === 8;
+      const ready = selectedMCs.length === 8 && !isAnimating;
       document.getElementById('simulate-btn').disabled = !ready;
       document.getElementById('reshuffle-btn').disabled = !ready;
-      document.getElementById('clear-btn').disabled = selectedMCs.length === 0;
+      document.getElementById('clear-btn').disabled = selectedMCs.length === 0 || isAnimating;
     }
 
     function refreshCandidateView() {
@@ -1325,43 +1394,80 @@
       if (!result) return;
 
       document.getElementById('result-summary').classList.add('show');
+      document.getElementById('overall-prob').classList.add('show');
       document.getElementById('round-best8').classList.add('show');
       document.getElementById('round-best4').classList.add('show');
       document.getElementById('round-final').classList.add('show');
-      document.getElementById('overall-prob').classList.add('show');
 
       document.getElementById('result-summary-winner').textContent = result.favorite ? result.favorite.mc_name : '未決定';
       document.getElementById('result-mode-note').textContent =
-        (result.mode === 'peak'
-          ? 'peak_score'
-          : 'current_score') +
+        (result.mode === 'peak' ? 'peak_score' : 'current_score') +
         ' を基準に、試合数補正・内部ベストオブ3・100回シミュレーションで集計しています。';
 
+      renderOverallTable(result.overall);
       renderStageDistribution('best8-list', result.best8, 'Best8');
       renderStageDistribution('best4-list', result.best4, 'Best4');
       renderStageDistribution('final-list', result.final, 'Final');
-      renderOverallTable(result.overall);
     }
 
     function clearResultsView() {
       document.getElementById('result-summary').classList.remove('show');
+      document.getElementById('overall-prob').classList.remove('show');
       document.getElementById('round-best8').classList.remove('show');
       document.getElementById('round-best4').classList.remove('show');
       document.getElementById('round-final').classList.remove('show');
-      document.getElementById('overall-prob').classList.remove('show');
 
       document.getElementById('result-summary-winner').textContent = '未決定';
       document.getElementById('result-mode-note').textContent = '';
+      document.getElementById('overall-prob-table').innerHTML = '';
       document.getElementById('best8-list').innerHTML = '';
       document.getElementById('best4-list').innerHTML = '';
       document.getElementById('final-list').innerHTML = '';
-      document.getElementById('overall-prob-table').innerHTML = '';
     }
 
-    function handleSimulate() {
+    function sleep(ms) {
+      return new Promise(function(resolve) {
+        setTimeout(resolve, ms);
+      });
+    }
+
+    async function playCountdown() {
+      const overlay = document.getElementById('countdown-overlay');
+      const numberEl = document.getElementById('countdown-number');
+
+      overlay.classList.add('show');
+
+      for (let n = 5; n >= 1; n--) {
+        numberEl.textContent = String(n);
+        numberEl.style.animation = 'none';
+        void numberEl.offsetWidth;
+        numberEl.style.animation = 'popPulse 1s ease both';
+        await sleep(700);
+      }
+
+      overlay.classList.remove('show');
+    }
+
+    async function handleSimulate() {
       if (selectedMCs.length !== 8) return;
+      if (isAnimating) return;
+
+      isAnimating = true;
+      updateButtons();
+      showStatus('シミュレーションを準備中...', false);
+
+      await playCountdown();
+
+      showStatus('100回シミュレーション中...', false);
+      await sleep(120);
+
       lastSimulationResult = simulateTournamentDistribution();
       renderResults(lastSimulationResult);
+
+      showStatus('シミュレーション結果を表示しました。', false);
+      isAnimating = false;
+      updateButtons();
+      refreshCandidateView();
     }
 
     function initModeEvents() {
