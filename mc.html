@@ -129,7 +129,8 @@
       const label = `${safeDate} ${safeName}`.trim();
 
       if (!label) return "";
-      if (!safeId) return `<a href="./event.html?event_id=${encodeURIComponent(safeId)}">${label}</a>`;
+      if (!safeId) return `<span>${label}</span>`;
+
       return `<a href="./event.html?event_id=${encodeURIComponent(safeId)}">${label}</a>`;
     }
 
@@ -257,6 +258,7 @@
 
           const mc = data.mc || {};
           const ranking = data.ranking || {};
+          const summary = data.summary || {};
           const appearances = Array.isArray(data.participated_events) ? data.participated_events : [];
           const wins = sortMatchHistory(Array.isArray(data.wins_against) ? data.wins_against : []);
           const losses = sortMatchHistory(Array.isArray(data.losses_against) ? data.losses_against : []);
@@ -279,9 +281,9 @@
           const infoItems = [
             ["MCBattle Rank順位", getRankLabel(ranking.rank)],
             ["スコア", displayValue(formatScore(ranking.current_score ?? ranking.score))],
-            ["総試合数", displayValue(ranking.total_matches)],
-            ["勝利数", displayValue(ranking.wins)],
-            ["敗北数", displayValue(ranking.losses)],
+            ["総試合数", displayValue(summary.total_matches)],
+            ["勝利数", displayValue(summary.wins)],
+            ["敗北数", displayValue(summary.losses)],
             ["これまで優勝した大会", championshipText],
             ["獲得賞金総額", `${formatYen(totalPrizeMoney)}円`]
           ];
