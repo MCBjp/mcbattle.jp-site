@@ -30,7 +30,7 @@
         radial-gradient(circle at top, rgba(216,180,106,.08), transparent 28%),
         linear-gradient(180deg, #11131a 0%, #0c0d12 100%);
       color:var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
       line-height:1.65;
     }
 
@@ -50,34 +50,34 @@
 
     .site-title{
       display:inline-block;
-      font-family: "Times New Roman", Georgia, "Baskerville", serif;
-      font-style: italic;
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 600;
-      letter-spacing: .03em;
-      color: var(--text);
+      font-family:"Times New Roman",Georgia,"Baskerville",serif;
+      font-style:italic;
+      font-size:clamp(36px, 5vw, 56px);
+      font-weight:600;
+      letter-spacing:.03em;
+      color:var(--text);
       margin:0;
     }
 
     .hero{
-      padding: 8px 0 12px;
+      padding:8px 0 12px;
     }
 
     .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
       border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
 
     .hero-panel{
-      padding: 28px 30px;
+      padding:28px 30px;
     }
 
     .lead-title{
       margin:0 0 12px;
-      font-size: 22px;
-      font-weight: 700;
+      font-size:22px;
+      font-weight:700;
       letter-spacing:.02em;
     }
 
@@ -115,7 +115,7 @@
       gap:16px;
       padding:16px 18px;
       border:1px solid rgba(216,180,106,.28);
-      background: linear-gradient(180deg, rgba(216,180,106,.12), rgba(216,180,106,.05));
+      background:linear-gradient(180deg, rgba(216,180,106,.12), rgba(216,180,106,.05));
       border-radius:18px;
       transition:.18s ease;
     }
@@ -148,7 +148,7 @@
 
     .link-grid{
       display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns:repeat(4, minmax(0, 1fr));
       gap:14px;
       margin-top:16px;
     }
@@ -177,7 +177,7 @@
       padding:20px 22px;
       border-radius:20px;
       border:1px solid rgba(143,179,255,.3);
-      background: linear-gradient(180deg, rgba(143,179,255,.16), rgba(143,179,255,.06));
+      background:linear-gradient(180deg, rgba(143,179,255,.16), rgba(143,179,255,.06));
       transition:.18s ease;
     }
 
@@ -203,12 +203,12 @@
     }
 
     .dashboard{
-      padding: 30px 0 48px;
+      padding:30px 0 48px;
     }
 
     .dashboard-grid{
       display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns:repeat(4, minmax(0, 1fr));
       gap:18px;
       align-items:start;
     }
@@ -260,13 +260,13 @@
 
     .rank-row{
       display:grid;
-      grid-template-columns: 42px minmax(0,1fr) auto;
+      grid-template-columns:42px minmax(0,1fr) auto;
       gap:10px;
       align-items:center;
     }
 
     .rank-num{
-      font-family: "Times New Roman", Georgia, serif;
+      font-family:"Times New Roman",Georgia,serif;
       font-style:italic;
       font-size:20px;
       color:var(--accent);
@@ -285,7 +285,7 @@
     .rank-score{
       color:var(--muted);
       font-size:12px;
-      font-variant-numeric: tabular-nums;
+      font-variant-numeric:tabular-nums;
       white-space:nowrap;
     }
 
@@ -303,34 +303,39 @@
       height:28px;
     }
 
-    @media (max-width: 1080px){
+    @media (max-width:1080px){
       .dashboard-grid{
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 800px){
+    @media (max-width:800px){
       .container{
         width:min(calc(100% - 28px), var(--max));
       }
+
       .hero-panel{
         padding:22px 18px;
       }
+
       .criteria-panel{
         padding:18px 16px;
       }
+
       .link-grid{
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:repeat(2, minmax(0, 1fr));
       }
+
       .dashboard-grid{
         grid-template-columns:1fr;
       }
     }
 
-    @media (max-width: 560px){
+    @media (max-width:560px){
       .link-grid{
         grid-template-columns:1fr;
       }
+
       .rank-row{
         grid-template-columns:34px minmax(0,1fr) auto;
       }
@@ -370,7 +375,7 @@
           </div>
 
           <div class="link-grid">
-            <a class="link-card" href="rankings.html">スコアランキング</a>
+            <a class="link-card" href="ranking.html">スコアランキング</a>
             <a class="link-card" href="prize_rankings.html">獲得賞金ランキング</a>
             <a class="link-card" href="events.html">大会一覧</a>
             <a class="link-card" href="mcs.html">MC一覧</a>
@@ -434,6 +439,7 @@
 
     function formatDateJP(raw) {
       if (!raw) return "";
+
       const s = String(raw).trim();
 
       if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
@@ -459,9 +465,11 @@
 
     function parseDate(raw) {
       if (!raw) return null;
+
       if (Object.prototype.toString.call(raw) === "[object Date]" && !Number.isNaN(raw.getTime())) {
         return raw;
       }
+
       const s = String(raw).trim().replace(/\./g, "-").replace(/\//g, "-");
       const date = new Date(s);
       return Number.isNaN(date.getTime()) ? null : date;
@@ -638,7 +646,14 @@
         const payload = await jsonp(API_URL);
         if (payload?.error) throw new Error(payload.message || "top data error");
 
-        const rankings = Array.isArray(payload?.rankings) ? payload.rankings.slice(0, 10) : [];
+        const rankingsSource =
+          payload?.rankings ||
+          payload?.ranking ||
+          payload?.top_rankings ||
+          payload?.items ||
+          [];
+
+        const rankings = Array.isArray(rankingsSource) ? rankingsSource.slice(0, 10) : [];
         const recentEventsRaw = Array.isArray(payload?.recent_events) ? payload.recent_events : [];
 
         renderScoreRanking("score-ranking", rankings, "データがありません");
