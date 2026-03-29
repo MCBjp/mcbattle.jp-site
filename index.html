@@ -468,6 +468,7 @@
       const raw =
         item.current_strength_score_v2 ??
         item.score ??
+        item.current_score ??
         item.current_strength_score ??
         item.rating ??
         "";
@@ -611,7 +612,7 @@
         const payload = await jsonp(API_URL);
         if (payload?.error) throw new Error(payload.message || "top data error");
 
-        const rankings = Array.isArray(payload?.rankings) ? payload.rankings.slice(0, 10) : [];
+        const rankings = Array.isArray(payload?.score_rankings) ? payload.score_rankings.slice(0, 10) : [];
         const recentEventsRaw = Array.isArray(payload?.recent_events) ? payload.recent_events : [];
 
         renderScoreRanking("score-ranking", rankings, "データがありません");
@@ -652,10 +653,10 @@
 
     async function loadPrizeRanking() {
       try {
-        const payload = await jsonp(`${API_URL}?mode=prize_ranking`);
+        const payload = await jsonp(`${API_URL}?mode=prize_rankings`);
         if (payload?.error) throw new Error(payload.message || "prize ranking error");
 
-        const items = Array.isArray(payload?.prize_rankings) ? payload.prize_rankings.slice(0, 10) : [];
+        const items = Array.isArray(payload?.rankings) ? payload.rankings.slice(0, 10) : [];
         renderPrizeRanking("prize-ranking", items, "データがありません");
         setStatus("prize-ranking-status", items.length ? "" : "データがありません");
       } catch (error) {
