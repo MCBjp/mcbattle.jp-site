@@ -73,48 +73,28 @@
       box-shadow:var(--shadow);
     }
 
-    .card-a,
-    .card-b{
+    .card-a{
       padding:28px 30px;
     }
 
     .lead-title{
-      margin:0;
+      margin:0 0 18px;
       font-size:24px;
       font-weight:700;
       letter-spacing:.02em;
       line-height:1.6;
     }
 
-    .section-label{
-      margin:0 0 10px;
-      font-size:17px;
-      font-weight:800;
-      letter-spacing:.02em;
-    }
-
-    .criteria-text{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .spec-card,
-    .sim-card{
-      display:block;
-      padding:18px 18px;
-      border-radius:18px;
-      transition:.18s ease;
-    }
-
     .spec-card{
+      display:block;
+      width:fit-content;
+      max-width:100%;
+      padding:14px 18px;
+      border-radius:18px;
       border:1px solid rgba(216,180,106,.28);
       background:linear-gradient(180deg, rgba(216,180,106,.12), rgba(216,180,106,.05));
-    }
-
-    .sim-card{
-      border:1px solid rgba(143,179,255,.3);
-      background:linear-gradient(180deg, rgba(143,179,255,.16), rgba(143,179,255,.06));
+      transition:.18s ease;
+      white-space:nowrap;
     }
 
     .spec-card:hover,
@@ -131,7 +111,20 @@
       font-weight:800;
     }
 
-    .spec-sub,
+    .spec-title{
+      margin:0;
+      font-size:15px;
+    }
+
+    .sim-card{
+      display:block;
+      padding:18px 18px;
+      border-radius:18px;
+      border:1px solid rgba(143,179,255,.3);
+      background:linear-gradient(180deg, rgba(143,179,255,.16), rgba(143,179,255,.06));
+      transition:.18s ease;
+    }
+
     .sim-sub{
       margin:0;
       color:var(--muted);
@@ -285,13 +278,17 @@
       }
 
       .card-a,
-      .card-b,
       .dashboard-card{
         padding:18px 16px 14px;
       }
 
       .link-grid{
         grid-template-columns:1fr;
+      }
+
+      .spec-card{
+        width:100%;
+        white-space:normal;
       }
 
       .rank-row{
@@ -313,13 +310,9 @@
         <div class="hero-stack">
           <section class="panel card-a">
             <h2 class="lead-title">日本一情報量の多いMCバトルポータル。<br>過去、未来の大会情報の記録や戦績に加え、独自の仕様で各MCのスコアリングをつけています。</h2>
-          </section>
 
-          <section class="panel card-b">
-            <h3 class="section-label">公開基準</h3>
-            <p class="criteria-text">スコアリングの計算仕様、計算対象などはこちら。</p>
             <a class="spec-card" href="ranking_spec.html">
-              <h3 class="spec-title">ランキング仕様を見る</h3>
+              <h3 class="spec-title">ランキング仕様（計算仕様、計算対象など）を見る</h3>
             </a>
           </section>
 
