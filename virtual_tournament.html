@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html = r'''<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -20,28 +20,16 @@
       --radius: 16px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
       background: linear-gradient(180deg, #0f1115 0%, #161b22 100%);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", sans-serif;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
 
     .site-header {
       width: 100%;
@@ -105,13 +93,9 @@
       font-size: 0.92rem;
     }
 
-    .back-link:hover {
-      color: #fff;
-    }
+    .back-link:hover { color: #fff; }
 
-    .page-hero {
-      margin-bottom: 22px;
-    }
+    .page-hero { margin-bottom: 22px; }
 
     .page-title {
       margin: 0 0 8px;
@@ -136,9 +120,7 @@
       overflow: hidden;
     }
 
-    .panel-body {
-      padding: 18px;
-    }
+    .panel-body { padding: 18px; }
 
     .status-box {
       margin-bottom: 16px;
@@ -153,9 +135,7 @@
       word-break: break-word;
     }
 
-    .status-box.hidden {
-      display: none;
-    }
+    .status-box.hidden { display: none; }
 
     .status-box.error {
       background: rgba(255, 107, 107, 0.12);
@@ -163,9 +143,7 @@
       border: 1px solid rgba(255, 107, 107, 0.28);
     }
 
-    .mode-section {
-      margin-bottom: 20px;
-    }
+    .mode-section { margin-bottom: 20px; }
 
     .mode-grid {
       display: grid;
@@ -199,9 +177,7 @@
       margin-bottom: 0;
     }
 
-    .selector-section {
-      margin-bottom: 18px;
-    }
+    .selector-section { margin-bottom: 18px; }
 
     .selector-label {
       margin: 0 0 12px;
@@ -269,9 +245,7 @@
       color: var(--text);
     }
 
-    .btn-secondary:hover:not(:disabled) {
-      background: rgba(255, 255, 255, 0.13);
-    }
+    .btn-secondary:hover:not(:disabled) { background: rgba(255, 255, 255, 0.13); }
 
     .btn:disabled {
       opacity: 0.45;
@@ -280,9 +254,7 @@
       filter: none;
     }
 
-    .candidate-area {
-      margin-bottom: 18px;
-    }
+    .candidate-area { margin-bottom: 18px; }
 
     .candidate-list {
       display: grid;
@@ -338,9 +310,7 @@
       padding: 12px 0;
     }
 
-    .selected-area {
-      margin-bottom: 18px;
-    }
+    .selected-area { margin-bottom: 18px; }
 
     .selected-header {
       display: flex;
@@ -409,9 +379,7 @@
       color: #ffd4d4;
     }
 
-    .result-panel {
-      margin-top: 22px;
-    }
+    .result-panel { margin-top: 22px; }
 
     .result-actions {
       display: flex;
@@ -433,9 +401,7 @@
       gap: 14px;
     }
 
-    .countdown-overlay.show {
-      display: flex;
-    }
+    .countdown-overlay.show { display: flex; }
 
     .countdown-main {
       display: flex;
@@ -498,33 +464,15 @@
     }
 
     @keyframes popPulse {
-      0% {
-        transform: scale(0.65) rotate(-10deg);
-        opacity: 0;
-        filter: blur(10px);
-      }
-      20% {
-        transform: scale(1.08) rotate(0deg);
-        opacity: 1;
-        filter: blur(0);
-      }
-      65% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(0.92);
-        opacity: 0.15;
-      }
+      0% { transform: scale(0.65) rotate(-10deg); opacity: 0; filter: blur(10px); }
+      20% { transform: scale(1.08) rotate(0deg); opacity: 1; filter: blur(0); }
+      65% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.92); opacity: 0.15; }
     }
 
     @keyframes clockSpin {
-      from {
-        transform: translate(-50%, -100%) rotate(0deg);
-      }
-      to {
-        transform: translate(-50%, -100%) rotate(360deg);
-      }
+      from { transform: translate(-50%, -100%) rotate(0deg); }
+      to { transform: translate(-50%, -100%) rotate(360deg); }
     }
 
     .result-summary {
@@ -536,9 +484,7 @@
       display: none;
     }
 
-    .result-summary.show {
-      display: block;
-    }
+    .result-summary.show { display: block; }
 
     .result-summary-label {
       display: block;
@@ -559,50 +505,41 @@
       line-height: 1.6;
     }
 
-    .round-result {
+    .summary-panel {
       display: none;
       margin-top: 16px;
-    }
-
-    .round-result.show {
-      display: block;
-    }
-
-    .round-title-lg {
-      margin: 0 0 12px;
-      font-size: 1.02rem;
-      font-weight: 800;
-    }
-
-    .match-result-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .match-result-item {
+      padding: 16px 18px;
       border-radius: 14px;
-      padding: 14px 16px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .match-result-label {
-      color: var(--muted);
-      font-size: 0.84rem;
-      margin-bottom: 6px;
+    .summary-panel.show { display: block; }
+
+    .summary-title {
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+      font-weight: 800;
     }
 
-    .match-result-text {
+    .summary-text {
+      color: var(--text);
+      line-height: 1.9;
       font-size: 0.97rem;
-      line-height: 1.7;
+      white-space: pre-wrap;
     }
 
-    .detail-text {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      line-height: 1.7;
+    .overall-panel {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .overall-panel.show { display: block; }
+
+    .overall-title {
+      margin: 0 0 12px;
+      font-size: 1.02rem;
+      font-weight: 800;
     }
 
     .prob-table {
@@ -613,7 +550,7 @@
 
     .prob-table th,
     .prob-table td {
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding: 10px 8px;
       text-align: left;
       font-size: 0.92rem;
@@ -638,70 +575,36 @@
     }
 
     @media (max-width: 980px) {
-      .candidate-list {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .selected-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .candidate-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .selected-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 760px) {
-      .search-row {
-        grid-template-columns: 1fr auto;
-      }
-
-      .search-row .btn-secondary {
-        grid-column: 1 / -1;
-      }
-
+      .search-row { grid-template-columns: 1fr auto; }
+      .search-row .btn-secondary { grid-column: 1 / -1; }
       .candidate-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         max-height: 220px;
       }
-
-      .mode-grid {
-        grid-template-columns: 1fr;
-      }
+      .mode-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
-      .container {
-        padding: 22px 14px 56px;
-      }
-
-      .page-title {
-        font-size: 1.55rem;
-      }
-
-      .panel-body {
-        padding-left: 14px;
-        padding-right: 14px;
-      }
-
-      .selected-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .container { padding: 22px 14px 56px; }
+      .page-title { font-size: 1.55rem; }
+      .panel-body { padding-left: 14px; padding-right: 14px; }
+      .selected-grid { grid-template-columns: 1fr; }
       .candidate-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         max-height: 220px;
       }
-
       .site-header-inner {
         align-items: flex-start;
         flex-direction: column;
       }
-
-      .site-nav {
-        width: 100%;
-      }
-
+      .site-nav { width: 100%; }
       .prob-table th,
-      .prob-table td {
-        font-size: 0.84rem;
-      }
+      .prob-table td { font-size: 0.84rem; }
     }
   </style>
 </head>
@@ -798,25 +701,15 @@
             <div id="result-mode-note" class="result-mode-note"></div>
           </div>
 
-          <div id="overall-prob" class="round-result">
-            <h3 class="round-title-lg">全体分布</h3>
+          <section id="summary-panel" class="summary-panel">
+            <h3 class="summary-title">結果サマリー</h3>
+            <div id="summary-text" class="summary-text"></div>
+          </section>
+
+          <section id="overall-panel" class="overall-panel">
+            <h3 class="overall-title">全体分布</h3>
             <div id="overall-prob-table"></div>
-          </div>
-
-          <div id="round-best8" class="round-result">
-            <h3 class="round-title-lg">Best8 の対戦分布</h3>
-            <div id="best8-list" class="match-result-list"></div>
-          </div>
-
-          <div id="round-best4" class="round-result">
-            <h3 class="round-title-lg">Best4 の対戦分布</h3>
-            <div id="best4-list" class="match-result-list"></div>
-          </div>
-
-          <div id="round-final" class="round-result">
-            <h3 class="round-title-lg">決勝 の対戦分布</h3>
-            <div id="final-list" class="match-result-list"></div>
-          </div>
+          </section>
         </div>
       </div>
     </section>
@@ -1200,20 +1093,17 @@
       const randomValue = Math.random();
 
       return {
-        winner: randomValue < probA ? a : b,
-        probability_a: probA,
-        probability_b: 1 - probA
+        winner: randomValue < probA ? a : b
       };
     }
 
     function createMatch(a, b) {
       let winsA = 0;
       let winsB = 0;
-      let lastBout = null;
 
       while (winsA < 2 && winsB < 2) {
-        lastBout = playSingleBout(a, b);
-        if (lastBout.winner.mc_id === a.mc_id) {
+        const bout = playSingleBout(a, b);
+        if (bout.winner.mc_id === a.mc_id) {
           winsA += 1;
         } else {
           winsB += 1;
@@ -1223,9 +1113,7 @@
       return {
         a: a,
         b: b,
-        winner: winsA > winsB ? a : b,
-        probability_a: lastBout.probability_a,
-        probability_b: lastBout.probability_b
+        winner: winsA > winsB ? a : b
       };
     }
 
@@ -1241,9 +1129,6 @@
       const final = createMatch(sf1.winner, sf2.winner);
 
       return {
-        best8: [qf1, qf2, qf3, qf4],
-        best4: [sf1, sf2],
-        final: [final],
         champion: final.winner,
         runner_up: final.winner.mc_id === sf1.winner.mc_id ? sf2.winner : sf1.winner,
         semifinal_losers: [
@@ -1263,30 +1148,6 @@
       };
     }
 
-    function initStageAggregate(matches) {
-      return matches.map(function(match) {
-        return {
-          a: match.a,
-          b: match.b,
-          wins_a: 0,
-          wins_b: 0,
-          total: 0,
-          avg_probability_a: 0,
-          avg_probability_b: 0
-        };
-      });
-    }
-
-    function addStageAggregate(target, source) {
-      source.forEach(function(match, idx) {
-        target[idx].wins_a += match.winner.mc_id === match.a.mc_id ? 1 : 0;
-        target[idx].wins_b += match.winner.mc_id === match.b.mc_id ? 1 : 0;
-        target[idx].total += 1;
-        target[idx].avg_probability_a += match.probability_a;
-        target[idx].avg_probability_b += match.probability_b;
-      });
-    }
-
     function simulateTournamentDistribution() {
       if (selectedMCs.length !== 8) return null;
 
@@ -1301,10 +1162,6 @@
         };
       });
 
-      let best8Agg = null;
-      let best4Agg = null;
-      let finalAgg = null;
-
       for (let i = 0; i < TOURNAMENT_RUNS; i++) {
         const one = runOneTournament();
 
@@ -1316,16 +1173,6 @@
         one.quarterfinal_losers.forEach(function(mc) {
           standings[mc.mc_id].best8_exit += 1;
         });
-
-        if (!best8Agg) {
-          best8Agg = initStageAggregate(one.best8);
-          best4Agg = initStageAggregate(one.best4);
-          finalAgg = initStageAggregate(one.final);
-        }
-
-        addStageAggregate(best8Agg, one.best8);
-        addStageAggregate(best4Agg, one.best4);
-        addStageAggregate(finalAgg, one.final);
       }
 
       const overall = Object.keys(standings).map(function(mcId) {
@@ -1349,45 +1196,13 @@
 
       return {
         mode: currentMode,
-        best8: best8Agg,
-        best4: best4Agg,
-        final: finalAgg,
         overall: overall,
         favorite: overall.length ? overall[0].mc : null
       };
     }
 
-    function formatPercent(value) {
-      return Math.round(value * 100);
-    }
-
     function formatRateFromCount(count) {
       return Math.round((count / TOURNAMENT_RUNS) * 100);
-    }
-
-    function renderStageDistribution(containerId, rows, labelPrefix) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = '';
-
-      rows.forEach(function(row, index) {
-        const avgProbA = row.total ? row.avg_probability_a / row.total : 0;
-        const avgProbB = row.total ? row.avg_probability_b / row.total : 0;
-
-        const item = document.createElement('div');
-        item.className = 'match-result-item';
-        item.innerHTML =
-          '<div class="match-result-label">' + escapeHtml(labelPrefix + ' ' + (index + 1)) + '</div>' +
-          '<div class="match-result-text">' +
-            escapeHtml(row.a.mc_name || '') + ' 勝利 ' + row.wins_a + '回 / ' +
-            escapeHtml(row.b.mc_name || '') + ' 勝利 ' + row.wins_b + '回' +
-          '</div>' +
-          '<span class="detail-text">' +
-            '平均勝率 ' + escapeHtml(row.a.mc_name || '') + ' ' + formatPercent(avgProbA) + '% / ' +
-            escapeHtml(row.b.mc_name || '') + ' ' + formatPercent(avgProbB) + '%' +
-          '</span>';
-
-        container.appendChild(item);
-      });
     }
 
     function renderOverallTable(rows) {
@@ -1422,37 +1237,90 @@
       `;
     }
 
+    function buildSummaryText(result) {
+      const rows = Array.isArray(result && result.overall) ? result.overall : [];
+      if (!rows.length) return '結果をまとめられませんでした。';
+
+      const first = rows[0];
+      const second = rows[1];
+      const third = rows[2];
+
+      const firstChampion = formatRateFromCount(first.champion);
+      const secondChampion = second ? formatRateFromCount(second.champion) : 0;
+      const thirdChampion = third ? formatRateFromCount(third.champion) : 0;
+
+      const firstTop2 = formatRateFromCount(first.champion + first.runner_up);
+      const secondTop2 = second ? formatRateFromCount(second.champion + second.runner_up) : 0;
+
+      const stableRows = rows.slice().sort(function(a, b) {
+        return (b.champion + b.runner_up + b.best4) - (a.champion + a.runner_up + a.best4);
+      });
+
+      const darkHorse = rows.find(function(row) {
+        return row.champion > 0 && row.champion <= 10;
+      });
+
+      let balanceComment = '';
+      if (firstChampion >= 45) {
+        balanceComment = `${first.mc.mc_name}がかなり抜けています。今回の8人では一強寄りの分布です。`;
+      } else if (firstChampion >= 30 && firstChampion - secondChampion >= 12) {
+        balanceComment = `${first.mc.mc_name}が本命ですが、後続にも割って入る余地があります。`;
+      } else if (firstChampion - secondChampion <= 6) {
+        balanceComment = `上位の差は小さく、かなり混戦です。組み合わせや流れで優勝候補が入れ替わります。`;
+      } else {
+        balanceComment = `本命はいるものの、数人に十分チャンスがあります。`;
+      }
+
+      let stabilityComment = '';
+      if (stableRows.length >= 2) {
+        stabilityComment = `安定感では${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が目立ちます。Best4以上に残る回数が多く、崩れにくい並びです。`;
+      } else {
+        stabilityComment = `${stableRows[0].mc.mc_name}が安定して上位に残ります。`;
+      }
+
+      let darkHorseComment = '';
+      if (darkHorse) {
+        darkHorseComment = `${darkHorse.mc.mc_name}は大本命ではないものの、100回の中でしっかり優勝パターンを作っています。波乱枠として面白い存在です。`;
+      } else {
+        darkHorseComment = `今回は上位候補が比較的はっきりしていて、波乱はそこまで多くありません。`;
+      }
+
+      const lines = [];
+      lines.push(`本命は${first.mc.mc_name}です。100回中${first.champion}回優勝、優勝率は${firstChampion}%でした。`);
+      if (second) {
+        lines.push(`続くのは${second.mc.mc_name}で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も${thirdChampion}%で追います。` : ''}`);
+      }
+      lines.push(balanceComment);
+      lines.push(`また、${first.mc.mc_name}は準優勝も含めると${firstTop2}%で決勝に到達しています。${second ? `${second.mc.mc_name}も${secondTop2}%で高水準です。` : ''}`);
+      lines.push(stabilityComment);
+      lines.push(darkHorseComment);
+
+      return lines.join('\n');
+    }
+
     function renderResults(result) {
       if (!result) return;
 
       document.getElementById('result-summary').classList.add('show');
-      document.getElementById('overall-prob').classList.add('show');
-      document.getElementById('round-best8').classList.add('show');
-      document.getElementById('round-best4').classList.add('show');
-      document.getElementById('round-final').classList.add('show');
+      document.getElementById('summary-panel').classList.add('show');
+      document.getElementById('overall-panel').classList.add('show');
 
       document.getElementById('result-summary-winner').textContent = result.favorite ? result.favorite.mc_name : '未決定';
       document.getElementById('result-mode-note').textContent = '';
+      document.getElementById('summary-text').textContent = buildSummaryText(result);
 
       renderOverallTable(result.overall);
-      renderStageDistribution('best8-list', result.best8, 'Best8');
-      renderStageDistribution('best4-list', result.best4, 'Best4');
-      renderStageDistribution('final-list', result.final, 'Final');
     }
 
     function clearResultsView() {
       document.getElementById('result-summary').classList.remove('show');
-      document.getElementById('overall-prob').classList.remove('show');
-      document.getElementById('round-best8').classList.remove('show');
-      document.getElementById('round-best4').classList.remove('show');
-      document.getElementById('round-final').classList.remove('show');
+      document.getElementById('summary-panel').classList.remove('show');
+      document.getElementById('overall-panel').classList.remove('show');
 
       document.getElementById('result-summary-winner').textContent = '未決定';
       document.getElementById('result-mode-note').textContent = '';
+      document.getElementById('summary-text').textContent = '';
       document.getElementById('overall-prob-table').innerHTML = '';
-      document.getElementById('best8-list').innerHTML = '';
-      document.getElementById('best4-list').innerHTML = '';
-      document.getElementById('final-list').innerHTML = '';
     }
 
     function sleep(ms) {
@@ -1549,3 +1417,8 @@
   </script>
 </body>
 </html>
+'''
+path = "/mnt/data/virtual_tournament.html"
+with open(path, "w", encoding="utf-8") as f:
+    f.write(html)
+print(path)
