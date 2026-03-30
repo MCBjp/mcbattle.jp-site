@@ -125,11 +125,15 @@
           display: block;
         }
 
+        /* ===== PCで詰める ===== */
         .match-row {
           display: grid;
-          grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr) auto;
-          gap: 8px;
+          grid-template-columns: 34px minmax(120px, 180px) 20px minmax(120px, 180px) 34px;
+          gap: 6px;
           align-items: center;
+          justify-content: start;
+          width: fit-content;
+          max-width: 100%;
           color: inherit;
         }
 
@@ -171,8 +175,10 @@
 
         .judge-method {
           margin-top: 6px;
+          width: fit-content;
+          max-width: 100%;
           font-size: 0.9em;
-          text-align: center;
+          text-align: left;
           color: inherit;
           opacity: 0.8;
         }
@@ -186,15 +192,32 @@
           color: inherit;
         }
 
+        /* タブレット以下は少し流動的に */
+        @media (max-width: 900px) {
+          .match-row {
+            grid-template-columns: 34px minmax(90px, 1fr) 18px minmax(90px, 1fr) 34px;
+            width: 100%;
+          }
+
+          .judge-method {
+            width: 100%;
+          }
+        }
+
         @media (max-width: 640px) {
           .match-row {
             grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr) auto;
             gap: 6px;
             font-size: 0.95rem;
+            width: 100%;
           }
 
           .match-list > li {
             padding: 8px 10px;
+          }
+
+          .judge-method {
+            text-align: center;
           }
         }
       `;
