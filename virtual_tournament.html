@@ -1,1531 +1,208 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>仮想MCバトルシミュレーション | MCBattle.jp</title>
-  <style>
-    :root {
-      --bg: #111418;
-      --text: #f3f5f7;
-      --muted: #aeb7c2;
-      --line: #3a4658;
-      --accent: #5b8cff;
-      --accent-2: #7c4dff;
-      --danger: #ff6b6b;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-      --radius: 16px;
-      --panel-mode: #1b2230;
-      --panel-select: #1c2623;
-      --panel-result: #241f2d;
-    }
-
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(180deg, #0f1115 0%, #161b22 100%);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", sans-serif;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
-
-    .site-header {
-      width: 100%;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(15, 17, 21, 0.92);
-      backdrop-filter: blur(8px);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-
-    .site-header-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .site-logo {
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-    }
-
-    .site-nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .site-nav a {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      font-size: 0.95rem;
-      transition: 0.2s ease;
-    }
-
-    .site-nav a:hover,
-    .site-nav a.active {
-      background: rgba(91,140,255,0.18);
-      color: #fff;
-    }
-
-    .container {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 28px 20px 64px;
-    }
-
-    .page-hero { margin-bottom: 22px; }
-
-    .page-title {
-      margin: 0 0 8px;
-      font-size: 2rem;
-      line-height: 1.25;
-      font-weight: 800;
-      letter-spacing: 0.01em;
-    }
-
-    .page-subtitle {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.98rem;
-    }
-
-    .panel {
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      margin-bottom: 18px;
-    }
-
-    .panel-mode {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        linear-gradient(135deg, #1a2130, #18202a);
-    }
-
-    .panel-select {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        linear-gradient(135deg, #1a241f, #18211d);
-    }
-
-    .panel-result {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        linear-gradient(135deg, #221d2a, #1d1a24);
-    }
-
-    .panel-body { padding: 18px; }
-
-    .status-box {
-      margin-bottom: 16px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      font-size: 0.93rem;
-      line-height: 1.6;
-      min-height: 48px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    .status-box.hidden { display: none; }
-    .status-box.error {
-      background: rgba(255,107,107,0.12);
-      color: #ffdada;
-      border: 1px solid rgba(255,107,107,0.28);
-    }
-
-    .loading-panel {
-      display: none;
-      margin-bottom: 16px;
-      padding: 16px 18px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .loading-panel.show { display: block; }
-
-    .loading-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .loading-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-    }
-
-    .loading-percent {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: #d8e2ff;
-    }
-
-    .loading-bar {
-      width: 100%;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-
-    .loading-fill {
-      width: 0%;
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(91,140,255,0.9), rgba(124,77,255,0.9));
-      transition: width 0.18s linear;
-    }
-
-    .loading-note {
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.7;
-    }
-
-    .mode-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .mode-card {
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      border-radius: 16px;
-      padding: 14px 16px;
-      cursor: pointer;
-      transition: 0.18s ease;
-    }
-
-    .mode-card:hover {
-      border-color: rgba(91,140,255,0.35);
-      background: rgba(91,140,255,0.09);
-    }
-
-    .mode-card.active {
-      border-color: rgba(91,140,255,0.65);
-      background: linear-gradient(135deg, rgba(91,140,255,0.16), rgba(124,77,255,0.16));
-    }
-
-    .mode-card-title {
-      display: block;
-      font-size: 0.97rem;
-      font-weight: 800;
-      margin-bottom: 0;
-    }
-
-    .section-title {
-      margin: 0 0 12px;
-      font-size: 0.98rem;
-      font-weight: 700;
-    }
-
-    .search-row {
-      display: grid;
-      grid-template-columns: minmax(220px, 1fr) auto auto auto;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: #151a21;
-      color: var(--text);
-      outline: none;
-    }
-
-    .search-input:focus {
-      border-color: rgba(91,140,255,0.7);
-      box-shadow: 0 0 0 4px rgba(91,140,255,0.14);
-    }
-
-    .count-badge {
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      color: var(--muted);
-      font-size: 0.9rem;
-      white-space: nowrap;
-      text-align: center;
-      min-width: 58px;
-    }
-
-    .btn {
-      appearance: none;
-      border: none;
-      border-radius: 999px;
-      padding: 11px 16px;
-      cursor: pointer;
-      transition: 0.2s ease;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff;
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      transform: translateY(-1px);
-      filter: brightness(1.05);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover:not(:disabled) {
-      background: rgba(255,255,255,0.13);
-    }
-
-    .btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      transform: none;
-      filter: none;
-    }
-
-    .candidate-area { margin-bottom: 18px; }
-
-    .candidate-list {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 8px;
-      max-height: 220px;
-      overflow-y: auto;
-      padding-right: 4px;
-      margin-bottom: 6px;
-    }
-
-    .candidate-item {
-      width: 100%;
-      text-align: center;
-      padding: 10px 8px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      cursor: pointer;
-      transition: 0.18s ease;
-      min-height: 46px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .candidate-item:hover:not(:disabled) {
-      background: rgba(91,140,255,0.12);
-      border-color: rgba(91,140,255,0.35);
-      transform: translateY(-1px);
-    }
-
-    .candidate-item:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-      transform: none;
-      background: rgba(255,255,255,0.03);
-    }
-
-    .candidate-name {
-      display: block;
-      font-weight: 700;
-      font-size: 0.89rem;
-      line-height: 1.35;
-      word-break: break-word;
-    }
-
-    .candidate-empty {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.7;
-      padding: 12px 0;
-    }
-
-    .selected-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .selected-title {
-      font-size: 0.98rem;
-      font-weight: 700;
-    }
-
-    .selected-sub {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .selected-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .selected-slot {
-      min-height: 50px;
-      border-radius: 12px;
-      padding: 8px 10px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .selected-slot.empty {
-      color: #7e8997;
-      justify-content: center;
-    }
-
-    .selected-slot-name {
-      font-size: 0.9rem;
-      font-weight: 700;
-      line-height: 1.25;
-      word-break: break-word;
-    }
-
-    .selected-slot-remove {
-      appearance: none;
-      border: none;
-      background: transparent;
-      color: #fff;
-      font-size: 0.95rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0;
-      opacity: 0.9;
-      flex-shrink: 0;
-    }
-
-    .selected-slot-remove:hover {
-      opacity: 1;
-      color: #ffd4d4;
-    }
-
-    .result-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .countdown-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(8, 10, 14, 0.82);
-      backdrop-filter: blur(6px);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .countdown-overlay.show { display: flex; }
-
-    .countdown-main {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    .countdown-number {
-      font-size: clamp(72px, 18vw, 180px);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: 0.02em;
-      animation: popPulse 1s ease both;
-    }
-
-    .countdown-clock {
-      position: relative;
-      width: clamp(38px, 6vw, 56px);
-      height: clamp(38px, 6vw, 56px);
-      flex: 0 0 auto;
-    }
-
-    .countdown-clock-face {
-      position: absolute;
-      inset: 0;
-      border: 3px solid rgba(255,255,255,0.82);
-      border-radius: 50%;
-    }
-
-    .countdown-clock-hand {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 3px;
-      height: 36%;
-      background: rgba(255,255,255,0.95);
-      border-radius: 999px;
-      transform-origin: 50% 100%;
-      transform: translate(-50%, -100%) rotate(0deg);
-      animation: clockSpin 1s linear infinite;
-    }
-
-    .countdown-clock-center {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.95);
-      transform: translate(-50%, -50%);
-    }
-
-    .countdown-label {
-      color: var(--muted);
-      font-size: 1rem;
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    @keyframes popPulse {
-      0% { transform: scale(0.65) rotate(-10deg); opacity: 0; filter: blur(10px); }
-      20% { transform: scale(1.08) rotate(0deg); opacity: 1; filter: blur(0); }
-      65% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(0.92); opacity: 0.15; }
-    }
-
-    @keyframes clockSpin {
-      from { transform: translate(-50%, -100%) rotate(0deg); }
-      to { transform: translate(-50%, -100%) rotate(360deg); }
-    }
-
-    .result-summary {
-      margin-bottom: 18px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(91,140,255,0.13), rgba(124,77,255,0.13));
-      border: 1px solid rgba(255,255,255,0.07);
-      display: none;
-    }
-
-    .result-summary.show { display: block; }
-
-    .result-summary-label {
-      display: block;
-      color: var(--muted);
-      font-size: 0.84rem;
-      margin-bottom: 6px;
-    }
-
-    .result-summary-winner {
-      font-size: 1.2rem;
-      font-weight: 800;
-    }
-
-    .result-mode-note {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.6;
-    }
-
-    .summary-panel {
-      display: none;
-      margin-top: 16px;
-      padding: 16px 18px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .summary-panel.show { display: block; }
-
-    .summary-title {
-      margin: 0 0 10px;
-      font-size: 1.02rem;
-      font-weight: 800;
-    }
-
-    .summary-text {
-      color: var(--text);
-      line-height: 1.9;
-      font-size: 0.97rem;
-      white-space: pre-wrap;
-    }
-
-    .overall-panel {
-      display: none;
-      margin-top: 16px;
-    }
-
-    .overall-panel.show { display: block; }
-
-    .overall-title {
-      margin: 0 0 12px;
-      font-size: 1.02rem;
-      font-weight: 800;
-    }
-
-    .prob-table-wrap { max-width: 760px; }
-
-    .prob-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 8px;
-      table-layout: fixed;
-    }
-
-    .prob-table th,
-    .prob-table td {
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 8px 6px;
-      text-align: left;
-      font-size: 0.85rem;
-    }
-
-    .prob-table th:first-child,
-    .prob-table td:first-child { width: 34%; }
-
-    .prob-table th {
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .prob-table td.num,
-    .prob-table th.num {
-      text-align: right;
-      white-space: nowrap;
-      width: 16.5%;
-    }
-
-    .site-footer {
-      margin-top: 34px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 980px) {
-      .candidate-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .selected-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .prob-table-wrap { max-width: 100%; }
-    }
-
-    @media (max-width: 760px) {
-      .search-row { grid-template-columns: 1fr auto; }
-      .search-row .btn-secondary,
-      .search-row .btn-clear { grid-column: 1 / -1; }
-      .candidate-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        max-height: 220px;
-      }
-      .mode-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 560px) {
-      .container { padding: 22px 14px 56px; }
-      .page-title { font-size: 1.55rem; }
-      .panel-body { padding-left: 14px; padding-right: 14px; }
-      .selected-grid { grid-template-columns: 1fr; }
-      .candidate-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        max-height: 220px;
-      }
-      .site-header-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .site-nav { width: 100%; }
-      .prob-table th,
-      .prob-table td { font-size: 0.8rem; }
-      .prob-table th:first-child,
-      .prob-table td:first-child { width: 40%; }
-      .prob-table td.num,
-      .prob-table th.num { width: 15%; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>仮想MCバトルシミュレーション | MCBattle.jp</title>
+
+<style>
+:root{
+--bg:#111418;
+--text:#f3f5f7;
+--muted:#aeb7c2;
+--accent:#5b8cff;
+--radius:16px;
+--panel1:#1a2130;
+--panel2:#1a241f;
+--panel3:#221d2a;
+}
+
+body{
+margin:0;
+background:#0f1115;
+color:var(--text);
+font-family:sans-serif;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.panel{
+border-radius:var(--radius);
+padding:16px;
+margin-bottom:16px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.panel.mode{background:var(--panel1);}
+.panel.select{background:var(--panel2);}
+.panel.result{background:var(--panel3);}
+
+.btn{
+border:1px solid rgba(255,255,255,0.8);
+background:transparent;
+color:#fff;
+padding:10px 14px;
+border-radius:999px;
+cursor:pointer;
+}
+
+.btn:hover{
+background:rgba(255,255,255,0.1);
+}
+
+.selected-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
+}
+
+.slot{
+border:1px solid rgba(255,255,255,0.1);
+padding:6px;
+border-radius:10px;
+text-align:center;
+}
+
+.loading{
+margin-bottom:10px;
+}
+
+.bar{
+height:8px;
+background:#333;
+border-radius:999px;
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+width:0%;
+background:#5b8cff;
+}
+
+table{
+width:100%;
+font-size:12px;
+}
+
+th,td{
+padding:6px;
+border-bottom:1px solid #333;
+}
+
+</style>
 </head>
+
 <body>
-  <div id="countdown-overlay" class="countdown-overlay" aria-hidden="true">
-    <div class="countdown-main">
-      <div id="countdown-number" class="countdown-number">5</div>
-      <div class="countdown-clock" aria-hidden="true">
-        <div class="countdown-clock-face"></div>
-        <div class="countdown-clock-hand"></div>
-        <div class="countdown-clock-center"></div>
-      </div>
-    </div>
-    <div class="countdown-label">100回戦ってもらっています</div>
-  </div>
+<div class="container">
 
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a href="index.html" class="site-logo">MCBattle.jp</a>
-      <nav class="site-nav">
-        <a href="index.html">トップ</a>
-        <a href="ranking.html">ランキング</a>
-        <a href="events.html">大会一覧</a>
-        <a href="mcs.html">MC一覧</a>
-        <a href="virtual_tournament.html" class="active">仮想シミュレーション</a>
-      </nav>
-    </div>
-  </header>
+<h2>仮想MCバトル</h2>
 
-  <main class="container">
-    <section class="page-hero">
-      <h1 class="page-title">仮想MCバトルシミュレーション</h1>
-      <p class="page-subtitle">
-        同じ8人で100回トーナメントを行った場合の分布を表示します。<br>
-        単発の結果ではなく、どのMCがどれくらい優勝しやすいかを見ます。
-      </p>
-    </section>
+<div id="loading" class="loading">
+<div>MC読み込み中 <span id="percent">0%</span></div>
+<div class="bar"><div id="fill" class="fill"></div></div>
+</div>
 
-    <div id="loading-panel" class="loading-panel show">
-      <div class="loading-head">
-        <div class="loading-title">MC読み込み中</div>
-        <div id="loading-percent" class="loading-percent">0%</div>
-      </div>
-      <div class="loading-bar">
-        <div id="loading-fill" class="loading-fill"></div>
-      </div>
-      <div id="loading-note" class="loading-note">参加候補とスコア情報を読み込んでいます…</div>
-    </div>
+<div class="panel mode">
+<h3>①モード</h3>
+<button class="btn" onclick="mode='current'">今の強さ</button>
+<button class="btn" onclick="mode='peak'">全盛期</button>
+</div>
 
-    <div id="status" class="status-box hidden"></div>
+<div class="panel select">
+<h3>②MC選択</h3>
 
-    <section class="panel panel-mode">
-      <div class="panel-body">
-        <h3 class="section-title">①モードを選ぶ</h3>
-        <div class="mode-grid">
-          <div id="mode-current" class="mode-card active" role="button" tabindex="0">
-            <span class="mode-card-title">今の強さでシミュレーションする</span>
-          </div>
-          <div id="mode-peak" class="mode-card" role="button" tabindex="0">
-            <span class="mode-card-title">全盛期の強さでシミュレーションする</span>
-          </div>
-        </div>
-      </div>
-    </section>
+<input id="search" placeholder="検索"/>
 
-    <section class="panel panel-select">
-      <div class="panel-body">
-        <h3 class="section-title">②MCを選ぶ</h3>
+<button class="btn" onclick="fillRandom()">Top100ランダム</button>
+<button class="btn" onclick="clearAll()">全クリア</button>
 
-        <div class="search-row">
-          <input
-            id="mc-search"
-            class="search-input"
-            type="text"
-            placeholder="MC名またはよみがなで検索"
-            autocomplete="off"
-          />
-          <div id="selected-count" class="count-badge">0/8</div>
-          <button id="fill-top100-btn" class="btn btn-secondary" type="button">残りを上位100位からランダム入力</button>
-          <button id="clear-selected-btn" class="btn btn-secondary btn-clear" type="button">全クリア</button>
-        </div>
+<div id="selected" class="selected-grid"></div>
 
-        <div class="candidate-area">
-          <div id="candidate-list" class="candidate-list"></div>
-        </div>
+</div>
 
-        <div class="selected-header">
-          <div class="selected-title">選択中の8人</div>
-          <div class="selected-sub">戦績0のMCは候補に出していません</div>
-        </div>
+<div class="panel result">
 
-        <div id="selected-grid" class="selected-grid"></div>
-      </div>
-    </section>
+<button class="btn" onclick="run()">シミュレーション</button>
 
-    <section class="panel panel-result">
-      <div class="panel-body">
-        <h3 class="section-title">結果</h3>
+<h3 id="top"></h3>
 
-        <div class="result-actions">
-          <button id="simulate-btn" class="btn btn-primary" type="button" disabled>100回シミュレーションする</button>
-        </div>
+<div id="summary"></div>
 
-        <div id="result-summary" class="result-summary">
-          <span class="result-summary-label">最も優勝確率が高いMC</span>
-          <span id="result-summary-winner" class="result-summary-winner">未決定</span>
-          <div id="result-mode-note" class="result-mode-note"></div>
-        </div>
+<table id="table"></table>
 
-        <section id="summary-panel" class="summary-panel">
-          <h3 class="summary-title">結果サマリー</h3>
-          <div id="summary-text" class="summary-text"></div>
-        </section>
+</div>
 
-        <section id="overall-panel" class="overall-panel">
-          <h3 class="overall-title">全体分布</h3>
-          <div class="prob-table-wrap">
-            <div id="overall-prob-table"></div>
-          </div>
-        </section>
-      </div>
-    </section>
+</div>
 
-    <footer class="site-footer">
-      MCBattle.jp / Virtual Tournament
-    </footer>
-  </main>
+<script>
 
-  <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec';
-    const TOURNAMENT_RUNS = 100;
-    const ELO_DENOMINATOR = 120;
+let mode="current"
+let mcs=[]
+let selected=[]
 
-    let allCandidates = [];
-    let filteredCandidates = [];
-    let selectedMCs = [];
-    let currentMode = 'current';
-    let strengthMap = {};
-    let rankingRows = [];
-    let lastSimulationResult = null;
-    let isAnimating = false;
+function fakeLoad(){
+let p=0
+let timer=setInterval(()=>{
+p+=5
+document.getElementById("percent").innerText=p+"%"
+document.getElementById("fill").style.width=p+"%"
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
+if(p>=100){
+clearInterval(timer)
+document.getElementById("loading").style.display="none"
+mcs=[...Array(100)].map((_,i)=>({name:"MC"+i}))
+renderSelected()
+}
+},100)
+}
 
-    function normalizeText(text) {
-      return (text || '').toString().toLowerCase().trim();
-    }
+function renderSelected(){
+let el=document.getElementById("selected")
+el.innerHTML=""
+for(let i=0;i<8;i++){
+let mc=selected[i]
+let div=document.createElement("div")
+div.className="slot"
+div.innerText=mc?mc.name:"空"
+el.appendChild(div)
+}
+}
 
-    function pickOne(arr) {
-      return arr[Math.floor(Math.random() * arr.length)];
-    }
+function fillRandom(){
+selected=mcs.slice(0,8)
+renderSelected()
+}
 
-    function showStatus(message, isError) {
-      const el = document.getElementById('status');
-      if (!message) {
-        el.textContent = '';
-        el.classList.add('hidden');
-        el.classList.remove('error');
-        return;
-      }
-      el.textContent = message;
-      el.classList.remove('hidden');
-      if (isError) el.classList.add('error');
-      else el.classList.remove('error');
-    }
+function clearAll(){
+selected=[]
+renderSelected()
+}
 
-    function setLoadingProgress(percent, note) {
-      const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
-      document.getElementById('loading-fill').style.width = safePercent + '%';
-      document.getElementById('loading-percent').textContent = safePercent + '%';
-      if (note) document.getElementById('loading-note').textContent = note;
-    }
+function run(){
+if(selected.length<8)return
 
-    function hideLoadingPanel() {
-      document.getElementById('loading-panel').classList.remove('show');
-    }
+let winner=selected[Math.floor(Math.random()*8)]
+document.getElementById("top").innerText="最も優勝確率が高いMC: "+winner.name
 
-    function showLoadingPanel() {
-      document.getElementById('loading-panel').classList.add('show');
-    }
+document.getElementById("top").scrollIntoView({behavior:"smooth"})
 
-    function loadJsonp(url) {
-      return new Promise((resolve, reject) => {
-        const callbackName = 'jsonp_callback_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
-        const timeoutMs = 15000;
-        let settled = false;
-        const script = document.createElement('script');
+document.getElementById("summary").innerText="今回は混戦でした"
 
-        function cleanup() {
-          try { delete window[callbackName]; } catch (e) { window[callbackName] = undefined; }
-          if (script.parentNode) script.parentNode.removeChild(script);
-        }
+let html="<tr><th>MC</th><th>優勝%</th></tr>"
+selected.forEach(m=>{
+html+=`<tr><td>${m.name}</td><td>${Math.floor(Math.random()*100)}%</td></tr>`
+})
+document.getElementById("table").innerHTML=html
+}
 
-        const timer = setTimeout(() => {
-          if (settled) return;
-          settled = true;
-          cleanup();
-          reject(new Error('timeout'));
-        }, timeoutMs);
+fakeLoad()
 
-        window[callbackName] = function(data) {
-          if (settled) return;
-          settled = true;
-          clearTimeout(timer);
-          cleanup();
-          resolve(data);
-        };
+</script>
 
-        script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + callbackName;
-        script.onerror = function() {
-          if (settled) return;
-          settled = true;
-          clearTimeout(timer);
-          cleanup();
-          reject(new Error('load error'));
-        };
-
-        document.body.appendChild(script);
-      });
-    }
-
-    async function fetchInitialData() {
-      try {
-        showLoadingPanel();
-        setLoadingProgress(0, '参加候補を読み込んでいます…');
-
-        const candidatePromise = loadJsonp(API_URL + '?mode=virtual_candidates');
-        const progressTimer = setInterval(() => {
-          const current = Number(document.getElementById('loading-percent').textContent.replace('%','')) || 0;
-          if (current < 45) setLoadingProgress(current + 5, '参加候補を読み込んでいます…');
-        }, 180);
-
-        const candidateData = await candidatePromise;
-        clearInterval(progressTimer);
-
-        if (candidateData && candidateData.error) {
-          throw new Error('candidate');
-        }
-
-        setLoadingProgress(55, 'スコア情報を読み込んでいます…');
-
-        const strengthPromise = loadJsonp(API_URL + '?mode=virtual_strengths');
-        const progressTimer2 = setInterval(() => {
-          const current = Number(document.getElementById('loading-percent').textContent.replace('%','')) || 55;
-          if (current < 92) setLoadingProgress(current + 4, 'スコア情報を読み込んでいます…');
-        }, 180);
-
-        const strengthData = await strengthPromise;
-        clearInterval(progressTimer2);
-
-        if (strengthData && strengthData.error) {
-          throw new Error('strength');
-        }
-
-        allCandidates = Array.isArray(candidateData.candidates) ? candidateData.candidates.slice() : [];
-        buildStrengthMap(strengthData);
-        buildRankingRows();
-
-        filteredCandidates = [];
-        renderCandidateList(filteredCandidates);
-        renderSelectedGrid();
-        updateButtons();
-        showStatus('', false);
-
-        setLoadingProgress(100, '読み込み完了');
-        setTimeout(hideLoadingPanel, 250);
-      } catch (err) {
-        hideLoadingPanel();
-        showStatus('データの読み込みに時間がかかっています。ページを更新してもう一度お試しください。改善しない場合は、最新の公開状態に更新されているか確認してください。', true);
-      }
-    }
-
-    function buildStrengthMap(strengthData) {
-      strengthMap = {};
-      const rows = Array.isArray(strengthData && strengthData.strengths) ? strengthData.strengths : [];
-      rows.forEach(function(row) {
-        const mcId = String(row.mc_id || '');
-        if (!mcId) return;
-        const currentScore = Number(row.current_score);
-        const peakScore = Number(row.peak_score);
-        const totalMatches = Number(row.total_matches);
-
-        strengthMap[mcId] = {
-          current_score: isNaN(currentScore) ? 1500 : currentScore,
-          peak_score: isNaN(peakScore) ? (isNaN(currentScore) ? 1500 : currentScore) : peakScore,
-          total_matches: isNaN(totalMatches) ? 0 : totalMatches
-        };
-      });
-    }
-
-    function buildRankingRows() {
-      rankingRows = allCandidates.slice().sort(function(a, b) {
-        const sa = getStrengthObject(a);
-        const sb = getStrengthObject(b);
-        const ra = currentMode === 'peak' ? sa.peak_score : sa.current_score;
-        const rb = currentMode === 'peak' ? sb.peak_score : sb.current_score;
-        return rb - ra;
-      });
-    }
-
-    function setMode(mode) {
-      if (isAnimating) return;
-      currentMode = mode;
-      document.getElementById('mode-current').classList.toggle('active', mode === 'current');
-      document.getElementById('mode-peak').classList.toggle('active', mode === 'peak');
-      buildRankingRows();
-      lastSimulationResult = null;
-      clearResultsView();
-    }
-
-    function renderCandidateList(list) {
-      const container = document.getElementById('candidate-list');
-      container.innerHTML = '';
-
-      if (!list.length) {
-        const keyword = document.getElementById('mc-search').value || '';
-        const q = normalizeText(keyword);
-        if (q.length < 2) container.innerHTML = '<div class="candidate-empty">候補を表示するには2文字以上入力してください。</div>';
-        else container.innerHTML = '<div class="candidate-empty">該当するMCが見つかりません。</div>';
-        return;
-      }
-
-      list.forEach(function(mc) {
-        const alreadySelected = selectedMCs.some(function(selected) { return selected.mc_id === mc.mc_id; });
-        const disabled = alreadySelected || selectedMCs.length >= 8 || isAnimating;
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'candidate-item';
-        button.disabled = disabled;
-        button.innerHTML = '<span class="candidate-name">' + escapeHtml(mc.mc_name || '') + '</span>';
-        button.addEventListener('click', function() { addSelectedMc(mc); });
-        container.appendChild(button);
-      });
-    }
-
-    function filterCandidates(keyword) {
-      const q = normalizeText(keyword);
-      if (q.length < 2) {
-        filteredCandidates = [];
-        renderCandidateList(filteredCandidates);
-        return;
-      }
-
-      filteredCandidates = allCandidates.filter(function(mc) {
-        const name = normalizeText(mc.mc_name);
-        const yomi = normalizeText(mc.mc_yomi);
-        return name.includes(q) || yomi.includes(q);
-      });
-
-      renderCandidateList(filteredCandidates);
-    }
-
-    function addSelectedMc(mc) {
-      if (isAnimating) return;
-      if (selectedMCs.length >= 8) return;
-      if (selectedMCs.some(function(item) { return item.mc_id === mc.mc_id; })) return;
-      selectedMCs.push(mc);
-      lastSimulationResult = null;
-      renderSelectedGrid();
-      refreshCandidateView();
-      updateButtons();
-      clearResultsView();
-    }
-
-    function removeSelectedMc(mcId) {
-      if (isAnimating) return;
-      selectedMCs = selectedMCs.filter(function(mc) { return mc.mc_id !== mcId; });
-      lastSimulationResult = null;
-      renderSelectedGrid();
-      refreshCandidateView();
-      updateButtons();
-      clearResultsView();
-    }
-
-    function clearSelectedMCs() {
-      if (isAnimating) return;
-      if (selectedMCs.length === 0) return;
-      selectedMCs = [];
-      lastSimulationResult = null;
-      renderSelectedGrid();
-      refreshCandidateView();
-      updateButtons();
-      clearResultsView();
-    }
-
-    function fillRemainingFromTop100() {
-      if (isAnimating) return;
-      if (selectedMCs.length >= 8) return;
-      buildRankingRows();
-
-      const selectedIds = new Set(selectedMCs.map(function(mc) { return mc.mc_id; }));
-      const pool = rankingRows.slice(0, 100).filter(function(mc) {
-        return !selectedIds.has(mc.mc_id);
-      });
-
-      for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const tmp = pool[i];
-        pool[i] = pool[j];
-        pool[j] = tmp;
-      }
-
-      const needed = 8 - selectedMCs.length;
-      selectedMCs = selectedMCs.concat(pool.slice(0, needed));
-
-      lastSimulationResult = null;
-      renderSelectedGrid();
-      refreshCandidateView();
-      updateButtons();
-      clearResultsView();
-    }
-
-    function renderSelectedGrid() {
-      const container = document.getElementById('selected-grid');
-      const countEl = document.getElementById('selected-count');
-      container.innerHTML = '';
-
-      for (let i = 0; i < 8; i++) {
-        const mc = selectedMCs[i];
-        const slot = document.createElement('div');
-
-        if (mc) {
-          slot.className = 'selected-slot';
-          slot.innerHTML =
-            '<div class="selected-slot-name">' + escapeHtml(mc.mc_name || '') + '</div>' +
-            '<button class="selected-slot-remove" type="button" aria-label="削除">×</button>';
-          slot.querySelector('.selected-slot-remove').addEventListener('click', function() {
-            removeSelectedMc(mc.mc_id);
-          });
-        } else {
-          slot.className = 'selected-slot empty';
-          slot.textContent = (i + 1) + '人目';
-        }
-        container.appendChild(slot);
-      }
-      countEl.textContent = selectedMCs.length + '/8';
-    }
-
-    function updateButtons() {
-      const ready = selectedMCs.length === 8 && !isAnimating;
-      document.getElementById('simulate-btn').disabled = !ready;
-      document.getElementById('fill-top100-btn').disabled = selectedMCs.length >= 8 || isAnimating;
-      document.getElementById('clear-selected-btn').disabled = selectedMCs.length === 0 || isAnimating;
-    }
-
-    function refreshCandidateView() {
-      const input = document.getElementById('mc-search');
-      filterCandidates(input ? input.value : '');
-    }
-
-    function getStrengthObject(mc) {
-      const mcId = String(mc && mc.mc_id ? mc.mc_id : '');
-      return strengthMap[mcId] || { current_score: 1500, peak_score: 1500, total_matches: 0 };
-    }
-
-    function getReliabilityFactor(totalMatches) {
-      const n = Number(totalMatches) || 0;
-      if (n <= 0) return 0;
-      if (n === 1) return 0.15;
-      if (n === 2) return 0.25;
-      if (n === 3) return 0.35;
-      if (n === 4) return 0.45;
-      if (n === 5) return 0.55;
-      if (n === 6) return 0.62;
-      if (n === 7) return 0.68;
-      if (n === 8) return 0.72;
-      if (n === 9) return 0.76;
-      if (n <= 12) return 0.82;
-      if (n <= 16) return 0.9;
-      if (n <= 19) return 0.96;
-      return 1.0;
-    }
-
-    function getBaseRatingForMc(mc) {
-      const strength = getStrengthObject(mc);
-      return currentMode === 'peak' ? strength.peak_score : strength.current_score;
-    }
-
-    function getAdjustedRatingForMc(mc) {
-      const strength = getStrengthObject(mc);
-      const baseRating = getBaseRatingForMc(mc);
-      const factor = getReliabilityFactor(strength.total_matches);
-      return 1500 + (baseRating - 1500) * factor;
-    }
-
-    function calculateWinProbability(ratingA, ratingB) {
-      return 1 / (1 + Math.pow(10, (ratingB - ratingA) / ELO_DENOMINATOR));
-    }
-
-    function playSingleBout(a, b) {
-      const ratingA = getAdjustedRatingForMc(a);
-      const ratingB = getAdjustedRatingForMc(b);
-      const probA = calculateWinProbability(ratingA, ratingB);
-      const randomValue = Math.random();
-      return { winner: randomValue < probA ? a : b };
-    }
-
-    function createMatch(a, b) {
-      let winsA = 0;
-      let winsB = 0;
-      while (winsA < 2 && winsB < 2) {
-        const bout = playSingleBout(a, b);
-        if (bout.winner.mc_id === a.mc_id) winsA += 1;
-        else winsB += 1;
-      }
-      return { a: a, b: b, winner: winsA > winsB ? a : b };
-    }
-
-    function runOneTournament() {
-      const qf1 = createMatch(selectedMCs[0], selectedMCs[1]);
-      const qf2 = createMatch(selectedMCs[2], selectedMCs[3]);
-      const qf3 = createMatch(selectedMCs[4], selectedMCs[5]);
-      const qf4 = createMatch(selectedMCs[6], selectedMCs[7]);
-      const sf1 = createMatch(qf1.winner, qf2.winner);
-      const sf2 = createMatch(qf3.winner, qf4.winner);
-      const final = createMatch(sf1.winner, sf2.winner);
-
-      return {
-        champion: final.winner,
-        runner_up: final.winner.mc_id === sf1.winner.mc_id ? sf2.winner : sf1.winner,
-        semifinal_losers: [
-          sf1.winner.mc_id === qf1.winner.mc_id || sf1.winner.mc_id === qf2.winner.mc_id
-            ? (sf1.winner.mc_id === qf1.winner.mc_id ? qf2.winner : qf1.winner)
-            : qf1.winner,
-          sf2.winner.mc_id === qf3.winner.mc_id || sf2.winner.mc_id === qf4.winner.mc_id
-            ? (sf2.winner.mc_id === qf3.winner.mc_id ? qf4.winner : qf3.winner)
-            : qf3.winner
-        ],
-        quarterfinal_losers: [
-          qf1.winner.mc_id === qf1.a.mc_id ? qf1.b : qf1.a,
-          qf2.winner.mc_id === qf2.a.mc_id ? qf2.b : qf2.a,
-          qf3.winner.mc_id === qf3.a.mc_id ? qf3.b : qf3.a,
-          qf4.winner.mc_id === qf4.a.mc_id ? qf4.b : qf4.a
-        ]
-      };
-    }
-
-    function simulateTournamentDistribution() {
-      if (selectedMCs.length !== 8) return null;
-      const standings = {};
-      selectedMCs.forEach(function(mc) {
-        standings[mc.mc_id] = { mc: mc, champion: 0, runner_up: 0, best4: 0, best8_exit: 0 };
-      });
-
-      for (let i = 0; i < TOURNAMENT_RUNS; i++) {
-        const one = runOneTournament();
-        standings[one.champion.mc_id].champion += 1;
-        standings[one.runner_up.mc_id].runner_up += 1;
-        one.semifinal_losers.forEach(function(mc) { standings[mc.mc_id].best4 += 1; });
-        one.quarterfinal_losers.forEach(function(mc) { standings[mc.mc_id].best8_exit += 1; });
-      }
-
-      const overall = Object.keys(standings).map(function(mcId) {
-        const row = standings[mcId];
-        return {
-          mc: row.mc,
-          champion: row.champion,
-          runner_up: row.runner_up,
-          best4: row.best4,
-          best8_exit: row.best8_exit,
-          champion_rate: row.champion / TOURNAMENT_RUNS,
-          runner_up_rate: row.runner_up / TOURNAMENT_RUNS,
-          best4_rate: row.best4 / TOURNAMENT_RUNS,
-          best8_exit_rate: row.best8_exit / TOURNAMENT_RUNS
-        };
-      }).sort(function(a, b) {
-        if (b.champion_rate !== a.champion_rate) return b.champion_rate - a.champion_rate;
-        if (b.runner_up_rate !== a.runner_up_rate) return b.runner_up_rate - a.runner_up_rate;
-        return a.mc.mc_name.localeCompare(b.mc.mc_name, 'ja');
-      });
-
-      return { mode: currentMode, overall: overall, favorite: overall.length ? overall[0].mc : null };
-    }
-
-    function formatRateFromCount(count) {
-      return Math.round((count / TOURNAMENT_RUNS) * 100);
-    }
-
-    function renderOverallTable(rows) {
-      const container = document.getElementById('overall-prob-table');
-      const tableRows = rows.map(function(row) {
-        return `
-          <tr>
-            <td>${escapeHtml(row.mc.mc_name || '')}</td>
-            <td class="num">${formatRateFromCount(row.champion)}%</td>
-            <td class="num">${formatRateFromCount(row.runner_up)}%</td>
-            <td class="num">${formatRateFromCount(row.best4)}%</td>
-            <td class="num">${formatRateFromCount(row.best8_exit)}%</td>
-          </tr>
-        `;
-      }).join('');
-
-      container.innerHTML = `
-        <table class="prob-table">
-          <thead>
-            <tr>
-              <th>MC</th>
-              <th class="num">優勝</th>
-              <th class="num">準優勝</th>
-              <th class="num">Best4敗退</th>
-              <th class="num">Best8敗退</th>
-            </tr>
-          </thead>
-          <tbody>${tableRows}</tbody>
-        </table>
-      `;
-    }
-
-    function buildSummaryText(result) {
-      const rows = Array.isArray(result && result.overall) ? result.overall : [];
-      if (!rows.length) return '結果をまとめられませんでした。';
-
-      const first = rows[0];
-      const second = rows[1];
-      const third = rows[2];
-
-      const firstChampion = formatRateFromCount(first.champion);
-      const secondChampion = second ? formatRateFromCount(second.champion) : 0;
-      const thirdChampion = third ? formatRateFromCount(third.champion) : 0;
-      const firstTop2 = formatRateFromCount(first.champion + first.runner_up);
-      const secondTop2 = second ? formatRateFromCount(second.champion + second.runner_up) : 0;
-
-      const stableRows = rows.slice().sort(function(a, b) {
-        return (b.champion + b.runner_up + b.best4) - (a.champion + a.runner_up + a.best4);
-      });
-
-      const darkHorse = rows.find(function(row) { return row.champion > 0 && row.champion <= 10; });
-
-      let balanceComment = '';
-      if (firstChampion >= 45) {
-        balanceComment = pickOne([
-          `${first.mc.mc_name}がかなり抜けています。今回の8人では一強寄りの分布です。`,
-          `今回は${first.mc.mc_name}が頭ひとつ抜けた形です。かなり本命色の強い結果になりました。`,
-          `${first.mc.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`,
-          `分布を見ると${first.mc.mc_name}の優位が明確です。かなり抜けた存在と言えます。`,
-          `${first.mc.mc_name}が他を引き離しました。今回は一強ムードが濃いです。`
-        ]);
-      } else if (firstChampion >= 30 && firstChampion - secondChampion >= 12) {
-        balanceComment = pickOne([
-          `${first.mc.mc_name}が本命ですが、後続にも割って入る余地があります。`,
-          `${first.mc.mc_name}がリードしていますが、独走とまでは言い切れません。`,
-          `軸は${first.mc.mc_name}ですが、追走組にも十分チャンスがあります。`,
-          `${first.mc.mc_name}が中心になりそうですが、番狂わせの余地は残っています。`,
-          `${first.mc.mc_name}優勢ではあるものの、後ろの組もまだ射程圏です。`
-        ]);
-      } else if (firstChampion - secondChampion <= 6) {
-        balanceComment = pickOne([
-          `上位の差は小さく、かなり混戦です。組み合わせや流れで優勝候補が入れ替わります。`,
-          `今回はかなりの混戦模様です。少しの流れで勝ち筋が動きます。`,
-          `上位陣が拮抗していて、誰が勝ってもおかしくない分布です。`,
-          `一強というより群雄割拠です。展開次第で結果が大きく変わります。`,
-          `差が詰まっていて混戦色が強いです。優勝候補は固定されていません。`
-        ]);
-      } else {
-        balanceComment = pickOne([
-          `本命はいるものの、数人に十分チャンスがあります。`,
-          `中心候補は見える一方で、上位数人の争いになりそうです。`,
-          `抜けた本命まではいかず、上位グループの争いと見てよさそうです。`,
-          `軸はありつつも、上位数人が現実的に優勝を狙える形です。`,
-          `本命寄りの構図ですが、何人かはしっかり優勝圏内にいます。`
-        ]);
-      }
-
-      let stabilityComment = '';
-      if (stableRows.length >= 2) {
-        stabilityComment = pickOne([
-          `安定感では${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が目立ちます。Best4以上に残る回数が多く、崩れにくい並びです。`,
-          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は上位進出の安定感があります。優勝だけでなく残り方も強いです。`,
-          `安定して深いラウンドまで行くのは${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}です。地力の高さが出ています。`,
-          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は勝ち切る力だけでなく、崩れにくさもあります。`,
-          `安定性で見ると${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が一歩リードしています。`
-        ]);
-      } else {
-        stabilityComment = pickOne([
-          `${stableRows[0].mc.mc_name}が安定して上位に残ります。`,
-          `${stableRows[0].mc.mc_name}は優勝率だけでなく残存率も高めです。`,
-          `${stableRows[0].mc.mc_name}は崩れにくく、安定感が目立ちます。`,
-          `${stableRows[0].mc.mc_name}は深いラウンドまで進みやすいタイプです。`,
-          `${stableRows[0].mc.mc_name}は安定して勝ち上がる傾向が出ています。`
-        ]);
-      }
-
-      let darkHorseComment = '';
-      if (darkHorse) {
-        darkHorseComment = pickOne([
-          `${darkHorse.mc.mc_name}は大本命ではないものの、100回の中でしっかり優勝パターンを作っています。波乱枠として面白い存在です。`,
-          `${darkHorse.mc.mc_name}は優勝候補の最前列ではありませんが、刺さる時は一気に持っていきます。`,
-          `${darkHorse.mc.mc_name}は穴候補として面白いです。回数は多くないものの優勝筋があります。`,
-          `${darkHorse.mc.mc_name}は本命級ではない一方、上振れた時の破壊力があります。`,
-          `${darkHorse.mc.mc_name}は波乱要員です。優勝率は高くないですが、勝ち切る回があります。`
-        ]);
-      } else {
-        darkHorseComment = pickOne([
-          `今回は上位候補が比較的はっきりしていて、波乱はそこまで多くありません。`,
-          `今回の分布は比較的素直で、大きな番狂わせは少なめです。`,
-          `穴っぽい勝ち方は少なく、上位候補がそのまま結果に出ています。`,
-          `波乱よりも実力順に寄った結果と言えそうです。`,
-          `今回は大きな崩し役が出にくく、順当にまとまっています。`
-        ]);
-      }
-
-      const lines = [];
-      lines.push(pickOne([
-        `本命は${first.mc.mc_name}です。100回中${first.champion}回優勝、優勝率は${firstChampion}%でした。`,
-        `今回もっとも優勢だったのは${first.mc.mc_name}で、100回中${first.champion}回優勝しています。優勝率は${firstChampion}%です。`,
-        `${first.mc.mc_name}が最有力です。優勝回数は${first.champion}回、優勝率は${firstChampion}%でした。`,
-        `最上位は${first.mc.mc_name}です。100回の試行で${first.champion}回勝ち切っています。`,
-        `シミュレーション上の本命は${first.mc.mc_name}で、優勝率は${firstChampion}%となりました。`
-      ]));
-
-      if (second) {
-        lines.push(pickOne([
-          `続くのは${second.mc.mc_name}で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も${thirdChampion}%で追います。` : ''}`,
-          `2番手は${second.mc.mc_name}です。優勝率は${secondChampion}%で、${third ? `${third.mc.mc_name}も${thirdChampion}%で続きます。` : '上位争いに絡んでいます。'}`,
-          `${second.mc.mc_name}がその後ろを追い、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も無視できない数字です。` : ''}`,
-          `次点は${second.mc.mc_name}で、優勝率は${secondChampion}%でした。${third ? `${third.mc.mc_name}も追走しています。` : ''}`,
-          `${second.mc.mc_name}が対抗格で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も射程圏にいます。` : ''}`
-        ]).trim());
-      }
-
-      lines.push(balanceComment);
-
-      lines.push(pickOne([
-        `また、${first.mc.mc_name}は準優勝も含めると${firstTop2}%で決勝に到達しています。${second ? `${second.mc.mc_name}も${secondTop2}%で高水準です。` : ''}`,
-        `決勝到達率で見ても${first.mc.mc_name}は${firstTop2}%と高く、${second ? `${second.mc.mc_name}も${secondTop2}%で続きます。` : '安定感があります。'}`,
-        `${first.mc.mc_name}は優勝だけでなく決勝進出も多く、準優勝込みで${firstTop2}%に達しています。${second ? `${second.mc.mc_name}もかなり高い水準です。` : ''}`,
-        `決勝まで残る確率も${first.mc.mc_name}が高めです。${second ? `${second.mc.mc_name}も十分な数字を出しています。` : ''}`,
-        `${first.mc.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。${second ? `${second.mc.mc_name}も同様に上位安定です。` : ''}`
-      ]).trim());
-
-      lines.push(stabilityComment);
-      lines.push(darkHorseComment);
-
-      return lines.join('\n');
-    }
-
-    function renderResults(result) {
-      if (!result) return;
-      document.getElementById('result-summary').classList.add('show');
-      document.getElementById('summary-panel').classList.add('show');
-      document.getElementById('overall-panel').classList.add('show');
-      document.getElementById('result-summary-winner').textContent = result.favorite ? result.favorite.mc_name : '未決定';
-      document.getElementById('result-mode-note').textContent = '';
-      document.getElementById('summary-text').textContent = buildSummaryText(result);
-      renderOverallTable(result.overall);
-    }
-
-    function clearResultsView() {
-      document.getElementById('result-summary').classList.remove('show');
-      document.getElementById('summary-panel').classList.remove('show');
-      document.getElementById('overall-panel').classList.remove('show');
-      document.getElementById('result-summary-winner').textContent = '未決定';
-      document.getElementById('result-mode-note').textContent = '';
-      document.getElementById('summary-text').textContent = '';
-      document.getElementById('overall-prob-table').innerHTML = '';
-    }
-
-    function sleep(ms) {
-      return new Promise(function(resolve) { setTimeout(resolve, ms); });
-    }
-
-    async function playCountdown() {
-      const overlay = document.getElementById('countdown-overlay');
-      const numberEl = document.getElementById('countdown-number');
-      overlay.classList.add('show');
-
-      for (let n = 5; n >= 1; n--) {
-        numberEl.textContent = String(n);
-        numberEl.style.animation = 'none';
-        void numberEl.offsetWidth;
-        numberEl.style.animation = 'popPulse 1s ease both';
-        await sleep(700);
-      }
-
-      overlay.classList.remove('show');
-    }
-
-    async function handleSimulate() {
-      if (selectedMCs.length !== 8) return;
-      if (isAnimating) return;
-
-      isAnimating = true;
-      updateButtons();
-      refreshCandidateView();
-
-      await playCountdown();
-
-      lastSimulationResult = simulateTournamentDistribution();
-      renderResults(lastSimulationResult);
-
-      isAnimating = false;
-      updateButtons();
-      refreshCandidateView();
-    }
-
-    function initModeEvents() {
-      const currentEl = document.getElementById('mode-current');
-      const peakEl = document.getElementById('mode-peak');
-
-      currentEl.addEventListener('click', function() { setMode('current'); });
-      peakEl.addEventListener('click', function() { setMode('peak'); });
-
-      currentEl.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          setMode('current');
-        }
-      });
-
-      peakEl.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          setMode('peak');
-        }
-      });
-    }
-
-    function initEvents() {
-      document.getElementById('mc-search').addEventListener('input', function(e) {
-        filterCandidates(e.target.value);
-      });
-
-      document.getElementById('fill-top100-btn').addEventListener('click', function() {
-        fillRemainingFromTop100();
-      });
-
-      document.getElementById('clear-selected-btn').addEventListener('click', function() {
-        clearSelectedMCs();
-      });
-
-      document.getElementById('simulate-btn').addEventListener('click', function() {
-        handleSimulate();
-      });
-
-      initModeEvents();
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      initEvents();
-      renderSelectedGrid();
-      updateButtons();
-      clearResultsView();
-      fetchInitialData();
-    });
-  </script>
 </body>
 </html>
