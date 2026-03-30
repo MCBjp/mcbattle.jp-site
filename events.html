@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>大会一覧 | MC Battle DB</title>
+  <title>大会一覧 | MCBattle.jp</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .events-page {
@@ -12,63 +12,95 @@
       padding: 28px 16px 72px;
     }
 
-    .events-list-wrap {
-      padding-left: 12px;
-      padding-right: 12px;
+    .events-header {
+      margin-bottom: 22px;
     }
 
-    #events-status {
-      margin-bottom: 12px;
+    .events-lead {
+      margin-top: 8px;
+    }
+
+    .events-toolbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .events-search {
+      flex: 1 1 280px;
+      min-width: 0;
+    }
+
+    .events-count {
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
     .events-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .events-list li {
-      margin: 0;
-      padding: 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .events-list li:last-child {
-      border-bottom: none;
-    }
-
-    .event-link,
-    .event-link-static {
+    .event-row {
       display: block;
-      padding: 11px 0;
-      color: inherit;
-      border-radius: 8px;
+      padding: 14px 14px 13px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
       text-decoration: none;
     }
 
-    .event-link:hover {
-      opacity: 0.9;
-      background: rgba(255,255,255,0.03);
+    .event-row:hover {
       text-decoration: none;
+      background: rgba(255,255,255,0.045);
+      border-color: var(--line-strong);
+      box-shadow: 0 0 18px rgba(135, 164, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .event-row-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 6px;
     }
 
     .event-date {
+      flex: 0 0 auto;
+      color: var(--accent-soft);
+      font-size: 0.84rem;
+      font-weight: 700;
       white-space: nowrap;
-      margin-right: 0.45em;
-      color: var(--accent-dim);
-      font-variant-numeric: tabular-nums;
     }
 
     .event-name {
+      min-width: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.5;
       color: var(--accent);
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
+      word-break: break-word;
     }
 
-    .event-category {
-      opacity: 0.8;
-      margin-left: 0.45em;
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .event-meta-item {
       white-space: nowrap;
+    }
+
+    .empty-box {
+      padding: 18px 4px 8px;
       color: var(--muted);
     }
 
@@ -77,14 +109,35 @@
         padding: 20px 12px 56px;
       }
 
-      .events-list-wrap {
-        padding-left: 10px;
-        padding-right: 10px;
+      .event-row {
+        padding: 12px 12px 11px;
       }
 
-      .event-link,
-      .event-link-static {
-        padding: 9px 0;
+      .event-row-top {
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 8px;
+      }
+
+      .event-date {
+        white-space: normal;
+      }
+
+      .event-name {
+        font-size: 0.96rem;
+      }
+
+      .event-meta {
+        gap: 6px 10px;
+        font-size: 0.86rem;
+      }
+
+      .events-toolbar {
+        gap: 8px;
+      }
+
+      .events-count {
+        width: 100%;
       }
     }
   </style>
@@ -93,20 +146,32 @@
   <div class="events-page">
     <p><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
-    <header>
+    <header class="events-header">
       <h1>大会一覧</h1>
+      <p class="muted events-lead">国内主要MCバトルの大会一覧です。</p>
     </header>
 
     <section class="card">
-      <div class="events-list-wrap">
-        <p id="events-status" class="muted">読み込み中...</p>
-        <ul id="events-list" class="events-list"></ul>
+      <div class="events-toolbar">
+        <input
+          id="events-search"
+          class="input events-search"
+          type="text"
+          placeholder="大会名で検索"
+          autocomplete="off"
+        />
+        <div id="events-count" class="events-count">読み込み中…</div>
       </div>
+
+      <div id="events-list" class="events-list"></div>
+      <p id="events-status" class="muted">読み込み中…</p>
     </section>
   </div>
 
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+
+    let allEvents = [];
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -117,74 +182,207 @@
         .replace(/'/g, "&#39;");
     }
 
-    function loadEventsList() {
-      const callbackName = "mcBattleEventsCallback";
-      const statusEl = document.getElementById("events-status");
-      const listEl = document.getElementById("events-list");
+    function formatDateJP(raw) {
+      if (!raw) return "";
+      const s = String(raw).trim();
 
-      window[callbackName] = function(data) {
-        console.log("events list:", data);
+      if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+        const [y, m, d] = s.split("-");
+        return `${y}.${m}.${d}`;
+      }
 
-        listEl.innerHTML = "";
-        statusEl.classList.remove("error");
+      if (/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(s)) {
+        const [y, m, d] = s.split("/");
+        return `${y}.${String(m).padStart(2, "0")}.${String(d).padStart(2, "0")}`;
+      }
 
-        try {
-          if (data.error) {
-            statusEl.textContent = "大会一覧の取得に失敗しました: " + (data.message || "");
-            statusEl.classList.add("error");
-            return;
-          }
+      const date = new Date(s);
+      if (!Number.isNaN(date.getTime())) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        return `${y}.${m}.${d}`;
+      }
 
-          const events = Array.isArray(data.events) ? data.events : [];
-
-          events.forEach((event) => {
-            const li = document.createElement("li");
-
-            const eventId = event.event_id ? String(event.event_id) : "";
-            const date = event.event_date ? String(event.event_date) : "";
-            const name = event.event_name_simple ? String(event.event_name_simple) : "大会名不明";
-            const category = event.event_category ? String(event.event_category) : "";
-
-            if (eventId) {
-              li.innerHTML = `
-                <a class="event-link" href="event.html?event_id=${encodeURIComponent(eventId)}">
-                  <span class="event-date">${escapeHtml(date)}</span>
-                  <span class="event-name">${escapeHtml(name)}</span>
-                  ${category ? `<span class="event-category">/ ${escapeHtml(category)}</span>` : ""}
-                </a>
-              `;
-            } else {
-              li.innerHTML = `
-                <span class="event-link-static">
-                  <span class="event-date">${escapeHtml(date)}</span>
-                  <span class="event-name">${escapeHtml(name)}</span>
-                  ${category ? `<span class="event-category">/ ${escapeHtml(category)}</span>` : ""}
-                </span>
-              `;
-            }
-
-            listEl.appendChild(li);
-          });
-
-          statusEl.textContent = `${events.length}大会を表示`;
-        } catch (err) {
-          console.error(err);
-          statusEl.textContent = "大会一覧の描画に失敗しました";
-          statusEl.classList.add("error");
-        }
-      };
-
-      const script = document.createElement("script");
-      script.src = `${API_URL}?mode=events&callback=${callbackName}`;
-      script.onerror = function() {
-        statusEl.textContent = "大会一覧の読み込みに失敗しました";
-        statusEl.classList.add("error");
-      };
-
-      document.body.appendChild(script);
+      return s;
     }
 
-    loadEventsList();
+    function parseDate(raw) {
+      if (!raw) return null;
+      const date = new Date(String(raw).trim().replace(/\./g, "-").replace(/\//g, "-"));
+      return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function getEventId(event) {
+      return event.event_id || event.id || event.eventId || "";
+    }
+
+    function getEventNameFull(event) {
+      return event.event_name_full || event.event_name || event.name || event.title || "";
+    }
+
+    function getEventNameSimple(event) {
+      return event.event_name_simple || event.event_name || event.name || event.title || "";
+    }
+
+    function getEventDate(event) {
+      return event.event_date || event.date || event.EventDate || "";
+    }
+
+    function getEventCategory(event) {
+      return event.event_category || "";
+    }
+
+    function getEventStage(event) {
+      return event.event_stage || event.stage || "";
+    }
+
+    function setStatus(message, isError) {
+      const el = document.getElementById("events-status");
+      el.textContent = message || "";
+      el.classList.toggle("error", !!isError);
+    }
+
+    function setCount(current, total, keyword) {
+      const el = document.getElementById("events-count");
+      if (!keyword) {
+        el.textContent = `${total}件`;
+      } else {
+        el.textContent = `${current}件 / 全${total}件`;
+      }
+    }
+
+    function jsonp(url) {
+      return new Promise((resolve, reject) => {
+        const callbackName = "__events_cb_" + Math.random().toString(36).slice(2);
+        const script = document.createElement("script");
+        const sep = url.includes("?") ? "&" : "?";
+
+        const timer = setTimeout(() => {
+          cleanup();
+          reject(new Error("timeout"));
+        }, 15000);
+
+        function cleanup() {
+          clearTimeout(timer);
+          delete window[callbackName];
+          script.remove();
+        }
+
+        window[callbackName] = (data) => {
+          cleanup();
+          resolve(data);
+        };
+
+        script.src = `${url}${sep}callback=${callbackName}`;
+        script.onerror = () => {
+          cleanup();
+          reject(new Error("load error"));
+        };
+
+        document.body.appendChild(script);
+      });
+    }
+
+    function renderEvents(events, keyword) {
+      const listEl = document.getElementById("events-list");
+
+      if (!events.length) {
+        listEl.innerHTML = `<div class="empty-box">${escapeHtml(keyword ? "該当する大会がありません。" : "大会がありません。")}</div>`;
+        setCount(events.length, allEvents.length, keyword);
+        return;
+      }
+
+      listEl.innerHTML = events.map((event) => {
+        const eventId = getEventId(event);
+        const eventNameFull = getEventNameFull(event);
+        const eventNameSimple = getEventNameSimple(event);
+        const eventDate = formatDateJP(getEventDate(event));
+        const eventCategory = getEventCategory(event);
+        const eventStage = getEventStage(event);
+
+        const meta = [];
+        if (eventCategory) meta.push(`<span class="event-meta-item">${escapeHtml(eventCategory)}</span>`);
+        if (eventStage) meta.push(`<span class="event-meta-item">${escapeHtml(eventStage)}</span>`);
+        if (eventNameSimple && eventNameSimple !== eventNameFull) {
+          meta.push(`<span class="event-meta-item">${escapeHtml(eventNameSimple)}</span>`);
+        }
+
+        const href = eventId
+          ? `event.html?event_id=${encodeURIComponent(eventId)}`
+          : "events.html";
+
+        return `
+          <a class="event-row" href="${href}">
+            <div class="event-row-top">
+              <div class="event-name">${escapeHtml(eventNameFull)}</div>
+              <div class="event-date">${escapeHtml(eventDate)}</div>
+            </div>
+            ${meta.length ? `<div class="event-meta">${meta.join("")}</div>` : ""}
+          </a>
+        `;
+      }).join("");
+
+      setCount(events.length, allEvents.length, keyword);
+    }
+
+    function applyFilter() {
+      const keyword = (document.getElementById("events-search").value || "").trim().toLowerCase();
+
+      if (!keyword) {
+        renderEvents(allEvents, "");
+        return;
+      }
+
+      const filtered = allEvents.filter((event) => {
+        const full = getEventNameFull(event).toLowerCase();
+        const simple = getEventNameSimple(event).toLowerCase();
+        const category = getEventCategory(event).toLowerCase();
+        const stage = getEventStage(event).toLowerCase();
+        return (
+          full.includes(keyword) ||
+          simple.includes(keyword) ||
+          category.includes(keyword) ||
+          stage.includes(keyword)
+        );
+      });
+
+      renderEvents(filtered, keyword);
+    }
+
+    async function loadEvents() {
+      try {
+        const payload = await jsonp(`${API_URL}?mode=events`);
+        if (payload?.error) {
+          throw new Error(payload.message || "events error");
+        }
+
+        const events = Array.isArray(payload?.events) ? payload.events.slice() : [];
+
+        events.sort((a, b) => {
+          const ad = parseDate(getEventDate(a));
+          const bd = parseDate(getEventDate(b));
+
+          const at = ad ? ad.getTime() : 0;
+          const bt = bd ? bd.getTime() : 0;
+
+          return bt - at;
+        });
+
+        allEvents = events;
+        renderEvents(allEvents, "");
+        setStatus(allEvents.length ? "" : "大会がありません。", false);
+      } catch (error) {
+        console.error(error);
+        document.getElementById("events-list").innerHTML = "";
+        document.getElementById("events-count").textContent = "";
+        setStatus("大会一覧の読み込みに失敗しました。", true);
+      }
+    }
+
+    document.getElementById("events-search").addEventListener("input", applyFilter);
+
+    loadEvents();
   </script>
 </body>
 </html>
