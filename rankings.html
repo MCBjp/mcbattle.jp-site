@@ -131,7 +131,7 @@
             return;
           }
 
-          const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 100) : [];
+          const rankings = Array.isArray(data.rankings) ? data.rankings : [];
 
           rankings.forEach((item, index) => {
             const tr = document.createElement("tr");
@@ -144,7 +144,7 @@
             const mcId = item.mc_id || "";
             const mcName = item.mc_name || "名前不明";
 
-            const rawScore = item.current_strength_score_v2 ?? item.current_strength_score ?? "";
+            const rawScore = item.current_strength_score_v2 ?? item.current_strength_score ?? item.score ?? "";
             const score = rawScore !== "" && !isNaN(Number(rawScore))
               ? Number(rawScore).toFixed(2)
               : String(rawScore);
@@ -179,7 +179,7 @@
       };
 
       const script = document.createElement("script");
-      script.src = `${API_URL}?callback=${callbackName}`;
+      script.src = `${API_URL}?mode=rankings&callback=${callbackName}`;
       script.onerror = function() {
         statusEl.textContent = "ランキングの読み込みに失敗しました";
         statusEl.classList.add("error");
