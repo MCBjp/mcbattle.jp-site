@@ -21,8 +21,10 @@
     }
 
     * { box-sizing: border-box; }
+
     html, body {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       background: linear-gradient(180deg, #0f1115 0%, #161b22 100%);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", sans-serif;
@@ -187,7 +189,7 @@
 
     .search-row {
       display: grid;
-      grid-template-columns: minmax(220px, 1fr) auto auto;
+      grid-template-columns: minmax(220px, 1fr) auto auto auto;
       gap: 10px;
       align-items: center;
       margin-bottom: 12px;
@@ -245,7 +247,9 @@
       color: var(--text);
     }
 
-    .btn-secondary:hover:not(:disabled) { background: rgba(255, 255, 255, 0.13); }
+    .btn-secondary:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.13);
+    }
 
     .btn:disabled {
       opacity: 0.45;
@@ -550,7 +554,7 @@
 
     .prob-table th,
     .prob-table td {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       padding: 10px 8px;
       text-align: left;
       font-size: 0.92rem;
@@ -569,7 +573,7 @@
     .site-footer {
       margin-top: 34px;
       padding-top: 18px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255,255,255,0.08);
       color: var(--muted);
       font-size: 0.9rem;
     }
@@ -581,7 +585,8 @@
 
     @media (max-width: 760px) {
       .search-row { grid-template-columns: 1fr auto; }
-      .search-row .btn-secondary { grid-column: 1 / -1; }
+      .search-row .btn-secondary,
+      .search-row .btn-clear { grid-column: 1 / -1; }
       .candidate-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         max-height: 220px;
@@ -674,6 +679,7 @@
             />
             <div id="selected-count" class="count-badge">0/8</div>
             <button id="fill-top100-btn" class="btn btn-secondary" type="button">残りを上位100位からランダム入力</button>
+            <button id="clear-selected-btn" class="btn btn-secondary btn-clear" type="button">全クリア</button>
           </div>
 
           <div class="candidate-area">
@@ -744,6 +750,10 @@
 
     function normalizeText(text) {
       return (text || '').toString().toLowerCase().trim();
+    }
+
+    function pickOne(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
     }
 
     function showStatus(message, isError) {
@@ -850,7 +860,6 @@
 
     function buildStrengthMap(strengthData) {
       strengthMap = {};
-
       const rows = Array.isArray(strengthData && strengthData.strengths)
         ? strengthData.strengths
         : [];
@@ -974,6 +983,18 @@
       clearResultsView();
     }
 
+    function clearSelectedMCs() {
+      if (isAnimating) return;
+      if (selectedMCs.length === 0) return;
+
+      selectedMCs = [];
+      lastSimulationResult = null;
+      renderSelectedGrid();
+      refreshCandidateView();
+      updateButtons();
+      clearResultsView();
+    }
+
     function fillRemainingFromTop100() {
       if (isAnimating) return;
       if (selectedMCs.length >= 8) return;
@@ -1036,6 +1057,7 @@
       const ready = selectedMCs.length === 8 && !isAnimating;
       document.getElementById('simulate-btn').disabled = !ready;
       document.getElementById('fill-top100-btn').disabled = selectedMCs.length >= 8 || isAnimating;
+      document.getElementById('clear-selected-btn').disabled = selectedMCs.length === 0 || isAnimating;
     }
 
     function refreshCandidateView() {
@@ -1262,36 +1284,106 @@
 
       let balanceComment = '';
       if (firstChampion >= 45) {
-        balanceComment = `${first.mc.mc_name}がかなり抜けています。今回の8人では一強寄りの分布です。`;
+        balanceComment = pickOne([
+          `${first.mc.mc_name}がかなり抜けています。今回の8人では一強寄りの分布です。`,
+          `今回は${first.mc.mc_name}が頭ひとつ抜けた形です。かなり本命色の強い結果になりました。`,
+          `${first.mc.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`,
+          `分布を見ると${first.mc.mc_name}の優位が明確です。かなり抜けた存在と言えます。`,
+          `${first.mc.mc_name}が他を引き離しました。今回は一強ムードが濃いです。`
+        ]);
       } else if (firstChampion >= 30 && firstChampion - secondChampion >= 12) {
-        balanceComment = `${first.mc.mc_name}が本命ですが、後続にも割って入る余地があります。`;
+        balanceComment = pickOne([
+          `${first.mc.mc_name}が本命ですが、後続にも割って入る余地があります。`,
+          `${first.mc.mc_name}がリードしていますが、独走とまでは言い切れません。`,
+          `軸は${first.mc.mc_name}ですが、追走組にも十分チャンスがあります。`,
+          `${first.mc.mc_name}が中心になりそうですが、番狂わせの余地は残っています。`,
+          `${first.mc.mc_name}優勢ではあるものの、後ろの組もまだ射程圏です。`
+        ]);
       } else if (firstChampion - secondChampion <= 6) {
-        balanceComment = `上位の差は小さく、かなり混戦です。組み合わせや流れで優勝候補が入れ替わります。`;
+        balanceComment = pickOne([
+          `上位の差は小さく、かなり混戦です。組み合わせや流れで優勝候補が入れ替わります。`,
+          `今回はかなりの混戦模様です。少しの流れで勝ち筋が動きます。`,
+          `上位陣が拮抗していて、誰が勝ってもおかしくない分布です。`,
+          `一強というより群雄割拠です。展開次第で結果が大きく変わります。`,
+          `差が詰まっていて混戦色が強いです。優勝候補は固定されていません。`
+        ]);
       } else {
-        balanceComment = `本命はいるものの、数人に十分チャンスがあります。`;
+        balanceComment = pickOne([
+          `本命はいるものの、数人に十分チャンスがあります。`,
+          `中心候補は見える一方で、上位数人の争いになりそうです。`,
+          `抜けた本命まではいかず、上位グループの争いと見てよさそうです。`,
+          `軸はありつつも、上位数人が現実的に優勝を狙える形です。`,
+          `本命寄りの構図ですが、何人かはしっかり優勝圏内にいます。`
+        ]);
       }
 
       let stabilityComment = '';
       if (stableRows.length >= 2) {
-        stabilityComment = `安定感では${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が目立ちます。Best4以上に残る回数が多く、崩れにくい並びです。`;
+        stabilityComment = pickOne([
+          `安定感では${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が目立ちます。Best4以上に残る回数が多く、崩れにくい並びです。`,
+          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は上位進出の安定感があります。優勝だけでなく残り方も強いです。`,
+          `安定して深いラウンドまで行くのは${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}です。地力の高さが出ています。`,
+          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は勝ち切る力だけでなく、崩れにくさもあります。`,
+          `安定性で見ると${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が一歩リードしています。`
+        ]);
       } else {
-        stabilityComment = `${stableRows[0].mc.mc_name}が安定して上位に残ります。`;
+        stabilityComment = pickOne([
+          `${stableRows[0].mc.mc_name}が安定して上位に残ります。`,
+          `${stableRows[0].mc.mc_name}は優勝率だけでなく残存率も高めです。`,
+          `${stableRows[0].mc.mc_name}は崩れにくく、安定感が目立ちます。`,
+          `${stableRows[0].mc.mc_name}は深いラウンドまで進みやすいタイプです。`,
+          `${stableRows[0].mc.mc_name}は安定して勝ち上がる傾向が出ています。`
+        ]);
       }
 
       let darkHorseComment = '';
       if (darkHorse) {
-        darkHorseComment = `${darkHorse.mc.mc_name}は大本命ではないものの、100回の中でしっかり優勝パターンを作っています。波乱枠として面白い存在です。`;
+        darkHorseComment = pickOne([
+          `${darkHorse.mc.mc_name}は大本命ではないものの、100回の中でしっかり優勝パターンを作っています。波乱枠として面白い存在です。`,
+          `${darkHorse.mc.mc_name}は優勝候補の最前列ではありませんが、刺さる時は一気に持っていきます。`,
+          `${darkHorse.mc.mc_name}は穴候補として面白いです。回数は多くないものの優勝筋があります。`,
+          `${darkHorse.mc.mc_name}は本命級ではない一方、上振れた時の破壊力があります。`,
+          `${darkHorse.mc.mc_name}は波乱要員です。優勝率は高くないですが、勝ち切る回があります。`
+        ]);
       } else {
-        darkHorseComment = `今回は上位候補が比較的はっきりしていて、波乱はそこまで多くありません。`;
+        darkHorseComment = pickOne([
+          `今回は上位候補が比較的はっきりしていて、波乱はそこまで多くありません。`,
+          `今回の分布は比較的素直で、大きな番狂わせは少なめです。`,
+          `穴っぽい勝ち方は少なく、上位候補がそのまま結果に出ています。`,
+          `波乱よりも実力順に寄った結果と言えそうです。`,
+          `今回は大きな崩し役が出にくく、順当にまとまっています。`
+        ]);
       }
 
       const lines = [];
-      lines.push(`本命は${first.mc.mc_name}です。100回中${first.champion}回優勝、優勝率は${firstChampion}%でした。`);
+      lines.push(pickOne([
+        `本命は${first.mc.mc_name}です。100回中${first.champion}回優勝、優勝率は${firstChampion}%でした。`,
+        `今回もっとも優勢だったのは${first.mc.mc_name}で、100回中${first.champion}回優勝しています。優勝率は${firstChampion}%です。`,
+        `${first.mc.mc_name}が最有力です。優勝回数は${first.champion}回、優勝率は${firstChampion}%でした。`,
+        `最上位は${first.mc.mc_name}です。100回の試行で${first.champion}回勝ち切っています。`,
+        `シミュレーション上の本命は${first.mc.mc_name}で、優勝率は${firstChampion}%となりました。`
+      ]));
+
       if (second) {
-        lines.push(`続くのは${second.mc.mc_name}で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も${thirdChampion}%で追います。` : ''}`);
+        lines.push(pickOne([
+          `続くのは${second.mc.mc_name}で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も${thirdChampion}%で追います。` : ''}`,
+          `2番手は${second.mc.mc_name}です。優勝率は${secondChampion}%で、${third ? `${third.mc.mc_name}も${thirdChampion}%で続きます。` : '上位争いに絡んでいます。'}`,
+          `${second.mc.mc_name}がその後ろを追い、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も無視できない数字です。` : ''}`,
+          `次点は${second.mc.mc_name}で、優勝率は${secondChampion}%でした。${third ? `${third.mc.mc_name}も追走しています。` : ''}`,
+          `${second.mc.mc_name}が対抗格で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も射程圏にいます。` : ''}`
+        ]).trim());
       }
+
       lines.push(balanceComment);
-      lines.push(`また、${first.mc.mc_name}は準優勝も含めると${firstTop2}%で決勝に到達しています。${second ? `${second.mc.mc_name}も${secondTop2}%で高水準です。` : ''}`);
+
+      lines.push(pickOne([
+        `また、${first.mc.mc_name}は準優勝も含めると${firstTop2}%で決勝に到達しています。${second ? `${second.mc.mc_name}も${secondTop2}%で高水準です。` : ''}`,
+        `決勝到達率で見ても${first.mc.mc_name}は${firstTop2}%と高く、${second ? `${second.mc.mc_name}も${secondTop2}%で続きます。` : '安定感があります。'}`,
+        `${first.mc.mc_name}は優勝だけでなく決勝進出も多く、準優勝込みで${firstTop2}%に達しています。${second ? `${second.mc.mc_name}もかなり高い水準です。` : ''}`,
+        `決勝まで残る確率も${first.mc.mc_name}が高めです。${second ? `${second.mc.mc_name}も十分な数字を出しています。` : ''}`,
+        `${first.mc.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。${second ? `${second.mc.mc_name}も同様に上位安定です。` : ''}`
+      ]).trim());
+
       lines.push(stabilityComment);
       lines.push(darkHorseComment);
 
@@ -1398,6 +1490,10 @@
 
       document.getElementById('fill-top100-btn').addEventListener('click', function() {
         fillRemainingFromTop100();
+      });
+
+      document.getElementById('clear-selected-btn').addEventListener('click', function() {
+        clearSelectedMCs();
       });
 
       document.getElementById('simulate-btn').addEventListener('click', function() {
