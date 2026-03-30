@@ -307,7 +307,7 @@
           const totalMatches = Number(data.total_matches || 0);
           const formattedWinnerPrize = formatNumberWithComma(event.prize_money_winner);
 
-          titleEl.textContent = event.event_name || "大会名不明";
+          titleEl.textContent = event.event_name_full || "大会名不明";
           metaEl.textContent = `${event.event_date || ""} ${event.event_category || ""}`.trim();
 
           const infoItems = [
