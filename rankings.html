@@ -3,96 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ランキング | MCBattle.jp</title>
+  <title>ランキング | MC Battle DB</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .rankings-page{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:28px 16px 72px;
+    .rankings-page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 16px 72px;
     }
 
-    .rankings-card-inner{
-      padding-left:12px;
-      padding-right:12px;
+    .rankings-card-inner {
+      padding-left: 12px;
+      padding-right: 12px;
     }
 
-    .rankings-table-wrap{
-      overflow-x:hidden;
-      width:100%;
+    .rankings-table-wrap {
+      overflow-x: auto;
     }
 
-    table.rankings-table{
-      width:100%;
-      table-layout:fixed;
-      border-collapse:collapse;
-      margin-top:8px;
+    table.rankings-table {
+      width: fit-content !important;
+      max-width: none !important;
+      min-width: 0 !important;
+      table-layout: auto !important;
+      border-collapse: collapse;
+      margin-top: 8px;
     }
 
     table.rankings-table th,
-    table.rankings-table td{
-      padding:8px 8px;
-      vertical-align:middle;
-      white-space:nowrap;
+    table.rankings-table td {
+      width: auto !important;
+      white-space: nowrap;
+      padding: 6px 8px;
+      vertical-align: middle;
     }
 
     table.rankings-table th:nth-child(1),
-    table.rankings-table td:nth-child(1){
-      width:56px;
-      text-align:right;
-    }
-
-    table.rankings-table th:nth-child(2),
-    table.rankings-table td:nth-child(2){
-      width:auto;
-      min-width:0;
+    table.rankings-table td:nth-child(1) {
+      text-align: right;
     }
 
     table.rankings-table th:nth-child(3),
-    table.rankings-table td:nth-child(3){
-      width:96px;
-      text-align:right;
+    table.rankings-table td:nth-child(3) {
+      text-align: right;
     }
 
-    .rank-name-link{
-      display:block;
-      color:inherit;
-      text-decoration:underline;
-      text-underline-offset:0.15em;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      min-width:0;
+    table.rankings-table tbody tr:hover {
+      opacity: 0.92;
     }
 
-    .rank-name-link:hover{
-      opacity:0.85;
+    .rank-name-link {
+      display: inline-block;
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      white-space: nowrap;
     }
 
-    @media (max-width:640px){
-      .rankings-page{
-        padding:20px 12px 56px;
+    .rank-name-link:hover {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 640px) {
+      .rankings-page {
+        padding: 20px 12px 56px;
       }
 
-      .rankings-card-inner{
-        padding-left:10px;
-        padding-right:10px;
+      .rankings-card-inner {
+        padding-left: 10px;
+        padding-right: 10px;
       }
 
       table.rankings-table th,
-      table.rankings-table td{
-        padding:6px 4px;
-        font-size:0.88rem;
-      }
-
-      table.rankings-table th:nth-child(1),
-      table.rankings-table td:nth-child(1){
-        width:40px;
-      }
-
-      table.rankings-table th:nth-child(3),
-      table.rankings-table td:nth-child(3){
-        width:74px;
+      table.rankings-table td {
+        padding: 5px 6px;
+        font-size: 0.93rem;
       }
     }
   </style>
@@ -103,13 +88,12 @@
 
     <header>
       <h1>スコアランキング</h1>
-      <p class="muted">v2スコアによる順位です。</p>
+      <p class="muted">現行の v2 スコアに基づく順位です。</p>
     </header>
 
     <section class="card">
       <div class="rankings-card-inner">
         <p id="rankings-status" class="muted">読み込み中...</p>
-
         <div class="rankings-table-wrap">
           <table class="rankings-table">
             <thead>
@@ -129,113 +113,25 @@
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
 
-    function formatScore(value) {
-      if (value === null || value === undefined || value === "") return "-";
-      const n = Number(value);
-      if (Number.isNaN(n)) return String(value);
-      return n.toFixed(2);
-    }
-
-    function getRankingArray(data) {
-      if (!data || typeof data !== "object") return [];
-
-      const candidates = [
-        data.rankings,
-        data.ranking,
-        data.rows,
-        data.items,
-        data.data,
-        data.list
-      ];
-
-      for (const arr of candidates) {
-        if (Array.isArray(arr) && arr.length > 0) return arr;
-      }
-
-      for (const key of Object.keys(data)) {
-        if (Array.isArray(data[key]) && data[key].length > 0) {
-          const sample = data[key][0];
-          if (sample && typeof sample === "object") return data[key];
-        }
-      }
-
-      return [];
-    }
-
-    function getMcName(item) {
-      return (
-        item.mc_name ||
-        item.name ||
-        item.mc ||
-        item.MC名 ||
-        "名前不明"
-      );
-    }
-
-    function getMcId(item) {
-      return (
-        item.mc_id ||
-        item.id ||
-        ""
-      );
-    }
-
-    function getRank(item, fallbackIndex) {
-      const raw = item.rank ?? item.ranking ?? item.position ?? item.順位;
-      if (raw === null || raw === undefined || raw === "") return fallbackIndex + 1;
-      return raw;
-    }
-
-    function getScore(item) {
-      return (
-        item.current_strength_score_v2 ??
-        item.current_strength_score ??
-        item.score ??
-        item.v2_score ??
-        item.スコア ??
-        ""
-      );
-    }
-
-    function normalizeRankForSort(value, fallbackIndex) {
-      const n = Number(value);
-      if (Number.isFinite(n)) return n;
-      return fallbackIndex + 1;
-    }
-
     function loadRankingsPage() {
       const callbackName = "mcBattleRankingsPageCallback";
       const statusEl = document.getElementById("rankings-status");
       const bodyEl = document.getElementById("rankings-body");
 
       window[callbackName] = function(data) {
-        console.log("rankings response:", data);
+        console.log("rankings page:", data);
+
         bodyEl.innerHTML = "";
         statusEl.classList.remove("error");
 
         try {
-          if (!data || data.error) {
-            statusEl.textContent = "ランキングの取得に失敗しました";
+          if (data.error) {
+            statusEl.textContent = "ランキングの取得に失敗しました: " + (data.message || "");
             statusEl.classList.add("error");
             return;
           }
 
-          const rawRankings = getRankingArray(data);
-
-          if (!rawRankings.length) {
-            statusEl.textContent = "ランキングデータが見つかりませんでした";
-            statusEl.classList.add("error");
-            return;
-          }
-
-          const rankings = rawRankings
-            .slice()
-            .sort((a, b) => {
-              const rankA = normalizeRankForSort(getRank(a, 0), 0);
-              const rankB = normalizeRankForSort(getRank(b, 1), 1);
-              return rankA - rankB;
-            })
-            .slice(0, 100);
+          const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 100) : [];
 
           rankings.forEach((item, index) => {
             const tr = document.createElement("tr");
@@ -244,10 +140,14 @@
             const nameTd = document.createElement("td");
             const scoreTd = document.createElement("td");
 
-            const rank = getRank(item, index);
-            const mcId = getMcId(item);
-            const mcName = getMcName(item);
-            const score = formatScore(getScore(item));
+            const rank = item.rank || (index + 1);
+            const mcId = item.mc_id || "";
+            const mcName = item.mc_name || "名前不明";
+
+            const rawScore = item.current_strength_score_v2 ?? item.current_strength_score ?? "";
+            const score = rawScore !== "" && !isNaN(Number(rawScore))
+              ? Number(rawScore).toFixed(2)
+              : String(rawScore);
 
             rankTd.textContent = rank;
 
@@ -258,10 +158,7 @@
               a.className = "rank-name-link";
               nameTd.appendChild(a);
             } else {
-              const span = document.createElement("span");
-              span.textContent = mcName;
-              span.className = "rank-name-link";
-              nameTd.appendChild(span);
+              nameTd.textContent = mcName;
             }
 
             scoreTd.textContent = score;
@@ -269,10 +166,11 @@
             tr.appendChild(rankTd);
             tr.appendChild(nameTd);
             tr.appendChild(scoreTd);
+
             bodyEl.appendChild(tr);
           });
 
-          statusEl.textContent = `TOP100を表示`;
+          statusEl.textContent = `${rankings.length}名を表示`;
         } catch (err) {
           console.error(err);
           statusEl.textContent = "ランキングの描画に失敗しました";
