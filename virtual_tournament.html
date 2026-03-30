@@ -7,9 +7,6 @@
   <style>
     :root {
       --bg: #111418;
-      --bg-2: #171c24;
-      --card: #202631;
-      --card-2: #262e3b;
       --text: #f3f5f7;
       --muted: #aeb7c2;
       --line: #3a4658;
@@ -18,10 +15,12 @@
       --danger: #ff6b6b;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
       --radius: 16px;
+      --panel-mode: #1b2230;
+      --panel-select: #1c2623;
+      --panel-result: #241f2d;
     }
 
     * { box-sizing: border-box; }
-
     html, body {
       margin: 0;
       padding: 0;
@@ -70,7 +69,7 @@
       display: inline-block;
       padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255,255,255,0.04);
       color: var(--muted);
       font-size: 0.95rem;
       transition: 0.2s ease;
@@ -78,7 +77,7 @@
 
     .site-nav a:hover,
     .site-nav a.active {
-      background: rgba(91, 140, 255, 0.18);
+      background: rgba(91,140,255,0.18);
       color: #fff;
     }
 
@@ -87,15 +86,6 @@
       margin: 0 auto;
       padding: 28px 20px 64px;
     }
-
-    .back-link {
-      display: inline-block;
-      margin-bottom: 18px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .back-link:hover { color: #fff; }
 
     .page-hero { margin-bottom: 22px; }
 
@@ -115,12 +105,29 @@
     }
 
     .panel {
-      background: rgba(32, 38, 49, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
       margin-bottom: 18px;
+    }
+
+    .panel-mode {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(135deg, #1a2130, #18202a);
+    }
+
+    .panel-select {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(135deg, #1a241f, #18211d);
+    }
+
+    .panel-result {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        linear-gradient(135deg, #221d2a, #1d1a24);
     }
 
     .panel-body { padding: 18px; }
@@ -129,7 +136,7 @@
       margin-bottom: 16px;
       padding: 12px 14px;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255,255,255,0.04);
       color: var(--muted);
       font-size: 0.93rem;
       line-height: 1.6;
@@ -139,11 +146,63 @@
     }
 
     .status-box.hidden { display: none; }
-
     .status-box.error {
-      background: rgba(255, 107, 107, 0.12);
+      background: rgba(255,107,107,0.12);
       color: #ffdada;
-      border: 1px solid rgba(255, 107, 107, 0.28);
+      border: 1px solid rgba(255,107,107,0.28);
+    }
+
+    .loading-panel {
+      display: none;
+      margin-bottom: 16px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .loading-panel.show { display: block; }
+
+    .loading-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .loading-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .loading-percent {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #d8e2ff;
+    }
+
+    .loading-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .loading-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(91,140,255,0.9), rgba(124,77,255,0.9));
+      transition: width 0.18s linear;
+    }
+
+    .loading-note {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
     }
 
     .mode-grid {
@@ -153,8 +212,8 @@
     }
 
     .mode-card {
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
       border-radius: 16px;
       padding: 14px 16px;
       cursor: pointer;
@@ -162,13 +221,13 @@
     }
 
     .mode-card:hover {
-      border-color: rgba(91, 140, 255, 0.35);
-      background: rgba(91, 140, 255, 0.09);
+      border-color: rgba(91,140,255,0.35);
+      background: rgba(91,140,255,0.09);
     }
 
     .mode-card.active {
-      border-color: rgba(91, 140, 255, 0.65);
-      background: linear-gradient(135deg, rgba(91, 140, 255, 0.16), rgba(124, 77, 255, 0.16));
+      border-color: rgba(91,140,255,0.65);
+      background: linear-gradient(135deg, rgba(91,140,255,0.16), rgba(124,77,255,0.16));
     }
 
     .mode-card-title {
@@ -196,21 +255,21 @@
       width: 100%;
       padding: 12px 14px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.1);
       background: #151a21;
       color: var(--text);
       outline: none;
     }
 
     .search-input:focus {
-      border-color: rgba(91, 140, 255, 0.7);
-      box-shadow: 0 0 0 4px rgba(91, 140, 255, 0.14);
+      border-color: rgba(91,140,255,0.7);
+      box-shadow: 0 0 0 4px rgba(91,140,255,0.14);
     }
 
     .count-badge {
       padding: 10px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.05);
       color: var(--muted);
       font-size: 0.9rem;
       white-space: nowrap;
@@ -240,12 +299,12 @@
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
       color: var(--text);
     }
 
     .btn-secondary:hover:not(:disabled) {
-      background: rgba(255, 255, 255, 0.13);
+      background: rgba(255,255,255,0.13);
     }
 
     .btn:disabled {
@@ -272,8 +331,8 @@
       text-align: center;
       padding: 10px 8px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.04);
       color: var(--text);
       cursor: pointer;
       transition: 0.18s ease;
@@ -284,8 +343,8 @@
     }
 
     .candidate-item:hover:not(:disabled) {
-      background: rgba(91, 140, 255, 0.12);
-      border-color: rgba(91, 140, 255, 0.35);
+      background: rgba(91,140,255,0.12);
+      border-color: rgba(91,140,255,0.35);
       transform: translateY(-1px);
     }
 
@@ -293,7 +352,7 @@
       cursor: not-allowed;
       opacity: 0.45;
       transform: none;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255,255,255,0.03);
     }
 
     .candidate-name {
@@ -340,8 +399,8 @@
       min-height: 50px;
       border-radius: 12px;
       padding: 8px 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -425,7 +484,7 @@
     .countdown-clock-face {
       position: absolute;
       inset: 0;
-      border: 3px solid rgba(255, 255, 255, 0.82);
+      border: 3px solid rgba(255,255,255,0.82);
       border-radius: 50%;
     }
 
@@ -435,7 +494,7 @@
       top: 50%;
       width: 3px;
       height: 36%;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255,255,255,0.95);
       border-radius: 999px;
       transform-origin: 50% 100%;
       transform: translate(-50%, -100%) rotate(0deg);
@@ -449,7 +508,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255,255,255,0.95);
       transform: translate(-50%, -50%);
     }
 
@@ -476,8 +535,8 @@
       margin-bottom: 18px;
       padding: 14px 16px;
       border-radius: 14px;
-      background: linear-gradient(135deg, rgba(91, 140, 255, 0.13), rgba(124, 77, 255, 0.13));
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: linear-gradient(135deg, rgba(91,140,255,0.13), rgba(124,77,255,0.13));
+      border: 1px solid rgba(255,255,255,0.07);
       display: none;
     }
 
@@ -507,8 +566,8 @@
       margin-top: 16px;
       padding: 16px 18px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
     .summary-panel.show { display: block; }
@@ -539,9 +598,7 @@
       font-weight: 800;
     }
 
-    .prob-table-wrap {
-      max-width: 760px;
-    }
+    .prob-table-wrap { max-width: 760px; }
 
     .prob-table {
       width: 100%;
@@ -559,9 +616,7 @@
     }
 
     .prob-table th:first-child,
-    .prob-table td:first-child {
-      width: 34%;
-    }
+    .prob-table td:first-child { width: 34%; }
 
     .prob-table th {
       color: var(--muted);
@@ -650,8 +705,6 @@
   </header>
 
   <main class="container">
-    <a href="index.html" class="back-link">← MCBattle.jp に戻る</a>
-
     <section class="page-hero">
       <h1 class="page-title">仮想MCバトルシミュレーション</h1>
       <p class="page-subtitle">
@@ -660,9 +713,20 @@
       </p>
     </section>
 
-    <div id="status" class="status-box hidden">参加候補を読み込みます。</div>
+    <div id="loading-panel" class="loading-panel show">
+      <div class="loading-head">
+        <div class="loading-title">MC読み込み中</div>
+        <div id="loading-percent" class="loading-percent">0%</div>
+      </div>
+      <div class="loading-bar">
+        <div id="loading-fill" class="loading-fill"></div>
+      </div>
+      <div id="loading-note" class="loading-note">参加候補とスコア情報を読み込んでいます…</div>
+    </div>
 
-    <section class="panel">
+    <div id="status" class="status-box hidden"></div>
+
+    <section class="panel panel-mode">
       <div class="panel-body">
         <h3 class="section-title">①モードを選ぶ</h3>
         <div class="mode-grid">
@@ -676,7 +740,7 @@
       </div>
     </section>
 
-    <section class="panel">
+    <section class="panel panel-select">
       <div class="panel-body">
         <h3 class="section-title">②MCを選ぶ</h3>
 
@@ -706,7 +770,7 @@
       </div>
     </section>
 
-    <section class="panel">
+    <section class="panel panel-result">
       <div class="panel-body">
         <h3 class="section-title">結果</h3>
 
@@ -772,19 +836,31 @@
 
     function showStatus(message, isError) {
       const el = document.getElementById('status');
-
       if (!message) {
         el.textContent = '';
         el.classList.add('hidden');
         el.classList.remove('error');
         return;
       }
-
       el.textContent = message;
       el.classList.remove('hidden');
-
       if (isError) el.classList.add('error');
       else el.classList.remove('error');
+    }
+
+    function setLoadingProgress(percent, note) {
+      const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
+      document.getElementById('loading-fill').style.width = safePercent + '%';
+      document.getElementById('loading-percent').textContent = safePercent + '%';
+      if (note) document.getElementById('loading-note').textContent = note;
+    }
+
+    function hideLoadingPanel() {
+      document.getElementById('loading-panel').classList.remove('show');
+    }
+
+    function showLoadingPanel() {
+      document.getElementById('loading-panel').classList.add('show');
     }
 
     function loadJsonp(url) {
@@ -803,7 +879,7 @@
           if (settled) return;
           settled = true;
           cleanup();
-          reject(new Error('JSONPタイムアウト: ' + url));
+          reject(new Error('timeout'));
         }, timeoutMs);
 
         window[callbackName] = function(data) {
@@ -820,7 +896,7 @@
           settled = true;
           clearTimeout(timer);
           cleanup();
-          reject(new Error('script読込失敗: ' + script.src));
+          reject(new Error('load error'));
         };
 
         document.body.appendChild(script);
@@ -829,17 +905,35 @@
 
     async function fetchInitialData() {
       try {
-        const [candidateData, strengthData] = await Promise.all([
-          loadJsonp(API_URL + '?mode=virtual_candidates'),
-          loadJsonp(API_URL + '?mode=virtual_strengths')
-        ]);
+        showLoadingPanel();
+        setLoadingProgress(0, '参加候補を読み込んでいます…');
+
+        const candidatePromise = loadJsonp(API_URL + '?mode=virtual_candidates');
+        const progressTimer = setInterval(() => {
+          const current = Number(document.getElementById('loading-percent').textContent.replace('%','')) || 0;
+          if (current < 45) setLoadingProgress(current + 5, '参加候補を読み込んでいます…');
+        }, 180);
+
+        const candidateData = await candidatePromise;
+        clearInterval(progressTimer);
 
         if (candidateData && candidateData.error) {
-          throw new Error('候補取得エラー: ' + (candidateData.message || 'unknown'));
+          throw new Error('candidate');
         }
 
+        setLoadingProgress(55, 'スコア情報を読み込んでいます…');
+
+        const strengthPromise = loadJsonp(API_URL + '?mode=virtual_strengths');
+        const progressTimer2 = setInterval(() => {
+          const current = Number(document.getElementById('loading-percent').textContent.replace('%','')) || 55;
+          if (current < 92) setLoadingProgress(current + 4, 'スコア情報を読み込んでいます…');
+        }, 180);
+
+        const strengthData = await strengthPromise;
+        clearInterval(progressTimer2);
+
         if (strengthData && strengthData.error) {
-          throw new Error('強さ取得エラー: ' + (strengthData.message || 'unknown'));
+          throw new Error('strength');
         }
 
         allCandidates = Array.isArray(candidateData.candidates) ? candidateData.candidates.slice() : [];
@@ -851,26 +945,21 @@
         renderSelectedGrid();
         updateButtons();
         showStatus('', false);
+
+        setLoadingProgress(100, '読み込み完了');
+        setTimeout(hideLoadingPanel, 250);
       } catch (err) {
-        showStatus(
-          'データの取得に失敗しました。\n\n' +
-          '確認してください:\n' +
-          '1. Apps Script を再デプロイしたか\n' +
-          '2. Webアプリ公開範囲が「全員」か\n\n' +
-          '詳細:\n' + (err && err.message ? err.message : String(err)),
-          true
-        );
+        hideLoadingPanel();
+        showStatus('データの読み込みに時間がかかっています。ページを更新してもう一度お試しください。改善しない場合は、最新の公開状態に更新されているか確認してください。', true);
       }
     }
 
     function buildStrengthMap(strengthData) {
       strengthMap = {};
       const rows = Array.isArray(strengthData && strengthData.strengths) ? strengthData.strengths : [];
-
       rows.forEach(function(row) {
         const mcId = String(row.mc_id || '');
         if (!mcId) return;
-
         const currentScore = Number(row.current_score);
         const peakScore = Number(row.peak_score);
         const totalMatches = Number(row.total_matches);
@@ -910,19 +999,14 @@
       if (!list.length) {
         const keyword = document.getElementById('mc-search').value || '';
         const q = normalizeText(keyword);
-
         if (q.length < 2) container.innerHTML = '<div class="candidate-empty">候補を表示するには2文字以上入力してください。</div>';
         else container.innerHTML = '<div class="candidate-empty">該当するMCが見つかりません。</div>';
         return;
       }
 
       list.forEach(function(mc) {
-        const alreadySelected = selectedMCs.some(function(selected) {
-          return selected.mc_id === mc.mc_id;
-        });
-
+        const alreadySelected = selectedMCs.some(function(selected) { return selected.mc_id === mc.mc_id; });
         const disabled = alreadySelected || selectedMCs.length >= 8 || isAnimating;
-
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'candidate-item';
@@ -935,7 +1019,6 @@
 
     function filterCandidates(keyword) {
       const q = normalizeText(keyword);
-
       if (q.length < 2) {
         filteredCandidates = [];
         renderCandidateList(filteredCandidates);
@@ -955,7 +1038,6 @@
       if (isAnimating) return;
       if (selectedMCs.length >= 8) return;
       if (selectedMCs.some(function(item) { return item.mc_id === mc.mc_id; })) return;
-
       selectedMCs.push(mc);
       lastSimulationResult = null;
       renderSelectedGrid();
@@ -988,7 +1070,6 @@
     function fillRemainingFromTop100() {
       if (isAnimating) return;
       if (selectedMCs.length >= 8) return;
-
       buildRankingRows();
 
       const selectedIds = new Set(selectedMCs.map(function(mc) { return mc.mc_id; }));
@@ -1034,10 +1115,8 @@
           slot.className = 'selected-slot empty';
           slot.textContent = (i + 1) + '人目';
         }
-
         container.appendChild(slot);
       }
-
       countEl.textContent = selectedMCs.length + '/8';
     }
 
@@ -1055,11 +1134,7 @@
 
     function getStrengthObject(mc) {
       const mcId = String(mc && mc.mc_id ? mc.mc_id : '');
-      return strengthMap[mcId] || {
-        current_score: 1500,
-        peak_score: 1500,
-        total_matches: 0
-      };
+      return strengthMap[mcId] || { current_score: 1500, peak_score: 1500, total_matches: 0 };
     }
 
     function getReliabilityFactor(totalMatches) {
@@ -1107,13 +1182,11 @@
     function createMatch(a, b) {
       let winsA = 0;
       let winsB = 0;
-
       while (winsA < 2 && winsB < 2) {
         const bout = playSingleBout(a, b);
         if (bout.winner.mc_id === a.mc_id) winsA += 1;
         else winsB += 1;
       }
-
       return { a: a, b: b, winner: winsA > winsB ? a : b };
     }
 
@@ -1122,10 +1195,8 @@
       const qf2 = createMatch(selectedMCs[2], selectedMCs[3]);
       const qf3 = createMatch(selectedMCs[4], selectedMCs[5]);
       const qf4 = createMatch(selectedMCs[6], selectedMCs[7]);
-
       const sf1 = createMatch(qf1.winner, qf2.winner);
       const sf2 = createMatch(qf3.winner, qf4.winner);
-
       const final = createMatch(sf1.winner, sf2.winner);
 
       return {
@@ -1150,16 +1221,9 @@
 
     function simulateTournamentDistribution() {
       if (selectedMCs.length !== 8) return null;
-
       const standings = {};
       selectedMCs.forEach(function(mc) {
-        standings[mc.mc_id] = {
-          mc: mc,
-          champion: 0,
-          runner_up: 0,
-          best4: 0,
-          best8_exit: 0
-        };
+        standings[mc.mc_id] = { mc: mc, champion: 0, runner_up: 0, best4: 0, best8_exit: 0 };
       });
 
       for (let i = 0; i < TOURNAMENT_RUNS; i++) {
@@ -1221,9 +1285,7 @@
               <th class="num">Best8敗退</th>
             </tr>
           </thead>
-          <tbody>
-            ${tableRows}
-          </tbody>
+          <tbody>${tableRows}</tbody>
         </table>
       `;
     }
@@ -1239,7 +1301,6 @@
       const firstChampion = formatRateFromCount(first.champion);
       const secondChampion = second ? formatRateFromCount(second.champion) : 0;
       const thirdChampion = third ? formatRateFromCount(third.champion) : 0;
-
       const firstTop2 = formatRateFromCount(first.champion + first.runner_up);
       const secondTop2 = second ? formatRateFromCount(second.champion + second.runner_up) : 0;
 
@@ -1247,9 +1308,7 @@
         return (b.champion + b.runner_up + b.best4) - (a.champion + a.runner_up + a.best4);
       });
 
-      const darkHorse = rows.find(function(row) {
-        return row.champion > 0 && row.champion <= 10;
-      });
+      const darkHorse = rows.find(function(row) { return row.champion > 0 && row.champion <= 10; });
 
       let balanceComment = '';
       if (firstChampion >= 45) {
@@ -1387,7 +1446,6 @@
     async function playCountdown() {
       const overlay = document.getElementById('countdown-overlay');
       const numberEl = document.getElementById('countdown-number');
-
       overlay.classList.add('show');
 
       for (let n = 5; n >= 1; n--) {
