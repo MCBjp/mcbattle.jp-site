@@ -87,15 +87,6 @@
       padding: 28px 20px 64px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 18px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .back-link:hover { color: #fff; }
-
     .page-hero { margin-bottom: 22px; }
 
     .page-title {
@@ -397,8 +388,8 @@
       min-height: 50px;
       border-radius: 12px;
       padding: 8px 10px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.75);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -406,7 +397,7 @@
     }
 
     .selected-slot.empty {
-      color: #7e8997;
+      color: #c6ced9;
       justify-content: center;
     }
 
@@ -536,6 +527,7 @@
       background: linear-gradient(135deg, rgba(91,140,255,0.13), rgba(124,77,255,0.13));
       border: 1px solid rgba(255,255,255,0.07);
       display: none;
+      scroll-margin-top: 92px;
     }
 
     .result-summary.show { display: block; }
@@ -614,7 +606,7 @@
     }
 
     .prob-table th:first-child,
-    .prob-table td:first-child { width: 28%; }
+    .prob-table td:first-child { width: 24%; }
 
     .prob-table th {
       color: var(--muted);
@@ -625,7 +617,7 @@
     .prob-table th.num {
       text-align: right;
       white-space: nowrap;
-      width: 18%;
+      width: 19%;
     }
 
     .site-footer {
@@ -670,9 +662,10 @@
       .prob-table th,
       .prob-table td { font-size: 0.8rem; }
       .prob-table th:first-child,
-      .prob-table td:first-child { width: 36%; }
+      .prob-table td:first-child { width: 32%; }
       .prob-table td.num,
-      .prob-table th.num { width: 16%; }
+      .prob-table th.num { width: 17%; }
+      .result-summary { scroll-margin-top: 120px; }
     }
   </style>
 </head>
@@ -1416,6 +1409,23 @@
       return lines.join('\n');
     }
 
+    function getHeaderOffset() {
+      const header = document.querySelector('.site-header');
+      if (!header) return 24;
+      return header.offsetHeight + 16;
+    }
+
+    function scrollToResultTop() {
+      const target = document.getElementById('result-summary');
+      if (!target) return;
+
+      const top = window.scrollY + target.getBoundingClientRect().top - getHeaderOffset();
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: 'smooth'
+      });
+    }
+
     function renderResults(result) {
       if (!result) return;
       document.getElementById('result-summary').classList.add('show');
@@ -1426,12 +1436,9 @@
       document.getElementById('summary-text').textContent = buildSummaryText(result);
       renderOverallTable(result.overall);
 
-      const topAnchor = document.getElementById('result-summary');
-      if (topAnchor) {
-        requestAnimationFrame(function() {
-          topAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-      }
+      requestAnimationFrame(function() {
+        scrollToResultTop();
+      });
     }
 
     function clearResultsView() {
