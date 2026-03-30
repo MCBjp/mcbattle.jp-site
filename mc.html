@@ -21,6 +21,25 @@
       margin-bottom: 12px;
     }
 
+    .more-button {
+      margin-top: 12px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .more-button:hover {
+      opacity: 0.9;
+    }
+
+    .is-hidden {
+      display: none !important;
+    }
+
     @media (max-width: 640px) {
       .mc-page {
         padding: 20px 12px 56px;
@@ -53,6 +72,7 @@
         <h2 id="wins-heading">勝った相手</h2>
         <p id="wins-status" class="muted">読み込み中...</p>
         <ul id="wins-list" class="list-tight"></ul>
+        <button id="wins-more-button" class="more-button is-hidden" type="button">すべて見る</button>
       </div>
     </section>
 
@@ -61,6 +81,7 @@
         <h2 id="losses-heading">負けた相手</h2>
         <p id="losses-status" class="muted">読み込み中...</p>
         <ul id="losses-list" class="list-tight"></ul>
+        <button id="losses-more-button" class="more-button is-hidden" type="button">すべて見る</button>
       </div>
     </section>
 
@@ -69,12 +90,14 @@
         <h2>出場大会</h2>
         <p id="appearances-status" class="muted">読み込み中...</p>
         <ul id="appearances-list" class="list-tight"></ul>
+        <button id="appearances-more-button" class="more-button is-hidden" type="button">すべて見る</button>
       </div>
     </section>
   </div>
 
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+    const COLLAPSE_LIMIT = 10;
 
     function getMcIdFromQuery() {
       const params = new URLSearchParams(window.location.search);
@@ -199,6 +222,37 @@
       });
     }
 
+    function setupCollapsibleList(listEl, buttonEl) {
+      const items = Array.from(listEl.children);
+
+      if (items.length <= COLLAPSE_LIMIT) {
+        buttonEl.classList.add("is-hidden");
+        return;
+      }
+
+      let expanded = false;
+
+      function render() {
+        items.forEach((item, index) => {
+          if (!expanded && index >= COLLAPSE_LIMIT) {
+            item.classList.add("is-hidden");
+          } else {
+            item.classList.remove("is-hidden");
+          }
+        });
+
+        buttonEl.textContent = expanded ? "閉じる" : "すべて見る";
+      }
+
+      buttonEl.classList.remove("is-hidden");
+      buttonEl.onclick = function() {
+        expanded = !expanded;
+        render();
+      };
+
+      render();
+    }
+
     function loadMcDetail() {
       const mcId = getMcIdFromQuery();
 
@@ -209,13 +263,16 @@
       const winsHeadingEl = document.getElementById("wins-heading");
       const winsStatusEl = document.getElementById("wins-status");
       const winsListEl = document.getElementById("wins-list");
+      const winsMoreButtonEl = document.getElementById("wins-more-button");
 
       const lossesHeadingEl = document.getElementById("losses-heading");
       const lossesStatusEl = document.getElementById("losses-status");
       const lossesListEl = document.getElementById("losses-list");
+      const lossesMoreButtonEl = document.getElementById("losses-more-button");
 
       const appearancesStatusEl = document.getElementById("appearances-status");
       const appearancesListEl = document.getElementById("appearances-list");
+      const appearancesMoreButtonEl = document.getElementById("appearances-more-button");
 
       if (!mcId) {
         titleEl.textContent = "MC IDが指定されていません";
@@ -236,6 +293,10 @@
         appearancesListEl.innerHTML = "";
         winsListEl.innerHTML = "";
         lossesListEl.innerHTML = "";
+
+        winsMoreButtonEl.classList.add("is-hidden");
+        lossesMoreButtonEl.classList.add("is-hidden");
+        appearancesMoreButtonEl.classList.add("is-hidden");
 
         appearancesStatusEl.classList.remove("error");
         winsStatusEl.classList.remove("error");
@@ -324,11 +385,9 @@
               const li = document.createElement("li");
               const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
               const eventName = escapeHtml(item.event_name || "");
-              const roundName = escapeHtml(item.round_name || "");
 
               li.innerHTML = `
                 ${opponentHtml}
-                ${roundName ? `｜${roundName}` : ""}
                 ${eventName ? `｜${eventName}` : ""}
               `;
               winsListEl.appendChild(li);
@@ -344,11 +403,9 @@
               const li = document.createElement("li");
               const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
               const eventName = escapeHtml(item.event_name || "");
-              const roundName = escapeHtml(item.round_name || "");
 
               li.innerHTML = `
                 ${opponentHtml}
-                ${roundName ? `｜${roundName}` : ""}
                 ${eventName ? `｜${eventName}` : ""}
               `;
               lossesListEl.appendChild(li);
@@ -360,6 +417,10 @@
           lossesStatusEl.textContent = "";
 
           if (appearances.length === 0) appearancesStatusEl.textContent = "出場大会がありません";
+
+          setupCollapsibleList(winsListEl, winsMoreButtonEl);
+          setupCollapsibleList(lossesListEl, lossesMoreButtonEl);
+          setupCollapsibleList(appearancesListEl, appearancesMoreButtonEl);
         } catch (err) {
           console.error(err);
           titleEl.textContent = "MC情報の描画に失敗しました";
