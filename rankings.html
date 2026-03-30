@@ -136,12 +136,80 @@
       return n.toFixed(2);
     }
 
+    function getRankingArray(data) {
+      if (!data || typeof data !== "object") return [];
+
+      const candidates = [
+        data.rankings,
+        data.ranking,
+        data.rows,
+        data.items,
+        data.data,
+        data.list
+      ];
+
+      for (const arr of candidates) {
+        if (Array.isArray(arr) && arr.length > 0) return arr;
+      }
+
+      for (const key of Object.keys(data)) {
+        if (Array.isArray(data[key]) && data[key].length > 0) {
+          const sample = data[key][0];
+          if (sample && typeof sample === "object") return data[key];
+        }
+      }
+
+      return [];
+    }
+
+    function getMcName(item) {
+      return (
+        item.mc_name ||
+        item.name ||
+        item.mc ||
+        item.MC名 ||
+        "名前不明"
+      );
+    }
+
+    function getMcId(item) {
+      return (
+        item.mc_id ||
+        item.id ||
+        ""
+      );
+    }
+
+    function getRank(item, fallbackIndex) {
+      const raw = item.rank ?? item.ranking ?? item.position ?? item.順位;
+      if (raw === null || raw === undefined || raw === "") return fallbackIndex + 1;
+      return raw;
+    }
+
+    function getScore(item) {
+      return (
+        item.current_strength_score_v2 ??
+        item.current_strength_score ??
+        item.score ??
+        item.v2_score ??
+        item.スコア ??
+        ""
+      );
+    }
+
+    function normalizeRankForSort(value, fallbackIndex) {
+      const n = Number(value);
+      if (Number.isFinite(n)) return n;
+      return fallbackIndex + 1;
+    }
+
     function loadRankingsPage() {
       const callbackName = "mcBattleRankingsPageCallback";
       const statusEl = document.getElementById("rankings-status");
       const bodyEl = document.getElementById("rankings-body");
 
       window[callbackName] = function(data) {
+        console.log("rankings response:", data);
         bodyEl.innerHTML = "";
         statusEl.classList.remove("error");
 
@@ -152,13 +220,19 @@
             return;
           }
 
-          const rawRankings = Array.isArray(data.rankings) ? data.rankings : [];
+          const rawRankings = getRankingArray(data);
+
+          if (!rawRankings.length) {
+            statusEl.textContent = "ランキングデータが見つかりませんでした";
+            statusEl.classList.add("error");
+            return;
+          }
 
           const rankings = rawRankings
             .slice()
             .sort((a, b) => {
-              const rankA = Number(a.rank || 999999);
-              const rankB = Number(b.rank || 999999);
+              const rankA = normalizeRankForSort(getRank(a, 0), 0);
+              const rankB = normalizeRankForSort(getRank(b, 1), 1);
               return rankA - rankB;
             })
             .slice(0, 100);
@@ -170,14 +244,10 @@
             const nameTd = document.createElement("td");
             const scoreTd = document.createElement("td");
 
-            const rank = item.rank || (index + 1);
-            const mcId = item.mc_id || "";
-            const mcName = item.mc_name || "名前不明";
-            const score = formatScore(
-              item.current_strength_score_v2 ??
-              item.current_strength_score ??
-              item.score
-            );
+            const rank = getRank(item, index);
+            const mcId = getMcId(item);
+            const mcName = getMcName(item);
+            const score = formatScore(getScore(item));
 
             rankTd.textContent = rank;
 
