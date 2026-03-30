@@ -87,6 +87,15 @@
       padding: 28px 20px 64px;
     }
 
+    .back-link {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .back-link:hover { color: #fff; }
+
     .page-hero { margin-bottom: 22px; }
 
     .page-title {
@@ -279,32 +288,21 @@
 
     .btn {
       appearance: none;
-      border: none;
       border-radius: 999px;
       padding: 11px 16px;
       cursor: pointer;
       transition: 0.2s ease;
       font-weight: 700;
       white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: transparent;
       color: #fff;
+      border: 1px solid rgba(255,255,255,0.75);
     }
 
-    .btn-primary:hover:not(:disabled) {
+    .btn:hover:not(:disabled) {
       transform: translateY(-1px);
-      filter: brightness(1.05);
-    }
-
-    .btn-secondary {
       background: rgba(255,255,255,0.08);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover:not(:disabled) {
-      background: rgba(255,255,255,0.13);
+      border-color: rgba(255,255,255,0.95);
     }
 
     .btn:disabled {
@@ -598,7 +596,7 @@
       font-weight: 800;
     }
 
-    .prob-table-wrap { max-width: 760px; }
+    .prob-table-wrap { max-width: 660px; }
 
     .prob-table {
       width: 100%;
@@ -616,7 +614,7 @@
     }
 
     .prob-table th:first-child,
-    .prob-table td:first-child { width: 34%; }
+    .prob-table td:first-child { width: 28%; }
 
     .prob-table th {
       color: var(--muted);
@@ -627,7 +625,7 @@
     .prob-table th.num {
       text-align: right;
       white-space: nowrap;
-      width: 16.5%;
+      width: 18%;
     }
 
     .site-footer {
@@ -672,9 +670,9 @@
       .prob-table th,
       .prob-table td { font-size: 0.8rem; }
       .prob-table th:first-child,
-      .prob-table td:first-child { width: 40%; }
+      .prob-table td:first-child { width: 36%; }
       .prob-table td.num,
-      .prob-table th.num { width: 15%; }
+      .prob-table th.num { width: 16%; }
     }
   </style>
 </head>
@@ -1427,6 +1425,13 @@
       document.getElementById('result-mode-note').textContent = '';
       document.getElementById('summary-text').textContent = buildSummaryText(result);
       renderOverallTable(result.overall);
+
+      const topAnchor = document.getElementById('result-summary');
+      if (topAnchor) {
+        requestAnimationFrame(function() {
+          topAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
     }
 
     function clearResultsView() {
