@@ -1158,4 +1158,455 @@
       return 1.0;
     }
 
-   
+    function getBaseRatingForMc(mc) {
+      const strength = getStrengthObject(mc);
+      return currentMode === 'peak' ? strength.peak_score : strength.current_score;
+    }
+
+    function getAdjustedRatingForMc(mc) {
+      const strength = getStrengthObject(mc);
+      const baseRating = getBaseRatingForMc(mc);
+      const factor = getReliabilityFactor(strength.total_matches);
+      return 1500 + (baseRating - 1500) * factor;
+    }
+
+    function calculateWinProbability(ratingA, ratingB) {
+      return 1 / (1 + Math.pow(10, (ratingB - ratingA) / ELO_DENOMINATOR));
+    }
+
+    function playSingleBout(a, b) {
+      const ratingA = getAdjustedRatingForMc(a);
+      const ratingB = getAdjustedRatingForMc(b);
+      const probA = calculateWinProbability(ratingA, ratingB);
+      const randomValue = Math.random();
+      return { winner: randomValue < probA ? a : b };
+    }
+
+    function createMatch(a, b) {
+      let winsA = 0;
+      let winsB = 0;
+      while (winsA < 2 && winsB < 2) {
+        const bout = playSingleBout(a, b);
+        if (bout.winner.mc_id === a.mc_id) winsA += 1;
+        else winsB += 1;
+      }
+      return { a: a, b: b, winner: winsA > winsB ? a : b };
+    }
+
+    function runOneTournament() {
+      const qf1 = createMatch(selectedMCs[0], selectedMCs[1]);
+      const qf2 = createMatch(selectedMCs[2], selectedMCs[3]);
+      const qf3 = createMatch(selectedMCs[4], selectedMCs[5]);
+      const qf4 = createMatch(selectedMCs[6], selectedMCs[7]);
+      const sf1 = createMatch(qf1.winner, qf2.winner);
+      const sf2 = createMatch(qf3.winner, qf4.winner);
+      const final = createMatch(sf1.winner, sf2.winner);
+
+      return {
+        champion: final.winner,
+        runner_up: final.winner.mc_id === sf1.winner.mc_id ? sf2.winner : sf1.winner,
+        semifinal_losers: [
+          sf1.winner.mc_id === qf1.winner.mc_id || sf1.winner.mc_id === qf2.winner.mc_id
+            ? (sf1.winner.mc_id === qf1.winner.mc_id ? qf2.winner : qf1.winner)
+            : qf1.winner,
+          sf2.winner.mc_id === qf3.winner.mc_id || sf2.winner.mc_id === qf4.winner.mc_id
+            ? (sf2.winner.mc_id === qf3.winner.mc_id ? qf4.winner : qf3.winner)
+            : qf3.winner
+        ],
+        quarterfinal_losers: [
+          qf1.winner.mc_id === qf1.a.mc_id ? qf1.b : qf1.a,
+          qf2.winner.mc_id === qf2.a.mc_id ? qf2.b : qf2.a,
+          qf3.winner.mc_id === qf3.a.mc_id ? qf3.b : qf3.a,
+          qf4.winner.mc_id === qf4.a.mc_id ? qf4.b : qf4.a
+        ]
+      };
+    }
+
+    function simulateTournamentDistribution() {
+      if (selectedMCs.length !== 8) return null;
+      const standings = {};
+      selectedMCs.forEach(function(mc) {
+        standings[mc.mc_id] = { mc: mc, champion: 0, runner_up: 0, best4: 0, best8_exit: 0 };
+      });
+
+      for (let i = 0; i < TOURNAMENT_RUNS; i++) {
+        const one = runOneTournament();
+        standings[one.champion.mc_id].champion += 1;
+        standings[one.runner_up.mc_id].runner_up += 1;
+        one.semifinal_losers.forEach(function(mc) { standings[mc.mc_id].best4 += 1; });
+        one.quarterfinal_losers.forEach(function(mc) { standings[mc.mc_id].best8_exit += 1; });
+      }
+
+      const overall = Object.keys(standings).map(function(mcId) {
+        const row = standings[mcId];
+        return {
+          mc: row.mc,
+          champion: row.champion,
+          runner_up: row.runner_up,
+          best4: row.best4,
+          best8_exit: row.best8_exit,
+          champion_rate: row.champion / TOURNAMENT_RUNS,
+          runner_up_rate: row.runner_up / TOURNAMENT_RUNS,
+          best4_rate: row.best4 / TOURNAMENT_RUNS,
+          best8_exit_rate: row.best8_exit / TOURNAMENT_RUNS
+        };
+      }).sort(function(a, b) {
+        if (b.champion_rate !== a.champion_rate) return b.champion_rate - a.champion_rate;
+        if (b.runner_up_rate !== a.runner_up_rate) return b.runner_up_rate - a.runner_up_rate;
+        return a.mc.mc_name.localeCompare(b.mc.mc_name, 'ja');
+      });
+
+      return { mode: currentMode, overall: overall, favorite: overall.length ? overall[0].mc : null };
+    }
+
+    function formatRateFromCount(count) {
+      return Math.round((count / TOURNAMENT_RUNS) * 100);
+    }
+
+    function renderOverallTable(rows) {
+      const container = document.getElementById('overall-prob-table');
+      const tableRows = rows.map(function(row) {
+        return `
+          <tr>
+            <td>${escapeHtml(row.mc.mc_name || '')}</td>
+            <td class="num">${formatRateFromCount(row.champion)}%</td>
+            <td class="num">${formatRateFromCount(row.runner_up)}%</td>
+            <td class="num">${formatRateFromCount(row.best4)}%</td>
+            <td class="num">${formatRateFromCount(row.best8_exit)}%</td>
+          </tr>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <table class="prob-table">
+          <thead>
+            <tr>
+              <th>MC</th>
+              <th class="num">優勝</th>
+              <th class="num">準優勝</th>
+              <th class="num">Best4<br>敗退</th>
+              <th class="num">Best8<br>敗退</th>
+            </tr>
+          </thead>
+          <tbody>${tableRows}</tbody>
+        </table>
+      `;
+    }
+
+    function buildSummaryText(result) {
+      const rows = Array.isArray(result && result.overall) ? result.overall : [];
+      if (!rows.length) return '結果をまとめられませんでした。';
+
+      const first = rows[0];
+      const second = rows[1];
+      const third = rows[2];
+
+      const firstChampion = formatRateFromCount(first.champion);
+      const secondChampion = second ? formatRateFromCount(second.champion) : 0;
+      const thirdChampion = third ? formatRateFromCount(third.champion) : 0;
+      const firstTop2 = formatRateFromCount(first.champion + first.runner_up);
+      const secondTop2 = second ? formatRateFromCount(second.champion + second.runner_up) : 0;
+
+      const stableRows = rows.slice().sort(function(a, b) {
+        return (b.champion + b.runner_up + b.best4) - (a.champion + a.runner_up + a.best4);
+      });
+
+      const darkHorse = rows.find(function(row) { return row.champion > 0 && row.champion <= 10; });
+
+      let balanceComment = '';
+      if (firstChampion >= 45) {
+        balanceComment = pickOne([
+          `${first.mc.mc_name}がかなり抜けています。今回の8人では一強寄りの分布です。`,
+          `今回は${first.mc.mc_name}が頭ひとつ抜けた形です。かなり本命色の強い結果になりました。`,
+          `${first.mc.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`,
+          `分布を見ると${first.mc.mc_name}の優位が明確です。かなり抜けた存在と言えます。`,
+          `${first.mc.mc_name}が他を引き離しました。今回は一強ムードが濃いです。`,
+          `${first.mc.mc_name}が主役級の数字を出しています。今回は軸がかなり明快です。`,
+          `今回の組み合わせでは${first.mc.mc_name}が明確に先頭です。かなり強い本命になりました。`,
+          `${first.mc.mc_name}中心で見てよさそうです。分布としてはかなり偏っています。`,
+          `一番上の数字は${first.mc.mc_name}に集中しました。今回は本命サイドの結果です。`,
+          `${first.mc.mc_name}がかなり勝ち切っています。今回は一強感のある並びです。`
+        ]);
+      } else if (firstChampion >= 30 && firstChampion - secondChampion >= 12) {
+        balanceComment = pickOne([
+          `${first.mc.mc_name}が本命ですが、後続にも割って入る余地があります。`,
+          `${first.mc.mc_name}がリードしていますが、独走とまでは言い切れません。`,
+          `軸は${first.mc.mc_name}ですが、追走組にも十分チャンスがあります。`,
+          `${first.mc.mc_name}が中心になりそうですが、番狂わせの余地は残っています。`,
+          `${first.mc.mc_name}優勢ではあるものの、後ろの組もまだ射程圏です。`,
+          `${first.mc.mc_name}が一歩前ですが、完全に決まりというほどではありません。`,
+          `先頭は${first.mc.mc_name}ですが、対抗勢もまだ食らいついています。`,
+          `${first.mc.mc_name}が有力なのは確かですが、他にも差し込む余地があります。`,
+          `${first.mc.mc_name}を軸に考えやすい結果ですが、まだ流動性はあります。`,
+          `${first.mc.mc_name}が先行しています。ただ、後続の逆転筋も消えてはいません。`
+        ]);
+      } else if (firstChampion - secondChampion <= 6) {
+        balanceComment = pickOne([
+          `上位の差は小さく、かなり混戦です。組み合わせや流れで優勝候補が入れ替わります。`,
+          `今回はかなりの混戦模様です。少しの流れで勝ち筋が動きます。`,
+          `上位陣が拮抗していて、誰が勝ってもおかしくない分布です。`,
+          `一強というより群雄割拠です。展開次第で結果が大きく変わります。`,
+          `差が詰まっていて混戦色が強いです。優勝候補は固定されていません。`,
+          `かなり横並びです。組み合わせひとつで見え方が変わるレベルです。`,
+          `明確な一強は見えません。今回はかなり接戦寄りの分布です。`,
+          `上位勢の数字が近く、流れをつかんだMCがそのまま抜ける形です。`,
+          `混戦度が高く、本命を一人に絞りきりにくい結果になっています。`,
+          `誰か一人が抜けるより、上位陣がせめぎ合う構図です。`
+        ]);
+      } else {
+        balanceComment = pickOne([
+          `本命はいるものの、数人に十分チャンスがあります。`,
+          `中心候補は見える一方で、上位数人の争いになりそうです。`,
+          `抜けた本命まではいかず、上位グループの争いと見てよさそうです。`,
+          `軸はありつつも、上位数人が現実的に優勝を狙える形です。`,
+          `本命寄りの構図ですが、何人かはしっかり優勝圏内にいます。`,
+          `先頭集団はある程度見えていますが、一本化するほどではありません。`,
+          `有力どころは絞れますが、まだ複数人に勝ち筋があります。`,
+          `中心は見えるものの、上位勢の争いとして見るのが自然です。`,
+          `軸候補はいる一方で、相手次第では十分ひっくり返りそうです。`,
+          `本命寄りではありますが、数人が現実的な優勝候補に残っています。`
+        ]);
+      }
+
+      let stabilityComment = '';
+      if (stableRows.length >= 2) {
+        stabilityComment = pickOne([
+          `安定感では${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が目立ちます。Best4以上に残る回数が多く、崩れにくい並びです。`,
+          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は上位進出の安定感があります。優勝だけでなく残り方も強いです。`,
+          `安定して深いラウンドまで行くのは${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}です。地力の高さが出ています。`,
+          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は勝ち切る力だけでなく、崩れにくさもあります。`,
+          `安定性で見ると${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が一歩リードしています。`,
+          `トータルで残りやすいのは${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}です。上位進出の確率が高めです。`,
+          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は、勝ち切れない回でも深いところまで残りやすいです。`,
+          `安定感の軸は${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}でした。崩れ幅が小さいです。`,
+          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は、上振れだけでなく地力の残り方も見せています。`,
+          `深いラウンドに残る回数で見ると、${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が安定しています。`
+        ]);
+      } else {
+        stabilityComment = pickOne([
+          `${stableRows[0].mc.mc_name}が安定して上位に残ります。`,
+          `${stableRows[0].mc.mc_name}は優勝率だけでなく残存率も高めです。`,
+          `${stableRows[0].mc.mc_name}は崩れにくく、安定感が目立ちます。`,
+          `${stableRows[0].mc.mc_name}は深いラウンドまで進みやすいタイプです。`,
+          `${stableRows[0].mc.mc_name}は安定して勝ち上がる傾向が出ています。`,
+          `${stableRows[0].mc.mc_name}は優勝だけでなく、全体として残り方が安定しています。`,
+          `${stableRows[0].mc.mc_name}はトーナメントを通して崩れにくいです。`,
+          `${stableRows[0].mc.mc_name}は勝ち切る回数以上に、安定して上位進出しています。`,
+          `${stableRows[0].mc.mc_name}は全体の通過率が高く、地力を感じる分布です。`,
+          `${stableRows[0].mc.mc_name}の強みは、勝つ時だけでなく残る時にも出ています。`
+        ]);
+      }
+
+      let darkHorseComment = '';
+      if (darkHorse) {
+        darkHorseComment = pickOne([
+          `${darkHorse.mc.mc_name}は大本命ではないものの、100回の中でしっかり優勝パターンを作っています。波乱枠として面白い存在です。`,
+          `${darkHorse.mc.mc_name}は優勝候補の最前列ではありませんが、刺さる時は一気に持っていきます。`,
+          `${darkHorse.mc.mc_name}は穴候補として面白いです。回数は多くないものの優勝筋があります。`,
+          `${darkHorse.mc.mc_name}は本命級ではない一方、上振れた時の破壊力があります。`,
+          `${darkHorse.mc.mc_name}は波乱要員です。優勝率は高くないですが、勝ち切る回があります。`,
+          `${darkHorse.mc.mc_name}はダークホース寄りです。数字は控えめでも、一撃の優勝筋があります。`,
+          `${darkHorse.mc.mc_name}は本命グループの外から食い込むタイプとして面白いです。`,
+          `${darkHorse.mc.mc_name}は上位常連ではないものの、優勝まで届く形を持っています。`,
+          `${darkHorse.mc.mc_name}は数字以上に怖い存在です。ハマった回は最後まで行きます。`,
+          `${darkHorse.mc.mc_name}は穴寄りの立ち位置ですが、軽視しづらい結果になっています。`
+        ]);
+      } else {
+        darkHorseComment = pickOne([
+          `今回は上位候補が比較的はっきりしていて、波乱はそこまで多くありません。`,
+          `今回の分布は比較的素直で、大きな番狂わせは少なめです。`,
+          `穴っぽい勝ち方は少なく、上位候補がそのまま結果に出ています。`,
+          `波乱よりも実力順に寄った結果と言えそうです。`,
+          `今回は大きな崩し役が出にくく、順当にまとまっています。`,
+          `大きく荒れるというより、上位勢がそのまま優位を保つ形でした。`,
+          `今回は波乱要素がやや少なく、実力差が結果に乗りやすい並びです。`,
+          `サプライズ優勝は少なめで、上位候補の信頼感が高い結果です。`,
+          `荒れ場というより、比較的まっすぐな分布になっています。`,
+          `今回はダークホースよりも上位勢の安定感が前に出ています。`
+        ]);
+      }
+
+      const introLine = pickOne([
+        `本命は${first.mc.mc_name}です。100回中${first.champion}回優勝、優勝率は${firstChampion}%でした。`,
+        `今回もっとも優勢だったのは${first.mc.mc_name}で、100回中${first.champion}回優勝しています。優勝率は${firstChampion}%です。`,
+        `${first.mc.mc_name}が最有力です。優勝回数は${first.champion}回、優勝率は${firstChampion}%でした。`,
+        `最上位は${first.mc.mc_name}です。100回の試行で${first.champion}回勝ち切っています。`,
+        `シミュレーション上の本命は${first.mc.mc_name}で、優勝率は${firstChampion}%となりました。`,
+        `${first.mc.mc_name}が今回の先頭です。優勝回数は${first.champion}回でした。`,
+        `まず軸として見えたのは${first.mc.mc_name}です。優勝率は${firstChampion}%でした。`,
+        `${first.mc.mc_name}がもっとも勝ち切っています。今回の分布では一番上です。`,
+        `数字の先頭に立ったのは${first.mc.mc_name}で、優勝率は${firstChampion}%です。`,
+        `今回の本線は${first.mc.mc_name}です。最終的に一番多く優勝しました。`
+      ]);
+
+      let chaseLine = '';
+      if (second) {
+        chaseLine = pickOne([
+          `続くのは${second.mc.mc_name}で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も${thirdChampion}%で追います。` : ''}`,
+          `2番手は${second.mc.mc_name}です。優勝率は${secondChampion}%で、${third ? `${third.mc.mc_name}も${thirdChampion}%で続きます。` : '上位争いに絡んでいます。'}`,
+          `${second.mc.mc_name}がその後ろを追い、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も無視できない数字です。` : ''}`,
+          `次点は${second.mc.mc_name}で、優勝率は${secondChampion}%でした。${third ? `${third.mc.mc_name}も追走しています。` : ''}`,
+          `${second.mc.mc_name}が対抗格で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も射程圏にいます。` : ''}`,
+          `${second.mc.mc_name}が続いていて、${third ? `${third.mc.mc_name}も近い位置にいます。` : '上位グループを形成しています。'}`,
+          `${second.mc.mc_name}が2番手で、${third ? `${third.mc.mc_name}まで含めて上位争いです。` : 'しっかり対抗位置にいます。'}`,
+          `先頭の次は${second.mc.mc_name}です。${third ? `${third.mc.mc_name}も続いていて、上位はある程度固まっています。` : ''}`,
+          `${second.mc.mc_name}が追う展開で、${third ? `${third.mc.mc_name}もまだ十分に見える数字です。` : ''}`,
+          `${second.mc.mc_name}が後ろにつけています。${third ? `${third.mc.mc_name}も含めて上位は接近しています。` : ''}`
+        ]).trim();
+      }
+
+      const finalReachLine = pickOne([
+        `また、${first.mc.mc_name}は準優勝も含めると${firstTop2}%で決勝に到達しています。${second ? `${second.mc.mc_name}も${secondTop2}%で高水準です。` : ''}`,
+        `決勝到達率で見ても${first.mc.mc_name}は${firstTop2}%と高く、${second ? `${second.mc.mc_name}も${secondTop2}%で続きます。` : '安定感があります。'}`,
+        `${first.mc.mc_name}は優勝だけでなく決勝進出も多く、準優勝込みで${firstTop2}%に達しています。${second ? `${second.mc.mc_name}もかなり高い水準です。` : ''}`,
+        `決勝まで残る確率も${first.mc.mc_name}が高めです。${second ? `${second.mc.mc_name}も十分な数字を出しています。` : ''}`,
+        `${first.mc.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。${second ? `${second.mc.mc_name}も同様に上位安定です。` : ''}`,
+        `優勝率だけでなく決勝到達率でも${first.mc.mc_name}が前に出ています。${second ? `${second.mc.mc_name}もかなり近いです。` : ''}`,
+        `${first.mc.mc_name}は準優勝込みでも数字が高く、トーナメント全体での残り方が強いです。${second ? `${second.mc.mc_name}も安定しています。` : ''}`,
+        `決勝ラインまで含めて見ると、${first.mc.mc_name}の安定感がよりはっきりします。${second ? `${second.mc.mc_name}も高水準です。` : ''}`,
+        `${first.mc.mc_name}は優勝だけでなく、最後まで残る確率もかなり高いです。${second ? `${second.mc.mc_name}も続いています。` : ''}`,
+        `終盤まで進む確率で見ても${first.mc.mc_name}が優位です。${second ? `${second.mc.mc_name}もかなり残っています。` : ''}`
+      ]).trim();
+
+      const lines = [introLine];
+      if (chaseLine) lines.push(chaseLine);
+      lines.push(balanceComment);
+      lines.push(finalReachLine);
+      lines.push(stabilityComment);
+      lines.push(darkHorseComment);
+
+      return lines.join('\n');
+    }
+
+    function getHeaderOffset() {
+      const header = document.querySelector('.site-header');
+      if (!header) return 24;
+      return header.offsetHeight + 16;
+    }
+
+    function scrollToResultTop() {
+      const target = document.getElementById('result-summary');
+      if (!target) return;
+
+      const top = window.scrollY + target.getBoundingClientRect().top - getHeaderOffset();
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: 'smooth'
+      });
+    }
+
+    function renderResults(result) {
+      if (!result) return;
+      document.getElementById('result-summary').classList.add('show');
+      document.getElementById('summary-panel').classList.add('show');
+      document.getElementById('overall-panel').classList.add('show');
+      document.getElementById('result-summary-winner').textContent = result.favorite ? result.favorite.mc_name : '未決定';
+      document.getElementById('result-mode-note').textContent = '';
+      document.getElementById('summary-text').textContent = buildSummaryText(result);
+      renderOverallTable(result.overall);
+
+      requestAnimationFrame(function() {
+        scrollToResultTop();
+      });
+    }
+
+    function clearResultsView() {
+      document.getElementById('result-summary').classList.remove('show');
+      document.getElementById('summary-panel').classList.remove('show');
+      document.getElementById('overall-panel').classList.remove('show');
+      document.getElementById('result-summary-winner').textContent = '未決定';
+      document.getElementById('result-mode-note').textContent = '';
+      document.getElementById('summary-text').textContent = '';
+      document.getElementById('overall-prob-table').innerHTML = '';
+    }
+
+    function sleep(ms) {
+      return new Promise(function(resolve) { setTimeout(resolve, ms); });
+    }
+
+    async function playCountdown() {
+      const overlay = document.getElementById('countdown-overlay');
+      const numberEl = document.getElementById('countdown-number');
+      overlay.classList.add('show');
+
+      for (let n = 5; n >= 1; n--) {
+        numberEl.textContent = String(n);
+        numberEl.style.animation = 'none';
+        void numberEl.offsetWidth;
+        numberEl.style.animation = 'popPulse 1s ease both';
+        await sleep(700);
+      }
+
+      overlay.classList.remove('show');
+    }
+
+    async function handleSimulate() {
+      if (selectedMCs.length !== 8) return;
+      if (isAnimating) return;
+
+      isAnimating = true;
+      updateButtons();
+      refreshCandidateView();
+
+      await playCountdown();
+
+      lastSimulationResult = simulateTournamentDistribution();
+      renderResults(lastSimulationResult);
+
+      isAnimating = false;
+      updateButtons();
+      refreshCandidateView();
+    }
+
+    function initModeEvents() {
+      const currentEl = document.getElementById('mode-current');
+      const peakEl = document.getElementById('mode-peak');
+
+      currentEl.addEventListener('click', function() { setMode('current'); });
+      peakEl.addEventListener('click', function() { setMode('peak'); });
+
+      currentEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setMode('current');
+        }
+      });
+
+      peakEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setMode('peak');
+        }
+      });
+    }
+
+    function initEvents() {
+      document.getElementById('mc-search').addEventListener('input', function(e) {
+        filterCandidates(e.target.value);
+      });
+
+      document.getElementById('fill-top100-btn').addEventListener('click', function() {
+        fillRemainingFromTop100();
+      });
+
+      document.getElementById('clear-selected-btn').addEventListener('click', function() {
+        clearSelectedMCs();
+      });
+
+      document.getElementById('simulate-btn').addEventListener('click', function() {
+        handleSimulate();
+      });
+
+      initModeEvents();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initEvents();
+      renderSelectedGrid();
+      updateButtons();
+      clearResultsView();
+      fetchInitialData();
+    });
+  </script>
+</body>
+</html>
