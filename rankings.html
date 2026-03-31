@@ -6,12 +6,6 @@
   <title>ランキング | MC Battle DB</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .rankings-page {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px 16px 72px;
-    }
-
     .rankings-card-inner {
       padding-left: 12px;
       padding-right: 12px;
@@ -65,10 +59,6 @@
     }
 
     @media (max-width: 640px) {
-      .rankings-page {
-        padding: 20px 12px 56px;
-      }
-
       .rankings-card-inner {
         padding-left: 10px;
         padding-right: 10px;
@@ -131,8 +121,7 @@
             return;
           }
 
-       
-const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 100) : [];
+          const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 100) : [];
 
           rankings.forEach((item, index) => {
             const tr = document.createElement("tr");
