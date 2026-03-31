@@ -149,10 +149,6 @@
           color: inherit;
         }
 
-        .match-side {
-          min-width: 0;
-        }
-
         .mark {
           white-space: nowrap;
           font-weight: 700;
@@ -240,11 +236,20 @@
             font-size: 0.95rem;
           }
 
-          .match-side {
-            display: grid;
-            grid-template-columns: auto minmax(0, 1fr);
+          .match-line {
+            display: flex;
+            align-items: flex-start;
             gap: 6px;
-            align-items: start;
+            min-width: 0;
+          }
+
+          .match-line .mark {
+            flex: 0 0 auto;
+          }
+
+          .match-line .name {
+            flex: 1 1 auto;
+            min-width: 0;
           }
 
           .vs-part {
@@ -486,10 +491,18 @@
               <div class="match-row-box">
                 <div class="match-row">
                   <span class="mark mark-winner">【◯】</span>
-                  <span class="name name-winner match-side">${winnerHtml}</span>
+                  <span class="name name-winner">${winnerHtml}</span>
                   <span class="vs-part">×</span>
                   <span class="mark mark-loser">【✕】</span>
-                  <span class="name name-loser match-side">${loserHtml}</span>
+                  <span class="name name-loser">${loserHtml}</span>
+                </div>
+                <div class="match-line match-line-winner">
+                  <span class="mark mark-winner">【◯】</span>
+                  <span class="name name-winner">${winnerHtml}</span>
+                </div>
+                <div class="match-line match-line-loser">
+                  <span class="mark mark-loser">【✕】</span>
+                  <span class="name name-loser">${loserHtml}</span>
                 </div>
                 ${judgeMethod ? `<div class="judge-method">判定: ${judgeMethod}</div>` : ""}
               </div>
