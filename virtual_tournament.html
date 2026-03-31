@@ -16,7 +16,6 @@
       --danger: #ff6b6b;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
       --radius: 16px;
-      --panel-mode: #1b2230;
       --panel-select: #1c2623;
       --panel-result: #241f2d;
     }
@@ -115,12 +114,6 @@
       margin-bottom: 18px;
     }
 
-    .panel-mode {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-        linear-gradient(135deg, #1a2130, #18202a);
-    }
-
     .panel-select {
       background:
         linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
@@ -206,38 +199,6 @@
       color: var(--muted);
       font-size: 0.88rem;
       line-height: 1.7;
-    }
-
-    .mode-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .mode-card {
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      border-radius: 16px;
-      padding: 14px 16px;
-      cursor: pointer;
-      transition: 0.18s ease;
-    }
-
-    .mode-card:hover {
-      border-color: rgba(91,140,255,0.35);
-      background: rgba(91,140,255,0.09);
-    }
-
-    .mode-card.active {
-      border-color: rgba(91,140,255,0.65);
-      background: linear-gradient(135deg, rgba(91,140,255,0.16), rgba(124,77,255,0.16));
-    }
-
-    .mode-card-title {
-      display: block;
-      font-size: 0.97rem;
-      font-weight: 800;
-      margin-bottom: 0;
     }
 
     .section-title {
@@ -547,13 +508,6 @@
       font-weight: 800;
     }
 
-    .result-mode-note {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.6;
-    }
-
     .summary-panel {
       display: none;
       margin-top: 16px;
@@ -654,7 +608,6 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
         max-height: 220px;
       }
-      .mode-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
@@ -711,7 +664,7 @@
     <section class="page-hero">
       <h1 class="page-title">仮想MCバトルシミュレーション</h1>
       <p class="page-subtitle">
-        同じ8人で100回トーナメントを行った場合の分布を表示します。<br>
+        直近3年の本戦実績をもとに、同じ8人で100回トーナメントを行った場合の分布を表示します。<br>
         単発の結果ではなく、どのMCがどれくらい優勝しやすいかを見ます。
       </p>
     </section>
@@ -729,23 +682,9 @@
 
     <div id="status" class="status-box hidden"></div>
 
-    <section class="panel panel-mode">
-      <div class="panel-body">
-        <h3 class="section-title">①モードを選ぶ</h3>
-        <div class="mode-grid">
-          <div id="mode-current" class="mode-card active" role="button" tabindex="0">
-            <span class="mode-card-title">今の強さでシミュレーションする</span>
-          </div>
-          <div id="mode-peak" class="mode-card" role="button" tabindex="0">
-            <span class="mode-card-title">全盛期の強さでシミュレーションする</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="panel panel-select">
       <div class="panel-body">
-        <h3 class="section-title">②MCを選ぶ</h3>
+        <h3 class="section-title">①MCを選ぶ</h3>
 
         <div class="search-row">
           <input
@@ -766,7 +705,7 @@
 
         <div class="selected-header">
           <div class="selected-title">選択中の8人</div>
-          <div class="selected-sub">戦績0のMCは候補に出していません</div>
+          <div class="selected-sub">直近3年で対象大会に出場しているMCのみ候補に表示しています</div>
         </div>
 
         <div id="selected-grid" class="selected-grid"></div>
@@ -775,7 +714,7 @@
 
     <section class="panel panel-result">
       <div class="panel-body">
-        <h3 class="section-title">結果</h3>
+        <h3 class="section-title">②結果</h3>
 
         <div class="result-actions">
           <button id="simulate-btn" class="btn btn-primary" type="button" disabled>100回シミュレーションする</button>
@@ -784,7 +723,6 @@
         <div id="result-summary" class="result-summary">
           <span class="result-summary-label">最も優勝確率が高いMC</span>
           <span id="result-summary-winner" class="result-summary-winner">未決定</span>
-          <div id="result-mode-note" class="result-mode-note"></div>
         </div>
 
         <section id="summary-panel" class="summary-panel">
@@ -814,7 +752,6 @@
     let allCandidates = [];
     let filteredCandidates = [];
     let selectedMCs = [];
-    let currentMode = 'current';
     let strengthMap = {};
     let rankingRows = [];
     let lastSimulationResult = null;
@@ -964,12 +901,10 @@
         const mcId = String(row.mc_id || '');
         if (!mcId) return;
         const currentScore = Number(row.current_score);
-        const peakScore = Number(row.peak_score);
         const totalMatches = Number(row.total_matches);
 
         strengthMap[mcId] = {
           current_score: isNaN(currentScore) ? 1500 : currentScore,
-          peak_score: isNaN(peakScore) ? (isNaN(currentScore) ? 1500 : currentScore) : peakScore,
           total_matches: isNaN(totalMatches) ? 0 : totalMatches
         };
       });
@@ -979,20 +914,8 @@
       rankingRows = allCandidates.slice().sort(function(a, b) {
         const sa = getStrengthObject(a);
         const sb = getStrengthObject(b);
-        const ra = currentMode === 'peak' ? sa.peak_score : sa.current_score;
-        const rb = currentMode === 'peak' ? sb.peak_score : sb.current_score;
-        return rb - ra;
+        return sb.current_score - sa.current_score;
       });
-    }
-
-    function setMode(mode) {
-      if (isAnimating) return;
-      currentMode = mode;
-      document.getElementById('mode-current').classList.toggle('active', mode === 'current');
-      document.getElementById('mode-peak').classList.toggle('active', mode === 'peak');
-      buildRankingRows();
-      lastSimulationResult = null;
-      clearResultsView();
     }
 
     function renderCandidateList(list) {
@@ -1137,7 +1060,7 @@
 
     function getStrengthObject(mc) {
       const mcId = String(mc && mc.mc_id ? mc.mc_id : '');
-      return strengthMap[mcId] || { current_score: 1500, peak_score: 1500, total_matches: 0 };
+      return strengthMap[mcId] || { current_score: 1500, total_matches: 0 };
     }
 
     function getReliabilityFactor(totalMatches) {
@@ -1158,14 +1081,9 @@
       return 1.0;
     }
 
-    function getBaseRatingForMc(mc) {
-      const strength = getStrengthObject(mc);
-      return currentMode === 'peak' ? strength.peak_score : strength.current_score;
-    }
-
     function getAdjustedRatingForMc(mc) {
       const strength = getStrengthObject(mc);
-      const baseRating = getBaseRatingForMc(mc);
+      const baseRating = strength.current_score;
       const factor = getReliabilityFactor(strength.total_matches);
       return 1500 + (baseRating - 1500) * factor;
     }
@@ -1256,7 +1174,7 @@
         return a.mc.mc_name.localeCompare(b.mc.mc_name, 'ja');
       });
 
-      return { mode: currentMode, overall: overall, favorite: overall.length ? overall[0].mc : null };
+      return { overall: overall, favorite: overall.length ? overall[0].mc : null };
     }
 
     function formatRateFromCount(count) {
@@ -1320,12 +1238,7 @@
           `今回は${first.mc.mc_name}が頭ひとつ抜けた形です。かなり本命色の強い結果になりました。`,
           `${first.mc.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`,
           `分布を見ると${first.mc.mc_name}の優位が明確です。かなり抜けた存在と言えます。`,
-          `${first.mc.mc_name}が他を引き離しました。今回は一強ムードが濃いです。`,
-          `${first.mc.mc_name}が主役級の数字を出しています。今回は軸がかなり明快です。`,
-          `今回の組み合わせでは${first.mc.mc_name}が明確に先頭です。かなり強い本命になりました。`,
-          `${first.mc.mc_name}中心で見てよさそうです。分布としてはかなり偏っています。`,
-          `一番上の数字は${first.mc.mc_name}に集中しました。今回は本命サイドの結果です。`,
-          `${first.mc.mc_name}がかなり勝ち切っています。今回は一強感のある並びです。`
+          `${first.mc.mc_name}が他を引き離しました。今回は一強ムードが濃いです。`
         ]);
       } else if (firstChampion >= 30 && firstChampion - secondChampion >= 12) {
         balanceComment = pickOne([
@@ -1333,12 +1246,7 @@
           `${first.mc.mc_name}がリードしていますが、独走とまでは言い切れません。`,
           `軸は${first.mc.mc_name}ですが、追走組にも十分チャンスがあります。`,
           `${first.mc.mc_name}が中心になりそうですが、番狂わせの余地は残っています。`,
-          `${first.mc.mc_name}優勢ではあるものの、後ろの組もまだ射程圏です。`,
-          `${first.mc.mc_name}が一歩前ですが、完全に決まりというほどではありません。`,
-          `先頭は${first.mc.mc_name}ですが、対抗勢もまだ食らいついています。`,
-          `${first.mc.mc_name}が有力なのは確かですが、他にも差し込む余地があります。`,
-          `${first.mc.mc_name}を軸に考えやすい結果ですが、まだ流動性はあります。`,
-          `${first.mc.mc_name}が先行しています。ただ、後続の逆転筋も消えてはいません。`
+          `${first.mc.mc_name}優勢ではあるものの、後ろの組もまだ射程圏です。`
         ]);
       } else if (firstChampion - secondChampion <= 6) {
         balanceComment = pickOne([
@@ -1346,12 +1254,7 @@
           `今回はかなりの混戦模様です。少しの流れで勝ち筋が動きます。`,
           `上位陣が拮抗していて、誰が勝ってもおかしくない分布です。`,
           `一強というより群雄割拠です。展開次第で結果が大きく変わります。`,
-          `差が詰まっていて混戦色が強いです。優勝候補は固定されていません。`,
-          `かなり横並びです。組み合わせひとつで見え方が変わるレベルです。`,
-          `明確な一強は見えません。今回はかなり接戦寄りの分布です。`,
-          `上位勢の数字が近く、流れをつかんだMCがそのまま抜ける形です。`,
-          `混戦度が高く、本命を一人に絞りきりにくい結果になっています。`,
-          `誰か一人が抜けるより、上位陣がせめぎ合う構図です。`
+          `差が詰まっていて混戦色が強いです。優勝候補は固定されていません。`
         ]);
       } else {
         balanceComment = pickOne([
@@ -1359,12 +1262,7 @@
           `中心候補は見える一方で、上位数人の争いになりそうです。`,
           `抜けた本命まではいかず、上位グループの争いと見てよさそうです。`,
           `軸はありつつも、上位数人が現実的に優勝を狙える形です。`,
-          `本命寄りの構図ですが、何人かはしっかり優勝圏内にいます。`,
-          `先頭集団はある程度見えていますが、一本化するほどではありません。`,
-          `有力どころは絞れますが、まだ複数人に勝ち筋があります。`,
-          `中心は見えるものの、上位勢の争いとして見るのが自然です。`,
-          `軸候補はいる一方で、相手次第では十分ひっくり返りそうです。`,
-          `本命寄りではありますが、数人が現実的な優勝候補に残っています。`
+          `本命寄りの構図ですが、何人かはしっかり優勝圏内にいます。`
         ]);
       }
 
@@ -1375,12 +1273,7 @@
           `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は上位進出の安定感があります。優勝だけでなく残り方も強いです。`,
           `安定して深いラウンドまで行くのは${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}です。地力の高さが出ています。`,
           `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は勝ち切る力だけでなく、崩れにくさもあります。`,
-          `安定性で見ると${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が一歩リードしています。`,
-          `トータルで残りやすいのは${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}です。上位進出の確率が高めです。`,
-          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は、勝ち切れない回でも深いところまで残りやすいです。`,
-          `安定感の軸は${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}でした。崩れ幅が小さいです。`,
-          `${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}は、上振れだけでなく地力の残り方も見せています。`,
-          `深いラウンドに残る回数で見ると、${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が安定しています。`
+          `安定性で見ると${stableRows[0].mc.mc_name}と${stableRows[1].mc.mc_name}が一歩リードしています。`
         ]);
       } else {
         stabilityComment = pickOne([
@@ -1388,12 +1281,7 @@
           `${stableRows[0].mc.mc_name}は優勝率だけでなく残存率も高めです。`,
           `${stableRows[0].mc.mc_name}は崩れにくく、安定感が目立ちます。`,
           `${stableRows[0].mc.mc_name}は深いラウンドまで進みやすいタイプです。`,
-          `${stableRows[0].mc.mc_name}は安定して勝ち上がる傾向が出ています。`,
-          `${stableRows[0].mc.mc_name}は優勝だけでなく、全体として残り方が安定しています。`,
-          `${stableRows[0].mc.mc_name}はトーナメントを通して崩れにくいです。`,
-          `${stableRows[0].mc.mc_name}は勝ち切る回数以上に、安定して上位進出しています。`,
-          `${stableRows[0].mc.mc_name}は全体の通過率が高く、地力を感じる分布です。`,
-          `${stableRows[0].mc.mc_name}の強みは、勝つ時だけでなく残る時にも出ています。`
+          `${stableRows[0].mc.mc_name}は安定して勝ち上がる傾向が出ています。`
         ]);
       }
 
@@ -1404,12 +1292,7 @@
           `${darkHorse.mc.mc_name}は優勝候補の最前列ではありませんが、刺さる時は一気に持っていきます。`,
           `${darkHorse.mc.mc_name}は穴候補として面白いです。回数は多くないものの優勝筋があります。`,
           `${darkHorse.mc.mc_name}は本命級ではない一方、上振れた時の破壊力があります。`,
-          `${darkHorse.mc.mc_name}は波乱要員です。優勝率は高くないですが、勝ち切る回があります。`,
-          `${darkHorse.mc.mc_name}はダークホース寄りです。数字は控えめでも、一撃の優勝筋があります。`,
-          `${darkHorse.mc.mc_name}は本命グループの外から食い込むタイプとして面白いです。`,
-          `${darkHorse.mc.mc_name}は上位常連ではないものの、優勝まで届く形を持っています。`,
-          `${darkHorse.mc.mc_name}は数字以上に怖い存在です。ハマった回は最後まで行きます。`,
-          `${darkHorse.mc.mc_name}は穴寄りの立ち位置ですが、軽視しづらい結果になっています。`
+          `${darkHorse.mc.mc_name}は波乱要員です。優勝率は高くないですが、勝ち切る回があります。`
         ]);
       } else {
         darkHorseComment = pickOne([
@@ -1417,12 +1300,7 @@
           `今回の分布は比較的素直で、大きな番狂わせは少なめです。`,
           `穴っぽい勝ち方は少なく、上位候補がそのまま結果に出ています。`,
           `波乱よりも実力順に寄った結果と言えそうです。`,
-          `今回は大きな崩し役が出にくく、順当にまとまっています。`,
-          `大きく荒れるというより、上位勢がそのまま優位を保つ形でした。`,
-          `今回は波乱要素がやや少なく、実力差が結果に乗りやすい並びです。`,
-          `サプライズ優勝は少なめで、上位候補の信頼感が高い結果です。`,
-          `荒れ場というより、比較的まっすぐな分布になっています。`,
-          `今回はダークホースよりも上位勢の安定感が前に出ています。`
+          `今回は大きな崩し役が出にくく、順当にまとまっています。`
         ]);
       }
 
@@ -1431,12 +1309,7 @@
         `今回もっとも優勢だったのは${first.mc.mc_name}で、100回中${first.champion}回優勝しています。優勝率は${firstChampion}%です。`,
         `${first.mc.mc_name}が最有力です。優勝回数は${first.champion}回、優勝率は${firstChampion}%でした。`,
         `最上位は${first.mc.mc_name}です。100回の試行で${first.champion}回勝ち切っています。`,
-        `シミュレーション上の本命は${first.mc.mc_name}で、優勝率は${firstChampion}%となりました。`,
-        `${first.mc.mc_name}が今回の先頭です。優勝回数は${first.champion}回でした。`,
-        `まず軸として見えたのは${first.mc.mc_name}です。優勝率は${firstChampion}%でした。`,
-        `${first.mc.mc_name}がもっとも勝ち切っています。今回の分布では一番上です。`,
-        `数字の先頭に立ったのは${first.mc.mc_name}で、優勝率は${firstChampion}%です。`,
-        `今回の本線は${first.mc.mc_name}です。最終的に一番多く優勝しました。`
+        `シミュレーション上の本命は${first.mc.mc_name}で、優勝率は${firstChampion}%となりました。`
       ]);
 
       let chaseLine = '';
@@ -1446,12 +1319,7 @@
           `2番手は${second.mc.mc_name}です。優勝率は${secondChampion}%で、${third ? `${third.mc.mc_name}も${thirdChampion}%で続きます。` : '上位争いに絡んでいます。'}`,
           `${second.mc.mc_name}がその後ろを追い、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も無視できない数字です。` : ''}`,
           `次点は${second.mc.mc_name}で、優勝率は${secondChampion}%でした。${third ? `${third.mc.mc_name}も追走しています。` : ''}`,
-          `${second.mc.mc_name}が対抗格で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も射程圏にいます。` : ''}`,
-          `${second.mc.mc_name}が続いていて、${third ? `${third.mc.mc_name}も近い位置にいます。` : '上位グループを形成しています。'}`,
-          `${second.mc.mc_name}が2番手で、${third ? `${third.mc.mc_name}まで含めて上位争いです。` : 'しっかり対抗位置にいます。'}`,
-          `先頭の次は${second.mc.mc_name}です。${third ? `${third.mc.mc_name}も続いていて、上位はある程度固まっています。` : ''}`,
-          `${second.mc.mc_name}が追う展開で、${third ? `${third.mc.mc_name}もまだ十分に見える数字です。` : ''}`,
-          `${second.mc.mc_name}が後ろにつけています。${third ? `${third.mc.mc_name}も含めて上位は接近しています。` : ''}`
+          `${second.mc.mc_name}が対抗格で、優勝率は${secondChampion}%です。${third ? `${third.mc.mc_name}も射程圏にいます。` : ''}`
         ]).trim();
       }
 
@@ -1460,12 +1328,7 @@
         `決勝到達率で見ても${first.mc.mc_name}は${firstTop2}%と高く、${second ? `${second.mc.mc_name}も${secondTop2}%で続きます。` : '安定感があります。'}`,
         `${first.mc.mc_name}は優勝だけでなく決勝進出も多く、準優勝込みで${firstTop2}%に達しています。${second ? `${second.mc.mc_name}もかなり高い水準です。` : ''}`,
         `決勝まで残る確率も${first.mc.mc_name}が高めです。${second ? `${second.mc.mc_name}も十分な数字を出しています。` : ''}`,
-        `${first.mc.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。${second ? `${second.mc.mc_name}も同様に上位安定です。` : ''}`,
-        `優勝率だけでなく決勝到達率でも${first.mc.mc_name}が前に出ています。${second ? `${second.mc.mc_name}もかなり近いです。` : ''}`,
-        `${first.mc.mc_name}は準優勝込みでも数字が高く、トーナメント全体での残り方が強いです。${second ? `${second.mc.mc_name}も安定しています。` : ''}`,
-        `決勝ラインまで含めて見ると、${first.mc.mc_name}の安定感がよりはっきりします。${second ? `${second.mc.mc_name}も高水準です。` : ''}`,
-        `${first.mc.mc_name}は優勝だけでなく、最後まで残る確率もかなり高いです。${second ? `${second.mc.mc_name}も続いています。` : ''}`,
-        `終盤まで進む確率で見ても${first.mc.mc_name}が優位です。${second ? `${second.mc.mc_name}もかなり残っています。` : ''}`
+        `${first.mc.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。${second ? `${second.mc.mc_name}も同様に上位安定です。` : ''}`
       ]).trim();
 
       const lines = [introLine];
@@ -1501,7 +1364,6 @@
       document.getElementById('summary-panel').classList.add('show');
       document.getElementById('overall-panel').classList.add('show');
       document.getElementById('result-summary-winner').textContent = result.favorite ? result.favorite.mc_name : '未決定';
-      document.getElementById('result-mode-note').textContent = '';
       document.getElementById('summary-text').textContent = buildSummaryText(result);
       renderOverallTable(result.overall);
 
@@ -1515,7 +1377,6 @@
       document.getElementById('summary-panel').classList.remove('show');
       document.getElementById('overall-panel').classList.remove('show');
       document.getElementById('result-summary-winner').textContent = '未決定';
-      document.getElementById('result-mode-note').textContent = '';
       document.getElementById('summary-text').textContent = '';
       document.getElementById('overall-prob-table').innerHTML = '';
     }
@@ -1558,28 +1419,6 @@
       refreshCandidateView();
     }
 
-    function initModeEvents() {
-      const currentEl = document.getElementById('mode-current');
-      const peakEl = document.getElementById('mode-peak');
-
-      currentEl.addEventListener('click', function() { setMode('current'); });
-      peakEl.addEventListener('click', function() { setMode('peak'); });
-
-      currentEl.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          setMode('current');
-        }
-      });
-
-      peakEl.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          setMode('peak');
-        }
-      });
-    }
-
     function initEvents() {
       document.getElementById('mc-search').addEventListener('input', function(e) {
         filterCandidates(e.target.value);
@@ -1596,8 +1435,6 @@
       document.getElementById('simulate-btn').addEventListener('click', function() {
         handleSimulate();
       });
-
-      initModeEvents();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
