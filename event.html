@@ -91,7 +91,7 @@
       const safeId = String(mcId || "").trim();
 
       if (!safeName) return "";
-      if (!safeId) return `<span>${safeName}</span>`;
+      if (!safeId) return `<a href="./mc.html?mc_id=${encodeURIComponent(safeId)}">${safeName}</a>`;
 
       return `<a href="./mc.html?mc_id=${encodeURIComponent(safeId)}">${safeName}</a>`;
     }
@@ -140,7 +140,7 @@
 
         .match-row {
           display: grid;
-          grid-template-columns: 34px minmax(120px, 180px) 20px minmax(120px, 180px) 34px;
+          grid-template-columns: 34px minmax(140px, 210px) 20px 34px minmax(140px, 210px);
           gap: 6px;
           align-items: center;
           justify-content: start;
@@ -149,19 +149,23 @@
           color: inherit;
         }
 
+        .match-side {
+          min-width: 0;
+        }
+
         .mark {
           white-space: nowrap;
           font-weight: 700;
           color: inherit;
         }
 
-        .mark-loser,
-        .name-loser {
-          text-align: right;
-        }
-
         .mark-winner,
         .name-winner {
+          text-align: left;
+        }
+
+        .mark-loser,
+        .name-loser {
           text-align: left;
         }
 
@@ -211,7 +215,7 @@
           }
 
           .match-row {
-            grid-template-columns: 34px minmax(90px, 1fr) 18px minmax(90px, 1fr) 34px;
+            grid-template-columns: 34px minmax(110px, 1fr) 18px 34px minmax(110px, 1fr);
             width: 100%;
           }
 
@@ -228,10 +232,23 @@
           }
 
           .match-row {
-            grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr) auto;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
             gap: 6px;
-            font-size: 0.95rem;
             width: 100%;
+            font-size: 0.95rem;
+          }
+
+          .match-side {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 6px;
+            align-items: start;
+          }
+
+          .vs-part {
+            display: none;
           }
 
           .judge-method {
@@ -461,18 +478,18 @@
             const li = document.createElement("li");
             li.className = "match-row-wrap";
 
-            const loserHtml = renderMcLink(match.loser_name || "不明", match.loser_mc_id || "");
             const winnerHtml = renderMcLink(match.winner_name || "不明", match.winner_mc_id || "");
+            const loserHtml = renderMcLink(match.loser_name || "不明", match.loser_mc_id || "");
             const judgeMethod = escapeHtml(String(match.judge_method || "").trim());
 
             li.innerHTML = `
               <div class="match-row-box">
                 <div class="match-row">
-                  <span class="mark mark-loser">【✕】</span>
-                  <span class="name name-loser">${loserHtml}</span>
-                  <span class="vs-part">×</span>
-                  <span class="name name-winner">${winnerHtml}</span>
                   <span class="mark mark-winner">【◯】</span>
+                  <span class="name name-winner match-side">${winnerHtml}</span>
+                  <span class="vs-part">×</span>
+                  <span class="mark mark-loser">【✕】</span>
+                  <span class="name name-loser match-side">${loserHtml}</span>
                 </div>
                 ${judgeMethod ? `<div class="judge-method">判定: ${judgeMethod}</div>` : ""}
               </div>
