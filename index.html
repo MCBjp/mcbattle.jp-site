@@ -36,6 +36,25 @@
       text-decoration:none;
     }
 
+    .header-spec-link,
+    .header-spec-link:hover,
+    .sim-card,
+    .sim-card:hover,
+    .link-card,
+    .link-card:hover,
+    .list-row,
+    .list-row:hover,
+    .header-spec-link *,
+    .header-spec-link:hover *,
+    .sim-card *,
+    .sim-card:hover *,
+    .link-card *,
+    .link-card:hover *,
+    .list-row *,
+    .list-row:hover * {
+      text-decoration: none !important;
+    }
+
     /* index専用: style.cssの変数を使って左寄せ管理 */
     .container{
       width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
