@@ -40,6 +40,25 @@
       display: none !important;
     }
 
+    .meta-list li.meta-list-block {
+      display: block;
+    }
+
+    .meta-list-block .meta-label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .meta-list-block .meta-value-block {
+      display: block;
+      line-height: 1.8;
+    }
+
+    .meta-list-block .meta-value-block a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
     @media (max-width: 640px) {
       .mc-page {
         padding: 20px 12px 56px;
@@ -48,6 +67,10 @@
       .mc-card-inner {
         padding-left: 10px;
         padding-right: 10px;
+      }
+
+      .meta-list-block .meta-label {
+        margin-bottom: 6px;
       }
     }
   </style>
@@ -253,6 +276,29 @@
       render();
     }
 
+    function appendInfoRow(infoListEl, label, value, options = {}) {
+      const li = document.createElement("li");
+
+      if (options.block) {
+        li.className = "meta-list-block";
+      }
+
+      const labelEl = document.createElement("span");
+      labelEl.className = "meta-label";
+      labelEl.textContent = `${label}：`;
+
+      const valueEl = document.createElement("span");
+      valueEl.innerHTML = value;
+
+      if (options.block) {
+        valueEl.className = "meta-value-block";
+      }
+
+      li.appendChild(labelEl);
+      li.appendChild(valueEl);
+      infoListEl.appendChild(li);
+    }
+
     function loadMcDetail() {
       const mcId = getMcIdFromQuery();
 
@@ -345,30 +391,13 @@
               }).join("<br>")
             : "−";
 
-          const infoItems = [
-            ["MCBattle Rank順位", getRankLabel(ranking.rank)],
-            ["スコア", displayValue(formatScore(ranking.current_score ?? ranking.score))],
-            ["総試合数", displayValue(summary.total_matches)],
-            ["勝利数", displayValue(summary.wins)],
-            ["敗北数", displayValue(summary.losses)],
-            ["これまで優勝した大会", championshipText],
-            ["獲得賞金総額", `${formatYen(totalPrizeMoney)}円`]
-          ];
-
-          infoItems.forEach(([label, value]) => {
-            const li = document.createElement("li");
-
-            const labelEl = document.createElement("span");
-            labelEl.className = "meta-label";
-            labelEl.textContent = `${label}：`;
-
-            const valueEl = document.createElement("span");
-            valueEl.innerHTML = value;
-
-            li.appendChild(labelEl);
-            li.appendChild(valueEl);
-            infoListEl.appendChild(li);
-          });
+          appendInfoRow(infoListEl, "MCBattle Rank順位", displayValue(getRankLabel(ranking.rank)));
+          appendInfoRow(infoListEl, "スコア", displayValue(formatScore(ranking.current_score ?? ranking.score)));
+          appendInfoRow(infoListEl, "総試合数", displayValue(summary.total_matches));
+          appendInfoRow(infoListEl, "勝利数", displayValue(summary.wins));
+          appendInfoRow(infoListEl, "敗北数", displayValue(summary.losses));
+          appendInfoRow(infoListEl, "これまで優勝した大会", championshipText, { block: true });
+          appendInfoRow(infoListEl, "獲得賞金総額", `${formatYen(totalPrizeMoney)}円`);
 
           appearances.forEach((item) => {
             const li = document.createElement("li");
