@@ -6,12 +6,6 @@
   <title>大会記録 | MC Battle DB</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .event-page {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px 16px 72px;
-    }
-
     .event-card-inner {
       padding-left: 12px;
       padding-right: 12px;
@@ -22,10 +16,6 @@
     }
 
     @media (max-width: 640px) {
-      .event-page {
-        padding: 20px 12px 56px;
-      }
-
       .event-card-inner {
         padding-left: 10px;
         padding-right: 10px;
@@ -125,7 +115,6 @@
           display: block;
         }
 
-        /* ===== PCで詰める ===== */
         .match-row {
           display: grid;
           grid-template-columns: 34px minmax(120px, 180px) 20px minmax(120px, 180px) 34px;
@@ -192,7 +181,6 @@
           color: inherit;
         }
 
-        /* タブレット以下は少し流動的に */
         @media (max-width: 900px) {
           .match-row {
             grid-template-columns: 34px minmax(90px, 1fr) 18px minmax(90px, 1fr) 34px;
@@ -395,34 +383,4 @@
           if (warningMessages.length > 0) {
             const note = document.createElement("div");
             note.className = "note-box";
-            note.textContent = `注意: ${warningMessages.join("、")}`;
-            matchesListEl.prepend(note);
-            matchesStatusEl.textContent = `${totalMatches}試合を表示 / 注意: ${warningMessages.join("、")}`;
-          }
-
-          if (totalMatches === 0) {
-            matchesStatusEl.textContent = "試合結果がありません";
-          }
-        } catch (err) {
-          console.error(err);
-          titleEl.textContent = "大会情報の描画に失敗しました";
-          matchesStatusEl.textContent = "描画エラー";
-          matchesStatusEl.classList.add("error");
-        }
-      };
-
-      const script = document.createElement("script");
-      script.src = `${API_URL}?mode=event_detail&event_id=${encodeURIComponent(eventId)}&callback=${callbackName}`;
-      script.onerror = function() {
-        titleEl.textContent = "大会情報の読み込みに失敗しました";
-        matchesStatusEl.textContent = "JSONP読み込み失敗";
-        matchesStatusEl.classList.add("error");
-      };
-
-      document.body.appendChild(script);
-    }
-
-    loadEventDetail();
-  </script>
-</body>
-</html>
+            note.textContent = `注意: ${
