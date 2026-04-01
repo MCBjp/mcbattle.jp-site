@@ -190,33 +190,33 @@
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+    const EVENTS_JSON_URL = "./data/events.json";
 
-    function escapeHtml(v){
+    function escapeHtml(v) {
       return String(v ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
     }
 
-    function formatDate(v){
-      if(!v) return "";
+    function formatDate(v) {
+      if (!v) return "";
       const d = new Date(v);
-      if(isNaN(d)) return v;
-      return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`;
+      if (isNaN(d)) return v;
+      return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
     }
 
-    function getName(e){
+    function getName(e) {
       return e.event_name_full || e.event_name || "";
     }
 
-    function getWinnerName(e){
+    function getWinnerName(e) {
       return String(e.winner_name || "").trim();
     }
 
-    function getCategory(e){
+    function getCategory(e) {
       return String(e.event_category || "").trim() || "その他";
     }
 
@@ -274,26 +274,12 @@
       return groups;
     }
 
-    function jsonp(url){
-      return new Promise((resolve,reject)=>{
-        const cb = "__cb_"+Math.random().toString(36).slice(2);
-        const script = document.createElement("script");
-
-        window[cb] = data=>{
-          delete window[cb];
-          script.remove();
-          resolve(data);
-        };
-
-        script.onerror = ()=>{
-          delete window[cb];
-          script.remove();
-          reject();
-        };
-
-        script.src = url + (url.includes("?")?"&":"?") + "callback=" + cb;
-        document.body.appendChild(script);
-      });
+    async function loadEventsJson() {
+      const res = await fetch(EVENTS_JSON_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      return await res.json();
     }
 
     function buildEventRow(e) {
@@ -325,18 +311,18 @@
       });
     }
 
-    async function load(){
+    async function load() {
       const listEl = document.getElementById("event-list");
       const statusEl = document.getElementById("status");
 
-      try{
-        const res = await jsonp(API_URL + "?mode=events");
+      try {
+        const res = await loadEventsJson();
 
-        if(res.error) throw new Error();
+        if (res.error) throw new Error(res.message || "data error");
 
         const events = Array.isArray(res.events) ? res.events : [];
 
-        if(!events.length){
+        if (!events.length) {
           statusEl.textContent = "大会がありません";
           return;
         }
@@ -372,8 +358,8 @@
 
         attachAccordionEvents();
         statusEl.textContent = "";
-
-      }catch(e){
+      } catch (e) {
+        console.error(e);
         statusEl.textContent = "大会一覧の取得に失敗しました";
         statusEl.classList.add("error");
       }
