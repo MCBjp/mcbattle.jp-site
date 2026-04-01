@@ -127,8 +127,7 @@
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
-
+    const MCS_JSON_URL = "./data/mcs.json";
     const TAB_ORDER = ["あ", "か", "さ", "た", "な", "は", "ま", "や", "ら", "わ", "その他"];
 
     function escapeHtml(value) {
@@ -231,52 +230,48 @@
       panelEl.appendChild(list);
     }
 
-    function loadMcsList() {
-      const callbackName = "mcBattleMcsCallback";
-      const statusEl = document.getElementById("mcs-status");
+    async function loadMcsJson() {
+      const res = await fetch(MCS_JSON_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      return await res.json();
+    }
 
-      window[callbackName] = function(data) {
+    async function loadMcsList() {
+      const statusEl = document.getElementById("mcs-status");
+      statusEl.classList.remove("error");
+
+      try {
+        const data = await loadMcsJson();
         console.log("mcs list:", data);
 
-        statusEl.classList.remove("error");
-
-        try {
-          if (data.error) {
-            statusEl.textContent = "MC一覧の取得に失敗しました: " + (data.message || "");
-            statusEl.classList.add("error");
-            return;
-          }
-
-          const mcs = Array.isArray(data.mcs) ? sortMcs(data.mcs) : [];
-          const groups = {};
-
-          TAB_ORDER.forEach(tab => {
-            groups[tab] = [];
-          });
-
-          mcs.forEach(mc => {
-            const group = getTabGroup(mc);
-            groups[group].push(mc);
-          });
-
-          const firstTab = TAB_ORDER.find(tab => groups[tab] && groups[tab].length > 0) || "あ";
-          renderPanel(groups, firstTab);
-          statusEl.textContent = `${mcs.length}名を表示`;
-        } catch (err) {
-          console.error(err);
-          statusEl.textContent = "MC一覧の描画に失敗しました";
+        if (data.error) {
+          statusEl.textContent = "MC一覧の取得に失敗しました: " + (data.message || "");
           statusEl.classList.add("error");
+          return;
         }
-      };
 
-      const script = document.createElement("script");
-      script.src = `${API_URL}?mode=mcs&callback=${callbackName}`;
-      script.onerror = function() {
+        const mcs = Array.isArray(data.mcs) ? sortMcs(data.mcs) : [];
+        const groups = {};
+
+        TAB_ORDER.forEach(tab => {
+          groups[tab] = [];
+        });
+
+        mcs.forEach(mc => {
+          const group = getTabGroup(mc);
+          groups[group].push(mc);
+        });
+
+        const firstTab = TAB_ORDER.find(tab => groups[tab] && groups[tab].length > 0) || "あ";
+        renderPanel(groups, firstTab);
+        statusEl.textContent = `${mcs.length}名を表示`;
+      } catch (err) {
+        console.error(err);
         statusEl.textContent = "MC一覧の読み込みに失敗しました";
         statusEl.classList.add("error");
-      };
-
-      document.body.appendChild(script);
+      }
     }
 
     loadMcsList();
