@@ -109,7 +109,7 @@
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+    const MC_DETAILS_ALL_JSON_URL = "./data/mc_details_all.json";
     const COLLAPSE_LIMIT = 10;
 
     function getMcIdFromQuery() {
@@ -188,29 +188,18 @@
       const name = String(roundName || "").trim();
 
       const orderMap = {
-        "決勝": 1000,
-        "FINAL": 1000,
         "Final": 1000,
-        "final": 1000,
-        "準決勝": 900,
-        "決勝トーナメント準決勝": 900,
-        "ベスト4": 900,
-        "準々決勝": 800,
-        "ベスト8": 800,
-        "ベスト16": 700,
-        "ベスト32": 600,
-        "ベスト48": 550,
-        "ベスト64": 500,
-        "4回戦": 400,
-        "3回戦": 300,
-        "2回戦": 200,
-        "1回戦": 100,
-        "シード戦": 50
+        "Best4": 900,
+        "Best8": 800,
+        "Best16": 700,
+        "Best32": 600,
+        "Best48": 550,
+        "Best64": 500
       };
 
       if (orderMap[name] != null) return orderMap[name];
 
-      const bestMatch = name.match(/^ベスト(\d+)$/);
+      const bestMatch = name.match(/^Best(\d+)$/i);
       if (bestMatch) {
         return 1000 - Number(bestMatch[1]);
       }
@@ -303,7 +292,15 @@
       infoListEl.appendChild(li);
     }
 
-    function loadMcDetail() {
+    async function loadMcDetailsAllJson() {
+      const res = await fetch(MC_DETAILS_ALL_JSON_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      return await res.json();
+    }
+
+    async function loadMcDetail() {
       const mcId = getMcIdFromQuery();
 
       const titleEl = document.getElementById("mc-title");
@@ -334,9 +331,11 @@
         return;
       }
 
-      const callbackName = "mcBattleMcCallback";
+      try {
+        const allData = await loadMcDetailsAllJson();
+        const detailMap = allData && allData.mc_details ? allData.mc_details : {};
+        const data = detailMap[mcId] || null;
 
-      window[callbackName] = function(data) {
         console.log("mc detail:", data);
 
         infoListEl.innerHTML = "";
@@ -352,128 +351,123 @@
         winsStatusEl.classList.remove("error");
         lossesStatusEl.classList.remove("error");
 
-        try {
-          if (!data) {
-            titleEl.textContent = "MC情報の取得に失敗しました";
-            metaEl.textContent = "";
-            appearancesStatusEl.textContent = "レスポンスが空です";
-            appearancesStatusEl.classList.add("error");
-            return;
-          }
-
-          if (data.error) {
-            titleEl.textContent = "MC情報の取得に失敗しました";
-            metaEl.textContent = data.message || "";
-            appearancesStatusEl.textContent = "データ取得エラー";
-            appearancesStatusEl.classList.add("error");
-            return;
-          }
-
-          const mc = data.mc || {};
-          const ranking = data.ranking || {};
-          const summary = data.summary || {};
-          const appearances = Array.isArray(data.participated_events) ? data.participated_events : [];
-          const wins = sortMatchHistory(Array.isArray(data.wins_against) ? data.wins_against : []);
-          const losses = sortMatchHistory(Array.isArray(data.losses_against) ? data.losses_against : []);
-          const championships = Array.isArray(data.championships) ? data.championships : [];
-          const totalPrizeMoney = data.total_prize_money ?? 0;
-          const mcName = mc.mc_name || "このMC";
-
-          titleEl.textContent = mcName;
+        if (!data) {
+          titleEl.textContent = "MC情報の取得に失敗しました";
           metaEl.textContent = "";
-
-          winsHeadingEl.textContent = `${mcName}が勝った対戦相手`;
-          lossesHeadingEl.textContent = `${mcName}が負けた対戦相手`;
-
-          const championshipText = championships.length
-            ? championships.map((item) => {
-                const label = `${item.event_name || ""}（${formatYen(item.prize_money_winner || 0)}円）`;
-                if (item.event_id) {
-                  return `<a href="./event.html?event_id=${encodeURIComponent(item.event_id)}">${escapeHtml(label)}</a>`;
-                }
-                return escapeHtml(label);
-              }).join("<br>")
-            : "−";
-
-          const rankDisplay = getRankDisplay(ranking);
-          const scoreDisplay = getScoreDisplay(ranking);
-
-          appendInfoRow(infoListEl, "MCBattle Rank順位", escapeHtml(displayValue(rankDisplay)));
-          appendInfoRow(infoListEl, "スコア", escapeHtml(displayValue(scoreDisplay)));
-          appendInfoRow(infoListEl, "総試合数", escapeHtml(displayValue(summary.total_matches)));
-          appendInfoRow(infoListEl, "勝利数", escapeHtml(displayValue(summary.wins)));
-          appendInfoRow(infoListEl, "敗北数", escapeHtml(displayValue(summary.losses)));
-          appendInfoRow(infoListEl, "これまで優勝した大会", championshipText, { block: true });
-          appendInfoRow(infoListEl, "獲得賞金総額", escapeHtml(`${formatYen(totalPrizeMoney)}円`));
-
-          appearances.forEach((item) => {
-            const li = document.createElement("li");
-            li.innerHTML = renderEventLink(item.event_name || "", item.event_id || "", item.event_date || "");
-            appearancesListEl.appendChild(li);
-          });
-
-          if (wins.length === 0) {
-            const li = document.createElement("li");
-            li.textContent = "−";
-            winsListEl.appendChild(li);
-          } else {
-            wins.forEach((item) => {
-              const li = document.createElement("li");
-              const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
-              const eventName = escapeHtml(item.event_name || "");
-
-              li.innerHTML = `
-                ${opponentHtml}
-                ${eventName ? `｜${eventName}` : ""}
-              `;
-              winsListEl.appendChild(li);
-            });
-          }
-
-          if (losses.length === 0) {
-            const li = document.createElement("li");
-            li.textContent = "−";
-            lossesListEl.appendChild(li);
-          } else {
-            losses.forEach((item) => {
-              const li = document.createElement("li");
-              const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
-              const eventName = escapeHtml(item.event_name || "");
-
-              li.innerHTML = `
-                ${opponentHtml}
-                ${eventName ? `｜${eventName}` : ""}
-              `;
-              lossesListEl.appendChild(li);
-            });
-          }
-
-          appearancesStatusEl.textContent = "";
+          appearancesStatusEl.textContent = "指定されたMCデータが見つかりません";
+          appearancesStatusEl.classList.add("error");
           winsStatusEl.textContent = "";
           lossesStatusEl.textContent = "";
-
-          if (appearances.length === 0) appearancesStatusEl.textContent = "出場大会がありません";
-
-          setupCollapsibleList(winsListEl, winsMoreButtonEl);
-          setupCollapsibleList(lossesListEl, lossesMoreButtonEl);
-          setupCollapsibleList(appearancesListEl, appearancesMoreButtonEl);
-        } catch (err) {
-          console.error(err);
-          titleEl.textContent = "MC情報の描画に失敗しました";
-          appearancesStatusEl.textContent = "描画エラー";
-          appearancesStatusEl.classList.add("error");
+          return;
         }
-      };
 
-      const script = document.createElement("script");
-      script.src = `${API_URL}?mc_id=${encodeURIComponent(mcId)}&callback=${callbackName}`;
-      script.onerror = function() {
+        if (data.error) {
+          titleEl.textContent = "MC情報の取得に失敗しました";
+          metaEl.textContent = data.message || "";
+          appearancesStatusEl.textContent = "データ取得エラー";
+          appearancesStatusEl.classList.add("error");
+          winsStatusEl.textContent = "";
+          lossesStatusEl.textContent = "";
+          return;
+        }
+
+        const mc = data.mc || {};
+        const ranking = data.ranking || {};
+        const summary = data.summary || {};
+        const appearances = Array.isArray(data.participated_events) ? data.participated_events : [];
+        const wins = sortMatchHistory(Array.isArray(data.wins_against) ? data.wins_against : []);
+        const losses = sortMatchHistory(Array.isArray(data.losses_against) ? data.losses_against : []);
+        const championships = Array.isArray(data.championships) ? data.championships : [];
+        const totalPrizeMoney = data.total_prize_money ?? 0;
+        const mcName = mc.mc_name || "このMC";
+
+        titleEl.textContent = mcName;
+        metaEl.textContent = "";
+
+        winsHeadingEl.textContent = `${mcName}が勝った対戦相手`;
+        lossesHeadingEl.textContent = `${mcName}が負けた対戦相手`;
+
+        const championshipText = championships.length
+          ? championships.map((item) => {
+              const label = `${item.event_name || ""}（${formatYen(item.prize_money_winner || 0)}円）`;
+              if (item.event_id) {
+                return `<a href="./event.html?event_id=${encodeURIComponent(item.event_id)}">${escapeHtml(label)}</a>`;
+              }
+              return escapeHtml(label);
+            }).join("<br>")
+          : "−";
+
+        const rankDisplay = getRankDisplay(ranking);
+        const scoreDisplay = getScoreDisplay(ranking);
+
+        appendInfoRow(infoListEl, "MCBattle Rank順位", escapeHtml(displayValue(rankDisplay)));
+        appendInfoRow(infoListEl, "スコア", escapeHtml(displayValue(scoreDisplay)));
+        appendInfoRow(infoListEl, "総試合数", escapeHtml(displayValue(summary.total_matches)));
+        appendInfoRow(infoListEl, "勝利数", escapeHtml(displayValue(summary.wins)));
+        appendInfoRow(infoListEl, "敗北数", escapeHtml(displayValue(summary.losses)));
+        appendInfoRow(infoListEl, "これまで優勝した大会", championshipText, { block: true });
+        appendInfoRow(infoListEl, "獲得賞金総額", escapeHtml(`${formatYen(totalPrizeMoney)}円`));
+
+        appearances.forEach((item) => {
+          const li = document.createElement("li");
+          li.innerHTML = renderEventLink(item.event_name || "", item.event_id || "", item.event_date || "");
+          appearancesListEl.appendChild(li);
+        });
+
+        if (wins.length === 0) {
+          const li = document.createElement("li");
+          li.textContent = "−";
+          winsListEl.appendChild(li);
+        } else {
+          wins.forEach((item) => {
+            const li = document.createElement("li");
+            const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
+            const eventName = escapeHtml(item.event_name || "");
+
+            li.innerHTML = `
+              ${opponentHtml}
+              ${eventName ? `｜${eventName}` : ""}
+            `;
+            winsListEl.appendChild(li);
+          });
+        }
+
+        if (losses.length === 0) {
+          const li = document.createElement("li");
+          li.textContent = "−";
+          lossesListEl.appendChild(li);
+        } else {
+          losses.forEach((item) => {
+            const li = document.createElement("li");
+            const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
+            const eventName = escapeHtml(item.event_name || "");
+
+            li.innerHTML = `
+              ${opponentHtml}
+              ${eventName ? `｜${eventName}` : ""}
+            `;
+            lossesListEl.appendChild(li);
+          });
+        }
+
+        appearancesStatusEl.textContent = "";
+        winsStatusEl.textContent = "";
+        lossesStatusEl.textContent = "";
+
+        if (appearances.length === 0) appearancesStatusEl.textContent = "出場大会がありません";
+
+        setupCollapsibleList(winsListEl, winsMoreButtonEl);
+        setupCollapsibleList(lossesListEl, lossesMoreButtonEl);
+        setupCollapsibleList(appearancesListEl, appearancesMoreButtonEl);
+      } catch (err) {
+        console.error(err);
         titleEl.textContent = "MC情報の読み込みに失敗しました";
-        appearancesStatusEl.textContent = "JSONP読み込み失敗";
+        metaEl.textContent = "";
+        appearancesStatusEl.textContent = "読み込み失敗";
         appearancesStatusEl.classList.add("error");
-      };
-
-      document.body.appendChild(script);
+        winsStatusEl.textContent = "";
+        lossesStatusEl.textContent = "";
+      }
     }
 
     loadMcDetail();
