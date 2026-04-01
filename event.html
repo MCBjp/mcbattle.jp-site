@@ -267,8 +267,48 @@
       document.head.appendChild(style);
     }
 
+    function normalizeRoundLabel(roundName) {
+      const name = String(roundName || "").trim();
+
+      if (!name) return "";
+
+      if (/^final$/i.test(name) || name === "決勝") return "Final";
+
+      if (/^best\s*4$/i.test(name) || name === "準決勝" || name === "ベスト4") {
+        return "Best4";
+      }
+
+      if (/^best\s*8$/i.test(name) || name === "準々決勝" || name === "ベスト8") {
+        return "Best8";
+      }
+
+      if (/^best\s*16$/i.test(name) || name === "ベスト16") {
+        return "Best16";
+      }
+
+      if (/^best\s*32$/i.test(name) || name === "ベスト32") {
+        return "Best32";
+      }
+
+      if (/^best\s*48$/i.test(name) || name === "ベスト48") {
+        return "Best48";
+      }
+
+      if (/^best\s*64$/i.test(name) || name === "ベスト64") {
+        return "Best64";
+      }
+
+      const jaBest = name.match(/^ベスト\s*(\d+)$/);
+      if (jaBest) return `Best${jaBest[1]}`;
+
+      const enBest = name.match(/^best\s*(\d+)$/i);
+      if (enBest) return `Best${enBest[1]}`;
+
+      return name;
+    }
+
     async function loadEventDetailsAllJson() {
-      const res = await fetch(EVENT_DETAILS_ALL_JSON_URL, { cache: "no-store" });
+      const res = await fetch(`${EVENT_DETAILS_ALL_JSON_URL}?v=${Date.now()}`, { cache: "no-store" });
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }
@@ -276,7 +316,7 @@
     }
 
     function getRoundMatches(groupedMatches, roundLabel) {
-      const group = groupedMatches.find((g) => String(g.round_name || "").trim() === roundLabel);
+      const group = groupedMatches.find((g) => normalizeRoundLabel(g.round_name) === roundLabel);
       return group && Array.isArray(group.matches) ? group.matches : [];
     }
 
@@ -344,7 +384,12 @@
         const detailMap = allData && allData.event_details ? allData.event_details : {};
         const data = detailMap[eventId] || null;
 
-        console.log("event detail:", data);
+        matchesStatusEl.textContent =
+          `debug: eventId=${eventId} / total=${allData?.total} / hasMap=${!!allData?.event_details} / hasData=${!!data}`;
+
+        console.log("event detail all:", allData);
+        console.log("event detail map:", detailMap);
+        console.log("event detail target:", data);
 
         infoListEl.innerHTML = "";
         matchesListEl.innerHTML = "";
@@ -353,7 +398,7 @@
         if (!data) {
           titleEl.textContent = "大会情報の取得に失敗しました";
           metaEl.textContent = "";
-          matchesStatusEl.textContent = "指定された大会データが見つかりません";
+          matchesStatusEl.textContent = `debug: eventId=${eventId} / total=${allData?.total} / hasMap=${!!allData?.event_details} / hasData=false`;
           matchesStatusEl.classList.add("error");
           return;
         }
@@ -398,7 +443,8 @@
         });
 
         groupedMatches.forEach((group) => {
-          const roundName = String(group.round_name || "").trim() || "ラウンド不明";
+          const rawRoundName = String(group.round_name || "").trim();
+          const roundName = rawRoundName || "ラウンド不明";
 
           const block = document.createElement("div");
           block.className = "round-block";
@@ -450,9 +496,9 @@
         });
 
         const warningMessages = [];
-        const finals = groupedMatches.find((g) => String(g.round_name || "").trim() === "Final");
-        const semis = groupedMatches.find((g) => String(g.round_name || "").trim() === "Best4");
-        const best8 = groupedMatches.find((g) => String(g.round_name || "").trim() === "Best8");
+        const finals = groupedMatches.find((g) => normalizeRoundLabel(g.round_name) === "Final");
+        const semis = groupedMatches.find((g) => normalizeRoundLabel(g.round_name) === "Best4");
+        const best8 = groupedMatches.find((g) => normalizeRoundLabel(g.round_name) === "Best8");
 
         if (finals && Array.isArray(finals.matches) && finals.matches.length !== 1) {
           warningMessages.push(`Final が ${finals.matches.length} 試合あります`);
@@ -481,7 +527,7 @@
         console.error(err);
         titleEl.textContent = "大会情報の読み込みに失敗しました";
         metaEl.textContent = "";
-        matchesStatusEl.textContent = "読み込み失敗";
+        matchesStatusEl.textContent = `読み込み失敗: ${err && err.message ? err.message : err}`;
         matchesStatusEl.classList.add("error");
       }
     }
