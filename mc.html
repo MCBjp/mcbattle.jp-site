@@ -112,6 +112,14 @@
     const MC_DETAILS_ALL_JSON_URL = "./data/mc_details_all.json";
     const COLLAPSE_LIMIT = 10;
 
+    async function loadMcDetailsAllJson() {
+      const res = await fetch(MC_DETAILS_ALL_JSON_URL);
+      if (!res.ok) {
+        throw new Error("HTTP " + res.status);
+      }
+      return await res.json();
+    }
+
     function getMcIdFromQuery() {
       const params = new URLSearchParams(window.location.search);
       return params.get("mc_id");
@@ -142,7 +150,7 @@
     }
 
     function getRankLabel(rankValue) {
-      if (rankValue === null || rankValue === undefined || rankValue === "") return "圏外";
+      if (rankValue === null || rankValue === undefined || value === "") return "圏外";
       const n = Number(rankValue);
       if (!Number.isFinite(n)) return "圏外";
       return n <= 100 ? String(n) : "圏外";
@@ -184,57 +192,72 @@
       return `<a href="./event.html?event_id=${encodeURIComponent(safeId)}">${label}</a>`;
     }
 
-    function getRoundSortValue(roundName) {
+    function normalizeRoundLabel(roundName) {
       const name = String(roundName || "").trim();
 
-      const orderMap = {
-        "Final": 1000,
-        "Best4": 900,
-        "Best8": 800,
-        "Best16": 700,
-        "Best32": 600,
-        "Best48": 550,
-        "Best64": 500
-      };
+      if (!name) return "";
+      if (/^final$/i.test(name) || name === "決勝") return "Final";
 
-      if (orderMap[name] != null) return orderMap[name];
+      const jaBest = name.match(/^ベスト\s*(\d+)$/);
+      if (jaBest) return `Best${jaBest[1]}`;
 
-      const bestMatch = name.match(/^Best(\d+)$/i);
-      if (bestMatch) {
-        return 1000 - Number(bestMatch[1]);
-      }
+      const enBest = name.match(/^best\s*(\d+)$/i);
+      if (enBest) return `Best${enBest[1]}`;
 
-      const roundMatch = name.match(/^(\d+)回戦$/);
-      if (roundMatch) {
-        return Number(roundMatch[1]) * 100;
-      }
+      if (name === "準決勝") return "Best4";
+      if (name === "準々決勝") return "Best8";
 
-      return 0;
+      return name;
+    }
+
+    function getRoundSortValue(roundName) {
+      const normalized = normalizeRoundLabel(roundName);
+
+      if (!normalized) return 999999;
+      if (normalized === "Final") return 0;
+
+      const bestMatch = normalized.match(/^Best(\d+)$/i);
+      if (bestMatch) return Number(bestMatch[1]);
+
+      const roundMatch = normalized.match(/^(\d+)回戦$/);
+      if (roundMatch) return 1000 + Number(roundMatch[1]);
+
+      return 999999;
     }
 
     function sortMatchHistory(items) {
       return [...items].sort((a, b) => {
         const dateA = String(a.event_date || "");
         const dateB = String(b.event_date || "");
-        if (dateA !== dateB) {
-          return dateB.localeCompare(dateA);
-        }
+        if (dateA !== dateB) return dateB.localeCompare(dateA);
 
         const roundA = getRoundSortValue(a.round_name);
         const roundB = getRoundSortValue(b.round_name);
-        if (roundA !== roundB) {
-          return roundB - roundA;
-        }
+        if (roundA !== roundB) return roundA - roundB;
 
         const eventA = String(a.event_name || "");
         const eventB = String(b.event_name || "");
-        if (eventA !== eventB) {
-          return eventA.localeCompare(eventB, "ja");
-        }
+        if (eventA !== eventB) return eventA.localeCompare(eventB, "ja");
 
         const oppA = String(a.opponent_name || "");
         const oppB = String(b.opponent_name || "");
         return oppA.localeCompare(oppB, "ja");
+      });
+    }
+
+    function sortAppearances(items) {
+      return [...items].sort((a, b) => {
+        const dateA = String(a.event_date || "");
+        const dateB = String(b.event_date || "");
+        if (dateA !== dateB) return dateB.localeCompare(dateA);
+
+        const roundA = getRoundSortValue(a.round_name);
+        const roundB = getRoundSortValue(b.round_name);
+        if (roundA !== roundB) return roundA - roundB;
+
+        const eventA = String(a.event_name || "");
+        const eventB = String(b.event_name || "");
+        return eventA.localeCompare(eventB, "ja");
       });
     }
 
@@ -292,14 +315,6 @@
       infoListEl.appendChild(li);
     }
 
-    async function loadMcDetailsAllJson() {
-      const res = await fetch(MC_DETAILS_ALL_JSON_URL, { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-      return await res.json();
-    }
-
     async function loadMcDetail() {
       const mcId = getMcIdFromQuery();
 
@@ -335,8 +350,6 @@
         const allData = await loadMcDetailsAllJson();
         const detailMap = allData && allData.mc_details ? allData.mc_details : {};
         const data = detailMap[mcId] || null;
-
-        console.log("mc detail:", data);
 
         infoListEl.innerHTML = "";
         appearancesListEl.innerHTML = "";
@@ -374,7 +387,7 @@
         const mc = data.mc || {};
         const ranking = data.ranking || {};
         const summary = data.summary || {};
-        const appearances = Array.isArray(data.participated_events) ? data.participated_events : [];
+        const appearances = sortAppearances(Array.isArray(data.participated_events) ? data.participated_events : []);
         const wins = sortMatchHistory(Array.isArray(data.wins_against) ? data.wins_against : []);
         const losses = sortMatchHistory(Array.isArray(data.losses_against) ? data.losses_against : []);
         const championships = Array.isArray(data.championships) ? data.championships : [];
@@ -384,8 +397,8 @@
         titleEl.textContent = mcName;
         metaEl.textContent = "";
 
-        winsHeadingEl.textContent = `${mcName}が勝った対戦相手`;
-        lossesHeadingEl.textContent = `${mcName}が負けた対戦相手`;
+        winsHeadingEl.textContent = `${mcName}が勝った相手`;
+        lossesHeadingEl.textContent = `${mcName}が負けた相手`;
 
         const championshipText = championships.length
           ? championships.map((item) => {
@@ -463,7 +476,7 @@
         console.error(err);
         titleEl.textContent = "MC情報の読み込みに失敗しました";
         metaEl.textContent = "";
-        appearancesStatusEl.textContent = "読み込み失敗";
+        appearancesStatusEl.textContent = `読み込み失敗: ${err && err.message ? err.message : err}`;
         appearancesStatusEl.classList.add("error");
         winsStatusEl.textContent = "";
         lossesStatusEl.textContent = "";
