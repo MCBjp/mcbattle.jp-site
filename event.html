@@ -101,8 +101,8 @@
 
     function normalizeRoundLabel(roundName) {
       const name = String(roundName || "").trim();
-
       if (!name) return "";
+
       if (/^final$/i.test(name) || name === "決勝") return "Final";
       if (/^best\s*4$/i.test(name) || name === "準決勝" || name === "ベスト4") return "Best4";
       if (/^best\s*8$/i.test(name) || name === "準々決勝" || name === "ベスト8") return "Best8";
@@ -118,6 +118,20 @@
       if (enBest) return `Best${enBest[1]}`;
 
       return name;
+    }
+
+    function getRoundSortValue(roundName) {
+      const normalized = normalizeRoundLabel(roundName);
+
+      if (!normalized) return 999999;
+      if (normalized === "Final") return 0;
+
+      const bestMatch = normalized.match(/^Best(\d+)$/i);
+      if (bestMatch) {
+        return Number(bestMatch[1]);
+      }
+
+      return 999999;
     }
 
     function getRoundMatches(groupedMatches, roundLabel) {
@@ -265,7 +279,9 @@
         }
 
         const event = data.event || {};
-        const groupedMatches = Array.isArray(data.grouped_matches) ? data.grouped_matches : [];
+        const groupedMatches = Array.isArray(data.grouped_matches) ? data.grouped_matches.slice() : [];
+        groupedMatches.sort((a, b) => getRoundSortValue(a.round_name) - getRoundSortValue(b.round_name));
+
         const totalMatches = Number(data.total_matches || 0);
         const formattedWinnerPrize = formatNumberWithComma(event.prize_money_winner);
         const resultsHtml = buildResultsHtml(event, groupedMatches);
