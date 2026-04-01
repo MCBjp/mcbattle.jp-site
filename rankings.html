@@ -101,81 +101,85 @@
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+    const RANKINGS_JSON_URL = "./data/rankings.json";
+
+    async function loadRankingsJson() {
+      const res = await fetch(RANKINGS_JSON_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      return await res.json();
+    }
 
     function loadRankingsPage() {
-      const callbackName = "mcBattleRankingsPageCallback";
       const statusEl = document.getElementById("rankings-status");
       const bodyEl = document.getElementById("rankings-body");
 
-      window[callbackName] = function(data) {
-        console.log("rankings page:", data);
+      loadRankingsJson()
+        .then((data) => {
+          console.log("rankings page:", data);
 
-        bodyEl.innerHTML = "";
-        statusEl.classList.remove("error");
+          bodyEl.innerHTML = "";
+          statusEl.classList.remove("error");
 
-        try {
-          if (data.error) {
-            statusEl.textContent = "ランキングの取得に失敗しました: " + (data.message || "");
-            statusEl.classList.add("error");
-            return;
-          }
-
-          const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 100) : [];
-
-          rankings.forEach((item, index) => {
-            const tr = document.createElement("tr");
-
-            const rankTd = document.createElement("td");
-            const nameTd = document.createElement("td");
-            const scoreTd = document.createElement("td");
-
-            const rank = item.rank || (index + 1);
-            const mcId = item.mc_id || "";
-            const mcName = item.mc_name || "名前不明";
-
-            const rawScore = item.current_strength_score_v2 ?? item.current_strength_score ?? item.score ?? "";
-            const score = rawScore !== "" && !isNaN(Number(rawScore))
-              ? Number(rawScore).toFixed(2)
-              : String(rawScore);
-
-            rankTd.textContent = rank;
-
-            if (mcId) {
-              const a = document.createElement("a");
-              a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
-              a.textContent = mcName;
-              a.className = "rank-name-link";
-              nameTd.appendChild(a);
-            } else {
-              nameTd.textContent = mcName;
+          try {
+            if (data.error) {
+              statusEl.textContent = "ランキングの取得に失敗しました: " + (data.message || "");
+              statusEl.classList.add("error");
+              return;
             }
 
-            scoreTd.textContent = score;
+            const rankings = Array.isArray(data.rankings) ? data.rankings.slice(0, 100) : [];
 
-            tr.appendChild(rankTd);
-            tr.appendChild(nameTd);
-            tr.appendChild(scoreTd);
+            rankings.forEach((item, index) => {
+              const tr = document.createElement("tr");
 
-            bodyEl.appendChild(tr);
-          });
+              const rankTd = document.createElement("td");
+              const nameTd = document.createElement("td");
+              const scoreTd = document.createElement("td");
 
-          statusEl.textContent = `${rankings.length}名を表示`;
-        } catch (err) {
+              const rank = item.rank || (index + 1);
+              const mcId = item.mc_id || "";
+              const mcName = item.mc_name || "名前不明";
+
+              const rawScore = item.current_strength_score_v2 ?? item.current_strength_score ?? item.current_score ?? item.score ?? "";
+              const score = rawScore !== "" && !isNaN(Number(rawScore))
+                ? Number(rawScore).toFixed(2)
+                : String(rawScore);
+
+              rankTd.textContent = rank;
+
+              if (mcId) {
+                const a = document.createElement("a");
+                a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
+                a.textContent = mcName;
+                a.className = "rank-name-link";
+                nameTd.appendChild(a);
+              } else {
+                nameTd.textContent = mcName;
+              }
+
+              scoreTd.textContent = score;
+
+              tr.appendChild(rankTd);
+              tr.appendChild(nameTd);
+              tr.appendChild(scoreTd);
+
+              bodyEl.appendChild(tr);
+            });
+
+            statusEl.textContent = `${rankings.length}名を表示`;
+          } catch (err) {
+            console.error(err);
+            statusEl.textContent = "ランキングの描画に失敗しました";
+            statusEl.classList.add("error");
+          }
+        })
+        .catch((err) => {
           console.error(err);
-          statusEl.textContent = "ランキングの描画に失敗しました";
+          statusEl.textContent = "ランキングの読み込みに失敗しました";
           statusEl.classList.add("error");
-        }
-      };
-
-      const script = document.createElement("script");
-      script.src = `${API_URL}?mode=rankings&callback=${callbackName}`;
-      script.onerror = function() {
-        statusEl.textContent = "ランキングの読み込みに失敗しました";
-        statusEl.classList.add("error");
-      };
-
-      document.body.appendChild(script);
+        });
     }
 
     loadRankingsPage();
