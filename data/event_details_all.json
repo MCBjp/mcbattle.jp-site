@@ -1,4 +1,3 @@
-
 {
   "updated_at": "2026-04-01T13:18:35.909Z",
   "total": 90,
@@ -8083,8 +8082,7 @@
               "judge_method": ""
             },
             {
-              "match_id": "MAT00148
-7",
+              "match_id": "MAT001487",
               "round_name": "ベスト16",
               "winner_name": "KBD",
               "winner_mc_id": "MC0171",
@@ -16126,8 +16124,7 @@
               "round_name": "ベスト32",
               "winner_name": "バチスタ",
               "winner_mc_id": "MC0621",
-              "loser_name": 
-"PONEY",
+              "loser_name": "PONEY",
               "loser_mc_id": "MC0245",
               "judge_method": ""
             },
@@ -24195,8 +24192,7 @@
             {
               "match_id": "MAT000116",
               "round_name": "Best8",
-              "win
-ner_name": "晋平太",
+              "winner_name": "晋平太",
               "winner_mc_id": "MC0395",
               "loser_name": "チプルソ",
               "loser_mc_id": "MC0357",
