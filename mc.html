@@ -155,6 +155,23 @@
       line-height: 1.7;
     }
 
+    .championship-line {
+      display: block;
+      line-height: 1.75;
+    }
+
+    .championship-event-link {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+
+    .championship-prize {
+      color: inherit;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
     .battle-list {
       list-style: none;
       padding: 0;
@@ -175,14 +192,21 @@
       display: block;
       min-width: 0;
       line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .battle-opponent a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
     }
 
     .battle-event {
       display: block;
-      margin-top: 4px;
-      color: var(--muted);
+      margin-top: 2px;
+      color: #8f97aa;
       font-size: 0.93rem;
-      line-height: 1.45;
+      line-height: 1.4;
       word-break: break-word;
     }
 
@@ -217,16 +241,16 @@
       display: block;
       text-decoration: underline;
       text-underline-offset: 0.15em;
-      line-height: 1.45;
+      line-height: 1.4;
       word-break: break-word;
     }
 
     .appearance-date {
       display: block;
-      margin-top: 4px;
+      margin-top: 2px;
       color: var(--muted);
       font-size: 0.93rem;
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
     @media (max-width: 640px) {
@@ -340,7 +364,8 @@
 
   <script>
     const MC_DETAILS_ALL_JSON_URL = "./data/mc_details_all.json";
-    const COLLAPSE_LIMIT = 10;
+    const COLLAPSE_LIMIT_BATTLE = 5;
+    const COLLAPSE_LIMIT_APPEARANCE = 10;
 
     async function loadMcDetailsAllJson() {
       const res = await fetch(MC_DETAILS_ALL_JSON_URL, { cache: "no-store" });
@@ -440,6 +465,30 @@
       `;
     }
 
+    function renderChampionshipLine(item) {
+      const eventName = escapeHtml(item.event_name || "");
+      const prizeText = `（¥${formatYen(item.prize_money_winner || 0)}）`;
+      const safePrize = escapeHtml(prizeText);
+
+      if (!eventName) return "";
+
+      if (item.event_id) {
+        return `
+          <span class="championship-line">
+            <a class="championship-event-link" href="./event.html?event_id=${encodeURIComponent(item.event_id)}">${eventName}</a>
+            <span class="championship-prize"> ${safePrize}</span>
+          </span>
+        `;
+      }
+
+      return `
+        <span class="championship-line">
+          <span>${eventName}</span>
+          <span class="championship-prize"> ${safePrize}</span>
+        </span>
+      `;
+    }
+
     function normalizeRoundLabel(roundName) {
       const name = String(roundName || "").trim();
 
@@ -509,10 +558,10 @@
       });
     }
 
-    function setupCollapsibleList(listEl, buttonEl) {
+    function setupCollapsibleList(listEl, buttonEl, limit) {
       const items = Array.from(listEl.children);
 
-      if (items.length <= COLLAPSE_LIMIT) {
+      if (items.length <= limit) {
         buttonEl.classList.add("is-hidden");
         return;
       }
@@ -521,7 +570,7 @@
 
       function render() {
         items.forEach((item, index) => {
-          if (!expanded && index >= COLLAPSE_LIMIT) {
+          if (!expanded && index >= limit) {
             item.classList.add("is-hidden");
           } else {
             item.classList.remove("is-hidden");
@@ -675,17 +724,11 @@
         const scoreDisplay = getScoreDisplay(ranking);
         const rankingStatus = String(ranking.ranking_status || "");
         const rankingNote = rankingStatus === "inactive_3y"
-          ? "直近3年以上バトル不参加のため、現在ランキングの対象外です。"
+          ? "直近3年以上バトル不参加"
           : "";
 
         const championshipText = championships.length
-          ? championships.map((item) => {
-              const label = `${item.event_name || ""}（¥${formatYen(item.prize_money_winner || 0)}）`;
-              if (item.event_id) {
-                return `<a href="./event.html?event_id=${encodeURIComponent(item.event_id)}">${escapeHtml(label)}</a>`;
-              }
-              return escapeHtml(label);
-            }).join("<br>")
+          ? championships.map(renderChampionshipLine).join("")
           : "−";
 
         const battleSummary = `${displayValue(summary.total_matches)}試合 ${displayValue(summary.wins)}勝 ${displayValue(summary.losses)}敗`;
@@ -747,9 +790,9 @@
 
         if (appearances.length === 0) appearancesStatusEl.textContent = "出場大会がありません";
 
-        setupCollapsibleList(winsListEl, winsMoreButtonEl);
-        setupCollapsibleList(lossesListEl, lossesMoreButtonEl);
-        setupCollapsibleList(appearancesListEl, appearancesMoreButtonEl);
+        setupCollapsibleList(winsListEl, winsMoreButtonEl, COLLAPSE_LIMIT_BATTLE);
+        setupCollapsibleList(lossesListEl, lossesMoreButtonEl, COLLAPSE_LIMIT_BATTLE);
+        setupCollapsibleList(appearancesListEl, appearancesMoreButtonEl, COLLAPSE_LIMIT_APPEARANCE);
 
         showContentState();
       } catch (err) {
