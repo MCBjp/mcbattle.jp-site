@@ -65,12 +65,16 @@
       padding:28px 0 14px;
     }
 
+    .site-header-inner{
+      padding-left:18px;
+      padding-right:18px;
+    }
+
     .site-header-row{
       display:flex;
       flex-direction:column;
       align-items:flex-start;
       gap:12px;
-      padding-left:18px;
     }
 
     .site-title{
@@ -414,9 +418,13 @@
         padding:24px 0 12px;
       }
 
+      .site-header-inner{
+        padding-left:16px;
+        padding-right:16px;
+      }
+
       .site-header-row{
         gap:8px;
-        padding-left:16px;
       }
 
       .header-message{
@@ -454,11 +462,13 @@
 <body>
   <header class="site-header">
     <div class="container">
-      <div class="site-header-row">
-        <h1 class="site-title">MCBattle.jp</h1>
-        <div class="site-header-copy">
-          <p class="header-message">日本一情報量の多いMCバトルポータル。<br>大会情報の記録や戦績に加え、独自の仕様で各MCのスコアリングをつけています。</p>
-          <a class="header-spec-link" href="ranking_spec.html">スコアリング仕様を見る</a>
+      <div class="site-header-inner">
+        <div class="site-header-row">
+          <h1 class="site-title">MCBattle.jp</h1>
+          <div class="site-header-copy">
+            <p class="header-message">日本一情報量の多いMCバトルポータル。<br>大会情報の記録や戦績に加え、独自の仕様で各MCのスコアリングをつけています。</p>
+            <a class="header-spec-link" href="ranking_spec.html">スコアリング仕様を見る</a>
+          </div>
         </div>
       </div>
     </div>
