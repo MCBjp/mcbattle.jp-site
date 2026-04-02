@@ -23,10 +23,6 @@
     }
 
     .page-header-block h1{
-      margin-bottom: 8px;
-    }
-
-    .page-header-block .muted{
       margin: 0;
     }
 
@@ -35,6 +31,7 @@
       flex-wrap: wrap;
       gap: 8px;
       margin: 0;
+      max-width: 100%;
     }
 
     .page-nav-pill{
@@ -68,9 +65,36 @@
       opacity: 1;
     }
 
+    .page-nav-break{
+      flex-basis: 100%;
+      height: 0;
+    }
+
     .rankings-card-inner {
       padding-left: 12px;
       padding-right: 12px;
+    }
+
+    .rankings-card-head{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .rankings-spec-link{
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      font-size: 0.95rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .rankings-spec-link:hover{
+      opacity: 0.85;
     }
 
     .rankings-table-wrap {
@@ -84,7 +108,7 @@
       min-width: 0;
       table-layout: fixed;
       border-collapse: collapse;
-      margin-top: 8px;
+      margin-top: 0;
     }
 
     table.rankings-table col:nth-child(1) {
@@ -172,6 +196,14 @@
         padding-right: 10px;
       }
 
+      .rankings-card-head{
+        margin-bottom: 6px;
+      }
+
+      .rankings-spec-link{
+        font-size: 0.88rem;
+      }
+
       table.rankings-table col:nth-child(1) {
         width: 42px;
       }
@@ -200,20 +232,24 @@
 
       <div class="page-header-block">
         <h1>スコアランキング</h1>
-        <p class="muted">現行の v2 スコアに基づく順位です。</p>
       </div>
 
       <nav class="page-nav-pills" aria-label="主要メニュー">
-        <a class="page-nav-pill" href="prize_rankings.html">賞金ランキング</a>
         <a class="page-nav-pill" href="events.html">大会一覧</a>
         <a class="page-nav-pill" href="mcs.html">MC一覧</a>
+        <span class="page-nav-break" aria-hidden="true"></span>
+        <a class="page-nav-pill" href="prize_rankings.html">賞金ランキング</a>
         <a class="page-nav-pill" href="virtual_tournament.html">仮想シミュレーション</a>
       </nav>
     </div>
 
     <section class="card">
       <div class="rankings-card-inner">
-        <p id="rankings-status" class="muted">読み込み中...</p>
+        <div class="rankings-card-head">
+          <p id="rankings-status" class="muted"></p>
+          <a class="rankings-spec-link" href="ranking_spec.html">ランキング仕様</a>
+        </div>
+
         <div class="rankings-table-wrap">
           <table class="rankings-table">
             <colgroup>
@@ -312,7 +348,7 @@
               bodyEl.appendChild(tr);
             });
 
-            statusEl.textContent = `${rankings.length}名を表示`;
+            statusEl.textContent = "";
           } catch (err) {
             console.error(err);
             statusEl.textContent = "ランキングの描画に失敗しました";
