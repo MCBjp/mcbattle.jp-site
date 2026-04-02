@@ -168,6 +168,51 @@
       line-height:1.4;
     }
 
+    .vt-candidates{
+      margin-top:8px;
+    }
+
+    .vt-candidate-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:0;
+    }
+
+    .vt-candidate-btn{
+      width:100%;
+      min-height:44px;
+      padding:0 14px;
+      border-radius:15px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font:inherit;
+      font-size:.92rem;
+      font-weight:600;
+      text-align:left;
+      cursor:pointer;
+      transition:
+        transform .18s ease,
+        background-color .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .vt-candidate-btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.24);
+      box-shadow:0 0 20px rgba(255,255,255,.05);
+    }
+
+    .vt-helper{
+      margin:0;
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.6;
+    }
+
     .vt-action-stack{
       display:flex;
       flex-direction:column;
@@ -230,6 +275,10 @@
       gap:8px;
     }
 
+    .vt-selected-grid.is-single{
+      grid-template-columns:1fr;
+    }
+
     .vt-selected-item{
       display:grid;
       grid-template-columns:minmax(0,1fr) 20px;
@@ -251,8 +300,8 @@
       -webkit-box-orient:vertical;
       overflow:hidden;
       white-space:normal;
-      line-height:1.25;
-      font-size:.84rem;
+      line-height:1.18;
+      font-size:.83rem;
       font-weight:400;
       color:var(--text);
       word-break:break-word;
@@ -270,43 +319,6 @@
       padding:0;
       width:20px;
       height:20px;
-    }
-
-    .vt-candidates{
-      margin-top:10px;
-    }
-
-    .vt-candidate-list{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-top:8px;
-    }
-
-    .vt-candidate-btn{
-      width:100%;
-      min-height:44px;
-      padding:0 14px;
-      border-radius:15px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      font:inherit;
-      font-size:.92rem;
-      font-weight:700;
-      text-align:left;
-      cursor:pointer;
-    }
-
-    .vt-candidate-btn:hover{
-      background:rgba(255,255,255,.06);
-    }
-
-    .vt-helper{
-      margin:0;
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.6;
     }
 
     .vt-status{
@@ -552,6 +564,11 @@
 
         <p class="vt-search-note">2文字以上で候補表示</p>
 
+        <div id="candidate-area" class="vt-candidates">
+          <div id="candidate-list" class="vt-candidate-list"></div>
+          <p id="candidate-empty" class="vt-helper is-hidden">候補がありません。</p>
+        </div>
+
         <div class="vt-action-stack">
           <button id="fill-random-btn" class="vt-sub-button" type="button">残りを上位100位からランダム入力</button>
           <button id="clear-selected-btn" class="vt-sub-button" type="button">全クリア</button>
@@ -560,11 +577,6 @@
         <div class="vt-selected-wrap">
           <h2 class="vt-selected-title">選択中の8人</h2>
           <div id="selected-grid" class="vt-selected-grid"></div>
-        </div>
-
-        <div id="candidate-area" class="vt-candidates">
-          <div id="candidate-list" class="vt-candidate-list"></div>
-          <p id="candidate-empty" class="vt-helper is-hidden">候補がありません。</p>
         </div>
       </section>
 
@@ -665,6 +677,7 @@
       const badge = document.getElementById("selected-count-badge");
 
       badge.textContent = `${selectedMcs.length}/${MAX_SELECTED}`;
+      grid.classList.toggle("is-single", selectedMcs.length === 1);
 
       if (selectedMcs.length === 0) {
         grid.innerHTML = "";
