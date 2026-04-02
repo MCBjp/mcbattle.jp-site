@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     .page-top{
-      margin-bottom:18px;
+      margin-bottom:14px;
     }
 
     .page-mini-logo{
-      margin:0 0 10px;
+      margin:0 0 8px;
     }
 
     .page-mini-logo .site-mini-logo{
@@ -22,7 +22,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin:0 0 16px;
+      margin:0 0 14px;
       max-width:100%;
     }
 
@@ -30,14 +30,14 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:38px;
+      min-height:36px;
       padding:0 14px;
       border-radius:999px;
       border:1px solid var(--line);
       background:rgba(255,255,255,0.04);
       color:var(--accent);
       text-decoration:none;
-      font-size:.93rem;
+      font-size:.9rem;
       font-weight:700;
       line-height:1.2;
       transition:
@@ -68,35 +68,34 @@
     }
 
     .vt-hero{
-      padding:6px 0 10px;
-      border-top:1px solid transparent;
+      padding:2px 0 8px;
     }
 
     .vt-title{
-      margin:0 0 10px;
-      color:#5a86ff;
-      line-height:1.2;
+      margin:0 0 8px;
+      color:var(--text);
+      line-height:1.15;
     }
 
     .vt-lead{
       margin:0;
       color:var(--muted);
-      font-size:1rem;
-      line-height:1.75;
-      max-width:820px;
+      font-size:.98rem;
+      line-height:1.7;
+      max-width:780px;
     }
 
     .vt-stack{
       display:flex;
       flex-direction:column;
-      gap:18px;
-      margin-top:18px;
+      gap:14px;
+      margin-top:14px;
     }
 
     .vt-panel{
       border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;
-      padding:18px 18px 16px;
+      border-radius:22px;
+      padding:14px 14px 12px;
       box-shadow:0 18px 48px rgba(0,0,0,.22);
     }
 
@@ -112,47 +111,33 @@
         linear-gradient(180deg, rgba(84,66,104,.22), rgba(55,45,79,.18));
     }
 
-    .vt-panel-title{
-      margin:0 0 14px;
-      font-size:1.9rem;
-      line-height:1.2;
-      color:#5a86ff;
-    }
-
     .vt-step-label{
       display:block;
       margin:0 0 10px;
-      font-size:1.05rem;
+      font-size:1rem;
       font-weight:800;
       color:#5a86ff;
       letter-spacing:.01em;
     }
 
-    .vt-helper{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:.95rem;
-      line-height:1.7;
-    }
-
     .vt-search-row{
       display:grid;
-      grid-template-columns:minmax(0,1fr) 88px;
-      gap:14px;
+      grid-template-columns:minmax(0,1fr) 78px;
+      gap:10px;
       align-items:center;
-      margin-top:10px;
+      margin-top:4px;
     }
 
     .vt-search-box{
       width:100%;
-      min-height:72px;
-      border-radius:24px;
+      min-height:60px;
+      border-radius:20px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(13,17,28,.68);
       color:var(--text);
-      padding:0 20px;
+      padding:0 16px;
       font:inherit;
-      font-size:1.05rem;
+      font-size:1rem;
       outline:none;
     }
 
@@ -161,43 +146,39 @@
     }
 
     .vt-count-badge{
-      min-height:72px;
-      border-radius:24px;
+      min-height:60px;
+      border-radius:20px;
       border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.06);
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:1.45rem;
+      font-size:1.2rem;
       font-weight:800;
       color:#d7deef;
     }
 
     .vt-search-note{
-      margin:8px 0 0;
+      margin:6px 0 0;
       color:#95a0b4;
-      font-size:.9rem;
-      line-height:1.55;
+      font-size:.86rem;
+      line-height:1.45;
     }
 
     .vt-action-stack{
       display:flex;
       flex-direction:column;
-      gap:12px;
-      margin-top:14px;
+      gap:10px;
+      margin-top:12px;
     }
 
     .vt-main-button,
     .vt-sub-button{
       width:100%;
-      min-height:72px;
       border-radius:999px;
-      border:2px solid rgba(255,255,255,.68);
       background:transparent;
       color:var(--text);
       font:inherit;
-      font-size:1rem;
-      font-weight:800;
       cursor:pointer;
       transition:
         transform .18s ease,
@@ -214,47 +195,46 @@
       box-shadow:0 0 20px rgba(255,255,255,.06);
     }
 
+    .vt-main-button{
+      min-height:62px;
+      border:2px solid rgba(255,255,255,.68);
+      font-size:1rem;
+      font-weight:800;
+    }
+
     .vt-sub-button{
-      min-height:60px;
-      border-width:1px;
-      border-color:rgba(255,255,255,.34);
+      min-height:54px;
+      border:1px solid rgba(255,255,255,.34);
       color:#d4dbea;
       font-size:.94rem;
       font-weight:700;
     }
 
     .vt-selected-wrap{
-      margin-top:18px;
+      margin-top:14px;
     }
 
     .vt-selected-title{
-      margin:0 0 6px;
-      font-size:1.7rem;
-      line-height:1.25;
-    }
-
-    .vt-selected-note{
-      margin:0 0 12px;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:.96rem;
+      margin:0 0 10px;
+      font-size:1.25rem;
+      line-height:1.2;
     }
 
     .vt-selected-grid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:10px 10px;
+      gap:8px;
     }
 
     .vt-selected-item{
       display:grid;
-      grid-template-columns:minmax(0,1fr) 28px;
+      grid-template-columns:minmax(0,1fr) 24px;
       align-items:center;
-      gap:10px;
+      gap:8px;
       min-width:0;
-      min-height:68px;
-      padding:0 16px;
-      border-radius:22px;
+      min-height:52px;
+      padding:0 12px;
+      border-radius:16px;
       border:2px solid rgba(255,255,255,.78);
       background:rgba(13,17,28,.22);
       box-sizing:border-box;
@@ -265,7 +245,7 @@
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
-      font-size:1rem;
+      font-size:.95rem;
       font-weight:800;
       color:var(--text);
     }
@@ -275,35 +255,35 @@
       background:transparent;
       color:#dbe1ed;
       font:inherit;
-      font-size:1.8rem;
+      font-size:1.45rem;
       line-height:1;
       cursor:pointer;
       padding:0;
-      width:28px;
-      height:28px;
+      width:24px;
+      height:24px;
     }
 
     .vt-candidates{
-      margin-top:16px;
+      margin-top:12px;
     }
 
     .vt-candidate-list{
       display:flex;
       flex-direction:column;
-      gap:10px;
-      margin-top:10px;
+      gap:8px;
+      margin-top:8px;
     }
 
     .vt-candidate-btn{
       width:100%;
-      min-height:58px;
-      padding:0 16px;
-      border-radius:18px;
+      min-height:50px;
+      padding:0 14px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.16);
       background:rgba(255,255,255,.03);
       color:var(--text);
       font:inherit;
-      font-size:1rem;
+      font-size:.95rem;
       font-weight:700;
       text-align:left;
       cursor:pointer;
@@ -313,15 +293,29 @@
       background:rgba(255,255,255,.06);
     }
 
+    .vt-helper{
+      margin:0;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.65;
+    }
+
     .vt-run-area{
       display:flex;
       flex-direction:column;
-      gap:14px;
+      gap:12px;
+    }
+
+    .vt-status{
+      margin:0;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.6;
     }
 
     .vt-hero-result{
-      padding:18px 18px 16px;
-      border-radius:24px;
+      padding:14px 14px 12px;
+      border-radius:20px;
       border:1px solid rgba(110,125,255,.14);
       background:linear-gradient(180deg, rgba(106,110,218,.2), rgba(70,56,138,.18));
     }
@@ -329,44 +323,44 @@
     .vt-hero-result-label{
       display:block;
       color:var(--muted);
-      font-size:1.05rem;
-      line-height:1.5;
-      margin-bottom:8px;
+      font-size:.96rem;
+      line-height:1.45;
+      margin-bottom:6px;
     }
 
     .vt-hero-result-name{
       display:block;
-      font-size:2rem;
+      font-size:1.6rem;
       line-height:1.2;
       font-weight:900;
     }
 
     .vt-summary-card{
-      padding:18px 18px 16px;
-      border-radius:24px;
+      padding:14px 14px 12px;
+      border-radius:20px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.025);
     }
 
     .vt-summary-title,
     .vt-table-title{
-      margin:0 0 12px;
+      margin:0 0 10px;
       color:#5a86ff;
-      font-size:1.65rem;
+      font-size:1.28rem;
       line-height:1.2;
     }
 
     .vt-summary-lines{
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:8px;
     }
 
     .vt-summary-lines p{
       margin:0;
       color:var(--text);
-      line-height:1.75;
-      font-size:1rem;
+      line-height:1.7;
+      font-size:.95rem;
     }
 
     .vt-dist-table-wrap{
@@ -381,7 +375,7 @@
 
     .vt-dist-table th,
     .vt-dist-table td{
-      padding:14px 16px;
+      padding:12px 14px;
       border-bottom:1px solid var(--line);
       text-align:left;
       vertical-align:middle;
@@ -390,30 +384,30 @@
     .vt-dist-table th:last-child,
     .vt-dist-table td:last-child{
       text-align:right;
-      width:110px;
+      width:86px;
       white-space:nowrap;
       font-variant-numeric:tabular-nums;
     }
 
     .vt-dist-table th{
       color:#b8bfd0;
-      font-size:.95rem;
+      font-size:.9rem;
       font-weight:800;
       background:rgba(255,255,255,.03);
     }
 
     .vt-dist-table td{
-      font-size:1rem;
-      line-height:1.45;
+      font-size:.95rem;
+      line-height:1.4;
     }
 
-    .vt-footnote{
-      display:none;
+    .is-hidden{
+      display:none !important;
     }
 
     @media (max-width: 640px){
       .page-top{
-        margin-bottom:14px;
+        margin-bottom:12px;
       }
 
       .page-mini-logo{
@@ -432,169 +426,12 @@
       }
 
       .vt-title{
-        margin-bottom:8px;
-        font-size:clamp(2.05rem, 10vw, 3rem);
+        font-size:clamp(2rem, 10vw, 2.9rem);
       }
 
       .vt-lead{
-        font-size:.95rem;
-        line-height:1.72;
-      }
-
-      .vt-stack{
-        gap:14px;
-        margin-top:14px;
-      }
-
-      .vt-panel{
-        padding:16px 14px 14px;
-        border-radius:22px;
-      }
-
-      .vt-panel-title{
-        margin-bottom:12px;
-        font-size:1.55rem;
-      }
-
-      .vt-step-label{
-        margin-bottom:8px;
-        font-size:1rem;
-      }
-
-      .vt-helper{
-        font-size:.9rem;
-        margin-top:6px;
-      }
-
-      .vt-search-row{
-        grid-template-columns:minmax(0,1fr) 74px;
-        gap:10px;
-      }
-
-      .vt-search-box{
-        min-height:64px;
-        border-radius:20px;
-        padding:0 16px;
-        font-size:.98rem;
-      }
-
-      .vt-count-badge{
-        min-height:64px;
-        border-radius:20px;
-        font-size:1.22rem;
-      }
-
-      .vt-search-note{
-        font-size:.86rem;
-        margin-top:6px;
-      }
-
-      .vt-main-button{
-        min-height:64px;
-        font-size:.95rem;
-      }
-
-      .vt-sub-button{
-        min-height:52px;
-        font-size:.9rem;
-      }
-
-      .vt-selected-wrap{
-        margin-top:16px;
-      }
-
-      .vt-selected-title{
-        font-size:1.55rem;
-        margin-bottom:6px;
-      }
-
-      .vt-selected-note{
-        margin-bottom:10px;
-        font-size:.9rem;
-      }
-
-      .vt-selected-grid{
-        gap:8px;
-      }
-
-      .vt-selected-item{
-        min-height:58px;
-        padding:0 12px;
-        border-radius:18px;
-        gap:8px;
-      }
-
-      .vt-selected-name{
-        font-size:.95rem;
-      }
-
-      .vt-remove-btn{
-        font-size:1.55rem;
-        width:24px;
-        height:24px;
-      }
-
-      .vt-candidate-list{
-        gap:8px;
-      }
-
-      .vt-candidate-btn{
-        min-height:52px;
-        padding:0 14px;
-        border-radius:16px;
-        font-size:.95rem;
-      }
-
-      .vt-hero-result{
-        padding:16px 14px 14px;
-        border-radius:20px;
-      }
-
-      .vt-hero-result-label{
-        font-size:.95rem;
-        margin-bottom:6px;
-      }
-
-      .vt-hero-result-name{
-        font-size:1.7rem;
-      }
-
-      .vt-summary-card{
-        padding:16px 14px 14px;
-        border-radius:20px;
-      }
-
-      .vt-summary-title,
-      .vt-table-title{
-        margin-bottom:10px;
-        font-size:1.35rem;
-      }
-
-      .vt-summary-lines{
-        gap:8px;
-      }
-
-      .vt-summary-lines p{
-        font-size:.95rem;
-        line-height:1.7;
-      }
-
-      .vt-dist-table th,
-      .vt-dist-table td{
-        padding:12px 14px;
-      }
-
-      .vt-dist-table th:last-child,
-      .vt-dist-table td:last-child{
-        width:88px;
-      }
-
-      .vt-dist-table th{
-        font-size:.9rem;
-      }
-
-      .vt-dist-table td{
-        font-size:.95rem;
+        font-size:.94rem;
+        line-height:1.68;
       }
     }
   </style>
@@ -615,7 +452,7 @@
 
     <section class="vt-hero">
       <h1 class="vt-title">仮想MCバトルシミュレーション</h1>
-      <p class="vt-lead">直近3年の本戦実績をもとに、8人の優勝分布を100回シミュレーションします。</p>
+      <p class="vt-lead">直近3年でバトル参加実績のあるMCで、大会結果をシミュレーションします。</p>
     </section>
 
     <div class="vt-stack">
@@ -636,7 +473,6 @@
 
         <div class="vt-selected-wrap">
           <h2 class="vt-selected-title">選択中の8人</h2>
-          <p class="vt-selected-note">直近3年で対象大会に出場しているMCのみ候補に表示しています</p>
           <div id="selected-grid" class="vt-selected-grid"></div>
         </div>
 
@@ -651,6 +487,7 @@
 
         <div class="vt-run-area">
           <button id="run-sim-btn" class="vt-main-button" type="button">100回シミュレーションする</button>
+          <p id="sim-status" class="vt-status">8人選ぶとシミュレーションできます。</p>
 
           <div id="top-result-card" class="vt-hero-result is-hidden">
             <span class="vt-hero-result-label">最も優勝確率が高いMC</span>
@@ -676,8 +513,6 @@
               </table>
             </div>
           </div>
-
-          <p id="sim-status" class="vt-helper">8人選ぶとシミュレーションできます。</p>
         </div>
       </section>
     </div>
@@ -774,14 +609,19 @@
       const list = document.getElementById("candidate-list");
       const empty = document.getElementById("candidate-empty");
       const keyword = normalizeText(document.getElementById("mc-search-input").value);
+      const selectedIds = new Set(selectedMcs.map(mc => mc.mc_id));
+
+      if (selectedMcs.length >= MAX_SELECTED) {
+        list.innerHTML = "";
+        empty.classList.add("is-hidden");
+        return;
+      }
 
       if (keyword.length < 2) {
         list.innerHTML = "";
         empty.classList.add("is-hidden");
         return;
       }
-
-      const selectedIds = new Set(selectedMcs.map(mc => mc.mc_id));
 
       filteredCandidates = allCandidates.filter(mc => {
         if (selectedIds.has(mc.mc_id)) return false;
@@ -911,15 +751,19 @@
       distCard.classList.remove("is-hidden");
     }
 
+    function hideSimulationResults() {
+      document.getElementById("top-result-card").classList.add("is-hidden");
+      document.getElementById("summary-card").classList.add("is-hidden");
+      document.getElementById("dist-card").classList.add("is-hidden");
+    }
+
     function runSimulation() {
       if (selectedMcs.length !== MAX_SELECTED) return;
 
       const status = document.getElementById("sim-status");
       status.textContent = "シミュレーション中...";
 
-      document.getElementById("top-result-card").classList.add("is-hidden");
-      document.getElementById("summary-card").classList.add("is-hidden");
-      document.getElementById("dist-card").classList.add("is-hidden");
+      hideSimulationResults();
 
       const results = {};
       selectedMcs.forEach(mc => {
@@ -967,6 +811,7 @@
         renderSelected();
         renderCandidates();
         updateSimReadyState();
+        hideSimulationResults();
 
         document.getElementById("mc-search-input").addEventListener("input", renderCandidates);
 
@@ -989,10 +834,7 @@
           renderSelected();
           renderCandidates();
           updateSimReadyState();
-
-          document.getElementById("top-result-card").classList.add("is-hidden");
-          document.getElementById("summary-card").classList.add("is-hidden");
-          document.getElementById("dist-card").classList.add("is-hidden");
+          hideSimulationResults();
           document.getElementById("sim-status").textContent = "8人選ぶとシミュレーションできます。";
         });
 
