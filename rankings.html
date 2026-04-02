@@ -12,22 +12,33 @@
     }
 
     .rankings-table-wrap {
-      overflow-x: auto;
+      overflow-x: visible;
+      width: 100%;
     }
 
     table.rankings-table {
-      width: fit-content !important;
-      max-width: none !important;
-      min-width: 0 !important;
-      table-layout: auto !important;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      table-layout: fixed;
       border-collapse: collapse;
       margin-top: 8px;
     }
 
+    table.rankings-table col:nth-child(1) {
+      width: 58px;
+    }
+
+    table.rankings-table col:nth-child(2) {
+      width: auto;
+    }
+
+    table.rankings-table col:nth-child(3) {
+      width: 84px;
+    }
+
     table.rankings-table th,
     table.rankings-table td {
-      width: auto !important;
-      white-space: nowrap;
       padding: 6px 8px;
       vertical-align: middle;
     }
@@ -35,23 +46,36 @@
     table.rankings-table th:nth-child(1),
     table.rankings-table td:nth-child(1) {
       text-align: right;
+      white-space: nowrap;
+    }
+
+    table.rankings-table th:nth-child(2),
+    table.rankings-table td:nth-child(2) {
+      text-align: left;
+      min-width: 0;
     }
 
     table.rankings-table th:nth-child(3),
     table.rankings-table td:nth-child(3) {
       text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
 
     table.rankings-table tbody tr:hover {
       opacity: 0.92;
     }
 
-    .rank-name-link {
-      display: inline-block;
+    .rank-name-link,
+    .rank-name-text {
+      display: block;
       color: inherit;
       text-decoration: underline;
       text-underline-offset: 0.15em;
-      white-space: nowrap;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      line-height: 1.35;
     }
 
     .rank-name-link:hover {
@@ -64,10 +88,23 @@
         padding-right: 10px;
       }
 
+      table.rankings-table col:nth-child(1) {
+        width: 42px;
+      }
+
+      table.rankings-table col:nth-child(3) {
+        width: 62px;
+      }
+
       table.rankings-table th,
       table.rankings-table td {
-        padding: 5px 6px;
-        font-size: 0.93rem;
+        padding: 5px 4px;
+        font-size: 0.9rem;
+      }
+
+      .rank-name-link,
+      .rank-name-text {
+        line-height: 1.28;
       }
     }
   </style>
@@ -86,6 +123,11 @@
         <p id="rankings-status" class="muted">読み込み中...</p>
         <div class="rankings-table-wrap">
           <table class="rankings-table">
+            <colgroup>
+              <col />
+              <col />
+              <col />
+            </colgroup>
             <thead>
               <tr>
                 <th>順位</th>
@@ -142,7 +184,13 @@
               const mcId = item.mc_id || "";
               const mcName = item.mc_name || "名前不明";
 
-              const rawScore = item.current_strength_score_v2 ?? item.current_strength_score ?? item.current_score ?? item.score ?? "";
+              const rawScore =
+                item.current_strength_score_v2 ??
+                item.current_strength_score ??
+                item.current_score ??
+                item.score ??
+                "";
+
               const score = rawScore !== "" && !isNaN(Number(rawScore))
                 ? Number(rawScore).toFixed(2)
                 : String(rawScore);
@@ -156,7 +204,10 @@
                 a.className = "rank-name-link";
                 nameTd.appendChild(a);
               } else {
-                nameTd.textContent = mcName;
+                const span = document.createElement("span");
+                span.textContent = mcName;
+                span.className = "rank-name-text";
+                nameTd.appendChild(span);
               }
 
               scoreTd.textContent = score;
