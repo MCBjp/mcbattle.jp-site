@@ -6,6 +6,33 @@
   <title>大会記録 | MC Battle DB</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    .page-top{
+      margin-bottom: 18px;
+    }
+
+    .page-mini-logo{
+      margin: 0 0 10px;
+    }
+
+    .page-mini-logo .site-mini-logo{
+      text-decoration: none;
+    }
+
+    .page-header-block{
+      margin-bottom: 14px;
+    }
+
+    .page-header-block h1{
+      margin: 0 0 8px;
+    }
+
+    .page-header-meta{
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
     .event-card-inner {
       padding-left: 12px;
       padding-right: 12px;
@@ -17,11 +44,15 @@
 
     .result-block {
       display: block;
-      line-height: 1.9;
+      line-height: 1.7;
     }
 
     .result-line {
       display: block;
+    }
+
+    .result-line + .result-line {
+      margin-top: 2px;
     }
 
     .result-line a {
@@ -29,7 +60,31 @@
       text-decoration: underline;
     }
 
+    .result-line.is-sub {
+      color: var(--muted);
+    }
+
+    .result-line.is-sub a {
+      color: inherit;
+    }
+
     @media (max-width: 640px) {
+      .page-top{
+        margin-bottom: 14px;
+      }
+
+      .page-mini-logo{
+        margin-bottom: 8px;
+      }
+
+      .page-header-block{
+        margin-bottom: 12px;
+      }
+
+      .page-header-meta{
+        font-size: 0.95rem;
+      }
+
       .event-card-inner {
         padding-left: 10px;
         padding-right: 10px;
@@ -39,12 +94,14 @@
 </head>
 <body>
   <div class="event-page">
-    <p><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
+    <div class="page-top">
+      <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
-    <header>
-      <h1 id="event-title">大会情報を読み込み中...</h1>
-      <p id="event-meta" class="muted"></p>
-    </header>
+      <div class="page-header-block">
+        <h1 id="event-title">大会情報を読み込み中...</h1>
+        <p id="event-meta" class="page-header-meta"></p>
+      </div>
+    </div>
 
     <section class="card">
       <div class="event-card-inner">
@@ -79,6 +136,19 @@
       const normalized = String(value).replace(/,/g, "").trim();
       if (!/^\d+$/.test(normalized)) return String(value);
       return Number(normalized).toLocaleString("ja-JP");
+    }
+
+    function formatPrizeYen(value) {
+      const formatted = formatNumberWithComma(value);
+      if (!formatted) return "";
+      return "¥" + formatted;
+    }
+
+    function formatDateJP(value) {
+      if (!value) return "";
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return String(value);
+      return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
     }
 
     function escapeHtml(value) {
@@ -161,8 +231,8 @@
       const lines = [];
 
       if (winnerName) lines.push(`<span class="result-line">🥇 ${renderMcLink(winnerName, winnerMcId)}</span>`);
-      if (runnerUpName) lines.push(`<span class="result-line">🥈 ${renderMcLink(runnerUpName, runnerUpMcId)}</span>`);
-      best4List.forEach(line => lines.push(`<span class="result-line">${line}</span>`));
+      if (runnerUpName) lines.push(`<span class="result-line is-sub">🥈 ${renderMcLink(runnerUpName, runnerUpMcId)}</span>`);
+      best4List.forEach(line => lines.push(`<span class="result-line is-sub">${line}</span>`));
 
       if (!lines.length) return "−";
       return `<span class="result-block">${lines.join("")}</span>`;
@@ -174,69 +244,68 @@
       const style = document.createElement("style");
       style.id = "event-match-row-style";
       style.textContent = `
-        .round-block { margin-top: 20px; }
+        .round-block { margin-top: 18px; }
         .round-heading { margin-bottom: 10px; }
         .match-list { list-style: none; padding: 0; margin: 0; }
         .match-list > li { margin: 0 0 10px 0; padding: 0; background: transparent; border: none; color: inherit; }
         .match-row-wrap { display: block; }
         .match-row-box {
-          display: inline-block;
+          display: block;
           max-width: 100%;
           padding: 10px 12px;
-          border-radius: 8px;
-          background: transparent;
-          border: 1px solid currentColor;
+          border-radius: 14px;
+          background: rgba(255,255,255,0.025);
+          border: 1px solid rgba(255,255,255,0.14);
           color: inherit;
+          box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
         }
-        .match-row {
-          display: grid;
-          grid-template-columns: 34px minmax(140px, 210px) 20px 34px minmax(140px, 210px);
-          gap: 6px;
-          align-items: center;
-          justify-content: start;
-          width: fit-content;
-          max-width: 100%;
-          color: inherit;
+        .match-line {
+          display: flex;
+          align-items: flex-start;
+          gap: 0;
+          min-width: 0;
         }
-        .match-line { display: none; }
-        .mark { white-space: nowrap; font-weight: 700; color: inherit; }
-        .name { min-width: 0; overflow-wrap: anywhere; word-break: break-word; color: inherit; }
-        .name a, .meta-list a { color: inherit; text-decoration: underline; }
-        .vs-part { white-space: nowrap; text-align: center; font-weight: 700; color: inherit; }
-        .judge-method {
+        .match-line + .match-line {
           margin-top: 6px;
+        }
+        .match-line .name {
+          flex: 1 1 auto;
+          min-width: 0;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          color: inherit;
+          line-height: 1.42;
+        }
+        .match-line-winner .name {
+          color: var(--accent);
+          font-weight: 700;
+        }
+        .match-line-loser .name {
+          color: #7f8798;
+          font-weight: 600;
+        }
+        .match-line .name a,
+        .meta-list a {
+          color: inherit;
+          text-decoration: underline;
+          text-underline-offset: 0.15em;
+        }
+        .judge-method {
+          margin-top: 7px;
           width: fit-content;
           max-width: 100%;
-          font-size: 0.9em;
+          font-size: 0.88em;
           text-align: left;
-          color: inherit;
-          opacity: 0.8;
-        }
-        .note-box {
-          margin-bottom: 12px;
-          padding: 10px 12px;
-          border-radius: 8px;
-          background: transparent;
-          border: 1px solid currentColor;
-          color: inherit;
-        }
-        @media (max-width: 900px) {
-          .match-row-box { display: block; width: 100%; }
-          .match-row {
-            grid-template-columns: 34px minmax(110px, 1fr) 18px 34px minmax(110px, 1fr);
-            width: 100%;
-          }
-          .judge-method { width: 100%; }
+          color: var(--muted);
         }
         @media (max-width: 640px) {
-          .match-row-box { display: block; width: 100%; padding: 8px 10px; }
-          .match-row { display: none; }
-          .match-line { display: flex; align-items: flex-start; gap: 6px; min-width: 0; }
-          .match-line + .match-line { margin-top: 4px; }
-          .match-line .mark { flex: 0 0 auto; }
-          .match-line .name { flex: 1 1 auto; min-width: 0; }
-          .vs-part { display: none; }
-          .judge-method { text-align: center; }
+          .match-row-box {
+            padding: 9px 10px;
+            border-radius: 12px;
+          }
+          .match-line + .match-line {
+            margin-top: 5px;
+          }
         }
       `;
       document.head.appendChild(style);
@@ -283,14 +352,18 @@
         groupedMatches.sort((a, b) => getRoundSortValue(a.round_name) - getRoundSortValue(b.round_name));
 
         const totalMatches = Number(data.total_matches || 0);
-        const formattedWinnerPrize = formatNumberWithComma(event.prize_money_winner);
+        const formattedWinnerPrize = formatPrizeYen(event.prize_money_winner);
         const resultsHtml = buildResultsHtml(event, groupedMatches);
 
         titleEl.textContent = event.event_name_full || event.event_name || "大会名不明";
-        metaEl.textContent = `${event.event_date || ""} ${event.event_category || ""}`.trim();
+
+        const metaParts = [];
+        if (event.event_date) metaParts.push(formatDateJP(event.event_date));
+        if (event.event_category) metaParts.push(event.event_category);
+        metaEl.textContent = metaParts.join(" / ");
 
         const infoItems = [
-          { label: "開催日", html: escapeHtml(event.event_date || "") },
+          { label: "開催日", html: escapeHtml(formatDateJP(event.event_date || "")) },
           { label: "カテゴリ", html: escapeHtml(event.event_category || "") },
           { label: "結果", html: resultsHtml },
           { label: "優勝賞金", html: escapeHtml(formattedWinnerPrize || "") }
@@ -311,7 +384,7 @@
         });
 
         groupedMatches.forEach((group) => {
-          const roundName = String(group.round_name || "").trim() || "ラウンド不明";
+          const roundName = normalizeRoundLabel(group.round_name) || "ラウンド不明";
 
           const block = document.createElement("div");
           block.className = "round-block";
@@ -336,19 +409,10 @@
 
             li.innerHTML = `
               <div class="match-row-box">
-                <div class="match-row">
-                  <span class="mark mark-winner">【◯】</span>
-                  <span class="name name-winner">${winnerHtml}</span>
-                  <span class="vs-part">×</span>
-                  <span class="mark mark-loser">【✕】</span>
-                  <span class="name name-loser">${loserHtml}</span>
-                </div>
                 <div class="match-line match-line-winner">
-                  <span class="mark mark-winner">【◯】</span>
                   <span class="name name-winner">${winnerHtml}</span>
                 </div>
                 <div class="match-line match-line-loser">
-                  <span class="mark mark-loser">【✕】</span>
                   <span class="name name-loser">${loserHtml}</span>
                 </div>
                 ${judgeMethod ? `<div class="judge-method">判定: ${judgeMethod}</div>` : ""}
@@ -361,7 +425,7 @@
           matchesListEl.appendChild(block);
         });
 
-        matchesStatusEl.textContent = totalMatches === 0 ? "試合結果がありません" : `${totalMatches}試合を表示`;
+        matchesStatusEl.textContent = totalMatches === 0 ? "試合結果がありません" : "";
       } catch (err) {
         console.error(err);
         titleEl.textContent = "大会情報の読み込みに失敗しました";
