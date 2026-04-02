@@ -66,6 +66,7 @@
       width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
       margin-left:auto;
       margin-right:auto;
+      overflow-x:hidden;
     }
 
     .vt-hero{
@@ -124,7 +125,7 @@
 
     .vt-search-row{
       display:grid;
-      grid-template-columns:minmax(0,1fr) 74px;
+      grid-template-columns:minmax(0,1fr) 72px;
       gap:10px;
       align-items:center;
       margin-top:2px;
@@ -132,14 +133,14 @@
 
     .vt-search-box{
       width:100%;
-      min-height:56px;
+      min-height:54px;
       border-radius:18px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(13,17,28,.68);
       color:var(--text);
       padding:0 14px;
       font:inherit;
-      font-size:.98rem;
+      font-size:.95rem;
       outline:none;
     }
 
@@ -148,14 +149,14 @@
     }
 
     .vt-count-badge{
-      min-height:56px;
+      min-height:54px;
       border-radius:18px;
       border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.06);
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:1.1rem;
+      font-size:1.08rem;
       font-weight:800;
       color:#d7deef;
     }
@@ -198,14 +199,14 @@
     }
 
     .vt-main-button{
-      min-height:56px;
+      min-height:54px;
       border:2px solid rgba(255,255,255,.68);
       font-size:.98rem;
       font-weight:800;
     }
 
     .vt-sub-button{
-      min-height:48px;
+      min-height:46px;
       border:1px solid rgba(255,255,255,.34);
       color:#d4dbea;
       font-size:.9rem;
@@ -218,7 +219,7 @@
 
     .vt-selected-title{
       margin:0 0 8px;
-      font-size:1.08rem;
+      font-size:1.04rem;
       line-height:1.2;
       font-weight:800;
     }
@@ -231,12 +232,12 @@
 
     .vt-selected-item{
       display:grid;
-      grid-template-columns:minmax(0,1fr) 22px;
+      grid-template-columns:minmax(0,1fr) 20px;
       align-items:center;
       gap:8px;
       min-width:0;
-      min-height:48px;
-      padding:0 12px;
+      min-height:54px;
+      padding:8px 11px;
       border-radius:16px;
       border:2px solid rgba(255,255,255,.78);
       background:rgba(13,17,28,.22);
@@ -245,25 +246,30 @@
 
     .vt-selected-name{
       min-width:0;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
       overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      font-size:.88rem;
-      font-weight:800;
+      white-space:normal;
+      line-height:1.25;
+      font-size:.84rem;
+      font-weight:400;
       color:var(--text);
+      word-break:break-word;
     }
 
     .vt-remove-btn{
+      align-self:center;
       border:none;
       background:transparent;
       color:#dbe1ed;
       font:inherit;
-      font-size:1.35rem;
+      font-size:1.25rem;
       line-height:1;
       cursor:pointer;
       padding:0;
-      width:22px;
-      height:22px;
+      width:20px;
+      height:20px;
     }
 
     .vt-candidates{
@@ -279,7 +285,7 @@
 
     .vt-candidate-btn{
       width:100%;
-      min-height:46px;
+      min-height:44px;
       padding:0 14px;
       border-radius:15px;
       border:1px solid rgba(255,255,255,.16);
@@ -314,49 +320,6 @@
       display:flex;
       flex-direction:column;
       gap:10px;
-    }
-
-    .vt-loading-overlay{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      padding:18px 12px 14px;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.025);
-      text-align:center;
-    }
-
-    .vt-loading-text{
-      margin:0;
-      color:var(--text);
-      font-size:.96rem;
-      font-weight:700;
-      line-height:1.5;
-    }
-
-    .vt-loading-count{
-      margin:0;
-      font-size:2rem;
-      font-weight:900;
-      line-height:1;
-      color:#ffffff;
-    }
-
-    .vt-loading-spinner{
-      width:28px;
-      height:28px;
-      border-radius:50%;
-      border:3px solid rgba(255,255,255,.2);
-      border-top-color:#d7deef;
-      animation:vt-spin 1s linear infinite;
-    }
-
-    @keyframes vt-spin{
-      from{ transform:rotate(0deg); }
-      to{ transform:rotate(360deg); }
     }
 
     .vt-hero-result{
@@ -400,68 +363,116 @@
     .vt-summary-lines{
       display:flex;
       flex-direction:column;
-      gap:8px;
+      gap:10px;
     }
 
     .vt-summary-lines p{
       margin:0;
       color:var(--text);
-      line-height:1.65;
+      line-height:1.75;
       font-size:.93rem;
     }
 
-    .vt-dist-table-wrap{
-      overflow-x:hidden;
-      width:100%;
+    .vt-dist-card-head,
+    .vt-dist-row{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 72px;
+      gap:10px;
+      align-items:center;
     }
 
-    .vt-dist-table{
-      width:100%;
-      border-collapse:collapse;
-      table-layout:fixed;
-    }
-
-    .vt-dist-table col:first-child{
-      width:auto;
-    }
-
-    .vt-dist-table col:last-child{
-      width:84px;
-    }
-
-    .vt-dist-table th,
-    .vt-dist-table td{
-      padding:11px 12px;
+    .vt-dist-card-head{
+      padding:12px 12px;
       border-bottom:1px solid var(--line);
-      vertical-align:middle;
-    }
-
-    .vt-dist-table th{
+      background:rgba(255,255,255,.03);
       color:#b8bfd0;
       font-size:.88rem;
       font-weight:800;
-      background:rgba(255,255,255,.03);
-      text-align:left;
     }
 
-    .vt-dist-table th:last-child,
-    .vt-dist-table td:last-child{
-      text-align:right;
-      white-space:nowrap;
-      font-variant-numeric:tabular-nums;
+    .vt-dist-list{
+      display:flex;
+      flex-direction:column;
     }
 
-    .vt-dist-table td{
-      font-size:.93rem;
-      line-height:1.35;
+    .vt-dist-row{
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .vt-dist-row:last-child{
+      border-bottom:none;
     }
 
     .vt-dist-name{
-      display:block;
       min-width:0;
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
+      font-size:.93rem;
+      line-height:1.35;
+    }
+
+    .vt-dist-rate{
+      text-align:right;
+      white-space:nowrap;
+      font-variant-numeric:tabular-nums;
+      font-size:.93rem;
+      line-height:1.35;
+    }
+
+    .vt-overlay{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(7,9,14,.92);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      padding:24px;
+    }
+
+    .vt-overlay-box{
+      width:min(100%, 420px);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      text-align:center;
+    }
+
+    .vt-overlay-spinner{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:4px solid rgba(255,255,255,.18);
+      border-top-color:#ffffff;
+      animation:vt-spin 1s linear infinite;
+    }
+
+    .vt-overlay-text{
+      margin:0;
+      color:#f3f5fa;
+      font-size:1rem;
+      font-weight:700;
+      line-height:1.6;
+    }
+
+    .vt-overlay-count{
+      margin:0;
+      color:#ffffff;
+      font-size:3.2rem;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:.02em;
+    }
+
+    @keyframes vt-spin{
+      from{ transform:rotate(0deg); }
+      to{ transform:rotate(360deg); }
     }
 
     .is-hidden{
@@ -497,12 +508,16 @@
       }
 
       .vt-title{
-        font-size:clamp(2rem, 9.6vw, 2.85rem);
+        font-size:clamp(2rem, 9.4vw, 2.8rem);
       }
 
       .vt-lead{
         font-size:.94rem;
         line-height:1.66;
+      }
+
+      .vt-overlay-count{
+        font-size:2.8rem;
       }
     }
   </style>
@@ -531,7 +546,7 @@
         <span class="vt-step-label">①MCを選ぶ</span>
 
         <div class="vt-search-row">
-          <input id="mc-search-input" class="vt-search-box" type="text" placeholder="MC名またはよみがなで検索" autocomplete="off" />
+          <input id="mc-search-input" class="vt-search-box" type="text" placeholder="MC名/読み仮名で検索" autocomplete="off" />
           <div id="selected-count-badge" class="vt-count-badge">0/8</div>
         </div>
 
@@ -560,42 +575,34 @@
           <button id="run-sim-btn" class="vt-main-button" type="button">100回シミュレーションする</button>
           <p id="sim-status" class="vt-status">8人選ぶとシミュレーションできます。</p>
 
-          <div id="sim-loading" class="vt-loading-overlay is-hidden">
-            <div class="vt-loading-spinner" aria-hidden="true"></div>
-            <p class="vt-loading-text">100回戦ってもらっています</p>
-            <p id="sim-loading-count" class="vt-loading-count">5</p>
-          </div>
-
           <div id="top-result-card" class="vt-hero-result is-hidden">
             <span class="vt-hero-result-label">最も優勝確率が高いMC</span>
             <span id="top-result-name" class="vt-hero-result-name">-</span>
+          </div>
+
+          <div id="dist-card" class="vt-summary-card is-hidden">
+            <h2 class="vt-table-title">全体分布</h2>
+            <div class="vt-dist-card-head">
+              <div>MC</div>
+              <div style="text-align:right;">優勝率</div>
+            </div>
+            <div id="dist-list" class="vt-dist-list"></div>
           </div>
 
           <div id="summary-card" class="vt-summary-card is-hidden">
             <h2 class="vt-summary-title">結果サマリー</h2>
             <div id="summary-lines" class="vt-summary-lines"></div>
           </div>
-
-          <div id="dist-card" class="vt-summary-card is-hidden">
-            <h2 class="vt-table-title">全体分布</h2>
-            <div class="vt-dist-table-wrap">
-              <table class="vt-dist-table">
-                <colgroup>
-                  <col />
-                  <col />
-                </colgroup>
-                <thead>
-                  <tr>
-                    <th>MC</th>
-                    <th>優勝率</th>
-                  </tr>
-                </thead>
-                <tbody id="dist-body"></tbody>
-              </table>
-            </div>
-          </div>
         </div>
       </section>
+    </div>
+  </div>
+
+  <div id="sim-overlay" class="vt-overlay is-hidden" aria-hidden="true">
+    <div class="vt-overlay-box">
+      <div class="vt-overlay-spinner" aria-hidden="true"></div>
+      <p class="vt-overlay-text">100回戦ってもらっています</p>
+      <p id="sim-overlay-count" class="vt-overlay-count">5</p>
     </div>
   </div>
 
@@ -608,7 +615,7 @@
     let strengthMap = {};
     let selectedMcs = [];
     let filteredCandidates = [];
-    let loadingTimer = null;
+    let overlayTimer = null;
 
     async function loadJson(url) {
       const res = await fetch(url, { cache: "no-store" });
@@ -645,14 +652,11 @@
     }
 
     function getTop100Pool() {
-      const rankingOrder = Object.values(strengthMap)
+      return Object.values(strengthMap)
         .filter(item => item && item.mc_id && item.mc_name)
         .sort((a, b) => (b.current_score || 0) - (a.current_score || 0))
         .slice(0, 100)
-        .map(item => item.mc_id);
-
-      return rankingOrder
-        .map(mcId => allCandidates.find(mc => mc.mc_id === mcId))
+        .map(item => allCandidates.find(mc => mc.mc_id === item.mc_id))
         .filter(Boolean);
     }
 
@@ -669,7 +673,7 @@
 
       grid.innerHTML = selectedMcs.map(mc => `
         <div class="vt-selected-item">
-          <div class="vt-selected-name" title="${escapeHtml(mc.mc_name)}">${escapeHtml(mc.mc_name)}</div>
+          <div class="vt-selected-name">${escapeHtml(mc.mc_name)}</div>
           <button class="vt-remove-btn" type="button" data-remove-id="${escapeHtml(mc.mc_id)}">×</button>
         </div>
       `).join("");
@@ -773,30 +777,36 @@
       return round[0];
     }
 
-    function buildSummaryLines(sortedResults) {
+    function buildLongSummaryLines(sortedResults) {
       const top = sortedResults[0];
       const second = sortedResults[1];
       const third = sortedResults[2];
+      const fourth = sortedResults[3];
       const lines = [];
 
       if (top) {
-        lines.push(`${top.mc_name} が最有力で、優勝率は${top.winRate}%でした。`);
+        lines.push(`${top.mc_name} が最有力です。優勝回数は${top.wins}回、優勝率は${top.winRate}%でした。`);
       }
 
-      const rivals = [second, third].filter(Boolean);
-      if (rivals.length > 0) {
-        const rivalText = rivals.map(item => `${item.mc_name} ${item.winRate}%`).join("、");
-        lines.push(`次点は ${rivalText} です。`);
+      if (second || third) {
+        const rivalParts = [];
+        if (second) rivalParts.push(`${second.mc_name}が対抗格で、優勝率は${second.winRate}%です。`);
+        if (third) rivalParts.push(`${third.mc_name}も射程圏にいて、優勝率は${third.winRate}%です。`);
+        lines.push(rivalParts.join(" "));
       }
 
       if (top) {
         if (top.winRate >= 50) {
-          lines.push(`今回は ${top.mc_name} 優勢の結果です。`);
-        } else if (top.winRate >= 30) {
-          lines.push(`今回は ${top.mc_name} が一歩リードしています。`);
+          lines.push(`${top.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`);
+        } else if (top.winRate >= 35) {
+          lines.push(`${top.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。`);
         } else {
-          lines.push(`大本命がいない、混戦寄りの結果です。`);
+          lines.push(`上位が拮抗していて、組み合わせ次第で優勝が入れ替わる混戦傾向です。`);
         }
+      }
+
+      if (second && fourth) {
+        lines.push(`${second.mc_name}以下も十分にチャンスがあり、${fourth.mc_name}あたりまで優勝候補に入る展開でした。`);
       }
 
       return lines;
@@ -805,10 +815,10 @@
     function renderSimulationResults(results) {
       const topCard = document.getElementById("top-result-card");
       const topName = document.getElementById("top-result-name");
+      const distCard = document.getElementById("dist-card");
+      const distList = document.getElementById("dist-list");
       const summaryCard = document.getElementById("summary-card");
       const summaryLines = document.getElementById("summary-lines");
-      const distCard = document.getElementById("dist-card");
-      const distBody = document.getElementById("dist-body");
 
       const sortedResults = Object.values(results)
         .sort((a, b) => b.winRate - a.winRate || a.mc_name.localeCompare(b.mc_name, "ja"));
@@ -818,37 +828,37 @@
       topName.textContent = sortedResults[0].mc_name;
       topCard.classList.remove("is-hidden");
 
-      const lines = buildSummaryLines(sortedResults);
-      summaryLines.innerHTML = lines.map(line => `<p>${escapeHtml(line)}</p>`).join("");
-      summaryCard.classList.remove("is-hidden");
-
-      distBody.innerHTML = sortedResults.map(item => `
-        <tr>
-          <td><span class="vt-dist-name" title="${escapeHtml(item.mc_name)}">${escapeHtml(item.mc_name)}</span></td>
-          <td>${item.winRate}%</td>
-        </tr>
+      distList.innerHTML = sortedResults.map(item => `
+        <div class="vt-dist-row">
+          <div class="vt-dist-name" title="${escapeHtml(item.mc_name)}">${escapeHtml(item.mc_name)}</div>
+          <div class="vt-dist-rate">${item.winRate}%</div>
+        </div>
       `).join("");
       distCard.classList.remove("is-hidden");
+
+      const lines = buildLongSummaryLines(sortedResults);
+      summaryLines.innerHTML = lines.map(line => `<p>${escapeHtml(line)}</p>`).join("");
+      summaryCard.classList.remove("is-hidden");
     }
 
     function hideSimulationResults() {
       document.getElementById("top-result-card").classList.add("is-hidden");
-      document.getElementById("summary-card").classList.add("is-hidden");
       document.getElementById("dist-card").classList.add("is-hidden");
+      document.getElementById("summary-card").classList.add("is-hidden");
     }
 
-    function showLoadingState() {
-      document.getElementById("sim-loading").classList.remove("is-hidden");
-      hideSimulationResults();
+    function showOverlay() {
+      document.getElementById("sim-overlay").classList.remove("is-hidden");
+      document.getElementById("sim-overlay").setAttribute("aria-hidden", "false");
     }
 
-    function hideLoadingState() {
-      document.getElementById("sim-loading").classList.add("is-hidden");
+    function hideOverlay() {
+      document.getElementById("sim-overlay").classList.add("is-hidden");
+      document.getElementById("sim-overlay").setAttribute("aria-hidden", "true");
     }
 
     function scrollToResultPanel() {
-      const panel = document.getElementById("result-panel");
-      panel.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.getElementById("result-panel").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function runSimulationCore() {
@@ -879,24 +889,24 @@
       if (selectedMcs.length !== MAX_SELECTED) return;
 
       const status = document.getElementById("sim-status");
-      const countEl = document.getElementById("sim-loading-count");
+      const countEl = document.getElementById("sim-overlay-count");
       const runBtn = document.getElementById("run-sim-btn");
 
-      if (loadingTimer) {
-        clearInterval(loadingTimer);
-        loadingTimer = null;
+      if (overlayTimer) {
+        clearInterval(overlayTimer);
+        overlayTimer = null;
       }
 
+      hideSimulationResults();
+      showOverlay();
+      countEl.textContent = "5";
+      status.textContent = "100回戦ってもらっています。";
       runBtn.disabled = true;
       runBtn.style.opacity = "0.55";
-      status.textContent = "100回戦ってもらっています。";
-      countEl.textContent = "5";
-      showLoadingState();
-      scrollToResultPanel();
 
       let count = 5;
 
-      loadingTimer = setInterval(() => {
+      overlayTimer = setInterval(() => {
         count -= 1;
 
         if (count >= 1) {
@@ -904,11 +914,11 @@
           return;
         }
 
-        clearInterval(loadingTimer);
-        loadingTimer = null;
+        clearInterval(overlayTimer);
+        overlayTimer = null;
 
         const results = runSimulationCore();
-        hideLoadingState();
+        hideOverlay();
         renderSimulationResults(results);
         status.textContent = "シミュレーション結果を表示しています。";
         runBtn.disabled = false;
@@ -940,7 +950,7 @@
         renderCandidates();
         updateSimReadyState();
         hideSimulationResults();
-        hideLoadingState();
+        hideOverlay();
 
         document.getElementById("mc-search-input").addEventListener("input", renderCandidates);
 
@@ -960,12 +970,16 @@
         });
 
         document.getElementById("clear-selected-btn").addEventListener("click", () => {
+          if (overlayTimer) {
+            clearInterval(overlayTimer);
+            overlayTimer = null;
+          }
           selectedMcs = [];
           renderSelected();
           renderCandidates();
           updateSimReadyState();
           hideSimulationResults();
-          hideLoadingState();
+          hideOverlay();
           document.getElementById("sim-status").textContent = "8人選ぶとシミュレーションできます。";
         });
 
