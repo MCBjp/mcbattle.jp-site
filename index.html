@@ -55,7 +55,6 @@
       text-decoration: none !important;
     }
 
-    /* index専用: style.cssの変数を使って左寄せ管理 */
     .container{
       width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
       margin-left:auto;
@@ -68,8 +67,9 @@
 
     .site-header-row{
       display:flex;
+      flex-direction:column;
       align-items:flex-start;
-      gap:18px;
+      gap:12px;
     }
 
     .site-title{
@@ -82,15 +82,14 @@
       color:var(--text);
       margin:0;
       line-height:1.05;
-      flex:0 0 auto;
     }
 
     .site-header-copy{
       min-width:0;
-      padding-top:4px;
       display:flex;
       flex-direction:column;
       gap:10px;
+      align-items:flex-start;
     }
 
     .header-message{
@@ -99,6 +98,7 @@
       font-weight:600;
       line-height:1.6;
       color:var(--text);
+      text-align:left;
     }
 
     .header-spec-link{
@@ -191,8 +191,8 @@
       display:block;
       margin-bottom:4px;
       color:#c7d8ff;
-      font-size:12px;
-      letter-spacing:.08em;
+      font-size:13px;
+      letter-spacing:.03em;
       font-weight:700;
       transition:color .18s ease;
     }
@@ -348,7 +348,7 @@
 
     .rank-name{
       min-width:0;
-      font-size:14px;
+      font-size:16px;
       font-weight:700;
       white-space:nowrap;
       overflow:hidden;
@@ -362,7 +362,7 @@
 
     .rank-score{
       color:var(--muted);
-      font-size:12px;
+      font-size:14px;
       font-variant-numeric:tabular-nums;
       white-space:nowrap;
       transition:color .18s ease;
@@ -382,6 +382,10 @@
       color:var(--danger);
     }
 
+    .status.hidden{
+      display:none;
+    }
+
     .footer-space{
       height:28px;
     }
@@ -395,11 +399,6 @@
     }
 
     @media (max-width:980px){
-      .site-header-row{
-        flex-direction:column;
-        gap:10px;
-      }
-
       .dashboard-grid{
         grid-template-columns:1fr;
       }
@@ -416,10 +415,6 @@
 
       .site-header-row{
         gap:8px;
-      }
-
-      .site-header-copy{
-        padding-top:0;
       }
 
       .header-message{
@@ -443,6 +438,14 @@
       .rank-row{
         grid-template-columns:34px minmax(0,1fr) auto;
       }
+
+      .rank-name{
+        font-size:15px;
+      }
+
+      .rank-score{
+        font-size:13px;
+      }
     }
   </style>
 </head>
@@ -464,7 +467,7 @@
       <div class="container">
         <div class="hero-stack">
           <a class="sim-card" href="virtual_tournament.html">
-            <span class="sim-kicker">8人のMCを選んで戦わせる</span>
+            <span class="sim-kicker">現役勢の8人を選んで戦わせる</span>
             <h3 class="sim-title">仮想MCバトルシミュレーション</h3>
             <p class="sim-sub">選んだ8人で100回トーナメントを回し、優勝・準優勝・Best4などの分布を確認できます。</p>
           </a>
@@ -613,6 +616,7 @@
       if (!el) return;
       el.textContent = message;
       el.classList.toggle("error", !!isError);
+      el.classList.toggle("hidden", !message);
     }
 
     function jsonp(url) {
@@ -763,7 +767,7 @@
           .slice(0, 5);
 
         renderEventList("future-events", futureEvents, "今後開催予定の大会はありません");
-        setStatus("future-events-status", futureEvents.length ? "" : "今後開催予定の大会はありません");
+        setStatus("future-events-status", "");
       } catch (error) {
         console.error(error);
         setStatus("future-events-status", "今後開催予定の大会の読み込みに失敗しました。", true);
