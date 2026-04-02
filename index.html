@@ -399,6 +399,18 @@
       height:28px;
     }
 
+    .dashboard-card.is-empty{
+      padding-bottom:10px;
+    }
+
+    .dashboard-card.is-empty .dashboard-list{
+      display:none;
+    }
+
+    .dashboard-card.is-empty .status{
+      padding-top:2px;
+    }
+
     @media (min-width: 1024px){
       .container{
         width:min(var(--content-max), calc(100% - var(--pc-left-gutter) - var(--page-gutter)));
@@ -422,7 +434,7 @@
         width:auto !important;
         max-width:none !important;
         margin:0 !important;
-        padding:20px 0 10px !important;
+        padding:18px 0 8px !important;
       }
 
       .site-header-inner{
@@ -431,92 +443,131 @@
       }
 
       .site-header-row{
-        gap:6px;
+        gap:5px;
       }
 
       .site-title{
-        font-size:clamp(30px, 9vw, 44px);
+        font-size:clamp(28px, 8.2vw, 40px);
       }
 
       .site-header-copy{
-        gap:8px;
+        gap:7px;
       }
 
       .header-message{
-        font-size:14px;
-        line-height:1.55;
+        font-size:13px;
+        line-height:1.48;
       }
 
       .header-spec-link{
         width:100%;
         white-space:normal;
-      }
-
-      .hero{
-        padding:4px 0 12px;
-      }
-
-      .hero-stack{
-        gap:12px;
-      }
-
-      .sim-card{
-        padding:14px 14px;
-        border-radius:16px;
-      }
-
-      .sim-kicker{
-        margin-bottom:2px;
+        padding:8px 12px;
+        min-height:0;
+        border-radius:13px;
         font-size:12px;
       }
 
+      .hero{
+        padding:2px 0 10px;
+      }
+
+      .hero-stack{
+        gap:10px;
+      }
+
+      .sim-card{
+        padding:12px 13px;
+        border-radius:15px;
+      }
+
+      .sim-kicker{
+        margin-bottom:1px;
+        font-size:11px;
+      }
+
       .sim-title{
-        font-size:15px;
-        line-height:1.35;
+        font-size:14px;
+        line-height:1.3;
       }
 
       .link-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:10px;
+        gap:8px;
       }
 
       .link-card{
-        min-height:66px;
-        padding:12px 10px;
-        border-radius:16px;
-        font-size:14px;
-        line-height:1.35;
+        min-height:60px;
+        padding:10px 8px;
+        border-radius:15px;
+        font-size:13px;
+        line-height:1.28;
         overflow-wrap:anywhere;
         word-break:break-word;
       }
 
       .dashboard{
-        padding:4px 0 40px;
+        padding:2px 0 34px;
       }
 
       .dashboard-grid{
-        gap:12px;
+        gap:10px;
       }
 
       .dashboard-card{
-        padding:16px 14px 12px;
+        padding:14px 12px 10px;
+        border-radius:18px;
       }
 
       .dashboard-title{
-        margin:0 0 10px;
-        font-size:16px;
-      }
-
-      .rank-row{
-        grid-template-columns:34px minmax(0,1fr) auto;
-      }
-
-      .rank-name{
+        margin:0 0 8px;
         font-size:15px;
       }
 
-      .rank-score{
+      .dashboard-list{
+        gap:8px;
+      }
+
+      .list-row{
+        padding:9px 10px 8px;
+        border-radius:13px;
+        box-shadow:0 0 0 1px rgba(255,255,255,.015) inset;
+      }
+
+      .event-date{
+        font-size:11px;
+        margin-bottom:2px;
+      }
+
+      .event-name{
         font-size:13px;
+        line-height:1.34;
+      }
+
+      .rank-row{
+        grid-template-columns:28px minmax(0,1fr) auto;
+        gap:8px;
+      }
+
+      .rank-num{
+        font-size:17px;
+      }
+
+      .rank-name{
+        font-size:14px;
+      }
+
+      .rank-score{
+        font-size:12px;
+      }
+
+      .status{
+        font-size:12px;
+        padding:2px 1px 1px;
+      }
+
+      .dashboard-card.is-empty{
+        padding-bottom:8px;
       }
     }
   </style>
@@ -559,7 +610,7 @@
     <section class="dashboard">
       <div class="container">
         <div class="dashboard-grid">
-          <section class="panel dashboard-card">
+          <section id="future-events-card" class="panel dashboard-card">
             <h2 class="dashboard-title">今後開催予定の大会</h2>
             <div id="future-events" class="dashboard-list"></div>
             <div id="future-events-status" class="status">読み込み中…</div>
@@ -691,6 +742,12 @@
       el.textContent = message;
       el.classList.toggle("error", !!isError);
       el.classList.toggle("hidden", !message);
+    }
+
+    function setEmptyCard(cardId, isEmpty) {
+      const card = document.getElementById(cardId);
+      if (!card) return;
+      card.classList.toggle("is-empty", !!isEmpty);
     }
 
     function jsonp(url) {
@@ -842,9 +899,11 @@
 
         renderEventList("future-events", futureEvents, "今後開催予定の大会はありません");
         setStatus("future-events-status", "");
+        setEmptyCard("future-events-card", futureEvents.length === 0);
       } catch (error) {
         console.error(error);
         setStatus("future-events-status", "今後開催予定の大会の読み込みに失敗しました。", true);
+        setEmptyCard("future-events-card", false);
       }
     }
 
