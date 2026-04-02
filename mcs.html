@@ -249,7 +249,7 @@
 
   <script>
     const MCS_JSON_URL = "./data/mcs.json";
-    const TAB_ORDER = ["あ", "か", "さ", "た", "な", "は", "ま", "や", "ら", "わ", "その他"];
+    const TAB_ORDER = ["あ", "か", "さ", "た", "な", "は", "ま", "や", "ら", "わ"];
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -281,7 +281,7 @@
       if ("らりるれろ".includes(first)) return "ら";
       if ("わをん".includes(first)) return "わ";
 
-      return "その他";
+      return "";
     }
 
     function sortMcs(mcs) {
@@ -381,10 +381,24 @@
           groups[tab] = [];
         });
 
+        const skipped = [];
+
         mcs.forEach(mc => {
           const group = getTabGroup(mc);
+          if (!group) {
+            skipped.push({
+              mc_id: mc.mc_id || "",
+              mc_name: mc.mc_name || "",
+              mc_yomi: mc.mc_yomi || ""
+            });
+            return;
+          }
           groups[group].push(mc);
         });
+
+        if (skipped.length > 0) {
+          console.log("mcs skipped because group was not found:", skipped);
+        }
 
         const firstTab = TAB_ORDER.find(tab => groups[tab] && groups[tab].length > 0) || "あ";
         renderPanel(groups, firstTab);
