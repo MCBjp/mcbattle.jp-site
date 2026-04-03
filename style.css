@@ -74,7 +74,10 @@ a {
   width: min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
   margin-left: auto;
   margin-right: auto;
-  padding: 28px var(--page-gutter) 72px;
+  padding:
+    calc(28px + env(safe-area-inset-top))
+    var(--page-gutter)
+    72px;
 }
 
 header.page-header {
@@ -85,14 +88,20 @@ header:not(.page-header) {
   width: min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
   margin-left: auto;
   margin-right: auto;
-  padding: 28px var(--page-gutter) 0;
+  padding:
+    calc(28px + env(safe-area-inset-top))
+    var(--page-gutter)
+    0;
 }
 
 body > p:first-of-type {
   width: min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
   margin-left: auto;
   margin-right: auto;
-  padding: 20px var(--page-gutter) 0;
+  padding:
+    calc(20px + env(safe-area-inset-top))
+    var(--page-gutter)
+    0;
 }
 
 /* ===== PCだけ左寄せ（疑似2カラム感） ===== */
@@ -485,15 +494,24 @@ hr {
   .mc-page,
   .rankings-page,
   .mcs-page {
-    padding: 20px 12px 56px;
+    padding:
+      calc(20px + env(safe-area-inset-top))
+      12px
+      56px;
   }
 
   header:not(.page-header) {
-    padding: 20px 12px 0;
+    padding:
+      calc(20px + env(safe-area-inset-top))
+      12px
+      0;
   }
 
   body > p:first-of-type {
-    padding: 16px 12px 0;
+    padding:
+      calc(16px + env(safe-area-inset-top))
+      12px
+      0;
   }
 
   .page-top{
