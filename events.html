@@ -13,11 +13,11 @@
     }
 
     .event-group {
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,0.22);
       border-radius: 18px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255,255,255,0.03);
       overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset;
     }
 
     .event-group-toggle {
@@ -28,7 +28,7 @@
       gap: 12px;
       padding: 12px 15px;
       border: none;
-      background: rgba(255,255,255,0.025);
+      background: rgba(255,255,255,0.035);
       color: var(--accent);
       text-align: left;
       cursor: pointer;
@@ -80,6 +80,7 @@
     .event-group-body {
       display: none;
       padding: 0 9px 9px;
+      border-top: 1px solid rgba(255,255,255,0.10);
     }
 
     .event-group.is-open .event-group-body {
