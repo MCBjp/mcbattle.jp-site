@@ -84,23 +84,14 @@
       color: #ffffff;
     }
 
-    .ranking-panel {
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background:
-        radial-gradient(circle at top left, rgba(52, 76, 170, 0.08), transparent 36%),
-        rgba(255,255,255,0.03);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.03) inset,
-        0 24px 50px rgba(0,0,0,0.16);
-      padding: 18px 18px 14px;
+    .top3-wrap {
+      margin-bottom: 18px;
     }
 
-    .top3-block {
+    .top3-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 10px;
     }
 
     .top3-row {
@@ -111,23 +102,28 @@
       padding: 16px 18px;
       border-radius: 20px;
       border: 1px solid rgba(255,255,255,0.18);
-      background:
-        radial-gradient(circle at top left, rgba(214,178,95,0.09), transparent 42%),
-        rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.03);
       box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset;
     }
 
     .top3-row.rank-1 {
       border-color: rgba(214,178,95,0.34);
       background:
-        radial-gradient(circle at top left, rgba(214,178,95,0.14), transparent 46%),
+        radial-gradient(circle at top left, rgba(214,178,95,0.10), transparent 44%),
         rgba(255,255,255,0.04);
+    }
+
+    .top3-row.rank-2,
+    .top3-row.rank-3 {
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 40%),
+        rgba(255,255,255,0.03);
     }
 
     .top3-rank {
       color: var(--accent);
       font-weight: 900;
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       line-height: 1;
       letter-spacing: -0.02em;
       text-align: right;
@@ -135,21 +131,21 @@
     }
 
     .top3-row.rank-1 .top3-rank {
-      font-size: 1.7rem;
+      font-size: 1.65rem;
     }
 
     .top3-name {
       min-width: 0;
-      font-size: 1.5rem;
-      font-weight: 800;
-      line-height: 1.14;
       color: #ffffff;
+      font-size: 1.42rem;
+      font-weight: 800;
+      line-height: 1.12;
       letter-spacing: -0.02em;
       word-break: break-word;
     }
 
     .top3-row.rank-1 .top3-name {
-      font-size: 1.9rem;
+      font-size: 1.78rem;
     }
 
     .top3-name a {
@@ -167,7 +163,7 @@
     .top3-amount {
       color: var(--accent);
       font-weight: 900;
-      font-size: 1.45rem;
+      font-size: 1.34rem;
       line-height: 1;
       letter-spacing: -0.03em;
       white-space: nowrap;
@@ -176,11 +172,23 @@
     }
 
     .top3-row.rank-1 .top3-amount {
-      font-size: 1.85rem;
+      font-size: 1.7rem;
+    }
+
+    .ranking-panel {
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background:
+        radial-gradient(circle at top left, rgba(52, 76, 170, 0.08), transparent 36%),
+        rgba(255,255,255,0.03);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03) inset,
+        0 24px 50px rgba(0,0,0,0.16);
+      padding: 18px 18px 14px;
     }
 
     .rest-title {
-      margin: 4px 0 10px;
+      margin: 0 0 10px;
       color: var(--muted);
       font-size: 0.95rem;
       line-height: 1.5;
@@ -289,30 +297,24 @@
         font-size: 0.96rem;
       }
 
-      .ranking-panel {
-        border-radius: 22px;
-        padding: 12px 10px 12px;
-      }
-
-      .top3-block {
-        gap: 10px;
-        margin-bottom: 14px;
+      .top3-list {
+        gap: 9px;
       }
 
       .top3-row {
         grid-template-columns: 56px minmax(0, 1fr);
-        gap: 10px 12px;
+        gap: 8px 12px;
         padding: 14px 14px;
         border-radius: 18px;
       }
 
       .top3-rank {
-        font-size: 1.18rem;
+        font-size: 1.15rem;
         text-align: left;
       }
 
       .top3-row.rank-1 .top3-rank {
-        font-size: 1.3rem;
+        font-size: 1.28rem;
       }
 
       .top3-name {
@@ -320,18 +322,23 @@
       }
 
       .top3-row.rank-1 .top3-name {
-        font-size: 1.46rem;
+        font-size: 1.42rem;
       }
 
       .top3-amount {
-        grid-column: 1 / -1;
+        grid-column: 2 / 3;
         text-align: left;
-        padding-left: 56px;
-        font-size: 1.26rem;
+        font-size: 1.2rem;
+        white-space: normal;
       }
 
       .top3-row.rank-1 .top3-amount {
-        font-size: 1.5rem;
+        font-size: 1.42rem;
+      }
+
+      .ranking-panel {
+        border-radius: 22px;
+        padding: 12px 10px 12px;
       }
 
       table.prize-table {
@@ -382,8 +389,11 @@
       </div>
     </div>
 
+    <section class="top3-wrap">
+      <div id="top3" class="top3-list"></div>
+    </section>
+
     <section class="ranking-panel">
-      <div id="top3" class="top3-block"></div>
       <p class="rest-title">4位以降</p>
       <div id="ranking-rest"></div>
     </section>
@@ -421,16 +431,12 @@
     }
 
     function getMcName(item) {
-      return String(
-        item.mc_name ??
-        item.name ??
-        item.MC名 ??
-        ""
-      ).trim();
+      return String(item.mc_name || item.name || "").trim();
     }
 
-    function getPrizeAmountRaw(item) {
+    function getPrizeAmount(item) {
       const candidates = [
+        item.total_prize_money,
         item.total_prize,
         item.prize_total,
         item.total_amount,
@@ -445,8 +451,8 @@
         item.総賞金
       ];
 
-      for (const v of candidates) {
-        const n = toNumber(v);
+      for (const value of candidates) {
+        const n = toNumber(value);
         if (Number.isFinite(n)) return n;
       }
 
@@ -462,10 +468,10 @@
 
       return source
         .map((item, index) => ({
+          rank: Number(item.rank) || (index + 1),
           mc_id: getMcId(item),
           mc_name: getMcName(item),
-          amount: getPrizeAmountRaw(item),
-          rank: Number(item.rank || item.順位) || (index + 1)
+          amount: getPrizeAmount(item)
         }))
         .filter(item => item.mc_name)
         .sort((a, b) => {
@@ -480,9 +486,8 @@
 
     function mcLink(item) {
       const name = escapeHtml(item.mc_name);
-      const mcId = item.mc_id;
-      if (!mcId) return name;
-      return `<a href="mc.html?mc_id=${encodeURIComponent(mcId)}">${name}</a>`;
+      if (!item.mc_id) return name;
+      return `<a href="mc.html?mc_id=${encodeURIComponent(item.mc_id)}">${name}</a>`;
     }
 
     function buildTop3Row(item) {
