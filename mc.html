@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MC記録 | MC Battle DB</title>
+  <title>MC詳細 | MCBattle.jp</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .page-top{
@@ -484,13 +484,14 @@
 
     function renderChampionshipLine(item) {
       const eventName = escapeHtml(item.event_name || "");
+      const safeEventId = String(item.event_id || "").trim();
 
       if (!eventName) return "";
 
-      if (item.event_id) {
+      if (safeEventId) {
         return `
           <span class="championship-line">
-            <a class="championship-event-link" href="./event.html?event_id=${encodeURIComponent(item.event_id)}">${eventName}</a>
+            <a class="championship-event-link" href="./event.html?event_id=${encodeURIComponent(safeEventId)}">${eventName}</a>
           </span>
         `;
       }
@@ -678,6 +679,7 @@
 
       if (!mcId) {
         titleEl.textContent = "MC IDが指定されていません";
+        document.title = "MC詳細 | MCBattle.jp";
         metaEl.textContent = "";
         showErrorState("mc_id が見つかりませんでした。");
         return;
@@ -703,6 +705,7 @@
 
         if (!data) {
           titleEl.textContent = "MC情報の取得に失敗しました";
+          document.title = "MC詳細 | MCBattle.jp";
           metaEl.textContent = "";
           showErrorState("指定されたMCデータが見つかりません");
           return;
@@ -710,6 +713,7 @@
 
         if (data.error) {
           titleEl.textContent = "MC情報の取得に失敗しました";
+          document.title = "MC詳細 | MCBattle.jp";
           metaEl.textContent = data.message || "";
           showErrorState("データ取得エラー");
           return;
@@ -724,7 +728,9 @@
         const championships = Array.isArray(data.championships) ? data.championships : [];
         const totalPrizeMoney = data.total_prize_money ?? 0;
 
-        titleEl.textContent = mc.mc_name || "このMC";
+        const mcName = mc.mc_name || "このMC";
+        titleEl.textContent = mcName;
+        document.title = `${mcName} | 戦績・出場大会・優勝歴 | MCBattle.jp`;
         metaEl.textContent = "";
 
         const rankDisplay = getRankDisplay(ranking);
@@ -805,6 +811,7 @@
       } catch (err) {
         console.error(err);
         titleEl.textContent = "MC情報の読み込みに失敗しました";
+        document.title = "MC詳細 | MCBattle.jp";
         metaEl.textContent = "";
         showErrorState(`読み込み失敗: ${err && err.message ? err.message : err}`);
       }
