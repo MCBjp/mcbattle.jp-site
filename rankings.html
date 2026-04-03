@@ -6,78 +6,6 @@
   <title>ランキング | MC Battle DB</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .page-top{
-      margin-bottom: 18px;
-    }
-
-    .page-mini-logo{
-      margin: 0 0 10px;
-    }
-
-    .page-mini-logo .site-mini-logo{
-      display: inline-block;
-      text-decoration: none;
-      font-size: clamp(1.56rem, 5.9vw, 1.96rem);
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-    }
-
-    .page-header-block{
-      margin-bottom: 14px;
-    }
-
-    .page-header-block h1{
-      margin: 0;
-      font-size: clamp(1.72rem, 6.45vw, 2.08rem);
-      line-height: 1.08;
-      letter-spacing: -0.015em;
-      font-weight: 750;
-    }
-
-    .page-nav-pills{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 14px;
-      max-width: 100%;
-    }
-
-    .page-nav-pill{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 0 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.93rem;
-      font-weight: 700;
-      line-height: 1.2;
-      transition:
-        transform 0.18s ease,
-        background-color 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        opacity 0.18s ease;
-    }
-
-    .page-nav-pill:hover{
-      text-decoration: none;
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.07);
-      border-color: var(--line-strong);
-      box-shadow: 0 0 18px rgba(135, 164, 255, 0.08);
-      opacity: 1;
-    }
-
-    .page-nav-break{
-      flex-basis: 100%;
-      height: 0;
-    }
-
     .spec-card-link{
       display: block;
       margin-bottom: 14px;
@@ -104,18 +32,11 @@
     }
 
     .spec-card-title{
-      margin: 0 0 4px;
+      margin: 0;
       color: var(--accent);
       font-size: 1rem;
       font-weight: 800;
       line-height: 1.35;
-    }
-
-    .spec-card-desc{
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.55;
     }
 
     .rankings-card-inner {
@@ -199,40 +120,6 @@
     }
 
     @media (max-width: 640px) {
-      .page-top{
-        margin-bottom: 14px;
-      }
-
-      .page-mini-logo{
-        margin-bottom: 8px;
-      }
-
-      .page-mini-logo .site-mini-logo{
-        font-size: clamp(1.42rem, 6.15vw, 1.74rem);
-        line-height: 1.06;
-      }
-
-      .page-header-block{
-        margin-bottom: 12px;
-      }
-
-      .page-header-block h1{
-        font-size: clamp(1.58rem, 6.85vw, 1.9rem);
-        line-height: 1.06;
-        font-weight: 750;
-      }
-
-      .page-nav-pills{
-        gap: 7px;
-        margin-bottom: 12px;
-      }
-
-      .page-nav-pill{
-        min-height: 34px;
-        padding: 0 12px;
-        font-size: 0.86rem;
-      }
-
       .spec-card-link{
         margin-bottom: 12px;
         padding: 12px 14px;
@@ -241,10 +128,6 @@
 
       .spec-card-title{
         font-size: 0.95rem;
-      }
-
-      .spec-card-desc{
-        font-size: 0.86rem;
       }
 
       .rankings-card-inner {
