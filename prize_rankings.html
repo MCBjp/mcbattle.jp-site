@@ -6,70 +6,6 @@
   <title>獲得賞金ランキング | MCBattle.jp</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .page-top{
-      margin-bottom: 18px;
-    }
-
-    .page-mini-logo{
-      margin: 0 0 10px;
-    }
-
-    .page-mini-logo .site-mini-logo{
-      text-decoration: none;
-    }
-
-    .page-header-block{
-      margin-bottom: 14px;
-    }
-
-    .page-header-block h1{
-      margin: 0;
-    }
-
-    .page-nav-pills{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0;
-      max-width: 100%;
-    }
-
-    .page-nav-pill{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 0 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.93rem;
-      font-weight: 700;
-      line-height: 1.2;
-      transition:
-        transform 0.18s ease,
-        background-color 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        opacity 0.18s ease;
-    }
-
-    .page-nav-pill:hover{
-      text-decoration: none;
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.07);
-      border-color: var(--line-strong);
-      box-shadow: 0 0 18px rgba(135, 164, 255, 0.08);
-      opacity: 1;
-    }
-
-    .page-nav-break{
-      flex-basis: 100%;
-      height: 0;
-    }
-
     .rankings-card-inner {
       padding-left: 12px;
       padding-right: 12px;
@@ -155,28 +91,6 @@
     }
 
     @media (max-width: 640px) {
-      .page-top{
-        margin-bottom: 14px;
-      }
-
-      .page-mini-logo{
-        margin-bottom: 8px;
-      }
-
-      .page-header-block{
-        margin-bottom: 12px;
-      }
-
-      .page-nav-pills{
-        gap: 7px;
-      }
-
-      .page-nav-pill{
-        min-height: 34px;
-        padding: 0 12px;
-        font-size: 0.86rem;
-      }
-
       .rankings-card-inner {
         padding-left: 10px;
         padding-right: 10px;
@@ -208,10 +122,6 @@
     <div class="page-top">
       <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
-      <div class="page-header-block">
-        <h1>賞金ランキング</h1>
-      </div>
-
       <nav class="page-nav-pills" aria-label="主要メニュー">
         <a class="page-nav-pill" href="events.html">大会一覧</a>
         <a class="page-nav-pill" href="mcs.html">MC一覧</a>
@@ -219,6 +129,10 @@
         <a class="page-nav-pill" href="rankings.html">スコアランキング</a>
         <a class="page-nav-pill" href="virtual_tournament.html">仮想シミュレーション</a>
       </nav>
+
+      <div class="page-header-block">
+        <h1>賞金ランキング</h1>
+      </div>
     </div>
 
     <section class="card">
