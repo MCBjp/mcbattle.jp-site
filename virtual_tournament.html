@@ -6,46 +6,37 @@
   <title>バトルシュミレータ | MCBattle.jp</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .vt-page{
-      width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
-      margin-left:auto;
-      margin-right:auto;
-      overflow-x:hidden;
-      padding-top:calc(20px + env(safe-area-inset-top));
-      padding-bottom:56px;
-    }
-
     .vt-hero{
-      padding:4px 0 8px;
+      padding: 0 0 8px;
     }
 
     .vt-title{
-      margin:0 0 8px;
-      color:var(--text);
-      line-height:1.12;
+      margin: 0;
+      color: var(--text);
+      line-height: 1.08;
     }
 
     .vt-lead{
-      margin:0;
-      color:var(--muted);
-      font-size:.96rem;
-      line-height:1.68;
-      max-width:760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: .96rem;
+      line-height: 1.68;
+      max-width: 760px;
     }
 
     .vt-stack{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-top:12px;
-      padding-bottom:18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+      padding-bottom: 18px;
     }
 
     .vt-panel{
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:22px;
-      padding:14px 14px 12px;
-      box-shadow:0 18px 48px rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 22px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 18px 48px rgba(0,0,0,.22);
     }
 
     .vt-panel-select{
@@ -61,122 +52,122 @@
     }
 
     .vt-step-label{
-      display:block;
-      margin:0 0 10px;
-      font-size:1rem;
-      font-weight:800;
-      color:var(--accent);
-      letter-spacing:.01em;
+      display: block;
+      margin: 0 0 10px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: .01em;
     }
 
     .vt-search-row{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 72px;
-      gap:10px;
-      align-items:center;
-      margin-top:2px;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 72px;
+      gap: 10px;
+      align-items: center;
+      margin-top: 2px;
     }
 
     .vt-search-box{
-      width:100%;
-      min-height:54px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(13,17,28,.68);
-      color:var(--text);
-      padding:0 14px;
-      font:inherit;
-      font-size:.95rem;
-      outline:none;
+      width: 100%;
+      min-height: 54px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(13,17,28,.68);
+      color: var(--text);
+      padding: 0 14px;
+      font: inherit;
+      font-size: .95rem;
+      outline: none;
     }
 
     .vt-search-box::placeholder{
-      color:#9ea7ba;
+      color: #9ea7ba;
     }
 
     .vt-count-badge{
-      min-height:54px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.06);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.08rem;
-      font-weight:800;
-      color:#d7deef;
+      min-height: 54px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #d7deef;
     }
 
     .vt-search-note{
-      margin:6px 0 0;
-      color:#95a0b4;
-      font-size:.84rem;
-      line-height:1.4;
+      margin: 6px 0 0;
+      color: #95a0b4;
+      font-size: .84rem;
+      line-height: 1.4;
     }
 
     .vt-candidates{
-      margin-top:8px;
+      margin-top: 8px;
     }
 
     .vt-candidate-list{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:8px;
-      margin-top:0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 0;
     }
 
     .vt-candidate-btn{
-      width:100%;
-      min-height:44px;
-      padding:0 12px;
-      border-radius:15px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      font:inherit;
-      font-size:.9rem;
-      font-weight:600;
-      text-align:left;
-      cursor:pointer;
+      width: 100%;
+      min-height: 44px;
+      padding: 0 12px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font: inherit;
+      font-size: .9rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
       transition:
         transform .18s ease,
         background-color .18s ease,
         border-color .18s ease,
         box-shadow .18s ease;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .vt-candidate-btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.06);
-      border-color:rgba(255,255,255,.24);
-      box-shadow:0 0 20px rgba(255,255,255,.05);
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.24);
+      box-shadow: 0 0 20px rgba(255,255,255,.05);
     }
 
     .vt-helper{
-      margin:0;
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.6;
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
     }
 
     .vt-action-stack{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-top:10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
     }
 
     .vt-main-button,
     .vt-sub-button{
-      width:100%;
-      border-radius:999px;
-      background:transparent;
-      color:var(--text);
-      font:inherit;
-      cursor:pointer;
+      width: 100%;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
       transition:
         transform .18s ease,
         background-color .18s ease,
@@ -187,342 +178,332 @@
 
     .vt-main-button:hover,
     .vt-sub-button:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.04);
-      box-shadow:0 0 20px rgba(255,255,255,.06);
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 0 20px rgba(255,255,255,.06);
     }
 
     .vt-main-button{
-      min-height:54px;
-      border:2px solid rgba(255,255,255,.68);
-      font-size:.98rem;
-      font-weight:800;
+      min-height: 54px;
+      border: 2px solid rgba(255,255,255,.68);
+      font-size: .98rem;
+      font-weight: 800;
     }
 
     .vt-main-button.is-disabled{
-      opacity:.45 !important;
-      cursor:default;
-      pointer-events:none;
-      box-shadow:none;
-      transform:none;
+      opacity: .45 !important;
+      cursor: default;
+      pointer-events: none;
+      box-shadow: none;
+      transform: none;
     }
 
     .vt-sub-button{
-      min-height:46px;
-      border:1px solid rgba(255,255,255,.34);
-      color:#d4dbea;
-      font-size:.9rem;
-      font-weight:700;
+      min-height: 46px;
+      border: 1px solid rgba(255,255,255,.34);
+      color: #d4dbea;
+      font-size: .9rem;
+      font-weight: 700;
     }
 
     .vt-selected-wrap{
-      margin-top:12px;
+      margin-top: 12px;
     }
 
     .vt-selected-title{
-      margin:0 0 8px;
-      font-size:1.04rem;
-      line-height:1.2;
-      font-weight:800;
-      color:var(--accent);
+      margin: 0 0 8px;
+      font-size: 1.04rem;
+      line-height: 1.2;
+      font-weight: 800;
+      color: var(--accent);
     }
 
     .vt-selected-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:8px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 8px;
     }
 
     .vt-selected-grid.is-single{
-      grid-template-columns:1fr;
+      grid-template-columns: 1fr;
     }
 
     .vt-selected-item{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 20px;
-      align-items:center;
-      gap:8px;
-      min-width:0;
-      min-height:54px;
-      padding:8px 11px;
-      border-radius:16px;
-      border:2px solid rgba(255,255,255,.78);
-      background:rgba(13,17,28,.22);
-      box-sizing:border-box;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 20px;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      min-height: 54px;
+      padding: 8px 11px;
+      border-radius: 16px;
+      border: 2px solid rgba(255,255,255,.78);
+      background: rgba(13,17,28,.22);
+      box-sizing: border-box;
     }
 
     .vt-selected-name{
-      min-width:0;
-      display:-webkit-box;
-      -webkit-line-clamp:2;
-      -webkit-box-orient:vertical;
-      overflow:hidden;
-      white-space:normal;
-      line-height:1.18;
-      font-size:.83rem;
-      font-weight:400;
-      color:var(--text);
-      word-break:break-word;
+      min-width: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: normal;
+      line-height: 1.18;
+      font-size: .83rem;
+      font-weight: 400;
+      color: var(--text);
+      word-break: break-word;
     }
 
     .vt-remove-btn{
-      align-self:center;
-      border:none;
-      background:transparent;
-      color:#dbe1ed;
-      font:inherit;
-      font-size:1.25rem;
-      line-height:1;
-      cursor:pointer;
-      padding:0;
-      width:20px;
-      height:20px;
+      align-self: center;
+      border: none;
+      background: transparent;
+      color: #dbe1ed;
+      font: inherit;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+      width: 20px;
+      height: 20px;
     }
 
     .vt-status{
-      margin:0;
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.55;
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.55;
     }
 
     .vt-run-area{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .vt-hero-result{
-      padding:12px 14px 11px;
-      border-radius:18px;
-      border:1px solid rgba(216,180,106,.16);
-      background:linear-gradient(180deg, rgba(216,180,106,.16), rgba(110,84,40,.12));
+      padding: 12px 14px 11px;
+      border-radius: 18px;
+      border: 1px solid rgba(216,180,106,.16);
+      background: linear-gradient(180deg, rgba(216,180,106,.16), rgba(110,84,40,.12));
     }
 
     .vt-hero-result-label{
-      display:block;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.4;
-      margin-bottom:6px;
+      display: block;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.4;
+      margin-bottom: 6px;
     }
 
     .vt-hero-result-name{
-      display:block;
-      font-size:1.45rem;
-      line-height:1.15;
-      font-weight:900;
-      word-break:break-word;
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1.15;
+      font-weight: 900;
+      word-break: break-word;
     }
 
     .vt-summary-card{
-      padding:13px 14px 11px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.025);
+      padding: 13px 14px 11px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.025);
     }
 
     .vt-summary-title,
     .vt-table-title{
-      margin:0 0 10px;
-      color:var(--accent);
-      font-size:1.22rem;
-      line-height:1.15;
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 1.22rem;
+      line-height: 1.15;
     }
 
     .vt-summary-lines{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .vt-summary-lines p{
-      margin:0;
-      color:var(--text);
-      line-height:1.75;
-      font-size:.93rem;
+      margin: 0;
+      color: var(--text);
+      line-height: 1.75;
+      font-size: .93rem;
     }
 
     .vt-dist-card-head,
     .vt-dist-row{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 72px;
-      gap:10px;
-      align-items:center;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 72px;
+      gap: 10px;
+      align-items: center;
     }
 
     .vt-dist-card-head{
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:#b8bfd0;
-      font-size:.88rem;
-      font-weight:800;
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: #b8bfd0;
+      font-size: .88rem;
+      font-weight: 800;
     }
 
     .vt-dist-list{
-      display:flex;
-      flex-direction:column;
+      display: flex;
+      flex-direction: column;
     }
 
     .vt-dist-row{
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--line);
     }
 
     .vt-dist-row:last-child{
-      border-bottom:none;
+      border-bottom: none;
     }
 
     .vt-dist-name{
-      min-width:0;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      font-size:.93rem;
-      line-height:1.35;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: .93rem;
+      line-height: 1.35;
     }
 
     .vt-dist-rate{
-      text-align:right;
-      white-space:nowrap;
-      font-variant-numeric:tabular-nums;
-      font-size:.93rem;
-      line-height:1.35;
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      font-size: .93rem;
+      line-height: 1.35;
     }
 
     .vt-overlay{
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(7,9,14,.92);
-      backdrop-filter:blur(6px);
-      -webkit-backdrop-filter:blur(6px);
-      padding:24px;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(7,9,14,.92);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 24px;
     }
 
     .vt-overlay-box{
-      width:min(100%, 420px);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:14px;
-      text-align:center;
+      width: min(100%, 420px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      text-align: center;
     }
 
     .vt-overlay-clock{
-      position:relative;
-      width:66px;
-      height:66px;
-      animation:vt-spin 1s linear infinite;
+      position: relative;
+      width: 66px;
+      height: 66px;
+      animation: vt-spin 1s linear infinite;
     }
 
     .vt-overlay-clock-face{
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      border:4px solid rgba(255,255,255,.85);
-      box-sizing:border-box;
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,.85);
+      box-sizing: border-box;
     }
 
     .vt-overlay-clock-center{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:8px;
-      height:8px;
-      margin-left:-4px;
-      margin-top:-4px;
-      border-radius:50%;
-      background:#ffffff;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      margin-left: -4px;
+      margin-top: -4px;
+      border-radius: 50%;
+      background: #ffffff;
     }
 
     .vt-overlay-hand-long,
     .vt-overlay-hand-short{
-      position:absolute;
-      left:50%;
-      bottom:50%;
-      transform-origin:50% 100%;
-      background:#ffffff;
-      border-radius:999px;
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      transform-origin: 50% 100%;
+      background: #ffffff;
+      border-radius: 999px;
     }
 
     .vt-overlay-hand-long{
-      width:4px;
-      height:22px;
-      margin-left:-2px;
-      transform:rotate(35deg);
+      width: 4px;
+      height: 22px;
+      margin-left: -2px;
+      transform: rotate(35deg);
     }
 
     .vt-overlay-hand-short{
-      width:4px;
-      height:15px;
-      margin-left:-2px;
-      transform:rotate(-55deg);
+      width: 4px;
+      height: 15px;
+      margin-left: -2px;
+      transform: rotate(-55deg);
     }
 
     .vt-overlay-text{
-      margin:0;
-      color:#f3f5fa;
-      font-size:1rem;
-      font-weight:700;
-      line-height:1.6;
+      margin: 0;
+      color: #f3f5fa;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.6;
     }
 
     .vt-overlay-count{
-      margin:0;
-      color:#ffffff;
-      font-size:3.2rem;
-      font-weight:900;
-      line-height:1;
-      letter-spacing:.02em;
+      margin: 0;
+      color: #ffffff;
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: .02em;
     }
 
     @keyframes vt-spin{
-      from{ transform:rotate(0deg); }
-      to{ transform:rotate(360deg); }
+      from{ transform: rotate(0deg); }
+      to{ transform: rotate(360deg); }
     }
 
     .is-hidden{
-      display:none !important;
-    }
-
-    @media (min-width: 1024px){
-      .vt-page{
-        width:min(var(--content-max), calc(100% - var(--pc-left-gutter) - var(--page-gutter)));
-        margin-left:var(--pc-left-gutter);
-        margin-right:auto;
-        padding-top:calc(28px + env(safe-area-inset-top));
-        padding-bottom:72px;
-      }
+      display: none !important;
     }
 
     @media (max-width: 640px){
       .vt-title{
-        font-size:clamp(2rem, 9.4vw, 2.8rem);
+        font-size: clamp(2rem, 9.4vw, 2.8rem);
       }
 
       .vt-lead{
-        font-size:.94rem;
-        line-height:1.66;
+        font-size: .94rem;
+        line-height: 1.66;
       }
 
       .vt-candidate-list{
-        grid-template-columns:repeat(2, minmax(0,1fr));
+        grid-template-columns: repeat(2, minmax(0,1fr));
       }
 
       .vt-overlay-count{
-        font-size:2.8rem;
+        font-size: 2.8rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="vt-page">
+  <div class="page">
     <div class="page-top">
       <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
