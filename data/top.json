@@ -1,0 +1,296 @@
+{
+  "updated_at": "2026-04-03T14:54:35.424Z",
+  "recent_events": [
+    {
+      "event_id": "EVT0032",
+      "event_name": "KOK2025 GrandChanpionShip",
+      "event_name_full": "KOK2025 GrandChanpionShip",
+      "event_name_simple": "KOK2025本戦",
+      "event_date": "2026-01-10",
+      "prize_money_winner": 3000000,
+      "prize_money_total": null,
+      "event_category": "KOK",
+      "event_stage": "本戦",
+      "winner_name": "T-TANGG"
+    },
+    {
+      "event_id": "EVT0021",
+      "event_name": "UMB2025 GrandChanpionShip",
+      "event_name_full": "UMB2025 GrandChanpionShip",
+      "event_name_simple": "UMB2025本戦",
+      "event_date": "2025-12-29",
+      "prize_money_winner": 1000000,
+      "prize_money_total": null,
+      "event_category": "UMB",
+      "event_stage": "本戦",
+      "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
+    },
+    {
+      "event_id": "EVT0040",
+      "event_name": "戦極MCBATTLE 第37章 -OSAKA- 王座奪還1on1",
+      "event_name_full": "戦極MCBATTLE 第37章 -OSAKA- 王座奪還1on1",
+      "event_name_simple": "戦極MCBATTLE 第37章",
+      "event_date": "2025-05-24",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "event_category": "戦極MCBATTLE",
+      "event_stage": "本戦",
+      "winner_name": ""
+    },
+    {
+      "event_id": "EVT0039",
+      "event_name": "戦極MCBATTLE 第36章 東北公演 2025開幕戦",
+      "event_name_full": "戦極MCBATTLE 第36章 東北公演 2025開幕戦",
+      "event_name_simple": "戦極MCBATTLE 第36章",
+      "event_date": "2025-02-02",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "event_category": "戦極MCBATTLE",
+      "event_stage": "本戦",
+      "winner_name": ""
+    },
+    {
+      "event_id": "EVT0031",
+      "event_name": "KOK2024 GrandChanpionShip",
+      "event_name_full": "KOK2024 GrandChanpionShip",
+      "event_name_simple": "KOK2024本戦",
+      "event_date": "2025-01-11",
+      "prize_money_winner": 3000000,
+      "prize_money_total": null,
+      "event_category": "KOK",
+      "event_stage": "本戦",
+      "winner_name": "9for"
+    },
+    {
+      "event_id": "EVT0020",
+      "event_name": "UMB2024 GrandChanpionShip",
+      "event_name_full": "UMB2024 GrandChanpionShip",
+      "event_name_simple": "UMB2024本戦",
+      "event_date": "2024-12-28",
+      "prize_money_winner": 1000000,
+      "prize_money_total": null,
+      "event_category": "UMB",
+      "event_stage": "本戦",
+      "winner_name": "KOOPA"
+    },
+    {
+      "event_id": "EVT0038",
+      "event_name": "戦極MCBATTLE 第34章 -THE 32MCs王道in横浜-",
+      "event_name_full": "戦極MCBATTLE 第34章 -THE 32MCs王道in横浜-",
+      "event_name_simple": "戦極MCBATTLE 第34章 ",
+      "event_date": "2024-06-15",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "event_category": "戦極MCBATTLE",
+      "event_stage": "本戦",
+      "winner_name": ""
+    },
+    {
+      "event_id": "EVT0075",
+      "event_name": "凱旋MC battle THE GIANT KILLING 2 at 豊洲PIT",
+      "event_name_full": "凱旋MC battle THE GIANT KILLING 2 at 豊洲PIT",
+      "event_name_simple": "凱旋MC battle THE GIANT KILLING 2 at 豊洲PIT",
+      "event_date": "2024-03-16",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "event_category": "凱旋",
+      "event_stage": "本戦",
+      "winner_name": ""
+    },
+    {
+      "event_id": "EVT0094",
+      "event_name": "渋谷レゲエ祭 vs 真ADRENALINE at CLUB CITTA'",
+      "event_name_full": "渋谷レゲエ祭 vs 真ADRENALINE at CLUB CITTA'",
+      "event_name_simple": "渋谷レゲエ祭 vs 真ADRENALINE at CLUB CITTA'",
+      "event_date": "2024-02-02",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "event_category": "ADRENALINE",
+      "event_stage": "本戦",
+      "winner_name": ""
+    },
+    {
+      "event_id": "EVT0030",
+      "event_name": "KOK2023 GrandChanpionShip",
+      "event_name_full": "KOK2023 GrandChanpionShip",
+      "event_name_simple": "KOK2023本戦",
+      "event_date": "2024-01-08",
+      "prize_money_winner": 3000000,
+      "prize_money_total": null,
+      "event_category": "KOK",
+      "event_stage": "本戦",
+      "winner_name": "RAWAXXX(MOL53)"
+    }
+  ],
+  "upcoming_events": [
+    {
+      "event_date": "2026-10-02",
+      "event_name": "Test",
+      "event_stage": ""
+    }
+  ],
+  "score_rankings": [
+    {
+      "rank": 1,
+      "mc_id": "MC0214",
+      "mc_name": "RAWAXXX(MOL53)",
+      "score": 1696.61,
+      "total_matches": 37,
+      "wins": 25,
+      "losses": 12,
+      "last_match_date": "2025-05-24"
+    },
+    {
+      "rank": 2,
+      "mc_id": "MC0222",
+      "mc_name": "NAIKA MC",
+      "score": 1673.88,
+      "total_matches": 28,
+      "wins": 19,
+      "losses": 9,
+      "last_match_date": "2026-01-10"
+    },
+    {
+      "rank": 3,
+      "mc_id": "MC0023",
+      "mc_name": "S-kainê",
+      "score": 1652.5,
+      "total_matches": 14,
+      "wins": 12,
+      "losses": 2,
+      "last_match_date": "2025-05-24"
+    },
+    {
+      "rank": 4,
+      "mc_id": "MC0434",
+      "mc_name": "輪入道",
+      "score": 1627.08,
+      "total_matches": 19,
+      "wins": 13,
+      "losses": 6,
+      "last_match_date": "2025-05-24"
+    },
+    {
+      "rank": 5,
+      "mc_id": "MC0376",
+      "mc_name": "呂布カルマ",
+      "score": 1623.82,
+      "total_matches": 24,
+      "wins": 15,
+      "losses": 9,
+      "last_match_date": "2025-02-02"
+    },
+    {
+      "rank": 6,
+      "mc_id": "MC0100",
+      "mc_name": "DOTAMA",
+      "score": 1623.61,
+      "total_matches": 31,
+      "wins": 18,
+      "losses": 13,
+      "last_match_date": "2025-05-24"
+    },
+    {
+      "rank": 7,
+      "mc_id": "MC0015",
+      "mc_name": "MC☆ニガリ a.k.a 赤い稲妻",
+      "score": 1620.68,
+      "total_matches": 18,
+      "wins": 11,
+      "losses": 7,
+      "last_match_date": "2026-01-10"
+    },
+    {
+      "rank": 8,
+      "mc_id": "MC0447",
+      "mc_name": "9for",
+      "score": 1616.48,
+      "total_matches": 12,
+      "wins": 9,
+      "losses": 3,
+      "last_match_date": "2026-01-10"
+    },
+    {
+      "rank": 9,
+      "mc_id": "MC0046",
+      "mc_name": "Authority",
+      "score": 1609.51,
+      "total_matches": 13,
+      "wins": 9,
+      "losses": 4,
+      "last_match_date": "2024-01-08"
+    },
+    {
+      "rank": 10,
+      "mc_id": "MC0466",
+      "mc_name": "Sitissy luvit",
+      "score": 1608.58,
+      "total_matches": 10,
+      "wins": 8,
+      "losses": 2,
+      "last_match_date": "2026-01-10"
+    }
+  ],
+  "prize_rankings": [
+    {
+      "rank": 1,
+      "mc_id": "MC0376",
+      "mc_name": "呂布カルマ",
+      "total_prize_money": 8000000
+    },
+    {
+      "rank": 2,
+      "mc_id": "MC0214",
+      "mc_name": "RAWAXXX(MOL53)",
+      "total_prize_money": 7200000
+    },
+    {
+      "rank": 3,
+      "mc_id": "MC0116",
+      "mc_name": "GADORO",
+      "total_prize_money": 6500000
+    },
+    {
+      "rank": 4,
+      "mc_id": "MC0111",
+      "mc_name": "FORK",
+      "total_prize_money": 4500000
+    },
+    {
+      "rank": 5,
+      "mc_id": "MC0395",
+      "mc_name": "晋平太",
+      "total_prize_money": 3400000
+    },
+    {
+      "rank": 6,
+      "mc_id": "MC0474",
+      "mc_name": "泰斗 a.k.a. 裂固",
+      "total_prize_money": 3300000
+    },
+    {
+      "rank": 7,
+      "mc_id": "MC0021",
+      "mc_name": "R-指定",
+      "total_prize_money": 3050000
+    },
+    {
+      "rank": 8,
+      "mc_id": "MC0447",
+      "mc_name": "9for",
+      "total_prize_money": 3000000
+    },
+    {
+      "rank": 9,
+      "mc_id": "MC0296",
+      "mc_name": "T-TANGG",
+      "total_prize_money": 3000000
+    },
+    {
+      "rank": 10,
+      "mc_id": "MC0472",
+      "mc_name": "崇勲",
+      "total_prize_money": 3000000
+    }
+  ]
+}
