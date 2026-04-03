@@ -22,7 +22,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin: 0 0 16px;
+      margin: 0 0 14px;
       max-width: 100%;
     }
 
@@ -95,6 +95,7 @@
     .result-line a {
       color: inherit;
       text-decoration: underline;
+      text-underline-offset: 0.15em;
     }
 
     .result-line.is-sub {
@@ -172,7 +173,7 @@
 
   <script>
     async function loadEventDetailsAllJson() {
-      const res = await fetch("./data/event_details_all.json");
+      const res = await fetch("./data/event_details_all.json", { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       return await res.json();
     }
