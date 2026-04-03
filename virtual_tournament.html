@@ -1,721 +1,169 @@
-　<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>仮想MCバトルシミュレーション | MCBattle.jp</title>
+  <title>MC一覧 | MC Battle DB</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .page-top{
-      margin-bottom:12px;
+    .mcs-list-wrap {
+      padding-left: 12px;
+      padding-right: 12px;
     }
 
-    .page-mini-logo{
-      margin:0 0 8px;
+    .mcs-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
-    .page-mini-logo .site-mini-logo{
-      text-decoration:none;
-    }
-
-    .page-nav-pills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin:0 0 12px;
-      max-width:100%;
-    }
-
-    .page-nav-pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:36px;
-      padding:0 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,0.04);
-      color:var(--accent);
-      text-decoration:none;
-      font-size:.9rem;
-      font-weight:700;
-      line-height:1.2;
+    .mcs-tab {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 6px 12px;
+      min-width: 0;
+      min-height: 38px;
+      font: inherit;
+      font-size: 0.98rem;
+      cursor: pointer;
       transition:
-        transform .18s ease,
-        background-color .18s ease,
-        border-color .18s ease,
-        box-shadow .18s ease,
-        opacity .18s ease;
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
     }
 
-    .page-nav-pill:hover{
-      text-decoration:none;
-      transform:translateY(-1px);
-      background:rgba(255,255,255,0.07);
-      border-color:var(--line-strong);
-      box-shadow:0 0 18px rgba(135,164,255,.08);
-      opacity:1;
+    .mcs-tab:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-1px);
     }
 
-    .page-nav-break{
-      flex-basis:100%;
-      height:0;
+    .mcs-tab.is-active {
+      background: rgba(255,255,255,0.10);
+      border-color: var(--line-strong);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset;
     }
 
-    .vt-page{
-      width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
-      margin-left:auto;
-      margin-right:auto;
-      overflow-x:hidden;
+    #mcs-status {
+      display: none;
+      margin-bottom: 10px;
     }
 
-    .vt-hero{
-      padding:4px 0 8px;
+    .mcs-section-title {
+      margin: 4px 0 6px;
+      font-size: 0.98rem;
+      color: var(--accent-soft);
     }
 
-    .vt-title{
-      margin:0 0 8px;
-      color:var(--text);
-      line-height:1.12;
+    .mcs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .vt-lead{
-      margin:0;
-      color:var(--muted);
-      font-size:.96rem;
-      line-height:1.68;
-      max-width:760px;
+    .mcs-list li {
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .vt-stack{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-top:12px;
-      padding-bottom:18px;
+    .mcs-list li:last-child {
+      border-bottom: none;
     }
 
-    .vt-panel{
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:22px;
-      padding:14px 14px 12px;
-      box-shadow:0 18px 48px rgba(0,0,0,.22);
+    .mc-link,
+    .mc-link-static {
+      display: block;
+      padding: 9px 0;
+      color: inherit;
+      border-radius: 8px;
+      line-height: 1.32;
     }
 
-    .vt-panel-select{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
-        linear-gradient(180deg, rgba(64,116,76,.22), rgba(40,77,58,.18));
+    .mc-link {
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
     }
 
-    .vt-panel-result{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
-        linear-gradient(180deg, rgba(84,66,104,.22), rgba(55,45,79,.18));
+    .mc-link:hover {
+      opacity: 0.9;
+      background: rgba(255,255,255,0.03);
+      text-decoration: underline;
     }
 
-    .vt-step-label{
-      display:block;
-      margin:0 0 10px;
-      font-size:1rem;
-      font-weight:800;
-      color:#5a86ff;
-      letter-spacing:.01em;
+    .mc-link-static {
+      text-decoration: none;
     }
 
-    .vt-search-row{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 72px;
-      gap:10px;
-      align-items:center;
-      margin-top:2px;
+    .mcs-empty {
+      color: var(--muted);
+      padding: 8px 0;
     }
 
-    .vt-search-box{
-      width:100%;
-      min-height:54px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(13,17,28,.68);
-      color:var(--text);
-      padding:0 14px;
-      font:inherit;
-      font-size:.95rem;
-      outline:none;
-    }
-
-    .vt-search-box::placeholder{
-      color:#9ea7ba;
-    }
-
-    .vt-count-badge{
-      min-height:54px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.06);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.08rem;
-      font-weight:800;
-      color:#d7deef;
-    }
-
-    .vt-search-note{
-      margin:6px 0 0;
-      color:#95a0b4;
-      font-size:.84rem;
-      line-height:1.4;
-    }
-
-    .vt-candidates{
-      margin-top:8px;
-    }
-
-    .vt-candidate-list{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:8px;
-      margin-top:0;
-    }
-
-    .vt-candidate-btn{
-      width:100%;
-      min-height:44px;
-      padding:0 12px;
-      border-radius:15px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      font:inherit;
-      font-size:.9rem;
-      font-weight:600;
-      text-align:left;
-      cursor:pointer;
-      transition:
-        transform .18s ease,
-        background-color .18s ease,
-        border-color .18s ease,
-        box-shadow .18s ease;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-
-    .vt-candidate-btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.06);
-      border-color:rgba(255,255,255,.24);
-      box-shadow:0 0 20px rgba(255,255,255,.05);
-    }
-
-    .vt-helper{
-      margin:0;
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.6;
-    }
-
-    .vt-action-stack{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .vt-main-button,
-    .vt-sub-button{
-      width:100%;
-      border-radius:999px;
-      background:transparent;
-      color:var(--text);
-      font:inherit;
-      cursor:pointer;
-      transition:
-        transform .18s ease,
-        background-color .18s ease,
-        border-color .18s ease,
-        box-shadow .18s ease,
-        opacity .18s ease;
-    }
-
-    .vt-main-button:hover,
-    .vt-sub-button:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.04);
-      box-shadow:0 0 20px rgba(255,255,255,.06);
-    }
-
-    .vt-main-button{
-      min-height:54px;
-      border:2px solid rgba(255,255,255,.68);
-      font-size:.98rem;
-      font-weight:800;
-    }
-
-    .vt-main-button.is-disabled{
-      opacity:.45 !important;
-      cursor:default;
-      pointer-events:none;
-      box-shadow:none;
-      transform:none;
-    }
-
-    .vt-sub-button{
-      min-height:46px;
-      border:1px solid rgba(255,255,255,.34);
-      color:#d4dbea;
-      font-size:.9rem;
-      font-weight:700;
-    }
-
-    .vt-selected-wrap{
-      margin-top:12px;
-    }
-
-    .vt-selected-title{
-      margin:0 0 8px;
-      font-size:1.04rem;
-      line-height:1.2;
-      font-weight:800;
-    }
-
-    .vt-selected-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:8px;
-    }
-
-    .vt-selected-grid.is-single{
-      grid-template-columns:1fr;
-    }
-
-    .vt-selected-item{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 20px;
-      align-items:center;
-      gap:8px;
-      min-width:0;
-      min-height:54px;
-      padding:8px 11px;
-      border-radius:16px;
-      border:2px solid rgba(255,255,255,.78);
-      background:rgba(13,17,28,.22);
-      box-sizing:border-box;
-    }
-
-    .vt-selected-name{
-      min-width:0;
-      display:-webkit-box;
-      -webkit-line-clamp:2;
-      -webkit-box-orient:vertical;
-      overflow:hidden;
-      white-space:normal;
-      line-height:1.18;
-      font-size:.83rem;
-      font-weight:400;
-      color:var(--text);
-      word-break:break-word;
-    }
-
-    .vt-remove-btn{
-      align-self:center;
-      border:none;
-      background:transparent;
-      color:#dbe1ed;
-      font:inherit;
-      font-size:1.25rem;
-      line-height:1;
-      cursor:pointer;
-      padding:0;
-      width:20px;
-      height:20px;
-    }
-
-    .vt-status{
-      margin:0;
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.55;
-    }
-
-    .vt-run-area{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .vt-hero-result{
-      padding:12px 14px 11px;
-      border-radius:18px;
-      border:1px solid rgba(110,125,255,.14);
-      background:linear-gradient(180deg, rgba(106,110,218,.2), rgba(70,56,138,.18));
-    }
-
-    .vt-hero-result-label{
-      display:block;
-      color:var(--muted);
-      font-size:.92rem;
-      line-height:1.4;
-      margin-bottom:6px;
-    }
-
-    .vt-hero-result-name{
-      display:block;
-      font-size:1.45rem;
-      line-height:1.15;
-      font-weight:900;
-      word-break:break-word;
-    }
-
-    .vt-summary-card{
-      padding:13px 14px 11px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.025);
-    }
-
-    .vt-summary-title,
-    .vt-table-title{
-      margin:0 0 10px;
-      color:#5a86ff;
-      font-size:1.22rem;
-      line-height:1.15;
-    }
-
-    .vt-summary-lines{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .vt-summary-lines p{
-      margin:0;
-      color:var(--text);
-      line-height:1.75;
-      font-size:.93rem;
-    }
-
-    .vt-dist-card-head,
-    .vt-dist-row{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 72px;
-      gap:10px;
-      align-items:center;
-    }
-
-    .vt-dist-card-head{
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:#b8bfd0;
-      font-size:.88rem;
-      font-weight:800;
-    }
-
-    .vt-dist-list{
-      display:flex;
-      flex-direction:column;
-    }
-
-    .vt-dist-row{
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .vt-dist-row:last-child{
-      border-bottom:none;
-    }
-
-    .vt-dist-name{
-      min-width:0;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      font-size:.93rem;
-      line-height:1.35;
-    }
-
-    .vt-dist-rate{
-      text-align:right;
-      white-space:nowrap;
-      font-variant-numeric:tabular-nums;
-      font-size:.93rem;
-      line-height:1.35;
-    }
-
-    .vt-overlay{
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(7,9,14,.92);
-      backdrop-filter:blur(6px);
-      -webkit-backdrop-filter:blur(6px);
-      padding:24px;
-    }
-
-    .vt-overlay-box{
-      width:min(100%, 420px);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:14px;
-      text-align:center;
-    }
-
-    .vt-overlay-clock{
-      position:relative;
-      width:66px;
-      height:66px;
-      animation:vt-spin 1s linear infinite;
-    }
-
-    .vt-overlay-clock-face{
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      border:4px solid rgba(255,255,255,.85);
-      box-sizing:border-box;
-    }
-
-    .vt-overlay-clock-center{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:8px;
-      height:8px;
-      margin-left:-4px;
-      margin-top:-4px;
-      border-radius:50%;
-      background:#ffffff;
-    }
-
-    .vt-overlay-hand-long,
-    .vt-overlay-hand-short{
-      position:absolute;
-      left:50%;
-      bottom:50%;
-      transform-origin:50% 100%;
-      background:#ffffff;
-      border-radius:999px;
-    }
-
-    .vt-overlay-hand-long{
-      width:4px;
-      height:22px;
-      margin-left:-2px;
-      transform:rotate(35deg);
-    }
-
-    .vt-overlay-hand-short{
-      width:4px;
-      height:15px;
-      margin-left:-2px;
-      transform:rotate(-55deg);
-    }
-
-    .vt-overlay-text{
-      margin:0;
-      color:#f3f5fa;
-      font-size:1rem;
-      font-weight:700;
-      line-height:1.6;
-    }
-
-    .vt-overlay-count{
-      margin:0;
-      color:#ffffff;
-      font-size:3.2rem;
-      font-weight:900;
-      line-height:1;
-      letter-spacing:.02em;
-    }
-
-    @keyframes vt-spin{
-      from{ transform:rotate(0deg); }
-      to{ transform:rotate(360deg); }
-    }
-
-    .is-hidden{
-      display:none !important;
-    }
-
-    @media (min-width: 1024px){
-      .vt-page{
-        width:min(var(--content-max), calc(100% - var(--pc-left-gutter) - var(--page-gutter)));
-        margin-left:var(--pc-left-gutter);
-        margin-right:auto;
-      }
-    }
-
-    @media (max-width: 640px){
-      .page-top{
-        margin-bottom:12px;
+    @media (max-width: 640px) {
+      .mcs-list-wrap {
+        padding-left: 10px;
+        padding-right: 10px;
       }
 
-      .page-mini-logo{
-        margin-bottom:8px;
+      .mcs-tabs {
+        gap: 7px;
+        margin-bottom: 9px;
       }
 
-      .page-nav-pills{
-        gap:7px;
-        margin-bottom:12px;
+      .mcs-tab {
+        padding: 5px 11px;
+        min-height: 34px;
+        font-size: 0.92rem;
       }
 
-      .page-nav-pill{
-        min-height:34px;
-        padding:0 12px;
-        font-size:.86rem;
+      .mc-link,
+      .mc-link-static {
+        padding: 8px 0;
       }
 
-      .vt-title{
-        font-size:clamp(2rem, 9.4vw, 2.8rem);
-      }
-
-      .vt-lead{
-        font-size:.94rem;
-        line-height:1.66;
-      }
-
-      .vt-candidate-list{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-
-      .vt-overlay-count{
-        font-size:2.8rem;
+      .mcs-section-title {
+        margin: 3px 0 5px;
+        font-size: 0.95rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="vt-page">
+  <div class="mcs-page">
     <div class="page-top">
       <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
       <nav class="page-nav-pills" aria-label="主要メニュー">
         <a class="page-nav-pill" href="events.html">大会一覧</a>
-        <a class="page-nav-pill" href="mcs.html">MC一覧</a>
-        <span class="page-nav-break" aria-hidden="true"></span>
         <a class="page-nav-pill" href="rankings.html">スコアランキング</a>
+        <span class="page-nav-break" aria-hidden="true"></span>
         <a class="page-nav-pill" href="prize_rankings.html">賞金ランキング</a>
+        <a class="page-nav-pill" href="virtual_tournament.html">仮想シミュレーション</a>
       </nav>
-    </div>
 
-    <section class="vt-hero">
-      <h1 class="vt-title">仮想MCバトルシミュレーション</h1>
-      <p class="vt-lead">直近3年でバトル参加実績のあるMCで、大会結果をシミュレーションします。</p>
-    </section>
-
-    <div class="vt-stack">
-      <section class="vt-panel vt-panel-select">
-        <span class="vt-step-label">①MCを選ぶ</span>
-
-        <div class="vt-search-row">
-          <input id="mc-search-input" class="vt-search-box" type="text" placeholder="MC名/読み仮名で検索" autocomplete="off" />
-          <div id="selected-count-badge" class="vt-count-badge">0/8</div>
-        </div>
-
-        <p class="vt-search-note">2文字以上で候補表示</p>
-
-        <div id="candidate-area" class="vt-candidates">
-          <div id="candidate-list" class="vt-candidate-list"></div>
-          <p id="candidate-empty" class="vt-helper is-hidden">候補がありません。</p>
-        </div>
-
-        <div class="vt-action-stack">
-          <button id="fill-random-btn" class="vt-sub-button" type="button">残りを上位100位からランダム入力</button>
-          <button id="clear-selected-btn" class="vt-sub-button" type="button">全クリア</button>
-        </div>
-
-        <div class="vt-selected-wrap">
-          <h2 class="vt-selected-title">選択中の8人</h2>
-          <div id="selected-grid" class="vt-selected-grid"></div>
-        </div>
-      </section>
-
-      <section id="result-panel" class="vt-panel vt-panel-result">
-        <span class="vt-step-label">②結果</span>
-
-        <div class="vt-run-area">
-          <button id="run-sim-btn" class="vt-main-button" type="button">100回シミュレーションする</button>
-          <p id="sim-status" class="vt-status">8人選ぶとシミュレーションできます。</p>
-
-          <div id="top-result-card" class="vt-hero-result is-hidden">
-            <span class="vt-hero-result-label">最も優勝確率が高いMC</span>
-            <span id="top-result-name" class="vt-hero-result-name">-</span>
-          </div>
-
-          <div id="dist-card" class="vt-summary-card is-hidden">
-            <h2 class="vt-table-title">全体分布</h2>
-            <div class="vt-dist-card-head">
-              <div>MC</div>
-              <div style="text-align:right;">優勝率</div>
-            </div>
-            <div id="dist-list" class="vt-dist-list"></div>
-          </div>
-
-          <div id="summary-card" class="vt-summary-card is-hidden">
-            <h2 class="vt-summary-title">結果サマリー</h2>
-            <div id="summary-lines" class="vt-summary-lines"></div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <div id="sim-overlay" class="vt-overlay is-hidden" aria-hidden="true">
-    <div class="vt-overlay-box">
-      <div class="vt-overlay-clock" aria-hidden="true">
-        <div class="vt-overlay-clock-face"></div>
-        <div class="vt-overlay-hand-long"></div>
-        <div class="vt-overlay-hand-short"></div>
-        <div class="vt-overlay-clock-center"></div>
+      <div class="page-header-block">
+        <h1>MC一覧</h1>
       </div>
-      <p class="vt-overlay-text">100回戦ってもらっています</p>
-      <p id="sim-overlay-count" class="vt-overlay-count">5</p>
     </div>
+
+    <section class="card">
+      <div class="mcs-list-wrap">
+        <div id="mcs-tabs" class="mcs-tabs"></div>
+        <p id="mcs-status" class="muted">読み込み中...</p>
+        <div id="mcs-panel"></div>
+      </div>
+    </section>
   </div>
 
   <script>
-    const CANDIDATES_URL = "./data/mcs.json";
-    const STRENGTHS_URL = "./data/rankings.json";
-    const MAX_SELECTED = 8;
-
-    let allCandidates = [];
-    let strengthMap = {};
-    let selectedMcs = [];
-    let filteredCandidates = [];
-    let overlayTimer = null;
-    let hasSimulatedCurrentSelection = false;
-
-    async function loadJson(url) {
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.json();
-    }
-
-    function normalizeText(value) {
-      return String(value || "")
-        .toLowerCase()
-        .replace(/[ァ-ヶ]/g, function(ch) {
-          return String.fromCharCode(ch.charCodeAt(0) - 0x60);
-        })
-        .replace(/\s+/g, "")
-        .trim();
-    }
-
-    function shuffleArray(arr) {
-      const copy = [...arr];
-      for (let i = copy.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [copy[i], copy[j]] = [copy[j], copy[i]];
-      }
-      return copy;
-    }
+    const MCS_JSON_URL = "./data/mcs.json";
+    const TAB_ORDER = ["あ", "か", "さ", "た", "な", "は", "ま", "や", "ら", "わ"];
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -726,366 +174,165 @@
         .replace(/'/g, "&#39;");
     }
 
-    function markSelectionChanged() {
-      hasSimulatedCurrentSelection = false;
+    function toHiragana(str) {
+      return String(str || "").replace(/[\u30a1-\u30f6]/g, ch =>
+        String.fromCharCode(ch.charCodeAt(0) - 0x60)
+      );
     }
 
-    function getTop100Pool() {
-      return Object.values(strengthMap)
-        .filter(item => item && item.mc_id && item.mc_name)
-        .sort((a, b) => (b.current_score || 0) - (a.current_score || 0))
-        .slice(0, 100)
-        .map(item => allCandidates.find(mc => mc.mc_id === item.mc_id))
-        .filter(Boolean);
+    function getTabGroup(mc) {
+      const yomi = toHiragana(String(mc.mc_yomi || mc.mc_name || "").trim());
+      const first = yomi.charAt(0);
+
+      if ("あいうえお".includes(first)) return "あ";
+      if ("かきくけこがぎぐげご".includes(first)) return "か";
+      if ("さしすせそざじずぜぞ".includes(first)) return "さ";
+      if ("たちつてとだぢづでど".includes(first)) return "た";
+      if ("なにぬねの".includes(first)) return "な";
+      if ("はひふへほばびぶべぼぱぴぷぺぽ".includes(first)) return "は";
+      if ("まみむめも".includes(first)) return "ま";
+      if ("やゆよ".includes(first)) return "や";
+      if ("らりるれろ".includes(first)) return "ら";
+      if ("わをん".includes(first)) return "わ";
+
+      return "";
     }
 
-    function renderSelected() {
-      const grid = document.getElementById("selected-grid");
-      const badge = document.getElementById("selected-count-badge");
+    function sortMcs(mcs) {
+      return [...mcs].sort((a, b) => {
+        const ay = String(a.mc_yomi || a.mc_name || "");
+        const by = String(b.mc_yomi || b.mc_name || "");
+        const yomiCompare = ay.localeCompare(by, "ja");
+        if (yomiCompare !== 0) return yomiCompare;
 
-      badge.textContent = `${selectedMcs.length}/${MAX_SELECTED}`;
-      grid.classList.toggle("is-single", selectedMcs.length === 1);
-
-      if (selectedMcs.length === 0) {
-        grid.innerHTML = "";
-        return;
-      }
-
-      grid.innerHTML = selectedMcs.map(mc => `
-        <div class="vt-selected-item">
-          <div class="vt-selected-name">${escapeHtml(mc.mc_name)}</div>
-          <button class="vt-remove-btn" type="button" data-remove-id="${escapeHtml(mc.mc_id)}">×</button>
-        </div>
-      `).join("");
-
-      grid.querySelectorAll(".vt-remove-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const mcId = btn.getAttribute("data-remove-id");
-          selectedMcs = selectedMcs.filter(mc => mc.mc_id !== mcId);
-          markSelectionChanged();
-          renderSelected();
-          renderCandidates();
-          updateSimReadyState();
-        });
+        return String(a.mc_name || "").localeCompare(String(b.mc_name || ""), "ja");
       });
     }
 
-    function renderCandidates() {
-      const list = document.getElementById("candidate-list");
-      const empty = document.getElementById("candidate-empty");
-      const keyword = normalizeText(document.getElementById("mc-search-input").value);
-      const selectedIds = new Set(selectedMcs.map(mc => mc.mc_id));
+    function renderTabs(groups, activeTab) {
+      const tabsEl = document.getElementById("mcs-tabs");
+      tabsEl.innerHTML = "";
 
-      if (selectedMcs.length >= MAX_SELECTED) {
-        list.innerHTML = "";
-        empty.classList.add("is-hidden");
-        return;
-      }
+      TAB_ORDER.forEach(tabName => {
+        if (!groups[tabName] || groups[tabName].length === 0) return;
 
-      if (keyword.length < 2) {
-        list.innerHTML = "";
-        empty.classList.add("is-hidden");
-        return;
-      }
-
-      filteredCandidates = allCandidates.filter(mc => {
-        if (selectedIds.has(mc.mc_id)) return false;
-        const name = normalizeText(mc.mc_name);
-        const yomi = normalizeText(mc.mc_yomi);
-        return name.includes(keyword) || yomi.includes(keyword);
-      }).slice(0, 20);
-
-      if (filteredCandidates.length === 0) {
-        list.innerHTML = "";
-        empty.classList.remove("is-hidden");
-        return;
-      }
-
-      empty.classList.add("is-hidden");
-      list.innerHTML = filteredCandidates.map(mc => `
-        <button class="vt-candidate-btn" type="button" data-add-id="${escapeHtml(mc.mc_id)}" title="${escapeHtml(mc.mc_name)}">
-          ${escapeHtml(mc.mc_name)}
-        </button>
-      `).join("");
-
-      list.querySelectorAll(".vt-candidate-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          if (selectedMcs.length >= MAX_SELECTED) return;
-          const mcId = btn.getAttribute("data-add-id");
-          const mc = allCandidates.find(item => item.mc_id === mcId);
-          if (!mc) return;
-          selectedMcs.push(mc);
-          markSelectionChanged();
-          document.getElementById("mc-search-input").value = "";
-          renderSelected();
-          renderCandidates();
-          updateSimReadyState();
-        });
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "mcs-tab" + (tabName === activeTab ? " is-active" : "");
+        btn.textContent = tabName;
+        btn.addEventListener("click", () => renderPanel(groups, tabName));
+        tabsEl.appendChild(btn);
       });
     }
 
-    function updateRunButtonDisabledState(disabled) {
-      const runBtn = document.getElementById("run-sim-btn");
-      runBtn.disabled = disabled;
-      runBtn.classList.toggle("is-disabled", disabled);
-    }
+    function renderPanel(groups, activeTab) {
+      renderTabs(groups, activeTab);
 
-    function updateSimReadyState() {
-      const status = document.getElementById("sim-status");
+      const panelEl = document.getElementById("mcs-panel");
+      panelEl.innerHTML = "";
 
-      if (selectedMcs.length === MAX_SELECTED) {
-        if (hasSimulatedCurrentSelection) {
-          status.textContent = "この組み合わせはシミュレーション済みです。MCを変更すると再実行できます。";
-          updateRunButtonDisabledState(true);
+      const sectionTitle = document.createElement("h2");
+      sectionTitle.className = "mcs-section-title";
+      sectionTitle.textContent = `${activeTab}行`;
+      panelEl.appendChild(sectionTitle);
+
+      const list = document.createElement("ul");
+      list.className = "mcs-list";
+
+      const target = groups[activeTab] || [];
+      if (target.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "mcs-empty";
+        empty.textContent = "該当するMCがいません";
+        panelEl.appendChild(empty);
+        return;
+      }
+
+      target.forEach(mc => {
+        const li = document.createElement("li");
+        const mcId = String(mc.mc_id || "");
+        const name = String(mc.mc_name || "MC名不明");
+
+        if (mcId) {
+          li.innerHTML = `<a class="mc-link" href="mc.html?mc_id=${encodeURIComponent(mcId)}">${escapeHtml(name)}</a>`;
         } else {
-          status.textContent = "8人そろいました。シミュレーションできます。";
-          updateRunButtonDisabledState(false);
+          li.innerHTML = `<span class="mc-link-static">${escapeHtml(name)}</span>`;
         }
-      } else {
-        status.textContent = `あと${MAX_SELECTED - selectedMcs.length}人選んでください。`;
-        updateRunButtonDisabledState(true);
-      }
-    }
 
-    function simulateTournamentOnce(participants) {
-      function playMatch(a, b) {
-        const scoreA = strengthMap[a.mc_id]?.current_score ?? 1500;
-        const scoreB = strengthMap[b.mc_id]?.current_score ?? 1500;
-        const diff = scoreA - scoreB;
-        const pA = 1 / (1 + Math.pow(10, -diff / 120));
-        return Math.random() < pA ? a : b;
-      }
-
-      let round = [...participants];
-      while (round.length > 1) {
-        const nextRound = [];
-        for (let i = 0; i < round.length; i += 2) {
-          nextRound.push(playMatch(round[i], round[i + 1]));
-        }
-        round = nextRound;
-      }
-      return round[0];
-    }
-
-    function buildLongSummaryLines(sortedResults) {
-      const top = sortedResults[0];
-      const second = sortedResults[1];
-      const third = sortedResults[2];
-      const fourth = sortedResults[3];
-      const lines = [];
-
-      if (top) {
-        lines.push(`${top.mc_name} が最有力です。優勝回数は${top.wins}回、優勝率は${top.winRate}%でした。`);
-      }
-
-      if (second || third) {
-        const rivalParts = [];
-        if (second) rivalParts.push(`${second.mc_name}が対抗格で、優勝率は${second.winRate}%です。`);
-        if (third) rivalParts.push(`${third.mc_name}も射程圏にいて、優勝率は${third.winRate}%です。`);
-        lines.push(rivalParts.join(" "));
-      }
-
-      if (top) {
-        if (top.winRate >= 50) {
-          lines.push(`${top.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`);
-        } else if (top.winRate >= 35) {
-          lines.push(`${top.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。`);
-        } else {
-          lines.push(`上位が拮抗していて、組み合わせ次第で優勝が入れ替わる混戦傾向です。`);
-        }
-      }
-
-      if (second && fourth) {
-        lines.push(`${second.mc_name}以下も十分にチャンスがあり、${fourth.mc_name}あたりまで優勝候補に入る展開でした。`);
-      }
-
-      return lines;
-    }
-
-    function renderSimulationResults(results) {
-      const topCard = document.getElementById("top-result-card");
-      const topName = document.getElementById("top-result-name");
-      const distCard = document.getElementById("dist-card");
-      const distList = document.getElementById("dist-list");
-      const summaryCard = document.getElementById("summary-card");
-      const summaryLines = document.getElementById("summary-lines");
-
-      const sortedResults = Object.values(results)
-        .sort((a, b) => b.winRate - a.winRate || a.mc_name.localeCompare(b.mc_name, "ja"));
-
-      if (sortedResults.length === 0) return;
-
-      topName.textContent = sortedResults[0].mc_name;
-      topCard.classList.remove("is-hidden");
-
-      distList.innerHTML = sortedResults.map(item => `
-        <div class="vt-dist-row">
-          <div class="vt-dist-name" title="${escapeHtml(item.mc_name)}">${escapeHtml(item.mc_name)}</div>
-          <div class="vt-dist-rate">${item.winRate}%</div>
-        </div>
-      `).join("");
-      distCard.classList.remove("is-hidden");
-
-      const lines = buildLongSummaryLines(sortedResults);
-      summaryLines.innerHTML = lines.map(line => `<p>${escapeHtml(line)}</p>`).join("");
-      summaryCard.classList.remove("is-hidden");
-    }
-
-    function hideSimulationResults() {
-      document.getElementById("top-result-card").classList.add("is-hidden");
-      document.getElementById("dist-card").classList.add("is-hidden");
-      document.getElementById("summary-card").classList.add("is-hidden");
-    }
-
-    function showOverlay() {
-      document.getElementById("sim-overlay").classList.remove("is-hidden");
-      document.getElementById("sim-overlay").setAttribute("aria-hidden", "false");
-    }
-
-    function hideOverlay() {
-      document.getElementById("sim-overlay").classList.add("is-hidden");
-      document.getElementById("sim-overlay").setAttribute("aria-hidden", "true");
-    }
-
-    function scrollToResultPanel() {
-      document.getElementById("result-panel").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    function runSimulationCore() {
-      const results = {};
-      selectedMcs.forEach(mc => {
-        results[mc.mc_id] = {
-          mc_id: mc.mc_id,
-          mc_name: mc.mc_name,
-          wins: 0,
-          winRate: 0
-        };
+        list.appendChild(li);
       });
 
-      for (let i = 0; i < 100; i++) {
-        const shuffled = shuffleArray(selectedMcs);
-        const winner = simulateTournamentOnce(shuffled);
-        results[winner.mc_id].wins += 1;
-      }
-
-      Object.values(results).forEach(item => {
-        item.winRate = Math.round(item.wins);
-      });
-
-      return results;
+      panelEl.appendChild(list);
     }
 
-    function startSimulationSequence() {
-      if (selectedMcs.length !== MAX_SELECTED) return;
-      if (hasSimulatedCurrentSelection) return;
-
-      const status = document.getElementById("sim-status");
-      const countEl = document.getElementById("sim-overlay-count");
-
-      if (overlayTimer) {
-        clearInterval(overlayTimer);
-        overlayTimer = null;
+    async function loadMcsJson() {
+      const res = await fetch(MCS_JSON_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
       }
+      return await res.json();
+    }
 
-      hideSimulationResults();
-      showOverlay();
-      countEl.textContent = "5";
-      status.textContent = "100回戦ってもらっています。";
-      updateRunButtonDisabledState(true);
+    async function loadMcsList() {
+      const statusEl = document.getElementById("mcs-status");
+      statusEl.classList.remove("error");
 
-      let count = 5;
+      try {
+        const data = await loadMcsJson();
+        console.log("mcs list:", data);
 
-      overlayTimer = setInterval(() => {
-        count -= 1;
-
-        if (count >= 1) {
-          countEl.textContent = String(count);
+        if (data.error) {
+          statusEl.style.display = "block";
+          statusEl.textContent = "MC一覧の取得に失敗しました: " + (data.message || "");
+          statusEl.classList.add("error");
           return;
         }
 
-        clearInterval(overlayTimer);
-        overlayTimer = null;
+        const mcs = Array.isArray(data.mcs) ? sortMcs(data.mcs) : [];
+        const groups = {};
 
-        const results = runSimulationCore();
-        hideOverlay();
-        renderSimulationResults(results);
-        hasSimulatedCurrentSelection = true;
-        updateSimReadyState();
-        scrollToResultPanel();
-      }, 700);
-    }
-
-    async function initPage() {
-      try {
-        const [mcsData, rankingsData] = await Promise.all([
-          loadJson(CANDIDATES_URL),
-          loadJson(STRENGTHS_URL)
-        ]);
-
-        const rankings = Array.isArray(rankingsData.rankings) ? rankingsData.rankings : [];
-        const rankingIds = new Set(rankings.map(item => item.mc_id).filter(Boolean));
-
-        strengthMap = {};
-        rankings.forEach(item => {
-          strengthMap[item.mc_id] = {
-            mc_id: item.mc_id,
-            mc_name: item.mc_name,
-            current_score: Number(item.current_score ?? item.score ?? 1500)
-          };
+        TAB_ORDER.forEach(tab => {
+          groups[tab] = [];
         });
 
-        const rawMcs = Array.isArray(mcsData.mcs) ? mcsData.mcs : [];
-        allCandidates = rawMcs.filter(mc => rankingIds.has(mc.mc_id));
+        const skipped = [];
 
-        renderSelected();
-        renderCandidates();
-        updateSimReadyState();
-        hideSimulationResults();
-        hideOverlay();
-
-        document.getElementById("mc-search-input").addEventListener("input", () => {
-          renderCandidates();
-        });
-
-        document.getElementById("fill-random-btn").addEventListener("click", () => {
-          const selectedIds = new Set(selectedMcs.map(mc => mc.mc_id));
-          const pool = getTop100Pool().filter(mc => !selectedIds.has(mc.mc_id));
-          const shuffled = shuffleArray(pool);
-
-          while (selectedMcs.length < MAX_SELECTED && shuffled.length > 0) {
-            selectedMcs.push(shuffled.shift());
+        mcs.forEach(mc => {
+          const group = getTabGroup(mc);
+          if (!group) {
+            skipped.push({
+              mc_id: mc.mc_id || "",
+              mc_name: mc.mc_name || "",
+              mc_yomi: mc.mc_yomi || ""
+            });
+            return;
           }
-
-          markSelectionChanged();
-          renderSelected();
-          renderCandidates();
-          updateSimReadyState();
-          hideSimulationResults();
+          groups[group].push(mc);
         });
 
-        document.getElementById("clear-selected-btn").addEventListener("click", () => {
-          if (overlayTimer) {
-            clearInterval(overlayTimer);
-            overlayTimer = null;
-          }
-          selectedMcs = [];
-          markSelectionChanged();
-          renderSelected();
-          renderCandidates();
-          updateSimReadyState();
-          hideSimulationResults();
-          hideOverlay();
-          document.getElementById("sim-status").textContent = "8人選ぶとシミュレーションできます。";
-        });
+        if (skipped.length > 0) {
+          console.log("mcs skipped because group was not found:", skipped);
+        }
 
-        document.getElementById("run-sim-btn").addEventListener("click", startSimulationSequence);
+        const firstTab = TAB_ORDER.find(tab => groups[tab] && groups[tab].length > 0) || "あ";
+        renderPanel(groups, firstTab);
+
+        if (mcs.length === 0) {
+          statusEl.style.display = "block";
+          statusEl.textContent = "表示できるMCがいません";
+        } else {
+          statusEl.style.display = "none";
+          statusEl.textContent = "";
+        }
       } catch (err) {
         console.error(err);
-        document.getElementById("sim-status").textContent = "データの読み込みに失敗しました。";
+        statusEl.style.display = "block";
+        statusEl.textContent = "MC一覧の読み込みに失敗しました";
+        statusEl.classList.add("error");
       }
     }
 
-    initPage();
+    loadMcsList();
   </script>
 </body>
 </html>
