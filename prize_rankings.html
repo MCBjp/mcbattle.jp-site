@@ -20,8 +20,8 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      gap: 14px;
-      padding: 14px 0;
+      gap: 12px;
+      padding: 12px 0;
     }
 
     .top3-row + .top3-row {
@@ -32,24 +32,25 @@
       min-width: 0;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       color: #ffffff;
-      font-size: 1.42rem;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
     }
 
     .top3-medal {
       flex: 0 0 auto;
-      font-size: 1.15em;
+      font-size: 0.96em;
       line-height: 1;
     }
 
     .top3-name {
       min-width: 0;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .top3-name a {
@@ -64,10 +65,10 @@
 
     .top3-amount {
       color: var(--accent);
-      font-weight: 900;
-      font-size: 1.38rem;
+      font-weight: 800;
+      font-size: 1.08rem;
       line-height: 1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       white-space: nowrap;
       font-variant-numeric: tabular-nums;
       text-align: right;
@@ -162,20 +163,20 @@
     @media (max-width: 640px) {
       .top3-row {
         gap: 10px;
-        padding: 12px 0;
+        padding: 10px 0;
       }
 
       .top3-left {
-        gap: 8px;
-        font-size: 1.12rem;
+        gap: 7px;
+        font-size: 0.98rem;
       }
 
       .top3-medal {
-        font-size: 1.08em;
+        font-size: 0.92em;
       }
 
       .top3-amount {
-        font-size: 1.08rem;
+        font-size: 0.98rem;
       }
 
       .prize-card-inner {
@@ -347,9 +348,11 @@
           const a = document.createElement("a");
           a.href = `mc.html?mc_id=${encodeURIComponent(item.mc_id)}`;
           a.textContent = item.mc_name;
+          a.title = item.mc_name;
           nameWrap.appendChild(a);
         } else {
           nameWrap.textContent = item.mc_name;
+          nameWrap.title = item.mc_name;
         }
 
         const amount = document.createElement("div");
