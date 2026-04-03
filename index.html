@@ -75,6 +75,7 @@
     .link-card:hover,
     .list-row,
     .list-row:hover,
+    .list-row-static,
     .header-spec-link *,
     .header-spec-link:hover *,
     .sim-card *,
@@ -82,7 +83,8 @@
     .link-card *,
     .link-card:hover *,
     .list-row *,
-    .list-row:hover * {
+    .list-row:hover *,
+    .list-row-static * {
       text-decoration: none !important;
     }
 
@@ -262,20 +264,24 @@
       gap:10px;
     }
 
-    .list-row{
+    .list-row,
+    .list-row-static{
       display:block;
       padding:12px 12px 11px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.025);
+      min-width:0;
+      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
+    }
+
+    .list-row{
       transition:
         transform .18s ease,
         border-color .18s ease,
         background-color .18s ease,
         box-shadow .18s ease,
         color .18s ease;
-      min-width:0;
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
     }
 
     .list-row:hover{
@@ -310,6 +316,15 @@
 
     .list-row:hover .event-name{
       color:#ffffff;
+    }
+
+    .event-stage{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+      word-break:break-word;
     }
 
     .rank-row{
@@ -493,7 +508,8 @@
         gap:8px;
       }
 
-      .list-row{
+      .list-row,
+      .list-row-static{
         padding:9px 10px 8px;
         border-radius:13px;
         box-shadow:0 0 0 1px rgba(255,255,255,.015) inset;
@@ -507,6 +523,11 @@
       .event-name{
         font-size:13px;
         line-height:1.34;
+      }
+
+      .event-stage{
+        font-size:11px;
+        margin-top:3px;
       }
 
       .rank-row{
@@ -600,7 +621,7 @@
   </main>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+    const TOP_JSON_URL = "./data/top.json";
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -636,16 +657,6 @@
       return s;
     }
 
-    function parseDate(raw) {
-      if (!raw) return null;
-      if (Object.prototype.toString.call(raw) === "[object Date]" && !Number.isNaN(raw.getTime())) {
-        return raw;
-      }
-      const s = String(raw).trim().replace(/\./g, "-").replace(/\//g, "-");
-      const date = new Date(s);
-      return Number.isNaN(date.getTime()) ? null : date;
-    }
-
     function getEventId(event) {
       return event.event_id || event.id || event.eventId || "";
     }
@@ -656,6 +667,10 @@
 
     function getEventDate(event) {
       return event.event_date || event.date || event.EventDate || "";
+    }
+
+    function getEventStage(event) {
+      return event.event_stage || event.stage || event.location || "";
     }
 
     function getMcId(item) {
@@ -709,38 +724,15 @@
       card.classList.toggle("is-empty", !!isEmpty);
     }
 
-    function jsonp(url) {
-      return new Promise((resolve, reject) => {
-        const callbackName = "__jsonp_cb_" + Math.random().toString(36).slice(2);
-        const script = document.createElement("script");
-        const sep = url.includes("?") ? "&" : "?";
-        const timer = setTimeout(() => {
-          cleanup();
-          reject(new Error("timeout"));
-        }, 15000);
-
-        function cleanup() {
-          clearTimeout(timer);
-          delete window[callbackName];
-          script.remove();
-        }
-
-        window[callbackName] = (data) => {
-          cleanup();
-          resolve(data);
-        };
-
-        script.src = `${url}${sep}callback=${callbackName}`;
-        script.onerror = () => {
-          cleanup();
-          reject(new Error("load error"));
-        };
-
-        document.body.appendChild(script);
-      });
+    async function loadTopJson() {
+      const res = await fetch(TOP_JSON_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      return await res.json();
     }
 
-    function renderEventList(containerId, items, emptyMessage) {
+    function renderRecentEventList(containerId, items, emptyMessage) {
       const container = document.getElementById(containerId);
       if (!container) return;
 
@@ -760,6 +752,30 @@
             <span class="event-date">${escapeHtml(date)}</span>
             <span class="event-name">${escapeHtml(name)}</span>
           </a>
+        `;
+      }).join("");
+    }
+
+    function renderUpcomingEventList(containerId, items, emptyMessage) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      if (!items.length) {
+        container.innerHTML = `<div class="status">${escapeHtml(emptyMessage)}</div>`;
+        return;
+      }
+
+      container.innerHTML = items.map((event) => {
+        const name = getEventName(event);
+        const date = formatDateJP(getEventDate(event));
+        const stage = getEventStage(event);
+
+        return `
+          <div class="list-row-static">
+            <span class="event-date">${escapeHtml(date)}</span>
+            <span class="event-name">${escapeHtml(name)}</span>
+            ${stage ? `<span class="event-stage">${escapeHtml(stage)}</span>` : ""}
+          </div>
         `;
       }).join("");
     }
@@ -820,71 +836,39 @@
       }).join("");
     }
 
-    async function loadTopData() {
+    async function loadIndexData() {
       try {
-        const payload = await jsonp(API_URL);
+        const payload = await loadTopJson();
         if (payload?.error) throw new Error(payload.message || "top data error");
 
-        const rankings = Array.isArray(payload?.score_rankings) ? payload.score_rankings.slice(0, 10) : [];
-        const recentEventsRaw = Array.isArray(payload?.recent_events) ? payload.recent_events : [];
+        const recentEvents = Array.isArray(payload?.recent_events) ? payload.recent_events.slice(0, 5) : [];
+        const upcomingEvents = Array.isArray(payload?.upcoming_events) ? payload.upcoming_events.slice(0, 5) : [];
+        const scoreRankings = Array.isArray(payload?.score_rankings) ? payload.score_rankings.slice(0, 10) : [];
+        const prizeRankings = Array.isArray(payload?.prize_rankings) ? payload.prize_rankings.slice(0, 10) : [];
 
-        renderScoreRanking("score-ranking", rankings, "データがありません");
-        setStatus("score-ranking-status", rankings.length ? "" : "データがありません");
-
-        const recentEvents = recentEventsRaw.slice(0, 5);
-        renderEventList("recent-events", recentEvents, "データがありません");
+        renderRecentEventList("recent-events", recentEvents, "データがありません");
         setStatus("recent-events-status", recentEvents.length ? "" : "データがありません");
+
+        renderUpcomingEventList("future-events", upcomingEvents, "今後開催予定の大会はありません");
+        setStatus("future-events-status", upcomingEvents.length ? "" : "今後開催予定の大会はありません");
+        setEmptyCard("future-events-card", upcomingEvents.length === 0);
+
+        renderScoreRanking("score-ranking", scoreRankings, "データがありません");
+        setStatus("score-ranking-status", scoreRankings.length ? "" : "データがありません");
+
+        renderPrizeRanking("prize-ranking", prizeRankings, "データがありません");
+        setStatus("prize-ranking-status", prizeRankings.length ? "" : "データがありません");
       } catch (error) {
         console.error(error);
-        setStatus("score-ranking-status", "スコアランキングの読み込みに失敗しました。", true);
         setStatus("recent-events-status", "直近大会の読み込みに失敗しました。", true);
-      }
-    }
-
-    async function loadEventsData() {
-      try {
-        const payload = await jsonp(`${API_URL}?mode=events`);
-        if (payload?.error) throw new Error(payload.message || "events error");
-
-        const events = Array.isArray(payload?.events) ? payload.events : [];
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        const futureEvents = events
-          .map((event) => ({ ...event, __date: parseDate(getEventDate(event)) }))
-          .filter((event) => event.__date && event.__date >= today)
-          .sort((a, b) => a.__date - b.__date)
-          .slice(0, 5);
-
-        renderEventList("future-events", futureEvents, "今後開催予定の大会はありません");
-        setStatus("future-events-status", "");
-        setEmptyCard("future-events-card", futureEvents.length === 0);
-      } catch (error) {
-        console.error(error);
         setStatus("future-events-status", "今後開催予定の大会の読み込みに失敗しました。", true);
+        setStatus("score-ranking-status", "スコアランキングの読み込みに失敗しました。", true);
+        setStatus("prize-ranking-status", "賞金ランキングの読み込みに失敗しました。", true);
         setEmptyCard("future-events-card", false);
       }
     }
 
-    async function loadPrizeRanking() {
-      try {
-        const payload = await jsonp(`${API_URL}?mode=prize_rankings`);
-        if (payload?.error) throw new Error(payload.message || "prize ranking error");
-
-        const items = Array.isArray(payload?.rankings) ? payload.rankings.slice(0, 10) : [];
-        renderPrizeRanking("prize-ranking", items, "データがありません");
-        setStatus("prize-ranking-status", items.length ? "" : "データがありません");
-      } catch (error) {
-        console.error(error);
-        setStatus("prize-ranking-status", "賞金ランキングの読み込みに失敗しました。", true);
-      }
-    }
-
-    Promise.allSettled([
-      loadTopData(),
-      loadEventsData(),
-      loadPrizeRanking()
-    ]);
+    loadIndexData();
   </script>
 </body>
 </html>
