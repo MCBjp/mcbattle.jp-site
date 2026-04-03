@@ -363,7 +363,14 @@
 
         if (res.error) throw new Error(res.message || "data error");
 
-        const events = Array.isArray(res.events) ? res.events : [];
+        const allEvents = Array.isArray(res.events) ? res.events : [];
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const events = allEvents.filter((event) => {
+          const d = getDateValue(event.event_date);
+          return d && d.getTime() <= today.getTime();
+        });
 
         if (!events.length) {
           statusEl.textContent = "大会がありません";
