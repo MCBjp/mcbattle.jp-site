@@ -3,122 +3,438 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>獲得賞金ランキング | MCBattle.jp</title>
+  <title>賞金ランキング | MCBattle.jp</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .rankings-card-inner {
-      padding-left: 12px;
-      padding-right: 12px;
+    .prize-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 56px;
     }
 
-    .rankings-table-wrap {
-      overflow-x: visible;
-      width: 100%;
+    .page-top {
+      margin-bottom: 20px;
     }
 
-    table.rankings-table {
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      table-layout: fixed;
-      border-collapse: collapse;
-      margin-top: 0;
+    .page-mini-logo {
+      margin: 0 0 14px;
     }
 
-    table.rankings-table col:nth-child(1) {
-      width: 58px;
+    .site-mini-logo {
+      display: inline-block;
+      font-size: clamp(2.05rem, 4.9vw, 3.15rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      text-decoration: none;
     }
 
-    table.rankings-table col:nth-child(2) {
-      width: auto;
-    }
-
-    table.rankings-table col:nth-child(3) {
-      width: 132px;
-    }
-
-    table.rankings-table th,
-    table.rankings-table td {
-      padding: 6px 8px;
-      vertical-align: middle;
-    }
-
-    table.rankings-table th:nth-child(1),
-    table.rankings-table td:nth-child(1) {
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    table.rankings-table th:nth-child(2),
-    table.rankings-table td:nth-child(2) {
-      text-align: left;
-      min-width: 0;
-    }
-
-    table.rankings-table th:nth-child(3),
-    table.rankings-table td:nth-child(3) {
-      text-align: right;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-    }
-
-    table.rankings-table tbody tr:hover {
+    .site-mini-logo:hover {
       opacity: 0.92;
     }
 
-    .rank-name-link,
-    .rank-name-text {
-      display: block;
+    .page-nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 14px;
+      margin-bottom: 18px;
+    }
+
+    .page-nav-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(214, 178, 95, 0.22);
+      background: rgba(255,255,255,0.025);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      line-height: 1;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+      transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        color 0.18s ease;
+    }
+
+    .page-nav-pill:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(214, 178, 95, 0.34);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.16);
+    }
+
+    .page-nav-pill.is-current {
+      background: rgba(214, 178, 95, 0.08);
+      border-color: rgba(214, 178, 95, 0.32);
+    }
+
+    .page-nav-break {
+      flex-basis: 100%;
+      height: 0;
+    }
+
+    .page-header-block h1 {
+      margin: 0;
+      font-size: clamp(2.35rem, 7vw, 4.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    .hero-top3 {
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+
+    .top3-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.94fr 0.94fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .top-card {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(214,178,95,0.08), transparent 46%),
+        rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03) inset,
+        0 24px 50px rgba(0,0,0,0.18);
+      min-height: 210px;
+    }
+
+    .top-card.is-rank-1 {
+      border-color: rgba(214,178,95,0.34);
+      background:
+        radial-gradient(circle at top left, rgba(214,178,95,0.14), transparent 48%),
+        rgba(255,255,255,0.04);
+      min-height: 250px;
+    }
+
+    .top-card-inner {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 20px 18px;
+      gap: 14px;
+    }
+
+    .top-rank-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-width: 58px;
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(214,178,95,0.28);
+      background: rgba(255,255,255,0.045);
+      color: var(--accent);
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .top-card.is-rank-1 .top-rank-badge {
+      min-width: 64px;
+      height: 38px;
+      font-size: 1.04rem;
+    }
+
+    .top-card-main {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .top-card-name {
+      margin: 0;
+      font-size: 1.9rem;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      color: #ffffff;
+      word-break: break-word;
+    }
+
+    .top-card.is-rank-1 .top-card-name {
+      font-size: 2.35rem;
+      line-height: 1.02;
+    }
+
+    .top-card-name a {
       color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
-      white-space: normal;
-      overflow-wrap: normal;
-      word-break: keep-all;
-      line-height: 1.35;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.55);
+      transition: border-color 0.18s ease, opacity 0.18s ease;
     }
 
-    .rank-name-link:hover {
-      opacity: 0.85;
+    .top-card-name a:hover {
+      opacity: 0.92;
+      border-bottom-color: rgba(255,255,255,0.88);
     }
 
-    .name-break{
-      display: inline;
+    .top-card-amount {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--accent);
     }
 
-    .name-break.forced{
-      display: block;
+    .top-card.is-rank-1 .top-card-amount {
+      font-size: 2.7rem;
+    }
+
+    .top-card-note {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .ranking-panel {
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background:
+        radial-gradient(circle at top left, rgba(52, 76, 170, 0.08), transparent 36%),
+        rgba(255,255,255,0.03);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03) inset,
+        0 24px 50px rgba(0,0,0,0.16);
+      padding: 22px 18px 18px;
+    }
+
+    .ranking-subtitle {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .ranking-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table.prize-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+
+    .prize-table thead th {
+      text-align: left;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 16px 14px;
+      background: rgba(255,255,255,0.035);
+      border-bottom: 1px solid rgba(214,178,95,0.34);
+    }
+
+    .prize-table thead th:nth-child(1),
+    .prize-table tbody td:nth-child(1) {
+      width: 88px;
+      text-align: right;
+    }
+
+    .prize-table thead th:nth-child(3),
+    .prize-table tbody td:nth-child(3) {
+      width: 220px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .prize-table tbody tr {
+      border-bottom: 1px solid rgba(214,178,95,0.26);
+    }
+
+    .prize-table tbody td {
+      padding: 18px 14px;
+      color: #ffffff;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+
+    .prize-rank {
+      color: #ffffff;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .prize-mc a {
+      color: #ffffff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.55);
+      transition: border-color 0.18s ease, opacity 0.18s ease;
+    }
+
+    .prize-mc a:hover {
+      opacity: 0.92;
+      border-bottom-color: rgba(255,255,255,0.88);
+    }
+
+    .prize-amount {
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+
+    .status {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .empty-note {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      padding: 10px 2px 2px;
+    }
+
+    @media (max-width: 900px) {
+      .top3-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-card,
+      .top-card.is-rank-1 {
+        min-height: auto;
+      }
+
+      .top-card.is-rank-1 .top-card-name {
+        font-size: 2.15rem;
+      }
+
+      .top-card-name {
+        font-size: 1.72rem;
+      }
+
+      .top-card.is-rank-1 .top-card-amount {
+        font-size: 2.4rem;
+      }
+
+      .top-card-amount {
+        font-size: 1.84rem;
+      }
     }
 
     @media (max-width: 640px) {
-      .rankings-card-inner {
-        padding-left: 10px;
-        padding-right: 10px;
+      .prize-page {
+        padding: 18px 14px 48px;
       }
 
-      table.rankings-table col:nth-child(1) {
-        width: 42px;
+      .page-nav-pills {
+        gap: 10px 12px;
       }
 
-      table.rankings-table col:nth-child(3) {
-        width: 104px;
+      .page-nav-pill {
+        min-height: 48px;
+        padding: 0 22px;
+        font-size: 0.96rem;
       }
 
-      table.rankings-table th,
-      table.rankings-table td {
-        padding: 5px 4px;
+      .ranking-panel {
+        border-radius: 22px;
+        padding: 14px 10px 12px;
+      }
+
+      .top-card {
+        border-radius: 20px;
+      }
+
+      .top-card-inner {
+        padding: 16px 16px 15px;
+        gap: 12px;
+      }
+
+      .top-rank-badge {
+        min-width: 54px;
+        height: 34px;
+        padding: 0 13px;
+        font-size: 0.92rem;
+      }
+
+      .top-card.is-rank-1 .top-rank-badge {
+        min-width: 58px;
+        height: 36px;
+        font-size: 0.96rem;
+      }
+
+      .top-card.is-rank-1 .top-card-name {
+        font-size: 1.95rem;
+      }
+
+      .top-card-name {
+        font-size: 1.56rem;
+      }
+
+      .top-card.is-rank-1 .top-card-amount {
+        font-size: 2.08rem;
+      }
+
+      .top-card-amount {
+        font-size: 1.66rem;
+      }
+
+      .top-card-note {
+        font-size: 0.8rem;
+      }
+
+      table.prize-table {
+        min-width: 0;
+      }
+
+      .prize-table thead th {
+        padding: 13px 10px;
         font-size: 0.9rem;
       }
 
-      .rank-name-link,
-      .rank-name-text {
-        line-height: 1.28;
+      .prize-table tbody td {
+        padding: 14px 10px;
+        font-size: 0.94rem;
+      }
+
+      .prize-table thead th:nth-child(1),
+      .prize-table tbody td:nth-child(1) {
+        width: 54px;
+      }
+
+      .prize-table thead th:nth-child(3),
+      .prize-table tbody td:nth-child(3) {
+        width: 140px;
+      }
+
+      .prize-amount {
+        font-size: 0.94rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="rankings-page">
+  <div class="prize-page">
     <div class="page-top">
       <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
@@ -135,41 +451,21 @@
       </div>
     </div>
 
-    <section class="card">
-      <div class="rankings-card-inner">
-        <p id="ranking-status" class="muted"></p>
+    <section class="hero-top3" id="hero-top3"></section>
 
-        <div class="rankings-table-wrap">
-          <table class="rankings-table">
-            <colgroup>
-              <col />
-              <col />
-              <col />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>順位</th>
-                <th>MC名</th>
-                <th>賞金</th>
-              </tr>
-            </thead>
-            <tbody id="ranking-body"></tbody>
-          </table>
-        </div>
-      </div>
+    <section class="ranking-panel">
+      <p class="ranking-subtitle">4位以降</p>
+      <div id="ranking-rest"></div>
     </section>
+
+    <p id="status" class="status">読み込み中…</p>
   </div>
 
   <script>
-    const PRIZE_RANKINGS_JSON_URL = "./data/prize_rankings.json";
+    const PRIZE_JSON_URL = "./data/prize_rankings.json";
 
-    function formatYen(value) {
-      const num = Number(value || 0);
-      return "¥" + num.toLocaleString("ja-JP");
-    }
-
-    function escapeHtml(value) {
-      return String(value ?? "")
+    function escapeHtml(v) {
+      return String(v ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -177,115 +473,159 @@
         .replace(/'/g, "&#39;");
     }
 
-    function buildNameHtml(name) {
-      const s = String(name || "");
-
-      if (!s) return "";
-
-      if (s.includes("(")) {
-        const idx = s.indexOf("(");
-        const left = s.slice(0, idx).trimEnd();
-        const right = s.slice(idx);
-        return `${escapeHtml(left)}<span class="name-break forced"></span>${escapeHtml(right)}`;
-      }
-
-      const akaMatch = s.match(/^(.*?)(\s+a\.k\.a\.\s+.*)$/i);
-      if (akaMatch) {
-        return `${escapeHtml(akaMatch[1])}<span class="name-break forced"></span>${escapeHtml(akaMatch[2].trim())}`;
-      }
-
-      return escapeHtml(s);
+    function toNumber(v) {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : 0;
     }
 
-    async function loadPrizeRankingsJson() {
-      const res = await fetch(PRIZE_RANKINGS_JSON_URL, { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
+    function formatMoney(v) {
+      return "¥" + toNumber(v).toLocaleString("ja-JP");
+    }
+
+    function getMcId(item) {
+      return String(item.mc_id || "").trim();
+    }
+
+    function getMcName(item) {
+      return String(item.mc_name || item.name || "").trim();
+    }
+
+    function getPrizeAmount(item) {
+      return toNumber(
+        item.total_prize ??
+        item.prize_total ??
+        item.total_amount ??
+        item.amount ??
+        item.prize
+      );
+    }
+
+    function normalizeItems(raw) {
+      const source = Array.isArray(raw?.rankings)
+        ? raw.rankings
+        : Array.isArray(raw?.items)
+        ? raw.items
+        : Array.isArray(raw)
+        ? raw
+        : [];
+
+      return source
+        .map((item, index) => ({
+          mc_id: getMcId(item),
+          mc_name: getMcName(item),
+          amount: getPrizeAmount(item),
+          rank: Number(item.rank) || (index + 1)
+        }))
+        .filter(item => item.mc_name)
+        .sort((a, b) => {
+          if (b.amount !== a.amount) return b.amount - a.amount;
+          return a.rank - b.rank;
+        })
+        .map((item, index) => ({
+          ...item,
+          rank: index + 1
+        }));
+    }
+
+    function mcLink(item) {
+      const name = escapeHtml(item.mc_name);
+      const mcId = item.mc_id;
+      if (!mcId) return name;
+      return `<a href="mc.html?mc_id=${encodeURIComponent(mcId)}">${name}</a>`;
+    }
+
+    function buildTopCard(item) {
+      return `
+        <article class="top-card is-rank-${item.rank}">
+          <div class="top-card-inner">
+            <div class="top-card-main">
+              <span class="top-rank-badge">#${item.rank}</span>
+              <h2 class="top-card-name">${mcLink(item)}</h2>
+            </div>
+            <div>
+              <p class="top-card-amount">${escapeHtml(formatMoney(item.amount))}</p>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function buildTop3(items) {
+      if (!items.length) {
+        return `<p class="empty-note">賞金データがありません。</p>`;
       }
+
+      return `
+        <div class="top3-grid">
+          ${items.map(buildTopCard).join("")}
+        </div>
+      `;
+    }
+
+    function buildRestTable(items) {
+      if (!items.length) {
+        return `<p class="empty-note">4位以降のデータはありません。</p>`;
+      }
+
+      return `
+        <div class="ranking-table-wrap">
+          <table class="prize-table">
+            <thead>
+              <tr>
+                <th>順位</th>
+                <th>MC名</th>
+                <th>賞金</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items.map(item => `
+                <tr>
+                  <td class="prize-rank">${item.rank}</td>
+                  <td class="prize-mc">${mcLink(item)}</td>
+                  <td class="prize-amount">${escapeHtml(formatMoney(item.amount))}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    async function fetchPrizeData() {
+      const res = await fetch(PRIZE_JSON_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return await res.json();
     }
 
-    function loadPrizeRankings() {
-      const statusEl = document.getElementById("ranking-status");
-      const bodyEl = document.getElementById("ranking-body");
+    async function load() {
+      const heroEl = document.getElementById("hero-top3");
+      const restEl = document.getElementById("ranking-rest");
+      const statusEl = document.getElementById("status");
 
-      loadPrizeRankingsJson()
-        .then((data) => {
-          console.log("prize ranking page:", data);
+      try {
+        const raw = await fetchPrizeData();
 
-          bodyEl.innerHTML = "";
-          statusEl.classList.remove("error");
+        if (raw && raw.error) {
+          throw new Error(raw.message || "data error");
+        }
 
-          try {
-            if (!data) {
-              statusEl.textContent = "レスポンスが空です";
-              statusEl.classList.add("error");
-              return;
-            }
+        const items = normalizeItems(raw);
+        const top3 = items.slice(0, 3);
+        const rest = items.slice(3);
 
-            if (data.error) {
-              statusEl.textContent = "データ取得エラー";
-              statusEl.classList.add("error");
-              return;
-            }
-
-            const rankings = Array.isArray(data.rankings) ? data.rankings : [];
-
-            rankings.forEach((item, index) => {
-              const tr = document.createElement("tr");
-
-              const rankTd = document.createElement("td");
-              const nameTd = document.createElement("td");
-              const moneyTd = document.createElement("td");
-
-              const rank = item.rank || (index + 1);
-              const mcId = item.mc_id || "";
-              const mcName = item.mc_name || "名前不明";
-
-              rankTd.textContent = rank;
-              moneyTd.textContent = formatYen(item.total_prize_money || 0);
-
-              if (mcId) {
-                const a = document.createElement("a");
-                a.href = `mc.html?mc_id=${encodeURIComponent(mcId)}`;
-                a.className = "rank-name-link";
-                a.title = mcName;
-                a.innerHTML = buildNameHtml(mcName);
-                nameTd.appendChild(a);
-              } else {
-                const span = document.createElement("span");
-                span.className = "rank-name-text";
-                span.title = mcName;
-                span.innerHTML = buildNameHtml(mcName);
-                nameTd.appendChild(span);
-              }
-
-              tr.appendChild(rankTd);
-              tr.appendChild(nameTd);
-              tr.appendChild(moneyTd);
-
-              bodyEl.appendChild(tr);
-            });
-
-            statusEl.textContent = "";
-
-            if (rankings.length === 0) {
-              statusEl.textContent = "表示できるデータがありません";
-            }
-          } catch (err) {
-            console.error(err);
-            statusEl.textContent = "描画エラー";
-            statusEl.classList.add("error");
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          statusEl.textContent = "読み込みに失敗しました";
-          statusEl.classList.add("error");
-        });
+        heroEl.innerHTML = buildTop3(top3);
+        restEl.innerHTML = buildRestTable(rest);
+        statusEl.textContent = "";
+      } catch (err) {
+        console.error(err);
+        heroEl.innerHTML = "";
+        restEl.innerHTML = "";
+        statusEl.textContent = "賞金ランキングの取得に失敗しました";
+        statusEl.classList.add("error");
+      }
     }
 
-    loadPrizeRankings();
+    load();
   </script>
 </body>
 </html>
