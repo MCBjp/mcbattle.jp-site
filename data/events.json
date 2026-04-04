@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-04T04:39:38.855Z",
-  "total": 100,
+  "updated_at": "2026-04-04T15:08:26.593Z",
+  "total": 107,
   "events": [
     {
       "event_id": "EVT0032",
@@ -56,7 +56,7 @@
       "event_stage": "本戦",
       "organizer": "戦極MCBATTLE",
       "notes": "https://sengokumc.exblog.jp/33498896/ | https://abema.tv/video/episode/243-76_s2000_p5",
-      "winner_name": ""
+      "winner_name": "Sitissy luvit"
     },
     {
       "event_id": "EVT0031",
@@ -98,7 +98,7 @@
       "event_stage": "本戦",
       "organizer": "戦極MCBATTLE",
       "notes": "https://sengokumc.exblog.jp/32653799/ | https://sengokumc.exblog.jp/32653792/ | https://x.com/sengokumc/status/1801494965480210503",
-      "winner_name": ""
+      "winner_name": "KOPERU"
     },
     {
       "event_id": "EVT0075",
@@ -955,6 +955,20 @@
       "winner_name": ""
     },
     {
+      "event_id": "EVT0111",
+      "event_name": "戦極MCBATTLE 第18章 ",
+      "event_name_full": "戦極MCBATTLE 第18章 ",
+      "event_name_simple": "戦極MCBATTLE 第18章 ",
+      "event_date": "2018-08-11",
+      "prize_money_winner": 1000000,
+      "prize_money_total": null,
+      "event_category": "",
+      "event_stage": "",
+      "organizer": "",
+      "notes": "",
+      "winner_name": "漢 a.k.a. GAMI"
+    },
+    {
       "event_id": "EVT0053",
       "event_name": "凱旋MCbattle東西選抜",
       "event_name_full": "凱旋MCbattle東西選抜",
@@ -983,6 +997,20 @@
       "winner_name": ""
     },
     {
+      "event_id": "EVT0110",
+      "event_name": "戦極MCBATTLE 第17章 ",
+      "event_name_full": "戦極MCBATTLE 第17章 ",
+      "event_name_simple": "戦極MCBATTLE 第17章 ",
+      "event_date": "2018-02-17",
+      "prize_money_winner": 1000000,
+      "prize_money_total": null,
+      "event_category": "",
+      "event_stage": "",
+      "organizer": "",
+      "notes": "",
+      "winner_name": "GIL"
+    },
+    {
       "event_id": "EVT0024",
       "event_name": "KOK2017 GrandChanpionShip",
       "event_name_full": "KOK2017 GrandChanpionShip",
@@ -1009,6 +1037,20 @@
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2017",
       "winner_name": "DOTAMA"
+    },
+    {
+      "event_id": "EVT0109",
+      "event_name": "戦極MCBATTLE 第16章 ",
+      "event_name_full": "戦極MCBATTLE 第16章 ",
+      "event_name_simple": "戦極MCBATTLE 第16章 ",
+      "event_date": "2017-05-21",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "event_category": "",
+      "event_stage": "",
+      "organizer": "",
+      "notes": "",
+      "winner_name": "MOL53"
     },
     {
       "event_id": "EVT0023",
@@ -1053,6 +1095,20 @@
       "winner_name": ""
     },
     {
+      "event_id": "EVT0108",
+      "event_name": "戦極MCBATTLE 第15章 ",
+      "event_name_full": "戦極MCBATTLE 第15章 ",
+      "event_name_simple": "戦極MCBATTLE 第15章 ",
+      "event_date": "2016-11-06",
+      "prize_money_winner": 500000,
+      "prize_money_total": null,
+      "event_category": "",
+      "event_stage": "",
+      "organizer": "",
+      "notes": "",
+      "winner_name": "GADORO"
+    },
+    {
       "event_id": "EVT0011",
       "event_name": "UMB2015 GrandChanpionShip",
       "event_name_full": "UMB2015 GrandChanpionShip",
@@ -1078,7 +1134,21 @@
       "event_stage": "本戦",
       "organizer": "戦極MCBATTLE",
       "notes": "https://www.finance-accounting-value.com/entry/sengoku-13chapter",
-      "winner_name": ""
+      "winner_name": "NAIKA MC"
+    },
+    {
+      "event_id": "EVT0107",
+      "event_name": "戦極MCBATTLE 第13章 ",
+      "event_name_full": "戦極MCBATTLE 第13章 ",
+      "event_name_simple": "戦極MCBATTLE 第13章 ",
+      "event_date": "2015-12-27",
+      "prize_money_winner": 150000,
+      "prize_money_total": null,
+      "event_category": "戦極MCBATTLE",
+      "event_stage": "本戦",
+      "organizer": "戦極MCBATTLE",
+      "notes": "",
+      "winner_name": "NAIKA MC"
     },
     {
       "event_id": "EVT0022",
@@ -1109,6 +1179,34 @@
       "winner_name": "呂布カルマ"
     },
     {
+      "event_id": "EVT0106",
+      "event_name": "戦極MCBATTLE 第12章 ",
+      "event_name_full": "戦極MCBATTLE 第12章 ",
+      "event_name_simple": "戦極MCBATTLE 第12章 ",
+      "event_date": "2015-06-14",
+      "prize_money_winner": 100000,
+      "prize_money_total": null,
+      "event_category": "戦極MCBATTLE",
+      "event_stage": "本戦",
+      "organizer": "戦極MCBATTLE",
+      "notes": "",
+      "winner_name": "呂布カルマ"
+    },
+    {
+      "event_id": "EVT0105",
+      "event_name": "戦極MCBATTLE 第11章 ",
+      "event_name_full": "戦極MCBATTLE 第11章 ",
+      "event_name_simple": "戦極MCBATTLE 第11章 ",
+      "event_date": "2015-02-21",
+      "prize_money_winner": 100000,
+      "prize_money_total": null,
+      "event_category": "戦極MCBATTLE",
+      "event_stage": "本戦",
+      "organizer": "戦極MCBATTLE",
+      "notes": "",
+      "winner_name": "GOLBY"
+    },
+    {
       "event_id": "EVT0010",
       "event_name": "UMB2014 GrandChanpionShip",
       "event_name_full": "UMB2014 GrandChanpionShip",
@@ -1128,7 +1226,7 @@
       "event_name_full": "戦極MCBATTLE 第10章 ",
       "event_name_simple": "戦極MCBATTLE 第10章 ",
       "event_date": "2014-10-19",
-      "prize_money_winner": 0,
+      "prize_money_winner": 100000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1156,7 +1254,7 @@
       "event_name_full": "戦極MCBATTLE 第9章 ",
       "event_name_simple": "戦極MCBATTLE 第9章 ",
       "event_date": "2014-04-13",
-      "prize_money_winner": 0,
+      "prize_money_winner": 100000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1170,7 +1268,7 @@
       "event_name_full": "戦極MCBATTLE 第8章 ",
       "event_name_simple": "戦極MCBATTLE 第8章 ",
       "event_date": "2014-01-26",
-      "prize_money_winner": 0,
+      "prize_money_winner": 100000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1198,7 +1296,7 @@
       "event_name_full": "戦極MCBATTLE 第7章 ",
       "event_name_simple": "戦極MCBATTLE 第7章 ",
       "event_date": "2013-07-21",
-      "prize_money_winner": 0,
+      "prize_money_winner": 50000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1212,7 +1310,7 @@
       "event_name_full": "戦極MCBATTLE 第6章 ",
       "event_name_simple": "戦極MCBATTLE 第6章 ",
       "event_date": "2013-04-28",
-      "prize_money_winner": 0,
+      "prize_money_winner": 50000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1226,7 +1324,7 @@
       "event_name_full": "戦極MCBATTLE 第5章 ",
       "event_name_simple": "戦極MCBATTLE 第5章 ",
       "event_date": "2013-01-20",
-      "prize_money_winner": 0,
+      "prize_money_winner": 100000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1254,7 +1352,7 @@
       "event_name_full": "戦極MCBATTLE 第4章 ",
       "event_name_simple": "戦極MCBATTLE 第4章 ",
       "event_date": "2012-09-15",
-      "prize_money_winner": 0,
+      "prize_money_winner": 50000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1268,7 +1366,7 @@
       "event_name_full": "戦極MCBATTLE 第3章 ",
       "event_name_simple": "戦極MCBATTLE 第3章 ",
       "event_date": "2012-03-24",
-      "prize_money_winner": 0,
+      "prize_money_winner": 50000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1282,7 +1380,7 @@
       "event_name_full": "戦極MCBATTLE 第2章 ",
       "event_name_simple": "戦極MCBATTLE 第2章 ",
       "event_date": "2012-03-11",
-      "prize_money_winner": 0,
+      "prize_money_winner": 50000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
@@ -1296,7 +1394,7 @@
       "event_name_full": "戦極MCBATTLE 第1章 ",
       "event_name_simple": "戦極MCBATTLE 第1章 ",
       "event_date": "2012-01-12",
-      "prize_money_winner": 0,
+      "prize_money_winner": 50000,
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",

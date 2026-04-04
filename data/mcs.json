@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-04T04:39:39.340Z",
-  "total": 822,
+  "updated_at": "2026-04-04T15:08:26.936Z",
+  "total": 824,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -376,7 +376,7 @@
     {
       "mc_id": "MC0563",
       "mc_name": "言×THEANSWER",
-      "mc_yomi": "いうとぅ",
+      "mc_yomi": "いうとぅざあんさー",
       "notes": "Canonical for alias group [言×THEANSWER / 言×THE ANSWER] as of 2026-03-23",
       "kana_group": "あ"
     },
@@ -2369,6 +2369,13 @@
       "kana_group": "さ"
     },
     {
+      "mc_id": "MC0895",
+      "mc_name": "シンソリューム",
+      "mc_yomi": "しんそりゅーむ",
+      "notes": "",
+      "kana_group": "さ"
+    },
+    {
       "mc_id": "MC0276",
       "mc_name": "SHIN DA ENLARGEMEN.",
       "mc_yomi": "しんだえんらーじめん",
@@ -2742,7 +2749,7 @@
     {
       "mc_id": "MC0474",
       "mc_name": "泰斗 a.k.a. 裂固",
-      "mc_yomi": "たいとakaれつこ",
+      "mc_yomi": "たいとakaれっこ",
       "notes": "Added for KOK GRAND CHAMPIONSHIP import",
       "kana_group": "た"
     },
@@ -5755,6 +5762,13 @@
       "mc_yomi": "ゐllaugust",
       "notes": "初期投入",
       "kana_group": "その他"
+    },
+    {
+      "mc_id": "MC0896",
+      "mc_name": "（不戦勝系ダミーデータ）",
+      "mc_yomi": "んんんん",
+      "notes": "",
+      "kana_group": "わ"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-04T04:39:37.917Z",
+  "updated_at": "2026-04-04T15:08:25.822Z",
   "recent_events": [
     {
       "event_id": "EVT0032",
@@ -47,7 +47,7 @@
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
-      "winner_name": ""
+      "winner_name": "Sitissy luvit"
     },
     {
       "event_id": "EVT0031",
@@ -83,7 +83,7 @@
       "prize_money_total": null,
       "event_category": "戦極MCBATTLE",
       "event_stage": "本戦",
-      "winner_name": ""
+      "winner_name": "KOPERU"
     },
     {
       "event_id": "EVT0075",
@@ -230,7 +230,7 @@
       "rank": 1,
       "mc_id": "MC0376",
       "mc_name": "呂布カルマ",
-      "total_prize_money": 8000000
+      "total_prize_money": 8100000
     },
     {
       "rank": 2,
@@ -242,7 +242,7 @@
       "rank": 3,
       "mc_id": "MC0116",
       "mc_name": "GADORO",
-      "total_prize_money": 6500000
+      "total_prize_money": 7000000
     },
     {
       "rank": 4,
@@ -254,7 +254,7 @@
       "rank": 5,
       "mc_id": "MC0395",
       "mc_name": "晋平太",
-      "total_prize_money": 3400000
+      "total_prize_money": 3550000
     },
     {
       "rank": 6,
