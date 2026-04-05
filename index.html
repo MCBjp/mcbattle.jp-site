@@ -688,7 +688,21 @@
     }
 
     function getEventStage(event) {
-      return event.event_stage || event.stage || event.location || "";
+      return event.event_stage || event.stage || "";
+    }
+
+    function getEventLocation(event) {
+      return event.location || "";
+    }
+
+    function getUpcomingSubText(event) {
+      const location = String(getEventLocation(event) || "").trim();
+      if (location) return location;
+
+      const stage = String(getEventStage(event) || "").trim();
+      if (stage) return stage;
+
+      return "";
     }
 
     function getMcId(item) {
@@ -786,13 +800,13 @@
       container.innerHTML = items.map((event) => {
         const name = getEventName(event);
         const date = formatDateJP(getEventDate(event));
-        const stage = getEventStage(event);
+        const subText = getUpcomingSubText(event);
 
         return `
           <div class="list-row-static">
             <span class="event-date">${escapeHtml(date)}</span>
             <span class="event-name">${escapeHtml(name)}</span>
-            ${stage ? `<span class="event-stage">${escapeHtml(stage)}</span>` : ""}
+            ${subText ? `<span class="event-stage">${escapeHtml(subText)}</span>` : ""}
           </div>
         `;
       }).join("");
