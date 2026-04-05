@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-05T13:08:13.596Z",
-  "total": 830,
+  "updated_at": "2026-04-05T13:40:07.653Z",
+  "total": 840,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -115,6 +115,13 @@
       "kana_group": "あ"
     },
     {
+      "mc_id": "MC0911",
+      "mc_name": "悪影",
+      "mc_yomi": "あくかげ",
+      "notes": "",
+      "kana_group": "あ"
+    },
+    {
       "mc_id": "MC0804",
       "mc_name": "Acne",
       "mc_yomi": "あくね",
@@ -196,6 +203,13 @@
       "mc_name": "Avid",
       "mc_yomi": "あびっど",
       "notes": "Added during 2026-03 bracket expansion based on source page",
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC0913",
+      "mc_name": "アビド",
+      "mc_yomi": "あびど",
+      "notes": "",
       "kana_group": "あ"
     },
     {
@@ -468,6 +482,13 @@
       "mc_id": "MC0887",
       "mc_name": "INNTANA",
       "mc_yomi": "いんたな",
+      "notes": "",
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC0909",
+      "mc_name": "inferio",
+      "mc_yomi": "いんふぇりお",
       "notes": "",
       "kana_group": "あ"
     },
@@ -745,6 +766,13 @@
       "kana_group": "あ"
     },
     {
+      "mc_id": "MC0908",
+      "mc_name": "MC 鋼",
+      "mc_yomi": "えむしーはがね",
+      "notes": "",
+      "kana_group": "あ"
+    },
+    {
       "mc_id": "MC0710",
       "mc_name": "MC派遣社員",
       "mc_yomi": "えむしーはけんしゃいん",
@@ -1004,6 +1032,13 @@
       "kana_group": "か"
     },
     {
+      "mc_id": "MC0468",
+      "mc_name": "がーどまん",
+      "mc_yomi": "がーどまん",
+      "notes": "Added for KOK GRAND CHAMPIONSHIP import",
+      "kana_group": "か"
+    },
+    {
       "mc_id": "MC0551",
       "mc_name": "gAwn",
       "mc_yomi": "がーん",
@@ -1036,6 +1071,13 @@
       "mc_name": "Kai-Tone",
       "mc_yomi": "かいとーん",
       "notes": "初期投入",
+      "kana_group": "か"
+    },
+    {
+      "mc_id": "MC0917",
+      "mc_name": "Kaine dot Co",
+      "mc_yomi": "かいねどっとこー",
+      "notes": "",
       "kana_group": "か"
     },
     {
@@ -1102,13 +1144,6 @@
       "kana_group": "か"
     },
     {
-      "mc_id": "MC0468",
-      "mc_name": "がーどまん",
-      "mc_yomi": "がどまん",
-      "notes": "Added for KOK GRAND CHAMPIONSHIP import",
-      "kana_group": "か"
-    },
-    {
       "mc_id": "MC0116",
       "mc_name": "GADORO",
       "mc_yomi": "がどろ",
@@ -1146,7 +1181,7 @@
     {
       "mc_id": "MC0475",
       "mc_name": "漢 a.k.a. GAMI",
-      "mc_yomi": "かんakagami",
+      "mc_yomi": "かんえーけーえーがみ",
       "notes": "Added for KOK GRAND CHAMPIONSHIP import; Alias of MC0660 (漢 a.k.a GAMI); alias unified 2026-03-25",
       "kana_group": "か"
     },
@@ -2327,6 +2362,13 @@
       "kana_group": "さ"
     },
     {
+      "mc_id": "MC0916",
+      "mc_name": "しょうたTHE不安喰い",
+      "mc_yomi": "しょうたざふあんぐい",
+      "notes": "",
+      "kana_group": "さ"
+    },
+    {
       "mc_id": "MC0685",
       "mc_name": "SHOHEI",
       "mc_yomi": "しょうへい",
@@ -2422,6 +2464,13 @@
       "mc_name": "Jinmenusagi",
       "mc_yomi": "じんめんうさぎ",
       "notes": "追加投入",
+      "kana_group": "さ"
+    },
+    {
+      "mc_id": "MC0906",
+      "mc_name": "瑞雲 the third",
+      "mc_yomi": "ずいうんざさーど",
+      "notes": "",
       "kana_group": "さ"
     },
     {
@@ -2568,6 +2617,13 @@
       "mc_id": "MC0607",
       "mc_name": "Small fish",
       "mc_yomi": "すもーるふぃっしゅ",
+      "notes": "",
+      "kana_group": "さ"
+    },
+    {
+      "mc_id": "MC0907",
+      "mc_name": "sluggah",
+      "mc_yomi": "すらっがー",
       "notes": "",
       "kana_group": "さ"
     },
@@ -2769,7 +2825,7 @@
     },
     {
       "mc_id": "MC0474",
-      "mc_name": "泰斗 a.k.a. 裂固",
+      "mc_name": "泰斗(裂固)",
       "mc_yomi": "たいとakaれっこ",
       "notes": "Added for KOK GRAND CHAMPIONSHIP import",
       "kana_group": "た"
@@ -3192,6 +3248,13 @@
       "mc_name": "TYK",
       "mc_yomi": "てぃわいけい",
       "notes": "初期投入",
+      "kana_group": "た"
+    },
+    {
+      "mc_id": "MC0910",
+      "mc_name": "テークエム",
+      "mc_yomi": "てーくえむ",
+      "notes": "",
       "kana_group": "た"
     },
     {
@@ -3678,6 +3741,13 @@
       "kana_group": "は"
     },
     {
+      "mc_id": "MC0914",
+      "mc_name": "bye",
+      "mc_yomi": "ばい",
+      "notes": "",
+      "kana_group": "は"
+    },
+    {
       "mc_id": "MC0861",
       "mc_name": "バイオレンスライダー",
       "mc_yomi": "ばいおれんすらいだー",
@@ -3709,6 +3779,13 @@
       "mc_id": "MC0555",
       "mc_name": "HIDE",
       "mc_yomi": "はいど",
+      "notes": "",
+      "kana_group": "は"
+    },
+    {
+      "mc_id": "MC0915",
+      "mc_name": "HYDRO",
+      "mc_yomi": "はいどろ",
       "notes": "",
       "kana_group": "は"
     },
@@ -4144,6 +4221,13 @@
       "mc_name": "FORK",
       "mc_yomi": "ふぉーく",
       "notes": "初期投入",
+      "kana_group": "は"
+    },
+    {
+      "mc_id": "MC0912",
+      "mc_name": "4stump",
+      "mc_yomi": "ふぉーすたんぷ",
+      "notes": "",
       "kana_group": "は"
     },
     {
@@ -4763,13 +4847,6 @@
       "kana_group": "ま"
     },
     {
-      "mc_id": "MC0219",
-      "mc_name": "MULBE",
-      "mc_yomi": "まるびー",
-      "notes": "初期投入",
-      "kana_group": "ま"
-    },
-    {
       "mc_id": "MC0206",
       "mc_name": "Manchies nice",
       "mc_yomi": "まんちーずないす",
@@ -4893,6 +4970,13 @@
       "mc_name": "Mura_halo",
       "mc_yomi": "むらはろ",
       "notes": "Added for KOK national import",
+      "kana_group": "ま"
+    },
+    {
+      "mc_id": "MC0219",
+      "mc_name": "MULBE",
+      "mc_yomi": "むるべ",
+      "notes": "初期投入",
       "kana_group": "ま"
     },
     {
@@ -5617,13 +5701,6 @@
       "kana_group": "ら"
     },
     {
-      "mc_id": "MC0427",
-      "mc_name": "裂固",
-      "mc_yomi": "れつこ",
-      "notes": "初期投入",
-      "kana_group": "ら"
-    },
-    {
       "mc_id": "MC0461",
       "mc_name": "REDWING",
       "mc_yomi": "れっどうぃんぐ",
@@ -5753,13 +5830,6 @@
       "mc_id": "MC0314",
       "mc_name": "wani galay mycel",
       "mc_yomi": "わにがれい",
-      "notes": "初期投入",
-      "kana_group": "わ"
-    },
-    {
-      "mc_id": "MC0435",
-      "mc_name": "輸入道",
-      "mc_yomi": "わにゅうどう",
       "notes": "初期投入",
       "kana_group": "わ"
     },

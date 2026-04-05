@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-05T13:08:12.287Z",
+  "updated_at": "2026-04-05T13:40:05.807Z",
   "recent_events": [
     {
       "event_id": "EVT0032",
@@ -24,7 +24,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "渋谷WOMB",
       "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
     },
     {
@@ -76,7 +76,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "Club CITTA",
       "winner_name": "KOOPA"
     },
     {
@@ -275,7 +275,7 @@
     {
       "rank": 7,
       "mc_id": "MC0474",
-      "mc_name": "泰斗 a.k.a. 裂固",
+      "mc_name": "泰斗(裂固)",
       "total_prize_money": 3300000
     },
     {

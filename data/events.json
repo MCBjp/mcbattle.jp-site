@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-05T13:08:13.240Z",
+  "updated_at": "2026-04-05T13:40:07.188Z",
   "total": 118,
   "events": [
     {
@@ -27,7 +27,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "渋谷WOMB",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb-2025",
       "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
@@ -87,7 +87,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "Club CITTA",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb-2024",
       "winner_name": "KOOPA"
@@ -177,7 +177,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "恵比寿LiquidRoom",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb-2023 / Winner prize manually corrected to 1000000 based on user confirmation",
       "winner_name": "GOTIT"
@@ -405,7 +405,7 @@
       "location": "",
       "organizer": "",
       "notes": "Sources: https://note.com/onoyu_hiphop/n/ncb58fb76f5cd | Bracket image: https://assets.st-note.com/production/uploads/images/96441688/picture_pc_ff3ffc78302a73a5c964365deb686c9d.png?width=1200 | Winner prize reference: https://jp-hphp.com/2020/02/13/kok/",
-      "winner_name": "泰斗 a.k.a. 裂固"
+      "winner_name": "泰斗(裂固)"
     },
     {
       "event_id": "EVT0050",
@@ -447,7 +447,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "Club CITTA",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb-2022",
       "winner_name": "SILENT KILLA JOINT"
@@ -657,7 +657,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2021",
       "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
@@ -912,7 +912,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2020",
       "winner_name": "早雲"
@@ -1092,7 +1092,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2019-report-promptly",
       "winner_name": "Authority"
@@ -1167,7 +1167,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2018-c",
       "winner_name": "COCRGI WHITE(MU-TON)"
@@ -1272,7 +1272,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2017",
       "winner_name": "DOTAMA"
@@ -1317,7 +1317,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2016-dvd",
       "winner_name": "NAIKA MC"
@@ -1362,7 +1362,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2015",
       "winner_name": "CHICO CARLITO"
@@ -1467,7 +1467,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2014%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "R-指定"
@@ -1542,7 +1542,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "恵比寿LiquidRoom",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2013%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "R-指定"
@@ -1602,7 +1602,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "恵比寿LiquidRoom",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2012%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "R-指定"
@@ -1677,7 +1677,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "恵比寿LiquidRoom",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2011%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "晋平太"
@@ -1692,7 +1692,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "Club CITTA",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2010%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "晋平太"
@@ -1707,7 +1707,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "Club CITTA",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2009%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "鎮座DOPENESS"
@@ -1722,7 +1722,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "なんばHatch",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2008%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "般若"
@@ -1737,7 +1737,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "Club CITTA",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2007%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "GOCCI"
@@ -1752,7 +1752,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "Club CITTA",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2020/03/UMB2006%E6%9C%AC%E6%88%A6.png?resize=800%2C600&ssl=1",
       "winner_name": "FORK"
@@ -1767,7 +1767,7 @@
       "prize_money_total": null,
       "event_category": "UMB",
       "event_stage": "本戦",
-      "location": "",
+      "location": "新宿LOFT",
       "organizer": "",
       "notes": "Source: https://i0.wp.com/jp-hphp.com/wp-content/uploads/2022/01/2005umb.png?resize=800%2C600&ssl=1",
       "winner_name": "カルデラビスタ"
