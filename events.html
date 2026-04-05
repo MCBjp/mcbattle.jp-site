@@ -10,7 +10,7 @@
     .event-group-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 7px;
     }
 
     .event-group {
@@ -49,8 +49,7 @@
     .event-group-left {
       min-width: 0;
       display: flex;
-      flex-direction: column;
-      gap: 2px;
+      align-items: center;
     }
 
     .event-group-name {
@@ -59,11 +58,6 @@
       line-height: 1.32;
       color: var(--accent);
       word-break: break-word;
-    }
-
-    .event-group-count {
-      font-size: 0.82rem;
-      color: var(--muted);
     }
 
     .event-group-icon {
@@ -166,7 +160,7 @@
 
     @media (max-width: 640px) {
       .event-group-list {
-        gap: 9px;
+        gap: 6px;
       }
 
       .event-group {
@@ -174,7 +168,7 @@
       }
 
       .event-group-toggle {
-        padding: 11px 13px;
+        padding: 10px 13px;
       }
 
       .event-group-body {
@@ -188,10 +182,6 @@
 
       .event-group-name {
         font-size: 0.94rem;
-      }
-
-      .event-group-count {
-        font-size: 0.78rem;
       }
 
       .event-date {
@@ -394,7 +384,6 @@
               >
                 <span class="event-group-left">
                   <span class="event-group-name">${escapeHtml(group.category)}</span>
-                  <span class="event-group-count">${group.items.length}大会</span>
                 </span>
                 <span class="event-group-icon">▼</span>
               </button>
