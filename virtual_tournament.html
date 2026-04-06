@@ -284,6 +284,33 @@
       gap: 10px;
     }
 
+    .vt-pair-card{
+      padding: 13px 14px 11px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.025);
+    }
+
+    .vt-pair-title{
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 1.02rem;
+      line-height: 1.2;
+    }
+
+    .vt-pair-list{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .vt-pair-line{
+      margin: 0;
+      color: var(--text);
+      font-size: .92rem;
+      line-height: 1.6;
+    }
+
     .vt-hero-result{
       padding: 12px 14px 11px;
       border-radius: 18px;
@@ -559,6 +586,11 @@
           <button id="run-sim-btn" class="vt-main-button" type="button">100回シミュレーションする</button>
           <p id="sim-status" class="vt-status">8人選ぶとシミュレーションできます。</p>
 
+          <div id="pair-adjustment-card" class="vt-pair-card is-hidden">
+            <h2 class="vt-pair-title">相性補正が入る組み合わせ</h2>
+            <div id="pair-adjustment-list" class="vt-pair-list"></div>
+          </div>
+
           <div id="top-result-card" class="vt-hero-result is-hidden">
             <span class="vt-hero-result-label">最も優勝確率が高いMC</span>
             <span id="top-result-name" class="vt-hero-result-name">-</span>
@@ -616,6 +648,16 @@
       return await res.json();
     }
 
+    async function loadOptionalJson(url) {
+      try {
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) return null;
+        return await res.json();
+      } catch (e) {
+        return null;
+      }
+    }
+
     function normalizeText(value) {
       return String(value || "")
         .toLowerCase()
@@ -658,8 +700,8 @@
     }
 
     function getPairKey(mcIdA, mcIdB) {
-      const a = String(mcIdA || "");
-      const b = String(mcIdB || "");
+      const a = String(mcIdA || "").trim();
+      const b = String(mcIdB || "").trim();
       return a <= b ? `${a}__${b}` : `${b}__${a}`;
     }
 
@@ -694,9 +736,9 @@
       const pair = headToHeadMap[key];
       if (!pair) return 0;
 
-      const idA = String(mcIdA || "");
-      const mcIdSmall = String(pair.mc_id_a || "");
-      const mcIdLarge = String(pair.mc_id_b || "");
+      const idA = String(mcIdA || "").trim();
+      const mcIdSmall = String(pair.mc_id_a || "").trim();
+      const mcIdLarge = String(pair.mc_id_b || "").trim();
 
       const aWinsRaw = Number(pair.a_wins || 0);
       const bWinsRaw = Number(pair.b_wins || 0);
@@ -711,6 +753,65 @@
       return 0;
     }
 
+    function getHeadToHeadAdvantageLabel(adjustment) {
+      const abs = Math.abs(Number(adjustment || 0));
+      if (abs >= 50) return "非常に有利";
+      if (abs >= 35) return "やや有利";
+      if (abs >= 12) return "わずかに有利";
+      return "";
+    }
+
+    function hidePairAdjustments() {
+      document.getElementById("pair-adjustment-card").classList.add("is-hidden");
+      document.getElementById("pair-adjustment-list").innerHTML = "";
+    }
+
+    function renderPairAdjustments() {
+      const card = document.getElementById("pair-adjustment-card");
+      const list = document.getElementById("pair-adjustment-list");
+
+      if (selectedMcs.length < 2) {
+        hidePairAdjustments();
+        return;
+      }
+
+      const rows = [];
+
+      for (let i = 0; i < selectedMcs.length; i++) {
+        for (let j = i + 1; j < selectedMcs.length; j++) {
+          const a = selectedMcs[i];
+          const b = selectedMcs[j];
+          const adjustment = getHeadToHeadScoreAdjustment(a.mc_id, b.mc_id);
+          if (!adjustment) continue;
+
+          const favored = adjustment > 0 ? a : b;
+          const other = adjustment > 0 ? b : a;
+          const label = getHeadToHeadAdvantageLabel(adjustment);
+          if (!label) continue;
+
+          const key = getPairKey(a.mc_id, b.mc_id);
+          const pair = headToHeadMap[key];
+          const totalMatches = Number(pair?.total_matches || 0);
+
+          rows.push({
+            abs: Math.abs(adjustment),
+            totalMatches,
+            text: `${favored.mc_name} と ${other.mc_name} の相性補正あり（${favored.mc_name}が${label}）`
+          });
+        }
+      }
+
+      rows.sort((a, b) => b.abs - a.abs || b.totalMatches - a.totalMatches);
+
+      if (!rows.length) {
+        hidePairAdjustments();
+        return;
+      }
+
+      list.innerHTML = rows.map(row => `<p class="vt-pair-line">${escapeHtml(row.text)}</p>`).join("");
+      card.classList.remove("is-hidden");
+    }
+
     function renderSelected() {
       const grid = document.getElementById("selected-grid");
       const badge = document.getElementById("selected-count-badge");
@@ -720,6 +821,7 @@
 
       if (selectedMcs.length === 0) {
         grid.innerHTML = "";
+        renderPairAdjustments();
         return;
       }
 
@@ -740,6 +842,8 @@
           updateSimReadyState();
         });
       });
+
+      renderPairAdjustments();
     }
 
     function renderCandidates() {
@@ -774,4 +878,334 @@
       }
 
       empty.classList.add("is-hidden");
-      list.innerHTML = filteredCandidates
+      list.innerHTML = filteredCandidates.map(mc => `
+        <button class="vt-candidate-btn" type="button" data-add-id="${escapeHtml(mc.mc_id)}" title="${escapeHtml(mc.mc_name)}">
+          ${escapeHtml(mc.mc_name)}
+        </button>
+      `).join("");
+
+      list.querySelectorAll(".vt-candidate-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (selectedMcs.length >= MAX_SELECTED) return;
+          const mcId = btn.getAttribute("data-add-id");
+          const mc = allCandidates.find(item => item.mc_id === mcId);
+          if (!mc) return;
+          selectedMcs.push(mc);
+          markSelectionChanged();
+          document.getElementById("mc-search-input").value = "";
+          renderSelected();
+          renderCandidates();
+          updateSimReadyState();
+        });
+      });
+    }
+
+    function updateRunButtonDisabledState(disabled) {
+      const runBtn = document.getElementById("run-sim-btn");
+      runBtn.disabled = disabled;
+      runBtn.classList.toggle("is-disabled", disabled);
+    }
+
+    function updateSimReadyState() {
+      const status = document.getElementById("sim-status");
+
+      if (selectedMcs.length === MAX_SELECTED) {
+        if (hasSimulatedCurrentSelection) {
+          status.textContent = "この組み合わせはシミュレーション済みです。MCを変更すると再実行できます。";
+          updateRunButtonDisabledState(true);
+        } else {
+          status.textContent = "8人そろいました。シミュレーションできます。";
+          updateRunButtonDisabledState(false);
+        }
+      } else {
+        status.textContent = `あと${MAX_SELECTED - selectedMcs.length}人選んでください。`;
+        updateRunButtonDisabledState(true);
+      }
+    }
+
+    function simulateTournamentOnce(participants) {
+      function playMatch(a, b) {
+        const scoreA = strengthMap[a.mc_id]?.current_score ?? 1500;
+        const scoreB = strengthMap[b.mc_id]?.current_score ?? 1500;
+        const h2hAdjustA = getHeadToHeadScoreAdjustment(a.mc_id, b.mc_id);
+        const adjustedDiff = (scoreA + h2hAdjustA) - scoreB;
+        const pA = 1 / (1 + Math.pow(10, -adjustedDiff / 120));
+        return Math.random() < pA ? a : b;
+      }
+
+      let round = [...participants];
+      while (round.length > 1) {
+        const nextRound = [];
+        for (let i = 0; i < round.length; i += 2) {
+          nextRound.push(playMatch(round[i], round[i + 1]));
+        }
+        round = nextRound;
+      }
+      return round[0];
+    }
+
+    function buildLongSummaryLines(sortedResults) {
+      const top = sortedResults[0];
+      const second = sortedResults[1];
+      const third = sortedResults[2];
+      const fourth = sortedResults[3];
+      const lines = [];
+
+      if (top) {
+        lines.push(`${top.mc_name} が最有力です。優勝回数は${top.wins}回、優勝率は${top.winRate}%でした。`);
+      }
+
+      if (second || third) {
+        const rivalParts = [];
+        if (second) rivalParts.push(`${second.mc_name}が対抗格で、優勝率は${second.winRate}%です。`);
+        if (third) rivalParts.push(`${third.mc_name}も射程圏にいて、優勝率は${third.winRate}%です。`);
+        lines.push(rivalParts.join(" "));
+      }
+
+      if (top) {
+        if (top.winRate >= 50) {
+          lines.push(`${top.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`);
+        } else if (top.winRate >= 35) {
+          lines.push(`${top.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。`);
+        } else {
+          lines.push(`上位が拮抗していて、組み合わせ次第で優勝が入れ替わる混戦傾向です。`);
+        }
+      }
+
+      if (second && fourth) {
+        lines.push(`${second.mc_name}以下も十分にチャンスがあり、${fourth.mc_name}あたりまで優勝候補に入る展開でした。`);
+      }
+
+      return lines;
+    }
+
+    function renderSimulationResults(results) {
+      const topCard = document.getElementById("top-result-card");
+      const topName = document.getElementById("top-result-name");
+      const distCard = document.getElementById("dist-card");
+      const distList = document.getElementById("dist-list");
+      const summaryCard = document.getElementById("summary-card");
+      const summaryLines = document.getElementById("summary-lines");
+
+      const sortedResults = Object.values(results)
+        .sort((a, b) => b.winRate - a.winRate || a.mc_name.localeCompare(b.mc_name, "ja"));
+
+      if (sortedResults.length === 0) return;
+
+      topName.textContent = sortedResults[0].mc_name;
+      topCard.classList.remove("is-hidden");
+
+      distList.innerHTML = sortedResults.map(item => `
+        <div class="vt-dist-row">
+          <div class="vt-dist-name" title="${escapeHtml(item.mc_name)}">${escapeHtml(item.mc_name)}</div>
+          <div class="vt-dist-rate">${item.winRate}%</div>
+        </div>
+      `).join("");
+      distCard.classList.remove("is-hidden");
+
+      const lines = buildLongSummaryLines(sortedResults);
+      summaryLines.innerHTML = lines.map(line => `<p>${escapeHtml(line)}</p>`).join("");
+      summaryCard.classList.remove("is-hidden");
+    }
+
+    function hideSimulationResults() {
+      document.getElementById("top-result-card").classList.add("is-hidden");
+      document.getElementById("dist-card").classList.add("is-hidden");
+      document.getElementById("summary-card").classList.add("is-hidden");
+    }
+
+    function showOverlay() {
+      document.getElementById("sim-overlay").classList.remove("is-hidden");
+      document.getElementById("sim-overlay").setAttribute("aria-hidden", "false");
+    }
+
+    function hideOverlay() {
+      document.getElementById("sim-overlay").classList.add("is-hidden");
+      document.getElementById("sim-overlay").setAttribute("aria-hidden", "true");
+    }
+
+    function scrollToResultPanel() {
+      document.getElementById("result-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function runSimulationCore() {
+      const results = {};
+      selectedMcs.forEach(mc => {
+        results[mc.mc_id] = {
+          mc_id: mc.mc_id,
+          mc_name: mc.mc_name,
+          wins: 0,
+          winRate: 0
+        };
+      });
+
+      for (let i = 0; i < 100; i++) {
+        const shuffled = shuffleArray(selectedMcs);
+        const winner = simulateTournamentOnce(shuffled);
+        results[winner.mc_id].wins += 1;
+      }
+
+      Object.values(results).forEach(item => {
+        item.winRate = Math.round(item.wins);
+      });
+
+      return results;
+    }
+
+    function startSimulationSequence() {
+      if (selectedMcs.length !== MAX_SELECTED) return;
+      if (hasSimulatedCurrentSelection) return;
+
+      const status = document.getElementById("sim-status");
+      const countEl = document.getElementById("sim-overlay-count");
+
+      if (overlayTimer) {
+        clearInterval(overlayTimer);
+        overlayTimer = null;
+      }
+
+      hideSimulationResults();
+      showOverlay();
+      countEl.textContent = "5";
+      status.textContent = "100回戦ってもらっています。\n2005年以降の全試合をもとに算出した現在スコアをベースに、直接対戦の相性も少しだけ加味しています。\n実際の結果を保証するものではなく、数的理解に基づく確率論だと解釈して下さい。";
+      updateRunButtonDisabledState(true);
+
+      let count = 5;
+
+      overlayTimer = setInterval(() => {
+        count -= 1;
+
+        if (count >= 1) {
+          countEl.textContent = String(count);
+          return;
+        }
+
+        clearInterval(overlayTimer);
+        overlayTimer = null;
+
+        const results = runSimulationCore();
+        hideOverlay();
+        renderSimulationResults(results);
+        hasSimulatedCurrentSelection = true;
+        updateSimReadyState();
+        scrollToResultPanel();
+      }, 700);
+    }
+
+    async function initPage() {
+      try {
+        const [mcsData, rankingsData, headToHeadData] = await Promise.all([
+          loadJson(CANDIDATES_URL),
+          loadJson(STRENGTHS_URL),
+          loadOptionalJson(HEAD_TO_HEAD_URL)
+        ]);
+
+        const rankings = Array.isArray(rankingsData?.rankings)
+          ? rankingsData.rankings
+          : Array.isArray(rankingsData?.strengths)
+            ? rankingsData.strengths
+            : [];
+
+        const rawMcs = Array.isArray(mcsData?.mcs)
+          ? mcsData.mcs
+          : Array.isArray(mcsData?.candidates)
+            ? mcsData.candidates
+            : [];
+
+        const mcsById = {};
+        rawMcs.forEach(mc => {
+          const id = String(mc.mc_id || "").trim();
+          if (!id) return;
+          mcsById[id] = {
+            mc_id: id,
+            mc_name: mc.mc_name || "",
+            mc_yomi: mc.mc_yomi || ""
+          };
+        });
+
+        strengthMap = {};
+        rankings.forEach(item => {
+          const mcId = String(item.mc_id || "").trim();
+          if (!mcId) return;
+          strengthMap[mcId] = {
+            mc_id: mcId,
+            mc_name: item.mc_name || "",
+            current_score: Number(item.current_score ?? item.score ?? 1500)
+          };
+        });
+
+        headToHeadMap = {};
+        const summaries = Array.isArray(headToHeadData?.summaries) ? headToHeadData.summaries : [];
+        summaries.forEach(item => {
+          const a = String(item.mc_id_a || "").trim();
+          const b = String(item.mc_id_b || "").trim();
+          if (!a || !b) return;
+          const key = getPairKey(a, b);
+          headToHeadMap[key] = item;
+        });
+
+        allCandidates = rankings
+          .map(item => {
+            const mcId = String(item.mc_id || "").trim();
+            if (!mcId) return null;
+            const master = mcsById[mcId];
+            return {
+              mc_id: mcId,
+              mc_name: (master && master.mc_name) || item.mc_name || "",
+              mc_yomi: (master && master.mc_yomi) || ""
+            };
+          })
+          .filter(item => item && item.mc_id && item.mc_name);
+
+        renderSelected();
+        renderCandidates();
+        updateSimReadyState();
+        hideSimulationResults();
+        hideOverlay();
+
+        document.getElementById("mc-search-input").addEventListener("input", () => {
+          renderCandidates();
+        });
+
+        document.getElementById("fill-random-btn").addEventListener("click", () => {
+          const selectedIds = new Set(selectedMcs.map(mc => mc.mc_id));
+          const pool = getTop100Pool().filter(mc => !selectedIds.has(mc.mc_id));
+          const shuffled = shuffleArray(pool);
+
+          while (selectedMcs.length < MAX_SELECTED && shuffled.length > 0) {
+            selectedMcs.push(shuffled.shift());
+          }
+
+          markSelectionChanged();
+          renderSelected();
+          renderCandidates();
+          updateSimReadyState();
+          hideSimulationResults();
+        });
+
+        document.getElementById("clear-selected-btn").addEventListener("click", () => {
+          if (overlayTimer) {
+            clearInterval(overlayTimer);
+            overlayTimer = null;
+          }
+          selectedMcs = [];
+          markSelectionChanged();
+          renderSelected();
+          renderCandidates();
+          updateSimReadyState();
+          hideSimulationResults();
+          hideOverlay();
+          document.getElementById("sim-status").textContent = "8人選ぶとシミュレーションできます。";
+        });
+
+        document.getElementById("run-sim-btn").addEventListener("click", startSimulationSequence);
+      } catch (err) {
+        console.error(err);
+        document.getElementById("sim-status").textContent = `データの読み込みに失敗しました。${err && err.message ? " " + err.message : ""}`;
+      }
+    }
+
+    initPage();
+  </script>
+</body>
+</html>
