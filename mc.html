@@ -225,6 +225,29 @@
       word-break: break-word;
     }
 
+    .battle-event-link {
+      color: #8f97aa;
+      text-decoration: none;
+      border-bottom: none;
+      cursor: pointer;
+    }
+
+    .battle-event-link:visited {
+      color: #8f97aa;
+      text-decoration: none;
+    }
+
+    .battle-event-link:hover {
+      color: #8f97aa;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+
+    .battle-event-link:active {
+      color: #8f97aa;
+      text-decoration: none;
+    }
+
     .appearance-list {
       list-style: none;
       padding: 0;
@@ -474,6 +497,20 @@
       if (!safeId) return `<span>${safeName}</span>`;
 
       return `<a href="./mc.html?mc_id=${encodeURIComponent(safeId)}">${safeName}</a>`;
+    }
+
+    function renderBattleEvent(name, eventId) {
+      const safeName = escapeHtml(name || "");
+      const safeId = String(eventId || "").trim();
+
+      if (!safeName) return "";
+      if (!safeId) return `<span class="battle-event">${safeName}</span>`;
+
+      return `
+        <span class="battle-event">
+          <a href="./event.html?event_id=${encodeURIComponent(safeId)}" class="battle-event-link">${safeName}</a>
+        </span>
+      `;
     }
 
     function renderEventStack(name, eventId, eventDate) {
@@ -796,11 +833,11 @@
           wins.forEach((item) => {
             const li = document.createElement("li");
             const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
-            const eventName = escapeHtml(item.event_name || "");
+            const eventHtml = renderBattleEvent(item.event_name || "", item.event_id || "");
 
             li.innerHTML = `
               <span class="battle-opponent">${opponentHtml}</span>
-              ${eventName ? `<span class="battle-event">${eventName}</span>` : ""}
+              ${eventHtml}
             `;
             winsListEl.appendChild(li);
           });
@@ -814,11 +851,11 @@
           losses.forEach((item) => {
             const li = document.createElement("li");
             const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
-            const eventName = escapeHtml(item.event_name || "");
+            const eventHtml = renderBattleEvent(item.event_name || "", item.event_id || "");
 
             li.innerHTML = `
               <span class="battle-opponent">${opponentHtml}</span>
-              ${eventName ? `<span class="battle-event">${eventName}</span>` : ""}
+              ${eventHtml}
             `;
             lossesListEl.appendChild(li);
           });
