@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-06T13:25:34.044Z",
+  "updated_at": "2026-04-06T16:32:32.606Z",
   "recent_events": [
     {
       "event_id": "EVT0032",
@@ -9,7 +9,7 @@
       "event_date": "2026-01-10",
       "prize_money_winner": 3000000,
       "prize_money_total": null,
-      "event_category": "KOK",
+      "event_category": "King of Kings 本戦",
       "event_stage": "本戦",
       "location": "豊洲PIT",
       "winner_name": "T-TANGG"
@@ -22,7 +22,7 @@
       "event_date": "2025-12-29",
       "prize_money_winner": 1000000,
       "prize_money_total": null,
-      "event_category": "UMB",
+      "event_category": "UMB 本戦",
       "event_stage": "本戦",
       "location": "渋谷WOMB",
       "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
@@ -35,7 +35,7 @@
       "event_date": "2025-05-24",
       "prize_money_winner": 300000,
       "prize_money_total": null,
-      "event_category": "戦極MCBATTLE",
+      "event_category": "戦極MC BATTLE",
       "event_stage": "本戦",
       "location": "Zepp Osaka Bayside",
       "winner_name": ""
@@ -48,7 +48,7 @@
       "event_date": "2025-02-02",
       "prize_money_winner": 300000,
       "prize_money_total": null,
-      "event_category": "戦極MCBATTLE",
+      "event_category": "戦極MC BATTLE",
       "event_stage": "本戦",
       "location": "仙台PIT",
       "winner_name": "Sitissy luvit"
@@ -61,7 +61,7 @@
       "event_date": "2025-01-11",
       "prize_money_winner": 3000000,
       "prize_money_total": null,
-      "event_category": "KOK",
+      "event_category": "King of Kings 本戦",
       "event_stage": "本戦",
       "location": "豊洲PIT",
       "winner_name": "9for"
@@ -74,10 +74,23 @@
       "event_date": "2024-12-28",
       "prize_money_winner": 1000000,
       "prize_money_total": null,
-      "event_category": "UMB",
+      "event_category": "UMB 本戦",
       "event_stage": "本戦",
       "location": "Club CITTA",
       "winner_name": "KOOPA"
+    },
+    {
+      "event_id": "EVT0131",
+      "event_name": "BATTLE SUMMITⅡ",
+      "event_name_full": "BATTLE SUMMITⅡ",
+      "event_name_simple": "BATTLE SUMMITⅡ",
+      "event_date": "2024-08-14",
+      "prize_money_winner": 20000000,
+      "prize_money_total": null,
+      "event_category": "BUTTLE SUMMIT",
+      "event_stage": "本戦",
+      "location": "代々木第一体育館",
+      "winner_name": "般若"
     },
     {
       "event_id": "EVT0038",
@@ -87,7 +100,7 @@
       "event_date": "2024-06-15",
       "prize_money_winner": 300000,
       "prize_money_total": null,
-      "event_category": "戦極MCBATTLE",
+      "event_category": "戦極MC BATTLE",
       "event_stage": "本戦",
       "location": "KT Zepp Yokohama",
       "winner_name": "KOPERU"
@@ -117,19 +130,6 @@
       "event_stage": "本戦",
       "location": "CLUB CITTA'",
       "winner_name": ""
-    },
-    {
-      "event_id": "EVT0030",
-      "event_name": "KOK2023 GrandChanpionShip",
-      "event_name_full": "KOK2023 GrandChanpionShip",
-      "event_name_simple": "KOK2023本戦",
-      "event_date": "2024-01-08",
-      "prize_money_winner": 3000000,
-      "prize_money_total": null,
-      "event_category": "KOK",
-      "event_stage": "本戦",
-      "location": "豊洲PIT",
-      "winner_name": "RAWAXXX(MOL53)"
     }
   ],
   "upcoming_events": [],
@@ -238,63 +238,63 @@
   "prize_rankings": [
     {
       "rank": 1,
+      "mc_id": "MC0422",
+      "mc_name": "般若",
+      "total_prize_money": 20500000
+    },
+    {
+      "rank": 2,
+      "mc_id": "MC0046",
+      "mc_name": "Authority",
+      "total_prize_money": 12450000
+    },
+    {
+      "rank": 3,
       "mc_id": "MC0376",
       "mc_name": "呂布カルマ",
       "total_prize_money": 9600000
     },
     {
-      "rank": 2,
+      "rank": 4,
       "mc_id": "MC0214",
       "mc_name": "RAWAXXX(MOL53)",
       "total_prize_money": 7500000
     },
     {
-      "rank": 3,
+      "rank": 5,
       "mc_id": "MC0116",
       "mc_name": "GADORO",
       "total_prize_money": 7000000
     },
     {
-      "rank": 4,
+      "rank": 6,
       "mc_id": "MC0111",
       "mc_name": "FORK",
       "total_prize_money": 4500000
     },
     {
-      "rank": 5,
+      "rank": 7,
       "mc_id": "MC0756",
       "mc_name": "COCRGI WHITE(MU-TON)",
       "total_prize_money": 3700000
     },
     {
-      "rank": 6,
+      "rank": 8,
       "mc_id": "MC0395",
       "mc_name": "晋平太",
       "total_prize_money": 3550000
     },
     {
-      "rank": 7,
+      "rank": 9,
       "mc_id": "MC0474",
       "mc_name": "泰斗(裂固)",
       "total_prize_money": 3300000
     },
     {
-      "rank": 8,
+      "rank": 10,
       "mc_id": "MC0271",
       "mc_name": "SAM",
       "total_prize_money": 3100000
-    },
-    {
-      "rank": 9,
-      "mc_id": "MC0021",
-      "mc_name": "R-指定",
-      "total_prize_money": 3050000
-    },
-    {
-      "rank": 10,
-      "mc_id": "MC0447",
-      "mc_name": "9for",
-      "total_prize_money": 3000000
     }
   ]
 }

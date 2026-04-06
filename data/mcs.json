@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-06T13:25:35.005Z",
-  "total": 823,
+  "updated_at": "2026-04-06T16:32:34.360Z",
+  "total": 831,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -948,6 +948,13 @@
       "kana_group": "あ"
     },
     {
+      "mc_id": "MC0604",
+      "mc_name": "OZworld",
+      "mc_yomi": "おずわるど",
+      "notes": "",
+      "kana_group": "あ"
+    },
+    {
       "mc_id": "MC0694",
       "mc_name": "018",
       "mc_yomi": "おちば",
@@ -1074,6 +1081,13 @@
       "kana_group": "か"
     },
     {
+      "mc_id": "MC0401",
+      "mc_name": "楓",
+      "mc_yomi": "かえで",
+      "notes": "",
+      "kana_group": "か"
+    },
+    {
       "mc_id": "MC0330",
       "mc_name": "かくてる",
       "mc_yomi": "かくてる",
@@ -1091,6 +1105,13 @@
       "mc_id": "MC0765",
       "mc_name": "影賭",
       "mc_yomi": "かげかけ",
+      "notes": "",
+      "kana_group": "か"
+    },
+    {
+      "mc_id": "MC0926",
+      "mc_name": "GASHIMA",
+      "mc_yomi": "がしま",
       "notes": "",
       "kana_group": "か"
     },
@@ -2054,6 +2075,13 @@
       "kana_group": "さ"
     },
     {
+      "mc_id": "MC0922",
+      "mc_name": "J-REXXX",
+      "mc_yomi": "じぇいれっくす",
+      "notes": "",
+      "kana_group": "さ"
+    },
+    {
       "mc_id": "MC0664",
       "mc_name": "JECT",
       "mc_yomi": "じぇくと",
@@ -2145,6 +2173,13 @@
       "kana_group": "さ"
     },
     {
+      "mc_id": "MC0920",
+      "mc_name": "Zeebra",
+      "mc_yomi": "じぶら",
+      "notes": "",
+      "kana_group": "さ"
+    },
+    {
       "mc_id": "MC0353",
       "mc_name": "シーモンキー",
       "mc_yomi": "しもんき",
@@ -2155,6 +2190,13 @@
       "mc_id": "MC0147",
       "mc_name": "JAVE",
       "mc_yomi": "じゃゔぇ",
+      "notes": "",
+      "kana_group": "さ"
+    },
+    {
+      "mc_id": "MC0919",
+      "mc_name": "釈迦坊主",
+      "mc_yomi": "しゃかぼうず",
       "notes": "",
       "kana_group": "さ"
     },
@@ -2316,6 +2358,13 @@
       "mc_id": "MC0867",
       "mc_name": "Show the no.1",
       "mc_yomi": "しょうざなんばーわん",
+      "notes": "",
+      "kana_group": "さ"
+    },
+    {
+      "mc_id": "MC0406",
+      "mc_name": "焼陣",
+      "mc_yomi": "しょうじん",
       "notes": "",
       "kana_group": "さ"
     },
@@ -3069,6 +3118,13 @@
       "kana_group": "た"
     },
     {
+      "mc_id": "MC0924",
+      "mc_name": "D.O",
+      "mc_yomi": "でぃーおー",
+      "notes": "",
+      "kana_group": "た"
+    },
+    {
       "mc_id": "MC0682",
       "mc_name": "D96",
       "mc_yomi": "でぃーくろ",
@@ -3258,13 +3314,6 @@
       "kana_group": "た"
     },
     {
-      "mc_id": "MC0405",
-      "mc_name": "灯火",
-      "mc_yomi": "とうか",
-      "notes": "",
-      "kana_group": "た"
-    },
-    {
       "mc_id": "MC0569",
       "mc_name": "踏剣",
       "mc_yomi": "とうけん",
@@ -3338,6 +3387,13 @@
       "mc_id": "MC0382",
       "mc_name": "富博",
       "mc_yomi": "とみひろし",
+      "notes": "",
+      "kana_group": "た"
+    },
+    {
+      "mc_id": "MC0405",
+      "mc_name": "灯火",
+      "mc_yomi": "ともしび",
       "notes": "",
       "kana_group": "た"
     },
@@ -4427,6 +4483,13 @@
       "kana_group": "は"
     },
     {
+      "mc_id": "MC0923",
+      "mc_name": "Benjazzy",
+      "mc_yomi": "べんじゃじー",
+      "notes": "",
+      "kana_group": "は"
+    },
+    {
       "mc_id": "MC0057",
       "mc_name": "BENZO",
       "mc_yomi": "べんぞ",
@@ -4476,16 +4539,16 @@
       "kana_group": "は"
     },
     {
-      "mc_id": "MC0402",
-      "mc_name": "歩歩",
-      "mc_yomi": "ほほ",
+      "mc_id": "MC0062",
+      "mc_name": "BOBO",
+      "mc_yomi": "ぼぼ",
       "notes": "",
       "kana_group": "は"
     },
     {
-      "mc_id": "MC0062",
-      "mc_name": "BOBO",
-      "mc_yomi": "ぼぼ",
+      "mc_id": "MC0402",
+      "mc_name": "歩歩",
+      "mc_yomi": "ぽぽ",
       "notes": "",
       "kana_group": "は"
     },
@@ -4791,6 +4854,13 @@
       "kana_group": "ま"
     },
     {
+      "mc_id": "MC0921",
+      "mc_name": "MIYACHI",
+      "mc_yomi": "みやち",
+      "notes": "",
+      "kana_group": "ま"
+    },
+    {
       "mc_id": "MC0800",
       "mc_name": "Miracle",
       "mc_yomi": "みらくる",
@@ -4936,20 +5006,6 @@
       "mc_yomi": "もにーほーす",
       "notes": "",
       "kana_group": "ま"
-    },
-    {
-      "mc_id": "MC0401",
-      "mc_name": "楓",
-      "mc_yomi": "もみじ",
-      "notes": "",
-      "kana_group": "ま"
-    },
-    {
-      "mc_id": "MC0406",
-      "mc_name": "焼陣",
-      "mc_yomi": "やきじん",
-      "notes": "",
-      "kana_group": "や"
     },
     {
       "mc_id": "MC0527",
@@ -5568,16 +5624,16 @@
       "kana_group": "ら"
     },
     {
-      "mc_id": "MC0604",
-      "mc_name": "R'kuma",
-      "mc_yomi": "れおくま",
+      "mc_id": "MC0192",
+      "mc_name": "LEON",
+      "mc_yomi": "れおん",
       "notes": "",
       "kana_group": "ら"
     },
     {
-      "mc_id": "MC0192",
-      "mc_name": "LEON",
-      "mc_yomi": "れおん",
+      "mc_id": "MC0925",
+      "mc_name": "Red Eye",
+      "mc_yomi": "れっどあい",
       "notes": "",
       "kana_group": "ら"
     },
