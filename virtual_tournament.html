@@ -58,6 +58,12 @@
       font-weight: 800;
       color: var(--accent);
       letter-spacing: .01em;
+      width: fit-content;
+      padding: 8px 11px;
+      border-radius: 16px;
+      border: 2px solid rgba(255,255,255,.78);
+      background: rgba(13,17,28,.22);
+      box-sizing: border-box;
     }
 
     .vt-search-row{
@@ -71,14 +77,15 @@
     .vt-search-box{
       width: 100%;
       min-height: 54px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(13,17,28,.68);
+      border-radius: 16px;
+      border: 2px solid rgba(255,255,255,.78);
+      background: rgba(13,17,28,.22);
       color: var(--text);
       padding: 0 14px;
       font: inherit;
       font-size: .95rem;
       outline: none;
+      box-sizing: border-box;
     }
 
     .vt-search-box::placeholder{
@@ -87,15 +94,16 @@
 
     .vt-count-badge{
       min-height: 54px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.06);
+      border-radius: 16px;
+      border: 2px solid rgba(255,255,255,.78);
+      background: rgba(13,17,28,.22);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.08rem;
       font-weight: 800;
       color: #d7deef;
+      box-sizing: border-box;
     }
 
     .vt-search-note{
@@ -121,8 +129,8 @@
       min-height: 44px;
       padding: 0 12px;
       border-radius: 15px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.03);
+      border: 2px solid rgba(255,255,255,.78);
+      background: rgba(13,17,28,.22);
       color: var(--text);
       font: inherit;
       font-size: .9rem;
@@ -137,12 +145,13 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      box-sizing: border-box;
     }
 
     .vt-candidate-btn:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.24);
+      border-color: rgba(255,255,255,.92);
       box-shadow: 0 0 20px rgba(255,255,255,.05);
     }
 
@@ -163,8 +172,8 @@
     .vt-main-button,
     .vt-sub-button{
       width: 100%;
-      border-radius: 999px;
-      background: transparent;
+      border-radius: 16px;
+      background: rgba(13,17,28,.22);
       color: var(--text);
       font: inherit;
       cursor: pointer;
@@ -174,6 +183,7 @@
         border-color .18s ease,
         box-shadow .18s ease,
         opacity .18s ease;
+      box-sizing: border-box;
     }
 
     .vt-main-button:hover,
@@ -185,7 +195,7 @@
 
     .vt-main-button{
       min-height: 54px;
-      border: 2px solid rgba(255,255,255,.68);
+      border: 2px solid rgba(255,255,255,.78);
       font-size: .98rem;
       font-weight: 800;
     }
@@ -200,10 +210,11 @@
 
     .vt-sub-button{
       min-height: 46px;
-      border: 1px solid rgba(255,255,255,.34);
+      border: 2px solid rgba(255,255,255,.78);
       color: #d4dbea;
       font-size: .9rem;
       font-weight: 700;
+      padding: 0 12px;
     }
 
     .vt-selected-wrap{
@@ -527,6 +538,11 @@
       .vt-overlay-count{
         font-size: 2.8rem;
       }
+
+      .vt-step-label{
+        padding: 7px 10px;
+        border-radius: 15px;
+      }
     }
   </style>
 </head>
@@ -586,11 +602,6 @@
           <button id="run-sim-btn" class="vt-main-button" type="button">100回シミュレーションする</button>
           <p id="sim-status" class="vt-status">8人選ぶとシミュレーションできます。</p>
 
-          <div id="pair-adjustment-card" class="vt-pair-card is-hidden">
-            <h2 class="vt-pair-title">相性補正が入る組み合わせ</h2>
-            <div id="pair-adjustment-list" class="vt-pair-list"></div>
-          </div>
-
           <div id="top-result-card" class="vt-hero-result is-hidden">
             <span class="vt-hero-result-label">最も優勝確率が高いMC</span>
             <span id="top-result-name" class="vt-hero-result-name">-</span>
@@ -605,8 +616,13 @@
             <div id="dist-list" class="vt-dist-list"></div>
           </div>
 
+          <div id="pair-adjustment-card" class="vt-pair-card is-hidden">
+            <h2 class="vt-pair-title">相性補正</h2>
+            <div id="pair-adjustment-list" class="vt-pair-list"></div>
+          </div>
+
           <div id="summary-card" class="vt-summary-card is-hidden">
-            <h2 class="vt-summary-title">結果サマリー</h2>
+            <h2 class="vt-summary-title">結果サマリ</h2>
             <div id="summary-lines" class="vt-summary-lines"></div>
           </div>
         </div>
@@ -796,7 +812,7 @@
           rows.push({
             abs: Math.abs(adjustment),
             totalMatches,
-            text: `${favored.mc_name} と ${other.mc_name} の相性補正あり（${favored.mc_name}が${label}）`
+            text: `${favored.mc_name}が${other.mc_name} に対して${label}`
           });
         }
       }
