@@ -33,22 +33,11 @@
     }
 
     .vt-panel{
-      border: 1px solid rgba(255,255,255,.12);
+      border: 2px solid rgba(255,255,255,.78);
       border-radius: 22px;
       padding: 14px 14px 12px;
       box-shadow: 0 18px 48px rgba(0,0,0,.22);
-    }
-
-    .vt-panel-select{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
-        linear-gradient(180deg, rgba(64,116,76,.22), rgba(40,77,58,.18));
-    }
-
-    .vt-panel-result{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
-        linear-gradient(180deg, rgba(84,66,104,.22), rgba(55,45,79,.18));
+      background: rgba(13,17,28,.22);
     }
 
     .vt-step-label{
@@ -58,17 +47,11 @@
       font-weight: 800;
       color: var(--accent);
       letter-spacing: .01em;
-      width: fit-content;
-      padding: 8px 11px;
-      border-radius: 16px;
-      border: 2px solid rgba(255,255,255,.78);
-      background: rgba(13,17,28,.22);
-      box-sizing: border-box;
     }
 
     .vt-search-row{
       display: grid;
-      grid-template-columns: minmax(0,1fr) 72px;
+      grid-template-columns: minmax(0,1fr);
       gap: 10px;
       align-items: center;
       margin-top: 2px;
@@ -78,8 +61,8 @@
       width: 100%;
       min-height: 54px;
       border-radius: 16px;
-      border: 2px solid rgba(255,255,255,.78);
-      background: rgba(13,17,28,.22);
+      border: 1px solid rgba(255,255,255,.78);
+      background: transparent;
       color: var(--text);
       padding: 0 14px;
       font: inherit;
@@ -90,20 +73,6 @@
 
     .vt-search-box::placeholder{
       color: #9ea7ba;
-    }
-
-    .vt-count-badge{
-      min-height: 54px;
-      border-radius: 16px;
-      border: 2px solid rgba(255,255,255,.78);
-      background: rgba(13,17,28,.22);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.08rem;
-      font-weight: 800;
-      color: #d7deef;
-      box-sizing: border-box;
     }
 
     .vt-search-note{
@@ -129,8 +98,8 @@
       min-height: 44px;
       padding: 0 12px;
       border-radius: 15px;
-      border: 2px solid rgba(255,255,255,.78);
-      background: rgba(13,17,28,.22);
+      border: 1px solid rgba(255,255,255,.38);
+      background: rgba(255,255,255,.03);
       color: var(--text);
       font: inherit;
       font-size: .9rem;
@@ -151,7 +120,7 @@
     .vt-candidate-btn:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.92);
+      border-color: rgba(255,255,255,.62);
       box-shadow: 0 0 20px rgba(255,255,255,.05);
     }
 
@@ -163,8 +132,8 @@
     }
 
     .vt-action-stack{
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
       margin-top: 10px;
     }
@@ -172,9 +141,10 @@
     .vt-main-button,
     .vt-sub-button{
       width: 100%;
+      min-width: 0;
       border-radius: 16px;
-      background: rgba(13,17,28,.22);
-      color: var(--text);
+      background: transparent;
+      color: #ffffff;
       font: inherit;
       cursor: pointer;
       transition:
@@ -184,18 +154,18 @@
         box-shadow .18s ease,
         opacity .18s ease;
       box-sizing: border-box;
+      border: 2px solid rgba(255,255,255,.88);
     }
 
     .vt-main-button:hover,
     .vt-sub-button:hover{
       transform: translateY(-1px);
-      background: rgba(255,255,255,.04);
+      background: rgba(255,255,255,.06);
       box-shadow: 0 0 20px rgba(255,255,255,.06);
     }
 
     .vt-main-button{
       min-height: 54px;
-      border: 2px solid rgba(255,255,255,.78);
       font-size: .98rem;
       font-weight: 800;
     }
@@ -210,8 +180,6 @@
 
     .vt-sub-button{
       min-height: 46px;
-      border: 2px solid rgba(255,255,255,.78);
-      color: #d4dbea;
       font-size: .9rem;
       font-weight: 700;
       padding: 0 12px;
@@ -248,7 +216,7 @@
       min-height: 54px;
       padding: 8px 11px;
       border-radius: 16px;
-      border: 2px solid rgba(255,255,255,.78);
+      border: 1px solid rgba(255,255,255,.78);
       background: rgba(13,17,28,.22);
       box-sizing: border-box;
     }
@@ -535,13 +503,12 @@
         grid-template-columns: repeat(2, minmax(0,1fr));
       }
 
-      .vt-overlay-count{
-        font-size: 2.8rem;
+      .vt-action-stack{
+        grid-template-columns: 1fr;
       }
 
-      .vt-step-label{
-        padding: 7px 10px;
-        border-radius: 15px;
+      .vt-overlay-count{
+        font-size: 2.8rem;
       }
     }
   </style>
@@ -569,12 +536,11 @@
     </section>
 
     <div class="vt-stack">
-      <section class="vt-panel vt-panel-select">
+      <section class="vt-panel">
         <span class="vt-step-label">①MCを選ぶ</span>
 
         <div class="vt-search-row">
           <input id="mc-search-input" class="vt-search-box" type="text" placeholder="MC名/読み仮名で検索" autocomplete="off" />
-          <div id="selected-count-badge" class="vt-count-badge">0/8</div>
         </div>
 
         <p class="vt-search-note">2文字以上で候補表示</p>
@@ -595,7 +561,7 @@
         </div>
       </section>
 
-      <section id="result-panel" class="vt-panel vt-panel-result">
+      <section id="result-panel" class="vt-panel">
         <span class="vt-step-label">②結果</span>
 
         <div class="vt-run-area">
@@ -617,7 +583,7 @@
           </div>
 
           <div id="pair-adjustment-card" class="vt-pair-card is-hidden">
-            <h2 class="vt-pair-title">相性補正</h2>
+            <h2 class="vt-pair-title">過去実績を基にした相性補正</h2>
             <div id="pair-adjustment-list" class="vt-pair-list"></div>
           </div>
 
@@ -704,6 +670,7 @@
 
     function markSelectionChanged() {
       hasSimulatedCurrentSelection = false;
+      hidePairAdjustments();
     }
 
     function getTop100Pool() {
@@ -786,11 +753,6 @@
       const card = document.getElementById("pair-adjustment-card");
       const list = document.getElementById("pair-adjustment-list");
 
-      if (selectedMcs.length < 2) {
-        hidePairAdjustments();
-        return;
-      }
-
       const rows = [];
 
       for (let i = 0; i < selectedMcs.length; i++) {
@@ -812,7 +774,7 @@
           rows.push({
             abs: Math.abs(adjustment),
             totalMatches,
-            text: `${favored.mc_name}が${other.mc_name} に対して${label}`
+            text: `${favored.mc_name}が${other.mc_name}に対して${label}`
           });
         }
       }
@@ -830,14 +792,11 @@
 
     function renderSelected() {
       const grid = document.getElementById("selected-grid");
-      const badge = document.getElementById("selected-count-badge");
 
-      badge.textContent = `${selectedMcs.length}/${MAX_SELECTED}`;
       grid.classList.toggle("is-single", selectedMcs.length === 1);
 
       if (selectedMcs.length === 0) {
         grid.innerHTML = "";
-        renderPairAdjustments();
         return;
       }
 
@@ -858,8 +817,6 @@
           updateSimReadyState();
         });
       });
-
-      renderPairAdjustments();
     }
 
     function renderCandidates() {
@@ -1019,6 +976,8 @@
       `).join("");
       distCard.classList.remove("is-hidden");
 
+      renderPairAdjustments();
+
       const lines = buildLongSummaryLines(sortedResults);
       summaryLines.innerHTML = lines.map(line => `<p>${escapeHtml(line)}</p>`).join("");
       summaryCard.classList.remove("is-hidden");
@@ -1028,6 +987,7 @@
       document.getElementById("top-result-card").classList.add("is-hidden");
       document.getElementById("dist-card").classList.add("is-hidden");
       document.getElementById("summary-card").classList.add("is-hidden");
+      hidePairAdjustments();
     }
 
     function showOverlay() {
