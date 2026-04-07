@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-06T16:32:33.798Z",
-  "total": 127,
+  "updated_at": "2026-04-07T03:52:39.207Z",
+  "total": 136,
   "events": [
     {
       "event_id": "EVT0032",
@@ -18,6 +18,21 @@
       "winner_name": "T-TANGG"
     },
     {
+      "event_id": "EVT0140",
+      "event_name": "NEO GENESIS MC BATTLE Vol.9",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.9",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.9",
+      "event_date": "2026-01-04",
+      "prize_money_winner": 100000,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "HARLEM",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "DOTAMA"
+    },
+    {
       "event_id": "EVT0021",
       "event_name": "UMB2025 GrandChanpionShip",
       "event_name_full": "UMB2025 GrandChanpionShip",
@@ -33,6 +48,21 @@
       "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
     },
     {
+      "event_id": "EVT0139",
+      "event_name": "NEO GENESIS MC BATTLE Vol.8",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.8",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.8",
+      "event_date": "2025-10-05",
+      "prize_money_winner": 150000,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "JOULE",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "REDWING"
+    },
+    {
       "event_id": "EVT0040",
       "event_name": "戦極MCBATTLE 第37章 -OSAKA- 王座奪還1on1",
       "event_name_full": "戦極MCBATTLE 第37章 -OSAKA- 王座奪還1on1",
@@ -46,6 +76,21 @@
       "organizer": "戦極MCBATTLE",
       "notes": "https://abema.tv/live-event/09d65a23-9261-4cc5-81d2-b1f7b9c5c88f | https://abema.tv/video/title/243-76?s=243-76_s3000 | https://x.com/sengokumc/status/1926221969537597605 | source image provided in chat",
       "winner_name": ""
+    },
+    {
+      "event_id": "EVT0138",
+      "event_name": "NEO GENESIS MC BATTLE Vol.7",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.7",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.7",
+      "event_date": "2025-04-18",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "CLUB CITTA'",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "Rude-α"
     },
     {
       "event_id": "EVT0039",
@@ -78,6 +123,21 @@
       "winner_name": "9for"
     },
     {
+      "event_id": "EVT0137",
+      "event_name": "NEO GENESIS MC BATTLE Vol.6",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.6",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.6",
+      "event_date": "2025-01-04",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "HARLEM",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "K-rush"
+    },
+    {
       "event_id": "EVT0020",
       "event_name": "UMB2024 GrandChanpionShip",
       "event_name_full": "UMB2024 GrandChanpionShip",
@@ -91,6 +151,36 @@
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb-2024",
       "winner_name": "KOOPA"
+    },
+    {
+      "event_id": "EVT0136",
+      "event_name": "NEO GENESIS MC BATTLE Vol.5",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.5",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.5",
+      "event_date": "2024-11-10",
+      "prize_money_winner": 150000,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "HARLEM",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "ミメイ"
+    },
+    {
+      "event_id": "EVT0135",
+      "event_name": "NEO GENESIS MC BATTLE Vol.4",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.4",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.4",
+      "event_date": "2024-08-23",
+      "prize_money_winner": 150000,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "HARLEM",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "楓"
     },
     {
       "event_id": "EVT0131",
@@ -121,6 +211,21 @@
       "organizer": "戦極MCBATTLE",
       "notes": "https://sengokumc.exblog.jp/32653799/ | https://sengokumc.exblog.jp/32653792/ | https://x.com/sengokumc/status/1801494965480210503",
       "winner_name": "KOPERU"
+    },
+    {
+      "event_id": "EVT0134",
+      "event_name": "NEO GENESIS MC BATTLE Vol.3",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.3",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.3",
+      "event_date": "2024-03-28",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "CLUB CITTA'",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "Shamis"
     },
     {
       "event_id": "EVT0075",
@@ -243,6 +348,21 @@
       "winner_name": ""
     },
     {
+      "event_id": "EVT0133",
+      "event_name": "NEO GENESIS MC BATTLE Vol.2",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.2",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.2",
+      "event_date": "2023-10-01",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "R-lounge 6F",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "REDWING"
+    },
+    {
       "event_id": "EVT0092",
       "event_name": "戦極MCBATTLE vs 真ADRENALINE",
       "event_name_full": "戦極MCBATTLE vs 真ADRENALINE",
@@ -361,6 +481,21 @@
       "organizer": "真 ADRENALINE",
       "notes": "Source: https://www.finance-accounting-value.com/entry/adrenaline-reggae3",
       "winner_name": ""
+    },
+    {
+      "event_id": "EVT0132",
+      "event_name": "NEO GENESIS MC BATTLE Vol.1",
+      "event_name_full": "NEO GENESIS MC BATTLE Vol.1",
+      "event_name_simple": "NEO GENESIS MC BATTLE Vol.1",
+      "event_date": "2023-03-18",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "event_category": "NEO GENESIS MC BATTLE",
+      "event_stage": "本戦",
+      "location": "R-lounge 6F",
+      "organizer": "NEO GENESIS MC BATTLE",
+      "notes": "",
+      "winner_name": "ミメイ"
     },
     {
       "event_id": "EVT0121",

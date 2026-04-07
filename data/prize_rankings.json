@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-04-06T16:32:40.805Z",
-  "total": 50,
+  "updated_at": "2026-04-07T03:52:45.646Z",
+  "total": 53,
   "rankings": [
     {
       "rank": 1,
@@ -90,7 +90,7 @@
       "rank": 15,
       "mc_id": "MC0100",
       "mc_name": "DOTAMA",
-      "total_prize_money": 2650000
+      "total_prize_money": 2750000
     },
     {
       "rank": 16,
@@ -226,78 +226,96 @@
     },
     {
       "rank": 38,
+      "mc_id": "MC0469",
+      "mc_name": "ミメイ",
+      "total_prize_money": 450000
+    },
+    {
+      "rank": 39,
       "mc_id": "MC0448",
       "mc_name": "CHEHON",
       "total_prize_money": 300000
     },
     {
-      "rank": 39,
+      "rank": 40,
       "mc_id": "MC0454",
       "mc_name": "KOPERU",
       "total_prize_money": 300000
     },
     {
-      "rank": 40,
+      "rank": 41,
       "mc_id": "MC0692",
       "mc_name": "POWER WAVE",
       "total_prize_money": 300000
     },
     {
-      "rank": 41,
+      "rank": 42,
+      "mc_id": "MC0599",
+      "mc_name": "Rude-α",
+      "total_prize_money": 300000
+    },
+    {
+      "rank": 43,
       "mc_id": "MC0466",
       "mc_name": "Sitissy luvit",
       "total_prize_money": 300000
     },
     {
-      "rank": 42,
-      "mc_id": "MC0469",
-      "mc_name": "ミメイ",
-      "total_prize_money": 300000
-    },
-    {
-      "rank": 43,
+      "rank": 44,
       "mc_id": "MC0764",
       "mc_name": "孫GONG",
       "total_prize_money": 300000
     },
     {
-      "rank": 44,
+      "rank": 45,
+      "mc_id": "MC0461",
+      "mc_name": "REDWING",
+      "total_prize_money": 150000
+    },
+    {
+      "rank": 46,
+      "mc_id": "MC0401",
+      "mc_name": "楓",
+      "total_prize_money": 150000
+    },
+    {
+      "rank": 47,
       "mc_id": "MC0121",
       "mc_name": "GOLBY",
       "total_prize_money": 100000
     },
     {
-      "rank": 45,
+      "rank": 48,
       "mc_id": "MC0171",
       "mc_name": "KBD",
       "total_prize_money": 100000
     },
     {
-      "rank": 46,
+      "rank": 49,
       "mc_id": "MC0025",
       "mc_name": "TKda黒ぶち",
       "total_prize_money": 100000
     },
     {
-      "rank": 47,
+      "rank": 50,
       "mc_id": "MC0351",
       "mc_name": "サイプレス上野",
       "total_prize_money": 100000
     },
     {
-      "rank": 48,
+      "rank": 51,
       "mc_id": "MC0357",
       "mc_name": "チプルソ",
       "total_prize_money": 100000
     },
     {
-      "rank": 49,
+      "rank": 52,
       "mc_id": "MC0158",
       "mc_name": "K-razy",
       "total_prize_money": 50000
     },
     {
-      "rank": 50,
+      "rank": 53,
       "mc_id": "MC0444",
       "mc_name": "黄猿",
       "total_prize_money": 50000
