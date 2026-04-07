@@ -244,7 +244,9 @@
       if (/^best\s*4$/i.test(name) || name === "準決勝" || name === "ベスト4") return "Best4";
       if (/^best\s*8$/i.test(name) || name === "準々決勝" || name === "ベスト8") return "Best8";
       if (/^best\s*16$/i.test(name) || name === "ベスト16") return "Best16";
+      if (/^best\s*24$/i.test(name) || name === "ベスト24") return "Best24";
       if (/^best\s*32$/i.test(name) || name === "ベスト32") return "Best32";
+      if (/^best\s*36$/i.test(name) || name === "ベスト36") return "Best36";
       if (/^best\s*48$/i.test(name) || name === "ベスト48") return "Best48";
       if (/^best\s*64$/i.test(name) || name === "ベスト64") return "Best64";
 
@@ -311,7 +313,9 @@
       const style = document.createElement("style");
       style.id = "event-match-row-style";
       style.textContent = `
-        .round-block { margin-top: 18px; }
+        .round-block {
+          margin-top: 18px;
+        }
         .round-heading {
           margin: 0 0 8px;
         }
@@ -321,72 +325,97 @@
           margin: 0;
         }
         .match-list > li {
-          margin: 0 0 10px 0;
+          margin: 0 0 8px 0;
           padding: 0;
           background: transparent;
           border: none;
           color: inherit;
         }
-        .match-row-wrap { display: block; }
+        .match-row-wrap {
+          display: block;
+        }
         .match-row-box {
           display: block;
           max-width: 100%;
-          padding: 10px 12px;
-          border-radius: 14px;
+          padding: 9px 12px;
+          border-radius: 12px;
           background: rgba(255,255,255,0.025);
           border: 1px solid rgba(255,255,255,0.14);
           color: inherit;
           box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
         }
-        .match-line {
+        .match-single-line {
           display: flex;
-          align-items: flex-start;
-          gap: 0;
+          align-items: baseline;
+          gap: 7px;
           min-width: 0;
+          line-height: 1.42;
         }
-        .match-line + .match-line {
-          margin-top: 6px;
-        }
-        .match-line .name {
-          flex: 1 1 auto;
+        .match-name {
           min-width: 0;
           overflow-wrap: anywhere;
           word-break: break-word;
-          color: inherit;
-          line-height: 1.42;
         }
-        .match-line-winner .name {
+        .match-name.is-winner {
           color: var(--text);
           font-weight: 700;
+          flex: 0 1 auto;
         }
-        .match-line-loser .name {
+        .match-name.is-loser {
           color: #7f8798;
           font-weight: 600;
+          flex: 1 1 auto;
         }
-        .match-line .name a,
+        .match-separator {
+          flex: 0 0 auto;
+          color: var(--muted);
+          opacity: 0.9;
+        }
+        .match-name a,
         .meta-list a {
           color: inherit;
           text-decoration: underline;
           text-underline-offset: 0.15em;
         }
         .judge-method {
-          margin-top: 7px;
+          margin-top: 4px;
           width: fit-content;
           max-width: 100%;
-          font-size: 0.88em;
+          font-size: 0.82rem;
+          line-height: 1.35;
           text-align: left;
           color: var(--muted);
         }
         @media (max-width: 640px) {
+          .round-block {
+            margin-top: 14px;
+          }
           .round-heading {
-            margin-bottom: 7px;
+            margin-bottom: 6px;
+          }
+          .match-list > li {
+            margin-bottom: 6px;
           }
           .match-row-box {
-            padding: 9px 10px;
-            border-radius: 12px;
+            padding: 6px 9px;
+            border-radius: 10px;
           }
-          .match-line + .match-line {
-            margin-top: 5px;
+          .match-single-line {
+            gap: 6px;
+            font-size: 0.92rem;
+            line-height: 1.34;
+          }
+          .match-name.is-winner {
+            font-weight: 700;
+          }
+          .match-name.is-loser {
+            color: #737b8c;
+            font-weight: 600;
+          }
+          .judge-method {
+            margin-top: 3px;
+            font-size: 0.74rem;
+            line-height: 1.3;
           }
         }
       `;
@@ -500,11 +529,10 @@
 
             li.innerHTML = `
               <div class="match-row-box">
-                <div class="match-line match-line-winner">
-                  <span class="name name-winner">${winnerHtml}</span>
-                </div>
-                <div class="match-line match-line-loser">
-                  <span class="name name-loser">${loserHtml}</span>
+                <div class="match-single-line">
+                  <span class="match-name is-winner">${winnerHtml}</span>
+                  <span class="match-separator">/</span>
+                  <span class="match-name is-loser">${loserHtml}</span>
                 </div>
                 ${judgeMethod ? `<div class="judge-method">判定: ${judgeMethod}</div>` : ""}
               </div>
