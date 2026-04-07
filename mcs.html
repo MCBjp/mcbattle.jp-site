@@ -12,6 +12,23 @@
       padding-right: 12px;
     }
 
+    .mcs-info-card{
+      margin: 0 0 12px;
+      padding: 11px 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.025);
+      color: var(--muted);
+      line-height: 1.58;
+      font-size: 0.92rem;
+    }
+
+    .mcs-info-card a{
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+
     .mcs-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -112,6 +129,13 @@
         padding-right: 10px;
       }
 
+      .mcs-info-card{
+        margin-bottom: 10px;
+        padding: 9px 10px;
+        font-size: 0.84rem;
+        line-height: 1.46;
+      }
+
       .mcs-tabs {
         gap: 7px;
         margin-bottom: 9px;
@@ -155,6 +179,10 @@
 
     <section class="card">
       <div class="mcs-list-wrap">
+        <div class="mcs-info-card">
+          MC名の読み誤り、同一人物重複、表記ゆれなどありましたら<a href="contact.html">情報提供をお願いします。</a>
+        </div>
+
         <div id="mcs-tabs" class="mcs-tabs"></div>
         <p id="mcs-status" class="muted">読み込み中...</p>
         <div id="mcs-panel"></div>
@@ -269,7 +297,7 @@
     async function loadMcsJson() {
       const res = await fetch(MCS_JSON_URL, { cache: "no-store" });
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
+        throw new Error(\`HTTP \${res.status}\`);
       }
       return await res.json();
     }
