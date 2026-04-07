@@ -794,6 +794,29 @@
       return "";
     }
 
+    function formatHeadToHeadRecord(favored, other, pair) {
+      if (!pair) return "";
+
+      const smallId = String(pair.mc_id_a || "").trim();
+      const largeId = String(pair.mc_id_b || "").trim();
+      const aWins = Number(pair.a_wins || 0);
+      const bWins = Number(pair.b_wins || 0);
+      const totalMatches = Number(pair.total_matches || (aWins + bWins) || 0);
+
+      if (!totalMatches) return "";
+
+      let favoredWins = 0;
+      if (String(favored.mc_id || "").trim() === smallId && String(other.mc_id || "").trim() === largeId) {
+        favoredWins = aWins;
+      } else if (String(favored.mc_id || "").trim() === largeId && String(other.mc_id || "").trim() === smallId) {
+        favoredWins = bWins;
+      } else {
+        return "";
+      }
+
+      return `（${totalMatches}戦中${favoredWins}勝）`;
+    }
+
     function hidePairAdjustments() {
       document.getElementById("pair-adjustment-card").classList.add("is-hidden");
       document.getElementById("pair-adjustment-list").innerHTML = "";
@@ -820,11 +843,12 @@
           const key = getPairKey(a.mc_id, b.mc_id);
           const pair = headToHeadMap[key];
           const totalMatches = Number(pair?.total_matches || 0);
+          const recordText = formatHeadToHeadRecord(favored, other, pair);
 
           rows.push({
             abs: Math.abs(adjustment),
             totalMatches,
-            text: `${favored.mc_name}が${other.mc_name}に対して${label}`
+            text: `${favored.mc_name}が${other.mc_name}に対して${label}${recordText}`
           });
         }
       }
@@ -975,7 +999,7 @@
       };
     }
 
-    function buildLongSummaryLines(sortedResults) {
+    function buildShortSummaryLines(sortedResults) {
       const top = sortedResults[0];
       const second = sortedResults[1];
       const third = sortedResults[2];
@@ -983,28 +1007,19 @@
       const lines = [];
 
       if (top) {
-        lines.push(`${top.mc_name} が最有力です。優勝率は${top.championRate}%で、決勝到達率は${top.finalRate}%でした。`);
-      }
-
-      if (second || third) {
-        const rivalParts = [];
-        if (second) rivalParts.push(`${second.mc_name}が対抗格で、優勝率は${second.championRate}%です。`);
-        if (third) rivalParts.push(`${third.mc_name}も射程圏にいて、優勝率は${third.championRate}%です。`);
-        lines.push(rivalParts.join(" "));
-      }
-
-      if (top) {
         if (top.championRate >= 50) {
           lines.push(`${top.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`);
         } else if (top.championRate >= 35) {
-          lines.push(`${top.mc_name}は勝ち切る力に加えて、決勝まで行く安定感もあります。`);
+          lines.push(`${top.mc_name}がやや優勢で、決勝まで含めた安定感もありました。`);
         } else {
-          lines.push(`上位が拮抗していて、組み合わせ次第で優勝が入れ替わる混戦傾向です。`);
+          lines.push(`上位が拮抗していて、組み合わせ次第で優勝が入れ替わる混戦傾向でした。`);
         }
       }
 
       if (second && fourth) {
         lines.push(`${second.mc_name}以下も十分にチャンスがあり、${fourth.mc_name}あたりまで優勝候補に入る展開でした。`);
+      } else if (second && third) {
+        lines.push(`${second.mc_name}や${third.mc_name}も対抗圏に入り、差し込みの余地がある組み合わせでした。`);
       }
 
       return lines;
@@ -1038,7 +1053,7 @@
 
       renderPairAdjustments();
 
-      const lines = buildLongSummaryLines(sortedResults);
+      const lines = buildShortSummaryLines(sortedResults);
       summaryLines.innerHTML = lines.map(line => `<p>${escapeHtml(line)}</p>`).join("");
       summaryCard.classList.remove("is-hidden");
     }
