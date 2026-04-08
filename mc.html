@@ -9,7 +9,7 @@
   <style>
     .mcs-info-link{
       display:block;
-      margin:0 0 12px;
+      margin:0 0 14px;
       text-decoration:none !important;
       color:inherit;
     }
@@ -163,7 +163,7 @@
 
     @media (max-width: 640px) {
       .mcs-info-link{
-        margin-bottom:10px;
+        margin-bottom:12px;
       }
 
       .mcs-info-card{
@@ -341,7 +341,7 @@
     async function loadMcsJson() {
       const res = await fetch(MCS_JSON_URL, { cache: "no-store" });
       if (!res.ok) {
-        throw new Error(\`HTTP \${res.status}\`);
+        throw new Error(`HTTP ${res.status}`);
       }
       return await res.json();
     }
