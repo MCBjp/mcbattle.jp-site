@@ -114,6 +114,61 @@
       color: inherit;
     }
 
+    .event-info-link{
+      display: block;
+      margin-top: 12px;
+      text-decoration: none !important;
+      color: inherit;
+    }
+
+    .event-info-link:hover,
+    .event-info-link:focus,
+    .event-info-link:active,
+    .event-info-link:visited{
+      text-decoration: none !important;
+      color: inherit;
+    }
+
+    .event-info-card{
+      display: block;
+      padding: 13px 14px;
+      border: 1px solid rgba(216,180,106,0.44);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(216,180,106,0.22) 0%, rgba(216,180,106,0.10) 100%),
+        rgba(255,255,255,0.04);
+      color: #f1f4fb;
+      line-height: 1.58;
+      font-size: 0.92rem;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03) inset,
+        0 14px 28px rgba(0,0,0,0.18);
+      transition:
+        transform 0.18s ease,
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
+    }
+
+    .event-info-link:hover .event-info-card,
+    .event-info-link:focus-visible .event-info-card{
+      transform: translateY(-2px);
+      border-color: rgba(216,180,106,0.78);
+      background:
+        linear-gradient(180deg, rgba(216,180,106,0.34) 0%, rgba(216,180,106,0.16) 100%),
+        rgba(255,255,255,0.07);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04) inset,
+        0 18px 34px rgba(0,0,0,0.24),
+        0 0 26px rgba(216,180,106,0.16);
+      opacity: 1;
+    }
+
+    .event-info-link:focus-visible{
+      outline: none;
+    }
+
     @media (max-width: 640px) {
       .page-top{
         margin-bottom: 14px;
@@ -168,6 +223,17 @@
       .result-line + .result-line {
         margin-top: 0;
       }
+
+      .event-info-link{
+        margin-top: 10px;
+      }
+
+      .event-info-card{
+        padding: 11px 12px;
+        font-size: 0.85rem;
+        line-height: 1.46;
+        border-radius: 15px;
+      }
     }
   </style>
 </head>
@@ -201,6 +267,12 @@
         <h2>試合結果</h2>
         <p id="matches-status" class="muted">読み込み中...</p>
         <div id="matches-list"></div>
+
+        <a id="event-info-link" class="event-info-link is-hidden" href="contact.html" target="_blank" rel="noopener noreferrer" aria-label="大会情報の情報提供フォームを新しいタブで開く">
+          <div class="event-info-card">
+            大会情報、試合結果に誤りを見つけた場合は、情報提供をお願いします。
+          </div>
+        </a>
       </div>
     </section>
   </div>
@@ -334,6 +406,18 @@
 
       if (!lines.length) return "−";
       return `<span class="result-block">${lines.join("")}</span>`;
+    }
+
+    function setContactLink(eventTitle) {
+      const linkEl = document.getElementById("event-info-link");
+      if (!linkEl || !eventTitle) return;
+
+      const params = new URLSearchParams();
+      params.set("type", "event");
+      params.set("event_name", eventTitle);
+
+      linkEl.href = `contact.html?${params.toString()}`;
+      linkEl.classList.remove("is-hidden");
     }
 
     function ensureMatchRowStyles() {
@@ -561,6 +645,8 @@
           "試合結果を掲載しています。"
         ].filter(Boolean);
         setMetaDescription(descriptionParts.join(" "));
+
+        setContactLink(eventTitle);
 
         const infoItems = [
           { label: "開催日", html: escapeHtml(formatDateJP(event.event_date || "")) },
