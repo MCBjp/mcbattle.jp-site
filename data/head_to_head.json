@@ -1,8 +1,21 @@
 {
-  "updated_at": "2026-04-08T03:32:47.876Z",
+  "updated_at": "2026-04-08T10:15:08.370Z",
   "min_matches": 2,
-  "total": 445,
+  "total": 448,
   "summaries": [
+    {
+      "pair_key": "MC0080__MC0214",
+      "mc_id_a": "MC0080",
+      "mc_name_a": "CIMA",
+      "mc_id_b": "MC0214",
+      "mc_name_b": "RAWAXXX(MOL53)",
+      "a_wins": 2,
+      "b_wins": 6,
+      "total_matches": 8,
+      "last_match_date": "2025-05-24",
+      "last_event_id": "EVT0040",
+      "last_event_name": "戦極MCBATTLE 第37章"
+    },
     {
       "pair_key": "MC0080__MC0376",
       "mc_id_a": "MC0080",
@@ -10,8 +23,8 @@
       "mc_id_b": "MC0376",
       "mc_name_b": "呂布カルマ",
       "a_wins": 3,
-      "b_wins": 6,
-      "total_matches": 9,
+      "b_wins": 5,
+      "total_matches": 8,
       "last_match_date": "2025-01-11",
       "last_event_id": "EVT0031",
       "last_event_name": "KOK2024本戦"
@@ -41,19 +54,6 @@
       "last_match_date": "2022-08-31",
       "last_event_id": "EVT0130",
       "last_event_name": "BATTLE SUMMITⅠ"
-    },
-    {
-      "pair_key": "MC0080__MC0214",
-      "mc_id_a": "MC0080",
-      "mc_name_a": "CIMA",
-      "mc_id_b": "MC0214",
-      "mc_name_b": "RAWAXXX(MOL53)",
-      "a_wins": 1,
-      "b_wins": 6,
-      "total_matches": 7,
-      "last_match_date": "2025-05-24",
-      "last_event_id": "EVT0040",
-      "last_event_name": "戦極MCBATTLE 第37章"
     },
     {
       "pair_key": "MC0373__MC0434",
@@ -178,8 +178,8 @@
       "mc_name_a": "NAIKA MC",
       "mc_id_b": "MC0395",
       "mc_name_b": "晋平太",
-      "a_wins": 3,
-      "b_wins": 3,
+      "a_wins": 2,
+      "b_wins": 4,
       "total_matches": 6,
       "last_match_date": "2019-09-15",
       "last_event_id": "EVT0112",
@@ -459,6 +459,19 @@
       "last_event_name": "渋谷レゲエ祭 vs 真ADRENALINE"
     },
     {
+      "pair_key": "MC0015__MC0245",
+      "mc_id_a": "MC0015",
+      "mc_name_a": "MC☆ニガリ a.k.a 赤い稲妻",
+      "mc_id_b": "MC0245",
+      "mc_name_b": "PONEY",
+      "a_wins": 1,
+      "b_wins": 3,
+      "total_matches": 4,
+      "last_match_date": "2023-12-26",
+      "last_event_id": "EVT0019",
+      "last_event_name": "UMB2023本戦"
+    },
+    {
       "pair_key": "MC0100__MC0756",
       "mc_id_a": "MC0100",
       "mc_name_a": "DOTAMA",
@@ -706,6 +719,19 @@
       "last_event_name": "NEO GENESIS MC BATTLE Vol.8"
     },
     {
+      "pair_key": "MC0106__MC0214",
+      "mc_id_a": "MC0106",
+      "mc_name_a": "ERONE",
+      "mc_id_b": "MC0214",
+      "mc_name_b": "RAWAXXX(MOL53)",
+      "a_wins": 1,
+      "b_wins": 2,
+      "total_matches": 3,
+      "last_match_date": "2025-05-24",
+      "last_event_id": "EVT0040",
+      "last_event_name": "戦極MCBATTLE 第37章"
+    },
+    {
       "pair_key": "MC0222__MC0469",
       "mc_id_a": "MC0222",
       "mc_name_a": "NAIKA MC",
@@ -901,6 +927,19 @@
       "last_event_name": "戦極MCBATTLE 第34章 "
     },
     {
+      "pair_key": "MC0214__MC0600",
+      "mc_id_a": "MC0214",
+      "mc_name_a": "RAWAXXX(MOL53)",
+      "mc_id_b": "MC0600",
+      "mc_name_b": "ミステリオ",
+      "a_wins": 2,
+      "b_wins": 1,
+      "total_matches": 3,
+      "last_match_date": "2024-04-29",
+      "last_event_id": "EVT0144",
+      "last_event_name": "Spotlight 2024 関東編"
+    },
+    {
       "pair_key": "MC0100__MC0614",
       "mc_id_a": "MC0100",
       "mc_name_a": "DOTAMA",
@@ -1003,19 +1042,6 @@
       "last_match_date": "2023-12-30",
       "last_event_id": "EVT0122",
       "last_event_name": "戦極MCBATTLE 第30章 "
-    },
-    {
-      "pair_key": "MC0015__MC0245",
-      "mc_id_a": "MC0015",
-      "mc_name_a": "MC☆ニガリ a.k.a 赤い稲妻",
-      "mc_id_b": "MC0245",
-      "mc_name_b": "PONEY",
-      "a_wins": 1,
-      "b_wins": 2,
-      "total_matches": 3,
-      "last_match_date": "2023-12-26",
-      "last_event_id": "EVT0019",
-      "last_event_name": "UMB2023本戦"
     },
     {
       "pair_key": "MC0077__MC0100",
@@ -1289,19 +1315,6 @@
       "last_match_date": "2023-04-22",
       "last_event_id": "EVT0090",
       "last_event_name": "渋谷レゲエ祭 vs 真ADRENALINE 2023"
-    },
-    {
-      "pair_key": "MC0451__MC0756",
-      "mc_id_a": "MC0451",
-      "mc_name_a": "Fuma no KTR",
-      "mc_id_b": "MC0756",
-      "mc_name_b": "COCRGI WHITE(MU-TON)",
-      "a_wins": 2,
-      "b_wins": 1,
-      "total_matches": 3,
-      "last_match_date": "2023-03-12",
-      "last_event_id": "EVT0121",
-      "last_event_name": "戦極MCBATTLE 第29章 "
     },
     {
       "pair_key": "MC0692__MC0756",
@@ -1746,19 +1759,6 @@
       "last_event_name": "Spotlight 2019"
     },
     {
-      "pair_key": "MC0334__MC0447",
-      "mc_id_a": "MC0334",
-      "mc_name_a": "じょう",
-      "mc_id_b": "MC0447",
-      "mc_name_b": "9for",
-      "a_wins": 3,
-      "b_wins": 0,
-      "total_matches": 3,
-      "last_match_date": "2019-12-01",
-      "last_event_id": "EVT0145",
-      "last_event_name": "Spotlight 2019"
-    },
-    {
       "pair_key": "MC0395__MC0474",
       "mc_id_a": "MC0395",
       "mc_name_a": "晋平太",
@@ -1920,12 +1920,25 @@
       "mc_name_a": "R-指定",
       "mc_id_b": "MC0080",
       "mc_name_b": "CIMA",
-      "a_wins": 1,
-      "b_wins": 2,
+      "a_wins": 2,
+      "b_wins": 1,
       "total_matches": 3,
       "last_match_date": "2012-12-23",
       "last_event_id": "EVT0158",
       "last_event_name": "Spotlight 2012"
+    },
+    {
+      "pair_key": "MC0222__MC0296",
+      "mc_id_a": "MC0222",
+      "mc_name_a": "NAIKA MC",
+      "mc_id_b": "MC0296",
+      "mc_name_b": "T-TANGG",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2026-01-10",
+      "last_event_id": "EVT0032",
+      "last_event_name": "KOK2025本戦"
     },
     {
       "pair_key": "MC0080__MC0106",
@@ -1946,6 +1959,19 @@
       "mc_name_a": "GIL",
       "mc_id_b": "MC0434",
       "mc_name_b": "輪入道",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2025-12-20",
+      "last_event_id": "EVT0147",
+      "last_event_name": "Spotlight 2025"
+    },
+    {
+      "pair_key": "MC0130__MC0214",
+      "mc_id_a": "MC0130",
+      "mc_name_a": "HIDADDY",
+      "mc_id_b": "MC0214",
+      "mc_name_b": "RAWAXXX(MOL53)",
       "a_wins": 1,
       "b_wins": 1,
       "total_matches": 2,
@@ -1991,19 +2017,6 @@
       "last_match_date": "2025-10-05",
       "last_event_id": "EVT0139",
       "last_event_name": "NEO GENESIS MC BATTLE Vol.8"
-    },
-    {
-      "pair_key": "MC0106__MC0214",
-      "mc_id_a": "MC0106",
-      "mc_name_a": "ERONE",
-      "mc_id_b": "MC0214",
-      "mc_name_b": "RAWAXXX(MOL53)",
-      "a_wins": 1,
-      "b_wins": 1,
-      "total_matches": 2,
-      "last_match_date": "2025-05-24",
-      "last_event_id": "EVT0040",
-      "last_event_name": "戦極MCBATTLE 第37章"
     },
     {
       "pair_key": "MC0023__MC0080",
@@ -2695,19 +2708,6 @@
       "last_event_name": "Spotlight 2023大阪編"
     },
     {
-      "pair_key": "MC0015__MC0451",
-      "mc_id_a": "MC0015",
-      "mc_name_a": "MC☆ニガリ a.k.a 赤い稲妻",
-      "mc_id_b": "MC0451",
-      "mc_name_b": "Fuma no KTR",
-      "a_wins": 1,
-      "b_wins": 1,
-      "total_matches": 2,
-      "last_match_date": "2023-11-23",
-      "last_event_id": "EVT0149",
-      "last_event_name": "Spotlight 2023大阪編"
-    },
-    {
       "pair_key": "MC0015__MC0600",
       "mc_id_a": "MC0015",
       "mc_name_a": "MC☆ニガリ a.k.a 赤い稲妻",
@@ -2715,6 +2715,19 @@
       "mc_name_b": "ミステリオ",
       "a_wins": 2,
       "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2023-11-23",
+      "last_event_id": "EVT0149",
+      "last_event_name": "Spotlight 2023大阪編"
+    },
+    {
+      "pair_key": "MC0015__MC0451",
+      "mc_id_a": "MC0015",
+      "mc_name_a": "MC☆ニガリ a.k.a 赤い稲妻",
+      "mc_id_b": "MC0451",
+      "mc_name_b": "Fuma no KTR",
+      "a_wins": 1,
+      "b_wins": 1,
       "total_matches": 2,
       "last_match_date": "2023-11-23",
       "last_event_id": "EVT0149",
@@ -2903,17 +2916,17 @@
       "last_event_name": "Spotlight 2023東京編"
     },
     {
-      "pair_key": "MC0214__MC0600",
-      "mc_id_a": "MC0214",
-      "mc_name_a": "RAWAXXX(MOL53)",
-      "mc_id_b": "MC0600",
-      "mc_name_b": "ミステリオ",
+      "pair_key": "MC0434__MC0468",
+      "mc_id_a": "MC0434",
+      "mc_name_a": "輪入道",
+      "mc_id_b": "MC0468",
+      "mc_name_b": "がーどまん",
       "a_wins": 1,
       "b_wins": 1,
       "total_matches": 2,
-      "last_match_date": "2023-05-28",
-      "last_event_id": "EVT0072",
-      "last_event_name": "凱旋MC battle 大阪ノ陣2023"
+      "last_match_date": "2023-04-29",
+      "last_event_id": "EVT0071",
+      "last_event_name": "凱旋MC battle THE GIANT KILLING"
     },
     {
       "pair_key": "MC0434__MC0451",
@@ -2923,19 +2936,6 @@
       "mc_name_b": "Fuma no KTR",
       "a_wins": 2,
       "b_wins": 0,
-      "total_matches": 2,
-      "last_match_date": "2023-04-29",
-      "last_event_id": "EVT0071",
-      "last_event_name": "凱旋MC battle THE GIANT KILLING"
-    },
-    {
-      "pair_key": "MC0434__MC0468",
-      "mc_id_a": "MC0434",
-      "mc_name_a": "輪入道",
-      "mc_id_b": "MC0468",
-      "mc_name_b": "がーどまん",
-      "a_wins": 1,
-      "b_wins": 1,
       "total_matches": 2,
       "last_match_date": "2023-04-29",
       "last_event_id": "EVT0071",
@@ -3001,6 +3001,19 @@
       "mc_name_b": "ミメイ",
       "a_wins": 2,
       "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2023-03-12",
+      "last_event_id": "EVT0121",
+      "last_event_name": "戦極MCBATTLE 第29章 "
+    },
+    {
+      "pair_key": "MC0451__MC0756",
+      "mc_id_a": "MC0451",
+      "mc_name_a": "Fuma no KTR",
+      "mc_id_b": "MC0756",
+      "mc_name_b": "COCRGI WHITE(MU-TON)",
+      "a_wins": 1,
+      "b_wins": 1,
       "total_matches": 2,
       "last_match_date": "2023-03-12",
       "last_event_id": "EVT0121",
@@ -3657,6 +3670,19 @@
       "last_event_name": "Spotlight 2021"
     },
     {
+      "pair_key": "MC0015__MC0279",
+      "mc_id_a": "MC0015",
+      "mc_name_a": "MC☆ニガリ a.k.a 赤い稲妻",
+      "mc_id_b": "MC0279",
+      "mc_name_b": "SILENT KILLA JOINT",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2021-12-04",
+      "last_event_id": "EVT0153",
+      "last_event_name": "Spotlight 2021"
+    },
+    {
       "pair_key": "MC0245__MC0253",
       "mc_id_a": "MC0245",
       "mc_name_a": "PONEY",
@@ -4065,8 +4091,8 @@
       "mc_name_a": "CIMA",
       "mc_id_b": "MC0337",
       "mc_name_b": "ふぁんく",
-      "a_wins": 1,
-      "b_wins": 1,
+      "a_wins": 2,
+      "b_wins": 0,
       "total_matches": 2,
       "last_match_date": "2020-12-13",
       "last_event_id": "EVT0154",
@@ -4398,6 +4424,19 @@
       "last_event_name": "Spotlight 2019"
     },
     {
+      "pair_key": "MC0334__MC0447",
+      "mc_id_a": "MC0334",
+      "mc_name_a": "じょう",
+      "mc_id_b": "MC0447",
+      "mc_name_b": "9for",
+      "a_wins": 2,
+      "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2019-12-01",
+      "last_event_id": "EVT0145",
+      "last_event_name": "Spotlight 2019"
+    },
+    {
       "pair_key": "MC0272__MC0469",
       "mc_id_a": "MC0272",
       "mc_name_a": "Scooby J",
@@ -4455,8 +4494,8 @@
       "mc_name_a": "NAIKA MC",
       "mc_id_b": "MC0354",
       "mc_name_b": "スナフキン",
-      "a_wins": 0,
-      "b_wins": 2,
+      "a_wins": 1,
+      "b_wins": 1,
       "total_matches": 2,
       "last_match_date": "2019-07-31",
       "last_event_id": "EVT0055",
@@ -4851,19 +4890,6 @@
       "last_match_date": "2017-03-27",
       "last_event_id": "EVT0123",
       "last_event_name": "UMB 2017 THE CHOICE IS YOURS Vol.1"
-    },
-    {
-      "pair_key": "MC0080__MC0243",
-      "mc_id_a": "MC0080",
-      "mc_name_a": "CIMA",
-      "mc_id_b": "MC0243",
-      "mc_name_b": "peko",
-      "a_wins": 0,
-      "b_wins": 2,
-      "total_matches": 2,
-      "last_match_date": "2016-12-03",
-      "last_event_id": "EVT0156",
-      "last_event_name": "Spotlight 2016"
     },
     {
       "pair_key": "MC0158__MC0243",
@@ -5529,6 +5555,19 @@
       "last_event_name": "UMB2015本戦"
     },
     {
+      "pair_key": "MC0171__MC0376",
+      "mc_id_a": "MC0171",
+      "mc_name_a": "KBD",
+      "mc_id_b": "MC0376",
+      "mc_name_b": "呂布カルマ",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2015-12-27",
+      "last_event_id": "EVT0107",
+      "last_event_name": "戦極MCBATTLE 第13章 "
+    },
+    {
       "pair_key": "MC0173__MC0475",
       "mc_id_a": "MC0173",
       "mc_name_a": "KEN THE 390",
@@ -5646,6 +5685,19 @@
       "last_event_name": "UMB2014本戦"
     },
     {
+      "pair_key": "MC0100__MC0444",
+      "mc_id_a": "MC0100",
+      "mc_name_a": "DOTAMA",
+      "mc_id_b": "MC0444",
+      "mc_name_b": "黄猿",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2014-10-19",
+      "last_event_id": "EVT0104",
+      "last_event_name": "戦極MCBATTLE 第10章 "
+    },
+    {
       "pair_key": "MC0004__MC0080",
       "mc_id_a": "MC0004",
       "mc_name_a": "1horse",
@@ -5690,19 +5742,6 @@
       "mc_name_a": "Kowree",
       "mc_id_b": "MC0316",
       "mc_name_b": "Y.A.S",
-      "a_wins": 2,
-      "b_wins": 0,
-      "total_matches": 2,
-      "last_match_date": "2013-07-21",
-      "last_event_id": "EVT0101",
-      "last_event_name": "戦極MCBATTLE 第7章 "
-    },
-    {
-      "pair_key": "MC0373__MC0543",
-      "mc_id_a": "MC0373",
-      "mc_name_a": "句潤",
-      "mc_id_b": "MC0543",
-      "mc_name_b": "ONE（ELIONE）",
       "a_wins": 2,
       "b_wins": 0,
       "total_matches": 2,

@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-04-08T03:32:20.736Z",
+  "updated_at": "2026-04-08T10:14:03.627Z",
   "total": 151,
   "event_details": {
     "EVT0001": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0001",
         "event_name": "UMB2005 GrandChanpionShip",
@@ -195,7 +195,7 @@
       "total_matches": 15
     },
     "EVT0002": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0002",
         "event_name": "UMB2006 GrandChanpionShip",
@@ -387,7 +387,7 @@
       "total_matches": 15
     },
     "EVT0003": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0003",
         "event_name": "UMB2007 GrandChanpionShip",
@@ -579,7 +579,7 @@
       "total_matches": 15
     },
     "EVT0004": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0004",
         "event_name": "UMB2008 GrandChanpionShip",
@@ -771,7 +771,7 @@
       "total_matches": 15
     },
     "EVT0005": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0005",
         "event_name": "UMB2009 GrandChanpionShip",
@@ -883,6 +883,20 @@
           ]
         },
         {
+          "round_name": "Best9",
+          "matches": [
+            {
+              "match_id": "",
+              "round_name": "Best9",
+              "winner_name": "鎮座DOPENESS",
+              "winner_mc_id": "MC0440",
+              "loser_name": "PONEY",
+              "loser_mc_id": "MC0245",
+              "judge_method": ""
+            }
+          ]
+        },
+        {
           "round_name": "Best17",
           "matches": [
             {
@@ -956,15 +970,6 @@
               "loser_name": "2SK",
               "loser_mc_id": "MC0007",
               "judge_method": ""
-            },
-            {
-              "match_id": "",
-              "round_name": "Best17",
-              "winner_name": "鎮座DOPENESS",
-              "winner_mc_id": "MC0440",
-              "loser_name": "PONEY",
-              "loser_mc_id": "MC0245",
-              "judge_method": ""
             }
           ]
         }
@@ -972,7 +977,7 @@
       "total_matches": 16
     },
     "EVT0006": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0006",
         "event_name": "UMB2010 GrandChanpionShip",
@@ -1077,8 +1082,8 @@
               "round_name": "Best8",
               "winner_name": "FEIDA-WAN",
               "winner_mc_id": "MC0108",
-              "loser_name": "大将",
-              "loser_mc_id": "MC0379",
+              "loser_name": "YSK",
+              "loser_mc_id": "MC0321",
               "judge_method": ""
             }
           ]
@@ -1164,7 +1169,7 @@
       "total_matches": 15
     },
     "EVT0007": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0007",
         "event_name": "UMB2011 GrandChanpionShip",
@@ -1505,7 +1510,7 @@
       "total_matches": 31
     },
     "EVT0008": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0008",
         "event_name": "UMB2012 GrandChanpionShip",
@@ -1846,7 +1851,7 @@
       "total_matches": 31
     },
     "EVT0009": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0009",
         "event_name": "UMB2013 GrandChanpionShip",
@@ -2187,7 +2192,7 @@
       "total_matches": 31
     },
     "EVT0010": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0010",
         "event_name": "UMB2014 GrandChanpionShip",
@@ -2528,7 +2533,7 @@
       "total_matches": 31
     },
     "EVT0011": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0011",
         "event_name": "UMB2015 GrandChanpionShip",
@@ -2869,7 +2874,7 @@
       "total_matches": 31
     },
     "EVT0012": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0012",
         "event_name": "UMB2016 GrandChanpionShip",
@@ -3257,10 +3262,10 @@
             {
               "match_id": "MAT000249",
               "round_name": "Best48",
-              "winner_name": "Kascade",
-              "winner_mc_id": "MC0169",
-              "loser_name": "BOBO",
-              "loser_mc_id": "MC0062",
+              "winner_name": "BOBO",
+              "winner_mc_id": "MC0062",
+              "loser_name": "Kascade",
+              "loser_mc_id": "MC0169",
               "judge_method": ""
             },
             {
@@ -3359,7 +3364,7 @@
       "total_matches": 47
     },
     "EVT0013": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0013",
         "event_name": "UMB2017 GrandChanpionShip",
@@ -3849,7 +3854,7 @@
       "total_matches": 47
     },
     "EVT0014": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0014",
         "event_name": "UMB2018 GrandChanpionShip",
@@ -4339,7 +4344,7 @@
       "total_matches": 47
     },
     "EVT0015": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0015",
         "event_name": "UMB2019 GrandChanpionShip",
@@ -4829,7 +4834,7 @@
       "total_matches": 47
     },
     "EVT0016": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0016",
         "event_name": "UMB2020 GrandChanpionShip",
@@ -5463,7 +5468,7 @@
       "total_matches": 63
     },
     "EVT0017": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0017",
         "event_name": "UMB2021 GrandChanpionShip",
@@ -5804,7 +5809,7 @@
       "total_matches": 31
     },
     "EVT0018": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0018",
         "event_name": "UMB2022 GrandChanpionShip",
@@ -6222,7 +6227,7 @@
       "total_matches": 39
     },
     "EVT0019": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0019",
         "event_name": "UMB2023 GrandChanpionShip",
@@ -6712,7 +6717,7 @@
       "total_matches": 47
     },
     "EVT0020": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0020",
         "event_name": "UMB2024 GrandChanpionShip",
@@ -7184,7 +7189,7 @@
       "total_matches": 45
     },
     "EVT0021": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0021",
         "event_name": "UMB2025 GrandChanpionShip",
@@ -7638,7 +7643,7 @@
       "total_matches": 43
     },
     "EVT0022": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0022",
         "event_name": "KOK2015 GrandChanpionShip",
@@ -7665,8 +7670,8 @@
             "mc_name": "GADORO"
           },
           {
-            "mc_id": "MC0473",
-            "mc_name": "押忍マン"
+            "mc_id": "MC0128",
+            "mc_name": "HI-KING TAKASE"
           }
         ]
       },
@@ -7702,8 +7707,8 @@
               "round_name": "Best4",
               "winner_name": "JAG-ME",
               "winner_mc_id": "MC0144",
-              "loser_name": "押忍マン",
-              "loser_mc_id": "MC0473",
+              "loser_name": "HI-KING TAKASE",
+              "loser_mc_id": "MC0128",
               "judge_method": ""
             }
           ]
@@ -7830,7 +7835,7 @@
       "total_matches": 15
     },
     "EVT0023": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0023",
         "event_name": "KOK2016 GrandChanpionShip",
@@ -7857,8 +7862,8 @@
             "mc_name": "ACE"
           },
           {
-            "mc_id": "MC0128",
-            "mc_name": "HI-KING TAKASE"
+            "mc_id": "MC0472",
+            "mc_name": "崇勲"
           }
         ]
       },
@@ -7894,8 +7899,8 @@
               "round_name": "Best4",
               "winner_name": "輪入道",
               "winner_mc_id": "MC0434",
-              "loser_name": "HI-KING TAKASE",
-              "loser_mc_id": "MC0128",
+              "loser_name": "崇勲",
+              "loser_mc_id": "MC0472",
               "judge_method": ""
             }
           ]
@@ -8022,7 +8027,7 @@
       "total_matches": 15
     },
     "EVT0024": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0024",
         "event_name": "KOK2017 GrandChanpionShip",
@@ -8045,8 +8050,8 @@
         "runner_up_mc_id": "MC0214",
         "best4": [
           {
-            "mc_id": "MC0337",
-            "mc_name": "ふぁんく"
+            "mc_id": "MC0280",
+            "mc_name": "SIMON JAP"
           },
           {
             "mc_id": "MC0354",
@@ -8077,8 +8082,8 @@
               "round_name": "Best4",
               "winner_name": "GADORO",
               "winner_mc_id": "MC0116",
-              "loser_name": "ふぁんく",
-              "loser_mc_id": "MC0337",
+              "loser_name": "SIMON JAP",
+              "loser_mc_id": "MC0280",
               "judge_method": ""
             },
             {
@@ -8214,7 +8219,7 @@
       "total_matches": 15
     },
     "EVT0025": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0025",
         "event_name": "KOK2018 GrandChanpionShip",
@@ -8406,7 +8411,7 @@
       "total_matches": 15
     },
     "EVT0026": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0026",
         "event_name": "KOK2019 GrandChanpionShip",
@@ -8598,7 +8603,7 @@
       "total_matches": 15
     },
     "EVT0027": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0027",
         "event_name": "KOK2020 GrandChanpionShip",
@@ -8790,7 +8795,7 @@
       "total_matches": 15
     },
     "EVT0028": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0028",
         "event_name": "KOK2021 GrandChanpionShip",
@@ -8982,7 +8987,7 @@
       "total_matches": 15
     },
     "EVT0029": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0029",
         "event_name": "KOK2022 GrandChanpionShip",
@@ -9174,7 +9179,7 @@
       "total_matches": 15
     },
     "EVT0030": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0030",
         "event_name": "KOK2023 GrandChanpionShip",
@@ -9366,7 +9371,7 @@
       "total_matches": 15
     },
     "EVT0031": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0031",
         "event_name": "KOK2024 GrandChanpionShip",
@@ -9558,7 +9563,7 @@
       "total_matches": 15
     },
     "EVT0032": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0032",
         "event_name": "KOK2025 GrandChanpionShip",
@@ -9750,7 +9755,7 @@
       "total_matches": 15
     },
     "EVT0038": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0038",
         "event_name": "戦極MCBATTLE 第34章 -THE 32MCs王道in横浜-",
@@ -10091,7 +10096,7 @@
       "total_matches": 31
     },
     "EVT0039": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0039",
         "event_name": "戦極MCBATTLE 第36章 東北公演 2025開幕戦",
@@ -10247,7 +10252,7 @@
       "total_matches": 11
     },
     "EVT0040": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0040",
         "event_name": "戦極MCBATTLE 第37章 -OSAKA- 王座奪還1on1",
@@ -10579,7 +10584,7 @@
       "total_matches": 31
     },
     "EVT0041": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0041",
         "event_name": "戦極MCBATTLE 第15章本選 JAPAN TOUR FINAL",
@@ -10847,8 +10852,8 @@
               "round_name": "2回戦",
               "winner_name": "PONEY",
               "winner_mc_id": "MC0245",
-              "loser_name": "MCニガリ AKA 黒い稲妻",
-              "loser_mc_id": "",
+              "loser_name": "MC☆ニガリ a.k.a 赤い稲妻",
+              "loser_mc_id": "MC0015",
               "judge_method": ""
             },
             {
@@ -10865,8 +10870,8 @@
               "round_name": "2回戦",
               "winner_name": "MC KUREI",
               "winner_mc_id": "MC0539",
-              "loser_name": "言×THE ANSWER",
-              "loser_mc_id": "",
+              "loser_name": "言×THEANSWER",
+              "loser_mc_id": "MC0563",
               "judge_method": ""
             },
             {
@@ -11213,7 +11218,7 @@
       "total_matches": 64
     },
     "EVT0045": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0045",
         "event_name": "口喧嘩祭 Special × KOK2020",
@@ -11694,7 +11699,7 @@
       "total_matches": 47
     },
     "EVT0046": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0046",
         "event_name": "口喧嘩祭 Special × KOK2021",
@@ -11847,10 +11852,10 @@
             {
               "match_id": "MAT001454",
               "round_name": "ベスト16",
-              "winner_name": "BASE",
-              "winner_mc_id": "MC0055",
-              "loser_name": "HIDADDY",
-              "loser_mc_id": "MC0130",
+              "winner_name": "HIDADDY",
+              "winner_mc_id": "MC0130",
+              "loser_name": "BASE",
+              "loser_mc_id": "MC0055",
               "judge_method": "延長"
             },
             {
@@ -12026,7 +12031,7 @@
       "total_matches": 31
     },
     "EVT0047": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0047",
         "event_name": "口喧嘩祭 大阪編",
@@ -12358,7 +12363,7 @@
       "total_matches": 31
     },
     "EVT0048": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0048",
         "event_name": "口喧嘩祭 Special at Zepp Nagoya",
@@ -12541,7 +12546,7 @@
       "total_matches": 15
     },
     "EVT0049": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0049",
         "event_name": "口喧嘩祭 Special × KOK2022",
@@ -12873,7 +12878,7 @@
       "total_matches": 31
     },
     "EVT0050": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0050",
         "event_name": "口喧嘩祭 Special in CLUB CITTA'",
@@ -13056,7 +13061,7 @@
       "total_matches": 15
     },
     "EVT0051": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0051",
         "event_name": "口喧嘩祭 Special × KOK2023",
@@ -13388,7 +13393,7 @@
       "total_matches": 31
     },
     "EVT0052": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0052",
         "event_name": "口喧嘩祭 Special at Zepp Nagoya",
@@ -13571,7 +13576,7 @@
       "total_matches": 15
     },
     "EVT0053": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0053",
         "event_name": "凱旋MCbattle東西選抜",
@@ -14043,7 +14048,7 @@
       "total_matches": 46
     },
     "EVT0054": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0054",
         "event_name": "凱旋2019春ノ陣",
@@ -14524,7 +14529,7 @@
       "total_matches": 47
     },
     "EVT0055": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0055",
         "event_name": "凱旋MCbattle夏ノ陣2019",
@@ -15005,7 +15010,7 @@
       "total_matches": 47
     },
     "EVT0057": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0057",
         "event_name": "凱旋MCbattle東西選抜 冬ノ陣2020",
@@ -15486,7 +15491,7 @@
       "total_matches": 47
     },
     "EVT0058": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0058",
         "event_name": "凱旋MCBattle東西選抜 夏ノ陣2020",
@@ -15669,7 +15674,7 @@
       "total_matches": 15
     },
     "EVT0059": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0059",
         "event_name": "凱旋MCbattle×ABEMATV",
@@ -15929,7 +15934,7 @@
       "total_matches": 23
     },
     "EVT0060": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0060",
         "event_name": "凱旋MCbattle Special アリーナの陣",
@@ -16171,7 +16176,7 @@
       "total_matches": 21
     },
     "EVT0061": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0061",
         "event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠横浜",
@@ -16431,7 +16436,7 @@
       "total_matches": 23
     },
     "EVT0062": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0062",
         "event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠名古屋",
@@ -16614,7 +16619,7 @@
       "total_matches": 15
     },
     "EVT0063": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0063",
         "event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠福岡",
@@ -16797,7 +16802,7 @@
       "total_matches": 15
     },
     "EVT0064": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0064",
         "event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠大阪",
@@ -17057,7 +17062,7 @@
       "total_matches": 23
     },
     "EVT0065": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0065",
         "event_name": "凱旋MC battle PIT TOUR 仙台",
@@ -17240,7 +17245,7 @@
       "total_matches": 15
     },
     "EVT0066": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0066",
         "event_name": "凱旋MC battle PIT TOUR 東京",
@@ -17423,7 +17428,7 @@
       "total_matches": 15
     },
     "EVT0067": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0067",
         "event_name": "凱旋MC BATTLE 春のMC BATTLE 三連祭2022",
@@ -17606,7 +17611,7 @@
       "total_matches": 15
     },
     "EVT0068": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0068",
         "event_name": "凱旋MC battle in さいたまスーパーアリーナ",
@@ -17789,7 +17794,7 @@
       "total_matches": 15
     },
     "EVT0069": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0069",
         "event_name": "凱旋MC battle NORTH JAPAN TOUR2023 in 北海道",
@@ -17972,7 +17977,7 @@
       "total_matches": 15
     },
     "EVT0070": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0070",
         "event_name": "凱旋MC battle NORTH JAPAN TOUR2023 in 仙台",
@@ -18155,7 +18160,7 @@
       "total_matches": 15
     },
     "EVT0071": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0071",
         "event_name": "凱旋MC battle THE GIANT KILLING ",
@@ -18487,7 +18492,7 @@
       "total_matches": 31
     },
     "EVT0072": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0072",
         "event_name": "凱旋MC battle 大阪ノ陣2023",
@@ -18670,7 +18675,7 @@
       "total_matches": 15
     },
     "EVT0073": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0073",
         "event_name": "凱旋MC battle Special2023",
@@ -18930,7 +18935,7 @@
       "total_matches": 23
     },
     "EVT0074": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0074",
         "event_name": "凱旋MC battle 冬ノ陣2023",
@@ -19113,7 +19118,7 @@
       "total_matches": 15
     },
     "EVT0075": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0075",
         "event_name": "凱旋MC battle THE GIANT KILLING 2",
@@ -19445,7 +19450,7 @@
       "total_matches": 31
     },
     "EVT0076": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0076",
         "event_name": "ADRENALINE2014",
@@ -19777,7 +19782,7 @@
       "total_matches": 31
     },
     "EVT0077": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0077",
         "event_name": "真ADRENALINE2020",
@@ -20001,7 +20006,7 @@
       "total_matches": 19
     },
     "EVT0078": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0078",
         "event_name": "ADRENALINE杯 夏の陣2020",
@@ -20184,7 +20189,7 @@
       "total_matches": 15
     },
     "EVT0079": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0079",
         "event_name": "真ADRENALINE SPECIAL 杯真の陣+KINGDOM2020",
@@ -20367,7 +20372,7 @@
       "total_matches": 15
     },
     "EVT0080": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0080",
         "event_name": "真 ADRENALINE ABEMAノ乱",
@@ -20522,8 +20527,8 @@
               "round_name": "1回戦",
               "winner_name": "SILENT KILLA JOINT",
               "winner_mc_id": "MC0279",
-              "loser_name": "MC☆ニガリ",
-              "loser_mc_id": "",
+              "loser_name": "MC☆ニガリ a.k.a 赤い稲妻",
+              "loser_mc_id": "MC0015",
               "judge_method": ""
             },
             {
@@ -20591,7 +20596,7 @@
       "total_matches": 19
     },
     "EVT0081": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0081",
         "event_name": "KING OF KINGS vs 真ADRENALINE",
@@ -20694,11 +20699,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002342",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "FORK",
               "winner_mc_id": "MC0111",
               "loser_name": "COCRGI WHITE(MU-TON)",
@@ -20707,7 +20712,7 @@
             },
             {
               "match_id": "MAT002343",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "SAM",
               "winner_mc_id": "MC0271",
               "loser_name": "SKRYU",
@@ -20716,7 +20721,7 @@
             },
             {
               "match_id": "MAT002344",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
               "loser_name": "Crazy-K（GREEN KIDS）",
@@ -20725,7 +20730,7 @@
             },
             {
               "match_id": "MAT002345",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "Maiji",
               "winner_mc_id": "MC0457",
               "loser_name": "018",
@@ -20734,7 +20739,7 @@
             },
             {
               "match_id": "MAT002346",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "S-kainê",
               "winner_mc_id": "MC0023",
               "loser_name": "ERONE",
@@ -20743,7 +20748,7 @@
             },
             {
               "match_id": "MAT002347",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "GOMESS",
               "winner_mc_id": "MC0689",
               "loser_name": "ベル",
@@ -20752,7 +20757,7 @@
             },
             {
               "match_id": "MAT002348",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "CHEHON",
               "winner_mc_id": "MC0448",
               "loser_name": "Nidra Assassin",
@@ -20761,7 +20766,7 @@
             },
             {
               "match_id": "MAT002349",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "CHICO CARLITO",
               "winner_mc_id": "MC0077",
               "loser_name": "Authority",
@@ -20774,7 +20779,7 @@
       "total_matches": 15
     },
     "EVT0082": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0082",
         "event_name": "KING OF KINGS vs 真ADRENALINE #2",
@@ -20877,11 +20882,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002350",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "HIDADDY",
               "winner_mc_id": "MC0130",
               "loser_name": "Authority",
@@ -20890,7 +20895,7 @@
             },
             {
               "match_id": "MAT002351",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
               "loser_name": "9for",
@@ -20899,7 +20904,7 @@
             },
             {
               "match_id": "MAT002352",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "COCRGI WHITE(MU-TON)",
               "winner_mc_id": "MC0756",
               "loser_name": "Yella goat",
@@ -20908,7 +20913,7 @@
             },
             {
               "match_id": "MAT002353",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "句潤",
               "winner_mc_id": "MC0373",
               "loser_name": "S-kainê",
@@ -20917,7 +20922,7 @@
             },
             {
               "match_id": "MAT002354",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ハハノシキュウ",
               "winner_mc_id": "MC0608",
               "loser_name": "智大",
@@ -20926,7 +20931,7 @@
             },
             {
               "match_id": "MAT002355",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "CIMA",
               "winner_mc_id": "MC0080",
               "loser_name": "輪入道",
@@ -20935,7 +20940,7 @@
             },
             {
               "match_id": "MAT002356",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "SAM",
               "winner_mc_id": "MC0271",
               "loser_name": "泰斗(裂固)",
@@ -20944,7 +20949,7 @@
             },
             {
               "match_id": "MAT002357",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "POWER WAVE",
               "winner_mc_id": "MC0692",
               "loser_name": "寿君",
@@ -20957,7 +20962,7 @@
       "total_matches": 15
     },
     "EVT0083": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0083",
         "event_name": "真 ADRENALINE 福岡ノ乱",
@@ -20974,19 +20979,28 @@
         "location": "Zepp Fukuoka",
         "organizer": "真 ADRENALINE",
         "notes": "Source: https://www.finance-accounting-value.com/entry/adrenaline-fukuoka",
-        "winner_name": "",
-        "winner_mc_id": "",
-        "runner_up_name": "",
-        "runner_up_mc_id": "",
-        "best4": []
+        "winner_name": "Fuma no KTR",
+        "winner_mc_id": "MC0451",
+        "runner_up_name": "智大",
+        "runner_up_mc_id": "MC0396",
+        "best4": [
+          {
+            "mc_id": "MC0214",
+            "mc_name": "RAWAXXX(MOL53)"
+          },
+          {
+            "mc_id": "MC0447",
+            "mc_name": "9for"
+          }
+        ]
       },
       "grouped_matches": [
         {
-          "round_name": "決勝",
+          "round_name": "Final",
           "matches": [
             {
               "match_id": "MAT001833",
-              "round_name": "決勝",
+              "round_name": "Final",
               "winner_name": "Fuma no KTR",
               "winner_mc_id": "MC0451",
               "loser_name": "智大",
@@ -20996,11 +21010,11 @@
           ]
         },
         {
-          "round_name": "準決勝",
+          "round_name": "Best4",
           "matches": [
             {
               "match_id": "MAT001831",
-              "round_name": "準決勝",
+              "round_name": "Best4",
               "winner_name": "智大",
               "winner_mc_id": "MC0396",
               "loser_name": "RAWAXXX(MOL53)",
@@ -21009,7 +21023,7 @@
             },
             {
               "match_id": "MAT001832",
-              "round_name": "準決勝",
+              "round_name": "Best4",
               "winner_name": "Fuma no KTR",
               "winner_mc_id": "MC0451",
               "loser_name": "9for",
@@ -21019,11 +21033,11 @@
           ]
         },
         {
-          "round_name": "準々決勝",
+          "round_name": "Best8",
           "matches": [
             {
               "match_id": "MAT001827",
-              "round_name": "準々決勝",
+              "round_name": "Best8",
               "winner_name": "智大",
               "winner_mc_id": "MC0396",
               "loser_name": "Rin音",
@@ -21032,7 +21046,7 @@
             },
             {
               "match_id": "MAT001828",
-              "round_name": "準々決勝",
+              "round_name": "Best8",
               "winner_name": "RAWAXXX(MOL53)",
               "winner_mc_id": "MC0214",
               "loser_name": "GOMESS",
@@ -21041,7 +21055,7 @@
             },
             {
               "match_id": "MAT001829",
-              "round_name": "準々決勝",
+              "round_name": "Best8",
               "winner_name": "9for",
               "winner_mc_id": "MC0447",
               "loser_name": "早雲",
@@ -21050,7 +21064,7 @@
             },
             {
               "match_id": "MAT001830",
-              "round_name": "準々決勝",
+              "round_name": "Best8",
               "winner_name": "Fuma no KTR",
               "winner_mc_id": "MC0451",
               "loser_name": "ID",
@@ -21060,11 +21074,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best15",
           "matches": [
             {
               "match_id": "MAT002358",
-              "round_name": "ベスト16",
+              "round_name": "Best15",
               "winner_name": "Rin音",
               "winner_mc_id": "MC0714",
               "loser_name": "REIDAM",
@@ -21073,7 +21087,7 @@
             },
             {
               "match_id": "MAT002359",
-              "round_name": "ベスト16",
+              "round_name": "Best15",
               "winner_name": "智大",
               "winner_mc_id": "MC0396",
               "loser_name": "梵頭",
@@ -21081,17 +21095,8 @@
               "judge_method": ""
             },
             {
-              "match_id": "MAT002360",
-              "round_name": "ベスト16",
-              "winner_name": "がーどまん",
-              "winner_mc_id": "MC0468",
-              "loser_name": "Nidra Assassin",
-              "loser_mc_id": "MC0695",
-              "judge_method": ""
-            },
-            {
               "match_id": "MAT002361",
-              "round_name": "ベスト16",
+              "round_name": "Best15",
               "winner_name": "GOMESS",
               "winner_mc_id": "MC0689",
               "loser_name": "ベル",
@@ -21100,7 +21105,7 @@
             },
             {
               "match_id": "MAT002362",
-              "round_name": "ベスト16",
+              "round_name": "Best15",
               "winner_name": "早雲",
               "winner_mc_id": "MC0393",
               "loser_name": "輪入道",
@@ -21109,7 +21114,7 @@
             },
             {
               "match_id": "MAT002363",
-              "round_name": "ベスト16",
+              "round_name": "Best15",
               "winner_name": "9for",
               "winner_mc_id": "MC0447",
               "loser_name": "ERONE",
@@ -21117,17 +21122,8 @@
               "judge_method": ""
             },
             {
-              "match_id": "MAT002364",
-              "round_name": "ベスト16",
-              "winner_name": "Fuma no KTR",
-              "winner_mc_id": "MC0451",
-              "loser_name": "COCRGI WHITE(MU-TON)",
-              "loser_mc_id": "MC0756",
-              "judge_method": ""
-            },
-            {
               "match_id": "MAT002365",
-              "round_name": "ベスト16",
+              "round_name": "Best15",
               "winner_name": "ID",
               "winner_mc_id": "MC0614",
               "loser_name": "S-kainê",
@@ -21136,7 +21132,7 @@
             },
             {
               "match_id": "MAT002366",
-              "round_name": "ベスト16",
+              "round_name": "Best15",
               "winner_name": "RAWAXXX(MOL53)",
               "winner_mc_id": "MC0214",
               "loser_name": "がーどまん",
@@ -21146,10 +21142,10 @@
           ]
         }
       ],
-      "total_matches": 16
+      "total_matches": 14
     },
     "EVT0084": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0084",
         "event_name": "渋谷レゲエ祭 vs 真 ADRENALINE 2021",
@@ -21332,7 +21328,7 @@
       "total_matches": 15
     },
     "EVT0085": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0085",
         "event_name": "KING OF KINGS vs 真 ADRENALINE #3",
@@ -21435,11 +21431,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002367",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "COCRGI WHITE(MU-TON)",
               "winner_mc_id": "MC0756",
               "loser_name": "T-TANGG",
@@ -21448,7 +21444,7 @@
             },
             {
               "match_id": "MAT002368",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "MC☆ニガリ a.k.a 赤い稲妻",
               "winner_mc_id": "MC0015",
               "loser_name": "5LEEP3ALKER",
@@ -21457,7 +21453,7 @@
             },
             {
               "match_id": "MAT002369",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "APOLLO",
               "winner_mc_id": "MC0755",
               "loser_name": "Nidra Assassin",
@@ -21466,7 +21462,7 @@
             },
             {
               "match_id": "MAT002370",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "JUMBO MAATCH",
               "winner_mc_id": "MC0702",
               "loser_name": "ベル",
@@ -21475,7 +21471,7 @@
             },
             {
               "match_id": "MAT002371",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "Scooby J",
               "winner_mc_id": "MC0272",
               "loser_name": "GIL",
@@ -21484,7 +21480,7 @@
             },
             {
               "match_id": "MAT002372",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "RAWAXXX(MOL53)",
               "winner_mc_id": "MC0214",
               "loser_name": "CHARLES",
@@ -21493,7 +21489,7 @@
             },
             {
               "match_id": "MAT002373",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "CIMA",
               "winner_mc_id": "MC0080",
               "loser_name": "Fuma no KTR",
@@ -21502,7 +21498,7 @@
             },
             {
               "match_id": "MAT002374",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
               "loser_name": "寿君",
@@ -21515,7 +21511,7 @@
       "total_matches": 15
     },
     "EVT0086": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0086",
         "event_name": "真ADRENALINE 春のMC BATTLE 三連祭2022",
@@ -21618,11 +21614,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002375",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "梵頭",
               "winner_mc_id": "MC0399",
               "loser_name": "NIHA-C from 電波少女",
@@ -21631,7 +21627,7 @@
             },
             {
               "match_id": "MAT002376",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "RAWAXXX(MOL53)",
               "winner_mc_id": "MC0214",
               "loser_name": "死神紫郎",
@@ -21640,7 +21636,7 @@
             },
             {
               "match_id": "MAT002377",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "POWER WAVE",
               "winner_mc_id": "MC0692",
               "loser_name": "GOMESS",
@@ -21649,7 +21645,7 @@
             },
             {
               "match_id": "MAT002378",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ベル",
               "winner_mc_id": "MC0726",
               "loser_name": "AILI a.k.a. 立仙愛理",
@@ -21658,7 +21654,7 @@
             },
             {
               "match_id": "MAT002379",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ふぁんく",
               "winner_mc_id": "MC0337",
               "loser_name": "バードフミヤ a.k.a. ヤムチャ",
@@ -21667,7 +21663,7 @@
             },
             {
               "match_id": "MAT002380",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "KENTY GROSS",
               "winner_mc_id": "MC0758",
               "loser_name": "ゆうま",
@@ -21676,7 +21672,7 @@
             },
             {
               "match_id": "MAT002381",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "SONOTA from おーるどにゅーすぺーぱー",
               "winner_mc_id": "MC0762",
               "loser_name": "SHOICHIRO",
@@ -21685,7 +21681,7 @@
             },
             {
               "match_id": "MAT002382",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
               "loser_name": "L-指定",
@@ -21698,7 +21694,7 @@
       "total_matches": 15
     },
     "EVT0087": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0087",
         "event_name": "渋谷レゲエ祭 vs 真ADRENALINE #2",
@@ -21801,11 +21797,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002383",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "寿君",
               "winner_mc_id": "MC0727",
               "loser_name": "ベル",
@@ -21814,7 +21810,7 @@
             },
             {
               "match_id": "MAT002384",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
               "loser_name": "RAM HEAD",
@@ -21823,7 +21819,7 @@
             },
             {
               "match_id": "MAT002385",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "Rin音",
               "winner_mc_id": "MC0714",
               "loser_name": "TRIGA FINGA",
@@ -21832,7 +21828,7 @@
             },
             {
               "match_id": "MAT002386",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "NASU",
               "winner_mc_id": "MC0760",
               "loser_name": "HIDADDY",
@@ -21841,7 +21837,7 @@
             },
             {
               "match_id": "MAT002387",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "POWER WAVE",
               "winner_mc_id": "MC0692",
               "loser_name": "輪入道",
@@ -21850,7 +21846,7 @@
             },
             {
               "match_id": "MAT002388",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "句潤",
               "winner_mc_id": "MC0373",
               "loser_name": "MAKA",
@@ -21859,7 +21855,7 @@
             },
             {
               "match_id": "MAT002389",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "DOTAMA",
               "winner_mc_id": "MC0100",
               "loser_name": "KYO虎",
@@ -21868,7 +21864,7 @@
             },
             {
               "match_id": "MAT002390",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "CHEHON",
               "winner_mc_id": "MC0448",
               "loser_name": "鬼",
@@ -21881,7 +21877,7 @@
       "total_matches": 15
     },
     "EVT0088": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0088",
         "event_name": "KING OF KINGS vs 真 ADRENALINE #4",
@@ -21984,11 +21980,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002391",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "晋平太",
               "winner_mc_id": "MC0395",
               "loser_name": "CORN HEAD",
@@ -21997,7 +21993,7 @@
             },
             {
               "match_id": "MAT002392",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "がーどまん",
               "winner_mc_id": "MC0468",
               "loser_name": "Amateras",
@@ -22006,7 +22002,7 @@
             },
             {
               "match_id": "MAT002393",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "REDWING",
               "winner_mc_id": "MC0461",
               "loser_name": "呂布カルマ",
@@ -22015,7 +22011,7 @@
             },
             {
               "match_id": "MAT002394",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "DOTAMA",
               "winner_mc_id": "MC0100",
               "loser_name": "鬼",
@@ -22024,7 +22020,7 @@
             },
             {
               "match_id": "MAT002395",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ERONE",
               "winner_mc_id": "MC0106",
               "loser_name": "RAWAXXX(MOL53)",
@@ -22033,7 +22029,7 @@
             },
             {
               "match_id": "MAT002396",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ID",
               "winner_mc_id": "MC0614",
               "loser_name": "ふぁんく",
@@ -22042,7 +22038,7 @@
             },
             {
               "match_id": "MAT002397",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "COCRGI WHITE(MU-TON)",
               "winner_mc_id": "MC0756",
               "loser_name": "KIKUMARU",
@@ -22051,7 +22047,7 @@
             },
             {
               "match_id": "MAT002398",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "RAY",
               "winner_mc_id": "MC0753",
               "loser_name": "Rude-α",
@@ -22064,7 +22060,7 @@
       "total_matches": 15
     },
     "EVT0089": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0089",
         "event_name": "真 ADRENALINE 2023 at 渋谷WOMB",
@@ -22247,7 +22243,7 @@
       "total_matches": 15
     },
     "EVT0090": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0090",
         "event_name": "渋谷レゲエ祭 vs 真ADRENALINE 2023",
@@ -22350,11 +22346,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002399",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "DOTAMA",
               "winner_mc_id": "MC0100",
               "loser_name": "KYO虎",
@@ -22363,7 +22359,7 @@
             },
             {
               "match_id": "MAT002400",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "寿君",
               "winner_mc_id": "MC0727",
               "loser_name": "RAWAXXX(MOL53)",
@@ -22372,7 +22368,7 @@
             },
             {
               "match_id": "MAT002401",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "POWER WAVE",
               "winner_mc_id": "MC0692",
               "loser_name": "晋平太",
@@ -22381,7 +22377,7 @@
             },
             {
               "match_id": "MAT002402",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "IKKEI",
               "winner_mc_id": "MC0757",
               "loser_name": "MC☆ニガリ a.k.a 赤い稲妻",
@@ -22390,7 +22386,7 @@
             },
             {
               "match_id": "MAT002403",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "CHEHON",
               "winner_mc_id": "MC0448",
               "loser_name": "#KTちゃん",
@@ -22399,7 +22395,7 @@
             },
             {
               "match_id": "MAT002404",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "RAY",
               "winner_mc_id": "MC0753",
               "loser_name": "Fuma no KTR",
@@ -22408,7 +22404,7 @@
             },
             {
               "match_id": "MAT002405",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ミメイ",
               "winner_mc_id": "MC0469",
               "loser_name": "Hibikilla",
@@ -22417,7 +22413,7 @@
             },
             {
               "match_id": "MAT002406",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "COCRGI WHITE(MU-TON)",
               "winner_mc_id": "MC0756",
               "loser_name": "NASU",
@@ -22430,7 +22426,7 @@
       "total_matches": 15
     },
     "EVT0091": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0091",
         "event_name": "KING OF KINGS vs 真 ADRENALINE #5",
@@ -22533,11 +22529,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002407",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "CHICO CARLITO",
               "winner_mc_id": "MC0077",
               "loser_name": "SILENT KILLA JOINT",
@@ -22546,7 +22542,7 @@
             },
             {
               "match_id": "MAT002408",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "寿君",
               "winner_mc_id": "MC0727",
               "loser_name": "#KTちゃん",
@@ -22555,7 +22551,7 @@
             },
             {
               "match_id": "MAT002409",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "DOTAMA",
               "winner_mc_id": "MC0100",
               "loser_name": "ミステリオ",
@@ -22564,7 +22560,7 @@
             },
             {
               "match_id": "MAT002410",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "輪入道",
               "winner_mc_id": "MC0434",
               "loser_name": "TERU",
@@ -22573,7 +22569,7 @@
             },
             {
               "match_id": "MAT002411",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "CHEHON",
               "winner_mc_id": "MC0448",
               "loser_name": "RunLine",
@@ -22582,7 +22578,7 @@
             },
             {
               "match_id": "MAT002412",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "018",
               "winner_mc_id": "MC0694",
               "loser_name": "がーどまん",
@@ -22591,7 +22587,7 @@
             },
             {
               "match_id": "MAT002413",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "RAWAXXX(MOL53)",
               "winner_mc_id": "MC0214",
               "loser_name": "ミメイ",
@@ -22600,7 +22596,7 @@
             },
             {
               "match_id": "MAT002414",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "晋平太",
               "winner_mc_id": "MC0395",
               "loser_name": "呂布カルマ",
@@ -22613,7 +22609,7 @@
       "total_matches": 15
     },
     "EVT0092": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0092",
         "event_name": "戦極MCBATTLE vs 真ADRENALINE",
@@ -22716,11 +22712,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002415",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "RAWAXXX(MOL53)",
               "winner_mc_id": "MC0214",
               "loser_name": "#KTちゃん",
@@ -22729,7 +22725,7 @@
             },
             {
               "match_id": "MAT002416",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "DOTAMA",
               "winner_mc_id": "MC0100",
               "loser_name": "NARIMIMI",
@@ -22738,7 +22734,7 @@
             },
             {
               "match_id": "MAT002417",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "MC☆ニガリ a.k.a 赤い稲妻",
               "winner_mc_id": "MC0015",
               "loser_name": "ミメイ",
@@ -22747,7 +22743,7 @@
             },
             {
               "match_id": "MAT002418",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "GOLBY",
               "winner_mc_id": "MC0121",
               "loser_name": "Yella goat",
@@ -22756,7 +22752,7 @@
             },
             {
               "match_id": "MAT002419",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ミステリオ",
               "winner_mc_id": "MC0600",
               "loser_name": "バン中村",
@@ -22765,7 +22761,7 @@
             },
             {
               "match_id": "MAT002420",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
               "loser_name": "lil鉄火巻",
@@ -22774,7 +22770,7 @@
             },
             {
               "match_id": "MAT002421",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "MAKA",
               "winner_mc_id": "MC0204",
               "loser_name": "梵頭",
@@ -22783,7 +22779,7 @@
             },
             {
               "match_id": "MAT002422",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ACE",
               "winner_mc_id": "MC0027",
               "loser_name": "ひばな",
@@ -22796,7 +22792,7 @@
       "total_matches": 15
     },
     "EVT0093": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0093",
         "event_name": "KING OF KINGS vs 真 ADRENALINE #6",
@@ -22899,11 +22895,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002423",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "Authority",
               "winner_mc_id": "MC0046",
               "loser_name": "RunLine",
@@ -22912,7 +22908,7 @@
             },
             {
               "match_id": "MAT002424",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "POWER WAVE",
               "winner_mc_id": "MC0692",
               "loser_name": "RAWAXXX(MOL53)",
@@ -22921,7 +22917,7 @@
             },
             {
               "match_id": "MAT002425",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "Meiso a.k.a 外人21瞑想",
               "winner_mc_id": "MC0631",
               "loser_name": "Nidra Assassin",
@@ -22930,7 +22926,7 @@
             },
             {
               "match_id": "MAT002426",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
               "loser_name": "SATORU",
@@ -22939,7 +22935,7 @@
             },
             {
               "match_id": "MAT002427",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ミメイ",
               "winner_mc_id": "MC0469",
               "loser_name": "寿君",
@@ -22948,7 +22944,7 @@
             },
             {
               "match_id": "MAT002428",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "Fuma no KTR",
               "winner_mc_id": "MC0451",
               "loser_name": "NARIMIMI",
@@ -22957,7 +22953,7 @@
             },
             {
               "match_id": "MAT002429",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "RAY",
               "winner_mc_id": "MC0753",
               "loser_name": "ID",
@@ -22966,7 +22962,7 @@
             },
             {
               "match_id": "MAT002430",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "DOTAMA",
               "winner_mc_id": "MC0100",
               "loser_name": "CHICO CARLITO",
@@ -22979,7 +22975,7 @@
       "total_matches": 15
     },
     "EVT0094": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0094",
         "event_name": "渋谷レゲエ祭 vs 真ADRENALINE",
@@ -23082,11 +23078,11 @@
           ]
         },
         {
-          "round_name": "ベスト16",
+          "round_name": "Best16",
           "matches": [
             {
               "match_id": "MAT002431",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "KYO虎",
               "winner_mc_id": "MC0759",
               "loser_name": "COCRGI WHITE(MU-TON)",
@@ -23095,7 +23091,7 @@
             },
             {
               "match_id": "MAT002432",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "POWER WAVE",
               "winner_mc_id": "MC0692",
               "loser_name": "Fuma no KTR",
@@ -23104,7 +23100,7 @@
             },
             {
               "match_id": "MAT002433",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ふぁんく",
               "winner_mc_id": "MC0337",
               "loser_name": "IKKEI",
@@ -23113,7 +23109,7 @@
             },
             {
               "match_id": "MAT002434",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "Ry-lax",
               "winner_mc_id": "MC0264",
               "loser_name": "RAM HEAD",
@@ -23122,7 +23118,7 @@
             },
             {
               "match_id": "MAT002435",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "NAIKA MC",
               "winner_mc_id": "MC0222",
               "loser_name": "寿君",
@@ -23131,7 +23127,7 @@
             },
             {
               "match_id": "MAT002436",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "RAWAXXX(MOL53)",
               "winner_mc_id": "MC0214",
               "loser_name": "ARARE",
@@ -23140,7 +23136,7 @@
             },
             {
               "match_id": "MAT002437",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "ID",
               "winner_mc_id": "MC0614",
               "loser_name": "MAKA",
@@ -23149,7 +23145,7 @@
             },
             {
               "match_id": "MAT002438",
-              "round_name": "ベスト16",
+              "round_name": "Best16",
               "winner_name": "DOTAMA",
               "winner_mc_id": "MC0100",
               "loser_name": "KENTY GROSS",
@@ -23162,7 +23158,7 @@
       "total_matches": 15
     },
     "EVT0095": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0095",
         "event_name": "戦極MCBATTLE 第1章 ",
@@ -23185,8 +23181,8 @@
         "runner_up_mc_id": "MC0357",
         "best4": [
           {
-            "mc_id": "MC0395",
-            "mc_name": "晋平太"
+            "mc_id": "MC0853",
+            "mc_name": "METEOR"
           },
           {
             "mc_id": "MC0444",
@@ -23217,8 +23213,8 @@
               "round_name": "Best4",
               "winner_name": "晋平太",
               "winner_mc_id": "MC0395",
-              "loser_name": "晋平太",
-              "loser_mc_id": "MC0395",
+              "loser_name": "METEOR",
+              "loser_mc_id": "MC0853",
               "judge_method": ""
             },
             {
@@ -23544,7 +23540,7 @@
       "total_matches": 35
     },
     "EVT0096": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0096",
         "event_name": "戦極MCBATTLE 第2章 ",
@@ -23736,7 +23732,7 @@
       "total_matches": 15
     },
     "EVT0097": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0097",
         "event_name": "戦極MCBATTLE 第3章 ",
@@ -23928,7 +23924,7 @@
       "total_matches": 15
     },
     "EVT0098": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0098",
         "event_name": "戦極MCBATTLE 第4章 ",
@@ -24120,7 +24116,7 @@
       "total_matches": 15
     },
     "EVT0099": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0099",
         "event_name": "戦極MCBATTLE 第5章 ",
@@ -24461,7 +24457,7 @@
       "total_matches": 31
     },
     "EVT0100": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0100",
         "event_name": "戦極MCBATTLE 第6章 ",
@@ -24802,7 +24798,7 @@
       "total_matches": 31
     },
     "EVT0101": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0101",
         "event_name": "戦極MCBATTLE 第7章 ",
@@ -24889,8 +24885,8 @@
               "round_name": "Best8",
               "winner_name": "DOTAMA",
               "winner_mc_id": "MC0100",
-              "loser_name": "掌幻",
-              "loser_mc_id": "MC0652",
+              "loser_name": "黄猿",
+              "loser_mc_id": "MC0444",
               "judge_method": ""
             },
             {
@@ -24898,8 +24894,8 @@
               "round_name": "Best8",
               "winner_name": "NIHA-C",
               "winner_mc_id": "MC0663",
-              "loser_name": "句潤",
-              "loser_mc_id": "MC0373",
+              "loser_name": "呂布カルマ",
+              "loser_mc_id": "MC0376",
               "judge_method": ""
             },
             {
@@ -24937,10 +24933,10 @@
             {
               "match_id": "MAT002590",
               "round_name": "Best16",
-              "winner_name": "掌幻",
-              "winner_mc_id": "MC0652",
-              "loser_name": "黄猿",
-              "loser_mc_id": "MC0444",
+              "winner_name": "黄猿",
+              "winner_mc_id": "MC0444",
+              "loser_name": "掌幻",
+              "loser_mc_id": "MC0652",
               "judge_method": ""
             },
             {
@@ -24955,19 +24951,19 @@
             {
               "match_id": "MAT002592",
               "round_name": "Best16",
-              "winner_name": "句潤",
-              "winner_mc_id": "MC0373",
-              "loser_name": "ONE（ELIONE）",
-              "loser_mc_id": "MC0543",
+              "winner_name": "NIHA-C",
+              "winner_mc_id": "MC0663",
+              "loser_name": "句潤",
+              "loser_mc_id": "MC0373",
               "judge_method": ""
             },
             {
               "match_id": "MAT002593",
               "round_name": "Best16",
-              "winner_name": "NIHA-C",
-              "winner_mc_id": "MC0663",
-              "loser_name": "呂布カルマ",
-              "loser_mc_id": "MC0376",
+              "winner_name": "呂布カルマ",
+              "winner_mc_id": "MC0376",
+              "loser_name": "アスベスト",
+              "loser_mc_id": "MC0747",
               "judge_method": ""
             },
             {
@@ -25143,7 +25139,7 @@
       "total_matches": 31
     },
     "EVT0102": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0102",
         "event_name": "戦極MCBATTLE 第8章 ",
@@ -25335,7 +25331,7 @@
       "total_matches": 15
     },
     "EVT0103": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0103",
         "event_name": "戦極MCBATTLE 第9章 ",
@@ -25646,8 +25642,8 @@
             {
               "match_id": "MAT002655",
               "round_name": "Best32",
-              "winner_name": "我妥力-わたり-",
-              "winner_mc_id": "MC0875",
+              "winner_name": "RAWAXXX(MOL53)",
+              "winner_mc_id": "MC0214",
               "loser_name": "BIG　MOOLA",
               "loser_mc_id": "MC0060",
               "judge_method": ""
@@ -25676,7 +25672,7 @@
       "total_matches": 31
     },
     "EVT0104": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0104",
         "event_name": "戦極MCBATTLE 第10章 ",
@@ -25752,10 +25748,10 @@
             {
               "match_id": "MAT002661",
               "round_name": "Best8",
-              "winner_name": "NAIKA MC",
-              "winner_mc_id": "MC0222",
-              "loser_name": "晋平太",
-              "loser_mc_id": "MC0395",
+              "winner_name": "晋平太",
+              "winner_mc_id": "MC0395",
+              "loser_name": "NAIKA MC",
+              "loser_mc_id": "MC0222",
               "judge_method": ""
             },
             {
@@ -25868,7 +25864,7 @@
       "total_matches": 15
     },
     "EVT0105": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0105",
         "event_name": "戦極MCBATTLE 第11章 ",
@@ -26060,7 +26056,7 @@
       "total_matches": 15
     },
     "EVT0106": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0106",
         "event_name": "戦極MCBATTLE 第12章 ",
@@ -26252,7 +26248,7 @@
       "total_matches": 15
     },
     "EVT0107": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0107",
         "event_name": "戦極MCBATTLE 第13章 ",
@@ -26444,7 +26440,7 @@
       "total_matches": 15
     },
     "EVT0108": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0108",
         "event_name": "戦極MCBATTLE 第15章 ",
@@ -27078,7 +27074,7 @@
       "total_matches": 63
     },
     "EVT0109": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0109",
         "event_name": "戦極MCBATTLE 第16章 ",
@@ -27712,7 +27708,7 @@
       "total_matches": 63
     },
     "EVT0110": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0110",
         "event_name": "戦極MCBATTLE 第17章 ",
@@ -28337,7 +28333,7 @@
       "total_matches": 62
     },
     "EVT0111": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0111",
         "event_name": "戦極MCBATTLE 第18章 ",
@@ -28531,10 +28527,10 @@
             {
               "match_id": "",
               "round_name": "Best32",
-              "winner_name": "スナフキン",
-              "winner_mc_id": "MC0354",
-              "loser_name": "NAIKA MC",
-              "loser_mc_id": "MC0222",
+              "winner_name": "NAIKA MC",
+              "winner_mc_id": "MC0222",
+              "loser_name": "スナフキン",
+              "loser_mc_id": "MC0354",
               "judge_method": ""
             },
             {
@@ -28815,10 +28811,10 @@
             {
               "match_id": "",
               "round_name": "Best48",
-              "winner_name": "じょう",
-              "winner_mc_id": "MC0334",
-              "loser_name": "9for",
-              "loser_mc_id": "MC0447",
+              "winner_name": "9for",
+              "winner_mc_id": "MC0447",
+              "loser_name": "ALCI",
+              "loser_mc_id": "MC0030",
               "judge_method": ""
             }
           ]
@@ -28827,7 +28823,7 @@
       "total_matches": 47
     },
     "EVT0112": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0112",
         "event_name": "戦極MCBATTLE 第20章 ",
@@ -29317,7 +29313,7 @@
       "total_matches": 47
     },
     "EVT0113": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0113",
         "event_name": "戦極MCBATTLE 第21章 ",
@@ -29807,7 +29803,7 @@
       "total_matches": 47
     },
     "EVT0114": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0114",
         "event_name": "戦極MCBATTLE 第22章 ",
@@ -30148,7 +30144,7 @@
       "total_matches": 31
     },
     "EVT0115": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0115",
         "event_name": "戦極MCBATTLE 第23章 ",
@@ -30489,7 +30485,7 @@
       "total_matches": 31
     },
     "EVT0116": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0116",
         "event_name": "戦極MCBATTLE 第24章 ",
@@ -30681,7 +30677,7 @@
       "total_matches": 15
     },
     "EVT0117": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0117",
         "event_name": "戦極MCBATTLE 第25章 ",
@@ -30873,7 +30869,7 @@
       "total_matches": 15
     },
     "EVT0118": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0118",
         "event_name": "戦極MCBATTLE 第26章 ",
@@ -31065,7 +31061,7 @@
       "total_matches": 15
     },
     "EVT0119": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0119",
         "event_name": "戦極MCBATTLE 第27章 ",
@@ -31257,7 +31253,7 @@
       "total_matches": 15
     },
     "EVT0120": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0120",
         "event_name": "戦極MCBATTLE 第28章 ",
@@ -31449,7 +31445,7 @@
       "total_matches": 15
     },
     "EVT0121": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0121",
         "event_name": "戦極MCBATTLE 第29章 ",
@@ -31718,7 +31714,7 @@
       "total_matches": 23
     },
     "EVT0122": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0122",
         "event_name": "戦極MCBATTLE 第30章 ",
@@ -31910,7 +31906,7 @@
       "total_matches": 15
     },
     "EVT0123": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0123",
         "event_name": "UMB 2017 THE CHOICE IS YOURS Vol.1",
@@ -32004,10 +32000,10 @@
             {
               "match_id": "",
               "round_name": "Best8",
-              "winner_name": "ふぁんく",
-              "winner_mc_id": "MC0337",
-              "loser_name": "CIMA",
-              "loser_mc_id": "MC0080",
+              "winner_name": "CIMA",
+              "winner_mc_id": "MC0080",
+              "loser_name": "ふぁんく",
+              "loser_mc_id": "MC0337",
               "judge_method": ""
             },
             {
@@ -32251,7 +32247,7 @@
       "total_matches": 31
     },
     "EVT0124": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0124",
         "event_name": "UMB 2018 THE CHOICE IS YOURS Vol.2",
@@ -32592,7 +32588,7 @@
       "total_matches": 31
     },
     "EVT0125": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0125",
         "event_name": "UMB 2019 THE CHOICE IS YOURS Vol.3",
@@ -32784,7 +32780,7 @@
       "total_matches": 15
     },
     "EVT0126": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0126",
         "event_name": "UMB 2020 THE CHOICE IS YOURS Vol.4",
@@ -33125,7 +33121,7 @@
       "total_matches": 31
     },
     "EVT0127": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0127",
         "event_name": "UMB 2021 THE CHOICE IS YOURS Vol.5",
@@ -33466,7 +33462,7 @@
       "total_matches": 31
     },
     "EVT0128": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0128",
         "event_name": "UMB 2022 THE CHOICE IS YOURS Vol.6",
@@ -33807,7 +33803,7 @@
       "total_matches": 31
     },
     "EVT0129": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0129",
         "event_name": "UMB 2023 THE CHOICE IS YOURS Vol.7",
@@ -34148,7 +34144,7 @@
       "total_matches": 31
     },
     "EVT0130": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0130",
         "event_name": "BATTLE SUMMITⅠ",
@@ -34274,19 +34270,10 @@
             {
               "match_id": "",
               "round_name": "Best16",
-              "winner_name": "JUMBO MAATCH",
-              "winner_mc_id": "MC0702",
-              "loser_name": "CORN HEAD",
-              "loser_mc_id": "MC0841",
-              "judge_method": ""
-            },
-            {
-              "match_id": "",
-              "round_name": "Best16",
               "winner_name": "がーどまん",
               "winner_mc_id": "MC0468",
-              "loser_name": "COCRGI WHITE(MU-TON)",
-              "loser_mc_id": "MC0756",
+              "loser_name": "JUMBO MAATCH",
+              "loser_mc_id": "MC0702",
               "judge_method": ""
             },
             {
@@ -34319,6 +34306,15 @@
             {
               "match_id": "",
               "round_name": "Best16",
+              "winner_name": "DOTAMA",
+              "winner_mc_id": "MC0100",
+              "loser_name": "CHICO CARLITO",
+              "loser_mc_id": "MC0077",
+              "judge_method": ""
+            },
+            {
+              "match_id": "",
+              "round_name": "Best16",
               "winner_name": "ID",
               "winner_mc_id": "MC0614",
               "loser_name": "SIMON JAP",
@@ -34344,8 +34340,8 @@
               "round_name": "Best20",
               "winner_name": "がーどまん",
               "winner_mc_id": "MC0468",
-              "loser_name": "JUMBO MAATCH",
-              "loser_mc_id": "MC0702",
+              "loser_name": "COCRGI WHITE(MU-TON)",
+              "loser_mc_id": "MC0756",
               "judge_method": ""
             },
             {
@@ -34369,10 +34365,10 @@
             {
               "match_id": "",
               "round_name": "Best20",
-              "winner_name": "DOTAMA",
-              "winner_mc_id": "MC0100",
-              "loser_name": "CHICO CARLITO",
-              "loser_mc_id": "MC0077",
+              "winner_name": "JUMBO MAATCH",
+              "winner_mc_id": "MC0702",
+              "loser_name": "CORN HEAD",
+              "loser_mc_id": "MC0841",
               "judge_method": ""
             }
           ]
@@ -34381,7 +34377,7 @@
       "total_matches": 19
     },
     "EVT0131": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0131",
         "event_name": "BATTLE SUMMITⅡ",
@@ -34573,7 +34569,7 @@
       "total_matches": 15
     },
     "EVT0132": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0132",
         "event_name": "NEO GENESIS MC BATTLE Vol.1",
@@ -34670,7 +34666,7 @@
               "winner_name": "EIEN",
               "winner_mc_id": "MC0735",
               "loser_name": "MK34",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0995",
               "judge_method": ""
             },
             {
@@ -34702,7 +34698,7 @@
               "winner_name": "STACK THE PINK",
               "winner_mc_id": "MC0733",
               "loser_name": "Lotten follow",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0996",
               "judge_method": ""
             },
             {
@@ -34711,7 +34707,7 @@
               "winner_name": "9L!",
               "winner_mc_id": "MC0994",
               "loser_name": "密鬼",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0997",
               "judge_method": ""
             },
             {
@@ -34727,9 +34723,9 @@
               "match_id": "",
               "round_name": "Best16",
               "winner_name": "MK34",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC0995",
               "loser_name": "Ha_ruto",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0998",
               "judge_method": ""
             },
             {
@@ -34738,7 +34734,7 @@
               "winner_name": "EIEN",
               "winner_mc_id": "MC0735",
               "loser_name": "Clows",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0999",
               "judge_method": ""
             },
             {
@@ -34755,8 +34751,8 @@
               "round_name": "Best16",
               "winner_name": "しーじん",
               "winner_mc_id": "MC0624",
-              "loser_name": "ツカダカイン",
-              "loser_mc_id": "",
+              "loser_name": "ハダカイン",
+              "loser_mc_id": "MC0948",
               "judge_method": ""
             }
           ]
@@ -34770,14 +34766,14 @@
               "winner_name": "JyaRi",
               "winner_mc_id": "MC0927",
               "loser_name": "藤 優人",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1018",
               "judge_method": ""
             },
             {
               "match_id": "",
               "round_name": "Best24",
               "winner_name": "Lotten follow",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC0996",
               "loser_name": "May4",
               "loser_mc_id": "MC0947",
               "judge_method": ""
@@ -34786,7 +34782,7 @@
               "match_id": "",
               "round_name": "Best24",
               "winner_name": "密鬼",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC0997",
               "loser_name": "River kid",
               "loser_mc_id": "MC0740",
               "judge_method": ""
@@ -34797,25 +34793,25 @@
               "winner_name": "Aicom",
               "winner_mc_id": "MC0738",
               "loser_name": "隆斗",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1000",
               "judge_method": ""
             },
             {
               "match_id": "",
               "round_name": "Best24",
               "winner_name": "Ha_ruto",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC0998",
               "loser_name": "zvtter",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1001",
               "judge_method": ""
             },
             {
               "match_id": "",
               "round_name": "Best24",
               "winner_name": "Clows",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC0999",
               "loser_name": "As flexin",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1002",
               "judge_method": ""
             },
             {
@@ -34824,16 +34820,16 @@
               "winner_name": "ヨーダイ",
               "winner_mc_id": "MC0951",
               "loser_name": "NATE",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1003",
               "judge_method": ""
             },
             {
               "match_id": "",
               "round_name": "Best24",
-              "winner_name": "ツカダカイン",
-              "winner_mc_id": "",
+              "winner_name": "ハダカイン",
+              "winner_mc_id": "MC0948",
               "loser_name": "クロコダイル",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1004",
               "judge_method": ""
             }
           ]
@@ -34842,7 +34838,7 @@
       "total_matches": 23
     },
     "EVT0133": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0133",
         "event_name": "NEO GENESIS MC BATTLE Vol.2",
@@ -34971,7 +34967,7 @@
               "winner_name": "ミメイ",
               "winner_mc_id": "MC0469",
               "loser_name": "snozzz",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1005",
               "judge_method": ""
             },
             {
@@ -34997,8 +34993,8 @@
               "round_name": "Best16",
               "winner_name": "Rude-α",
               "winner_mc_id": "MC0599",
-              "loser_name": "u-to",
-              "loser_mc_id": "",
+              "loser_name": "U-t.o.",
+              "loser_mc_id": "MC0309",
               "judge_method": ""
             },
             {
@@ -35007,7 +35003,7 @@
               "winner_name": "REDWING",
               "winner_mc_id": "MC0461",
               "loser_name": "Riverkid",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1006",
               "judge_method": ""
             },
             {
@@ -35048,7 +35044,7 @@
               "winner_name": "ミメイ",
               "winner_mc_id": "MC0469",
               "loser_name": "young hiropon",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1007",
               "judge_method": ""
             },
             {
@@ -35075,7 +35071,7 @@
               "winner_name": "Rude-α",
               "winner_mc_id": "MC0599",
               "loser_name": "MK34",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0995",
               "judge_method": ""
             },
             {
@@ -35092,8 +35088,8 @@
               "round_name": "Best24",
               "winner_name": "GOMESS",
               "winner_mc_id": "MC0689",
-              "loser_name": "KTちゃん",
-              "loser_mc_id": "",
+              "loser_name": "#KTちゃん",
+              "loser_mc_id": "MC0617",
               "judge_method": ""
             },
             {
@@ -35102,7 +35098,7 @@
               "winner_name": "Aicom",
               "winner_mc_id": "MC0738",
               "loser_name": "ZVTTER",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1001",
               "judge_method": ""
             }
           ]
@@ -35111,7 +35107,7 @@
       "total_matches": 23
     },
     "EVT0134": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0134",
         "event_name": "NEO GENESIS MC BATTLE Vol.3",
@@ -35189,8 +35185,8 @@
               "round_name": "Best8",
               "winner_name": "Shamis",
               "winner_mc_id": "MC0465",
-              "loser_name": "KTちゃん",
-              "loser_mc_id": "",
+              "loser_name": "#KTちゃん",
+              "loser_mc_id": "MC0617",
               "judge_method": ""
             },
             {
@@ -35205,10 +35201,10 @@
             {
               "match_id": "",
               "round_name": "Best8",
-              "winner_name": "ミステリオ",
-              "winner_mc_id": "MC0600",
-              "loser_name": "JyaRi",
-              "loser_mc_id": "MC0927",
+              "winner_name": "JyaRi",
+              "winner_mc_id": "MC0927",
+              "loser_name": "ミステリオ",
+              "loser_mc_id": "MC0600",
               "judge_method": ""
             },
             {
@@ -35237,8 +35233,8 @@
             {
               "match_id": "",
               "round_name": "Best16",
-              "winner_name": "KTちゃん",
-              "winner_mc_id": "",
+              "winner_name": "#KTちゃん",
+              "winner_mc_id": "MC0617",
               "loser_name": "SATORU",
               "loser_mc_id": "MC0619",
               "judge_method": ""
@@ -35273,10 +35269,10 @@
             {
               "match_id": "",
               "round_name": "Best16",
-              "winner_name": "ふぁんく",
-              "winner_mc_id": "MC0337",
-              "loser_name": "JyaRi",
-              "loser_mc_id": "MC0927",
+              "winner_name": "JyaRi",
+              "winner_mc_id": "MC0927",
+              "loser_name": "ふぁんく",
+              "loser_mc_id": "MC0337",
               "judge_method": ""
             },
             {
@@ -35323,8 +35319,8 @@
             {
               "match_id": "",
               "round_name": "Best32",
-              "winner_name": "KTちゃん",
-              "winner_mc_id": "",
+              "winner_name": "#KTちゃん",
+              "winner_mc_id": "MC0617",
               "loser_name": "ハダカイン",
               "loser_mc_id": "MC0948",
               "judge_method": ""
@@ -35362,7 +35358,7 @@
               "winner_name": "COCRGI WHITE(Mu-ton)",
               "winner_mc_id": "MC0756",
               "loser_name": "Lotten follow",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0996",
               "judge_method": ""
             },
             {
@@ -35398,7 +35394,7 @@
               "winner_name": "ふぁんく",
               "winner_mc_id": "MC0337",
               "loser_name": "BIG KIDS",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1019",
               "judge_method": ""
             },
             {
@@ -35452,7 +35448,7 @@
       "total_matches": 31
     },
     "EVT0135": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0135",
         "event_name": "NEO GENESIS MC BATTLE Vol.4",
@@ -35676,7 +35672,7 @@
               "winner_name": "Joker clown",
               "winner_mc_id": "MC0151",
               "loser_name": "Lotten follow",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0996",
               "judge_method": ""
             },
             {
@@ -35748,7 +35744,7 @@
               "winner_name": "Chance",
               "winner_mc_id": "MC0968",
               "loser_name": "虎珀",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1020",
               "judge_method": ""
             },
             {
@@ -35793,7 +35789,7 @@
       "total_matches": 31
     },
     "EVT0136": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0136",
         "event_name": "NEO GENESIS MC BATTLE Vol.5",
@@ -36134,7 +36130,7 @@
       "total_matches": 31
     },
     "EVT0137": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0137",
         "event_name": "NEO GENESIS MC BATTLE Vol.6",
@@ -36403,7 +36399,7 @@
       "total_matches": 23
     },
     "EVT0138": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0138",
         "event_name": "NEO GENESIS MC BATTLE Vol.7",
@@ -36744,7 +36740,7 @@
       "total_matches": 31
     },
     "EVT0139": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0139",
         "event_name": "NEO GENESIS MC BATTLE Vol.8",
@@ -37085,7 +37081,7 @@
       "total_matches": 31
     },
     "EVT0140": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0140",
         "event_name": "NEO GENESIS MC BATTLE Vol.9",
@@ -37354,7 +37350,7 @@
       "total_matches": 23
     },
     "EVT0141": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0141",
         "event_name": "凱旋MC battle 東西選抜 春ノ陣　2024",
@@ -37566,10 +37562,10 @@
             {
               "match_id": "",
               "round_name": "Best32",
-              "winner_name": "ピラフ星人",
-              "winner_mc_id": "MC0618",
-              "loser_name": "ミメイ",
-              "loser_mc_id": "MC0469",
+              "winner_name": "ミメイ",
+              "winner_mc_id": "MC0469",
+              "loser_name": "ピラフ星人",
+              "loser_mc_id": "MC0618",
               "judge_method": ""
             },
             {
@@ -37656,10 +37652,10 @@
             {
               "match_id": "",
               "round_name": "Best32",
-              "winner_name": "yella goat",
-              "winner_mc_id": "MC0467",
-              "loser_name": "ID",
-              "loser_mc_id": "MC0614",
+              "winner_name": "ID",
+              "winner_mc_id": "MC0614",
+              "loser_name": "yella goat",
+              "loser_mc_id": "MC0467",
               "judge_method": ""
             },
             {
@@ -37695,7 +37691,7 @@
       "total_matches": 31
     },
     "EVT0142": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0142",
         "event_name": "凱旋MC battle 夏ノ陣 U-27",
@@ -37964,7 +37960,7 @@
       "total_matches": 23
     },
     "EVT0143": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0143",
         "event_name": "凱旋MC battle Gate24",
@@ -38052,7 +38048,7 @@
               "winner_name": "River kid",
               "winner_mc_id": "MC0740",
               "loser_name": "Ghino",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1008",
               "judge_method": ""
             },
             {
@@ -38100,9 +38096,9 @@
               "match_id": "",
               "round_name": "Best16",
               "winner_name": "Ghino",
-              "winner_mc_id": "",
-              "loser_name": "ZトN",
-              "loser_mc_id": "MC0518",
+              "winner_mc_id": "MC1008",
+              "loser_name": "Z-TON",
+              "loser_mc_id": "MC1010",
               "judge_method": ""
             },
             {
@@ -38129,7 +38125,7 @@
               "winner_name": "sosume",
               "winner_mc_id": "MC0986",
               "loser_name": "shin kudo",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1009",
               "judge_method": ""
             },
             {
@@ -38170,7 +38166,7 @@
               "winner_name": "Chance",
               "winner_mc_id": "MC0968",
               "loser_name": "sasuke",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1013",
               "judge_method": ""
             },
             {
@@ -38195,7 +38191,7 @@
               "match_id": "",
               "round_name": "Best24",
               "winner_name": "Ghino",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC1008",
               "loser_name": "Joker clown",
               "loser_mc_id": "MC0151",
               "judge_method": ""
@@ -38204,9 +38200,9 @@
               "match_id": "",
               "round_name": "Best24",
               "winner_name": "Z-TON",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC1010",
               "loser_name": "Cuffs",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1011",
               "judge_method": ""
             },
             {
@@ -38215,7 +38211,7 @@
               "winner_name": "River kid",
               "winner_mc_id": "MC0740",
               "loser_name": "nover",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1012",
               "judge_method": ""
             },
             {
@@ -38242,14 +38238,14 @@
               "winner_name": "SyAchi",
               "winner_mc_id": "MC0294",
               "loser_name": "ナギラ",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1014",
               "judge_method": ""
             },
             {
               "match_id": "",
               "round_name": "Best24",
               "winner_name": "shin kudo",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC1009",
               "loser_name": "Lildav",
               "loser_mc_id": "MC0497",
               "judge_method": ""
@@ -38260,7 +38256,7 @@
               "winner_name": "sosume",
               "winner_mc_id": "MC0986",
               "loser_name": "gable",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1015",
               "judge_method": ""
             },
             {
@@ -38269,7 +38265,7 @@
               "winner_name": "NERVE",
               "winner_mc_id": "MC0504",
               "loser_name": "チェリー",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1016",
               "judge_method": ""
             },
             {
@@ -38278,7 +38274,7 @@
               "winner_name": "Bass",
               "winner_mc_id": "MC0732",
               "loser_name": "KK",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1017",
               "judge_method": ""
             },
             {
@@ -38287,7 +38283,7 @@
               "winner_name": "L.B.R.L",
               "winner_mc_id": "MC0455",
               "loser_name": "Lotten follow",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC0996",
               "judge_method": ""
             },
             {
@@ -38305,7 +38301,7 @@
       "total_matches": 31
     },
     "EVT0144": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0144",
         "event_name": "Spotlight 2024 関東編",
@@ -38332,8 +38328,8 @@
             "mc_name": "NAIKA MC"
           },
           {
-            "mc_id": "",
-            "mc_name": "MOL53"
+            "mc_id": "MC0214",
+            "mc_name": "RAWAXXX(MOL53)"
           }
         ]
       },
@@ -38369,8 +38365,8 @@
               "round_name": "Best4",
               "winner_name": "CIMA",
               "winner_mc_id": "MC0080",
-              "loser_name": "MOL53",
-              "loser_mc_id": "",
+              "loser_name": "RAWAXXX(MOL53)",
+              "loser_mc_id": "MC0214",
               "judge_method": ""
             }
           ]
@@ -38399,8 +38395,8 @@
             {
               "match_id": "",
               "round_name": "Best8",
-              "winner_name": "MOL53",
-              "winner_mc_id": "",
+              "winner_name": "RAWAXXX(MOL53)",
+              "winner_mc_id": "MC0214",
               "loser_name": "ミステリオ",
               "loser_mc_id": "MC0600",
               "judge_method": ""
@@ -38458,8 +38454,8 @@
             {
               "match_id": "",
               "round_name": "Best16",
-              "winner_name": "MOL53",
-              "winner_mc_id": "",
+              "winner_name": "RAWAXXX(MOL53)",
+              "winner_mc_id": "MC0214",
               "loser_name": "ERONE",
               "loser_mc_id": "MC0106",
               "judge_method": ""
@@ -38497,7 +38493,7 @@
       "total_matches": 15
     },
     "EVT0145": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0145",
         "event_name": "Spotlight 2019",
@@ -38838,7 +38834,7 @@
       "total_matches": 31
     },
     "EVT0146": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0146",
         "event_name": "Spotlight 2017",
@@ -38957,8 +38953,8 @@
               "round_name": "Best16",
               "winner_name": "RAWAXXX(MOL53)",
               "winner_mc_id": "MC0214",
-              "loser_name": "MCfrog",
-              "loser_mc_id": "",
+              "loser_name": "MC frog",
+              "loser_mc_id": "MC0709",
               "judge_method": ""
             },
             {
@@ -38975,8 +38971,8 @@
               "round_name": "Best16",
               "winner_name": "CIMA",
               "winner_mc_id": "MC0080",
-              "loser_name": "西a.k.a Grizzly",
-              "loser_mc_id": "",
+              "loser_name": "西",
+              "loser_mc_id": "MC0669",
               "judge_method": ""
             },
             {
@@ -39077,8 +39073,8 @@
             {
               "match_id": "",
               "round_name": "Best32",
-              "winner_name": "西a.k.a Grizzly",
-              "winner_mc_id": "",
+              "winner_name": "西",
+              "winner_mc_id": "MC0669",
               "loser_name": "テークエム",
               "loser_mc_id": "MC0910",
               "judge_method": ""
@@ -39115,8 +39111,8 @@
               "round_name": "Best32",
               "winner_name": "崇勲",
               "winner_mc_id": "MC0472",
-              "loser_name": "PONY",
-              "loser_mc_id": "",
+              "loser_name": "PONＥY",
+              "loser_mc_id": "MC0245",
               "judge_method": ""
             },
             {
@@ -39133,8 +39129,8 @@
               "round_name": "Best32",
               "winner_name": "NAIKA MC",
               "winner_mc_id": "MC0222",
-              "loser_name": "T-Tongue",
-              "loser_mc_id": "",
+              "loser_name": "T-TANGG",
+              "loser_mc_id": "MC0296",
               "judge_method": ""
             },
             {
@@ -39179,7 +39175,7 @@
       "total_matches": 31
     },
     "EVT0147": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0147",
         "event_name": "Spotlight 2025",
@@ -39267,7 +39263,7 @@
               "winner_name": "HIDADDY",
               "winner_mc_id": "MC0130",
               "loser_name": "公家バイブス",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1021",
               "judge_method": ""
             },
             {
@@ -39316,17 +39312,17 @@
               "round_name": "Best16",
               "winner_name": "HIDADDY",
               "winner_mc_id": "MC0130",
-              "loser_name": "MOL53",
-              "loser_mc_id": "",
+              "loser_name": "RAWAXXX(MOL53)",
+              "loser_mc_id": "MC0214",
               "judge_method": ""
             },
             {
               "match_id": "",
               "round_name": "Best16",
               "winner_name": "公家バイブス",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC1021",
               "loser_name": "五月雨",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1022",
               "judge_method": ""
             },
             {
@@ -39401,7 +39397,7 @@
               "match_id": "",
               "round_name": "Best24",
               "winner_name": "公家バイブス",
-              "winner_mc_id": "",
+              "winner_mc_id": "MC1021",
               "loser_name": "KAKKY",
               "loser_mc_id": "MC0164",
               "judge_method": ""
@@ -39439,7 +39435,7 @@
               "winner_name": "ふぁんく",
               "winner_mc_id": "MC0337",
               "loser_name": "サッチャー",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1023",
               "judge_method": ""
             }
           ]
@@ -39448,7 +39444,7 @@
       "total_matches": 23
     },
     "EVT0148": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0148",
         "event_name": "Spotlight 2024",
@@ -39644,8 +39640,8 @@
               "round_name": "Best32",
               "winner_name": "楓",
               "winner_mc_id": "MC0401",
-              "loser_name": "猪-TARØET",
-              "loser_mc_id": "",
+              "loser_name": "狺-TARØET",
+              "loser_mc_id": "MC1024",
               "judge_method": ""
             },
             {
@@ -39654,7 +39650,7 @@
               "winner_name": "RunLine",
               "winner_mc_id": "MC0625",
               "loser_name": "RKID'z",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1025",
               "judge_method": ""
             },
             {
@@ -39789,7 +39785,7 @@
       "total_matches": 31
     },
     "EVT0149": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0149",
         "event_name": "Spotlight 2023大阪編",
@@ -40130,7 +40126,7 @@
       "total_matches": 31
     },
     "EVT0150": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0150",
         "event_name": "Spotlight 2023東京編",
@@ -40277,7 +40273,7 @@
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
               "loser_name": "MCQ",
-              "loser_mc_id": "",
+              "loser_mc_id": "MC1026",
               "judge_method": ""
             },
             {
@@ -40322,7 +40318,7 @@
       "total_matches": 15
     },
     "EVT0151": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0151",
         "event_name": "Spotlight 2022",
@@ -40514,7 +40510,7 @@
       "total_matches": 15
     },
     "EVT0152": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0152",
         "event_name": "Spotlight 2022関東編",
@@ -40706,7 +40702,7 @@
       "total_matches": 15
     },
     "EVT0153": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0153",
         "event_name": "Spotlight 2021",
@@ -41047,7 +41043,7 @@
       "total_matches": 31
     },
     "EVT0154": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0154",
         "event_name": "Spotlight 2020",
@@ -41388,7 +41384,7 @@
       "total_matches": 31
     },
     "EVT0155": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0155",
         "event_name": "Spotlight 2018",
@@ -41729,7 +41725,7 @@
       "total_matches": 31
     },
     "EVT0156": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0156",
         "event_name": "Spotlight 2016",
@@ -41921,7 +41917,7 @@
       "total_matches": 15
     },
     "EVT0157": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0157",
         "event_name": "Spotlight 2015",
@@ -41940,8 +41936,8 @@
         "notes": "",
         "winner_name": "呂布カルマ",
         "winner_mc_id": "MC0376",
-        "runner_up_name": "CIMA",
-        "runner_up_mc_id": "MC0080",
+        "runner_up_name": "KBD",
+        "runner_up_mc_id": "MC0171",
         "best4": [
           {
             "mc_id": "MC0027",
@@ -41962,8 +41958,8 @@
               "round_name": "Final",
               "winner_name": "呂布カルマ",
               "winner_mc_id": "MC0376",
-              "loser_name": "CIMA",
-              "loser_mc_id": "MC0080",
+              "loser_name": "KBD",
+              "loser_mc_id": "MC0171",
               "judge_method": ""
             }
           ]
@@ -42113,7 +42109,7 @@
       "total_matches": 15
     },
     "EVT0158": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0158",
         "event_name": "Spotlight 2012",
@@ -42305,7 +42301,7 @@
       "total_matches": 15
     },
     "EVT0159": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0159",
         "event_name": "Spotlight 2010",
@@ -42328,8 +42324,8 @@
         "runner_up_mc_id": "MC0106",
         "best4": [
           {
-            "mc_id": "MC0080",
-            "mc_name": "CIMA"
+            "mc_id": "MC0021",
+            "mc_name": "R-指定"
           },
           {
             "mc_id": "MC0128",
@@ -42360,8 +42356,8 @@
               "round_name": "Best4",
               "winner_name": "peko",
               "winner_mc_id": "MC0243",
-              "loser_name": "CIMA",
-              "loser_mc_id": "MC0080",
+              "loser_name": "R-指定",
+              "loser_mc_id": "MC0021",
               "judge_method": ""
             },
             {
@@ -42381,10 +42377,10 @@
             {
               "match_id": "",
               "round_name": "Best8",
-              "winner_name": "CIMA",
-              "winner_mc_id": "MC0080",
-              "loser_name": "R-指定",
-              "loser_mc_id": "MC0021",
+              "winner_name": "R-指定",
+              "winner_mc_id": "MC0021",
+              "loser_name": "CIMA",
+              "loser_mc_id": "MC0080",
               "judge_method": ""
             },
             {
@@ -42433,8 +42429,8 @@
               "round_name": "Best13",
               "winner_name": "CIMA",
               "winner_mc_id": "MC0080",
-              "loser_name": "HI-KING TAKASE",
-              "loser_mc_id": "MC0128",
+              "loser_name": "TKS",
+              "loser_mc_id": "MC1027",
               "judge_method": ""
             },
             {
@@ -42470,7 +42466,7 @@
       "total_matches": 12
     },
     "EVT0160": {
-      "updated_at": "2026-04-08T03:32:20.736Z",
+      "updated_at": "2026-04-08T10:14:03.627Z",
       "event": {
         "event_id": "EVT0160",
         "event_name": "Spotlight 2009",
