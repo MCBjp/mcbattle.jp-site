@@ -22,12 +22,12 @@
       color: var(--muted);
       font-size: 0.95rem;
       line-height: 1.72;
-      max-width: 760px;
+      max-width: 860px;
     }
 
     .tuner-grid{
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr);
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.18fr);
       gap: 14px;
       align-items: start;
     }
@@ -70,8 +70,7 @@
     }
 
     .tuner-input,
-    .tuner-select,
-    .tuner-textarea{
+    .tuner-select{
       width: 100%;
       min-width: 0;
       border: 1px solid var(--line);
@@ -93,16 +92,8 @@
       padding: 0 12px;
     }
 
-    .tuner-textarea{
-      min-height: 88px;
-      padding: 10px 12px;
-      resize: vertical;
-      line-height: 1.6;
-    }
-
     .tuner-input:focus,
-    .tuner-select:focus,
-    .tuner-textarea:focus{
+    .tuner-select:focus{
       border-color: var(--line-strong);
       box-shadow: 0 0 0 3px rgba(216,180,106,0.08);
       background: rgba(255,255,255,0.05);
@@ -265,76 +256,6 @@
       color: var(--accent);
     }
 
-    .compare-table-wrap{
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .compare-table{
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 760px;
-    }
-
-    .compare-table th,
-    .compare-table td{
-      padding: 11px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      text-align: left;
-      vertical-align: middle;
-      font-size: 0.92rem;
-      line-height: 1.45;
-    }
-
-    .compare-table th{
-      color: #c9cfdd;
-      font-weight: 800;
-      background: rgba(255,255,255,0.025);
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
-
-    .compare-table td.is-num,
-    .compare-table th.is-num{
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    .compare-table tr.is-highlight td{
-      background: rgba(216,180,106,0.06);
-    }
-
-    .result-pill{
-      display: inline-flex;
-      align-items: center;
-      min-height: 26px;
-      padding: 0 9px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: 0.8rem;
-      font-weight: 700;
-      line-height: 1.1;
-      white-space: nowrap;
-    }
-
-    .result-pill.is-best{
-      background: rgba(216,180,106,0.12);
-      border-color: rgba(216,180,106,0.26);
-      color: #fff0c8;
-    }
-
-    .tuner-note-list{
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.64;
-    }
-
     .candidate-list{
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -391,6 +312,185 @@
       line-height: 1.3;
     }
 
+    .editable-score-list{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .editable-score-row{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 120px;
+      gap: 8px;
+      align-items: center;
+      padding: 9px 10px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .editable-score-name{
+      min-width: 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .editable-score-input{
+      min-height: 38px;
+      padding: 0 10px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .results-stack{
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .result-card{
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+    }
+
+    .result-card-head{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 12px;
+      padding: 13px 14px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .result-card-title{
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .result-card-meta{
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .result-best{
+      padding: 12px 14px 0;
+    }
+
+    .result-best-card{
+      display: block;
+      padding: 14px 15px;
+      border: 1px solid rgba(216,180,106,0.24);
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(216,180,106,0.12), rgba(216,180,106,0.05)),
+        rgba(255,255,255,0.03);
+    }
+
+    .result-best-label{
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
+    .result-best-name{
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--text);
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .distribution-table-wrap{
+      padding: 12px 14px 14px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .distribution-table{
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+
+    .distribution-table th,
+    .distribution-table td{
+      padding: 10px 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.42;
+    }
+
+    .distribution-table th{
+      color: #c9cfdd;
+      font-weight: 800;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .distribution-table td.is-num,
+    .distribution-table th.is-num{
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .distribution-table tbody tr:first-child td.is-emph{
+      color: #e99999;
+      font-weight: 900;
+    }
+
+    .distribution-table tbody tr:last-child td{
+      border-bottom: none;
+    }
+
+    .summary-grid{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      padding: 0 14px 14px;
+    }
+
+    .summary-box{
+      padding: 10px 11px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .summary-label{
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .summary-value{
+      display: block;
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+    }
+
     @media (max-width: 960px){
       .tuner-grid{
         grid-template-columns: 1fr;
@@ -431,14 +531,47 @@
         font-size: 0.86rem;
       }
 
-      .compare-table th,
-      .compare-table td{
-        padding: 10px 8px;
+      .editable-score-row{
+        grid-template-columns: 1fr 108px;
+        gap: 7px;
+        padding: 8px 9px;
+      }
+
+      .result-card-head{
+        padding: 11px 12px 9px;
+      }
+
+      .result-best{
+        padding: 10px 12px 0;
+      }
+
+      .result-best-card{
+        padding: 12px 13px;
+        border-radius: 16px;
+      }
+
+      .result-best-label{
+        font-size: 0.8rem;
+      }
+
+      .result-best-name{
+        font-size: 1.35rem;
+      }
+
+      .distribution-table-wrap{
+        padding: 10px 12px 12px;
+      }
+
+      .distribution-table th,
+      .distribution-table td{
+        padding: 9px 7px;
         font-size: 0.84rem;
       }
 
-      .tuner-note-list{
-        font-size: 0.8rem;
+      .summary-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        padding: 0 12px 12px;
       }
     }
   </style>
@@ -459,8 +592,8 @@
       <section class="tuner-hero">
         <h1 class="tuner-title">シミュレーション調整ツール</h1>
         <p class="tuner-lead">
-          8人を選び、勝率変換式の係数や相性補正の強さを変えながら、優勝率分布の差を比較するための調整ページです。
-          現在の <code>rankings.json</code> と <code>head_to_head.json</code> を直接読み込みます。
+          8人を選び、各MCのスコアを直接いじりながら、勝率係数と相性補正ごとの差分を本番っぽい分布表示で比較するための調整ページです。
+          <code>rankings.json</code> と <code>head_to_head.json</code> を直接読み込みます。
         </p>
       </section>
     </div>
@@ -488,6 +621,12 @@
             </div>
 
             <div class="tuner-field">
+              <div class="tuner-label">スコア調整</div>
+              <div id="editable-score-list" class="editable-score-list"></div>
+              <div class="tuner-help">ここを直接変えると、その値でシミュレーションします。</div>
+            </div>
+
+            <div class="tuner-field">
               <label class="tuner-label" for="divisors-input">比較する勝率係数</label>
               <input id="divisors-input" class="tuner-input" type="text" value="120,160,180,200,220" />
               <div class="tuner-help">例: 120,160,180,200,220</div>
@@ -501,16 +640,6 @@
             <div class="tuner-field">
               <label class="tuner-label" for="sim-count-input">シミュレーション回数</label>
               <input id="sim-count-input" class="tuner-input" type="number" min="100" step="100" value="3000" />
-            </div>
-
-            <div class="tuner-field">
-              <label class="tuner-label" for="target-a-select">比較したいMC A</label>
-              <select id="target-a-select" class="tuner-select"></select>
-            </div>
-
-            <div class="tuner-field">
-              <label class="tuner-label" for="target-b-select">比較したいMC B</label>
-              <select id="target-b-select" class="tuner-select"></select>
             </div>
 
             <div class="tuner-actions">
@@ -527,36 +656,8 @@
       <section class="card">
         <div class="tuner-card-inner">
           <h2 class="tuner-section-title">比較結果</h2>
-
-          <div class="compare-table-wrap">
-            <table class="compare-table">
-              <thead>
-                <tr>
-                  <th>設定</th>
-                  <th class="is-num">A優勝率</th>
-                  <th class="is-num">B優勝率</th>
-                  <th class="is-num">A-B差</th>
-                  <th class="is-num">A vs B 1戦勝率</th>
-                  <th class="is-num">最大優勝率</th>
-                  <th>評価</th>
-                </tr>
-              </thead>
-              <tbody id="compare-result-body">
-                <tr>
-                  <td colspan="7" class="tuner-status">まだ結果がありません</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div style="height:12px"></div>
-
-          <h3 class="tuner-section-title" style="font-size:.94rem;">補足</h3>
-          <div class="tuner-note-list">
-            <div>・A優勝率 / B優勝率 は、選んだ8人で固定ブラケットを多数回まわした時の優勝率です。</div>
-            <div>・A vs B 1戦勝率 は、その2人が直接当たった時の理論勝率です。</div>
-            <div>・「最大優勝率」が高すぎる設定ほど、一強に見えやすいです。</div>
-            <div>・相性補正は <code>head_to_head.json</code> がある場合のみ反映されます。</div>
+          <div id="results-stack" class="results-stack">
+            <p class="tuner-status">まだ結果がありません</p>
           </div>
         </div>
       </section>
@@ -579,7 +680,8 @@
       rankings: [],
       h2hMap: {},
       selectedIds: [],
-      activeH2H: "weak"
+      activeH2H: "weak",
+      manualScores: {}
     };
 
     function escapeHtml(value) {
@@ -635,6 +737,12 @@
       return Number.isFinite(n) ? n : 1500;
     }
 
+    function getEffectiveScoreById(mcId) {
+      const raw = state.manualScores[String(mcId)];
+      const n = Number(raw);
+      return Number.isFinite(n) ? n : 1500;
+    }
+
     function compareRankings(a, b) {
       const sa = getCurrentScore(a);
       const sb = getCurrentScore(b);
@@ -646,7 +754,11 @@
       const map = new Map(state.rankings.map(item => [String(item.mc_id), item]));
       return state.selectedIds
         .map(id => map.get(String(id)))
-        .filter(Boolean);
+        .filter(Boolean)
+        .map(item => ({
+          ...item,
+          effective_score: getEffectiveScoreById(item.mc_id)
+        }));
     }
 
     function renderH2HChips() {
@@ -675,7 +787,6 @@
 
       if (!items.length) {
         wrap.innerHTML = `<span class="tuner-help">まだ選択されていません</span>`;
-        syncTargetSelects();
         return;
       }
 
@@ -691,8 +802,6 @@
           removeSelectedMc(btn.dataset.removeId);
         });
       });
-
-      syncTargetSelects();
     }
 
     function renderCandidateList() {
@@ -722,6 +831,39 @@
       });
     }
 
+    function renderEditableScoreList() {
+      const wrap = document.getElementById("editable-score-list");
+      const items = getSelectedRankingItems();
+
+      if (!items.length) {
+        wrap.innerHTML = `<span class="tuner-help">MCを選ぶとここでスコアを直接変更できます</span>`;
+        return;
+      }
+
+      wrap.innerHTML = items.map(item => `
+        <div class="editable-score-row">
+          <div class="editable-score-name">${escapeHtml(item.mc_name || "")}</div>
+          <input
+            class="tuner-input editable-score-input"
+            type="number"
+            step="0.01"
+            value="${escapeHtml(formatScore(item.effective_score))}"
+            data-score-id="${escapeHtml(item.mc_id)}"
+          />
+        </div>
+      `).join("");
+
+      wrap.querySelectorAll("[data-score-id]").forEach((input) => {
+        input.addEventListener("input", () => {
+          const id = String(input.dataset.scoreId || "");
+          const val = Number(input.value);
+          if (Number.isFinite(val)) {
+            state.manualScores[id] = val;
+          }
+        });
+      });
+    }
+
     function toggleSelectedMc(mcId) {
       const id = String(mcId || "");
       if (!id) return;
@@ -739,6 +881,7 @@
 
       renderSelectedMcs();
       renderCandidateList();
+      renderEditableScoreList();
       updateReadyStatus();
     }
 
@@ -747,25 +890,8 @@
       state.selectedIds = state.selectedIds.filter(x => x !== id);
       renderSelectedMcs();
       renderCandidateList();
+      renderEditableScoreList();
       updateReadyStatus();
-    }
-
-    function syncTargetSelects() {
-      const items = getSelectedRankingItems();
-      const aSel = document.getElementById("target-a-select");
-      const bSel = document.getElementById("target-b-select");
-
-      const options = items.map(item =>
-        `<option value="${escapeHtml(item.mc_id)}">${escapeHtml(item.mc_name || "")}</option>`
-      ).join("");
-
-      aSel.innerHTML = options || `<option value="">先にMCを選んでください</option>`;
-      bSel.innerHTML = options || `<option value="">先にMCを選んでください</option>`;
-
-      if (items.length >= 2) {
-        if (!items.some(x => x.mc_id === aSel.value)) aSel.value = items[0].mc_id;
-        if (!items.some(x => x.mc_id === bSel.value) || bSel.value === aSel.value) bSel.value = items[1].mc_id;
-      }
     }
 
     function updateReadyStatus() {
@@ -836,7 +962,7 @@
 
     function pickWinner(itemA, itemB, divisor, preset) {
       const bonus = getH2HBonus(itemA.mc_id, itemB.mc_id, preset);
-      const pA = getMatchWinProbability(getCurrentScore(itemA), getCurrentScore(itemB), divisor, bonus);
+      const pA = getMatchWinProbability(itemA.effective_score, itemB.effective_score, divisor, bonus);
       return Math.random() < pA ? itemA : itemB;
     }
 
@@ -851,116 +977,135 @@
       sfWinners.push(pickWinner(qfWinners[0], qfWinners[1], divisor, preset));
       sfWinners.push(pickWinner(qfWinners[2], qfWinners[3], divisor, preset));
 
-      return pickWinner(sfWinners[0], sfWinners[1], divisor, preset);
+      const finalistA = sfWinners[0];
+      const finalistB = sfWinners[1];
+      const champion = pickWinner(finalistA, finalistB, divisor, preset);
+
+      return {
+        championId: champion.mc_id,
+        finalistIds: [finalistA.mc_id, finalistB.mc_id],
+        semifinalistIds: qfWinners.map(x => x.mc_id)
+      };
     }
 
     function runSimulation(players, divisor, preset, count) {
-      const wins = {};
-      players.forEach(p => { wins[p.mc_id] = 0; });
+      const resultMap = {};
+      players.forEach(p => {
+        resultMap[p.mc_id] = {
+          champion: 0,
+          finalist: 0,
+          semifinalist: 0
+        };
+      });
 
       for (let i = 0; i < count; i += 1) {
-        const champion = simulateOneTournament(players, divisor, preset);
-        wins[champion.mc_id] += 1;
+        const one = simulateOneTournament(players, divisor, preset);
+        resultMap[one.championId].champion += 1;
+        one.finalistIds.forEach(id => { resultMap[id].finalist += 1; });
+        one.semifinalistIds.forEach(id => { resultMap[id].semifinalist += 1; });
       }
 
-      const result = {};
-      players.forEach(p => {
-        result[p.mc_id] = wins[p.mc_id] / count;
+      const rows = players.map(player => ({
+        mc_id: player.mc_id,
+        mc_name: player.mc_name,
+        effective_score: player.effective_score,
+        championRate: resultMap[player.mc_id].champion / count,
+        finalistRate: resultMap[player.mc_id].finalist / count,
+        semifinalistRate: resultMap[player.mc_id].semifinalist / count
+      })).sort((a, b) => {
+        if (b.championRate !== a.championRate) return b.championRate - a.championRate;
+        if (b.finalistRate !== a.finalistRate) return b.finalistRate - a.finalistRate;
+        return String(a.mc_name || "").localeCompare(String(b.mc_name || ""), "ja");
       });
-      return result;
+
+      return rows;
     }
 
-    function buildResultRows(players, divisors, preset, simCount, targetAId, targetBId) {
-      const playerMap = new Map(players.map(item => [String(item.mc_id), item]));
-      const targetA = playerMap.get(String(targetAId));
-      const targetB = playerMap.get(String(targetBId));
-
+    function buildResultBlocks(players, divisors, preset, simCount) {
       return divisors.map((divisor) => {
-        const simResult = runSimulation(players, divisor, preset, simCount);
-        const aRate = simResult[String(targetAId)] || 0;
-        const bRate = simResult[String(targetBId)] || 0;
-
-        const maxRate = Math.max(...Object.values(simResult));
-        const bonus = getH2HBonus(targetAId, targetBId, preset);
-        const directRate = getMatchWinProbability(
-          getCurrentScore(targetA),
-          getCurrentScore(targetB),
-          divisor,
-          bonus
-        );
+        const distribution = runSimulation(players, divisor, preset, simCount);
+        const best = distribution[0];
+        const maxChampionRate = Math.max(...distribution.map(x => x.championRate));
+        const avgTop2Gap = distribution.length >= 2 ? distribution[0].championRate - distribution[1].championRate : 0;
 
         return {
           divisor,
-          presetLabel: preset.label,
-          aRate,
-          bRate,
-          diff: aRate - bRate,
-          directRate,
-          maxRate
+          preset,
+          distribution,
+          best,
+          maxChampionRate,
+          avgTop2Gap
         };
       });
     }
 
-    function pickBestRows(rows) {
-      if (!rows.length) return { closest60: null, mostBalanced: null };
+    function renderResults(blocks) {
+      const wrap = document.getElementById("results-stack");
 
-      let closest60 = rows[0];
-      let mostBalanced = rows[0];
-
-      rows.forEach((row) => {
-        const targetDist = Math.abs(row.directRate - 0.60);
-        const bestDist = Math.abs(closest60.directRate - 0.60);
-        if (targetDist < bestDist) closest60 = row;
-
-        const rowGap = Math.abs(row.aRate - row.bRate);
-        const bestGap = Math.abs(mostBalanced.aRate - mostBalanced.bRate);
-        if (rowGap < bestGap) mostBalanced = row;
-      });
-
-      return { closest60, mostBalanced };
-    }
-
-    function renderResults(rows, players, targetAId, targetBId) {
-      const tbody = document.getElementById("compare-result-body");
-      if (!rows.length) {
-        tbody.innerHTML = `<tr><td colspan="7" class="tuner-status">結果がありません</td></tr>`;
+      if (!blocks.length) {
+        wrap.innerHTML = `<p class="tuner-status">まだ結果がありません</p>`;
         return;
       }
 
-      const playerMap = new Map(players.map(item => [String(item.mc_id), item]));
-      const aName = playerMap.get(String(targetAId))?.mc_name || "A";
-      const bName = playerMap.get(String(targetBId))?.mc_name || "B";
-      const picks = pickBestRows(rows);
+      wrap.innerHTML = blocks.map((block) => `
+        <section class="result-card">
+          <div class="result-card-head">
+            <h3 class="result-card-title">divisor=${escapeHtml(block.divisor)} / 相性=${escapeHtml(block.preset.label)}</h3>
+            <div class="result-card-meta">試行 ${escapeHtml(String(document.getElementById("sim-count-input").value || ""))} 回</div>
+          </div>
 
-      tbody.innerHTML = rows.map((row) => {
-        const badges = [];
-        if (picks.closest60 && row.divisor === picks.closest60.divisor) {
-          badges.push(`<span class="result-pill is-best">60/40寄り</span>`);
-        }
-        if (picks.mostBalanced && row.divisor === picks.mostBalanced.divisor) {
-          badges.push(`<span class="result-pill">差が小さい</span>`);
-        }
+          <div class="result-best">
+            <div class="result-best-card">
+              <span class="result-best-label">最も優勝確率が高いMC</span>
+              <span class="result-best-name">${escapeHtml(block.best.mc_name || "")}</span>
+            </div>
+          </div>
 
-        const isHighlight = (
-          (picks.closest60 && row.divisor === picks.closest60.divisor) ||
-          (picks.mostBalanced && row.divisor === picks.mostBalanced.divisor)
-        );
+          <div class="distribution-table-wrap">
+            <table class="distribution-table">
+              <thead>
+                <tr>
+                  <th>MC</th>
+                  <th class="is-num">score</th>
+                  <th class="is-num">優勝</th>
+                  <th class="is-num">決勝</th>
+                  <th class="is-num">Best4</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${block.distribution.map((row, idx) => `
+                  <tr>
+                    <td>${escapeHtml(row.mc_name || "")}</td>
+                    <td class="is-num">${escapeHtml(formatScore(row.effective_score))}</td>
+                    <td class="is-num is-emph">${escapeHtml(formatPercent(row.championRate))}</td>
+                    <td class="is-num">${escapeHtml(formatPercent(row.finalistRate))}</td>
+                    <td class="is-num">${escapeHtml(formatPercent(row.semifinalistRate))}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
 
-        return `
-          <tr class="${isHighlight ? "is-highlight" : ""}">
-            <td>
-              divisor=${escapeHtml(row.divisor)} / 相性=${escapeHtml(row.presetLabel)}
-              <div style="margin-top:6px; display:flex; flex-wrap:wrap; gap:6px;">${badges.join("")}</div>
-            </td>
-            <td class="is-num">${escapeHtml(formatPercent(row.aRate))}</td>
-            <td class="is-num">${escapeHtml(formatPercent(row.bRate))}</td>
-            <td class="is-num">${escapeHtml(formatPercent(row.diff))}</td>
-            <td class="is-num">${escapeHtml(formatPercent(row.directRate))}</td>
-            <td class="is-num">${escapeHtml(formatPercent(row.maxRate))}</td>
-            <td>${escapeHtml(`${aName} / ${bName}`)}</td>
-          </tr>
-        `;
-      }).join("");
+          <div class="summary-grid">
+            <div class="summary-box">
+              <span class="summary-label">最大優勝率</span>
+              <span class="summary-value">${escapeHtml(formatPercent(block.maxChampionRate))}</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-label">1位と2位の差</span>
+              <span class="summary-value">${escapeHtml(formatPercent(block.avgTop2Gap))}</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-label">1位MC</span>
+              <span class="summary-value">${escapeHtml(block.best.mc_name || "")}</span>
+            </div>
+            <div class="summary-box">
+              <span class="summary-label">1位score</span>
+              <span class="summary-value">${escapeHtml(formatScore(block.best.effective_score))}</span>
+            </div>
+          </div>
+        </section>
+      `).join("");
     }
 
     function validateBeforeRun() {
@@ -981,10 +1126,9 @@
         return false;
       }
 
-      const aId = String(document.getElementById("target-a-select").value || "");
-      const bId = String(document.getElementById("target-b-select").value || "");
-      if (!aId || !bId || aId === bId) {
-        setStatus("比較対象のMC A / B を別々に選んでください。", "error");
+      const invalidScore = getSelectedRankingItems().some(item => !Number.isFinite(Number(item.effective_score)));
+      if (invalidScore) {
+        setStatus("スコア欄に不正な値があります。", "error");
         return false;
       }
 
@@ -1002,14 +1146,12 @@
         const divisors = parseDivisors();
         const simCount = Number(document.getElementById("sim-count-input").value || 0);
         const preset = getActiveH2HPreset();
-        const targetAId = String(document.getElementById("target-a-select").value || "");
-        const targetBId = String(document.getElementById("target-b-select").value || "");
         const players = getSelectedRankingItems();
 
         await new Promise(resolve => setTimeout(resolve, 20));
 
-        const rows = buildResultRows(players, divisors, preset, simCount, targetAId, targetBId);
-        renderResults(rows, players, targetAId, targetBId);
+        const blocks = buildResultBlocks(players, divisors, preset, simCount);
+        renderResults(blocks);
 
         setStatus("比較が完了しました。", "success");
       } catch (err) {
@@ -1022,10 +1164,12 @@
 
     function clearSelection() {
       state.selectedIds = [];
+      state.manualScores = {};
       renderSelectedMcs();
       renderCandidateList();
+      renderEditableScoreList();
       updateReadyStatus();
-      document.getElementById("compare-result-body").innerHTML = `<tr><td colspan="7" class="tuner-status">まだ結果がありません</td></tr>`;
+      renderResults([]);
     }
 
     function applyShinpeitaForkPreset() {
@@ -1037,10 +1181,15 @@
         if (found) selected.push(String(found.mc_id));
       });
 
-      if (selected.length >= 2) {
-        state.selectedIds = selected.slice(0, REQUIRED_MC_COUNT);
+      if (selected.length === REQUIRED_MC_COUNT) {
+        state.selectedIds = selected;
+        state.selectedIds.forEach((id) => {
+          const found = state.rankings.find(item => String(item.mc_id) === id);
+          if (found) state.manualScores[id] = getCurrentScore(found);
+        });
         renderSelectedMcs();
         renderCandidateList();
+        renderEditableScoreList();
         updateReadyStatus();
       } else {
         setStatus("例として入れたいMCが現在のランキングデータに十分見つかりませんでした。", "error");
@@ -1061,9 +1210,14 @@
         state.rankings = rankings;
         state.h2hMap = buildH2HMap(h2hPayload);
 
+        rankings.forEach((item) => {
+          state.manualScores[String(item.mc_id)] = getCurrentScore(item);
+        });
+
         renderH2HChips();
         renderSelectedMcs();
         renderCandidateList();
+        renderEditableScoreList();
         updateReadyStatus();
 
         document.getElementById("candidate-search").addEventListener("input", renderCandidateList);
