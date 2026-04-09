@@ -6,80 +6,38 @@
   <title>MCバトルシミュレーター | MCBattle.jp</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    html, body{
-      overflow-x: hidden;
-      max-width: 100%;
-    }
-
-    .page{
-      overflow-x: hidden;
-      max-width: 100%;
-      width: 100%;
-    }
-
-    .vt-hero{
-      padding: 0 0 8px;
-      min-width: 0;
-      max-width: 100%;
-    }
-
-    .vt-title-wrap{
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
-      min-width: 0;
-      max-width: 100%;
-    }
-
-    .vt-title{
-      margin: 0;
-      color: var(--text);
-      line-height: 1.08;
-      min-width: 0;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
     .vt-version{
       color: var(--muted);
       font-size: .76rem;
       line-height: 1.2;
       letter-spacing: .03em;
       white-space: nowrap;
-      max-width: 100%;
+    }
+
+    .vt-hero{
+      margin-top: 0;
+      margin-bottom: 18px;
     }
 
     .vt-lead{
-      margin: 0;
+      margin: 0 0 10px;
       color: var(--muted);
       font-size: .96rem;
-      line-height: 1.68;
+      line-height: 1.72;
       max-width: 760px;
       overflow-wrap: anywhere;
       word-break: break-word;
     }
 
-    .vt-stack{
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 12px;
-      padding-bottom: 18px;
-      min-width: 0;
-      max-width: 100%;
+    .vt-main-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items: start;
     }
 
-    .vt-panel{
-      border: 2px solid rgba(255,255,255,.78);
-      border-radius: 22px;
-      padding: 14px 14px 12px;
-      box-shadow: 0 18px 48px rgba(0,0,0,.22);
-      background: rgba(13,17,28,.22);
+    .vt-card{
       min-width: 0;
-      max-width: 100%;
-      overflow-x: hidden;
-      box-sizing: border-box;
     }
 
     .vt-step-label{
@@ -89,8 +47,6 @@
       font-weight: 800;
       color: var(--accent);
       letter-spacing: .01em;
-      min-width: 0;
-      max-width: 100%;
     }
 
     .vt-search-row{
@@ -99,24 +55,25 @@
       gap: 10px;
       align-items: center;
       margin-top: 2px;
-      min-width: 0;
-      max-width: 100%;
     }
 
     .vt-search-box{
       width: 100%;
-      min-height: 54px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.78);
-      background: transparent;
+      min-height: 50px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
       color: var(--text);
       padding: 0 14px;
       font: inherit;
       font-size: .95rem;
       outline: none;
       box-sizing: border-box;
-      min-width: 0;
-      max-width: 100%;
+    }
+
+    .vt-search-box:focus{
+      border-color: var(--line-strong);
+      box-shadow: 0 0 0 3px rgba(216,180,106,.10);
     }
 
     .vt-search-box::placeholder{
@@ -132,8 +89,6 @@
 
     .vt-candidates{
       margin-top: 8px;
-      min-width: 0;
-      max-width: 100%;
     }
 
     .vt-candidate-list{
@@ -141,16 +96,14 @@
       grid-template-columns: repeat(2, minmax(0,1fr));
       gap: 8px;
       margin-top: 0;
-      min-width: 0;
-      max-width: 100%;
     }
 
     .vt-candidate-btn{
       width: 100%;
-      min-height: 44px;
+      min-height: 42px;
       padding: 0 12px;
-      border-radius: 15px;
-      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 14px;
+      border: 1px solid var(--line);
       background: rgba(255,255,255,.03);
       color: var(--text);
       font: inherit;
@@ -167,15 +120,13 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       box-sizing: border-box;
-      min-width: 0;
-      max-width: 100%;
     }
 
     .vt-candidate-btn:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.62);
-      box-shadow: 0 0 20px rgba(255,255,255,.05);
+      border-color: var(--line-strong);
+      box-shadow: 0 0 18px var(--glow);
     }
 
     .vt-helper{
@@ -190,25 +141,13 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
       margin-top: 10px;
-      min-width: 0;
-      max-width: 100%;
     }
 
-    .vt-run-button-wrap{
-      margin-top: 2px;
-      margin-bottom: 2px;
-      min-width: 0;
-      max-width: 100%;
-    }
-
-    .vt-main-button,
-    .vt-sub-button{
+    .vt-sub-button,
+    .vt-main-button{
       width: 100%;
       min-width: 0;
-      max-width: 100%;
-      border-radius: 16px;
-      background: #ffffff;
-      color: #11131a;
+      border-radius: 14px;
       font: inherit;
       cursor: pointer;
       transition:
@@ -218,20 +157,43 @@
         box-shadow .18s ease,
         opacity .18s ease;
       box-sizing: border-box;
-      border: 2px solid rgba(255,255,255,.96);
     }
 
-    .vt-main-button:hover,
+    .vt-sub-button{
+      min-height: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--accent);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
     .vt-sub-button:hover{
       transform: translateY(-1px);
-      background: #f3f4f6;
-      box-shadow: 0 0 20px rgba(255,255,255,.10);
+      background: rgba(255,255,255,0.07);
+      border-color: var(--line-strong);
+      box-shadow: 0 0 18px var(--glow);
+    }
+
+    .vt-run-button-wrap{
+      margin-top: 14px;
     }
 
     .vt-main-button{
-      min-height: 54px;
+      min-height: 50px;
+      border: 1px solid rgba(216,180,106,.34);
+      background: linear-gradient(180deg, rgba(216,180,106,.16), rgba(216,180,106,.06));
+      color: var(--text);
       font-size: .98rem;
       font-weight: 800;
+    }
+
+    .vt-main-button:hover{
+      transform: translateY(-1px);
+      background: linear-gradient(180deg, rgba(216,180,106,.20), rgba(216,180,106,.08));
+      border-color: rgba(216,180,106,.48);
+      box-shadow: 0 0 18px var(--glow);
     }
 
     .vt-main-button.is-disabled{
@@ -242,17 +204,8 @@
       transform: none;
     }
 
-    .vt-sub-button{
-      min-height: 46px;
-      font-size: .9rem;
-      font-weight: 700;
-      padding: 0 12px;
-    }
-
     .vt-selected-wrap{
-      margin-top: 12px;
-      min-width: 0;
-      max-width: 100%;
+      margin-top: 14px;
     }
 
     .vt-selected-title{
@@ -267,8 +220,6 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
       gap: 8px;
-      min-width: 0;
-      max-width: 100%;
     }
 
     .vt-selected-grid.is-single{
@@ -280,14 +231,11 @@
       grid-template-columns: minmax(0,1fr) 20px;
       align-items: center;
       gap: 8px;
-      min-width: 0;
-      min-height: 54px;
+      min-height: 52px;
       padding: 8px 11px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.78);
-      background: rgba(13,17,28,.22);
-      box-sizing: border-box;
-      max-width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
     }
 
     .vt-selected-name{
@@ -324,7 +272,7 @@
       margin: 0;
       color: var(--muted);
       font-size: .9rem;
-      line-height: 1.55;
+      line-height: 1.6;
       white-space: pre-line;
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -333,60 +281,14 @@
     .vt-run-area{
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      min-width: 0;
-      max-width: 100%;
-    }
-
-    .vt-pair-card{
-      padding: 13px 14px 11px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.025);
-      min-width: 0;
-      max-width: 100%;
-      overflow-x: hidden;
-      box-sizing: border-box;
-    }
-
-    .vt-pair-title{
-      margin: 0 0 10px;
-      color: var(--accent);
-      font-size: 1.02rem;
-      line-height: 1.2;
-      min-width: 0;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .vt-pair-list{
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-width: 0;
-      max-width: 100%;
-    }
-
-    .vt-pair-line{
-      margin: 0;
-      color: var(--text);
-      font-size: .92rem;
-      line-height: 1.6;
-      min-width: 0;
-      max-width: 100%;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      gap: 12px;
     }
 
     .vt-hero-result{
-      padding: 12px 14px 11px;
-      border-radius: 18px;
-      border: 1px solid rgba(216,180,106,.16);
-      background: linear-gradient(180deg, rgba(216,180,106,.16), rgba(110,84,40,.12));
-      min-width: 0;
-      max-width: 100%;
-      overflow-x: hidden;
-      box-sizing: border-box;
+      padding: 13px 14px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(216,180,106,.22);
+      background: linear-gradient(180deg, rgba(216,180,106,.14), rgba(216,180,106,.05));
     }
 
     .vt-hero-result-label{
@@ -395,7 +297,6 @@
       font-size: .92rem;
       line-height: 1.4;
       margin-bottom: 6px;
-      min-width: 0;
       overflow-wrap: anywhere;
       word-break: break-word;
     }
@@ -407,28 +308,23 @@
       font-weight: 900;
       word-break: break-word;
       overflow-wrap: anywhere;
-      min-width: 0;
-      max-width: 100%;
     }
 
-    .vt-summary-card{
+    .vt-summary-card,
+    .vt-pair-card{
       padding: 13px 14px 11px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      border: 1px solid var(--line);
       background: rgba(255,255,255,.025);
-      min-width: 0;
-      max-width: 100%;
-      overflow-x: hidden;
-      box-sizing: border-box;
     }
 
     .vt-summary-title,
-    .vt-table-title{
+    .vt-table-title,
+    .vt-pair-title{
       margin: 0 0 10px;
       color: var(--accent);
-      font-size: 1.22rem;
-      line-height: 1.15;
-      min-width: 0;
+      font-size: 1.06rem;
+      line-height: 1.2;
       overflow-wrap: anywhere;
       word-break: break-word;
     }
@@ -437,8 +333,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      min-width: 0;
-      max-width: 100%;
     }
 
     .vt-summary-lines p{
@@ -450,15 +344,27 @@
       word-break: break-word;
     }
 
+    .vt-pair-list{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .vt-pair-line{
+      margin: 0;
+      color: var(--text);
+      font-size: .92rem;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
     .vt-dist-card-head,
     .vt-dist-row{
       display: grid;
-      grid-template-columns: minmax(0, 180px) 56px 56px 64px;
+      grid-template-columns: minmax(0, 1fr) 56px 56px 64px;
       gap: 8px;
       align-items: center;
-      justify-content: start;
-      min-width: 0;
-      max-width: 100%;
       width: 100%;
       box-sizing: border-box;
     }
@@ -470,13 +376,12 @@
       color: #b8bfd0;
       font-size: .83rem;
       font-weight: 800;
+      border-radius: 12px 12px 0 0;
     }
 
     .vt-dist-list{
       display: flex;
       flex-direction: column;
-      min-width: 0;
-      max-width: 100%;
     }
 
     .vt-dist-row{
@@ -615,11 +520,24 @@
       display: none !important;
     }
 
-    @media (max-width: 640px){
-      .vt-title{
-        font-size: clamp(2rem, 9.4vw, 2.8rem);
+    @media (min-width: 1024px){
+      .vt-main-grid{
+        grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
+        gap: 16px;
       }
 
+      .vt-left-col,
+      .vt-right-col{
+        min-width: 0;
+      }
+
+      .vt-sticky{
+        position: sticky;
+        top: 24px;
+      }
+    }
+
+    @media (max-width: 640px){
       .vt-version{
         font-size: .7rem;
       }
@@ -686,80 +604,83 @@
       </nav>
 
       <div class="page-header-block">
-        <div class="vt-title-wrap">
-          <h1 class="vt-title">バトルシミュレータ</h1>
-          <span class="vt-version">Ver.1.125</span>
-        </div>
+        <h1>バトルシミュレータ</h1>
+        <div class="vt-version">Ver.1.125</div>
       </div>
     </div>
 
     <section class="vt-hero">
       <p class="vt-lead">直近4年でバトル参加実績のあるMCを対象に、大会結果をシミュレーションします。<br>2005年以降の全試合をもとに算出した現在スコアをベースに、特定のMC同士の相性も少しだけ加味して結果を出します。</p>
+      <p class="vt-lead">あくまでも保持しているデータをもとにしたエンタメ的なシミュレーションです。実際の勝敗や相性を保証・断定するものではありません。</p>
     </section>
 
-    <div class="vt-stack">
-      <section class="vt-panel">
-        <span class="vt-step-label">①MCを選ぶ</span>
+    <div class="vt-main-grid">
+      <div class="vt-left-col">
+        <section class="card vt-card">
+          <span class="vt-step-label">①MCを選ぶ</span>
 
-        <div class="vt-search-row">
-          <input id="mc-search-input" class="vt-search-box" type="text" placeholder="MC名/読み仮名で検索" autocomplete="off" />
-        </div>
+          <div class="vt-search-row">
+            <input id="mc-search-input" class="vt-search-box" type="text" placeholder="MC名/読み仮名で検索" autocomplete="off" />
+          </div>
 
-        <p class="vt-search-note">2文字以上で候補表示</p>
+          <p class="vt-search-note">2文字以上で候補表示</p>
 
-        <div id="candidate-area" class="vt-candidates">
-          <div id="candidate-list" class="vt-candidate-list"></div>
-          <p id="candidate-empty" class="vt-helper is-hidden">候補がありません。</p>
-        </div>
+          <div id="candidate-area" class="vt-candidates">
+            <div id="candidate-list" class="vt-candidate-list"></div>
+            <p id="candidate-empty" class="vt-helper is-hidden">候補がありません。</p>
+          </div>
 
-        <div class="vt-action-stack">
-          <button id="fill-random-btn" class="vt-sub-button" type="button">残りを上位100位からランダム入力</button>
-          <button id="clear-selected-btn" class="vt-sub-button" type="button">全クリア</button>
-        </div>
+          <div class="vt-action-stack">
+            <button id="fill-random-btn" class="vt-sub-button" type="button">残りを上位100位からランダム入力</button>
+            <button id="clear-selected-btn" class="vt-sub-button" type="button">全クリア</button>
+          </div>
 
-        <div class="vt-selected-wrap">
-          <h2 class="vt-selected-title">選択中の8人</h2>
-          <div id="selected-grid" class="vt-selected-grid"></div>
-        </div>
-      </section>
+          <div class="vt-selected-wrap">
+            <h2 class="vt-selected-title">選択中の8人</h2>
+            <div id="selected-grid" class="vt-selected-grid"></div>
+          </div>
 
-      <div class="vt-run-button-wrap">
-        <button id="run-sim-btn" class="vt-main-button" type="button">100回この組み合わせで戦う</button>
+          <div class="vt-run-button-wrap">
+            <button id="run-sim-btn" class="vt-main-button" type="button">100回この組み合わせで戦う</button>
+          </div>
+        </section>
       </div>
 
-      <section id="result-panel" class="vt-panel">
-        <span class="vt-step-label">②結果</span>
+      <div class="vt-right-col">
+        <section id="result-panel" class="card vt-card vt-sticky">
+          <span class="vt-step-label">②結果</span>
 
-        <div class="vt-run-area">
-          <p id="sim-status" class="vt-status">8人選ぶとシミュレーションできます。</p>
+          <div class="vt-run-area">
+            <p id="sim-status" class="vt-status">8人選ぶとシミュレーションできます。</p>
 
-          <div id="top-result-card" class="vt-hero-result is-hidden">
-            <span class="vt-hero-result-label">最も優勝確率が高いMC</span>
-            <span id="top-result-name" class="vt-hero-result-name">-</span>
-          </div>
-
-          <div id="dist-card" class="vt-summary-card is-hidden">
-            <h2 class="vt-table-title">全体分布</h2>
-            <div class="vt-dist-card-head">
-              <div>MC</div>
-              <div style="text-align:right;">優勝</div>
-              <div style="text-align:right;">決勝</div>
-              <div style="text-align:right;">Best4</div>
+            <div id="top-result-card" class="vt-hero-result is-hidden">
+              <span class="vt-hero-result-label">最も優勝確率が高いMC</span>
+              <span id="top-result-name" class="vt-hero-result-name">-</span>
             </div>
-            <div id="dist-list" class="vt-dist-list"></div>
-          </div>
 
-          <div id="pair-adjustment-card" class="vt-pair-card is-hidden">
-            <h2 class="vt-pair-title">過去実績を基にした相性補正</h2>
-            <div id="pair-adjustment-list" class="vt-pair-list"></div>
-          </div>
+            <div id="dist-card" class="vt-summary-card is-hidden">
+              <h2 class="vt-table-title">全体分布</h2>
+              <div class="vt-dist-card-head">
+                <div>MC</div>
+                <div style="text-align:right;">優勝</div>
+                <div style="text-align:right;">決勝</div>
+                <div style="text-align:right;">Best4</div>
+              </div>
+              <div id="dist-list" class="vt-dist-list"></div>
+            </div>
 
-          <div id="summary-card" class="vt-summary-card is-hidden">
-            <h2 class="vt-summary-title">結果サマリ</h2>
-            <div id="summary-lines" class="vt-summary-lines"></div>
+            <div id="pair-adjustment-card" class="vt-pair-card is-hidden">
+              <h2 class="vt-pair-title">過去実績を基にした相性補正</h2>
+              <div id="pair-adjustment-list" class="vt-pair-list"></div>
+            </div>
+
+            <div id="summary-card" class="vt-summary-card is-hidden">
+              <h2 class="vt-summary-title">結果サマリ</h2>
+              <div id="summary-lines" class="vt-summary-lines"></div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   </div>
 
