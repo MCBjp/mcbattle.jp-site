@@ -663,8 +663,13 @@
     const STRENGTHS_URL = "./data/rankings.json";
     const HEAD_TO_HEAD_URL = "./data/head_to_head.json";
     const MAX_SELECTED = 8;
-    const HEAD_TO_HEAD_SCORE_CAP = 50;
     const SIM_COUNT = 100;
+
+    /* 緩和後パラメータ */
+    const HEAD_TO_HEAD_SCORE_CAP = 18;
+    const WIN_PROB_DIVISOR = 240;
+    const WIN_PROB_MIN = 0.08;
+    const WIN_PROB_MAX = 0.92;
 
     let allCandidates = [];
     let strengthMap = {};
@@ -718,6 +723,10 @@
         .replace(/'/g, "&#39;");
     }
 
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
     function markSelectionChanged() {
       hasSimulatedCurrentSelection = false;
       hidePairAdjustments();
@@ -750,11 +759,11 @@
       let bonus = 0;
 
       if (diff === 1) {
-        bonus = 12;
+        bonus = 4;
       } else if (diff === 2) {
-        bonus = 35;
+        bonus = 10;
       } else {
-        bonus = 50;
+        bonus = 18;
       }
 
       if (bonus > HEAD_TO_HEAD_SCORE_CAP) {
@@ -788,9 +797,9 @@
 
     function getHeadToHeadAdvantageLabel(adjustment) {
       const abs = Math.abs(Number(adjustment || 0));
-      if (abs >= 50) return "非常に有利";
-      if (abs >= 35) return "やや有利";
-      if (abs >= 12) return "わずかに有利";
+      if (abs >= 18) return "やや有利";
+      if (abs >= 10) return "少し有利";
+      if (abs >= 4) return "わずかに有利";
       return "";
     }
 
@@ -970,13 +979,20 @@
       }
     }
 
+    function getMatchWinProbability(a, b) {
+      const scoreA = strengthMap[a.mc_id]?.current_score ?? 1500;
+      const scoreB = strengthMap[b.mc_id]?.current_score ?? 1500;
+      const h2hAdjustA = getHeadToHeadScoreAdjustment(a.mc_id, b.mc_id);
+
+      const adjustedDiff = (scoreA + h2hAdjustA) - scoreB;
+      const raw = 1 / (1 + Math.pow(10, -adjustedDiff / WIN_PROB_DIVISOR));
+
+      return clamp(raw, WIN_PROB_MIN, WIN_PROB_MAX);
+    }
+
     function simulateTournamentOnce(participants) {
       function playMatch(a, b) {
-        const scoreA = strengthMap[a.mc_id]?.current_score ?? 1500;
-        const scoreB = strengthMap[b.mc_id]?.current_score ?? 1500;
-        const h2hAdjustA = getHeadToHeadScoreAdjustment(a.mc_id, b.mc_id);
-        const adjustedDiff = (scoreA + h2hAdjustA) - scoreB;
-        const pA = 1 / (1 + Math.pow(10, -adjustedDiff / 120));
+        const pA = getMatchWinProbability(a, b);
         return Math.random() < pA ? a : b;
       }
 
@@ -1007,9 +1023,9 @@
       const lines = [];
 
       if (top) {
-        if (top.championRate >= 50) {
-          lines.push(`${top.mc_name}優勢がはっきり出ました。一強に近いシミュレーション結果です。`);
-        } else if (top.championRate >= 35) {
+        if (top.championRate >= 60) {
+          lines.push(`${top.mc_name}がかなり優勢ですが、独走というよりは明確な本命寄りの結果でした。`);
+        } else if (top.championRate >= 40) {
           lines.push(`${top.mc_name}がやや優勢で、決勝まで含めた安定感もありました。`);
         } else {
           lines.push(`上位が拮抗していて、組み合わせ次第で優勝が入れ替わる混戦傾向でした。`);
