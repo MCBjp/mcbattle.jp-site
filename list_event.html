@@ -201,11 +201,11 @@
       <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
       <nav class="page-nav-pills" aria-label="主要メニュー">
-        <a class="page-nav-pill" href="mcs.html">MC一覧</a>
-        <a class="page-nav-pill" href="rankings.html">スコアランキング</a>
+        <a class="page-nav-pill" href="list_mc.html">MC一覧</a>
+        <a class="page-nav-pill" href="score_ranking.html">スコアランキング</a>
         <span class="page-nav-break" aria-hidden="true"></span>
-        <a class="page-nav-pill" href="prize_rankings.html">賞金ランキング</a>
-        <a class="page-nav-pill" href="virtual_tournament.html">大会シミュレーション</a>
+        <a class="page-nav-pill" href="prize_ranking.html">賞金ランキング</a>
+        <a class="page-nav-pill" href="simulation.html">大会シミュレーション</a>
       </nav>
 
       <div class="page-header-block">
@@ -325,7 +325,7 @@
         : "";
 
       return `
-        <a class="event-row" href="event.html?event_id=${encodeURIComponent(id)}">
+        <a class="event-row" href="detail_event.html?event_id=${encodeURIComponent(id)}">
           <div class="event-date">${escapeHtml(date)}</div>
           <div class="event-name">
             ${escapeHtml(name)}
