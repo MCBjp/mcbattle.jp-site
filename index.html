@@ -587,7 +587,7 @@
     <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
     <div class="site-header-copy">
       <p class="header-message">日本一情報量の多いMCバトルポータル。<br>大会記録・戦績・独自スコアをまとめています。</p>
-      <a class="header-spec-link" href="ranking_spec.html">スコアリング仕様を見る</a>
+      <a class="header-spec-link" href="score_spec.html">スコアリング仕様を見る</a>
     </div>
   </header>
 
@@ -595,17 +595,17 @@
     <section class="hero">
       <div class="container">
         <div class="hero-stack">
-          <a class="sim-card" href="virtual_tournament.html">
+          <a class="sim-card" href="simulation.html">
             <span class="sim-kicker">現役勢の8人を選んで戦わせる</span>
             <h3 class="sim-title">仮想MCバトルシミュレーション</h3>
             <p class="sim-sub"></p>
           </a>
 
           <div class="link-grid">
-            <a class="link-card" href="rankings.html">スコアランキング</a>
-            <a class="link-card" href="prize_rankings.html">賞金ランキング</a>
-            <a class="link-card" href="events.html">大会一覧</a>
-            <a class="link-card" href="mcs.html">MC一覧</a>
+            <a class="link-card" href="score_ranking.html">スコアランキング</a>
+            <a class="link-card" href="prize_ranking.html">賞金ランキング</a>
+            <a class="link-card" href="list_event.html">大会一覧</a>
+            <a class="link-card" href="list_mc.html">MC一覧</a>
           </div>
         </div>
       </div>
@@ -783,7 +783,7 @@
         const eventId = getEventId(event);
         const name = getEventName(event);
         const date = formatDateJP(getEventDate(event));
-        const href = eventId ? `event.html?event_id=${encodeURIComponent(eventId)}` : "events.html";
+        const href = eventId ? `detail_event.html?event_id=${encodeURIComponent(eventId)}` : "list_event.html";
 
         return `
           <a class="list-row" href="${href}">
@@ -832,7 +832,7 @@
         const name = getMcName(item);
         const rank = getRank(item, index);
         const score = getScore(item);
-        const href = mcId ? `mc.html?mc_id=${encodeURIComponent(mcId)}` : "mcs.html";
+        const href = mcId ? `detail_mc.html?mc_id=${encodeURIComponent(mcId)}` : "list_mc.html";
 
         return `
           <a class="list-row" href="${href}">
@@ -860,7 +860,7 @@
         const name = getMcName(item);
         const rank = getRank(item, index);
         const prize = getPrize(item);
-        const href = mcId ? `mc.html?mc_id=${encodeURIComponent(mcId)}` : "mcs.html";
+        const href = mcId ? `detail_mc.html?mc_id=${encodeURIComponent(mcId)}` : "list_mc.html";
 
         return `
           <a class="list-row" href="${href}">
