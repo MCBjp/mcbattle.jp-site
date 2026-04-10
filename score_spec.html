@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>スコアリング仕様について | MCBattle.jp</title>
+  <meta name="description" content="国内MCバトルの独自スコアの算出方法を説明するページです。誰に勝ったか、いつの試合か、どのラウンドか、敗戦の扱いなど、スコアリングの考え方を掲載しています。">
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -279,49 +280,65 @@
       <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
       <nav class="page-nav-pills" aria-label="主要メニュー">
-        <a class="page-nav-pill" href="events.html">大会一覧</a>
-        <a class="page-nav-pill" href="mcs.html">MC一覧</a>
+        <a class="page-nav-pill" href="list_event.html">大会一覧</a>
+        <a class="page-nav-pill" href="list_mc.html">MC一覧</a>
         <span class="page-nav-break" aria-hidden="true"></span>
-        <a class="page-nav-pill" href="rankings.html">スコアランキング</a>
-        <a class="page-nav-pill" href="prize_rankings.html">賞金ランキング</a>
+        <a class="page-nav-pill" href="score_ranking.html">スコアランキング</a>
+        <a class="page-nav-pill" href="prize_ranking.html">賞金ランキング</a>
       </nav>
 
       <div class="page-header-block">
         <div class="page-header-title-row">
-          <h1>ランキング仕様について</h1>
-          <span class="page-version">Ver.1.126</span>
+          <h1>スコアリング仕様について</h1>
+          <span class="page-version">Ver.1.127</span>
         </div>
       </div>
     </div>
 
     <div class="spec-grid">
       <section class="spec-card">
-        <h2>1. このランキングが表したいもの</h2>
+        <h2>1. このページで説明するもの</h2>
         <p>
-          このランキングは、<strong>「今バトルに出た場合、誰が強いか」</strong>を見るためのものです。
+          このページは、<strong>MCBattle.jp の独自スコアがどう計算されているか</strong>を説明するためのページです。
         </p>
         <p>
-          歴代最強ランキングや知名度ランキングではなく、<strong>過去の蓄積も残しつつ、最近の試合をより重く見た現在推定の強さ</strong>を表すことを目的としています。
+          ここでいうスコアは、単なる勝利数や優勝回数ではなく、<strong>試合結果を時系列で積み上げて更新していく現在推定値</strong>です。
         </p>
         <p>
-          単純な勝利数ランキングではなく、<strong>誰に勝ったかを中心に、最近の試合かどうか、どのラウンドの勝敗か</strong>を反映する設計です。
+          ランキングは、このスコアをもとに並べた表示結果にすぎません。  
+          つまり、主役はランキングではなく、<strong>スコアそのものの算出ロジック</strong>です。
         </p>
 
         <div class="spec-link-row">
-          <span class="spec-chip">主役：誰に勝ったか</span>
-          <span class="spec-chip">補助：いつ勝ったか</span>
-          <span class="spec-chip">補助：どのラウンドで勝ったか</span>
-          <span class="spec-chip">補助：敗戦も反映</span>
+          <span class="spec-chip">主役：スコアの算出</span>
+          <span class="spec-chip">補足：ランキング表示</span>
         </div>
       </section>
 
       <section class="spec-card">
-        <h2>2. ランキング対象</h2>
+        <h2>2. スコアが表したいもの</h2>
         <p>
-          スコア計算には、<strong>2005年以降の対象大会の全試合</strong>を使います。
+          このスコアが表したいのは、<strong>「今バトルに出た場合、どれくらい強いと推定されるか」</strong>です。
         </p>
         <p>
-          ただし、ランキングに表示するのは、<strong>直近4年以内に対象大会で1試合以上あるMC</strong>のみです。
+          歴代最強や知名度の指標ではなく、<strong>過去の蓄積を残しつつ、最近の試合をより重く見た現在の強さ</strong>を表すことを目的にしています。
+        </p>
+        <p>
+          そのため、単純な勝利数や優勝回数の足し算ではなく、<strong>誰に勝ったか、いつの試合か、どのラウンドか、負けをどう扱うか</strong>を組み合わせて計算しています。
+        </p>
+
+        <div class="spec-link-row">
+          <span class="spec-chip">中心：誰に勝ったか</span>
+          <span class="spec-chip">補助：いつの試合か</span>
+          <span class="spec-chip">補助：どのラウンドか</span>
+          <span class="spec-chip">補助：負けも反映</span>
+        </div>
+      </section>
+
+      <section class="spec-card">
+        <h2>3. スコア計算の対象</h2>
+        <p>
+          スコア計算には、<strong>2005年以降の対象大会の全試合</strong>を使います。
         </p>
 
         <h3>含めるもの</h3>
@@ -335,25 +352,20 @@
           <li>不戦勝</li>
           <li>2on2・団体戦</li>
           <li>エキシビション</li>
-          <li>直近4年以内に対象大会の出場がないMC（ランキング表示対象外）</li>
         </ul>
+
+        <p>
+          つまり、スコアは<strong>対象となる本戦試合だけ</strong>を用いて機械的に更新しています。
+        </p>
       </section>
 
       <section class="spec-card">
-        <h2>3. スコアの基本的な考え方</h2>
+        <h2>4. スコアの基本構造</h2>
         <p>
-          スコアは、<strong>weighted Elo をベースに、試合を時系列で1つずつ積み上げて更新する方式</strong>で計算しています。
+          スコアは、<strong>weighted Elo をベースに、試合を古い順から1件ずつ反映して更新していく方式</strong>で計算しています。
         </p>
-
-        <ul class="spec-list">
-          <li><strong>誰に勝ったか</strong> … 強い相手に勝つほど上がりやすくなります。</li>
-          <li><strong>どのラウンドか</strong> … 大会終盤の勝敗ほど重く反映します。</li>
-          <li><strong>いつの試合か</strong> … 最近の試合ほど現在スコアに強く効きます。</li>
-          <li><strong>敗戦</strong> … 負けも反映しますが、勝利と完全に同じ重さではなく、やや軽めに減点します。</li>
-        </ul>
-
         <p>
-          つまり、<strong>勝利点や優勝点を後から足し算する方式ではなく、試合ごとに現在値を更新していく方式</strong>です。
+          後から勝利点や優勝点を足し算するのではなく、<strong>各試合の時点での両者のスコア差を見ながら、そのたびに現在値を更新</strong>します。
         </p>
 
         <h3>基本式</h3>
@@ -366,7 +378,7 @@ winnerRating = winnerRating + delta
 loserRating  = loserRating  - loserDelta</div>
 
         <p>
-          初期値は全MC共通でスタートし、そこから対象試合を古い順にたどって現在スコアを作っています。
+          初期値は全MC共通でスタートし、対象試合を順番にたどって現在スコアを作っています。
         </p>
 
         <div class="spec-formula">initialRating = 1500.00
@@ -375,43 +387,43 @@ lossPenaltyRate = 0.40</div>
       </section>
 
       <section class="spec-card">
-        <h2>4. 誰に勝ったか</h2>
+        <h2>5. 誰に勝ったか</h2>
         <p>
           スコアの中心は、<strong>対戦相手の強さ</strong>です。
-          すでに高い評価を受けている相手に勝つほど、スコアは大きく上がります。
         </p>
         <p>
+          すでに高い評価を受けている相手に勝つほど、上がり幅は大きくなります。  
           逆に、評価が低い相手への勝利は、上がり幅が比較的小さくなります。
         </p>
         <p>
-          つまりこのランキングでは、<strong>勝利数そのものよりも「誰に勝ったか」</strong>を重く見ています。
+          このため、同じ1勝でも価値は一律ではなく、<strong>勝利数そのものより「誰に勝ったか」</strong>を重く見ています。
         </p>
       </section>
 
       <section class="spec-card">
-        <h2>5. 負けの扱い</h2>
+        <h2>6. 負けの扱い</h2>
         <p>
-          このランキングでは、<strong>敗戦も反映</strong>します。
+          このスコアでは、<strong>敗戦も反映</strong>します。
         </p>
         <p>
-          ただし、敗戦を勝利と同じ重さで完全に相殺するのではなく、<strong>勝者の上がり幅に対して、敗者はその40%を減点</strong>する設計です。
+          ただし、勝者の上がり幅をそのまま敗者のマイナスにするのではなく、<strong>敗者の減点は勝者上昇分の40%</strong>にしています。
         </p>
         <p>
-          これは、強豪への大きな勝利を残しつつ、負けが多い場合には現在評価が上がりにくくなるようにするためです。
+          これは、強豪への大きな勝利の価値をある程度残しつつ、負けが多い場合には現在評価が伸びにくくなるようにするためです。
         </p>
         <p>
-          そのため、負けが全く無視されるわけではありませんが、<strong>勝利の価値をやや強めに残す</strong>バランスになっています。
+          つまり、負けは無視していませんが、<strong>勝利の価値をやや強めに残す設計</strong>です。
         </p>
       </section>
 
       <section class="spec-card">
-        <h2>6. いつ勝ったか</h2>
+        <h2>7. いつの試合か</h2>
         <p>
-          このランキングは「今出た場合の強さ」を見るため、試合の新しさも加味しています。
-          ただし、古い試合を切り捨てるのではなく、<strong>古い試合ほど影響を弱める</strong>設計です。
+          このスコアは「今の強さ」を見るため、試合の新しさも加味しています。
         </p>
         <p>
-          そのため、昔の実績も一定程度残しつつ、最近の試合をより強く反映する形になっています。
+          ただし、古い試合を切り捨てるのではなく、<strong>古い試合ほど効き方を弱める</strong>方式です。
+          そのため、昔の実績も残しつつ、最近の試合をより強く反映します。
         </p>
 
         <ul class="spec-list">
@@ -423,32 +435,31 @@ lossPenaltyRate = 0.40</div>
         </ul>
 
         <p>
-          つまり、スコア計算には2005年以降の全試合を使いますが、最近の試合ほど現在スコアに強く効くようにしています。
+          つまり、2005年以降の全試合を使いながら、<strong>最近の試合ほど現在スコアに強く効く</strong>ようにしています。
         </p>
       </section>
 
       <section class="spec-card">
-        <h2>7. どのラウンドで勝ったか</h2>
+        <h2>8. どのラウンドか</h2>
         <p>
-          同じ1勝でも、深いラウンドでの勝利ほど重く扱います。
-          これは、大会終盤の勝利ほど価値が高いと考えるためです。
+          同じ1勝でも、<strong>大会の深いラウンドでの勝利ほど重く扱います</strong>。
         </p>
         <p>
-          たとえば、序盤の勝利よりも、準決勝や決勝での勝利の方がスコアに強く反映されます。
+          序盤よりも、準決勝や決勝の勝敗の方が価値が高いと考えるためです。
         </p>
         <p>
-          現在は、<strong>Best64 を最小、Final を最大</strong>とする傾斜を置いています。
+          現在は、<strong>Best64 を最小、Final を最大</strong>とする傾斜を置いています。  
           また、<strong>Best8以降はやや強めに効く</strong>ように調整しています。
         </p>
         <p>
-          ラウンド重みは固定点を後から加算するのではなく、<strong>各試合の変動幅そのものに掛けて反映</strong>しています。
+          これも固定点を後から加える方式ではなく、<strong>各試合の変動幅そのものに掛けて反映</strong>しています。
         </p>
       </section>
 
       <section class="spec-card">
-        <h2>8. 入れていないもの</h2>
+        <h2>9. スコアに入れていないもの</h2>
         <p>
-          このランキングでは、次のような要素は直接スコアに入れていません。
+          このスコアでは、次のような要素は直接入れていません。
         </p>
 
         <ul class="spec-list">
@@ -463,53 +474,50 @@ lossPenaltyRate = 0.40</div>
         </ul>
 
         <p>
-          つまり、<strong>人の印象ではなく、試合結果ベースで機械的に計算した指標</strong>です。
+          つまり、<strong>人の印象ではなく、試合結果ベースで機械的に算出した指標</strong>です。
         </p>
       </section>
 
       <section class="spec-card">
-        <h2>9. このランキングの見方</h2>
+        <h2>10. ランキングとの関係</h2>
         <p>
-          このランキングは、<strong>長期的な実力の蓄積を残しつつ、最近の試合をより重く見た現在推定強度</strong>を見るためのものです。
+          スコアランキングは、<strong>このスコアを順位順に並べて表示したもの</strong>です。
         </p>
         <p>
-          そのため、最近ほとんど出ていない実力者が完全にゼロから評価されるわけではありませんが、<strong>直近4年出場がないMCはランキング表示の対象外</strong>です。
+          ただし、ランキング表示の対象は、<strong>直近4年以内に対象大会で1試合以上あるMC</strong>のみです。
+        </p>
+        <p>
+          そのため、スコア計算には過去試合が使われていても、<strong>長期不出場MCはランキング表示対象外</strong>となります。
         </p>
         <p>
           対象外のMCについては、ランキングだけでなくMC詳細ページでもスコアを表示しません。
         </p>
-        <p>
-          また、現在は<strong>勝利の価値をやや強めに残す設計</strong>のため、強豪への大きな勝利は数回の敗戦だけでは消えにくくなっています。
-        </p>
       </section>
 
       <section class="spec-card">
-        <h2>10. 仮想MCバトルとの関係</h2>
+        <h2>11. 仮想MCバトルとの関係</h2>
         <p>
-          仮想MCバトルの「今の強さでシミュレーションする」モードも、基本的にはこの考え方に沿っています。
+          仮想MCバトルの「今の強さでシミュレーションする」モードも、基本的にはこのスコアの考え方を土台にしています。
         </p>
         <p>
           そのため、ランキング表示対象外となる長期不出場MCは、シミュレーション候補からも外れます。
         </p>
         <p>
-          また、シミュレーションでは現在スコアをベースにしつつ、特定のMC同士の直接対戦相性も少しだけ加味しています。
-        </p>
-        <p>
-          ただし、シミュレーション側の勝率変換は別ロジックなので、<strong>ランキング順位と優勝率がそのまま1対1対応するわけではありません</strong>。
+          ただし、シミュレーションでは現在スコアをベースにしつつ、特定のMC同士の直接対戦相性も少しだけ加味しているため、<strong>順位と優勝率がそのまま1対1対応するわけではありません</strong>。
         </p>
       </section>
 
       <section class="spec-card">
-        <h2>11. 今後の見直しについて</h2>
+        <h2>12. 今後の見直し</h2>
         <p>
-          スコアリングの考え方は今後も改善の余地があります。
+          スコアリングの考え方には、今後も改善の余地があります。
         </p>
         <p>
           特に、<strong>敗戦の重み、最近の試合をどこまで強く見るか、ラウンド重みの傾斜</strong>については、継続的に見直していきます。
         </p>
 
         <div class="form-card">
-          <p>もしスコアリングの仕様にご意見ある場合は、以下のフォームから気軽に連絡して下さい。(内容によりお返事ができない場合もあります)</p>
+          <p>スコアリングの仕様について意見がある場合は、以下のフォームから連絡して下さい。（内容により返信できない場合があります）</p>
           <a href="contact.html" class="form-link">問い合わせフォーム</a>
         </div>
       </section>
