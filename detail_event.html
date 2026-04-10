@@ -243,11 +243,11 @@
       <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
 
       <nav class="page-nav-pills" aria-label="主要メニュー">
-        <a class="page-nav-pill" href="events.html">大会一覧</a>
-        <a class="page-nav-pill" href="mcs.html">MC一覧</a>
+        <a class="page-nav-pill" href="list_event.html">大会一覧</a>
+        <a class="page-nav-pill" href="list_mc.html">MC一覧</a>
         <span class="page-nav-break" aria-hidden="true"></span>
-        <a class="page-nav-pill" href="rankings.html">スコアランキング</a>
-        <a class="page-nav-pill" href="prize_rankings.html">賞金ランキング</a>
+        <a class="page-nav-pill" href="score_ranking.html">スコアランキング</a>
+        <a class="page-nav-pill" href="prize_ranking.html">賞金ランキング</a>
       </nav>
 
       <div class="page-header-block">
@@ -334,7 +334,7 @@
 
       if (!safeName) return "";
       if (!safeId) return `<span>${safeName}</span>`;
-      return `<a href="./mc.html?mc_id=${encodeURIComponent(safeId)}">${safeName}</a>`;
+      return `<a href="./detail_mc.html?mc_id=${encodeURIComponent(safeId)}">${safeName}</a>`;
     }
 
     function normalizeRoundLabel(roundName) {
