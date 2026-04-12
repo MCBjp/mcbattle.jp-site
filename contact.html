@@ -194,6 +194,12 @@
       box-shadow:0 0 14px rgba(216,180,106,.10);
     }
 
+    .contact-submit:disabled{
+      opacity:.65;
+      cursor:default;
+      transform:none;
+    }
+
     .contact-alert{
       margin:0 0 12px;
       padding:10px 12px;
@@ -216,6 +222,13 @@
 
     .honeypot{
       display:none !important;
+    }
+
+    .contact-iframe{
+      display:none;
+      width:0;
+      height:0;
+      border:0;
     }
 
     @media (max-width: 640px) {
@@ -321,6 +334,7 @@
         class="contact-form"
         method="post"
         action="https://script.google.com/macros/s/AKfycbzhHrTz16hM0AtyXw1tr8Z63veK24Q-DJvQk2jOXUJ1tde2YwKKf1xj9OHe0bawfYgkeg/exec"
+        target="contact-submit-target"
       >
         <div class="contact-field">
           <label class="contact-label" for="contact-title">タイトル</label>
@@ -367,9 +381,16 @@
         </p>
 
         <div class="contact-actions">
-          <button class="contact-submit" type="submit">送信する</button>
+          <button id="contact-submit" class="contact-submit" type="submit">送信する</button>
         </div>
       </form>
+
+      <iframe
+        id="contact-submit-target"
+        name="contact-submit-target"
+        class="contact-iframe"
+        title="contact submit target"
+      ></iframe>
     </section>
   </div>
 
@@ -382,10 +403,15 @@
       const messageEl = document.getElementById("contact-message");
       const contextTypeEl = document.getElementById("contact-context-type");
       const contextNameEl = document.getElementById("contact-context-name");
+      const formEl = document.getElementById("contact-form");
+      const submitEl = document.getElementById("contact-submit");
+      const iframeEl = document.getElementById("contact-submit-target");
 
       const type = params.get("type") || "";
       const eventName = params.get("event_name") || "";
       const mcName = params.get("mc_name") || "";
+
+      let submitting = false;
 
       if (params.get("sent") === "1") {
         successEl.classList.remove("honeypot");
@@ -393,6 +419,11 @@
 
       if (params.get("error") === "1") {
         errorEl.classList.remove("honeypot");
+      }
+
+      function hideAlerts() {
+        successEl.classList.add("honeypot");
+        errorEl.classList.add("honeypot");
       }
 
       function setMessageIfEmpty(text) {
@@ -414,6 +445,42 @@
         contextNameEl.value = mcName;
         setMessageIfEmpty(`【対象MC】${mcName}\n\n`);
       }
+
+      formEl.addEventListener("submit", function () {
+        hideAlerts();
+        submitting = true;
+        submitEl.disabled = true;
+        submitEl.textContent = "送信中…";
+      });
+
+      iframeEl.addEventListener("load", function () {
+        if (!submitting) return;
+
+        submitting = false;
+        submitEl.disabled = false;
+        submitEl.textContent = "送信する";
+
+        successEl.classList.remove("honeypot");
+        errorEl.classList.add("honeypot");
+
+        formEl.reset();
+        contextTypeEl.value = "";
+        contextNameEl.value = "";
+
+        if (type === "event" && eventName) {
+          titleEl.value = "試合結果等のご意見";
+          contextTypeEl.value = "event";
+          contextNameEl.value = eventName;
+          messageEl.value = `【対象大会】${eventName}\n\n`;
+        }
+
+        if (type === "mc" && mcName) {
+          titleEl.value = "MCデータのご意見";
+          contextTypeEl.value = "mc";
+          contextNameEl.value = mcName;
+          messageEl.value = `【対象MC】${mcName}\n\n`;
+        }
+      });
     })();
   </script>
 </body>
