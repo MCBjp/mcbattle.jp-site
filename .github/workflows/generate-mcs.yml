@@ -7,6 +7,7 @@ on:
       - main
     paths-ignore:
       - 'detail_mc/**'
+      - 'sitemap.xml'
 
 permissions:
   contents: write
@@ -27,14 +28,17 @@ jobs:
       - name: Generate MC pages
         run: node scripts/generate-mcs.js
 
+      - name: Generate sitemap
+        run: node scripts/generate-sitemap.js
+
       - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add detail_mc
+          git add detail_mc sitemap.xml
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Generate static MC pages"
+            git commit -m "Generate static MC pages and sitemap"
             git push
           fi
