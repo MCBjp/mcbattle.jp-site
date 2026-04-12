@@ -9,17 +9,17 @@
       location.replace('./maintenance.html');
     }
   </script>
-<meta name="description" content="国内MCバトルの大会記録、試合結果、MCごとの戦績、優勝歴、独自スコアを掲載するデータベースサイトです。">
-<title>MCBattle.jp | 国内MCバトル大会・MC・戦績データベース</title>
+  <meta name="description" content="国内MCバトルの大会記録、試合結果、MCごとの戦績、優勝歴、独自スコアを掲載するデータベースサイトです。">
+  <title>MCBattle.jp | 国内MCバトル大会・MC・戦績データベース</title>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-9C8VGD3THB');
-</script>
+    gtag('config', 'G-9C8VGD3THB');
+  </script>
   <link rel="stylesheet" href="style.css" />
   <style>
     :root{
@@ -792,7 +792,7 @@
         const eventId = getEventId(event);
         const name = getEventName(event);
         const date = formatDateJP(getEventDate(event));
-        const href = eventId ? `detail_event.html?event_id=${encodeURIComponent(eventId)}` : "list_event.html";
+        const href = eventId ? `detail_event/${encodeURIComponent(eventId)}.html` : "list_event.html";
 
         return `
           <a class="list-row" href="${href}">
@@ -841,7 +841,7 @@
         const name = getMcName(item);
         const rank = getRank(item, index);
         const score = getScore(item);
-        const href = mcId ? `detail_mc.html?mc_id=${encodeURIComponent(mcId)}` : "list_mc.html";
+        const href = mcId ? `detail_mc/${encodeURIComponent(mcId)}.html` : "list_mc.html";
 
         return `
           <a class="list-row" href="${href}">
@@ -869,7 +869,7 @@
         const name = getMcName(item);
         const rank = getRank(item, index);
         const prize = getPrize(item);
-        const href = mcId ? `detail_mc.html?mc_id=${encodeURIComponent(mcId)}` : "list_mc.html";
+        const href = mcId ? `detail_mc/${encodeURIComponent(mcId)}.html` : "list_mc.html";
 
         return `
           <a class="list-row" href="${href}">
