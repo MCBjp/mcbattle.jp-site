@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MC一覧 | 国内MCバトルMCデータベース | MCBattle.jp</title>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9C8VGD3THB');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9C8VGD3THB');
+  </script>
   <meta name="description" content="国内MCバトルに出場したMCの一覧ページです。五十音順でMCを探せて、各MCの詳細ページから戦績、出場大会、優勝歴、獲得賞金、スコアを確認できます。">
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -336,7 +335,7 @@
         const name = String(mc.mc_name || "MC名不明");
 
         if (mcId) {
-          li.innerHTML = `<a class="mc-link" href="detail_mc.html?mc_id=${encodeURIComponent(mcId)}">${escapeHtml(name)}</a>`;
+          li.innerHTML = `<a class="mc-link" href="detail_mc/${encodeURIComponent(mcId)}.html">${escapeHtml(name)}</a>`;
         } else {
           li.innerHTML = `<span class="mc-link-static">${escapeHtml(name)}</span>`;
         }
@@ -350,7 +349,7 @@
     async function loadMcsJson() {
       const res = await fetch(MCS_JSON_URL, { cache: "no-store" });
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
+        throw new Error(\`HTTP \${res.status}\`);
       }
       return await res.json();
     }
