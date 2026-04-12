@@ -348,9 +348,9 @@
 
     async function loadMcsJson() {
       const res = await fetch(MCS_JSON_URL, { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(\`HTTP \${res.status}\`);
-      }
+if (!res.ok) {
+  throw new Error(`HTTP ${res.status}`);
+}
       return await res.json();
     }
 
