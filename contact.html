@@ -1,3 +1,420 @@
-<p style="word-break:break-all;color:#fff;">
-  https://script.google.com/macros/s/AKfycbzhHrTz16hM0AtyXw1tr8Z63veK24Q-DJvQk2jOXUJ1tde2YwKKf1xj9OHe0bawfYgkeg/exec
-</p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>問い合わせフォーム | MCBattle.jp</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-page{
+      overflow-x:hidden;
+    }
+
+    .page-top{
+      margin-bottom:18px;
+    }
+
+    .page-mini-logo{
+      margin:0 0 10px;
+    }
+
+    .page-mini-logo .site-mini-logo{
+      text-decoration:none;
+    }
+
+    .page-nav-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:0 0 14px;
+      max-width:100%;
+    }
+
+    .page-nav-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.04);
+      color:var(--accent);
+      text-decoration:none;
+      font-size:0.93rem;
+      font-weight:700;
+      line-height:1.2;
+      transition:
+        transform 0.18s ease,
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
+    }
+
+    .page-nav-pill:hover{
+      text-decoration:none;
+      transform:translateY(-1px);
+      background:rgba(255,255,255,0.07);
+      border-color:var(--line-strong);
+      box-shadow:0 0 18px rgba(135, 164, 255, 0.08);
+      opacity:1;
+    }
+
+    .page-nav-break{
+      flex-basis:100%;
+      height:0;
+    }
+
+    .page-header-block{
+      margin-bottom:14px;
+    }
+
+    .page-header-block h1{
+      margin:0;
+      text-wrap:balance;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
+
+    .contact-card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
+        linear-gradient(180deg, var(--panel) 0%, rgba(14, 18, 28, 0.98) 100%);
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .contact-lead{
+      margin:0 0 12px;
+      color:var(--muted);
+      line-height:1.62;
+      font-size:0.9rem;
+    }
+
+    .contact-form{
+      display:flex;
+      flex-direction:column;
+      gap:11px;
+    }
+
+    .contact-field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:0;
+    }
+
+    .contact-label{
+      color:var(--accent);
+      font-weight:700;
+      line-height:1.35;
+      font-size:0.9rem;
+    }
+
+    .contact-input,
+    .contact-select,
+    .contact-textarea{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+      font:inherit;
+      outline:none;
+      box-sizing:border-box;
+      transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background-color 0.18s ease;
+    }
+
+    .contact-input,
+    .contact-select{
+      min-height:42px;
+      padding:0 12px;
+      font-size:0.94rem;
+    }
+
+    .contact-textarea{
+      min-height:128px;
+      padding:10px 12px;
+      resize:vertical;
+      line-height:1.58;
+      font-size:0.94rem;
+    }
+
+    .contact-input:focus,
+    .contact-select:focus,
+    .contact-textarea:focus{
+      border-color:var(--line-strong);
+      box-shadow:0 0 0 3px rgba(216, 180, 106, 0.08);
+      background:rgba(255,255,255,0.05);
+    }
+
+    .contact-help{
+      margin:0;
+      color:var(--muted);
+      font-size:0.86rem;
+      line-height:1.58;
+    }
+
+    .contact-actions{
+      display:flex;
+      flex-direction:column;
+      gap:9px;
+      margin-top:2px;
+    }
+
+    .contact-submit{
+      width:100%;
+      min-height:44px;
+      border:1px solid rgba(216,180,106,.26);
+      border-radius:999px;
+      background:rgba(216,180,106,.10);
+      color:var(--text);
+      font:inherit;
+      font-weight:800;
+      font-size:0.96rem;
+      cursor:pointer;
+      transition:
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        box-shadow 0.18s ease,
+        background-color 0.18s ease,
+        border-color 0.18s ease;
+    }
+
+    .contact-submit:hover{
+      transform:translateY(-1px);
+      background:rgba(216,180,106,.14);
+      border-color:rgba(216,180,106,.34);
+      box-shadow:0 0 14px rgba(216,180,106,.10);
+    }
+
+    .contact-alert{
+      margin:0 0 12px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.03);
+      line-height:1.58;
+      font-size:0.88rem;
+    }
+
+    .contact-alert.success{
+      color:var(--text);
+    }
+
+    .contact-alert.error{
+      color:#f0caca;
+      border-color:rgba(255,123,123,.24);
+      background:rgba(255,123,123,.05);
+    }
+
+    .honeypot{
+      display:none !important;
+    }
+
+    @media (max-width: 640px) {
+      .page-top{
+        margin-bottom:14px;
+      }
+
+      .page-mini-logo{
+        margin-bottom:8px;
+      }
+
+      .page-nav-pills{
+        gap:7px;
+        margin-bottom:12px;
+      }
+
+      .page-nav-pill{
+        min-height:34px;
+        padding:0 12px;
+        font-size:0.86rem;
+      }
+
+      .page-header-block{
+        margin-bottom:12px;
+      }
+
+      .page-header-block h1{
+        font-size:clamp(1.5rem, 5.3vw, 1.95rem);
+        line-height:1.12;
+      }
+
+      .contact-card{
+        padding:14px;
+        border-radius:16px;
+      }
+
+      .contact-lead{
+        font-size:0.84rem;
+        line-height:1.5;
+      }
+
+      .contact-label{
+        font-size:0.85rem;
+      }
+
+      .contact-input,
+      .contact-select{
+        min-height:40px;
+        font-size:0.9rem;
+      }
+
+      .contact-textarea{
+        min-height:120px;
+        font-size:0.9rem;
+        line-height:1.5;
+      }
+
+      .contact-help{
+        font-size:0.8rem;
+        line-height:1.5;
+      }
+
+      .contact-alert{
+        font-size:0.84rem;
+        line-height:1.5;
+      }
+
+      .contact-submit{
+        min-height:42px;
+        font-size:0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page contact-page">
+    <div class="page-top">
+      <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
+
+      <nav class="page-nav-pills" aria-label="主要メニュー">
+        <a class="page-nav-pill" href="list_event.html">大会一覧</a>
+        <a class="page-nav-pill" href="list_mc.html">MC一覧</a>
+        <span class="page-nav-break" aria-hidden="true"></span>
+        <a class="page-nav-pill" href="score_ranking.html">スコアランキング</a>
+        <a class="page-nav-pill" href="prize_ranking.html">賞金ランキング</a>
+      </nav>
+
+      <div class="page-header-block">
+        <h1>問い合わせフォーム</h1>
+      </div>
+    </div>
+
+    <section class="contact-card">
+      <p class="contact-lead">
+        ご意見、ご指摘、ご要望がありましたら、お気軽にご連絡下さい。
+      </p>
+
+      <p id="contact-alert-success" class="contact-alert success honeypot">送信しました。ありがとうございます。</p>
+      <p id="contact-alert-error" class="contact-alert error honeypot">送信に失敗しました。時間をおいてもう一度お試しください。</p>
+
+      <form
+        id="contact-form"
+        class="contact-form"
+        method="post"
+        action="https://script.google.com/macros/s/AKfycbzhHrTz16hM0AtyXw1tr8Z63veK24Q-DJvQk2jOXUJ1tde2YwKKf1xj9OHe0bawfYgkeg/exec"
+      >
+        <div class="contact-field">
+          <label class="contact-label" for="contact-title">タイトル</label>
+          <select id="contact-title" name="title" class="contact-select" required>
+            <option value="">選択してください</option>
+            <option value="スコアリング仕様のご意見">スコアリング仕様のご意見</option>
+            <option value="試合結果等のご意見">試合結果等のご意見</option>
+            <option value="MCデータのご意見">MCデータのご意見</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <div class="contact-field">
+          <label class="contact-label" for="contact-email">メールアドレス（任意）</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            class="contact-input"
+            placeholder="yourmail@example.com"
+          />
+        </div>
+
+        <div class="contact-field">
+          <label class="contact-label" for="contact-message">本文</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            class="contact-textarea"
+            placeholder="内容を入力してください"
+            required
+          ></textarea>
+        </div>
+
+        <input id="contact-context-type" type="hidden" name="context_type" value="" />
+        <input id="contact-context-name" type="hidden" name="context_name" value="" />
+        <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" />
+
+        <input type="hidden" name="redirect_success" value="https://mcbattle.jp/contact.html?sent=1" />
+        <input type="hidden" name="redirect_error" value="https://mcbattle.jp/contact.html?error=1" />
+
+        <p class="contact-help">
+          内容は必ず確認いたしますが、内容により返信ができない場合があります。ご了承下さい。
+        </p>
+
+        <div class="contact-actions">
+          <button class="contact-submit" type="submit">送信する</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const successEl = document.getElementById("contact-alert-success");
+      const errorEl = document.getElementById("contact-alert-error");
+      const titleEl = document.getElementById("contact-title");
+      const messageEl = document.getElementById("contact-message");
+      const contextTypeEl = document.getElementById("contact-context-type");
+      const contextNameEl = document.getElementById("contact-context-name");
+
+      const type = params.get("type") || "";
+      const eventName = params.get("event_name") || "";
+      const mcName = params.get("mc_name") || "";
+
+      if (params.get("sent") === "1") {
+        successEl.classList.remove("honeypot");
+      }
+
+      if (params.get("error") === "1") {
+        errorEl.classList.remove("honeypot");
+      }
+
+      function setMessageIfEmpty(text) {
+        if (!messageEl.value.trim()) {
+          messageEl.value = text;
+        }
+      }
+
+      if (type === "event" && eventName) {
+        titleEl.value = "試合結果等のご意見";
+        contextTypeEl.value = "event";
+        contextNameEl.value = eventName;
+        setMessageIfEmpty(`【対象大会】${eventName}\n\n`);
+      }
+
+      if (type === "mc" && mcName) {
+        titleEl.value = "MCデータのご意見";
+        contextTypeEl.value = "mc";
+        contextNameEl.value = mcName;
+        setMessageIfEmpty(`【対象MC】${mcName}\n\n`);
+      }
+    })();
+  </script>
+</body>
+</html>
