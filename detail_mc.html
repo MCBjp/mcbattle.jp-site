@@ -5,15 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MC詳細 | MCBattle.jp</title>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9C8VGD3THB');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9C8VGD3THB');
+  </script>
   <meta name="description" content="国内MCバトルのMCごとの戦績、出場大会、優勝歴、獲得賞金、スコアを掲載する詳細ページです。">
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const mcId = (params.get("mc_id") || "").trim();
+      if (!mcId) return;
+
+      const staticUrl = `https://mcbattle.jp/detail_mc/${encodeURIComponent(mcId)}.html`;
+
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.setAttribute("rel", "canonical");
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute("href", staticUrl);
+
+      if (!window.location.pathname.includes("/detail_mc/")) {
+        window.location.replace(staticUrl);
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="style.css" />
   <style>
     .page-top{
@@ -564,6 +586,17 @@
       meta.setAttribute("content", content);
     }
 
+    function setCanonicalUrl(url) {
+      if (!url) return;
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.setAttribute("rel", "canonical");
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute("href", url);
+    }
+
     function escapeHtml(value) {
       return String(value ?? "")
         .replace(/&/g, "&amp;")
@@ -625,7 +658,7 @@
       if (!safeName) return "";
       if (!safeId) return `<span>${safeName}</span>`;
 
-      return `<a href="./detail_mc.html?mc_id=${encodeURIComponent(safeId)}">${safeName}</a>`;
+      return `<a href="./detail_mc/${encodeURIComponent(safeId)}.html">${safeName}</a>`;
     }
 
     function renderBattleEvent(name, eventId) {
@@ -637,7 +670,7 @@
 
       return `
         <span class="battle-event">
-          <a href="./detail_event.html?event_id=${encodeURIComponent(safeId)}" class="battle-event-link">${safeName}</a>
+          <a href="./detail_event/${encodeURIComponent(safeId)}.html" class="battle-event-link">${safeName}</a>
         </span>
       `;
     }
@@ -656,7 +689,7 @@
       }
 
       return `
-        <a href="./detail_event.html?event_id=${encodeURIComponent(safeId)}">
+        <a href="./detail_event/${encodeURIComponent(safeId)}.html">
           <span class="appearance-name">${safeName}</span>
           ${safeDate ? `<span class="appearance-date">${safeDate}</span>` : ""}
         </a>
@@ -672,7 +705,7 @@
       if (safeEventId) {
         return `
           <span class="championship-line">
-            <a class="championship-event-link" href="./detail_event.html?event_id=${encodeURIComponent(safeEventId)}">${eventName}</a>
+            <a class="championship-event-link" href="./detail_event/${encodeURIComponent(safeEventId)}.html">${eventName}</a>
           </span>
         `;
       }
@@ -916,6 +949,9 @@
         titleEl.textContent = mcName;
         document.title = `${mcName} | 戦績・出場大会・優勝歴 | MCBattle.jp`;
         metaEl.textContent = "";
+
+        const canonicalUrl = `https://mcbattle.jp/detail_mc/${encodeURIComponent(mcId)}.html`;
+        setCanonicalUrl(canonicalUrl);
 
         const rankDisplay = getRankDisplay(ranking);
         const scoreDisplay = getScoreDisplay(ranking);
