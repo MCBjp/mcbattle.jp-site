@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>賞金ランキング | MCバトル賞金ランキング | MCBattle.jp</title>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-9C8VGD3THB');
-</script>
+    gtag('config', 'G-9C8VGD3THB');
+  </script>
   <meta name="description" content="国内MCバトルの獲得賞金ランキングページです。優勝賞金の累計をもとに、各MCの賞金順位を掲載しています。">
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -356,7 +356,7 @@
 
         if (item.mc_id) {
           const a = document.createElement("a");
-          a.href = `detail_mc.html?mc_id=${encodeURIComponent(item.mc_id)}`;
+          a.href = `detail_mc/${encodeURIComponent(item.mc_id)}.html`;
           a.textContent = item.mc_name;
           a.title = item.mc_name;
           nameWrap.appendChild(a);
@@ -416,7 +416,7 @@
 
               if (item.mc_id) {
                 const a = document.createElement("a");
-                a.href = `detail_mc.html?mc_id=${encodeURIComponent(item.mc_id)}`;
+                a.href = `detail_mc/${encodeURIComponent(item.mc_id)}.html`;
                 a.textContent = item.mc_name;
                 a.className = "prize-name-link";
                 nameTd.appendChild(a);
