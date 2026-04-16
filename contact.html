@@ -4,15 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>問い合わせフォーム | MCBattle.jp</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta name="description" content="MCBattle.jpへの問い合わせフォームです。" />
+  <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href="https://mcbattle.jp/contact.html" />
 
-  gtag('config', 'G-9C8VGD3THB');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9C8VGD3THB');
+  </script>
+
   <link rel="stylesheet" href="style.css" />
   <style>
     .contact-page{
@@ -413,6 +418,8 @@
       const type = params.get("type") || "";
       const eventName = params.get("event_name") || "";
       const mcName = params.get("mc_name") || "";
+      const sent = params.get("sent") || "";
+      const error = params.get("error") || "";
 
       let submitting = false;
 
@@ -437,11 +444,11 @@
         }
       }
 
-      if (params.get("sent") === "1") {
+      if (sent === "1") {
         successEl.classList.remove("honeypot");
       }
 
-      if (params.get("error") === "1") {
+      if (error === "1") {
         errorEl.classList.remove("honeypot");
       }
 
@@ -499,6 +506,10 @@
 
         window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
       });
+
+      if (window.location.search) {
+        window.history.replaceState({}, document.title, "/contact.html");
+      }
     })();
   </script>
 </body>
