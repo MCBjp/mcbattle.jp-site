@@ -54,6 +54,7 @@ function buildMcHtml(template, mcId, detail) {
   const mcName = safeString(mc.mc_name || "このMC");
   const pageTitle = `${mcName} | 戦績・優勝歴・賞金・出場大会 | MCBattle.jp`;
   const metaDescription = buildMetaDescription(mcName, summary, championships, totalPrizeMoney);
+  const mcMeta = buildMcMeta(mcName, summary, championships, totalPrizeMoney);
 
   const rankDisplay = getRankDisplay(ranking);
   const scoreDisplay = getScoreDisplay(ranking);
@@ -90,7 +91,7 @@ function buildMcHtml(template, mcId, detail) {
     .replaceAll("__BREADCRUMB_JSON_LD__", escapeScriptJson(breadcrumbJsonLd))
     .replaceAll("__PROFILE_JSON_LD__", escapeScriptJson(profileJsonLd))
     .replaceAll("__MC_TITLE__", escapeHtml(mcName))
-    .replaceAll("__MC_META__", "")
+    .replaceAll("__MC_META__", escapeHtml(mcMeta))
     .replaceAll("__STATE_CARD_HIDDEN_CLASS__", "is-hidden")
     .replaceAll("__STATE_MESSAGE_ERROR_CLASS__", "")
     .replaceAll("__STATE_MESSAGE__", "")
@@ -136,6 +137,33 @@ function buildMetaDescription(mcName, summary, championships, totalPrizeMoney) {
       ? `獲得賞金総額は¥${formatYen(totalPrizeMoney)}。`
       : "",
     "出場大会、戦績、スコアを掲載しています。"
+  ].filter(Boolean);
+
+  return parts.join(" ");
+}
+
+function buildMcMeta(mcName, summary, championships, totalPrizeMoney) {
+  const totalMatches = summary && summary.total_matches !== undefined && summary.total_matches !== null
+    ? Number(summary.total_matches)
+    : null;
+  const wins = summary && summary.wins !== undefined && summary.wins !== null
+    ? Number(summary.wins)
+    : null;
+  const losses = summary && summary.losses !== undefined && summary.losses !== null
+    ? Number(summary.losses)
+    : null;
+
+  const parts = [
+    `${mcName}の戦績、優勝歴、出場大会、賞金、スコアを掲載しています。`,
+    totalMatches !== null && Number.isFinite(totalMatches) && wins !== null && Number.isFinite(wins) && losses !== null && Number.isFinite(losses)
+      ? `戦績は${totalMatches}試合${wins}勝${losses}敗。`
+      : "",
+    championships.length
+      ? `優勝歴${championships.length}回。`
+      : "",
+    Number(totalPrizeMoney) > 0
+      ? `獲得賞金総額¥${formatYen(totalPrizeMoney)}。`
+      : ""
   ].filter(Boolean);
 
   return parts.join(" ");
