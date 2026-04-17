@@ -1,36 +1,94 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D0raham | 戦績・優勝歴・賞金・出場大会 | MCBattle.jp</title>
+const fs = require("fs");
+const path = require("path");
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9C8VGD3THB');
-  </script>
+const ROOT_DIR = process.cwd();
+const TEMPLATE_PATH = path.join(ROOT_DIR, "templates", "mc-template.html");
+const DATA_PATH = path.join(ROOT_DIR, "data", "mc_details_all.json");
+const OUTPUT_DIR = path.join(ROOT_DIR, "detail_mc");
 
-  <meta name="description" content="D0rahamの戦績・優勝歴・出場大会ページです。 戦績は4試合2勝2敗。 出場大会、戦績、スコアを掲載しています。" />
-  <link rel="canonical" href="https://mcbattle.jp/detail_mc/MC0778.html" />
+const COLLAPSE_LIMIT_BATTLE = 5;
+const COLLAPSE_LIMIT_APPEARANCE = 10;
 
-  <meta property="og:type" content="profile" />
-  <meta property="og:site_name" content="MCBattle.jp" />
-  <meta property="og:title" content="D0raham | 戦績・優勝歴・賞金・出場大会 | MCBattle.jp" />
-  <meta property="og:description" content="D0rahamの戦績・優勝歴・出場大会ページです。 戦績は4試合2勝2敗。 出場大会、戦績、スコアを掲載しています。" />
-  <meta property="og:url" content="https://mcbattle.jp/detail_mc/MC0778.html" />
-  <meta property="og:image" content="https://mcbattle.jp/ogp.jpg" />
+function main() {
+  ensureFileExists(TEMPLATE_PATH);
+  ensureFileExists(DATA_PATH);
+  ensureDir(OUTPUT_DIR);
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="D0raham | 戦績・優勝歴・賞金・出場大会 | MCBattle.jp" />
-  <meta name="twitter:description" content="D0rahamの戦績・優勝歴・出場大会ページです。 戦績は4試合2勝2敗。 出場大会、戦績、スコアを掲載しています。" />
-  <meta name="twitter:image" content="https://mcbattle.jp/ogp.jpg" />
+  const template = fs.readFileSync(TEMPLATE_PATH, "utf8");
+  const raw = fs.readFileSync(DATA_PATH, "utf8");
+  const data = JSON.parse(raw);
 
-  <script type="application/ld+json">
-{
+  const detailMap = data && data.mc_details ? data.mc_details : {};
+  const mcIds = Object.keys(detailMap);
+
+  if (!mcIds.length) {
+    console.log("mc_details が見つかりませんでした。");
+    return;
+  }
+
+  let generatedCount = 0;
+
+  for (const mcId of mcIds) {
+    const detail = detailMap[mcId];
+    if (!detail || !detail.mc) continue;
+
+    const html = buildMcHtml(template, mcId, detail);
+    const outPath = path.join(OUTPUT_DIR, `${mcId}.html`);
+    fs.writeFileSync(outPath, html, "utf8");
+    generatedCount += 1;
+  }
+
+  console.log(`MC静的ページ生成完了: ${generatedCount}件`);
+}
+
+function buildMcHtml(template, mcId, detail) {
+  const mc = detail.mc || {};
+  const ranking = detail.ranking || {};
+  const summary = detail.summary || {};
+  const appearances = sortAppearances(Array.isArray(detail.participated_events) ? detail.participated_events : []);
+  const wins = sortMatchHistory(Array.isArray(detail.wins_against) ? detail.wins_against : []);
+  const losses = sortMatchHistory(Array.isArray(detail.losses_against) ? detail.losses_against : []);
+  const championships = Array.isArray(detail.championships) ? detail.championships : [];
+  const totalPrizeMoney = detail.total_prize_money ?? 0;
+
+  const mcName = safeString(mc.mc_name || "このMC");
+  const pageTitle = `${mcName} | 戦績・優勝歴・賞金・出場大会 | MCBattle.jp`;
+  const metaDescription = buildMetaDescription(mcName, summary, championships, totalPrizeMoney);
+  const mcMeta = buildMcMeta(mcName, summary, championships, totalPrizeMoney);
+
+  const rankDisplay = getRankDisplay(ranking);
+  const scoreDisplay = getScoreDisplay(ranking);
+  const rankingStatus = safeString(ranking.ranking_status || "");
+  const rankingNote = rankingStatus === "inactive_3y" || rankingStatus === "inactive_4y"
+    ? "直近の参加実績不足によりスコア対象外"
+    : "";
+
+  const mcInfoListItems = buildMcInfoListItems({
+    summary,
+    championships,
+    totalPrizeMoney,
+    rankingStatus,
+    rankDisplay,
+    scoreDisplay,
+    rankingNote
+  });
+
+  const winsListItems = buildBattleListItems(wins);
+  const lossesListItems = buildBattleListItems(losses);
+  const appearancesListItems = buildAppearanceListItems(appearances);
+
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(mcId, mcName);
+  const profileJsonLd = buildProfileJsonLd(mcId, mcName, metaDescription);
+
+  const winsHasMore = wins.length > COLLAPSE_LIMIT_BATTLE;
+  const lossesHasMore = losses.length > COLLAPSE_LIMIT_BATTLE;
+  const appearancesHasMore = appearances.length > COLLAPSE_LIMIT_APPEARANCE;
+
+  return template
+    .replaceAll("D0raham | 戦績・優勝歴・賞金・出場大会 | MCBattle.jp", escapeHtml(pageTitle))
+    .replaceAll("D0rahamの戦績・優勝歴・出場大会ページです。 戦績は4試合2勝2敗。 出場大会、戦績、スコアを掲載しています。", escapeHtml(metaDescription))
+    .replaceAll("MC0778", escapeHtml(String(mcId)))
+    .replaceAll("{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -53,11 +111,8 @@
       "item": "https://mcbattle.jp/detail_mc/MC0778.html"
     }
   ]
-}
-  </script>
-
-  <script type="application/ld+json">
-{
+}", escapeScriptJson(breadcrumbJsonLd))
+    .replaceAll("{
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   "name": "D0raham | MCBattle.jp",
@@ -67,600 +122,443 @@
     "@type": "Person",
     "name": "D0raham"
   }
-}
-  </script>
-
-  <link rel="stylesheet" href="../style.css" />
-  <style>
-    .page-top{
-      margin-bottom: 18px;
-    }
-
-    .page-mini-logo{
-      margin: 0 0 10px;
-    }
-
-    .page-mini-logo .site-mini-logo{
-      text-decoration: none;
-    }
-
-    .page-nav-pills{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 14px;
-      max-width: 100%;
-    }
-
-    .page-nav-pill{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 0 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.93rem;
-      font-weight: 700;
-      line-height: 1.2;
-      transition:
-        transform 0.18s ease,
-        background-color 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        opacity 0.18s ease;
-    }
-
-    .page-nav-pill:hover{
-      text-decoration: none;
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.07);
-      border-color: var(--line-strong);
-      box-shadow: 0 0 18px rgba(135, 164, 255, 0.08);
-      opacity: 1;
-    }
-
-    .page-nav-break{
-      flex-basis: 100%;
-      height: 0;
-    }
-
-    .page-header-block{
-      margin-bottom: 14px;
-    }
-
-    .page-header-block h1{
-      margin: 0;
-      text-wrap: balance;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .page-header-meta{
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    .mc-card-inner{
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-
-    .mc-card-inner .muted{
-      margin-bottom: 9px;
-      font-size: 0.92rem;
-      line-height: 1.48;
-    }
-
-    .more-button{
-      margin-top: 12px;
-      min-height: 40px;
-      padding: 0 16px;
-      border: 1px solid var(--line-strong);
-      border-radius: 11px;
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
-      font: inherit;
-      font-size: 0.92rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition:
-        transform 0.18s ease,
-        background-color 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        opacity 0.18s ease;
-    }
-
-    .more-button:hover{
-      opacity: 1;
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.08);
-      box-shadow: 0 0 18px rgba(135, 164, 255, 0.08);
-    }
-
-    .is-hidden{
-      display: none !important;
-    }
-
-    .meta-list{
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .meta-list li{
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      font-size: 0.97rem;
-      line-height: 1.46;
-    }
-
-    .meta-list li:last-child{
-      border-bottom: none;
-      padding-bottom: 1px;
-    }
-
-    .meta-list .meta-label{
-      flex: 0 0 auto;
-      min-width: 6.2em;
-      color: #c7cedc;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-
-    .meta-list li > span:last-child{
-      flex: 1 1 auto;
-      min-width: 0;
-      color: var(--text);
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .meta-list li.meta-list-block{
-      display: block;
-    }
-
-    .meta-list-block .meta-label{
-      display: block;
-      margin-bottom: 6px;
-      min-width: 0;
-    }
-
-    .meta-list-block .meta-value-block{
-      display: block;
-      line-height: 1.52;
-      font-size: 0.95rem;
-    }
-
-    .meta-list-block .meta-value-block a,
-    .battle-list a,
-    .appearance-list a{
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
-    }
-
-    .state-card-message{
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 0.93rem;
-    }
-
-    .state-card-message.error{
-      color: var(--danger);
-      font-weight: 700;
-    }
-
-    .mc-note{
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .championship-line{
-      display: block;
-      line-height: 1.5;
-    }
-
-    .championship-line + .championship-line{
-      margin-top: 2px;
-    }
-
-    .championship-event-link{
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
-    }
-
-    .battle-section-heading,
-    .appearance-section-heading{
-      position: sticky;
-      top: 8px;
-      z-index: 5;
-      display: inline-block;
-      margin: 0 0 8px;
-      padding: 6px 9px;
-      border: 1px solid rgba(216,180,106,0.18);
-      border-radius: 10px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
-        linear-gradient(180deg, rgba(24, 28, 41, 0.92) 0%, rgba(14, 18, 28, 0.92) 100%);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.015) inset,
-        0 8px 18px rgba(0,0,0,0.12);
-    }
-
-    .battle-list,
-    .appearance-list{
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .battle-list li,
-    .appearance-list li{
-      margin: 0;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .battle-list li:last-child,
-    .appearance-list li:last-child{
-      border-bottom: none;
-    }
-
-    .battle-opponent{
-      display: block;
-      min-width: 0;
-      line-height: 1.36;
-      font-size: 0.98rem;
-      font-weight: 600;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-    }
-
-    .battle-event{
-      display: block;
-      margin-top: 4px;
-      color: #8f97aa;
-      font-size: 0.88rem;
-      line-height: 1.34;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-    }
-
-    .battle-event-link{
-      display: inline-flex;
-      align-items: center;
-      gap: 0.32em;
-      color: #8f97aa;
-      text-decoration: none;
-      border-bottom: none;
-      cursor: pointer;
-      max-width: 100%;
-    }
-
-    .battle-event-link::after{
-      content: "›";
-      font-size: 0.95em;
-      line-height: 1;
-      opacity: 0.78;
-      transform: translateY(-0.02em);
-      flex: 0 0 auto;
-    }
-
-    .battle-event-link:visited{
-      color: #8f97aa;
-      text-decoration: none;
-    }
-
-    .battle-event-link:hover{
-      color: #a3acc1;
-      text-decoration: none;
-      opacity: 1;
-    }
-
-    .battle-event-link:active{
-      color: #aeb7cb;
-      text-decoration: none;
-    }
-
-    .appearance-link-wrap a,
-    .appearance-link-wrap span{
-      color: inherit;
-      text-decoration: none;
-      display: block;
-    }
-
-    .appearance-link-wrap a:hover{
-      opacity: 0.95;
-    }
-
-    .appearance-name{
-      display: block;
-      line-height: 1.34;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
-      font-size: 0.98rem;
-      font-weight: 500;
-    }
-
-    .appearance-date{
-      display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 0.87rem;
-      line-height: 1.32;
-    }
-
-    @media (max-width: 640px) {
-      .page-top{
-        margin-bottom: 14px;
-      }
-
-      .page-mini-logo{
-        margin-bottom: 8px;
-      }
-
-      .page-nav-pills{
-        gap: 7px;
-        margin-bottom: 12px;
-      }
-
-      .page-nav-pill{
-        min-height: 34px;
-        padding: 0 12px;
-        font-size: 0.86rem;
-      }
-
-      .page-header-block{
-        margin-bottom: 10px;
-      }
-
-      .page-header-block h1{
-        font-size: clamp(1.5rem, 5.3vw, 1.95rem);
-        line-height: 1.12;
-      }
-
-      .page-header-meta{
-        margin-top: 6px;
-        font-size: 0.82rem;
-        line-height: 1.34;
-      }
-
-      .mc-card-inner{
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-
-      .mc-card-inner .muted{
-        margin-bottom: 7px;
-        font-size: 0.82rem;
-        line-height: 1.38;
-      }
-
-      .meta-list li{
-        gap: 7px;
-        padding: 8px 0;
-        font-size: 0.87rem;
-        line-height: 1.34;
-      }
-
-      .meta-list li:last-child{
-        padding-bottom: 0;
-      }
-
-      .meta-list .meta-label{
-        min-width: 5em;
-        font-size: 0.85rem;
-      }
-
-      .meta-list-block .meta-label{
-        margin-bottom: 5px;
-      }
-
-      .meta-list-block .meta-value-block{
-        line-height: 1.42;
-        font-size: 0.86rem;
-      }
-
-      .state-card-message{
-        font-size: 0.82rem;
-        line-height: 1.38;
-      }
-
-      .mc-note{
-        font-size: 0.8rem;
-        line-height: 1.34;
-      }
-
-      .battle-section-heading,
-      .appearance-section-heading{
-        top: 6px;
-        margin-bottom: 7px;
-        padding: 5px 8px;
-      }
-
-      .battle-list li,
-      .appearance-list li{
-        padding: 8px 0;
-      }
-
-      .battle-opponent{
-        font-size: 0.9rem;
-        line-height: 1.3;
-      }
-
-      .battle-event{
-        margin-top: 3px;
-        font-size: 0.8rem;
-        line-height: 1.28;
-      }
-
-      .appearance-name{
-        font-size: 0.9rem;
-        line-height: 1.3;
-      }
-
-      .appearance-date{
-        margin-top: 1px;
-        font-size: 0.79rem;
-        line-height: 1.26;
-      }
-
-      .more-button{
-        margin-top: 10px;
-        min-height: 38px;
-        padding: 0 14px;
-        border-radius: 10px;
-        font-size: 0.84rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="mc-page">
-    <div class="page-top">
-      <p class="page-mini-logo"><a href="../" class="site-mini-logo">MCBattle.jp</a></p>
-
-      <nav class="page-nav-pills" aria-label="主要メニュー">
-        <a class="page-nav-pill" href="../list_event.html">大会一覧</a>
-        <a class="page-nav-pill" href="../list_mc.html">MC一覧</a>
-        <span class="page-nav-break" aria-hidden="true"></span>
-        <a class="page-nav-pill" href="../score_ranking.html">スコアランキング</a>
-        <a class="page-nav-pill" href="../prize_ranking.html">賞金ランキング</a>
-      </nav>
-
-      <div class="page-header-block">
-        <h1 id="mc-title">D0raham</h1>
-        <p id="mc-meta" class="page-header-meta"></p>
-      </div>
-    </div>
-
-    <section id="mc-state-card" class="card is-hidden">
-      <div class="mc-card-inner">
-        <p id="mc-state-message" class="state-card-message "></p>
-      </div>
-    </section>
-
-    <section id="mc-info-section" class="card ">
-      <div class="mc-card-inner">
-        <ul id="mc-info-list" class="meta-list">
-<li><span class="meta-label">戦績：</span><span>4試合 2勝 2敗</span></li>
+}", escapeScriptJson(profileJsonLd))
+    .replaceAll("D0raham", escapeHtml(mcName))
+    .replaceAll("", escapeHtml(mcMeta))
+    .replaceAll("is-hidden", "is-hidden")
+    .replaceAll("", "")
+    .replaceAll("", "")
+    .replaceAll("", "")
+    .replaceAll("<li><span class="meta-label">戦績：</span><span>4試合 2勝 2敗</span></li>
 <li><span class="meta-label">獲得賞金総額：</span><span>¥0</span></li>
 <li class="meta-list-block"><span class="meta-label">優勝歴：</span><span class="meta-value-block">−</span></li>
 <li><span class="meta-label">スコアランキング：</span><span>対象外</span></li>
 <li><span class="meta-label">スコア：</span><span>−</span></li>
-<li><span class="meta-label">補足：</span><span><span class="mc-note">直近の参加実績不足によりスコア対象外</span></span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="wins-section" class="card ">
-      <div class="mc-card-inner">
-        <h2 id="wins-heading" class="battle-section-heading">勝った試合</h2>
-        <p id="wins-status" class="muted is-hidden"></p>
-        <ul id="wins-list" class="battle-list">
-<li><span class="battle-opponent"><a href="../detail_mc/MC0786.html">SHABAZ</a></span><span class="battle-event">
+<li><span class="meta-label">補足：</span><span><span class="mc-note">直近の参加実績不足によりスコア対象外</span></span></li>", mcInfoListItems)
+    .replaceAll("", "")
+    .replaceAll("is-hidden", wins.length === 0 ? "" : "is-hidden")
+    .replaceAll("", wins.length === 0 ? "勝った試合がありません" : "")
+    .replaceAll("<li><span class="battle-opponent"><a href="../detail_mc/MC0786.html">SHABAZ</a></span><span class="battle-event">
           <a href="../detail_event/EVT0053.html" class="battle-event-link">凱旋MCbattle東西選抜</a>
         </span></li>
 <li><span class="battle-opponent"><a href="../detail_mc/MC0784.html">NillNico</a></span><span class="battle-event">
           <a href="../detail_event/EVT0053.html" class="battle-event-link">凱旋MCbattle東西選抜</a>
-        </span></li>
-        </ul>
-        <button id="wins-more-button" class="more-button is-hidden" type="button">すべて見る</button>
-      </div>
-    </section>
-
-    <section id="losses-section" class="card ">
-      <div class="mc-card-inner">
-        <h2 id="losses-heading" class="battle-section-heading">負けた試合</h2>
-        <p id="losses-status" class="muted is-hidden"></p>
-        <ul id="losses-list" class="battle-list">
-<li><span class="battle-opponent"><a href="../detail_mc/MC0468.html">がーどまん</a></span><span class="battle-event">
+        </span></li>", winsListItems)
+    .replaceAll("is-hidden", winsHasMore ? "" : "is-hidden")
+    .replaceAll("", "")
+    .replaceAll("is-hidden", losses.length === 0 ? "" : "is-hidden")
+    .replaceAll("", losses.length === 0 ? "負けた試合がありません" : "")
+    .replaceAll("<li><span class="battle-opponent"><a href="../detail_mc/MC0468.html">がーどまん</a></span><span class="battle-event">
           <a href="../detail_event/EVT0053.html" class="battle-event-link">凱旋MCbattle東西選抜</a>
         </span></li>
 <li><span class="battle-opponent"><a href="../detail_mc/MC0376.html">呂布カルマ</a></span><span class="battle-event">
           <a href="../detail_event/EVT0109.html" class="battle-event-link">戦極MCBATTLE 第16章 </a>
-        </span></li>
-        </ul>
-        <button id="losses-more-button" class="more-button is-hidden" type="button">すべて見る</button>
-      </div>
-    </section>
-
-    <section id="appearances-section" class="card ">
-      <div class="mc-card-inner">
-        <h2 class="appearance-section-heading">出場大会</h2>
-        <p id="appearances-status" class="muted is-hidden"></p>
-        <ul id="appearances-list" class="appearance-list">
-<li><div class="appearance-link-wrap"><a href="../detail_event/EVT0053.html">
+        </span></li>", lossesListItems)
+    .replaceAll("is-hidden", lossesHasMore ? "" : "is-hidden")
+    .replaceAll("", "")
+    .replaceAll("is-hidden", appearances.length === 0 ? "" : "is-hidden")
+    .replaceAll("", appearances.length === 0 ? "出場大会がありません" : "")
+    .replaceAll("<li><div class="appearance-link-wrap"><a href="../detail_event/EVT0053.html">
           <span class="appearance-name">凱旋MCbattle東西選抜</span>
           <span class="appearance-date">2018.06.24</span>
         </a></div></li>
 <li><div class="appearance-link-wrap"><a href="../detail_event/EVT0109.html">
           <span class="appearance-name">戦極MCBATTLE 第16章 </span>
           <span class="appearance-date">2017.05.21</span>
-        </a></div></li>
-        </ul>
-        <button id="appearances-more-button" class="more-button is-hidden" type="button">すべて見る</button>
-      </div>
-    </section>
-  </div>
+        </a></div></li>", appearancesListItems)
+    .replaceAll("is-hidden", appearancesHasMore ? "" : "is-hidden");
+}
 
-  <script>
-    (function () {
-      function setupCollapsibleList(listId, buttonId, limit) {
-        const listEl = document.getElementById(listId);
-        const buttonEl = document.getElementById(buttonId);
-        if (!listEl || !buttonEl) return;
+function buildMetaDescription(mcName, summary, championships, totalPrizeMoney) {
+  const totalMatches = summary && summary.total_matches !== undefined && summary.total_matches !== null
+    ? Number(summary.total_matches)
+    : null;
+  const wins = summary && summary.wins !== undefined && summary.wins !== null
+    ? Number(summary.wins)
+    : null;
+  const losses = summary && summary.losses !== undefined && summary.losses !== null
+    ? Number(summary.losses)
+    : null;
 
-        const items = Array.from(listEl.children).filter((el) => !el.classList.contains("is-static-empty"));
-        if (items.length <= limit) {
-          buttonEl.classList.add("is-hidden");
-          return;
-        }
+  const parts = [
+    `${mcName}の戦績・優勝歴・出場大会ページです。`,
+    totalMatches !== null && Number.isFinite(totalMatches) && wins !== null && Number.isFinite(wins) && losses !== null && Number.isFinite(losses)
+      ? `戦績は${totalMatches}試合${wins}勝${losses}敗。`
+      : "",
+    championships.length
+      ? `優勝歴は${championships.length}回。`
+      : "",
+    Number(totalPrizeMoney) > 0
+      ? `獲得賞金総額は¥${formatYen(totalPrizeMoney)}。`
+      : "",
+    "出場大会、戦績、スコアを掲載しています。"
+  ].filter(Boolean);
 
-        let expanded = false;
+  return parts.join(" ");
+}
 
-        function render() {
-          items.forEach((item, index) => {
-            if (!expanded && index >= limit) {
-              item.classList.add("is-hidden");
-            } else {
-              item.classList.remove("is-hidden");
-            }
-          });
-          buttonEl.textContent = expanded ? "閉じる" : "すべて見る";
-        }
+function buildMcMeta(mcName, summary, championships, totalPrizeMoney) {
+  const totalMatches = summary && summary.total_matches !== undefined && summary.total_matches !== null
+    ? Number(summary.total_matches)
+    : null;
+  const wins = summary && summary.wins !== undefined && summary.wins !== null
+    ? Number(summary.wins)
+    : null;
+  const losses = summary && summary.losses !== undefined && summary.losses !== null
+    ? Number(summary.losses)
+    : null;
 
-        buttonEl.classList.remove("is-hidden");
-        buttonEl.addEventListener("click", function () {
-          expanded = !expanded;
-          render();
-        });
+  const parts = [
+    `${mcName}の戦績、優勝歴、出場大会、賞金、スコアを掲載しています。`,
+    totalMatches !== null && Number.isFinite(totalMatches) && wins !== null && Number.isFinite(wins) && losses !== null && Number.isFinite(losses)
+      ? `戦績は${totalMatches}試合${wins}勝${losses}敗。`
+      : "",
+    championships.length
+      ? `優勝歴${championships.length}回。`
+      : "",
+    Number(totalPrizeMoney) > 0
+      ? `獲得賞金総額¥${formatYen(totalPrizeMoney)}。`
+      : ""
+  ].filter(Boolean);
 
-        render();
+  return parts.join(" ");
+}
+
+function buildMcInfoListItems(params) {
+  const {
+    summary,
+    championships,
+    totalPrizeMoney,
+    rankingStatus,
+    rankDisplay,
+    scoreDisplay,
+    rankingNote
+  } = params;
+
+  const championshipText = championships.length
+    ? championships.map(renderChampionshipLine).join("")
+    : "−";
+
+  const battleSummary = `${displayValue(summary.total_matches)}試合 ${displayValue(summary.wins)}勝 ${displayValue(summary.losses)}敗`;
+
+  const rows = [];
+
+  rows.push(renderInfoRow("戦績", escapeHtml(battleSummary)));
+  rows.push(renderInfoRow("獲得賞金総額", escapeHtml(`¥${formatYen(totalPrizeMoney)}`)));
+  rows.push(renderInfoRow("優勝歴", championshipText, { block: true }));
+  rows.push(renderInfoRow("スコアランキング", escapeHtml(isInactiveRanking(rankingStatus) ? "対象外" : displayValue(rankDisplay))));
+  rows.push(renderInfoRow("スコア", escapeHtml(isInactiveRanking(rankingStatus) ? "−" : displayValue(scoreDisplay))));
+
+  if (rankingNote) {
+    rows.push(renderInfoRow("補足", `<span class="mc-note">${escapeHtml(rankingNote)}</span>`));
+  }
+
+  return rows.join("\n");
+}
+
+function renderInfoRow(label, valueHtml, options = {}) {
+  if (options.block) {
+    return [
+      '<li class="meta-list-block">',
+      `<span class="meta-label">${escapeHtml(label)}：</span>`,
+      `<span class="meta-value-block">${valueHtml}</span>`,
+      "</li>"
+    ].join("");
+  }
+
+  return [
+    "<li>",
+    `<span class="meta-label">${escapeHtml(label)}：</span>`,
+    `<span>${valueHtml}</span>`,
+    "</li>"
+  ].join("");
+}
+
+function buildBattleListItems(items) {
+  if (!items.length) {
+    return '<li class="is-static-empty">−</li>';
+  }
+
+  return items.map((item) => {
+    const opponentHtml = renderMcLink(item.opponent_name || "不明", item.opponent_mc_id || "");
+    const eventHtml = renderBattleEvent(item.event_name || "", item.event_id || "");
+
+    return [
+      "<li>",
+      `<span class="battle-opponent">${opponentHtml}</span>`,
+      eventHtml,
+      "</li>"
+    ].join("");
+  }).join("\n");
+}
+
+function buildAppearanceListItems(items) {
+  if (!items.length) {
+    return '<li class="is-static-empty">−</li>';
+  }
+
+  return items.map((item) => {
+    return [
+      "<li>",
+      `<div class="appearance-link-wrap">${renderEventStack(item.event_name || "", item.event_id || "", item.event_date || "")}</div>`,
+      "</li>"
+    ].join("");
+  }).join("\n");
+}
+
+function buildBreadcrumbJsonLd(mcId, mcName) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "MCBattle.jp",
+        item: "https://mcbattle.jp/"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "MC一覧",
+        item: "https://mcbattle.jp/list_mc.html"
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: mcName,
+        item: `https://mcbattle.jp/detail_mc/${mcId}.html`
       }
+    ]
+  }, null, 2);
+}
 
-      setupCollapsibleList("wins-list", "wins-more-button", 5);
-      setupCollapsibleList("losses-list", "losses-more-button", 5);
-      setupCollapsibleList("appearances-list", "appearances-more-button", 10);
-    })();
-  </script>
-</body>
-</html>
+function buildProfileJsonLd(mcId, mcName, description) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    name: `${mcName} | MCBattle.jp`,
+    description,
+    url: `https://mcbattle.jp/detail_mc/${mcId}.html`,
+    mainEntity: {
+      "@type": "Person",
+      name: mcName
+    }
+  }, null, 2);
+}
+
+function renderMcLink(name, mcId) {
+  const safeName = escapeHtml(name || "");
+  const safeId = String(mcId || "").trim();
+
+  if (!safeName) return "";
+  if (!safeId) return `<span>${safeName}</span>`;
+
+  return `<a href="../detail_mc/${encodeURIComponent(safeId)}.html">${safeName}</a>`;
+}
+
+function renderBattleEvent(name, eventId) {
+  const safeName = escapeHtml(name || "");
+  const safeId = String(eventId || "").trim();
+
+  if (!safeName) return "";
+  if (!safeId) return `<span class="battle-event">${safeName}</span>`;
+
+  return `
+        <span class="battle-event">
+          <a href="../detail_event/${encodeURIComponent(safeId)}.html" class="battle-event-link">${safeName}</a>
+        </span>
+      `.trim();
+}
+
+function renderEventStack(name, eventId, eventDate) {
+  const safeName = escapeHtml(name || "");
+  const safeDate = escapeHtml(formatDateDots(eventDate || ""));
+  const safeId = String(eventId || "").trim();
+
+  if (!safeName && !safeDate) return "";
+  if (!safeId) {
+    return `
+          <span class="appearance-name">${safeName}</span>
+          ${safeDate ? `<span class="appearance-date">${safeDate}</span>` : ""}
+        `.trim();
+  }
+
+  return `
+        <a href="../detail_event/${encodeURIComponent(safeId)}.html">
+          <span class="appearance-name">${safeName}</span>
+          ${safeDate ? `<span class="appearance-date">${safeDate}</span>` : ""}
+        </a>
+      `.trim();
+}
+
+function renderChampionshipLine(item) {
+  const eventName = escapeHtml(item.event_name || "");
+  const safeEventId = String(item.event_id || "").trim();
+
+  if (!eventName) return "";
+
+  if (safeEventId) {
+    return `
+          <span class="championship-line">
+            <a class="championship-event-link" href="../detail_event/${encodeURIComponent(safeEventId)}.html">${eventName}</a>
+          </span>
+        `.trim();
+  }
+
+  return `
+        <span class="championship-line">
+          <span>${eventName}</span>
+        </span>
+      `.trim();
+}
+
+function isInactiveRanking(rankingStatus) {
+  return rankingStatus === "inactive_3y" || rankingStatus === "inactive_4y";
+}
+
+function getRankLabel(rankValue) {
+  if (rankValue === null || rankValue === undefined || rankValue === "") return "圏外";
+  const n = Number(rankValue);
+  if (!Number.isFinite(n)) return "圏外";
+  return n <= 100 ? String(n) : "圏外";
+}
+
+function getRankDisplay(ranking) {
+  if (ranking.rank_display !== null && ranking.rank_display !== undefined && ranking.rank_display !== "") {
+    return String(ranking.rank_display);
+  }
+  return getRankLabel(ranking.rank);
+}
+
+function getScoreDisplay(ranking) {
+  if (ranking.score_display !== null && ranking.score_display !== undefined && ranking.score_display !== "") {
+    return String(ranking.score_display);
+  }
+  return formatScore(ranking.current_score ?? ranking.score);
+}
+
+function formatScore(value) {
+  if (value === null || value === undefined || value === "") return "";
+  if (isNaN(Number(value))) return String(value);
+  return Number(value).toFixed(2);
+}
+
+function formatYen(value) {
+  const num = Number(value || 0);
+  return num.toLocaleString("ja-JP");
+}
+
+function displayValue(value) {
+  return (value === null || value === undefined || value === "") ? "−" : value;
+}
+
+function formatDateDots(value) {
+  const s = String(value || "").trim();
+  if (!s) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+    return s.replace(/-/g, ".");
+  }
+  return s;
+}
+
+function normalizeRoundLabel(roundName) {
+  const name = String(roundName || "").trim();
+
+  if (!name) return "";
+  if (/^final$/i.test(name) || name === "決勝") return "Final";
+
+  const jaBest = name.match(/^ベスト\s*(\d+)$/);
+  if (jaBest) return `Best${jaBest[1]}`;
+
+  const enBest = name.match(/^best\s*(\d+)$/i);
+  if (enBest) return `Best${enBest[1]}`;
+
+  if (name === "準決勝") return "Best4";
+  if (name === "準々決勝") return "Best8";
+
+  return name;
+}
+
+function getRoundSortValue(roundName) {
+  const normalized = normalizeRoundLabel(roundName);
+
+  if (!normalized) return 999999;
+  if (normalized === "Final") return 0;
+
+  const bestMatch = normalized.match(/^Best(\d+)$/i);
+  if (bestMatch) return Number(bestMatch[1]);
+
+  const roundMatch = normalized.match(/^(\d+)回戦$/);
+  if (roundMatch) return 1000 + Number(roundMatch[1]);
+
+  return 999999;
+}
+
+function sortMatchHistory(items) {
+  return [...items].sort((a, b) => {
+    const dateA = String(a.event_date || "");
+    const dateB = String(b.event_date || "");
+    if (dateA !== dateB) return dateB.localeCompare(dateA);
+
+    const roundA = getRoundSortValue(a.round_name);
+    const roundB = getRoundSortValue(b.round_name);
+    if (roundA !== roundB) return roundA - roundB;
+
+    const eventA = String(a.event_name || "");
+    const eventB = String(b.event_name || "");
+    if (eventA !== eventB) return eventA.localeCompare(eventB, "ja");
+
+    const oppA = String(a.opponent_name || "");
+    const oppB = String(b.opponent_name || "");
+    return oppA.localeCompare(oppB, "ja");
+  });
+}
+
+function sortAppearances(items) {
+  return [...items].sort((a, b) => {
+    const dateA = String(a.event_date || "");
+    const dateB = String(b.event_date || "");
+    if (dateA !== dateB) return dateB.localeCompare(dateA);
+
+    const roundA = getRoundSortValue(a.round_name);
+    const roundB = getRoundSortValue(b.round_name);
+    if (roundA !== roundB) return roundA - roundB;
+
+    const eventA = String(a.event_name || "");
+    const eventB = String(b.event_name || "");
+    return eventA.localeCompare(eventB, "ja");
+  });
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function escapeScriptJson(jsonText) {
+  return String(jsonText)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
+}
+
+function safeString(value) {
+  return String(value ?? "");
+}
+
+function ensureFileExists(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`ファイルが見つかりません: ${filePath}`);
+  }
+}
+
+function ensureDir(dirPath) {
+  fs.mkdirSync(dirPath, { recursive: true });
+}
+
+main();
