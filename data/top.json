@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-17T10:28:40.040Z",
+  "updated_at": "2026-04-17T12:33:36.131Z",
   "recent_events": [
     {
       "event_id": "EVT0032",
@@ -152,9 +152,9 @@
       "mc_id": "MC0376",
       "mc_name": "呂布カルマ",
       "score": 2788.88,
-      "total_matches": 69,
-      "wins": 45,
-      "losses": 24,
+      "total_matches": 245,
+      "wins": 179,
+      "losses": 66,
       "last_match_date": "2025-02-02"
     },
     {
@@ -162,9 +162,9 @@
       "mc_id": "MC0214",
       "mc_name": "RAWAXXX(MOL53)",
       "score": 2634.04,
-      "total_matches": 83,
-      "wins": 53,
-      "losses": 30,
+      "total_matches": 196,
+      "wins": 136,
+      "losses": 60,
       "last_match_date": "2025-12-20"
     },
     {
@@ -172,9 +172,9 @@
       "mc_id": "MC0434",
       "mc_name": "輪入道",
       "score": 2470.83,
-      "total_matches": 49,
-      "wins": 36,
-      "losses": 13,
+      "total_matches": 130,
+      "wins": 92,
+      "losses": 38,
       "last_match_date": "2025-12-20"
     },
     {
@@ -182,9 +182,9 @@
       "mc_id": "MC0080",
       "mc_name": "CIMA",
       "score": 2307.51,
-      "total_matches": 57,
-      "wins": 37,
-      "losses": 20,
+      "total_matches": 171,
+      "wins": 115,
+      "losses": 56,
       "last_match_date": "2025-12-20"
     },
     {
@@ -192,9 +192,9 @@
       "mc_id": "MC0100",
       "mc_name": "DOTAMA",
       "score": 2237.02,
-      "total_matches": 86,
-      "wins": 53,
-      "losses": 33,
+      "total_matches": 142,
+      "wins": 96,
+      "losses": 46,
       "last_match_date": "2026-01-04"
     },
     {
@@ -202,9 +202,9 @@
       "mc_id": "MC0756",
       "mc_name": "COCRGI WHITE(MU-TON)",
       "score": 2183.38,
-      "total_matches": 59,
-      "wins": 38,
-      "losses": 21,
+      "total_matches": 157,
+      "wins": 102,
+      "losses": 55,
       "last_match_date": "2024-03-28"
     },
     {
@@ -212,9 +212,9 @@
       "mc_id": "MC0023",
       "mc_name": "S-kainê",
       "score": 2148.97,
-      "total_matches": 32,
-      "wins": 25,
-      "losses": 7,
+      "total_matches": 87,
+      "wins": 59,
+      "losses": 28,
       "last_match_date": "2025-05-24"
     },
     {
@@ -222,9 +222,9 @@
       "mc_id": "MC0271",
       "mc_name": "SAM",
       "score": 2117.65,
-      "total_matches": 14,
-      "wins": 11,
-      "losses": 3,
+      "total_matches": 67,
+      "wins": 49,
+      "losses": 18,
       "last_match_date": "2025-05-24"
     },
     {
@@ -232,9 +232,9 @@
       "mc_id": "MC0046",
       "mc_name": "Authority",
       "score": 2063.26,
-      "total_matches": 23,
-      "wins": 17,
-      "losses": 6,
+      "total_matches": 83,
+      "wins": 59,
+      "losses": 24,
       "last_match_date": "2024-01-08"
     },
     {
@@ -242,9 +242,9 @@
       "mc_id": "MC0469",
       "mc_name": "ミメイ",
       "score": 2062.57,
-      "total_matches": 81,
-      "wins": 53,
-      "losses": 28,
+      "total_matches": 110,
+      "wins": 66,
+      "losses": 44,
       "last_match_date": "2026-01-04"
     }
   ],
