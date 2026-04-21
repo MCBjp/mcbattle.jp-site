@@ -4,6 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>大会詳細 | MCBattle.jp</title>
+  <meta name="description" content="国内MCバトル大会の開催日、優勝者、試合結果を掲載する大会詳細ページです。">
+  <link rel="canonical" href="https://mcbattle.jp/detail_event.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MCBattle.jp" />
+  <meta property="og:title" content="大会詳細 | MCBattle.jp" />
+  <meta property="og:description" content="国内MCバトル大会の開催日、優勝者、試合結果を掲載する大会詳細ページです。" />
+  <meta property="og:url" content="https://mcbattle.jp/detail_event.html" />
+  <meta property="og:image" content="https://mcbattle.jp/ogp.PNG" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="大会詳細 | MCBattle.jp" />
+  <meta name="twitter:description" content="国内MCバトル大会の開催日、優勝者、試合結果を掲載する大会詳細ページです。" />
+  <meta name="twitter:image" content="https://mcbattle.jp/ogp.PNG" />
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
   <script>
@@ -12,7 +27,6 @@
     gtag('js', new Date());
     gtag('config', 'G-9C8VGD3THB');
   </script>
-  <meta name="description" content="国内MCバトル大会の開催日、優勝者、試合結果を掲載する大会詳細ページです。">
 
   <script>
     (function () {
@@ -29,6 +43,9 @@
         document.head.appendChild(canonical);
       }
       canonical.setAttribute("href", staticUrl);
+
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute("content", staticUrl);
 
       if (!window.location.pathname.includes("/detail_event/")) {
         window.location.replace(staticUrl);
@@ -328,10 +345,17 @@
         document.head.appendChild(meta);
       }
       meta.setAttribute("content", content);
+
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      if (ogDescription) ogDescription.setAttribute("content", content);
+
+      const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+      if (twitterDescription) twitterDescription.setAttribute("content", content);
     }
 
     function setCanonicalUrl(url) {
       if (!url) return;
+
       let canonical = document.querySelector('link[rel="canonical"]');
       if (!canonical) {
         canonical = document.createElement("link");
@@ -339,6 +363,17 @@
         document.head.appendChild(canonical);
       }
       canonical.setAttribute("href", url);
+
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute("content", url);
+    }
+
+    function setOgTitle(title) {
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute("content", title);
+
+      const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twitterTitle) twitterTitle.setAttribute("content", title);
     }
 
     function formatNumberWithComma(value) {
@@ -651,6 +686,8 @@
       if (!eventId) {
         titleEl.textContent = "大会IDが指定されていません";
         document.title = "大会詳細 | MCBattle.jp";
+        setOgTitle("大会詳細 | MCBattle.jp");
+        setCanonicalUrl("https://mcbattle.jp/detail_event.html");
         setMetaDescription("国内MCバトル大会の開催日、優勝者、試合結果を掲載する大会詳細ページです。");
         matchesStatusEl.textContent = "event_id が見つかりませんでした。";
         matchesStatusEl.classList.add("error");
@@ -669,6 +706,8 @@
         if (!data) {
           titleEl.textContent = "大会情報の取得に失敗しました";
           document.title = "大会詳細 | MCBattle.jp";
+          setOgTitle("大会詳細 | MCBattle.jp");
+          setCanonicalUrl(`https://mcbattle.jp/detail_event.html?event_id=${encodeURIComponent(eventId)}`);
           setMetaDescription("国内MCバトル大会の開催日、優勝者、試合結果を掲載する大会詳細ページです。");
           matchesStatusEl.textContent = "指定された大会データが見つかりません";
           matchesStatusEl.classList.add("error");
@@ -689,6 +728,7 @@
         const winnerName = event.winner_name || "";
         titleEl.textContent = eventTitle;
         document.title = `${eventTitle} | 大会結果・試合結果 | MCBattle.jp`;
+        setOgTitle(`${eventTitle} | 大会結果・試合結果 | MCBattle.jp`);
 
         const canonicalUrl = `https://mcbattle.jp/detail_event/${encodeURIComponent(eventId)}.html`;
         setCanonicalUrl(canonicalUrl);
@@ -768,6 +808,8 @@
         console.error(err);
         titleEl.textContent = "大会情報の読み込みに失敗しました";
         document.title = "大会詳細 | MCBattle.jp";
+        setOgTitle("大会詳細 | MCBattle.jp");
+        setCanonicalUrl(`https://mcbattle.jp/detail_event.html${eventId ? `?event_id=${encodeURIComponent(eventId)}` : ""}`);
         setMetaDescription("国内MCバトル大会の開催日、優勝者、試合結果を掲載する大会詳細ページです。");
         matchesStatusEl.textContent = `読み込み失敗: ${err && err.message ? err.message : err}`;
         matchesStatusEl.classList.add("error");
