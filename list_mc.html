@@ -4,6 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MC一覧 | 国内MCバトルMCデータベース | MCBattle.jp</title>
+  <meta name="description" content="国内MCバトルに出場したMCの一覧ページです。五十音順でMCを探せて、各MCの詳細ページから戦績、出場大会、優勝歴、獲得賞金、スコアを確認できます。">
+  <link rel="canonical" href="https://mcbattle.jp/list_mc.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MCBattle.jp" />
+  <meta property="og:title" content="MC一覧 | 国内MCバトルMCデータベース | MCBattle.jp" />
+  <meta property="og:description" content="国内MCバトルに出場したMCの一覧ページです。五十音順でMCを探せて、各MCの詳細ページから戦績、出場大会、優勝歴、獲得賞金、スコアを確認できます。" />
+  <meta property="og:url" content="https://mcbattle.jp/list_mc.html" />
+  <meta property="og:image" content="https://mcbattle.jp/ogp.PNG" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MC一覧 | 国内MCバトルMCデータベース | MCBattle.jp" />
+  <meta name="twitter:description" content="国内MCバトルに出場したMCの一覧ページです。五十音順でMCを探せて、各MCの詳細ページから戦績、出場大会、優勝歴、獲得賞金、スコアを確認できます。" />
+  <meta name="twitter:image" content="https://mcbattle.jp/ogp.PNG" />
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
   <script>
@@ -12,7 +27,6 @@
     gtag('js', new Date());
     gtag('config', 'G-9C8VGD3THB');
   </script>
-  <meta name="description" content="国内MCバトルに出場したMCの一覧ページです。五十音順でMCを探せて、各MCの詳細ページから戦績、出場大会、優勝歴、獲得賞金、スコアを確認できます。">
   <link rel="stylesheet" href="style.css" />
   <style>
     .mcs-info-link{
@@ -348,9 +362,9 @@
 
     async function loadMcsJson() {
       const res = await fetch(MCS_JSON_URL, { cache: "no-store" });
-if (!res.ok) {
-  throw new Error(`HTTP ${res.status}`);
-}
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
       return await res.json();
     }
 
