@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>link_test | MCBattle.jp</title>
+  <title>link_test_wl | MCBattle.jp</title>
   <style>
     :root{
       --bg: #0a0b10;
@@ -11,17 +11,18 @@
       --panel: rgba(23, 25, 34, 0.92);
       --text: #f4f5f7;
       --muted: #b2b8c7;
+      --loser: #8f97aa;
+      --loser-soft: #a5adbf;
       --line: rgba(216, 180, 106, 0.16);
       --line-strong: rgba(216, 180, 106, 0.30);
       --accent: #d8b46a;
       --accent-soft: #e3c98f;
       --glow: rgba(216, 180, 106, 0.16);
-      --glow-strong: rgba(216, 180, 106, 0.26);
-      --content-max: 1120px;
+      --content-max: 1180px;
       --page-gutter: 16px;
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
@@ -53,17 +54,23 @@
     }
 
     .lead{
-      margin:0 0 20px;
+      margin:0 0 18px;
       color:var(--muted);
-      max-width:760px;
+      max-width:900px;
     }
 
     .section-title{
-      margin:26px 0 10px;
+      margin:28px 0 10px;
       color:var(--accent-soft);
-      font-size:1rem;
+      font-size:1.06rem;
       font-weight:800;
       letter-spacing:.02em;
+    }
+
+    .section-sub{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:.92rem;
     }
 
     .grid{
@@ -77,7 +84,7 @@
       border-radius:18px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
-        linear-gradient(180deg, var(--panel) 0%, rgba(14, 18, 28, 0.98) 100%);
+        linear-gradient(180deg, var(--panel) 0%, rgba(14,18,28,0.98) 100%);
       box-shadow:
         0 10px 30px rgba(0,0,0,.32),
         0 0 0 1px rgba(255,255,255,.02);
@@ -94,22 +101,15 @@
     }
 
     .label{
-      margin:0 0 10px;
+      margin:0 0 8px;
       font-size:1rem;
       font-weight:700;
     }
 
     .sample{
       color:var(--muted);
-      font-size:.92rem;
+      font-size:.90rem;
       margin:0 0 12px;
-    }
-
-    .demo-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
     }
 
     .demo-block{
@@ -119,11 +119,18 @@
       align-items:flex-start;
     }
 
+    .demo-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
     .match-box{
       width:100%;
       display:flex;
       align-items:center;
-      gap:8px;
+      gap:10px;
       padding:10px 12px;
       border:1px solid rgba(255,255,255,0.12);
       border-radius:12px;
@@ -134,6 +141,7 @@
     .sep{
       color:var(--muted);
       opacity:.85;
+      flex:0 0 auto;
     }
 
     .base-link{
@@ -142,26 +150,73 @@
       transition:all .18s ease;
     }
 
-    /* 元の50 */
-    .p50{
-      display:inline-flex;
-      align-items:center;
-      min-height:38px;
-      padding:0 14px;
-      border-radius:999px;
-      background:linear-gradient(180deg, rgba(216,180,106,.20), rgba(216,180,106,.08));
-      border:1px solid rgba(216,180,106,.40);
-      color:#fff4dc;
-      font-weight:800;
-      box-shadow:0 0 0 1px rgba(255,255,255,.03) inset;
-    }
-    .p50:hover{
-      transform:translateY(-1px);
-      box-shadow:0 0 20px rgba(216,180,106,.20);
+    .winner-link{
+      color:#fff2d6;
+      font-weight:700;
     }
 
-    /* 50ベース改良 */
-    .p51{
+    .loser-link{
+      color:var(--loser);
+      font-weight:600;
+    }
+
+    .preview-title{
+      margin:26px 0 10px;
+      color:var(--accent-soft);
+      font-size:1rem;
+      font-weight:800;
+    }
+
+    .result-preview{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
+        linear-gradient(180deg, var(--panel) 0%, rgba(14,18,28,0.98) 100%);
+      padding:16px;
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.32),
+        0 0 0 1px rgba(255,255,255,.02);
+    }
+
+    .round{
+      margin-top:14px;
+    }
+
+    .round:first-child{
+      margin-top:0;
+    }
+
+    .round-name{
+      margin:0 0 8px;
+      color:var(--accent);
+      font-size:1.1rem;
+      font-weight:800;
+    }
+
+    .result-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.025);
+      margin-bottom:8px;
+    }
+
+    .result-row:last-child{
+      margin-bottom:0;
+    }
+
+    .note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    /* 勝者リンク 10案 */
+    .w01{
       display:inline-flex;
       align-items:center;
       min-height:34px;
@@ -169,19 +224,16 @@
       border-radius:999px;
       background:linear-gradient(180deg, rgba(216,180,106,.15), rgba(216,180,106,.05));
       border:1px solid rgba(216,180,106,.28);
-      color:#f8edd4;
-      font-weight:700;
       box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
     }
-    .p51:hover{
+    .w01:hover{
       background:linear-gradient(180deg, rgba(216,180,106,.23), rgba(216,180,106,.10));
       border-color:rgba(216,180,106,.42);
-      color:#fff4dc;
       transform:translateY(-1px);
       box-shadow:0 0 18px rgba(216,180,106,.14);
     }
 
-    .p52{
+    .w02{
       display:inline-flex;
       align-items:center;
       min-height:32px;
@@ -189,33 +241,14 @@
       border-radius:999px;
       background:rgba(216,180,106,.09);
       border:1px solid rgba(216,180,106,.22);
-      color:#f4e7cb;
-      font-weight:700;
     }
-    .p52:hover{
+    .w02:hover{
       background:rgba(216,180,106,.16);
       border-color:rgba(216,180,106,.38);
       color:#fff2d6;
     }
 
-    .p53{
-      display:inline-flex;
-      align-items:center;
-      min-height:30px;
-      padding:0 9px;
-      border-radius:999px;
-      background:transparent;
-      border:1px solid rgba(216,180,106,.22);
-      color:var(--accent-soft);
-      font-weight:700;
-    }
-    .p53:hover{
-      background:rgba(216,180,106,.10);
-      border-color:rgba(216,180,106,.38);
-      color:#fff0ca;
-    }
-
-    .p54{
+    .w03{
       display:inline-flex;
       align-items:center;
       min-height:34px;
@@ -223,16 +256,14 @@
       border-radius:10px;
       background:linear-gradient(180deg, rgba(216,180,106,.14), rgba(216,180,106,.05));
       border:1px solid rgba(216,180,106,.30);
-      color:#fff0d1;
-      font-weight:800;
       letter-spacing:-0.01em;
     }
-    .p54:hover{
+    .w03:hover{
       background:linear-gradient(180deg, rgba(216,180,106,.22), rgba(216,180,106,.09));
       box-shadow:0 0 16px rgba(216,180,106,.14);
     }
 
-    .p55{
+    .w04{
       display:inline-flex;
       align-items:center;
       gap:.38em;
@@ -241,79 +272,20 @@
       border-radius:999px;
       background:linear-gradient(180deg, rgba(216,180,106,.14), rgba(216,180,106,.05));
       border:1px solid rgba(216,180,106,.30);
-      color:#fff0d1;
-      font-weight:700;
     }
-    .p55::after{
+    .w04::after{
       content:"›";
       color:var(--accent);
       font-size:1em;
       line-height:1;
     }
-    .p55:hover{
+    .w04:hover{
       background:linear-gradient(180deg, rgba(216,180,106,.22), rgba(216,180,106,.09));
       border-color:rgba(216,180,106,.44);
       transform:translateY(-1px);
     }
 
-    .p56{
-      display:inline-flex;
-      align-items:center;
-      min-height:28px;
-      padding:0 8px;
-      border-radius:8px;
-      background:rgba(216,180,106,.10);
-      border:1px solid rgba(216,180,106,.22);
-      color:#f5e9cf;
-      font-weight:700;
-      font-size:.96em;
-    }
-    .p56:hover{
-      background:rgba(216,180,106,.16);
-      border-color:rgba(216,180,106,.34);
-    }
-
-    .p57{
-      display:inline-flex;
-      align-items:center;
-      min-height:30px;
-      padding:0 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(216,180,106,.18);
-      color:#fff1d7;
-      font-weight:700;
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
-    }
-    .p57:hover{
-      background:rgba(216,180,106,.11);
-      border-color:rgba(216,180,106,.34);
-      box-shadow:0 0 14px rgba(216,180,106,.12);
-    }
-
-    .p58{
-      display:inline-flex;
-      align-items:center;
-      gap:.35em;
-      min-height:32px;
-      padding:0 11px;
-      border-radius:10px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(216,180,106,.20);
-      color:#fff0d1;
-      font-weight:700;
-    }
-    .p58::before{
-      content:"●";
-      font-size:.52em;
-      color:var(--accent);
-    }
-    .p58:hover{
-      background:rgba(216,180,106,.10);
-      border-color:rgba(216,180,106,.34);
-    }
-
-    .p59{
+    .w05{
       display:inline-flex;
       align-items:center;
       min-height:34px;
@@ -321,33 +293,44 @@
       border-radius:999px;
       background:linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
       border:1px solid rgba(216,180,106,.34);
-      color:#fff4dc;
-      font-weight:800;
       box-shadow:0 0 0 1px rgba(255,255,255,.025) inset;
+      font-weight:800;
     }
-    .p59:hover{
+    .w05:hover{
       background:linear-gradient(180deg, rgba(216,180,106,.26), rgba(216,180,106,.11));
       border-color:rgba(216,180,106,.48);
       transform:translateY(-1px);
       box-shadow:0 0 20px rgba(216,180,106,.18);
     }
 
-    .p60{
+    .w06{
+      padding:3px 0;
+      text-decoration:underline;
+      text-decoration-thickness:2px;
+      text-decoration-color:rgba(216,180,106,.65);
+      text-underline-offset:.18em;
+      color:#fff2d6;
+      font-weight:800;
+    }
+    .w06:hover{
+      color:#fff7e8;
+      text-decoration-color:rgba(216,180,106,.95);
+    }
+
+    .w07{
       display:inline-flex;
       align-items:center;
-      min-height:38px;
+      min-height:36px;
       padding:0 14px;
       border-radius:999px;
       background:linear-gradient(180deg, rgba(216,180,106,.24), rgba(216,180,106,.10));
       border:1px solid rgba(216,180,106,.44);
-      color:#fff6e2;
-      font-weight:800;
-      letter-spacing:-0.01em;
       box-shadow:
         0 0 0 1px rgba(255,255,255,.03) inset,
         0 0 22px rgba(216,180,106,.14);
+      font-weight:800;
     }
-    .p60:hover{
+    .w07:hover{
       background:linear-gradient(180deg, rgba(216,180,106,.32), rgba(216,180,106,.14));
       border-color:rgba(216,180,106,.56);
       transform:translateY(-1px);
@@ -356,220 +339,614 @@
         0 0 24px rgba(216,180,106,.22);
     }
 
-    @media (max-width: 820px){
-      .grid{ grid-template-columns:1fr; }
+    .w08{
+      display:inline-flex;
+      align-items:center;
+      min-height:32px;
+      padding:0 10px;
+      border-radius:10px;
+      background:rgba(216,180,106,.08);
+      border:1px solid rgba(216,180,106,.20);
+      box-shadow:0 0 14px rgba(216,180,106,.08);
+    }
+    .w08:hover{
+      background:rgba(216,180,106,.15);
+      border-color:rgba(216,180,106,.34);
+      box-shadow:0 0 18px rgba(216,180,106,.15);
+    }
+
+    .w09{
+      color:var(--accent-soft);
+      font-weight:800;
+      text-decoration:underline;
+      text-underline-offset:.16em;
+      text-decoration-color:rgba(216,180,106,.55);
+    }
+    .w09:hover{
+      color:#fff0ca;
+      text-decoration-color:rgba(216,180,106,.92);
+    }
+
+    .w10{
+      display:inline-flex;
+      align-items:center;
+      gap:.35em;
+      min-height:34px;
+      padding:0 12px;
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(216,180,106,.16), rgba(216,180,106,.06));
+      border:1px solid rgba(216,180,106,.32);
+      position:relative;
+      clip-path:polygon(8px 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 8px 100%, 0 50%);
+      font-weight:800;
+    }
+    .w10:hover{
+      background:linear-gradient(180deg, rgba(216,180,106,.24), rgba(216,180,106,.10));
+      border-color:rgba(216,180,106,.46);
+    }
+
+    /* 敗者リンク 10案 */
+    .l01{
+      color:var(--loser);
+      text-decoration:underline;
+      text-underline-offset:.14em;
+      text-decoration-color:rgba(143,151,170,.55);
+    }
+    .l01:hover{
+      color:var(--loser-soft);
+      text-decoration-color:rgba(165,173,191,.85);
+    }
+
+    .l02{
+      display:inline-flex;
+      align-items:center;
+      min-height:30px;
+      padding:0 9px;
+      border-radius:999px;
+      border:1px solid rgba(143,151,170,.18);
+      background:rgba(255,255,255,.02);
+      color:var(--loser);
+    }
+    .l02:hover{
+      background:rgba(255,255,255,.05);
+      border-color:rgba(143,151,170,.32);
+      color:var(--loser-soft);
+    }
+
+    .l03{
+      display:inline-flex;
+      align-items:center;
+      min-height:28px;
+      padding:0 8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      color:var(--loser);
+    }
+    .l03:hover{
+      background:rgba(255,255,255,.06);
+      color:var(--loser-soft);
+    }
+
+    .l04{
+      color:var(--loser);
+      border-bottom:1px dashed rgba(143,151,170,.48);
+    }
+    .l04:hover{
+      color:var(--loser-soft);
+      border-bottom-style:solid;
+    }
+
+    .l05{
+      color:var(--loser);
+      font-weight:600;
+      background-image:linear-gradient(transparent 72%, rgba(143,151,170,.18) 72%);
+    }
+    .l05:hover{
+      background-image:linear-gradient(transparent 66%, rgba(143,151,170,.28) 66%);
+      color:var(--loser-soft);
+    }
+
+    .l06{
+      color:#7f8798;
+      text-decoration:underline;
+      text-underline-offset:.14em;
+      text-decoration-color:rgba(127,135,152,.36);
+    }
+    .l06:hover{
+      color:#aab2c4;
+      text-decoration-color:rgba(170,178,196,.60);
+    }
+
+    .l07{
+      color:var(--loser);
+      position:relative;
+      padding-bottom:2px;
+    }
+    .l07::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:1px;
+      background:rgba(143,151,170,.45);
+    }
+    .l07:hover{
+      color:var(--loser-soft);
+    }
+
+    .l08{
+      display:inline-flex;
+      align-items:center;
+      gap:.30em;
+      color:var(--loser);
+    }
+    .l08::before{
+      content:"•";
+      color:#7f8798;
+      font-size:.9em;
+    }
+    .l08:hover{
+      color:var(--loser-soft);
+    }
+
+    .l09{
+      display:inline-flex;
+      align-items:center;
+      min-height:30px;
+      padding:0 9px;
+      border-radius:8px;
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(143,151,170,.12);
+      color:var(--loser);
+    }
+    .l09:hover{
+      background:rgba(255,255,255,.05);
+      border-color:rgba(143,151,170,.24);
+      color:var(--loser-soft);
+    }
+
+    .l10{
+      display:inline-flex;
+      align-items:center;
+      min-height:30px;
+      padding:0 9px;
+      border-radius:999px;
+      background:rgba(255,255,255,.025);
+      border:1px solid rgba(143,151,170,.14);
+      color:#8a92a5;
+      box-shadow:0 0 0 1px rgba(255,255,255,.015) inset;
+    }
+    .l10:hover{
+      background:rgba(255,255,255,.05);
+      border-color:rgba(143,151,170,.26);
+      color:#b0b8c8;
+    }
+
+    @media (max-width: 860px){
+      .grid{
+        grid-template-columns:1fr;
+      }
     }
   </style>
 </head>
 <body>
   <div class="page">
     <h1>MCBattle.jp</h1>
-    <p class="lead">50を基準に、強・中・弱の押せる感を増やした案です。#50 が元案。#51〜#60 が派生版です。</p>
+    <p class="lead">
+      勝者リンクと敗者リンクを分けて比較するテストです。上段が「勝者向け（目立つ）」、
+      下段が「敗者向け（薄め・控えめ）」です。
+    </p>
 
-    <p class="section-title">基準</p>
+    <p class="section-title">勝者リンク 10案</p>
+    <p class="section-sub">優勝者、勝者名、関連MCなど「押してほしい」導線向け。</p>
     <div class="grid">
+
       <section class="card">
-        <div class="num">#50</div>
-        <p class="label">元案 / かなり押せるボタン</p>
-        <p class="sample">強いCTA感。目立たせたい導線向き</p>
+        <div class="num">W-01</div>
+        <p class="label">50-lite / ちょい弱め本命</p>
+        <p class="sample">50より少し上品。常用しやすい</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p50">Authority</a>
-            <a href="#" class="base-link p50">呂布カルマ</a>
-            <a href="#" class="base-link p50">DOTAMA</a>
+            <a href="#" class="base-link winner-link w01">椿</a>
+            <a href="#" class="base-link winner-link w01">Authority</a>
+            <a href="#" class="base-link winner-link w01">DOTAMA</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p50">Authority</a>
+            <a href="#" class="base-link winner-link w01">椿</a>
             <span class="sep">/</span>
-            <a href="#" class="base-link p50">呂布カルマ</a>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-02</div>
+        <p class="label">50-soft / 薄めピル</p>
+        <p class="sample">主張を少し抑えたい時向き</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w02">椿</a>
+            <a href="#" class="base-link winner-link w02">Authority</a>
+            <a href="#" class="base-link winner-link w02">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w02">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-03</div>
+        <p class="label">50-square / 少し角あり</p>
+        <p class="sample">情報UIに寄せたい時向き</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w03">椿</a>
+            <a href="#" class="base-link winner-link w03">Authority</a>
+            <a href="#" class="base-link winner-link w03">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w03">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-04</div>
+        <p class="label">50-arrow / 矢印付き</p>
+        <p class="sample">押した先があることを明示</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w04">椿</a>
+            <a href="#" class="base-link winner-link w04">Authority</a>
+            <a href="#" class="base-link winner-link w04">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w04">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-05</div>
+        <p class="label">50-strong / 強め本命</p>
+        <p class="sample">優勝者欄や主導線向き</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w05">椿</a>
+            <a href="#" class="base-link winner-link w05">Authority</a>
+            <a href="#" class="base-link winner-link w05">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w05">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-06</div>
+        <p class="label">太字 + 金下線</p>
+        <p class="sample">ボタン感を減らしたい時向き</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w06">椿</a>
+            <a href="#" class="base-link winner-link w06">Authority</a>
+            <a href="#" class="base-link winner-link w06">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w06">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-07</div>
+        <p class="label">50-max / さらに強い</p>
+        <p class="sample">本当に押してほしい箇所だけ向き</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w07">椿</a>
+            <a href="#" class="base-link winner-link w07">Authority</a>
+            <a href="#" class="base-link winner-link w07">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w07">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-08</div>
+        <p class="label">発光シンプル</p>
+        <p class="sample">勝者を少しだけ浮かせる</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w08">椿</a>
+            <a href="#" class="base-link winner-link w08">Authority</a>
+            <a href="#" class="base-link winner-link w08">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w08">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-09</div>
+        <p class="label">太字 + 下線</p>
+        <p class="sample">リンク感重視、UI変更少なめ</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w09">椿</a>
+            <a href="#" class="base-link winner-link w09">Authority</a>
+            <a href="#" class="base-link winner-link w09">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w09">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="num">W-10</div>
+        <p class="label">バッジ風</p>
+        <p class="sample">かなり個性あり。使い所は限定</p>
+        <div class="demo-block">
+          <div class="demo-row">
+            <a href="#" class="base-link winner-link w10">椿</a>
+            <a href="#" class="base-link winner-link w10">Authority</a>
+            <a href="#" class="base-link winner-link w10">DOTAMA</a>
+          </div>
+          <div class="match-box">
+            <a href="#" class="base-link winner-link w10">椿</a>
+            <span class="sep">/</span>
+            <span class="loser-link">蘇流邪</span>
           </div>
         </div>
       </section>
     </div>
 
-    <p class="section-title">50ベース派生</p>
+    <p class="section-title">敗者リンク 10案</p>
+    <p class="section-sub">リンクだとは分かるが、勝者より前に出しすぎない方向。</p>
     <div class="grid">
 
       <section class="card">
-        <div class="num">#51</div>
-        <p class="label">50-lite / ちょい弱め本命</p>
-        <p class="sample">50より少し上品。常用しやすい</p>
+        <div class="num">L-01</div>
+        <p class="label">薄グレー下線</p>
+        <p class="sample">標準候補。まず見やすい</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p51">Authority</a>
-            <a href="#" class="base-link p51">呂布カルマ</a>
-            <a href="#" class="base-link p51">DOTAMA</a>
+            <a href="#" class="base-link loser-link l01">蘇流邪</a>
+            <a href="#" class="base-link loser-link l01">はなび</a>
+            <a href="#" class="base-link loser-link l01">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p51">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p51">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l01">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#52</div>
-        <p class="label">50-soft / 薄めピル</p>
-        <p class="sample">主張を抑えつつ押せる感は残す</p>
+        <div class="num">L-02</div>
+        <p class="label">薄グレー枠</p>
+        <p class="sample">薄いピル。少しUI感あり</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p52">Authority</a>
-            <a href="#" class="base-link p52">呂布カルマ</a>
-            <a href="#" class="base-link p52">DOTAMA</a>
+            <a href="#" class="base-link loser-link l02">蘇流邪</a>
+            <a href="#" class="base-link loser-link l02">はなび</a>
+            <a href="#" class="base-link loser-link l02">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p52">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p52">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l02">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#53</div>
-        <p class="label">50-outline / 中抜き気味</p>
-        <p class="sample">背景を軽くして数を置きやすい</p>
+        <div class="num">L-03</div>
+        <p class="label">薄ピル</p>
+        <p class="sample">背景だけ少し乗せる</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p53">Authority</a>
-            <a href="#" class="base-link p53">呂布カルマ</a>
-            <a href="#" class="base-link p53">DOTAMA</a>
+            <a href="#" class="base-link loser-link l03">蘇流邪</a>
+            <a href="#" class="base-link loser-link l03">はなび</a>
+            <a href="#" class="base-link loser-link l03">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p53">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p53">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l03">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#54</div>
-        <p class="label">50-square / 少し角あり</p>
-        <p class="sample">ピル感を減らして情報UIに寄せる</p>
+        <div class="num">L-04</div>
+        <p class="label">点線下線</p>
+        <p class="sample">区別はつくがかなり控えめ</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p54">Authority</a>
-            <a href="#" class="base-link p54">呂布カルマ</a>
-            <a href="#" class="base-link p54">DOTAMA</a>
+            <a href="#" class="base-link loser-link l04">蘇流邪</a>
+            <a href="#" class="base-link loser-link l04">はなび</a>
+            <a href="#" class="base-link loser-link l04">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p54">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p54">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l04">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#55</div>
-        <p class="label">50-arrow / 矢印付き</p>
-        <p class="sample">押した先があることをより明示</p>
+        <div class="num">L-05</div>
+        <p class="label">マーカー風</p>
+        <p class="sample">本文っぽさを保てる</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p55">Authority</a>
-            <a href="#" class="base-link p55">呂布カルマ</a>
-            <a href="#" class="base-link p55">DOTAMA</a>
+            <a href="#" class="base-link loser-link l05">蘇流邪</a>
+            <a href="#" class="base-link loser-link l05">はなび</a>
+            <a href="#" class="base-link loser-link l05">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p55">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p55">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l05">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#56</div>
-        <p class="label">50-compact / 小型版</p>
-        <p class="sample">試合一覧の名前リンク向き</p>
+        <div class="num">L-06</div>
+        <p class="label">低コントラスト下線</p>
+        <p class="sample">最も控えめ寄り</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p56">Authority</a>
-            <a href="#" class="base-link p56">呂布カルマ</a>
-            <a href="#" class="base-link p56">DOTAMA</a>
+            <a href="#" class="base-link loser-link l06">蘇流邪</a>
+            <a href="#" class="base-link loser-link l06">はなび</a>
+            <a href="#" class="base-link loser-link l06">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p56">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p56">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l06">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#57</div>
-        <p class="label">50-mix / 白背景寄り</p>
-        <p class="sample">サイト全体の既存UIと混ぜやすい</p>
+        <div class="num">L-07</div>
+        <p class="label">スリム下線</p>
+        <p class="sample">線だけでリンク感を出す</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p57">Authority</a>
-            <a href="#" class="base-link p57">呂布カルマ</a>
-            <a href="#" class="base-link p57">DOTAMA</a>
+            <a href="#" class="base-link loser-link l07">蘇流邪</a>
+            <a href="#" class="base-link loser-link l07">はなび</a>
+            <a href="#" class="base-link loser-link l07">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p57">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p57">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l07">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#58</div>
-        <p class="label">50-dot / ドット付き案</p>
-        <p class="sample">リンク識別を少しだけ強くする</p>
+        <div class="num">L-08</div>
+        <p class="label">左ドット付き</p>
+        <p class="sample">少しだけ装飾で区別</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p58">Authority</a>
-            <a href="#" class="base-link p58">呂布カルマ</a>
-            <a href="#" class="base-link p58">DOTAMA</a>
+            <a href="#" class="base-link loser-link l08">蘇流邪</a>
+            <a href="#" class="base-link loser-link l08">はなび</a>
+            <a href="#" class="base-link loser-link l08">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p58">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p58">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l08">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#59</div>
-        <p class="label">50-strong / 強めだがまだ上品</p>
-        <p class="sample">優勝者・関連MCなど主導線向き</p>
+        <div class="num">L-09</div>
+        <p class="label">角丸ボタン風</p>
+        <p class="sample">リンク感は強いが主張は弱い</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p59">Authority</a>
-            <a href="#" class="base-link p59">呂布カルマ</a>
-            <a href="#" class="base-link p59">DOTAMA</a>
+            <a href="#" class="base-link loser-link l09">蘇流邪</a>
+            <a href="#" class="base-link loser-link l09">はなび</a>
+            <a href="#" class="base-link loser-link l09">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p59">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p59">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l09">蘇流邪</a>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <div class="num">#60</div>
-        <p class="label">50-max / さらに強い版</p>
-        <p class="sample">本当に押してほしい箇所だけ向き</p>
+        <div class="num">L-10</div>
+        <p class="label">細枠 + 薄背景</p>
+        <p class="sample">今のサイトにかなり馴染みやすい</p>
         <div class="demo-block">
           <div class="demo-row">
-            <a href="#" class="base-link p60">Authority</a>
-            <a href="#" class="base-link p60">呂布カルマ</a>
-            <a href="#" class="base-link p60">DOTAMA</a>
+            <a href="#" class="base-link loser-link l10">蘇流邪</a>
+            <a href="#" class="base-link loser-link l10">はなび</a>
+            <a href="#" class="base-link loser-link l10">ST-C</a>
           </div>
           <div class="match-box">
-            <a href="#" class="base-link p60">Authority</a>
+            <span class="winner-link">椿</span>
             <span class="sep">/</span>
-            <a href="#" class="base-link p60">呂布カルマ</a>
+            <a href="#" class="base-link loser-link l10">蘇流邪</a>
           </div>
         </div>
       </section>
+    </div>
 
+    <p class="preview-title">実際の試合結果での使用イメージ</p>
+    <div class="result-preview">
+      <div class="round">
+        <p class="round-name">Final</p>
+        <div class="result-row">
+          <a href="#" class="base-link winner-link w01">椿</a>
+          <span class="sep">/</span>
+          <a href="#" class="base-link loser-link l01">蘇流邪</a>
+        </div>
+      </div>
+
+      <div class="round">
+        <p class="round-name">Best3</p>
+        <div class="result-row">
+          <a href="#" class="base-link winner-link w01">蘇流邪</a>
+          <span class="sep">/</span>
+          <a href="#" class="base-link loser-link l01">はなび</a>
+        </div>
+      </div>
+
+      <div class="round">
+        <p class="round-name">Best6</p>
+        <div class="result-row">
+          <a href="#" class="base-link winner-link w01">はなび</a>
+          <span class="sep">/</span>
+          <a href="#" class="base-link loser-link l01">Randy wati sati</a>
+        </div>
+        <div class="result-row">
+          <a href="#" class="base-link winner-link w01">椿</a>
+          <span class="sep">/</span>
+          <a href="#" class="base-link loser-link l01">道</a>
+        </div>
+        <div class="result-row">
+          <a href="#" class="base-link winner-link w01">蘇流邪</a>
+          <span class="sep">/</span>
+          <a href="#" class="base-link loser-link l01">ST-C</a>
+        </div>
+      </div>
+      <p class="note">まずは W-01 / L-01 か、W-05 / L-10 あたりが本命です。</p>
     </div>
   </div>
 </body>
