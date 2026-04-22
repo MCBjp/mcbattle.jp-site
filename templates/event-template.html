@@ -358,10 +358,12 @@
       min-height: 100%;
     }
 
+    /* 固定3カラム */
     .match-single-line {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr);
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       min-width: 0;
       line-height: 1.42;
       font-size: 1rem;
@@ -369,33 +371,28 @@
 
     .match-name {
       min-width: 0;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-      display: flex;
-      align-items: center;
-      min-height: 100%;
+      display: block;
     }
 
     .match-name.is-winner {
       color: var(--text);
       font-weight: 700;
-      flex: 0 1 auto;
     }
 
     .match-name.is-loser {
       color: #7f8798;
       font-weight: 600;
-      flex: 1 1 auto;
     }
 
     .match-separator {
-      flex: 0 0 auto;
+      width: 24px;
       color: var(--muted);
       opacity: 0.9;
       display: flex;
       align-items: center;
-      align-self: stretch;
+      justify-content: center;
       font-size: 1rem;
+      text-align: center;
     }
 
     .match-name a {
@@ -405,20 +402,24 @@
 
     /* 試合結果欄 */
     .match-name.is-winner .result-link-winner {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 98px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
       min-height: 36px;
-      padding: 0 14px;
+      padding: 0 12px;
       border-radius: 999px;
       background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
       border: 1px solid rgba(216,180,106,.34);
       color: #fff4dc;
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 0.98rem;
       text-align: center;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
       text-decoration: none !important;
       transition:
@@ -439,20 +440,24 @@
     }
 
     .match-name.is-loser .result-link-loser {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 90px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
       min-height: 32px;
-      padding: 0 11px;
+      padding: 0 10px;
       border-radius: 999px;
       background: rgba(255,255,255,.025);
       border: 1px solid rgba(143,151,170,.14);
       color: #8a92a5;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.98rem;
       text-align: center;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       box-shadow: 0 0 0 1px rgba(255,255,255,.015) inset;
       text-decoration: none !important;
       transition:
@@ -587,38 +592,27 @@
       }
 
       .match-single-line {
-        gap: 8px;
+        grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+        gap: 6px;
         font-size: 0.96rem;
         line-height: 1.3;
       }
 
       .match-separator {
+        width: 20px;
         font-size: 0.96rem;
       }
 
-      .match-name.is-winner {
-        font-weight: 700;
-        flex: 0 1 44%;
-      }
-
-      .match-name.is-loser {
-        color: #737b8c;
-        font-weight: 600;
-        flex: 1 1 56%;
-      }
-
       .match-name.is-winner .result-link-winner {
-        min-width: 84px;
         min-height: 32px;
-        padding: 0 11px;
-        font-size: 0.97rem;
+        padding: 0 10px;
+        font-size: 0.92rem;
       }
 
       .match-name.is-loser .result-link-loser {
-        min-width: 78px;
         min-height: 29px;
-        padding: 0 9px;
-        font-size: 0.97rem;
+        padding: 0 8px;
+        font-size: 0.92rem;
       }
     }
   </style>
