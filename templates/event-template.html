@@ -213,6 +213,15 @@
       text-decoration: none !important;
     }
 
+    /* 長文だけ左揃え */
+    .result-link-winner.is-long,
+    .result-link-loser.is-long{
+      justify-content: flex-start;
+      text-align: left;
+      padding-left: 14px;
+      padding-right: 12px;
+    }
+
     .event-info-link{
       display: block;
       margin-top: 12px;
@@ -358,7 +367,6 @@
       min-height: 100%;
     }
 
-    /* 固定3カラム */
     .match-single-line {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr);
@@ -400,7 +408,6 @@
       text-decoration: none;
     }
 
-    /* 試合結果欄 */
     .match-name.is-winner .result-link-winner {
       display: flex;
       align-items: center;
@@ -474,6 +481,14 @@
       text-decoration: none !important;
     }
 
+    .match-name.is-winner .result-link-winner.is-long,
+    .match-name.is-loser .result-link-loser.is-long{
+      justify-content: flex-start;
+      text-align: left;
+      padding-left: 12px;
+      padding-right: 10px;
+    }
+
     @media (max-width: 640px) {
       .page-top{
         margin-bottom: 14px;
@@ -541,6 +556,12 @@
         min-height: 28px;
         padding: 0 9px;
         font-size: 0.96rem;
+      }
+
+      .result-link-winner.is-long,
+      .result-link-loser.is-long{
+        padding-left: 12px;
+        padding-right: 10px;
       }
 
       .event-info-link{
@@ -613,6 +634,12 @@
         min-height: 29px;
         padding: 0 8px;
         font-size: 0.92rem;
+      }
+
+      .match-name.is-winner .result-link-winner.is-long,
+      .match-name.is-loser .result-link-loser.is-long{
+        padding-left: 10px;
+        padding-right: 8px;
       }
     }
   </style>
