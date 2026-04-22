@@ -195,11 +195,12 @@
       text-decoration: none;
     }
 
-    /* 大会情報欄用：自然幅 */
+    /* 大会情報欄 */
     .result-link-winner{
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-width: 78px;
       min-height: 34px;
       padding: 0 14px;
       border-radius: 999px;
@@ -207,6 +208,7 @@
       border: 1px solid rgba(216,180,106,.34);
       color: #fff4dc;
       font-weight: 800;
+      font-size: 1rem;
       text-align: center;
       white-space: nowrap;
       box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
@@ -232,6 +234,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-width: 78px;
       min-height: 30px;
       padding: 0 11px;
       border-radius: 999px;
@@ -239,6 +242,7 @@
       border: 1px solid rgba(143,151,170,.14);
       color: #8a92a5;
       font-weight: 600;
+      font-size: 1rem;
       text-align: center;
       white-space: nowrap;
       box-shadow: 0 0 0 1px rgba(255,255,255,.015) inset;
@@ -408,7 +412,7 @@
       gap: 10px;
       min-width: 0;
       line-height: 1.42;
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
 
     .match-name {
@@ -439,6 +443,7 @@
       display: flex;
       align-items: center;
       align-self: stretch;
+      font-size: 1rem;
     }
 
     .match-name a {
@@ -446,19 +451,20 @@
       text-decoration: none;
     }
 
-    /* 試合結果欄用：整列重視 */
+    /* 試合結果欄 */
     .match-name.is-winner .result-link-winner {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 96px;
-      min-height: 34px;
-      padding: 0 12px;
+      min-width: 98px;
+      min-height: 36px;
+      padding: 0 14px;
       border-radius: 999px;
       background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
       border: 1px solid rgba(216,180,106,.34);
       color: #fff4dc;
       font-weight: 800;
+      font-size: 1rem;
       text-align: center;
       white-space: nowrap;
       box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
@@ -484,14 +490,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 82px;
-      min-height: 30px;
-      padding: 0 9px;
+      min-width: 90px;
+      min-height: 32px;
+      padding: 0 11px;
       border-radius: 999px;
       background: rgba(255,255,255,.025);
       border: 1px solid rgba(143,151,170,.14);
       color: #8a92a5;
       font-weight: 600;
+      font-size: 1rem;
       text-align: center;
       white-space: nowrap;
       box-shadow: 0 0 0 1px rgba(255,255,255,.015) inset;
@@ -566,15 +573,17 @@
       }
 
       .result-link-winner{
+        min-width: 72px;
         min-height: 31px;
         padding: 0 12px;
-        font-size: 0.96em;
+        font-size: 0.96rem;
       }
 
       .result-link-loser{
+        min-width: 72px;
         min-height: 28px;
         padding: 0 9px;
-        font-size: 0.95em;
+        font-size: 0.96rem;
       }
 
       .event-info-link{
@@ -627,8 +636,12 @@
 
       .match-single-line {
         gap: 8px;
-        font-size: clamp(0.72rem, 2.35vw, 0.9rem);
+        font-size: 0.96rem;
         line-height: 1.3;
+      }
+
+      .match-separator {
+        font-size: 0.96rem;
       }
 
       .match-name.is-winner {
@@ -644,16 +657,16 @@
 
       .match-name.is-winner .result-link-winner {
         min-width: 84px;
-        min-height: 31px;
-        padding: 0 10px;
-        font-size: 0.96em;
+        min-height: 32px;
+        padding: 0 11px;
+        font-size: 0.97rem;
       }
 
       .match-name.is-loser .result-link-loser {
-        min-width: 72px;
-        min-height: 28px;
-        padding: 0 8px;
-        font-size: 0.95em;
+        min-width: 78px;
+        min-height: 29px;
+        padding: 0 9px;
+        font-size: 0.97rem;
       }
     }
   </style>
