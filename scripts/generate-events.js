@@ -121,14 +121,14 @@ function buildResultsHtml(event, groupedMatches) {
       const name = safeString(match.loser_name || "");
       const mcId = safeString(match.loser_mc_id || "");
       if (!name) return "";
-      return `🥉 ${renderMcLink(name, mcId)}`;
+      return `🥉 ${renderMcLink(name, mcId, "loser")}`;
     })
     .filter(Boolean);
 
   const lines = [];
 
-  if (winnerName) lines.push(`<span class="result-line">🥇 ${renderMcLink(winnerName, winnerMcId)}</span>`);
-  if (runnerUpName) lines.push(`<span class="result-line is-sub">🥈 ${renderMcLink(runnerUpName, runnerUpMcId)}</span>`);
+  if (winnerName) lines.push(`<span class="result-line">🥇 ${renderMcLink(winnerName, winnerMcId, "winner")}</span>`);
+  if (runnerUpName) lines.push(`<span class="result-line is-sub">🥈 ${renderMcLink(runnerUpName, runnerUpMcId, "loser")}</span>`);
   best4List.forEach((line) => lines.push(`<span class="result-line is-sub">${line}</span>`));
 
   if (!lines.length) return "−";
@@ -142,8 +142,8 @@ function buildMatchesHtml(groupedMatches) {
     const matches = Array.isArray(group.matches) ? group.matches : [];
 
     const rows = matches.map((match) => {
-      const winnerHtml = renderMcLink(match.winner_name || "不明", match.winner_mc_id || "");
-      const loserHtml = renderMcLink(match.loser_name || "不明", match.loser_mc_id || "");
+      const winnerHtml = renderMcLink(match.winner_name || "不明", match.winner_mc_id || "", "winner");
+      const loserHtml = renderMcLink(match.loser_name || "不明", match.loser_mc_id || "", "loser");
 
       return [
         '<li class="match-row-wrap">',
@@ -313,13 +313,14 @@ function isTwoColumnRound(roundName) {
   return /^Best\d+$/i.test(normalized);
 }
 
-function renderMcLink(name, mcId) {
+function renderMcLink(name, mcId, type = "winner") {
   const safeName = escapeHtml(name || "");
   const safeId = String(mcId || "").trim();
+  const className = type === "loser" ? "result-link-loser" : "result-link-winner";
 
   if (!safeName) return "";
-  if (!safeId) return `<span>${safeName}</span>`;
-  return `<a href="../detail_mc/${encodeURIComponent(safeId)}.html">${safeName}</a>`;
+  if (!safeId) return `<span class="${className}">${safeName}</span>`;
+  return `<a href="../detail_mc/${encodeURIComponent(safeId)}.html" class="${className}">${safeName}</a>`;
 }
 
 function formatPrizeYen(value) {
