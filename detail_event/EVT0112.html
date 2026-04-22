@@ -195,10 +195,12 @@
       text-decoration: none;
     }
 
-    /* W-05 */
+    /* W-05 tuned */
     .result-link-winner{
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      min-width: 96px;
       min-height: 34px;
       padding: 0 12px;
       border-radius: 999px;
@@ -206,6 +208,8 @@
       border: 1px solid rgba(216,180,106,.34);
       color: #fff4dc;
       font-weight: 800;
+      text-align: center;
+      white-space: nowrap;
       box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
       text-decoration: none !important;
       transition:
@@ -225,10 +229,12 @@
       text-decoration: none !important;
     }
 
-    /* L-10 */
+    /* L-10 tuned */
     .result-link-loser{
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      min-width: 82px;
       min-height: 30px;
       padding: 0 9px;
       border-radius: 999px;
@@ -236,6 +242,8 @@
       border: 1px solid rgba(143,151,170,.14);
       color: #8a92a5;
       font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
       box-shadow: 0 0 0 1px rgba(255,255,255,.015) inset;
       text-decoration: none !important;
       transition:
@@ -400,7 +408,7 @@
     .match-single-line {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 10px;
       min-width: 0;
       line-height: 1.42;
       font-size: 0.98rem;
@@ -444,6 +452,8 @@
     .match-name.is-winner .result-link-winner {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      min-width: 96px;
       min-height: 34px;
       padding: 0 12px;
       border-radius: 999px;
@@ -451,6 +461,8 @@
       border: 1px solid rgba(216,180,106,.34);
       color: #fff4dc;
       font-weight: 800;
+      text-align: center;
+      white-space: nowrap;
       box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
       text-decoration: none !important;
       transition:
@@ -473,6 +485,8 @@
     .match-name.is-loser .result-link-loser {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      min-width: 82px;
       min-height: 30px;
       padding: 0 9px;
       border-radius: 999px;
@@ -480,6 +494,8 @@
       border: 1px solid rgba(143,151,170,.14);
       color: #8a92a5;
       font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
       box-shadow: 0 0 0 1px rgba(255,255,255,.015) inset;
       text-decoration: none !important;
       transition:
@@ -600,7 +616,7 @@
       }
 
       .match-single-line {
-        gap: 6px;
+        gap: 8px;
         font-size: clamp(0.72rem, 2.35vw, 0.9rem);
         line-height: 1.3;
       }
@@ -617,12 +633,14 @@
       }
 
       .match-name.is-winner .result-link-winner {
+        min-width: 84px;
         min-height: 31px;
         padding: 0 10px;
         font-size: 0.96em;
       }
 
       .match-name.is-loser .result-link-loser {
+        min-width: 72px;
         min-height: 28px;
         padding: 0 8px;
         font-size: 0.95em;
