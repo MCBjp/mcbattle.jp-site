@@ -130,7 +130,7 @@
     }
 
     .result-line + .result-line {
-      margin-top: 1px;
+      margin-top: 3px;
     }
 
     .result-line a {
@@ -147,14 +147,13 @@
       text-decoration: none;
     }
 
-    /* W-05 tuned */
+    /* 大会情報欄用：自然幅 */
     .result-link-winner{
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 96px;
       min-height: 34px;
-      padding: 0 12px;
+      padding: 0 14px;
       border-radius: 999px;
       background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
       border: 1px solid rgba(216,180,106,.34);
@@ -181,14 +180,12 @@
       text-decoration: none !important;
     }
 
-    /* L-10 tuned */
     .result-link-loser{
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 82px;
       min-height: 30px;
-      padding: 0 9px;
+      padding: 0 11px;
       border-radius: 999px;
       background: rgba(255,255,255,.025);
       border: 1px solid rgba(143,151,170,.14);
@@ -401,6 +398,7 @@
       text-decoration: none;
     }
 
+    /* 試合結果欄用：整列重視 */
     .match-name.is-winner .result-link-winner {
       display: inline-flex;
       align-items: center;
@@ -516,7 +514,19 @@
       }
 
       .result-line + .result-line {
-        margin-top: 0;
+        margin-top: 2px;
+      }
+
+      .result-link-winner{
+        min-height: 31px;
+        padding: 0 12px;
+        font-size: 0.96em;
+      }
+
+      .result-link-loser{
+        min-height: 28px;
+        padding: 0 9px;
+        font-size: 0.95em;
       }
 
       .event-info-link{
