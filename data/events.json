@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-21T12:52:44.275Z",
+  "updated_at": "2026-04-23T15:52:24.368Z",
   "total": 154,
   "events": [
     {
@@ -18,7 +18,7 @@
       "location": "渋谷WOMB",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb-2025",
-      "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
+      "winner_name": "MC☆ニガリ"
     },
     {
       "event_id": "EVT0020",
@@ -90,7 +90,7 @@
       "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2021",
-      "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
+      "winner_name": "MC☆ニガリ"
     },
     {
       "event_id": "EVT0016",
@@ -144,7 +144,7 @@
       "location": "新木場StudioCoast",
       "organizer": "",
       "notes": "Source: https://www.finance-accounting-value.com/entry/umb2018-c",
-      "winner_name": "COCRGI WHITE(MU-TON)"
+      "winner_name": "COCRGI WHITE"
     },
     {
       "event_id": "EVT0013",
@@ -504,7 +504,7 @@
       "location": "Zepp Tokyo",
       "organizer": "UMB",
       "notes": "",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0032",
@@ -558,7 +558,7 @@
       "location": "豊洲PIT",
       "organizer": "",
       "notes": "Sources: https://note.com/onoyu_hiphop/n/ncb58fb76f5cd | Bracket image: https://assets.st-note.com/production/uploads/images/127039143/picture_pc_726bb5b485aca365a485cf3238f8efdb.png?width=1200 | Winner prize reference: https://jp-hphp.com/2020/02/13/kok/",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0029",
@@ -630,7 +630,7 @@
       "location": "豊洲PIT",
       "organizer": "",
       "notes": "Sources: https://note.com/onoyu_hiphop/n/ncb58fb76f5cd | Bracket image: https://assets.st-note.com/production/uploads/images/96440768/picture_pc_c507b2d3248f828f0d4839653d65e590.png?width=1200 | Winner prize reference: https://jp-hphp.com/2020/02/13/kok/",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0025",
@@ -918,7 +918,7 @@
       "location": "Sendai PIT",
       "organizer": "戦極MCBATTLE",
       "notes": "",
-      "winner_name": "COCRGI WHITE(MU-TON)"
+      "winner_name": "COCRGI WHITE"
     },
     {
       "event_id": "EVT0118",
@@ -936,7 +936,7 @@
       "location": "Zepp Sapporo",
       "organizer": "戦極MCBATTLE",
       "notes": "",
-      "winner_name": "COCRGI WHITE(MU-TON)"
+      "winner_name": "COCRGI WHITE"
     },
     {
       "event_id": "EVT0117",
@@ -1008,7 +1008,7 @@
       "location": "TSUTAYA O-EAST",
       "organizer": "戦極MCBATTLE",
       "notes": "",
-      "winner_name": "COCRGI WHITE(MU-TON)"
+      "winner_name": "COCRGI WHITE"
     },
     {
       "event_id": "EVT0113",
@@ -1098,7 +1098,7 @@
       "location": "Osaka Joule",
       "organizer": "戦極MCBATTLE",
       "notes": "",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0108",
@@ -1440,7 +1440,7 @@
       "location": "Zepp Osaka Bayside",
       "organizer": "Spotlight",
       "notes": "",
-      "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
+      "winner_name": "MC☆ニガリ"
     },
     {
       "event_id": "EVT0150",
@@ -1476,7 +1476,7 @@
       "location": "味園ユニバース",
       "organizer": "Spotlight",
       "notes": "",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0152",
@@ -1512,7 +1512,7 @@
       "location": "CONPASS",
       "organizer": "Spotlight",
       "notes": "",
-      "winner_name": "MC☆ニガリ a.k.a 赤い稲妻"
+      "winner_name": "MC☆ニガリ"
     },
     {
       "event_id": "EVT0154",
@@ -1584,7 +1584,7 @@
       "location": "味園ユニバース",
       "organizer": "Spotlight",
       "notes": "",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0156",
@@ -1764,7 +1764,7 @@
       "location": "Zepp Fukuoka",
       "organizer": "凱旋MC battle",
       "notes": "Source: https://www.finance-accounting-value.com/entry/gaisen-fukuoka",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0073",
@@ -2034,7 +2034,7 @@
       "location": "HARLEM Plus",
       "organizer": "凱旋MC battle",
       "notes": "Source: https://www.finance-accounting-value.com/entry/gaisen-abema",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0058",
@@ -2052,7 +2052,7 @@
       "location": "CLUB CITTA'",
       "organizer": "凱旋MC battle",
       "notes": "Source: https://www.finance-accounting-value.com/entry/gaisen-2020-summer-result",
-      "winner_name": "COCRGI WHITE(MU-TON)"
+      "winner_name": "COCRGI WHITE"
     },
     {
       "event_id": "EVT0057",
@@ -2322,7 +2322,7 @@
       "location": "SOUND MUSEUM VISION",
       "organizer": "真 ADRENALINE",
       "notes": "Source: https://www.finance-accounting-value.com/entry/adrenaline-reggae",
-      "winner_name": "COCRGI WHITE(MU-TON)"
+      "winner_name": "COCRGI WHITE"
     },
     {
       "event_id": "EVT0083",
@@ -2502,7 +2502,7 @@
       "location": "club G",
       "organizer": "HIKIGANE SOUND",
       "notes": "Source: https://www.finance-accounting-value.com/entry/kuchigenka-2309",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0050",
@@ -2556,7 +2556,7 @@
       "location": "Zepp Nagoya",
       "organizer": "HIKIGANE SOUND",
       "notes": "Source: https://www.finance-accounting-value.com/entry/kuchigenka-sp",
-      "winner_name": "RAWAXXX(MOL53)"
+      "winner_name": "RAWAXXX"
     },
     {
       "event_id": "EVT0047",

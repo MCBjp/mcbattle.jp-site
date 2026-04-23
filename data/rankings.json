@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-04-21T12:53:04.107Z",
+  "updated_at": "2026-04-23T15:52:30.857Z",
   "total": 100,
   "rankings": [
     {
       "rank": 1,
       "mc_id": "MC0376",
       "mc_name": "呂布カルマ",
-      "score": 2789.06,
-      "current_score": 2789.06,
-      "peak_score": 2789.06,
+      "score": 2741.4,
+      "current_score": 2741.4,
+      "peak_score": 2741.4,
       "total_matches": 245,
       "wins": 179,
       "losses": 66,
@@ -17,15 +17,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-02-02",
-      "days_since_last_match": 443
+      "days_since_last_match": 446
     },
     {
       "rank": 2,
       "mc_id": "MC0214",
-      "mc_name": "RAWAXXX(MOL53)",
-      "score": 2632.26,
-      "current_score": 2632.26,
-      "peak_score": 2632.26,
+      "mc_name": "RAWAXXX",
+      "score": 2623.97,
+      "current_score": 2623.97,
+      "peak_score": 2623.97,
       "total_matches": 196,
       "wins": 136,
       "losses": 60,
@@ -34,15 +34,15 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
+      "days_since_last_match": 125
     },
     {
       "rank": 3,
       "mc_id": "MC0434",
       "mc_name": "輪入道",
-      "score": 2471.08,
-      "current_score": 2471.08,
-      "peak_score": 2471.08,
+      "score": 2470.66,
+      "current_score": 2470.66,
+      "peak_score": 2470.66,
       "total_matches": 130,
       "wins": 92,
       "losses": 38,
@@ -51,15 +51,15 @@
       "wins_last_365d": 4,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
+      "days_since_last_match": 125
     },
     {
       "rank": 4,
       "mc_id": "MC0080",
       "mc_name": "CIMA",
-      "score": 2296.01,
-      "current_score": 2296.01,
-      "peak_score": 2296.01,
+      "score": 2286.21,
+      "current_score": 2286.21,
+      "peak_score": 2286.21,
       "total_matches": 173,
       "wins": 116,
       "losses": 57,
@@ -68,15 +68,15 @@
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.625,
       "last_match_date": "2026-04-19",
-      "days_since_last_match": 2
+      "days_since_last_match": 5
     },
     {
       "rank": 5,
       "mc_id": "MC0100",
       "mc_name": "DOTAMA",
-      "score": 2237.24,
-      "current_score": 2237.24,
-      "peak_score": 2237.24,
+      "score": 2236.89,
+      "current_score": 2236.89,
+      "peak_score": 2236.89,
       "total_matches": 142,
       "wins": 96,
       "losses": 46,
@@ -85,15 +85,15 @@
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.8333333333333334,
       "last_match_date": "2026-01-04",
-      "days_since_last_match": 107
+      "days_since_last_match": 110
     },
     {
       "rank": 6,
       "mc_id": "MC0756",
-      "mc_name": "COCRGI WHITE(MU-TON)",
-      "score": 2183.61,
-      "current_score": 2183.61,
-      "peak_score": 2183.61,
+      "mc_name": "COCRGI WHITE",
+      "score": 2183.2,
+      "current_score": 2183.2,
+      "peak_score": 2183.2,
       "total_matches": 157,
       "wins": 102,
       "losses": 55,
@@ -102,15 +102,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-03-28",
-      "days_since_last_match": 754
+      "days_since_last_match": 757
     },
     {
       "rank": 7,
       "mc_id": "MC0023",
       "mc_name": "S-kainê",
-      "score": 2149.35,
-      "current_score": 2149.35,
-      "peak_score": 2149.35,
+      "score": 2148.82,
+      "current_score": 2148.82,
+      "peak_score": 2148.82,
       "total_matches": 87,
       "wins": 59,
       "losses": 28,
@@ -119,15 +119,15 @@
       "wins_last_365d": 4,
       "win_rate_last_365d": 0.8,
       "last_match_date": "2025-05-24",
-      "days_since_last_match": 332
+      "days_since_last_match": 335
     },
     {
       "rank": 8,
       "mc_id": "MC0271",
       "mc_name": "SAM",
-      "score": 2117.97,
-      "current_score": 2117.97,
-      "peak_score": 2117.97,
+      "score": 2117.72,
+      "current_score": 2117.72,
+      "peak_score": 2117.72,
       "total_matches": 67,
       "wins": 49,
       "losses": 18,
@@ -136,15 +136,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-05-24",
-      "days_since_last_match": 332
+      "days_since_last_match": 335
     },
     {
       "rank": 9,
       "mc_id": "MC0046",
       "mc_name": "Authority",
-      "score": 2063.56,
-      "current_score": 2063.56,
-      "peak_score": 2063.56,
+      "score": 2063.28,
+      "current_score": 2063.28,
+      "peak_score": 2063.28,
       "total_matches": 83,
       "wins": 59,
       "losses": 24,
@@ -153,15 +153,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-01-08",
-      "days_since_last_match": 834
+      "days_since_last_match": 837
     },
     {
       "rank": 10,
       "mc_id": "MC0469",
       "mc_name": "ミメイ",
-      "score": 2062.72,
-      "current_score": 2062.72,
-      "peak_score": 2062.72,
+      "score": 2062.47,
+      "current_score": 2062.47,
+      "peak_score": 2062.47,
       "total_matches": 110,
       "wins": 66,
       "losses": 44,
@@ -170,15 +170,15 @@
       "wins_last_365d": 8,
       "win_rate_last_365d": 0.7272727272727273,
       "last_match_date": "2026-01-04",
-      "days_since_last_match": 107
+      "days_since_last_match": 110
     },
     {
       "rank": 11,
       "mc_id": "MC0373",
       "mc_name": "句潤",
-      "score": 2036.62,
-      "current_score": 2036.62,
-      "peak_score": 2036.62,
+      "score": 2045.18,
+      "current_score": 2045.18,
+      "peak_score": 2045.18,
       "total_matches": 80,
       "wins": 53,
       "losses": 27,
@@ -187,15 +187,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
       "rank": 12,
       "mc_id": "MC0222",
       "mc_name": "NAIKA MC",
-      "score": 1963.95,
-      "current_score": 1963.95,
-      "peak_score": 1963.95,
+      "score": 1963.63,
+      "current_score": 1963.63,
+      "peak_score": 1963.63,
       "total_matches": 124,
       "wins": 80,
       "losses": 44,
@@ -204,15 +204,15 @@
       "wins_last_365d": 6,
       "win_rate_last_365d": 0.8571428571428571,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
       "rank": 13,
       "mc_id": "MC0395",
       "mc_name": "晋平太",
-      "score": 1945.52,
-      "current_score": 1945.52,
-      "peak_score": 1945.52,
+      "score": 1944.9,
+      "current_score": 1944.9,
+      "peak_score": 1944.9,
       "total_matches": 102,
       "wins": 68,
       "losses": 34,
@@ -221,15 +221,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-08-20",
-      "days_since_last_match": 975
+      "days_since_last_match": 978
     },
     {
       "rank": 14,
       "mc_id": "MC0015",
-      "mc_name": "MC☆ニガリ a.k.a 赤い稲妻",
-      "score": 1874.14,
-      "current_score": 1874.14,
-      "peak_score": 1874.14,
+      "mc_name": "MC☆ニガリ",
+      "score": 1873.76,
+      "current_score": 1873.76,
+      "peak_score": 1873.76,
       "total_matches": 132,
       "wins": 79,
       "losses": 53,
@@ -238,15 +238,15 @@
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.8333333333333334,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
       "rank": 15,
       "mc_id": "MC0077",
       "mc_name": "CHICO CARLITO",
-      "score": 1848.56,
-      "current_score": 1848.56,
-      "peak_score": 1848.56,
+      "score": 1848.19,
+      "current_score": 1848.19,
+      "peak_score": 1848.19,
       "total_matches": 45,
       "wins": 29,
       "losses": 16,
@@ -255,15 +255,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-01-08",
-      "days_since_last_match": 834
+      "days_since_last_match": 837
     },
     {
       "rank": 16,
       "mc_id": "MC0474",
       "mc_name": "泰斗(裂固)",
-      "score": 1834.91,
-      "current_score": 1834.91,
-      "peak_score": 1834.91,
+      "score": 1834.6,
+      "current_score": 1834.6,
+      "peak_score": 1834.6,
       "total_matches": 97,
       "wins": 55,
       "losses": 42,
@@ -272,15 +272,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-01-11",
-      "days_since_last_match": 465
+      "days_since_last_match": 468
     },
     {
       "rank": 17,
       "mc_id": "MC0279",
       "mc_name": "SILENT KILLA JOINT",
-      "score": 1832.11,
-      "current_score": 1832.11,
-      "peak_score": 1832.11,
+      "score": 1831.54,
+      "current_score": 1831.54,
+      "peak_score": 1831.54,
       "total_matches": 83,
       "wins": 52,
       "losses": 31,
@@ -289,15 +289,15 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-05-24",
-      "days_since_last_match": 332
+      "days_since_last_match": 335
     },
     {
       "rank": 18,
       "mc_id": "MC0118",
       "mc_name": "GIL",
-      "score": 1806.7,
-      "current_score": 1806.7,
-      "peak_score": 1806.7,
+      "score": 1806.4,
+      "current_score": 1806.4,
+      "peak_score": 1806.4,
       "total_matches": 60,
       "wins": 38,
       "losses": 22,
@@ -306,15 +306,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
+      "days_since_last_match": 125
     },
     {
       "rank": 19,
       "mc_id": "MC0159",
       "mc_name": "K-rush",
-      "score": 1806.43,
-      "current_score": 1806.43,
-      "peak_score": 1806.43,
+      "score": 1806.24,
+      "current_score": 1806.24,
+      "peak_score": 1806.24,
       "total_matches": 32,
       "wins": 20,
       "losses": 12,
@@ -323,15 +323,15 @@
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
       "rank": 20,
       "mc_id": "MC0468",
       "mc_name": "がーどまん",
-      "score": 1796.95,
-      "current_score": 1796.95,
-      "peak_score": 1796.95,
+      "score": 1796.68,
+      "current_score": 1796.68,
+      "peak_score": 1796.68,
       "total_matches": 54,
       "wins": 30,
       "losses": 24,
@@ -340,15 +340,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-11-10",
-      "days_since_last_match": 527
+      "days_since_last_match": 530
     },
     {
       "rank": 21,
       "mc_id": "MC0466",
       "mc_name": "Sitissy luvit",
-      "score": 1783.68,
-      "current_score": 1783.68,
-      "peak_score": 1783.68,
+      "score": 1783.58,
+      "current_score": 1783.58,
+      "peak_score": 1783.58,
       "total_matches": 20,
       "wins": 15,
       "losses": 5,
@@ -357,15 +357,15 @@
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.7142857142857143,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
       "rank": 22,
       "mc_id": "MC0111",
       "mc_name": "FORK",
-      "score": 1764.08,
-      "current_score": 1764.08,
-      "peak_score": 1764.08,
+      "score": 1764.14,
+      "current_score": 1764.14,
+      "peak_score": 1764.14,
       "total_matches": 15,
       "wins": 14,
       "losses": 1,
@@ -374,15 +374,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-07-01",
-      "days_since_last_match": 1390
+      "days_since_last_match": 1393
     },
     {
       "rank": 23,
       "mc_id": "MC0171",
       "mc_name": "KBD",
-      "score": 1746.39,
-      "current_score": 1746.39,
-      "peak_score": 1746.39,
+      "score": 1745.81,
+      "current_score": 1745.81,
+      "peak_score": 1745.81,
       "total_matches": 57,
       "wins": 35,
       "losses": 22,
@@ -391,15 +391,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-14",
-      "days_since_last_match": 493
+      "days_since_last_match": 496
     },
     {
       "rank": 24,
       "mc_id": "MC0401",
       "mc_name": "楓",
-      "score": 1740.9,
-      "current_score": 1740.9,
-      "peak_score": 1740.9,
+      "score": 1740.77,
+      "current_score": 1740.77,
+      "peak_score": 1740.77,
       "total_matches": 24,
       "wins": 17,
       "losses": 7,
@@ -408,15 +408,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-01-04",
-      "days_since_last_match": 472
+      "days_since_last_match": 475
     },
     {
       "rank": 25,
       "mc_id": "MC0296",
       "mc_name": "T-TANGG",
-      "score": 1729.07,
-      "current_score": 1729.07,
-      "peak_score": 1729.07,
+      "score": 1728.83,
+      "current_score": 1728.83,
+      "peak_score": 1728.83,
       "total_matches": 43,
       "wins": 23,
       "losses": 20,
@@ -425,15 +425,15 @@
       "wins_last_365d": 4,
       "win_rate_last_365d": 1,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
       "rank": 26,
       "mc_id": "MC0393",
       "mc_name": "早雲",
-      "score": 1725.96,
-      "current_score": 1725.96,
-      "peak_score": 1725.96,
+      "score": 1725.67,
+      "current_score": 1725.67,
+      "peak_score": 1725.67,
       "total_matches": 70,
       "wins": 45,
       "losses": 25,
@@ -442,15 +442,15 @@
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-05-24",
-      "days_since_last_match": 332
+      "days_since_last_match": 335
     },
     {
       "rank": 27,
       "mc_id": "MC0461",
       "mc_name": "REDWING",
-      "score": 1725.2,
-      "current_score": 1725.2,
-      "peak_score": 1725.2,
+      "score": 1724.85,
+      "current_score": 1724.85,
+      "peak_score": 1724.85,
       "total_matches": 33,
       "wins": 18,
       "losses": 15,
@@ -459,15 +459,15 @@
       "wins_last_365d": 6,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
       "rank": 28,
       "mc_id": "MC0283",
       "mc_name": "SKRYU",
-      "score": 1716.47,
-      "current_score": 1716.47,
-      "peak_score": 1716.47,
+      "score": 1716.43,
+      "current_score": 1716.43,
+      "peak_score": 1716.43,
       "total_matches": 54,
       "wins": 32,
       "losses": 22,
@@ -476,15 +476,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-14",
-      "days_since_last_match": 615
+      "days_since_last_match": 618
     },
     {
       "rank": 29,
       "mc_id": "MC0447",
       "mc_name": "9for",
-      "score": 1716.08,
-      "current_score": 1716.08,
-      "peak_score": 1716.08,
+      "score": 1715.83,
+      "current_score": 1715.83,
+      "peak_score": 1715.83,
       "total_matches": 51,
       "wins": 25,
       "losses": 26,
@@ -493,15 +493,15 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
       "rank": 30,
       "mc_id": "MC0422",
       "mc_name": "般若",
-      "score": 1698.56,
-      "current_score": 1698.56,
-      "peak_score": 1698.56,
+      "score": 1698.55,
+      "current_score": 1698.55,
+      "peak_score": 1698.55,
       "total_matches": 8,
       "wins": 8,
       "losses": 0,
@@ -510,15 +510,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-14",
-      "days_since_last_match": 615
+      "days_since_last_match": 618
     },
     {
       "rank": 31,
       "mc_id": "MC0280",
       "mc_name": "SIMON JAP",
-      "score": 1695.57,
-      "current_score": 1695.57,
-      "peak_score": 1695.57,
+      "score": 1695.4,
+      "current_score": 1695.4,
+      "peak_score": 1695.4,
       "total_matches": 66,
       "wins": 39,
       "losses": 27,
@@ -527,27 +527,10 @@
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-05-24",
-      "days_since_last_match": 332
+      "days_since_last_match": 335
     },
     {
       "rank": 32,
-      "mc_id": "MC0692",
-      "mc_name": "POWER WAVE",
-      "score": 1690.32,
-      "current_score": 1690.32,
-      "peak_score": 1690.32,
-      "total_matches": 36,
-      "wins": 19,
-      "losses": 17,
-      "win_rate": 0.5277777777777778,
-      "matches_last_365d": 0,
-      "wins_last_365d": 0,
-      "win_rate_last_365d": null,
-      "last_match_date": "2024-04-29",
-      "days_since_last_match": 722
-    },
-    {
-      "rank": 33,
       "mc_id": "MC0770",
       "mc_name": "T-Pablow",
       "score": 1689.86,
@@ -561,15 +544,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-05-15",
-      "days_since_last_match": 1437
+      "days_since_last_match": 1440
     },
     {
-      "rank": 34,
+      "rank": 33,
       "mc_id": "MC0451",
       "mc_name": "Fuma no KTR",
-      "score": 1689.1,
-      "current_score": 1689.1,
-      "peak_score": 1689.1,
+      "score": 1688.86,
+      "current_score": 1688.86,
+      "peak_score": 1688.86,
       "total_matches": 78,
       "wins": 44,
       "losses": 34,
@@ -578,15 +561,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-02-02",
-      "days_since_last_match": 809
+      "days_since_last_match": 812
     },
     {
-      "rank": 35,
+      "rank": 34,
       "mc_id": "MC0367",
       "mc_name": "レイジ",
-      "score": 1679.75,
-      "current_score": 1679.75,
-      "peak_score": 1679.75,
+      "score": 1681.63,
+      "current_score": 1681.63,
+      "peak_score": 1681.63,
       "total_matches": 15,
       "wins": 10,
       "losses": 5,
@@ -595,15 +578,32 @@
       "wins_last_365d": 9,
       "win_rate_last_365d": 0.8181818181818182,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
+    },
+    {
+      "rank": 35,
+      "mc_id": "MC0692",
+      "mc_name": "POWER WAVE",
+      "score": 1674.35,
+      "current_score": 1674.35,
+      "peak_score": 1674.35,
+      "total_matches": 36,
+      "wins": 19,
+      "losses": 17,
+      "win_rate": 0.5277777777777778,
+      "matches_last_365d": 0,
+      "wins_last_365d": 0,
+      "win_rate_last_365d": null,
+      "last_match_date": "2024-04-29",
+      "days_since_last_match": 725
     },
     {
       "rank": 36,
       "mc_id": "MC0122",
       "mc_name": "GOTIT",
-      "score": 1674.27,
-      "current_score": 1674.27,
-      "peak_score": 1674.27,
+      "score": 1674.1,
+      "current_score": 1674.1,
+      "peak_score": 1674.1,
       "total_matches": 47,
       "wins": 27,
       "losses": 20,
@@ -612,15 +612,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 479
+      "days_since_last_match": 482
     },
     {
       "rank": 37,
       "mc_id": "MC0465",
       "mc_name": "Shamis",
-      "score": 1664.31,
-      "current_score": 1664.31,
-      "peak_score": 1664.31,
+      "score": 1664.12,
+      "current_score": 1664.12,
+      "peak_score": 1664.12,
       "total_matches": 22,
       "wins": 14,
       "losses": 8,
@@ -629,15 +629,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-01-04",
-      "days_since_last_match": 472
+      "days_since_last_match": 475
     },
     {
       "rank": 38,
       "mc_id": "MC0448",
       "mc_name": "CHEHON",
-      "score": 1660.39,
-      "current_score": 1660.39,
-      "peak_score": 1660.39,
+      "score": 1659.95,
+      "current_score": 1659.95,
+      "peak_score": 1659.95,
       "total_matches": 49,
       "wins": 28,
       "losses": 21,
@@ -646,15 +646,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-07-14",
-      "days_since_last_match": 1012
+      "days_since_last_match": 1015
     },
     {
       "rank": 39,
       "mc_id": "MC0968",
       "mc_name": "Chance",
-      "score": 1643.94,
-      "current_score": 1643.94,
-      "peak_score": 1643.94,
+      "score": 1643.9,
+      "current_score": 1643.9,
+      "peak_score": 1643.9,
       "total_matches": 11,
       "wins": 8,
       "losses": 3,
@@ -663,15 +663,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-25",
-      "days_since_last_match": 604
+      "days_since_last_match": 607
     },
     {
       "rank": 40,
       "mc_id": "MC0623",
       "mc_name": "ala vivere luce",
-      "score": 1636.6,
-      "current_score": 1636.6,
-      "peak_score": 1636.6,
+      "score": 1636.5,
+      "current_score": 1636.5,
+      "peak_score": 1636.5,
       "total_matches": 18,
       "wins": 12,
       "losses": 6,
@@ -680,15 +680,15 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 198
+      "days_since_last_match": 201
     },
     {
       "rank": 41,
       "mc_id": "MC0599",
       "mc_name": "Rude-α",
-      "score": 1634.69,
-      "current_score": 1634.69,
-      "peak_score": 1634.69,
+      "score": 1634.66,
+      "current_score": 1634.66,
+      "peak_score": 1634.66,
       "total_matches": 22,
       "wins": 11,
       "losses": 11,
@@ -697,15 +697,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-04-18",
-      "days_since_last_match": 368
+      "days_since_last_match": 371
     },
     {
       "rank": 42,
       "mc_id": "MC0266",
       "mc_name": "Ryo",
-      "score": 1630.99,
-      "current_score": 1630.99,
-      "peak_score": 1630.99,
+      "score": 1630.86,
+      "current_score": 1630.86,
+      "peak_score": 1630.86,
       "total_matches": 16,
       "wins": 10,
       "losses": 6,
@@ -714,32 +714,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 479
+      "days_since_last_match": 482
     },
     {
       "rank": 43,
-      "mc_id": "MC0425",
-      "mc_name": "蘇流邪",
-      "score": 1625.9,
-      "current_score": 1625.9,
-      "peak_score": 1625.9,
-      "total_matches": 8,
-      "wins": 6,
-      "losses": 2,
-      "win_rate": 0.75,
-      "matches_last_365d": 8,
-      "wins_last_365d": 6,
-      "win_rate_last_365d": 0.75,
-      "last_match_date": "2026-04-19",
-      "days_since_last_match": 2
-    },
-    {
-      "rank": 44,
       "mc_id": "MC0614",
       "mc_name": "ID",
-      "score": 1625.86,
-      "current_score": 1625.86,
-      "peak_score": 1625.86,
+      "score": 1625.45,
+      "current_score": 1625.45,
+      "peak_score": 1625.45,
       "total_matches": 62,
       "wins": 33,
       "losses": 29,
@@ -748,15 +731,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-04-18",
-      "days_since_last_match": 368
+      "days_since_last_match": 371
     },
     {
-      "rank": 45,
+      "rank": 44,
       "mc_id": "MC0444",
       "mc_name": "黄猿",
-      "score": 1608.05,
-      "current_score": 1608.05,
-      "peak_score": 1608.05,
+      "score": 1607.85,
+      "current_score": 1607.85,
+      "peak_score": 1607.85,
       "total_matches": 75,
       "wins": 49,
       "losses": 26,
@@ -765,15 +748,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 479
+      "days_since_last_match": 482
     },
     {
-      "rank": 46,
+      "rank": 45,
       "mc_id": "MC0475",
       "mc_name": "漢 a.k.a. GAMI",
-      "score": 1607.24,
-      "current_score": 1607.24,
-      "peak_score": 1607.24,
+      "score": 1607.14,
+      "current_score": 1607.14,
+      "peak_score": 1607.14,
       "total_matches": 43,
       "wins": 26,
       "losses": 17,
@@ -782,15 +765,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-14",
-      "days_since_last_match": 615
+      "days_since_last_match": 618
     },
     {
-      "rank": 47,
+      "rank": 46,
       "mc_id": "MC0927",
       "mc_name": "JyaRi",
-      "score": 1601.11,
-      "current_score": 1601.11,
-      "peak_score": 1601.11,
+      "score": 1600.95,
+      "current_score": 1600.95,
+      "peak_score": 1600.95,
       "total_matches": 14,
       "wins": 9,
       "losses": 5,
@@ -799,15 +782,32 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 198
+      "days_since_last_match": 201
+    },
+    {
+      "rank": 47,
+      "mc_id": "MC0425",
+      "mc_name": "蘇流邪",
+      "score": 1600.83,
+      "current_score": 1600.83,
+      "peak_score": 1600.83,
+      "total_matches": 7,
+      "wins": 5,
+      "losses": 2,
+      "win_rate": 0.7142857142857143,
+      "matches_last_365d": 7,
+      "wins_last_365d": 5,
+      "win_rate_last_365d": 0.7142857142857143,
+      "last_match_date": "2026-04-19",
+      "days_since_last_match": 5
     },
     {
       "rank": 48,
       "mc_id": "MC0753",
       "mc_name": "RAY",
-      "score": 1590.54,
-      "current_score": 1590.54,
-      "peak_score": 1590.54,
+      "score": 1590.41,
+      "current_score": 1590.41,
+      "peak_score": 1590.41,
       "total_matches": 18,
       "wins": 10,
       "losses": 8,
@@ -816,15 +816,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-12-17",
-      "days_since_last_match": 856
+      "days_since_last_match": 859
     },
     {
       "rank": 49,
       "mc_id": "MC0635",
       "mc_name": "知葉瑠",
-      "score": 1587.8,
-      "current_score": 1587.8,
-      "peak_score": 1587.8,
+      "score": 1587.63,
+      "current_score": 1587.63,
+      "peak_score": 1587.63,
       "total_matches": 14,
       "wins": 7,
       "losses": 7,
@@ -833,15 +833,15 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.6,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 198
+      "days_since_last_match": 201
     },
     {
       "rank": 50,
       "mc_id": "MC0335",
       "mc_name": "だーひー",
-      "score": 1586.91,
-      "current_score": 1586.91,
-      "peak_score": 1586.91,
+      "score": 1586.83,
+      "current_score": 1586.83,
+      "peak_score": 1586.83,
       "total_matches": 31,
       "wins": 17,
       "losses": 14,
@@ -850,15 +850,15 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 113
+      "days_since_last_match": 116
     },
     {
       "rank": 51,
       "mc_id": "MC0050",
       "mc_name": "BALA a.k.a SBKN",
-      "score": 1586.29,
-      "current_score": 1586.29,
-      "peak_score": 1586.29,
+      "score": 1586.32,
+      "current_score": 1586.32,
+      "peak_score": 1586.32,
       "total_matches": 16,
       "wins": 8,
       "losses": 8,
@@ -867,15 +867,32 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-08-20",
-      "days_since_last_match": 975
+      "days_since_last_match": 978
     },
     {
       "rank": 52,
+      "mc_id": "MC0400",
+      "mc_name": "椿",
+      "score": 1582.48,
+      "current_score": 1582.48,
+      "peak_score": 1582.48,
+      "total_matches": 16,
+      "wins": 9,
+      "losses": 7,
+      "win_rate": 0.5625,
+      "matches_last_365d": 6,
+      "wins_last_365d": 5,
+      "win_rate_last_365d": 0.8333333333333334,
+      "last_match_date": "2026-04-19",
+      "days_since_last_match": 5
+    },
+    {
+      "rank": 53,
       "mc_id": "MC0923",
       "mc_name": "Benjazzy",
-      "score": 1574.55,
-      "current_score": 1574.55,
-      "peak_score": 1574.55,
+      "score": 1574.54,
+      "current_score": 1574.54,
+      "peak_score": 1574.54,
       "total_matches": 4,
       "wins": 3,
       "losses": 1,
@@ -884,15 +901,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-14",
-      "days_since_last_match": 615
+      "days_since_last_match": 618
     },
     {
-      "rank": 53,
+      "rank": 54,
       "mc_id": "MC0957",
       "mc_name": "彼岸",
-      "score": 1569.14,
-      "current_score": 1569.14,
-      "peak_score": 1569.14,
+      "score": 1569.13,
+      "current_score": 1569.13,
+      "peak_score": 1569.13,
       "total_matches": 6,
       "wins": 4,
       "losses": 2,
@@ -901,15 +918,15 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-01-04",
-      "days_since_last_match": 107
+      "days_since_last_match": 110
     },
     {
-      "rank": 54,
+      "rank": 55,
       "mc_id": "MC0621",
       "mc_name": "バチスタ",
-      "score": 1567.65,
-      "current_score": 1567.65,
-      "peak_score": 1567.65,
+      "score": 1567.59,
+      "current_score": 1567.59,
+      "peak_score": 1567.59,
       "total_matches": 21,
       "wins": 13,
       "losses": 8,
@@ -918,15 +935,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-25",
-      "days_since_last_match": 604
+      "days_since_last_match": 607
     },
     {
-      "rank": 55,
+      "rank": 56,
       "mc_id": "MC0950",
       "mc_name": "Sirogaras",
-      "score": 1566.7,
-      "current_score": 1566.7,
-      "peak_score": 1566.7,
+      "score": 1566.66,
+      "current_score": 1566.66,
+      "peak_score": 1566.66,
       "total_matches": 10,
       "wins": 6,
       "losses": 4,
@@ -935,15 +952,15 @@
       "wins_last_365d": 4,
       "win_rate_last_365d": 0.8,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 198
+      "days_since_last_match": 201
     },
     {
-      "rank": 56,
+      "rank": 57,
       "mc_id": "MC0397",
       "mc_name": "杏地",
-      "score": 1565.34,
-      "current_score": 1565.34,
-      "peak_score": 1565.34,
+      "score": 1565.25,
+      "current_score": 1565.25,
+      "peak_score": 1565.25,
       "total_matches": 15,
       "wins": 8,
       "losses": 7,
@@ -952,15 +969,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-04-18",
-      "days_since_last_match": 368
+      "days_since_last_match": 371
     },
     {
-      "rank": 57,
+      "rank": 58,
       "mc_id": "MC0038",
       "mc_name": "aonisai",
-      "score": 1564.09,
-      "current_score": 1564.09,
-      "peak_score": 1564.09,
+      "score": 1564.08,
+      "current_score": 1564.08,
+      "peak_score": 1564.08,
       "total_matches": 4,
       "wins": 3,
       "losses": 1,
@@ -969,15 +986,15 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 113
+      "days_since_last_match": 116
     },
     {
-      "rank": 58,
+      "rank": 59,
       "mc_id": "MC0245",
       "mc_name": "PONEY",
-      "score": 1562.94,
-      "current_score": 1562.94,
-      "peak_score": 1562.94,
+      "score": 1562.84,
+      "current_score": 1562.84,
+      "peak_score": 1562.84,
       "total_matches": 54,
       "wins": 27,
       "losses": 27,
@@ -986,10 +1003,10 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 101
+      "days_since_last_match": 104
     },
     {
-      "rank": 59,
+      "rank": 60,
       "mc_id": "MC0986",
       "mc_name": "sosume",
       "score": 1561.84,
@@ -1003,15 +1020,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-03-17",
-      "days_since_last_match": 765
+      "days_since_last_match": 768
     },
     {
-      "rank": 60,
+      "rank": 61,
       "mc_id": "MC0920",
       "mc_name": "Zeebra",
-      "score": 1560.44,
-      "current_score": 1560.44,
-      "peak_score": 1560.44,
+      "score": 1560.41,
+      "current_score": 1560.41,
+      "peak_score": 1560.41,
       "total_matches": 3,
       "wins": 2,
       "losses": 1,
@@ -1020,10 +1037,10 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-08-31",
-      "days_since_last_match": 1329
+      "days_since_last_match": 1332
     },
     {
-      "rank": 61,
+      "rank": 62,
       "mc_id": "MC0104",
       "mc_name": "ENEMY",
       "score": 1560.39,
@@ -1037,10 +1054,10 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 479
+      "days_since_last_match": 482
     },
     {
-      "rank": 62,
+      "rank": 63,
       "mc_id": "MC0318",
       "mc_name": "YO-1",
       "score": 1557.41,
@@ -1054,24 +1071,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 113
-    },
-    {
-      "rank": 63,
-      "mc_id": "MC0400",
-      "mc_name": "椿",
-      "score": 1556.69,
-      "current_score": 1556.69,
-      "peak_score": 1556.69,
-      "total_matches": 15,
-      "wins": 8,
-      "losses": 7,
-      "win_rate": 0.5333333333333333,
-      "matches_last_365d": 5,
-      "wins_last_365d": 4,
-      "win_rate_last_365d": 0.8,
-      "last_match_date": "2026-04-19",
-      "days_since_last_match": 2
+      "days_since_last_match": 116
     },
     {
       "rank": 64,
@@ -1088,15 +1088,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-12-26",
-      "days_since_last_match": 847
+      "days_since_last_match": 850
     },
     {
       "rank": 65,
       "mc_id": "MC0901",
       "mc_name": "LARGE IRON",
-      "score": 1553.66,
-      "current_score": 1553.66,
-      "peak_score": 1553.66,
+      "score": 1553.59,
+      "current_score": 1553.59,
+      "peak_score": 1553.59,
       "total_matches": 3,
       "wins": 2,
       "losses": 1,
@@ -1105,15 +1105,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-06-19",
-      "days_since_last_match": 1402
+      "days_since_last_match": 1405
     },
     {
       "rank": 66,
       "mc_id": "MC0145",
       "mc_name": "JAKE",
-      "score": 1548.87,
-      "current_score": 1548.87,
-      "peak_score": 1548.87,
+      "score": 1548.81,
+      "current_score": 1548.81,
+      "peak_score": 1548.81,
       "total_matches": 68,
       "wins": 38,
       "losses": 30,
@@ -1122,15 +1122,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 113
+      "days_since_last_match": 116
     },
     {
       "rank": 67,
       "mc_id": "MC0157",
       "mc_name": "K'iLL",
-      "score": 1548.63,
-      "current_score": 1548.63,
-      "peak_score": 1548.63,
+      "score": 1548.6,
+      "current_score": 1548.6,
+      "peak_score": 1548.6,
       "total_matches": 16,
       "wins": 8,
       "losses": 8,
@@ -1139,15 +1139,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 479
+      "days_since_last_match": 482
     },
     {
       "rank": 68,
       "mc_id": "MC0075",
       "mc_name": "CHARLIE",
-      "score": 1548.55,
-      "current_score": 1548.55,
-      "peak_score": 1548.55,
+      "score": 1548.54,
+      "current_score": 1548.54,
+      "peak_score": 1548.54,
       "total_matches": 6,
       "wins": 4,
       "losses": 2,
@@ -1156,15 +1156,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 479
+      "days_since_last_match": 482
     },
     {
       "rank": 69,
       "mc_id": "MC0580",
       "mc_name": "はなび",
-      "score": 1547.78,
-      "current_score": 1547.78,
-      "peak_score": 1547.78,
+      "score": 1547.65,
+      "current_score": 1547.65,
+      "peak_score": 1547.65,
       "total_matches": 6,
       "wins": 3,
       "losses": 3,
@@ -1173,15 +1173,15 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-04-19",
-      "days_since_last_match": 2
+      "days_since_last_match": 5
     },
     {
       "rank": 70,
       "mc_id": "MC0902",
       "mc_name": "クフェア",
-      "score": 1545.11,
-      "current_score": 1545.11,
-      "peak_score": 1545.11,
+      "score": 1545.08,
+      "current_score": 1545.08,
+      "peak_score": 1545.08,
       "total_matches": 3,
       "wins": 2,
       "losses": 1,
@@ -1190,15 +1190,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-06-19",
-      "days_since_last_match": 1402
+      "days_since_last_match": 1405
     },
     {
       "rank": 71,
       "mc_id": "MC0454",
       "mc_name": "KOPERU",
-      "score": 1544,
-      "current_score": 1544,
-      "peak_score": 1544,
+      "score": 1543.89,
+      "current_score": 1543.89,
+      "peak_score": 1543.89,
       "total_matches": 24,
       "wins": 10,
       "losses": 14,
@@ -1207,15 +1207,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-05-24",
-      "days_since_last_match": 332
+      "days_since_last_match": 335
     },
     {
       "rank": 72,
       "mc_id": "MC0634",
       "mc_name": "ブッダ",
-      "score": 1536.52,
-      "current_score": 1536.52,
-      "peak_score": 1536.52,
+      "score": 1536.47,
+      "current_score": 1536.47,
+      "peak_score": 1536.47,
       "total_matches": 15,
       "wins": 8,
       "losses": 7,
@@ -1224,15 +1224,15 @@
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.3333333333333333,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 198
+      "days_since_last_match": 201
     },
     {
       "rank": 73,
       "mc_id": "MC0158",
       "mc_name": "K-razy",
-      "score": 1535.6,
-      "current_score": 1535.6,
-      "peak_score": 1535.6,
+      "score": 1535.46,
+      "current_score": 1535.46,
+      "peak_score": 1535.46,
       "total_matches": 42,
       "wins": 23,
       "losses": 19,
@@ -1241,15 +1241,15 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
+      "days_since_last_match": 125
     },
     {
       "rank": 74,
       "mc_id": "MC0958",
       "mc_name": "crap the grubby",
-      "score": 1535.36,
-      "current_score": 1535.36,
-      "peak_score": 1535.36,
+      "score": 1535.35,
+      "current_score": 1535.35,
+      "peak_score": 1535.35,
       "total_matches": 3,
       "wins": 2,
       "losses": 1,
@@ -1258,15 +1258,15 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2026-01-04",
-      "days_since_last_match": 107
+      "days_since_last_match": 110
     },
     {
       "rank": 75,
       "mc_id": "MC0733",
       "mc_name": "STACK THE PINK",
-      "score": 1535.29,
-      "current_score": 1535.29,
-      "peak_score": 1535.29,
+      "score": 1535.16,
+      "current_score": 1535.16,
+      "peak_score": 1535.16,
       "total_matches": 5,
       "wins": 3,
       "losses": 2,
@@ -1275,7 +1275,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-04-29",
-      "days_since_last_match": 1088
+      "days_since_last_match": 1091
     },
     {
       "rank": 76,
@@ -1292,15 +1292,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-23",
-      "days_since_last_match": 606
+      "days_since_last_match": 609
     },
     {
       "rank": 77,
       "mc_id": "MC0431",
       "mc_name": "詩言",
-      "score": 1533.73,
-      "current_score": 1533.73,
-      "peak_score": 1533.73,
+      "score": 1533.72,
+      "current_score": 1533.72,
+      "peak_score": 1533.72,
       "total_matches": 7,
       "wins": 4,
       "losses": 3,
@@ -1309,7 +1309,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-08-20",
-      "days_since_last_match": 975
+      "days_since_last_match": 978
     },
     {
       "rank": 78,
@@ -1326,7 +1326,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 113
+      "days_since_last_match": 116
     },
     {
       "rank": 79,
@@ -1343,15 +1343,15 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2026-01-04",
-      "days_since_last_match": 107
+      "days_since_last_match": 110
     },
     {
       "rank": 80,
       "mc_id": "MC0126",
       "mc_name": "Hawk-I",
-      "score": 1531.98,
-      "current_score": 1531.98,
-      "peak_score": 1531.98,
+      "score": 1531.97,
+      "current_score": 1531.97,
+      "peak_score": 1531.97,
       "total_matches": 3,
       "wins": 2,
       "losses": 1,
@@ -1360,7 +1360,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 113
+      "days_since_last_match": 116
     },
     {
       "rank": 81,
@@ -1377,7 +1377,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-03-17",
-      "days_since_last_match": 765
+      "days_since_last_match": 768
     },
     {
       "rank": 82,
@@ -1394,15 +1394,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-12-23",
-      "days_since_last_match": 1215
+      "days_since_last_match": 1218
     },
     {
       "rank": 83,
       "mc_id": "MC1021",
       "mc_name": "公家バイブス",
-      "score": 1531.38,
-      "current_score": 1531.38,
-      "peak_score": 1531.38,
+      "score": 1531.37,
+      "current_score": 1531.37,
+      "peak_score": 1531.37,
       "total_matches": 3,
       "wins": 2,
       "losses": 1,
@@ -1411,7 +1411,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
+      "days_since_last_match": 125
     },
     {
       "rank": 84,
@@ -1428,15 +1428,15 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 113
+      "days_since_last_match": 116
     },
     {
       "rank": 85,
       "mc_id": "MC0504",
       "mc_name": "NERVE",
-      "score": 1530.88,
-      "current_score": 1530.88,
-      "peak_score": 1530.88,
+      "score": 1530.83,
+      "current_score": 1530.83,
+      "peak_score": 1530.83,
       "total_matches": 11,
       "wins": 5,
       "losses": 6,
@@ -1445,7 +1445,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
+      "days_since_last_match": 125
     },
     {
       "rank": 86,
@@ -1462,32 +1462,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-12-26",
-      "days_since_last_match": 847
+      "days_since_last_match": 850
     },
     {
       "rank": 87,
-      "mc_id": "MC0181",
-      "mc_name": "KOOPA",
-      "score": 1530.36,
-      "current_score": 1530.36,
-      "peak_score": 1530.36,
-      "total_matches": 32,
-      "wins": 15,
-      "losses": 17,
-      "win_rate": 0.46875,
-      "matches_last_365d": 2,
-      "wins_last_365d": 0,
-      "win_rate_last_365d": 0,
-      "last_match_date": "2026-04-19",
-      "days_since_last_match": 2
-    },
-    {
-      "rank": 88,
       "mc_id": "MC0101",
       "mc_name": "Dragon One",
-      "score": 1530.22,
-      "current_score": 1530.22,
-      "peak_score": 1530.22,
+      "score": 1530.15,
+      "current_score": 1530.15,
+      "peak_score": 1530.15,
       "total_matches": 18,
       "wins": 10,
       "losses": 8,
@@ -1496,15 +1479,32 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-10-30",
-      "days_since_last_match": 1269
+      "days_since_last_match": 1272
+    },
+    {
+      "rank": 88,
+      "mc_id": "MC0181",
+      "mc_name": "KOOPA",
+      "score": 1530.13,
+      "current_score": 1530.13,
+      "peak_score": 1530.13,
+      "total_matches": 32,
+      "wins": 15,
+      "losses": 17,
+      "win_rate": 0.46875,
+      "matches_last_365d": 2,
+      "wins_last_365d": 0,
+      "win_rate_last_365d": 0,
+      "last_match_date": "2026-04-19",
+      "days_since_last_match": 5
     },
     {
       "rank": 89,
       "mc_id": "MC0071",
       "mc_name": "BZN",
-      "score": 1529.99,
-      "current_score": 1529.99,
-      "peak_score": 1529.99,
+      "score": 1529.98,
+      "current_score": 1529.98,
+      "peak_score": 1529.98,
       "total_matches": 3,
       "wins": 2,
       "losses": 1,
@@ -1513,15 +1513,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 479
+      "days_since_last_match": 482
     },
     {
       "rank": 90,
       "mc_id": "MC0612",
       "mc_name": "龍鬼",
-      "score": 1529.76,
-      "current_score": 1529.76,
-      "peak_score": 1529.76,
+      "score": 1529.66,
+      "current_score": 1529.66,
+      "peak_score": 1529.66,
       "total_matches": 20,
       "wins": 8,
       "losses": 12,
@@ -1530,15 +1530,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-25",
-      "days_since_last_match": 604
+      "days_since_last_match": 607
     },
     {
       "rank": 91,
       "mc_id": "MC0761",
       "mc_name": "RYKEY DADDY DIRTY",
-      "score": 1529.62,
-      "current_score": 1529.62,
-      "peak_score": 1529.62,
+      "score": 1529.59,
+      "current_score": 1529.59,
+      "peak_score": 1529.59,
       "total_matches": 5,
       "wins": 3,
       "losses": 2,
@@ -1547,15 +1547,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-08-27",
-      "days_since_last_match": 968
+      "days_since_last_match": 971
     },
     {
       "rank": 92,
       "mc_id": "MC0636",
       "mc_name": "whimsyboy",
-      "score": 1527.59,
-      "current_score": 1527.59,
-      "peak_score": 1527.59,
+      "score": 1527.58,
+      "current_score": 1527.58,
+      "peak_score": 1527.58,
       "total_matches": 5,
       "wins": 3,
       "losses": 2,
@@ -1564,15 +1564,15 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.6,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 198
+      "days_since_last_match": 201
     },
     {
       "rank": 93,
       "mc_id": "MC0121",
       "mc_name": "GOLBY",
-      "score": 1525.8,
-      "current_score": 1525.8,
-      "peak_score": 1525.8,
+      "score": 1525.51,
+      "current_score": 1525.51,
+      "peak_score": 1525.51,
       "total_matches": 30,
       "wins": 16,
       "losses": 14,
@@ -1581,32 +1581,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-09-30",
-      "days_since_last_match": 934
+      "days_since_last_match": 937
     },
     {
       "rank": 94,
-      "mc_id": "MC0452",
-      "mc_name": "HARDY",
-      "score": 1519,
-      "current_score": 1519,
-      "peak_score": 1519,
-      "total_matches": 38,
-      "wins": 20,
-      "losses": 18,
-      "win_rate": 0.5263157894736842,
-      "matches_last_365d": 1,
-      "wins_last_365d": 0,
-      "win_rate_last_365d": 0,
-      "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
-    },
-    {
-      "rank": 95,
       "mc_id": "MC0457",
       "mc_name": "Maiji",
-      "score": 1518.97,
-      "current_score": 1518.97,
-      "peak_score": 1518.97,
+      "score": 1518.9,
+      "current_score": 1518.9,
+      "peak_score": 1518.9,
       "total_matches": 19,
       "wins": 9,
       "losses": 10,
@@ -1615,15 +1598,32 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-02-19",
-      "days_since_last_match": 1157
+      "days_since_last_match": 1160
+    },
+    {
+      "rank": 95,
+      "mc_id": "MC0452",
+      "mc_name": "HARDY",
+      "score": 1518.86,
+      "current_score": 1518.86,
+      "peak_score": 1518.86,
+      "total_matches": 38,
+      "wins": 20,
+      "losses": 18,
+      "win_rate": 0.5263157894736842,
+      "matches_last_365d": 1,
+      "wins_last_365d": 0,
+      "win_rate_last_365d": 0,
+      "last_match_date": "2025-12-20",
+      "days_since_last_match": 125
     },
     {
       "rank": 96,
       "mc_id": "MC0517",
       "mc_name": "Zeal",
-      "score": 1517.57,
-      "current_score": 1517.57,
-      "peak_score": 1517.57,
+      "score": 1517.55,
+      "current_score": 1517.55,
+      "peak_score": 1517.55,
       "total_matches": 9,
       "wins": 5,
       "losses": 4,
@@ -1632,32 +1632,15 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
+      "days_since_last_match": 125
     },
     {
       "rank": 97,
-      "mc_id": "MC0600",
-      "mc_name": "ミステリオ",
-      "score": 1515.98,
-      "current_score": 1515.98,
-      "peak_score": 1515.98,
-      "total_matches": 72,
-      "wins": 36,
-      "losses": 36,
-      "win_rate": 0.5,
-      "matches_last_365d": 4,
-      "wins_last_365d": 1,
-      "win_rate_last_365d": 0.25,
-      "last_match_date": "2025-12-20",
-      "days_since_last_match": 122
-    },
-    {
-      "rank": 98,
       "mc_id": "MC0983",
       "mc_name": "道",
-      "score": 1515.76,
-      "current_score": 1515.76,
-      "peak_score": 1515.76,
+      "score": 1515.77,
+      "current_score": 1515.77,
+      "peak_score": 1515.77,
       "total_matches": 4,
       "wins": 2,
       "losses": 2,
@@ -1666,15 +1649,32 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2026-04-19",
-      "days_since_last_match": 2
+      "days_since_last_match": 5
+    },
+    {
+      "rank": 98,
+      "mc_id": "MC0600",
+      "mc_name": "ミステリオ",
+      "score": 1515.6,
+      "current_score": 1515.6,
+      "peak_score": 1515.6,
+      "total_matches": 72,
+      "wins": 36,
+      "losses": 36,
+      "win_rate": 0.5,
+      "matches_last_365d": 4,
+      "wins_last_365d": 1,
+      "win_rate_last_365d": 0.25,
+      "last_match_date": "2025-12-20",
+      "days_since_last_match": 125
     },
     {
       "rank": 99,
       "mc_id": "MC0445",
       "mc_name": "黒さき拓海",
-      "score": 1515.49,
-      "current_score": 1515.49,
-      "peak_score": 1515.49,
+      "score": 1515.48,
+      "current_score": 1515.48,
+      "peak_score": 1515.48,
       "total_matches": 9,
       "wins": 5,
       "losses": 4,
@@ -1683,15 +1683,15 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-23",
-      "days_since_last_match": 606
+      "days_since_last_match": 609
     },
     {
       "rank": 100,
       "mc_id": "MC0673",
       "mc_name": "MOGURA",
-      "score": 1514.3,
-      "current_score": 1514.3,
-      "peak_score": 1514.3,
+      "score": 1514.12,
+      "current_score": 1514.12,
+      "peak_score": 1514.12,
       "total_matches": 15,
       "wins": 7,
       "losses": 8,
@@ -1700,7 +1700,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-04-18",
-      "days_since_last_match": 368
+      "days_since_last_match": 371
     }
   ]
 }
