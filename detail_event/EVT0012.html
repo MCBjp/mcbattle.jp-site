@@ -191,6 +191,22 @@
       text-decoration: none;
     }
 
+    .result-link-label{
+      display:inline-block;
+      min-width:0;
+      white-space:nowrap;
+    }
+
+    .smart-measure-probe{
+      position:fixed;
+      left:-9999px;
+      top:-9999px;
+      visibility:hidden;
+      pointer-events:none;
+      white-space:nowrap;
+      box-sizing:border-box;
+    }
+
     /* 大会情報欄 */
     .result-link-winner{
       display: inline-flex;
@@ -255,12 +271,6 @@
       border-color: rgba(143,151,170,.26);
       color: #b0b8c8;
       text-decoration: none !important;
-    }
-
-    /* 実測用 */
-    .result-link-winner.is-fit-test,
-    .result-link-loser.is-fit-test{
-      font-size: 0.92rem !important;
     }
 
     /* 実測で収まらなかったものだけ左寄せ */
@@ -532,11 +542,6 @@
       text-decoration: none !important;
     }
 
-    .match-name.is-winner .result-link-winner.is-fit-test,
-    .match-name.is-loser .result-link-loser.is-fit-test{
-      font-size: 0.88rem !important;
-    }
-
     .match-name.is-winner .result-link-winner.is-long,
     .match-name.is-loser .result-link-loser.is-long{
       justify-content: flex-start;
@@ -615,18 +620,6 @@
         font-size: 0.96rem;
       }
 
-      .result-link-winner.is-fit-test,
-      .result-link-loser.is-fit-test{
-        font-size: 0.84rem !important;
-      }
-
-      .result-link-winner.is-long,
-      .result-link-loser.is-long{
-        padding-left: 12px;
-        padding-right: 10px;
-        font-size: 0.84rem;
-      }
-
       .event-info-link{
         margin-top: 10px;
       }
@@ -697,11 +690,6 @@
         min-height: 29px;
         padding: 0 8px;
         font-size: 0.92rem;
-      }
-
-      .match-name.is-winner .result-link-winner.is-fit-test,
-      .match-name.is-loser .result-link-loser.is-fit-test{
-        font-size: 0.80rem !important;
       }
 
       .match-name.is-winner .result-link-winner.is-long,
@@ -838,19 +826,72 @@
 
   <script>
     (function () {
-      const SAFETY_PX = 6;
+      const SAFETY_PX = 8;
       let resizeTimer = null;
+
+      function ensureInnerLabel(el) {
+        if (el.querySelector(".result-link-label")) return;
+
+        const text = (el.textContent || "").trim();
+        el.textContent = "";
+
+        const span = document.createElement("span");
+        span.className = "result-link-label";
+        span.textContent = text;
+        el.appendChild(span);
+      }
+
+      function getProbeFontSize(el) {
+        const isMobile = window.innerWidth <= 640;
+        if (el.classList.contains("result-link-winner")) {
+          return isMobile ? "0.80rem" : "0.88rem";
+        }
+        return isMobile ? "0.80rem" : "0.88rem";
+      }
+
+      function getHorizontalPadding(el) {
+        const isMobile = window.innerWidth <= 640;
+        if (el.classList.contains("result-link-winner")) {
+          return isMobile ? 18 : 22;
+        }
+        return isMobile ? 16 : 20;
+      }
+
+      function measureWouldOverflow(el) {
+        ensureInnerLabel(el);
+
+        const label = el.querySelector(".result-link-label");
+        if (!label) return false;
+
+        const probe = document.createElement("span");
+        probe.className = "smart-measure-probe";
+        probe.textContent = label.textContent || "";
+
+        const computed = window.getComputedStyle(el);
+        probe.style.fontFamily = computed.fontFamily;
+        probe.style.fontWeight = computed.fontWeight;
+        probe.style.letterSpacing = computed.letterSpacing;
+        probe.style.fontSize = getProbeFontSize(el);
+        probe.style.textTransform = computed.textTransform;
+
+        document.body.appendChild(probe);
+
+        const available = el.clientWidth - getHorizontalPadding(el) - SAFETY_PX;
+        const needed = Math.ceil(probe.getBoundingClientRect().width);
+
+        probe.remove();
+
+        return needed > available;
+      }
 
       function applySmartAlign() {
         const targets = document.querySelectorAll(".result-link-winner, .result-link-loser");
 
         targets.forEach((el) => {
-          el.classList.remove("is-long", "is-fit-test");
+          el.classList.remove("is-long");
+          ensureInnerLabel(el);
 
-          el.classList.add("is-fit-test");
-          const isOverflow = el.scrollWidth > (el.clientWidth - SAFETY_PX);
-          el.classList.remove("is-fit-test");
-
+          const isOverflow = measureWouldOverflow(el);
           if (isOverflow) {
             el.classList.add("is-long");
           }
@@ -858,9 +899,7 @@
       }
 
       function requestApplySmartAlign() {
-        if (resizeTimer) {
-          clearTimeout(resizeTimer);
-        }
+        if (resizeTimer) clearTimeout(resizeTimer);
         resizeTimer = setTimeout(applySmartAlign, 80);
       }
 
