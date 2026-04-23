@@ -255,13 +255,6 @@
       font-size: 0.94rem;
     }
 
-    .meta-list-block .meta-value-block a,
-    .appearance-list a{
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
-    }
-
     .state-card-message{
       margin: 0;
       color: var(--muted);
@@ -287,13 +280,43 @@
     }
 
     .championship-line + .championship-line{
-      margin-top: 1px;
+      margin-top: 3px;
     }
 
     .championship-event-link{
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32em;
+      max-width: 100%;
+      color: #8f97aa;
+      text-decoration: none !important;
+      border-bottom: none;
+      cursor: pointer;
+    }
+
+    .championship-event-link::after{
+      content: "›";
+      font-size: 0.95em;
+      line-height: 1;
+      opacity: 0.78;
+      transform: translateY(-0.02em);
+      flex: 0 0 auto;
+    }
+
+    .championship-event-link:visited{
+      color: #8f97aa;
+      text-decoration: none !important;
+    }
+
+    .championship-event-link:hover{
+      color: #a3acc1;
+      text-decoration: none !important;
+      opacity: 1;
+    }
+
+    .championship-event-link:active{
+      color: #aeb7cb;
+      text-decoration: none !important;
     }
 
     .battle-section-heading,
@@ -492,14 +515,31 @@
     }
 
     .appearance-name{
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32em;
+      max-width: 100%;
       line-height: 1.34;
       word-break: break-word;
       overflow-wrap: anywhere;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
+      text-decoration: none !important;
+      color: #8f97aa;
       font-size: 0.98rem;
       font-weight: 500;
+    }
+
+    .appearance-name::after{
+      content: "›";
+      font-size: 0.95em;
+      line-height: 1;
+      opacity: 0.78;
+      transform: translateY(-0.02em);
+      flex: 0 0 auto;
+    }
+
+    .appearance-link-wrap a:hover .appearance-name{
+      color: #a3acc1;
+      text-decoration: none !important;
     }
 
     .appearance-date{
