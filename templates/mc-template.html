@@ -259,7 +259,10 @@ __PROFILE_JSON_LD__
       position: sticky;
       top: 8px;
       z-index: 5;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      max-width: min(100%, 92vw);
       margin: 0 0 8px;
       padding: 6px 9px;
       border: 1px solid rgba(216,180,106,0.18);
@@ -272,6 +275,35 @@ __PROFILE_JSON_LD__
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.015) inset,
         0 8px 18px rgba(0,0,0,0.12);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .section-heading-name{
+      min-width: 0;
+      max-width: 14em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .section-heading-sep{
+      flex: 0 0 auto;
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    .section-heading-label{
+      flex: 0 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text);
+      font-weight: 700;
     }
 
     .battle-list,
@@ -320,15 +352,6 @@ __PROFILE_JSON_LD__
         border-color 0.18s ease,
         box-shadow 0.18s ease,
         color 0.18s ease;
-    }
-
-    .battle-opponent-label{
-      display: inline-block;
-      min-width: 0;
-      white-space: nowrap;
-    }
-
-    .battle-opponent-link-win{
       min-height: 34px;
       padding: 0 12px;
       background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
@@ -337,7 +360,7 @@ __PROFILE_JSON_LD__
       box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
     }
 
-    .battle-opponent-link-win:hover{
+    .battle-opponent-link:hover{
       background: linear-gradient(180deg, rgba(216,180,106,.26), rgba(216,180,106,.11));
       border-color: rgba(216,180,106,.48);
       color: #fff7e8 !important;
@@ -345,36 +368,17 @@ __PROFILE_JSON_LD__
       box-shadow: 0 0 20px rgba(216,180,106,.18);
     }
 
-    .battle-opponent-link-loss{
-      min-height: 30px;
-      padding: 0 10px;
-      background: rgba(255,255,255,.025);
-      border: 1px solid rgba(143,151,170,.14);
-      color: #8a92a5 !important;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.015) inset;
-    }
-
-    .battle-opponent-link-loss:hover{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(143,151,170,.26);
-      color: #b0b8c8 !important;
-      transform: translateY(-1px);
+    .battle-opponent-label{
+      display: inline-block;
+      min-width: 0;
+      white-space: nowrap;
     }
 
     .battle-opponent-link.is-long{
       justify-content: flex-start;
       text-align: left;
-    }
-
-    .battle-opponent-link-win.is-long{
       padding-left: 12px;
       padding-right: 10px;
-      font-size: 0.88rem;
-    }
-
-    .battle-opponent-link-loss.is-long{
-      padding-left: 10px;
-      padding-right: 8px;
       font-size: 0.88rem;
     }
 
@@ -550,6 +554,11 @@ __PROFILE_JSON_LD__
         top: 6px;
         margin-bottom: 7px;
         padding: 5px 8px;
+        max-width: calc(100vw - 48px);
+      }
+
+      .section-heading-name{
+        max-width: 8.5em;
       }
 
       .battle-list li,
@@ -562,25 +571,14 @@ __PROFILE_JSON_LD__
         line-height: 1.3;
       }
 
-      .battle-opponent-link-win{
+      .battle-opponent-link{
         min-height: 32px;
         padding: 0 10px;
       }
 
-      .battle-opponent-link-loss{
-        min-height: 29px;
-        padding: 0 8px;
-      }
-
-      .battle-opponent-link-win.is-long{
+      .battle-opponent-link.is-long{
         padding-left: 10px;
         padding-right: 8px;
-        font-size: 0.80rem;
-      }
-
-      .battle-opponent-link-loss.is-long{
-        padding-left: 9px;
-        padding-right: 7px;
         font-size: 0.80rem;
       }
 
@@ -646,7 +644,11 @@ __MC_INFO_LIST_ITEMS__
 
     <section id="wins-section" class="card __WINS_SECTION_HIDDEN_CLASS__">
       <div class="mc-card-inner">
-        <h2 id="wins-heading" class="battle-section-heading">Win</h2>
+        <h2 id="wins-heading" class="battle-section-heading">
+          <span class="section-heading-name">__MC_TITLE__</span>
+          <span class="section-heading-sep">/</span>
+          <span class="section-heading-label">Win</span>
+        </h2>
         <p id="wins-status" class="muted __WINS_STATUS_HIDDEN_CLASS__">__WINS_STATUS__</p>
         <ul id="wins-list" class="battle-list">
 __WINS_LIST_ITEMS__
@@ -657,7 +659,11 @@ __WINS_LIST_ITEMS__
 
     <section id="losses-section" class="card __LOSSES_SECTION_HIDDEN_CLASS__">
       <div class="mc-card-inner">
-        <h2 id="losses-heading" class="battle-section-heading">Lose</h2>
+        <h2 id="losses-heading" class="battle-section-heading">
+          <span class="section-heading-name">__MC_TITLE__</span>
+          <span class="section-heading-sep">/</span>
+          <span class="section-heading-label">Lose</span>
+        </h2>
         <p id="losses-status" class="muted __LOSSES_STATUS_HIDDEN_CLASS__">__LOSSES_STATUS__</p>
         <ul id="losses-list" class="battle-list">
 __LOSSES_LIST_ITEMS__
@@ -668,7 +674,11 @@ __LOSSES_LIST_ITEMS__
 
     <section id="appearances-section" class="card __APPEARANCES_SECTION_HIDDEN_CLASS__">
       <div class="mc-card-inner">
-        <h2 class="appearance-section-heading">出場大会</h2>
+        <h2 class="appearance-section-heading">
+          <span class="section-heading-name">__MC_TITLE__</span>
+          <span class="section-heading-sep">/</span>
+          <span class="section-heading-label">出場大会</span>
+        </h2>
         <p id="appearances-status" class="muted __APPEARANCES_STATUS_HIDDEN_CLASS__">__APPEARANCES_STATUS__</p>
         <ul id="appearances-list" class="appearance-list">
 __APPEARANCES_LIST_ITEMS__
@@ -723,7 +733,6 @@ __APPEARANCES_LIST_ITEMS__
 
         const computed = window.getComputedStyle(el);
         const isMobile = window.innerWidth <= 640;
-        const isWin = el.classList.contains("battle-opponent-link-win");
 
         probe.style.fontFamily = computed.fontFamily;
         probe.style.fontWeight = computed.fontWeight;
@@ -733,10 +742,7 @@ __APPEARANCES_LIST_ITEMS__
 
         document.body.appendChild(probe);
 
-        const horizontalPadding = isMobile
-          ? (isWin ? 18 : 16)
-          : (isWin ? 22 : 18);
-
+        const horizontalPadding = isMobile ? 18 : 22;
         const available = el.clientWidth - horizontalPadding - 8;
         const needed = Math.ceil(probe.getBoundingClientRect().width);
 
