@@ -247,7 +247,6 @@
     }
 
     .meta-list-block .meta-value-block a,
-    .battle-list a,
     .appearance-list a{
       color: inherit;
       text-decoration: underline;
@@ -335,6 +334,91 @@
       font-weight: 600;
       word-break: break-word;
       overflow-wrap: anywhere;
+    }
+
+    .battle-opponent-link{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-decoration: none !important;
+      border-radius: 999px;
+      transition:
+        transform 0.18s ease,
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        color 0.18s ease;
+    }
+
+    .battle-opponent-label{
+      display: inline-block;
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .battle-opponent-link-win{
+      min-height: 34px;
+      padding: 0 12px;
+      background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
+      border: 1px solid rgba(216,180,106,.34);
+      color: #fff4dc !important;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
+    }
+
+    .battle-opponent-link-win:hover{
+      background: linear-gradient(180deg, rgba(216,180,106,.26), rgba(216,180,106,.11));
+      border-color: rgba(216,180,106,.48);
+      color: #fff7e8 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(216,180,106,.18);
+    }
+
+    .battle-opponent-link-loss{
+      min-height: 30px;
+      padding: 0 10px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(143,151,170,.14);
+      color: #8a92a5 !important;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.015) inset;
+    }
+
+    .battle-opponent-link-loss:hover{
+      background: rgba(255,255,255,.05);
+      border-color: rgba(143,151,170,.26);
+      color: #b0b8c8 !important;
+      transform: translateY(-1px);
+    }
+
+    .battle-opponent-link.is-long{
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .battle-opponent-link-win.is-long{
+      padding-left: 12px;
+      padding-right: 10px;
+      font-size: 0.88rem;
+    }
+
+    .battle-opponent-link-loss.is-long{
+      padding-left: 10px;
+      padding-right: 8px;
+      font-size: 0.88rem;
+    }
+
+    .smart-measure-probe{
+      position: fixed;
+      left: -9999px;
+      top: -9999px;
+      visibility: hidden;
+      pointer-events: none;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
 
     .battle-event{
@@ -509,6 +593,28 @@
       .battle-opponent{
         font-size: 0.9rem;
         line-height: 1.3;
+      }
+
+      .battle-opponent-link-win{
+        min-height: 32px;
+        padding: 0 10px;
+      }
+
+      .battle-opponent-link-loss{
+        min-height: 29px;
+        padding: 0 8px;
+      }
+
+      .battle-opponent-link-win.is-long{
+        padding-left: 10px;
+        padding-right: 8px;
+        font-size: 0.80rem;
+      }
+
+      .battle-opponent-link-loss.is-long{
+        padding-left: 9px;
+        padding-right: 7px;
+        font-size: 0.80rem;
       }
 
       .battle-event{
@@ -1001,9 +1107,61 @@
         render();
       }
 
+      function measureBattleOpponentOverflow(el) {
+        const label = el.querySelector(".battle-opponent-label");
+        if (!label) return false;
+
+        const probe = document.createElement("span");
+        probe.className = "smart-measure-probe";
+        probe.textContent = label.textContent || "";
+
+        const computed = window.getComputedStyle(el);
+        const isMobile = window.innerWidth <= 640;
+        const isWin = el.classList.contains("battle-opponent-link-win");
+
+        probe.style.fontFamily = computed.fontFamily;
+        probe.style.fontWeight = computed.fontWeight;
+        probe.style.letterSpacing = computed.letterSpacing;
+        probe.style.textTransform = computed.textTransform;
+        probe.style.fontSize = isMobile ? "0.80rem" : "0.88rem";
+
+        document.body.appendChild(probe);
+
+        const horizontalPadding = isMobile
+          ? (isWin ? 18 : 16)
+          : (isWin ? 22 : 18);
+
+        const available = el.clientWidth - horizontalPadding - 8;
+        const needed = Math.ceil(probe.getBoundingClientRect().width);
+
+        probe.remove();
+        return needed > available;
+      }
+
+      function applyBattleOpponentSmartAlign() {
+        const targets = document.querySelectorAll(".battle-opponent-link");
+
+        targets.forEach((el) => {
+          el.classList.remove("is-long");
+          if (measureBattleOpponentOverflow(el)) {
+            el.classList.add("is-long");
+          }
+        });
+      }
+
+      let resizeTimer = null;
+      function requestBattleOpponentSmartAlign() {
+        if (resizeTimer) clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(applyBattleOpponentSmartAlign, 80);
+      }
+
       setupCollapsibleList("wins-list", "wins-more-button", 5);
       setupCollapsibleList("losses-list", "losses-more-button", 5);
       setupCollapsibleList("appearances-list", "appearances-more-button", 10);
+
+      window.addEventListener("load", applyBattleOpponentSmartAlign);
+      window.addEventListener("resize", requestBattleOpponentSmartAlign);
+      document.addEventListener("DOMContentLoaded", applyBattleOpponentSmartAlign);
     })();
   </script>
 </body>
