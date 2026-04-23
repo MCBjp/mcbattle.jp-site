@@ -292,7 +292,10 @@
       position: sticky;
       top: 8px;
       z-index: 5;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      max-width: min(100%, 92vw);
       margin: 0 0 8px;
       padding: 6px 9px;
       border: 1px solid rgba(216,180,106,0.18);
@@ -305,6 +308,35 @@
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.015) inset,
         0 8px 18px rgba(0,0,0,0.12);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .section-heading-name{
+      min-width: 0;
+      max-width: 14em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .section-heading-sep{
+      flex: 0 0 auto;
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    .section-heading-label{
+      flex: 0 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text);
+      font-weight: 700;
     }
 
     .battle-list,
@@ -353,15 +385,6 @@
         border-color 0.18s ease,
         box-shadow 0.18s ease,
         color 0.18s ease;
-    }
-
-    .battle-opponent-label{
-      display: inline-block;
-      min-width: 0;
-      white-space: nowrap;
-    }
-
-    .battle-opponent-link-win{
       min-height: 34px;
       padding: 0 12px;
       background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
@@ -370,7 +393,7 @@
       box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
     }
 
-    .battle-opponent-link-win:hover{
+    .battle-opponent-link:hover{
       background: linear-gradient(180deg, rgba(216,180,106,.26), rgba(216,180,106,.11));
       border-color: rgba(216,180,106,.48);
       color: #fff7e8 !important;
@@ -378,36 +401,17 @@
       box-shadow: 0 0 20px rgba(216,180,106,.18);
     }
 
-    .battle-opponent-link-loss{
-      min-height: 30px;
-      padding: 0 10px;
-      background: rgba(255,255,255,.025);
-      border: 1px solid rgba(143,151,170,.14);
-      color: #8a92a5 !important;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.015) inset;
-    }
-
-    .battle-opponent-link-loss:hover{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(143,151,170,.26);
-      color: #b0b8c8 !important;
-      transform: translateY(-1px);
+    .battle-opponent-label{
+      display: inline-block;
+      min-width: 0;
+      white-space: nowrap;
     }
 
     .battle-opponent-link.is-long{
       justify-content: flex-start;
       text-align: left;
-    }
-
-    .battle-opponent-link-win.is-long{
       padding-left: 12px;
       padding-right: 10px;
-      font-size: 0.88rem;
-    }
-
-    .battle-opponent-link-loss.is-long{
-      padding-left: 10px;
-      padding-right: 8px;
       font-size: 0.88rem;
     }
 
@@ -583,6 +587,11 @@
         top: 6px;
         margin-bottom: 7px;
         padding: 5px 8px;
+        max-width: calc(100vw - 48px);
+      }
+
+      .section-heading-name{
+        max-width: 8.5em;
       }
 
       .battle-list li,
@@ -595,25 +604,14 @@
         line-height: 1.3;
       }
 
-      .battle-opponent-link-win{
+      .battle-opponent-link{
         min-height: 32px;
         padding: 0 10px;
       }
 
-      .battle-opponent-link-loss{
-        min-height: 29px;
-        padding: 0 8px;
-      }
-
-      .battle-opponent-link-win.is-long{
+      .battle-opponent-link.is-long{
         padding-left: 10px;
         padding-right: 8px;
-        font-size: 0.80rem;
-      }
-
-      .battle-opponent-link-loss.is-long{
-        padding-left: 9px;
-        padding-right: 7px;
         font-size: 0.80rem;
       }
 
@@ -683,7 +681,11 @@
 
     <section id="wins-section" class="card ">
       <div class="mc-card-inner">
-        <h2 id="wins-heading" class="battle-section-heading">Win</h2>
+        <h2 id="wins-heading" class="battle-section-heading">
+          <span class="section-heading-name">Amateras</span>
+          <span class="section-heading-sep">/</span>
+          <span class="section-heading-label">Win</span>
+        </h2>
         <p id="wins-status" class="muted is-hidden"></p>
         <ul id="wins-list" class="battle-list">
 <li><span class="battle-opponent"><a href="../detail_mc/MC0944.html" class="battle-opponent-link battle-opponent-link-win"><span class="battle-opponent-label">えびちる</span></a></span><span class="battle-event">
@@ -717,7 +719,11 @@
 
     <section id="losses-section" class="card ">
       <div class="mc-card-inner">
-        <h2 id="losses-heading" class="battle-section-heading">Lose</h2>
+        <h2 id="losses-heading" class="battle-section-heading">
+          <span class="section-heading-name">Amateras</span>
+          <span class="section-heading-sep">/</span>
+          <span class="section-heading-label">Lose</span>
+        </h2>
         <p id="losses-status" class="muted is-hidden"></p>
         <ul id="losses-list" class="battle-list">
 <li><span class="battle-opponent"><a href="../detail_mc/MC0462.html" class="battle-opponent-link battle-opponent-link-loss"><span class="battle-opponent-label">Randy wati sati</span></a></span><span class="battle-event">
@@ -778,7 +784,11 @@
 
     <section id="appearances-section" class="card ">
       <div class="mc-card-inner">
-        <h2 class="appearance-section-heading">出場大会</h2>
+        <h2 class="appearance-section-heading">
+          <span class="section-heading-name">Amateras</span>
+          <span class="section-heading-sep">/</span>
+          <span class="section-heading-label">出場大会</span>
+        </h2>
         <p id="appearances-status" class="muted is-hidden"></p>
         <ul id="appearances-list" class="appearance-list">
 <li><div class="appearance-link-wrap"><a href="../detail_event/EVT0163.html">
@@ -900,7 +910,6 @@
 
         const computed = window.getComputedStyle(el);
         const isMobile = window.innerWidth <= 640;
-        const isWin = el.classList.contains("battle-opponent-link-win");
 
         probe.style.fontFamily = computed.fontFamily;
         probe.style.fontWeight = computed.fontWeight;
@@ -910,10 +919,7 @@
 
         document.body.appendChild(probe);
 
-        const horizontalPadding = isMobile
-          ? (isWin ? 18 : 16)
-          : (isWin ? 22 : 18);
-
+        const horizontalPadding = isMobile ? 18 : 22;
         const available = el.clientWidth - horizontalPadding - 8;
         const needed = Math.ceil(probe.getBoundingClientRect().width);
 
