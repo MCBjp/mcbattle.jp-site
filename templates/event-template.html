@@ -213,7 +213,7 @@
       text-decoration: none !important;
     }
 
-    /* 実測用: 少し縮小して収まるか確認 */
+    /* 実測用 */
     .result-link-winner.is-fit-test,
     .result-link-loser.is-fit-test{
       font-size: 0.92rem !important;
@@ -715,16 +715,17 @@
 
   <script>
     (function () {
+      const SAFETY_PX = 6;
+      let resizeTimer = null;
+
       function applySmartAlign() {
-        const targets = document.querySelectorAll(
-          ".result-link-winner, .result-link-loser"
-        );
+        const targets = document.querySelectorAll(".result-link-winner, .result-link-loser");
 
         targets.forEach((el) => {
           el.classList.remove("is-long", "is-fit-test");
 
           el.classList.add("is-fit-test");
-          const isOverflow = el.scrollWidth > el.clientWidth + 1;
+          const isOverflow = el.scrollWidth > (el.clientWidth - SAFETY_PX);
           el.classList.remove("is-fit-test");
 
           if (isOverflow) {
@@ -732,8 +733,6 @@
           }
         });
       }
-
-      let resizeTimer = null;
 
       function requestApplySmartAlign() {
         if (resizeTimer) {
