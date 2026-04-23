@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3on3 SAMPLE EVENT | 大会結果・試合結果 | MCBattle.jp</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .page-top{
+      margin-bottom: 18px;
+    }
+
+    .page-mini-logo{
+      margin: 0 0 10px;
+    }
+
+    .page-mini-logo .site-mini-logo{
+      text-decoration: none;
+    }
+
+    .page-nav-pills{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 14px;
+      max-width: 100%;
+    }
+
+    .page-nav-pill{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.93rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .page-nav-break{
+      flex-basis: 100%;
+      height: 0;
+    }
+
+    .page-header-block{
+      margin-bottom: 14px;
+    }
+
+    .page-header-block h1{
+      margin: 0;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .event-card-inner {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .meta-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .meta-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.97rem;
+      line-height: 1.46;
+    }
+
+    .meta-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 1px;
+    }
+
+    .meta-label {
+      flex: 0 0 auto;
+      min-width: 5.9em;
+      color: #c7cedc;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .meta-list li > span:last-child {
+      flex: 1 1 auto;
+      min-width: 0;
+      color: var(--text);
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .result-block {
+      display: block;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .result-line {
+      display: block;
+      color: var(--text);
+    }
+
+    .result-line + .result-line {
+      margin-top: 4px;
+    }
+
+    .team-result-link{
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
+      border: 1px solid rgba(216,180,106,.34);
+      color: #fff4dc;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .team-result-link.is-sub{
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(143,151,170,.14);
+      color: #c7cedc;
+      font-weight: 700;
+    }
+
+    .team-member-inline{
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.35;
+    }
+
+    .round-block {
+      margin-top: 18px;
+    }
+
+    .round-heading {
+      margin: 0 0 8px;
+    }
+
+    .match-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .match-list > li {
+      margin: 0 0 8px 0;
+      padding: 0;
+    }
+
+    .match-list.is-two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 10px;
+    }
+
+    .match-row-box {
+      display: block;
+      max-width: 100%;
+      padding: 11px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset;
+    }
+
+    .match-single-line {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr);
+      align-items: start;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .team-side{
+      min-width: 0;
+    }
+
+    .team-side.is-winner{
+      color: var(--text);
+    }
+
+    .team-side.is-loser{
+      color: #c7cedc;
+    }
+
+    .team-name-pill{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+    }
+
+    .team-side.is-winner .team-name-pill{
+      background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
+      border: 1px solid rgba(216,180,106,.34);
+      color: #fff4dc;
+      font-weight: 800;
+    }
+
+    .team-side.is-loser .team-name-pill{
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(143,151,170,.14);
+      color: #8a92a5;
+      font-weight: 700;
+    }
+
+    .team-name-pill.is-long{
+      justify-content: flex-start;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .team-members{
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.83rem;
+      line-height: 1.34;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .match-separator {
+      width: 24px;
+      color: var(--muted);
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      text-align: center;
+      padding-top: 8px;
+    }
+
+    .format-note{
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.42;
+    }
+
+    @media (max-width: 640px) {
+      .page-top{
+        margin-bottom: 14px;
+      }
+
+      .page-mini-logo{
+        margin-bottom: 8px;
+      }
+
+      .page-nav-pills{
+        gap: 7px;
+        margin-bottom: 12px;
+      }
+
+      .page-nav-pill{
+        min-height: 34px;
+        padding: 0 12px;
+        font-size: 0.86rem;
+      }
+
+      .page-header-block{
+        margin-bottom: 10px;
+      }
+
+      .page-header-block h1{
+        font-size: clamp(1.5rem, 5.3vw, 1.95rem);
+        line-height: 1.12;
+      }
+
+      .event-card-inner {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .meta-list li {
+        gap: 7px;
+        padding: 8px 0;
+        font-size: 0.87rem;
+        line-height: 1.34;
+      }
+
+      .meta-label {
+        min-width: 4.95em;
+        font-size: 0.85rem;
+      }
+
+      .match-list.is-two-column {
+        display: block;
+      }
+
+      .match-row-box {
+        padding: 8px 9px;
+        border-radius: 10px;
+      }
+
+      .match-single-line {
+        grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+        gap: 6px;
+      }
+
+      .match-separator {
+        width: 20px;
+      }
+
+      .team-name-pill{
+        min-height: 32px;
+        padding: 0 10px;
+        font-size: 0.92rem;
+      }
+
+      .team-name-pill.is-long{
+        font-size: 0.80rem;
+      }
+
+      .team-members{
+        margin-top: 4px;
+        font-size: 0.78rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="event-page">
+    <div class="page-top">
+      <p class="page-mini-logo"><a href="../" class="site-mini-logo">MCBattle.jp</a></p>
+
+      <nav class="page-nav-pills" aria-label="主要メニュー">
+        <a class="page-nav-pill" href="../list_event.html">大会一覧</a>
+        <a class="page-nav-pill" href="../list_mc.html">MC一覧</a>
+        <span class="page-nav-break" aria-hidden="true"></span>
+        <a class="page-nav-pill" href="../score_ranking.html">スコアランキング</a>
+        <a class="page-nav-pill" href="../prize_ranking.html">賞金ランキング</a>
+      </nav>
+
+      <div class="page-header-block">
+        <h1>3on3 SAMPLE EVENT</h1>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="event-card-inner">
+        <h2>大会情報</h2>
+        <ul class="meta-list">
+          <li><span class="meta-label">開催日：</span><span>2026.04.23</span></li>
+          <li><span class="meta-label">場所：</span><span>渋谷SAMPLE HALL</span></li>
+          <li>
+            <span class="meta-label">結果：</span>
+            <span>
+              <span class="result-block">
+                <span class="result-line">
+                  🥇 <a href="#" class="team-result-link">Team A</a>
+                  <span class="team-member-inline">A1・A2・A3</span>
+                </span>
+                <span class="result-line">
+                  🥈 <a href="#" class="team-result-link is-sub">Team H</a>
+                  <span class="team-member-inline">H1・H2・H3</span>
+                </span>
+                <span class="result-line">
+                  🥉 <a href="#" class="team-result-link is-sub">Team C</a>
+                  <span class="team-member-inline">C1・C2・C3</span>
+                </span>
+                <span class="result-line">
+                  🥉 <a href="#" class="team-result-link is-sub">Team F</a>
+                  <span class="team-member-inline">F1・F2・F3</span>
+                </span>
+              </span>
+            </span>
+          </li>
+          <li><span class="meta-label">優勝賞金：</span><span>¥300,000</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="event-card-inner">
+        <h2>試合結果</h2>
+        <p class="format-note">※この大会は3on3形式です。チーム名の下にメンバーを表示しています。</p>
+
+        <div class="round-block">
+          <h3 class="round-heading">Final</h3>
+          <ul class="match-list">
+            <li>
+              <div class="match-row-box">
+                <div class="match-single-line">
+                  <div class="team-side is-winner">
+                    <a href="#" class="team-name-pill">Team A</a>
+                    <span class="team-members">A1・A2・A3</span>
+                  </div>
+                  <div class="match-separator">/</div>
+                  <div class="team-side is-loser">
+                    <a href="#" class="team-name-pill">Team H</a>
+                    <span class="team-members">H1・H2・H3</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="round-block">
+          <h3 class="round-heading">Best4</h3>
+          <ul class="match-list is-two-column">
+            <li>
+              <div class="match-row-box">
+                <div class="match-single-line">
+                  <div class="team-side is-winner">
+                    <a href="#" class="team-name-pill">Team A</a>
+                    <span class="team-members">A1・A2・A3</span>
+                  </div>
+                  <div class="match-separator">/</div>
+                  <div class="team-side is-loser">
+                    <a href="#" class="team-name-pill">Team C</a>
+                    <span class="team-members">C1・C2・C3</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="match-row-box">
+                <div class="match-single-line">
+                  <div class="team-side is-winner">
+                    <a href="#" class="team-name-pill">Team H</a>
+                    <span class="team-members">H1・H2・H3</span>
+                  </div>
+                  <div class="match-separator">/</div>
+                  <div class="team-side is-loser">
+                    <a href="#" class="team-name-pill">Team F</a>
+                    <span class="team-members">F1・F2・F3</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="round-block">
+          <h3 class="round-heading">Best8</h3>
+          <ul class="match-list is-two-column">
+            <li>
+              <div class="match-row-box">
+                <div class="match-single-line">
+                  <div class="team-side is-winner">
+                    <a href="#" class="team-name-pill">Team A</a>
+                    <span class="team-members">A1・A2・A3</span>
+                  </div>
+                  <div class="match-separator">/</div>
+                  <div class="team-side is-loser">
+                    <a href="#" class="team-name-pill">Team B</a>
+                    <span class="team-members">B1・B2・B3</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="match-row-box">
+                <div class="match-single-line">
+                  <div class="team-side is-winner">
+                    <a href="#" class="team-name-pill">Team C</a>
+                    <span class="team-members">C1・C2・C3</span>
+                  </div>
+                  <div class="match-separator">/</div>
+                  <div class="team-side is-loser">
+                    <a href="#" class="team-name-pill">Team D</a>
+                    <span class="team-members">D1・D2・D3</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="match-row-box">
+                <div class="match-single-line">
+                  <div class="team-side is-winner">
+                    <a href="#" class="team-name-pill">Team F</a>
+                    <span class="team-members">F1・F2・F3</span>
+                  </div>
+                  <div class="match-separator">/</div>
+                  <div class="team-side is-loser">
+                    <a href="#" class="team-name-pill">Team E</a>
+                    <span class="team-members">E1・E2・E3</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="match-row-box">
+                <div class="match-single-line">
+                  <div class="team-side is-winner">
+                    <a href="#" class="team-name-pill">Team H</a>
+                    <span class="team-members">H1・H2・H3</span>
+                  </div>
+                  <div class="match-separator">/</div>
+                  <div class="team-side is-loser">
+                    <a href="#" class="team-name-pill">Team G</a>
+                    <span class="team-members">G1・G2・G3</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</body>
+</html>
