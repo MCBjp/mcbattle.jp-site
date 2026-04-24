@@ -11,6 +11,7 @@ function main() {
   ensureFileExists(TEMPLATE_PATH);
   ensureFileExists(DATA_PATH);
   ensureDir(OUTPUT_DIR);
+  cleanHtmlFilesInDir(OUTPUT_DIR);
 
   const template = fs.readFileSync(TEMPLATE_PATH, "utf8");
   const raw = fs.readFileSync(DATA_PATH, "utf8");
@@ -36,7 +37,7 @@ function main() {
     generatedCount += 1;
   }
 
-  console.log(`生成完了: ${generatedCount}件`);
+  console.log(`大会静的ページ生成完了: ${generatedCount}件`);
 }
 
 function buildEventHtml(template, eventId, detail) {
@@ -49,8 +50,10 @@ function buildEventHtml(template, eventId, detail) {
   const eventTitle = safeString(event.event_name_full || event.event_name || "大会名不明");
   const eventDateText = formatDateJP(event.event_date || "");
   const winnerName = safeString(event.winner_name || "");
-  const metaDescription = buildMetaDescription(eventTitle, eventDateText, winnerName);
-  const pageTitle = `${eventTitle} | 大会結果・試合結果 | MCBattle.jp`;
+  const runnerUpName = safeString(event.runner_up_name || "");
+
+  const pageTitle = `${eventTitle} | 大会結果・優勝者・試合結果 | MCBattle.jp`;
+  const metaDescription = buildMetaDescription(eventTitle, eventDateText, winnerName, runnerUpName, totalMatches);
 
   const eventInfoListItems = buildEventInfoListItems(event, groupedMatches);
   const matchesHtml = buildMatchesHtml(groupedMatches);
@@ -74,12 +77,13 @@ function buildEventHtml(template, eventId, detail) {
     .replaceAll("__CONTACT_EVENT_NAME_URL__", escapeHtml(encodeURIComponent(eventTitle)));
 }
 
-function buildMetaDescription(eventTitle, eventDateText, winnerName) {
+function buildMetaDescription(eventTitle, eventDateText, winnerName, runnerUpName, totalMatches) {
   const parts = [
-    `${eventTitle}の大会詳細ページです。`,
+    `${eventTitle}の大会結果ページです。`,
     eventDateText ? `開催日は${eventDateText}。` : "",
     winnerName ? `優勝者は${winnerName}。` : "",
-    "試合結果を掲載しています。"
+    runnerUpName ? `準優勝者は${runnerUpName}。` : "",
+    totalMatches > 0 ? `全${totalMatches}試合の試合結果を掲載しています。` : "試合結果を掲載しています。"
   ].filter(Boolean);
 
   return parts.join(" ");
@@ -174,24 +178,24 @@ function buildBreadcrumbJsonLd(eventId, eventTitle) {
   return JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
+    itemListElement: [
       {
         "@type": "ListItem",
-        "position": 1,
-        "name": "MCBattle.jp",
-        "item": "https://mcbattle.jp/"
+        position: 1,
+        name: "MCBattle.jp",
+        item: "https://mcbattle.jp/"
       },
       {
         "@type": "ListItem",
-        "position": 2,
-        "name": "大会一覧",
-        "item": "https://mcbattle.jp/list_event.html"
+        position: 2,
+        name: "大会一覧",
+        item: "https://mcbattle.jp/list_event.html"
       },
       {
         "@type": "ListItem",
-        "position": 3,
-        "name": eventTitle,
-        "item": `https://mcbattle.jp/detail_event/${eventId}.html`
+        position: 3,
+        name: eventTitle,
+        item: `https://mcbattle.jp/detail_event/${eventId}.html`
       }
     ]
   }, null, 2);
@@ -212,13 +216,13 @@ function buildEventJsonLd(eventId, event, eventTitle, description, winnerName) {
   const obj = {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": eventTitle,
-    "description": description,
-    "url": `https://mcbattle.jp/detail_event/${eventId}.html`,
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "eventStatus": "https://schema.org/EventCompleted",
-    "image": [
-      "https://mcbattle.jp/ogp.jpg"
+    name: eventTitle,
+    description,
+    url: `https://mcbattle.jp/detail_event/${eventId}.html`,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventCompleted",
+    image: [
+      "https://mcbattle.jp/ogp.PNG"
     ]
   };
 
@@ -230,21 +234,21 @@ function buildEventJsonLd(eventId, event, eventTitle, description, winnerName) {
   if (locationName) {
     obj.location = {
       "@type": "Place",
-      "name": locationName
+      name: locationName
     };
   }
 
   if (winnerName) {
     obj.performer = {
       "@type": "Person",
-      "name": winnerName
+      name: winnerName
     };
   }
 
   if (organizerName) {
     obj.organizer = {
       "@type": "Organization",
-      "name": organizerName
+      name: organizerName
     };
   }
 
@@ -379,6 +383,22 @@ function ensureFileExists(filePath) {
 
 function ensureDir(dirPath) {
   fs.mkdirSync(dirPath, { recursive: true });
+}
+
+function cleanHtmlFilesInDir(dirPath) {
+  if (!fs.existsSync(dirPath)) return;
+
+  const files = fs.readdirSync(dirPath);
+  let deletedCount = 0;
+
+  files.forEach((file) => {
+    if (file.endsWith(".html")) {
+      fs.unlinkSync(path.join(dirPath, file));
+      deletedCount += 1;
+    }
+  });
+
+  console.log(`既存大会静的HTML削除: ${deletedCount}件`);
 }
 
 main();
