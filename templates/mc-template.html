@@ -115,6 +115,15 @@ __PROFILE_JSON_LD__
       word-break: break-word;
     }
 
+    .page-header-description{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.34;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
     .page-header-meta{
       margin: 6px 0 0;
       color: var(--muted);
@@ -262,7 +271,7 @@ __PROFILE_JSON_LD__
     }
 
     .championship-event-link::after{
-      content: "›";
+      content: "âº";
       font-size: 0.95em;
       line-height: 1;
       opacity: 0.78;
@@ -446,7 +455,7 @@ __PROFILE_JSON_LD__
     }
 
     .battle-event-link::after{
-      content: "›";
+      content: "âº";
       font-size: 0.95em;
       line-height: 1;
       opacity: 0.78;
@@ -496,7 +505,7 @@ __PROFILE_JSON_LD__
     }
 
     .appearance-name::after{
-      content: "›";
+      content: "âº";
       font-size: 0.95em;
       line-height: 1;
       opacity: 0.78;
@@ -547,6 +556,12 @@ __PROFILE_JSON_LD__
       }
 
       .page-header-subname{
+        margin-top: 4px;
+        font-size: 0.87rem;
+        line-height: 1.30;
+      }
+
+      .page-header-description{
         margin-top: 4px;
         font-size: 0.87rem;
         line-height: 1.30;
@@ -669,17 +684,18 @@ __PROFILE_JSON_LD__
     <div class="page-top">
       <p class="page-mini-logo"><a href="../" class="site-mini-logo">MCBattle.jp</a></p>
 
-      <nav class="page-nav-pills" aria-label="主要メニュー">
-        <a class="page-nav-pill" href="../list_event.html">大会一覧</a>
-        <a class="page-nav-pill" href="../list_mc.html">MC一覧</a>
+      <nav class="page-nav-pills" aria-label="ä¸»è¦ã¡ãã¥ã¼">
+        <a class="page-nav-pill" href="../list_event.html">å¤§ä¼ä¸è¦§</a>
+        <a class="page-nav-pill" href="../list_mc.html">MCä¸è¦§</a>
         <span class="page-nav-break" aria-hidden="true"></span>
-        <a class="page-nav-pill" href="../score_ranking.html">スコアランキング</a>
-        <a class="page-nav-pill" href="../prize_ranking.html">賞金ランキング</a>
+        <a class="page-nav-pill" href="../score_ranking.html">ã¹ã³ã¢ã©ã³ã­ã³ã°</a>
+        <a class="page-nav-pill" href="../prize_ranking.html">è³éã©ã³ã­ã³ã°</a>
       </nav>
 
       <div class="page-header-block">
         <h1 id="mc-title">__MC_TITLE__</h1>
         <p id="mc-subname" class="page-header-subname __MC_SUBNAME_HIDDEN_CLASS__">__MC_SUBNAME__</p>
+        <p id="mc-description" class="page-header-description __MC_DESCRIPTION_HIDDEN_CLASS__">__MC_DESCRIPTION__</p>
         <p id="mc-meta" class="page-header-meta">__MC_META__</p>
       </div>
     </div>
@@ -709,7 +725,7 @@ __MC_INFO_LIST_ITEMS__
         <ul id="wins-list" class="battle-list">
 __WINS_LIST_ITEMS__
         </ul>
-        <button id="wins-more-button" class="more-button __WINS_MORE_HIDDEN_CLASS__" type="button">すべて見る</button>
+        <button id="wins-more-button" class="more-button __WINS_MORE_HIDDEN_CLASS__" type="button">ãã¹ã¦è¦ã</button>
       </div>
     </section>
 
@@ -724,7 +740,7 @@ __WINS_LIST_ITEMS__
         <ul id="losses-list" class="battle-list">
 __LOSSES_LIST_ITEMS__
         </ul>
-        <button id="losses-more-button" class="more-button __LOSSES_MORE_HIDDEN_CLASS__" type="button">すべて見る</button>
+        <button id="losses-more-button" class="more-button __LOSSES_MORE_HIDDEN_CLASS__" type="button">ãã¹ã¦è¦ã</button>
       </div>
     </section>
 
@@ -733,13 +749,13 @@ __LOSSES_LIST_ITEMS__
         <h2 class="appearance-section-heading">
           <span class="section-heading-name">__MC_TITLE__</span>
           <span class="section-heading-sep">/</span>
-          <span class="section-heading-label">出場大会</span>
+          <span class="section-heading-label">åºå ´å¤§ä¼</span>
         </h2>
         <p id="appearances-status" class="muted __APPEARANCES_STATUS_HIDDEN_CLASS__">__APPEARANCES_STATUS__</p>
         <ul id="appearances-list" class="appearance-list">
 __APPEARANCES_LIST_ITEMS__
         </ul>
-        <button id="appearances-more-button" class="more-button __APPEARANCES_MORE_HIDDEN_CLASS__" type="button">すべて見る</button>
+        <button id="appearances-more-button" class="more-button __APPEARANCES_MORE_HIDDEN_CLASS__" type="button">ãã¹ã¦è¦ã</button>
       </div>
     </section>
   </div>
@@ -767,7 +783,7 @@ __APPEARANCES_LIST_ITEMS__
               item.classList.remove("is-hidden");
             }
           });
-          buttonEl.textContent = expanded ? "閉じる" : "すべて見る";
+          buttonEl.textContent = expanded ? "éãã" : "ãã¹ã¦è¦ã";
         }
 
         buttonEl.classList.remove("is-hidden");
