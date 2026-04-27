@@ -148,6 +148,15 @@
       word-break: break-word;
     }
 
+    .page-header-description{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.34;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
     .page-header-meta{
       margin: 6px 0 0;
       color: var(--muted);
@@ -295,7 +304,7 @@
     }
 
     .championship-event-link::after{
-      content: "›";
+      content: "âº";
       font-size: 0.95em;
       line-height: 1;
       opacity: 0.78;
@@ -479,7 +488,7 @@
     }
 
     .battle-event-link::after{
-      content: "›";
+      content: "âº";
       font-size: 0.95em;
       line-height: 1;
       opacity: 0.78;
@@ -529,7 +538,7 @@
     }
 
     .appearance-name::after{
-      content: "›";
+      content: "âº";
       font-size: 0.95em;
       line-height: 1;
       opacity: 0.78;
@@ -580,6 +589,12 @@
       }
 
       .page-header-subname{
+        margin-top: 4px;
+        font-size: 0.87rem;
+        line-height: 1.30;
+      }
+
+      .page-header-description{
         margin-top: 4px;
         font-size: 0.87rem;
         line-height: 1.30;
@@ -702,17 +717,18 @@
     <div class="page-top">
       <p class="page-mini-logo"><a href="../" class="site-mini-logo">MCBattle.jp</a></p>
 
-      <nav class="page-nav-pills" aria-label="主要メニュー">
-        <a class="page-nav-pill" href="../list_event.html">大会一覧</a>
-        <a class="page-nav-pill" href="../list_mc.html">MC一覧</a>
+      <nav class="page-nav-pills" aria-label="ä¸»è¦ã¡ãã¥ã¼">
+        <a class="page-nav-pill" href="../list_event.html">å¤§ä¼ä¸è¦§</a>
+        <a class="page-nav-pill" href="../list_mc.html">MCä¸è¦§</a>
         <span class="page-nav-break" aria-hidden="true"></span>
-        <a class="page-nav-pill" href="../score_ranking.html">スコアランキング</a>
-        <a class="page-nav-pill" href="../prize_ranking.html">賞金ランキング</a>
+        <a class="page-nav-pill" href="../score_ranking.html">ã¹ã³ã¢ã©ã³ã­ã³ã°</a>
+        <a class="page-nav-pill" href="../prize_ranking.html">è³éã©ã³ã­ã³ã°</a>
       </nav>
 
       <div class="page-header-block">
         <h1 id="mc-title">がーどまん</h1>
         <p id="mc-subname" class="page-header-subname is-hidden"></p>
+        <p id="mc-description" class="page-header-description __MC_DESCRIPTION_HIDDEN_CLASS__">__MC_DESCRIPTION__</p>
         <p id="mc-meta" class="page-header-meta"></p>
       </div>
     </div>
@@ -839,7 +855,7 @@
           <a href="../detail_event/EVT0053.html" class="battle-event-link">凱旋MCbattle東西選抜</a>
         </span></li>
         </ul>
-        <button id="wins-more-button" class="more-button " type="button">すべて見る</button>
+        <button id="wins-more-button" class="more-button " type="button">ãã¹ã¦è¦ã</button>
       </div>
     </section>
 
@@ -925,7 +941,7 @@
           <a href="../detail_event/EVT0156.html" class="battle-event-link">Spotlight 2016</a>
         </span></li>
         </ul>
-        <button id="losses-more-button" class="more-button " type="button">すべて見る</button>
+        <button id="losses-more-button" class="more-button " type="button">ãã¹ã¦è¦ã</button>
       </div>
     </section>
 
@@ -934,7 +950,7 @@
         <h2 class="appearance-section-heading">
           <span class="section-heading-name">がーどまん</span>
           <span class="section-heading-sep">/</span>
-          <span class="section-heading-label">出場大会</span>
+          <span class="section-heading-label">åºå ´å¤§ä¼</span>
         </h2>
         <p id="appearances-status" class="muted is-hidden"></p>
         <ul id="appearances-list" class="appearance-list">
@@ -1043,7 +1059,7 @@
           <span class="appearance-date">2016.12.03</span>
         </a></div></li>
         </ul>
-        <button id="appearances-more-button" class="more-button " type="button">すべて見る</button>
+        <button id="appearances-more-button" class="more-button " type="button">ãã¹ã¦è¦ã</button>
       </div>
     </section>
   </div>
@@ -1071,7 +1087,7 @@
               item.classList.remove("is-hidden");
             }
           });
-          buttonEl.textContent = expanded ? "閉じる" : "すべて見る";
+          buttonEl.textContent = expanded ? "éãã" : "ãã¹ã¦è¦ã";
         }
 
         buttonEl.classList.remove("is-hidden");
