@@ -53,6 +53,7 @@ function buildMcHtml(template, mcId, detail) {
 
   const mcName = safeString(mc.mc_name || "このMC");
   const mcSubName = safeString(mc.mc_name_sub || "").trim();
+  const mcDescription = getMcDescription(mc);
   const pageTitle = `${mcName} | 戦績・優勝歴・賞金・出場大会 | MCBattle.jp`;
   const metaDescription = buildMetaDescription(mcName, summary, championships, totalPrizeMoney);
 
@@ -93,6 +94,8 @@ function buildMcHtml(template, mcId, detail) {
     .replaceAll("__MC_TITLE__", escapeHtml(mcName))
     .replaceAll("__MC_SUBNAME__", escapeHtml(mcSubName))
     .replaceAll("__MC_SUBNAME_HIDDEN_CLASS__", mcSubName ? "" : "is-hidden")
+    .replaceAll("__MC_DESCRIPTION__", escapeHtml(mcDescription))
+    .replaceAll("__MC_DESCRIPTION_HIDDEN_CLASS__", mcDescription ? "" : "is-hidden")
     .replaceAll("__MC_META__", "")
     .replaceAll("__STATE_CARD_HIDDEN_CLASS__", "is-hidden")
     .replaceAll("__STATE_MESSAGE_ERROR_CLASS__", "")
@@ -114,6 +117,15 @@ function buildMcHtml(template, mcId, detail) {
     .replaceAll("__APPEARANCES_STATUS__", appearances.length === 0 ? "出場大会がありません" : "")
     .replaceAll("__APPEARANCES_LIST_ITEMS__", appearancesListItems)
     .replaceAll("__APPEARANCES_MORE_HIDDEN_CLASS__", appearancesHasMore ? "" : "is-hidden");
+}
+
+function getMcDescription(mc) {
+  return safeString(
+    mc.mc_description ??
+    mc.description ??
+    mc.notes_public ??
+    ""
+  ).trim();
 }
 
 function buildMetaDescription(mcName, summary, championships, totalPrizeMoney) {
