@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-27T15:49:45.312Z",
+  "updated_at": "2026-04-27T16:34:37.143Z",
   "recent_events": [
     {
       "event_id": "EVT0164",
@@ -11,8 +11,8 @@
       "prize_money_total": null,
       "event_category": "LUSHBOMU MC BATTLE",
       "event_stage": "本戦",
-      "location": "-",
-      "winner_name": ""
+      "location": "渋谷WOMB",
+      "winner_name": "輪入道"
     },
     {
       "event_id": "EVT0163",
@@ -151,7 +151,7 @@
       "rank": 1,
       "mc_id": "MC0376",
       "mc_name": "呂布カルマ",
-      "score": 2741.4,
+      "score": 2725.4,
       "total_matches": 245,
       "wins": 179,
       "losses": 66,
@@ -159,23 +159,23 @@
     },
     {
       "rank": 2,
-      "mc_id": "MC0214",
-      "mc_name": "RAWAXXX",
-      "score": 2623.97,
-      "total_matches": 196,
-      "wins": 136,
-      "losses": 60,
-      "last_match_date": "2025-12-20"
+      "mc_id": "MC0434",
+      "mc_name": "輪入道",
+      "score": 2653.62,
+      "total_matches": 135,
+      "wins": 97,
+      "losses": 38,
+      "last_match_date": "2026-04-26"
     },
     {
       "rank": 3,
-      "mc_id": "MC0434",
-      "mc_name": "輪入道",
-      "score": 2470.66,
-      "total_matches": 130,
-      "wins": 92,
-      "losses": 38,
-      "last_match_date": "2025-12-20"
+      "mc_id": "MC0214",
+      "mc_name": "RAWAXXX",
+      "score": 2625.64,
+      "total_matches": 198,
+      "wins": 137,
+      "losses": 61,
+      "last_match_date": "2026-04-26"
     },
     {
       "rank": 4,
@@ -191,7 +191,7 @@
       "rank": 5,
       "mc_id": "MC0100",
       "mc_name": "DOTAMA",
-      "score": 2236.89,
+      "score": 2244.89,
       "total_matches": 142,
       "wins": 96,
       "losses": 46,
@@ -211,17 +211,17 @@
       "rank": 7,
       "mc_id": "MC0023",
       "mc_name": "S-kainê",
-      "score": 2148.82,
-      "total_matches": 87,
-      "wins": 59,
-      "losses": 28,
-      "last_match_date": "2025-05-24"
+      "score": 2148,
+      "total_matches": 89,
+      "wins": 60,
+      "losses": 29,
+      "last_match_date": "2026-04-26"
     },
     {
       "rank": 8,
       "mc_id": "MC0271",
       "mc_name": "SAM",
-      "score": 2117.72,
+      "score": 2125.72,
       "total_matches": 67,
       "wins": 49,
       "losses": 18,
@@ -229,6 +229,16 @@
     },
     {
       "rank": 9,
+      "mc_id": "MC0469",
+      "mc_name": "ミメイ",
+      "score": 2076.23,
+      "total_matches": 113,
+      "wins": 68,
+      "losses": 45,
+      "last_match_date": "2026-04-26"
+    },
+    {
+      "rank": 10,
       "mc_id": "MC0046",
       "mc_name": "Authority",
       "score": 2063.28,
@@ -236,16 +246,6 @@
       "wins": 59,
       "losses": 24,
       "last_match_date": "2024-01-08"
-    },
-    {
-      "rank": 10,
-      "mc_id": "MC0469",
-      "mc_name": "ミメイ",
-      "score": 2062.47,
-      "total_matches": 110,
-      "wins": 66,
-      "losses": 44,
-      "last_match_date": "2026-01-04"
     }
   ],
   "prize_rankings": [
@@ -269,15 +269,15 @@
     },
     {
       "rank": 4,
-      "mc_id": "MC0214",
-      "mc_name": "RAWAXXX",
-      "total_prize_money": 7900000
+      "mc_id": "MC0434",
+      "mc_name": "輪入道",
+      "total_prize_money": 9000000
     },
     {
       "rank": 5,
-      "mc_id": "MC0466",
-      "mc_name": "Sitissy luvit",
-      "total_prize_money": 7100000
+      "mc_id": "MC0214",
+      "mc_name": "RAWAXXX",
+      "total_prize_money": 7900000
     },
     {
       "rank": 6,
