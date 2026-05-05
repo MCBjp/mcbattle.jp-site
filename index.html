@@ -881,7 +881,10 @@
         item.total ??
         "";
       const num = Number(raw);
-      if (Number.isFinite(num)) return "¥" + num.toLocaleString("ja-JP");
+      if (Number.isFinite(num)) {
+        const rounded = Math.round(num);
+        return "¥" + rounded.toLocaleString("ja-JP");
+      }
       return raw ? String(raw) : "";
     }
 
