@@ -1326,7 +1326,99 @@
         padding-left:4px;    
         padding-right:4px;    
         font-size:.84rem;    
-      }  
+      }
+
+    /* === Safety override: prevent mobile header overflow === */
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .home-header {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+      box-sizing: border-box;
+    }
+
+    .home-header-inner {
+      box-sizing: border-box;
+      width: min(calc(100% - (var(--page-gutter, 24px) * 2)), var(--home-header-max, 1040px)) !important;
+      max-width: calc(100% - (var(--page-gutter, 24px) * 2)) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .home-logo,
+    .home-lead,
+    .home-tabs {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .home-lead {
+      overflow-wrap: anywhere;
+    }
+
+    .home-tabs {
+      width: 100%;
+      min-width: 0;
+      overflow: visible;
+    }
+
+    .home-tab,
+    .home-menu,
+    .home-menu-summary {
+      min-width: 0;
+    }
+
+    @media (max-width: 767px) {
+      .home-header {
+        padding-top: 26px;
+      }
+
+      .home-header-inner {
+        width: calc(100% - 48px) !important;
+        max-width: calc(100% - 48px) !important;
+        margin-left: 24px !important;
+        margin-right: 24px !important;
+      }
+
+      .home-logo {
+        font-size: clamp(2.08rem, 7.8vw, 3.15rem);
+        line-height: .95;
+        white-space: nowrap;
+      }
+
+      .home-lead {
+        font-size: 1rem;
+        line-height: 1.45;
+      }
+
+      .home-tabs {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .home-tab,
+      .home-menu-summary {
+        padding-left: 6px;
+        padding-right: 6px;
+        font-size: .96rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .home-header-inner {
+        width: min(var(--home-header-max, 1040px), calc(100% - var(--pc-left-gutter, 24px) - var(--page-gutter, 24px))) !important;
+        max-width: min(var(--home-header-max, 1040px), calc(100% - var(--pc-left-gutter, 24px) - var(--page-gutter, 24px))) !important;
+        margin-left: var(--pc-left-gutter, 24px) !important;
+        margin-right: auto !important;
+      }
+    }
+
   </style>  
 </head>  
 <body>  
