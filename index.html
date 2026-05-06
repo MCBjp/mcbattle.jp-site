@@ -1,1099 +1,1485 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48">
-  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/favicon-180x180.png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    const SITE_OPEN = true;
-    if (!SITE_OPEN) {
-      location.replace('./maintenance.html');
-    }
-  </script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/favicon-180x180.png">
 
-  <title>MCBattle.jp | 国内MCバトル大会・MC・戦績データベース</title>
-  <meta name="description" content="国内MCバトルの大会記録、試合結果、MCごとの戦績、優勝歴、独自スコアを掲載するデータベースサイトです。">
-  <link rel="canonical" href="https://mcbattle.jp/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="MCBattle.jp" />
-  <meta property="og:title" content="MCBattle.jp | 国内MCバトル大会・MC・戦績データベース" />
-  <meta property="og:description" content="国内MCバトルの大会記録、試合結果、MCごとの戦績、優勝歴、独自スコアを掲載するデータベースサイトです。" />
-  <meta property="og:url" content="https://mcbattle.jp/" />
-  <meta property="og:image" content="https://mcbattle.jp/ogp.png?v=2" />
+  <script>
+    const SITE_OPEN = true;
+    if (!SITE_OPEN) {
+      location.replace('./maintenance.html');
+    }
+  </script>
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MCBattle.jp | 国内MCバトル大会・MC・戦績データベース" />
-  <meta name="twitter:description" content="国内MCバトルの大会記録、試合結果、MCごとの戦績、優勝歴、独自スコアを掲載するデータベースサイトです。" />
-  <meta name="twitter:image" content="https://mcbattle.jp/ogp.png?v=2" />
+  <title>MCBattle.jp | 国内MCバトル大会・MC・戦績データベース</title>
+  <meta name="description" content="国内MCバトルの大会記録、試合結果、MCごとの戦績、優勝歴、独自スコアを掲載するデータベースサイトです。">
+  <link rel="canonical" href="https://mcbattle.jp/" />
 
-  <script type="application/ld+json">
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MCBattle.jp" />
+  <meta property="og:title" content="MCBattle.jp | 国内MCバトル大会・MC・戦績データベース" />
+  <meta property="og:description" content="国内MCバトルの大会記録、試合結果、MCごとの戦績、優勝歴、独自スコアを掲載するデータベースサイトです。" />
+  <meta property="og:url" content="https://mcbattle.jp/" />
+  <meta property="og:image" content="https://mcbattle.jp/ogp.png?v=2" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MCBattle.jp | 国内MCバトル大会・MC・戦績データベース" />
+  <meta name="twitter:description" content="国内MCバトルの大会記録、試合結果、MCごとの戦績、優勝歴、独自スコアを掲載するデータベースサイトです。" />
+  <meta name="twitter:image" content="https://mcbattle.jp/ogp.png?v=2" />
+
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://mcbattle.jp/#website",
-  "url": "https://mcbattle.jp/",
-  "name": "MCBattle.jp",
-  "alternateName": [
-    "MCBattle.jp",
-    "MCBattle",
-    "MCバトル.jp",
-    "MCバトル"
-  ],
-  "inLanguage": "ja"
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://mcbattle.jp/#website",
+  "url": "https://mcbattle.jp/",
+  "name": "MCBattle.jp",
+  "alternateName": [
+    "MCBattle.jp",
+    "MCBattle",
+    "MCバトル.jp",
+    "MCバトル"
+  ],
+  "inLanguage": "ja"
 }
-  </script>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-9C8VGD3THB');
-  </script>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    :root{
-      --panel:#171922;
-      --panel-2:#1c1f2a;
-      --line:#2a3040;
-      --text:#f4f5f7;
-      --muted:#b2b8c7;
-      --accent:#d8b46a;
-      --accent-2:#8fb3ff;
-      --danger:#d97f7f;
-      --shadow:0 18px 48px rgba(0,0,0,.28);
-      --radius:22px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      background:
-        radial-gradient(circle at top, rgba(216,180,106,.08), transparent 28%),
-        linear-gradient(180deg, #11131a 0%, #0c0d12 100%);
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
-      line-height:1.65;
-      overflow-x:hidden;
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    .container{
-      width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
-      margin-left:auto;
-      margin-right:auto;
-    }
-
-    .page-top{
-      margin-bottom:5px;
-    }
-
-    .page-mini-logo{
-      margin:0 0 4px;
-    }
-
-    .site-header-copy{
-      min-width:0;
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      align-items:flex-start;
-    }
-
-    .header-message{
-      margin:0;
-      font-size:15px;
-      font-weight:600;
-      line-height:1.5;
-      color:var(--text);
-      text-align:left;
-    }
-
-    .header-spec-link,
-    .header-spec-link:hover,
-    .sim-card,
-    .sim-card:hover,
-    .hot-mc-link,
-    .hot-mc-link:hover,
-    .link-card,
-    .link-card:hover,
-    .list-row,
-    .list-row:hover,
-    .list-row-static,
-    .header-spec-link *,
-    .header-spec-link:hover *,
-    .sim-card *,
-    .sim-card:hover *,
-    .hot-mc-link *,
-    .hot-mc-link:hover *,
-    .link-card *,
-    .link-card:hover *,
-    .list-row *,
-    .list-row:hover *,
-    .list-row-static * {
-      text-decoration: none !important;
-    }
-
-    .header-spec-link{
-      display:inline-block;
-      width:fit-content;
-      max-width:100%;
-      padding:7px 12px;
-      border-radius:14px;
-      border:1px solid rgba(216,180,106,.34);
-      background:linear-gradient(180deg, rgba(216,180,106,.12), rgba(216,180,106,.05));
-      font-size:13px;
-      font-weight:700;
-      white-space:nowrap;
-      transition:
-        transform .18s ease,
-        border-color .18s ease,
-        background-color .18s ease,
-        color .18s ease,
-        box-shadow .18s ease;
-      box-shadow:0 0 0 1px rgba(255,255,255,.03) inset;
-    }
-
-    .header-spec-link:hover{
-      transform:translateY(-1px);
-      border-color:rgba(216,180,106,.52);
-      background:linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.08));
-      color:#fff4dc;
-      box-shadow:0 10px 24px rgba(0,0,0,.18);
-    }
-
-    .hero{
-      padding:2px 0 7px;
-    }
-
-    .hero-stack{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-
-    .sim-card{
-      display:block;
-      padding:12px 15px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.14);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
-        linear-gradient(180deg, rgba(143,179,255,.16), rgba(143,179,255,.06));
-      transition:
-        transform .18s ease,
-        border-color .18s ease,
-        background-color .18s ease,
-        box-shadow .18s ease,
-        color .18s ease;
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
-    }
-
-    .sim-card:hover{
-      transform:translateY(-1px);
-      border-color:rgba(143,179,255,.48);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)),
-        linear-gradient(180deg, rgba(143,179,255,.22), rgba(143,179,255,.09));
-      box-shadow:0 14px 28px rgba(0,0,0,.18);
-    }
-
-    .sim-title{
-      margin:0;
-      font-size:16px;
-      font-weight:800;
-      line-height:1.32;
-      transition:color .18s ease;
-    }
-
-    .sim-card:hover .sim-title{
-      color:#e8f0ff;
-    }
-
-    .sim-sub{
-      display:none;
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      transition:color .18s ease;
-    }
-
-    .sim-card:hover .sim-sub{
-      color:#d1d9e8;
-    }
-
-    .sim-kicker{
-      display:block;
-      margin-bottom:1px;
-      color:#c7d8ff;
-      font-size:12px;
-      letter-spacing:.03em;
-      font-weight:700;
-      line-height:1.32;
-      transition:color .18s ease;
-    }
-
-    .sim-card:hover .sim-kicker{
-      color:#e2ebff;
-    }
-
-    .link-grid{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:8px;
-    }
-
-    .link-card{
-      min-height:62px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:10px 12px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.14);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
-        linear-gradient(180deg, #242936, #1c202b);
-      font-weight:700;
-      font-size:15px;
-      line-height:1.24;
-      transition:
-        transform .18s ease,
-        border-color .18s ease,
-        background-color .18s ease,
-        box-shadow .18s ease,
-        color .18s ease;
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
-    }
-
-    .link-card:hover{
-      transform:translateY(-1px);
-      border-color:rgba(255,255,255,.26);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
-        linear-gradient(180deg, #2a3040, #222734);
-      color:#ffffff;
-      box-shadow:0 14px 28px rgba(0,0,0,.18);
-    }
-
-    .hot-mc-card{
-      display:none;
-      padding:12px 13px;
-      border-radius:18px;
-      border:1px solid rgba(216,180,106,.24);
-      background:
-        linear-gradient(180deg, rgba(216,180,106,.09), rgba(216,180,106,.035)),
-        rgba(255,255,255,.025);
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
-    }
-
-    .hot-mc-card.is-visible{
-      display:block;
-    }
-
-    .hot-mc-title{
-      margin:0 0 8px;
-      color:var(--accent);
-      font-size:13px;
-      font-weight:800;
-      line-height:1.34;
-      letter-spacing:.02em;
-    }
-
-    .hot-mc-list{
-      display:flex;
-      flex-wrap:wrap;
-      gap:7px;
-      margin:0;
-      padding:0;
-      list-style:none;
-    }
-
-    .hot-mc-list li{
-      margin:0;
-      padding:0;
-    }
-
-    .hot-mc-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:32px;
-      padding:0 11px;
-      border:1px solid rgba(216,180,106,.28);
-      border-radius:999px;
-      background:rgba(216,180,106,.075);
-      color:var(--text);
-      font-size:13px;
-      font-weight:700;
-      line-height:1.2;
-      transition:
-        transform .18s ease,
-        border-color .18s ease,
-        background-color .18s ease,
-        box-shadow .18s ease,
-        color .18s ease;
-    }
-
-    .hot-mc-link:hover{
-      transform:translateY(-1px);
-      border-color:rgba(216,180,106,.44);
-      background:rgba(216,180,106,.12);
-      color:#fff7e8;
-      box-shadow:0 10px 20px rgba(0,0,0,.14);
-    }
-
-    .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-
-    .dashboard{
-      padding:2px 0 28px;
-    }
-
-    .dashboard-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:12px;
-      align-items:start;
-    }
-
-    .dashboard-card{
-      padding:16px 16px 9px;
-      min-width:0;
-    }
-
-    .dashboard-title{
-      margin:0 0 8px;
-      font-size:17px;
-      font-weight:800;
-      letter-spacing:.02em;
-      line-height:1.3;
-    }
-
-    .dashboard-list{
-      display:flex;
-      flex-direction:column;
-      gap:7px;
-    }
-
-    .list-row,
-    .list-row-static{
-      display:block;
-      padding:9px 10px 8px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.025);
-      min-width:0;
-      box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
-    }
-
-    .list-row{
-      transition:
-        transform .18s ease,
-        border-color .18s ease,
-        background-color .18s ease,
-        box-shadow .18s ease,
-        color .18s ease;
-    }
-
-    .list-row:hover{
-      transform:translateY(-1px);
-      border-color:rgba(255,255,255,.24);
-      background:rgba(255,255,255,.05);
-      box-shadow:0 12px 24px rgba(0,0,0,.14);
-    }
-
-    .event-date{
-      display:block;
-      color:var(--accent);
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.04em;
-      margin-bottom:2px;
-      line-height:1.25;
-      transition:color .18s ease;
-    }
-
-    .list-row:hover .event-date{
-      color:#f0cd87;
-    }
-
-    .event-name{
-      display:block;
-      font-size:14px;
-      font-weight:700;
-      line-height:1.34;
-      word-break:break-word;
-      transition:color .18s ease;
-    }
-
-    .list-row:hover .event-name{
-      color:#ffffff;
-    }
-
-    .event-stage{
-      display:block;
-      margin-top:2px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.34;
-      word-break:break-word;
-    }
-
-    .rank-row{
-      display:grid;
-      grid-template-columns:42px minmax(0,1fr) auto;
-      gap:10px;
-      align-items:center;
-    }
-
-    .rank-num{
-      font-family:"Times New Roman",Georgia,serif;
-      font-style:italic;
-      font-size:20px;
-      color:var(--accent);
-      text-align:center;
-      line-height:1;
-      transition:color .18s ease;
-    }
-
-    .list-row:hover .rank-num{
-      color:#f0cd87;
-    }
-
-    .rank-name{
-      min-width:0;
-      font-size:16px;
-      font-weight:700;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      line-height:1.24;
-      transition:color .18s ease;
-    }
-
-    .list-row:hover .rank-name{
-      color:#ffffff;
-    }
-
-    .rank-score{
-      color:var(--muted);
-      font-size:14px;
-      font-variant-numeric:tabular-nums;
-      white-space:nowrap;
-      line-height:1.24;
-      transition:color .18s ease;
-    }
-
-    .list-row:hover .rank-score{
-      color:#d7dee9;
-    }
-
-    .status{
-      color:var(--muted);
-      font-size:13px;
-      padding:2px 2px 0;
-    }
-
-    .status.error{
-      color:var(--danger);
-    }
-
-    .status.hidden{
-      display:none;
-    }
-
-    .footer-space{
-      height:14px;
-    }
-
-    .dashboard-card.is-empty{
-      padding-bottom:6px;
-    }
-
-    .dashboard-card.is-empty .dashboard-list{
-      display:none;
-    }
-
-    .dashboard-card.is-empty .status{
-      padding-top:0;
-      padding-bottom:0;
-      line-height:1.35;
-    }
-
-    @media (min-width: 1024px){
-      .container{
-        width:min(var(--content-max), calc(100% - var(--pc-left-gutter) - var(--page-gutter)));
-        margin-left:var(--pc-left-gutter);
-        margin-right:auto;
-      }
-    }
-
-    @media (max-width:980px){
-      .dashboard-grid{
-        grid-template-columns:1fr;
-      }
-
-      .link-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width:640px){
-      .page-top{
-        margin-bottom:5px;
-      }
-
-      .page-mini-logo{
-        margin-bottom:4px;
-      }
-
-      .site-header-copy{
-        gap:4px;
-      }
-
-      .header-message{
-        font-size:13px;
-        line-height:1.36;
-      }
-
-      .header-spec-link{
-        width:100%;
-        white-space:normal;
-        padding:6px 10px;
-        min-height:0;
-        border-radius:13px;
-        font-size:12px;
-      }
-
-      .hero{
-        padding:0 0 5px;
-      }
-
-      .hero-stack{
-        gap:6px;
-      }
-
-      .sim-card{
-        padding:9px 11px;
-        border-radius:15px;
-      }
-
-      .sim-kicker{
-        margin-bottom:1px;
-        font-size:11px;
-        line-height:1.24;
-      }
-
-      .sim-title{
-        font-size:14px;
-        line-height:1.18;
-      }
-
-      .link-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:6px;
-      }
-
-      .link-card{
-        min-height:50px;
-        padding:7px 8px;
-        border-radius:15px;
-        font-size:13px;
-        line-height:1.18;
-        overflow-wrap:anywhere;
-        word-break:break-word;
-      }
-
-      .hot-mc-card{
-        padding:10px 10px;
-        border-radius:15px;
-      }
-
-      .hot-mc-title{
-        margin-bottom:7px;
-        font-size:12px;
-        line-height:1.28;
-      }
-
-      .hot-mc-list{
-        gap:6px;
-      }
-
-      .hot-mc-link{
-        min-height:30px;
-        padding:0 10px;
-        font-size:12px;
-      }
-
-      .dashboard{
-        padding:0 0 22px;
-      }
-
-      .dashboard-grid{
-        gap:7px;
-      }
-
-      .dashboard-card{
-        padding:11px 10px 7px;
-        border-radius:18px;
-      }
-
-      .dashboard-title{
-        margin:0 0 6px;
-        font-size:15px;
-        line-height:1.22;
-      }
-
-      .dashboard-list{
-        gap:6px;
-      }
-
-      .list-row,
-      .list-row-static{
-        padding:7px 8px 6px;
-        border-radius:13px;
-        box-shadow:0 0 0 1px rgba(255,255,255,.015) inset;
-      }
-
-      .event-date{
-        font-size:11px;
-        margin-bottom:1px;
-      }
-
-      .event-name{
-        font-size:13px;
-        line-height:1.22;
-      }
-
-      .event-stage{
-        font-size:11px;
-        margin-top:1px;
-        line-height:1.24;
-      }
-
-      .rank-row{
-        grid-template-columns:28px minmax(0,1fr) auto;
-        gap:8px;
-      }
-
-      .rank-num{
-        font-size:17px;
-      }
-
-      .rank-name{
-        font-size:14px;
-      }
-
-      .rank-score{
-        font-size:12px;
-      }
-
-      .status{
-        font-size:12px;
-        padding:1px 1px 0;
-      }
-
-      .dashboard-card.is-empty{
-        padding-bottom:6px;
-      }
-
-      .footer-space{
-        height:10px;
-      }
-    }
-  </style>
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9C8VGD3THB');
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root{
+      --panel:#171922;
+      --panel-2:#1c1f2a;
+      --line:#2a3040;
+      --line-soft:rgba(255,255,255,.105);
+      --text:#f4f5f7;
+      --muted:#aeb5c4;
+      --accent:#d8b46a;
+      --accent-strong:#f1c66d;
+      --accent-dark:#9b7940;
+      --danger:#d97f7f;
+      --shadow:0 16px 42px rgba(0,0,0,.25);
+      --radius:20px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html,
+    body{
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 74% 6%, rgba(216,180,106,.07), transparent 30%),
+        radial-gradient(circle at 16% 18%, rgba(143,179,255,.05), transparent 25%),
+        linear-gradient(180deg, #11131a 0%, #0c0d12 100%);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .site-shell{
+      padding-top:16px;
+      padding-bottom:28px;
+    }
+
+    .home-header{
+      position:relative;
+      margin-bottom:10px;
+      padding:26px 0 0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
+        radial-gradient(circle at 96% 0%, rgba(216,180,106,.07), transparent 34%);
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+
+    .home-header-inner{
+      width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .home-logo{
+      margin:0 0 6px;
+      font-family:"Times New Roman", Georgia, serif;
+      font-style:italic;
+      font-size:clamp(2.08rem, 7.8vw, 3.15rem);
+      font-weight:800;
+      line-height:.95;
+      letter-spacing:-.055em;
+      color:var(--accent);
+      text-shadow:0 10px 26px rgba(0,0,0,.18);
+    }
+
+    .home-logo a{
+      color:inherit;
+      text-decoration:none !important;
+    }
+
+    .home-lead{
+      margin:0 0 13px;
+      color:#f0f2f6;
+      font-size:1rem;
+      font-weight:700;
+      line-height:1.48;
+      letter-spacing:-.02em;
+    }
+
+    .home-tabs{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:0;
+      width:100%;
+      border-top:1px solid rgba(255,255,255,.13);
+      border-bottom:1px solid rgba(255,255,255,.13);
+      overflow:visible;
+      z-index:30;
+    }
+
+    .home-tab,
+    .home-menu-summary{
+      position:relative;
+      flex:1 1 0;
+      min-width:0;
+      padding:11px 8px 12px;
+      color:#f3f4f6;
+      font-size:.96rem;
+      font-weight:800;
+      line-height:1.1;
+      text-align:center;
+      white-space:nowrap;
+      opacity:.96;
+      transition:color .18s ease, opacity .18s ease;
+      cursor:pointer;
+    }
+
+    .home-tab:hover,
+    .home-menu-summary:hover{
+      color:#fff7e8;
+      opacity:1;
+    }
+
+    .home-tab.is-active{
+      color:var(--accent-strong);
+    }
+
+    .home-tab.is-active::after{
+      content:"";
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:-1px;
+      height:3px;
+      border-radius:999px 999px 0 0;
+      background:var(--accent-strong);
+      box-shadow:0 0 18px rgba(216,180,106,.28);
+    }
+
+    .home-menu{
+      position:relative;
+      flex:1 1 0;
+      min-width:0;
+    }
+
+    .home-menu summary{
+      list-style:none;
+    }
+
+    .home-menu summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .home-menu-summary::after{
+      content:"";
+      display:inline-block;
+      width:0;
+      height:0;
+      margin-left:5px;
+      border-left:4px solid transparent;
+      border-right:4px solid transparent;
+      border-top:5px solid currentColor;
+      transform:translateY(-1px);
+      opacity:.75;
+    }
+
+    .home-menu[open] .home-menu-summary{
+      color:var(--accent-strong);
+    }
+
+    .home-menu[open] .home-menu-summary::before{
+      content:"";
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:-1px;
+      height:3px;
+      border-radius:999px 999px 0 0;
+      background:var(--accent-strong);
+      box-shadow:0 0 18px rgba(216,180,106,.28);
+    }
+
+    .home-submenu{
+      position:absolute;
+      top:calc(100% + 8px);
+      left:50%;
+      z-index:50;
+      min-width:176px;
+      padding:8px;
+      border:1px solid rgba(216,180,106,.24);
+      border-radius:14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)),
+        rgba(18,21,30,.98);
+      box-shadow:
+        0 16px 34px rgba(0,0,0,.34),
+        0 0 0 1px rgba(255,255,255,.018) inset;
+      transform:translateX(-50%);
+    }
+
+    .home-submenu a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      min-height:38px;
+      padding:0 12px;
+      border-radius:10px;
+      color:#f3f4f6;
+      font-size:.9rem;
+      font-weight:800;
+      line-height:1;
+      white-space:nowrap;
+      transition:
+        background-color .18s ease,
+        color .18s ease,
+        opacity .18s ease;
+    }
+
+    .home-submenu a::after{
+      content:"›";
+      color:var(--accent);
+      font-size:1.15rem;
+      line-height:1;
+      opacity:.8;
+    }
+
+    .home-submenu a:hover{
+      background:rgba(216,180,106,.1);
+      color:#fff7e8;
+    }
+
+    .main-stack{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .simulation-hero{
+      position:relative;
+      display:block;
+      min-height:146px;
+      overflow:hidden;
+      border:1px solid rgba(216,180,106,.52);
+      border-radius:20px;
+      background:
+        linear-gradient(90deg, rgba(13,15,22,.99) 0%, rgba(13,15,22,.92) 43%, rgba(13,15,22,.34) 100%),
+        radial-gradient(circle at 78% 22%, rgba(255,216,140,.50), transparent 11%),
+        radial-gradient(circle at 84% 20%, rgba(255,216,140,.22), transparent 18%),
+        linear-gradient(135deg, #10131c 0%, #1b1f2c 100%);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.025) inset,
+        0 14px 34px rgba(0,0,0,.25);
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background-color .18s ease;
+    }
+
+    .simulation-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(90deg, rgba(9,11,17,.62) 0%, rgba(9,11,17,.18) 52%, rgba(9,11,17,.08) 100%),
+        url("images/simulation-hero.jpg"),
+        url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20640%20270'%3E%3Crect%20width='640'%20height='270'%20fill='none'/%3E%3Cg%20opacity='.55'%3E%3Ccircle%20cx='495'%20cy='55'%20r='26'%20fill='%23f0c66f'/%3E%3Cellipse%20cx='502'%20cy='58'%20rx='72'%20ry='54'%20fill='%23f0c66f'%20opacity='.18'/%3E%3C/g%3E%3Cg%20fill='%2303060b'%3E%3Ccircle%20cx='470'%20cy='88'%20r='31'/%3E%3Cpath%20d='M438%20117C402%20143%20396%20189%20388%20270H565C552%20190%20536%20142%20502%20117C487%20132%20454%20133%20438%20117Z'/%3E%3Cpath%20d='M433%20105L338%20136L347%20159L446%20127Z'/%3E%3Crect%20x='309'%20y='127'%20width='55'%20height='17'%20rx='8.5'/%3E%3Cpath%20d='M444%2062C461%2045%20498%2048%20517%2069C493%2060%20466%2058%20444%2062Z'/%3E%3C/g%3E%3Cg%20stroke='%23f0c66f'%20stroke-width='16'%20stroke-linecap='round'%20opacity='.22'%3E%3Cpath%20d='M545%2046L590%2028'/%3E%3Cpath%20d='M555%2075L618%2072'/%3E%3C/g%3E%3Cg%20opacity='.16'%3E%3Ccircle%20cx='598'%20cy='33'%20r='8'%20fill='%23f0c66f'/%3E%3Ccircle%20cx='623'%20cy='42'%20r='7'%20fill='%23f0c66f'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat:no-repeat, no-repeat, no-repeat;
+      background-size:cover, cover, cover;
+      background-position:center right, center right, center right;
+      pointer-events:none;
+    }
+
+    .simulation-hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(12,14,21,.24) 0%, rgba(12,14,21,.06) 48%, rgba(12,14,21,.16) 100%),
+        radial-gradient(circle at 78% 25%, rgba(216,180,106,.14), transparent 22%);
+      pointer-events:none;
+    }
+
+    .simulation-hero:hover{
+      transform:translateY(-1px);
+      border-color:rgba(216,180,106,.72);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.03) inset,
+        0 16px 38px rgba(0,0,0,.30),
+        0 0 22px rgba(216,180,106,.11);
+    }
+
+    .simulation-content{
+      position:relative;
+      z-index:2;
+      width:72%;
+      min-height:146px;
+      padding:19px 26px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .simulation-title{
+      margin:0 0 8px;
+      color:var(--accent-strong);
+      font-size:clamp(1.38rem, 4.25vw, 1.82rem);
+      font-weight:900;
+      line-height:1.09;
+      letter-spacing:-.06em;
+      white-space:normal;
+      overflow-wrap:normal;
+      word-break:keep-all;
+    }
+
+    .simulation-title .title-break{
+      display:inline;
+    }
+
+    .simulation-lead{
+      margin:0;
+      max-width:22em;
+      color:#f2f4f8;
+      font-size:.9rem;
+      font-weight:800;
+      line-height:1.42;
+      letter-spacing:-.025em;
+    }
+
+    .home-card{
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:19px;
+      background:
+        linear-gradient(110deg, rgba(255,255,255,.045), rgba(255,255,255,.016)),
+        radial-gradient(circle at 100% 0%, rgba(216,180,106,.08), transparent 32%),
+        rgba(24,28,39,.82);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.02) inset,
+        0 16px 38px rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+
+    .home-card-inner{
+      padding:14px 16px 16px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 10px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      min-width:0;
+      gap:8px;
+      margin:0;
+      color:var(--accent-strong);
+      font-size:1.12rem;
+      font-weight:900;
+      line-height:1.2;
+      letter-spacing:-.03em;
+    }
+
+    .section-title-label{
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .section-more{
+      flex:0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      color:#e6e9f0;
+      font-size:.86rem;
+      font-weight:800;
+      line-height:1;
+      opacity:.92;
+    }
+
+    .section-more::after{
+      content:"›";
+      font-size:1.35rem;
+      line-height:.75;
+      transform:translateY(-1px);
+    }
+
+    .section-more:hover{
+      color:#fff7e8;
+      opacity:1;
+    }
+
+    .hot-mc-card{
+      display:none;
+    }
+
+    .hot-mc-card.is-visible{
+      display:block;
+    }
+
+    .hot-mc-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px 8px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .hot-mc-list li{
+      margin:0;
+      padding:0;
+    }
+
+    .hot-mc-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:35px;
+      padding:0 14px;
+      border:1px solid rgba(216,180,106,.32);
+      border-radius:999px;
+      background:rgba(15,17,24,.36);
+      color:#f4f5f7;
+      font-size:.9rem;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:.01em;
+      white-space:nowrap;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background-color .18s ease,
+        box-shadow .18s ease,
+        color .18s ease;
+    }
+
+    .hot-mc-link:hover{
+      transform:translateY(-1px);
+      border-color:rgba(216,180,106,.55);
+      background:rgba(216,180,106,.1);
+      color:#fff7e8;
+    }
+
+    .event-list,
+    .ranking-list{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+
+    .event-row{
+      display:grid;
+      grid-template-columns:112px minmax(0, 1fr) 26px;
+      align-items:center;
+      min-height:64px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:15px;
+      background:rgba(13,16,25,.36);
+      box-shadow:0 0 0 1px rgba(255,255,255,.014) inset;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .event-row:hover{
+      transform:translateY(-1px);
+      border-color:rgba(216,180,106,.35);
+      background:rgba(18,22,33,.55);
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+    }
+
+    .event-row.is-static{
+      cursor:default;
+    }
+
+    .event-row.is-static:hover{
+      transform:none;
+      border-color:rgba(255,255,255,.12);
+      background:rgba(13,16,25,.36);
+      box-shadow:0 0 0 1px rgba(255,255,255,.014) inset;
+    }
+
+    .event-date-box{
+      align-self:stretch;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      border-right:1px solid rgba(255,255,255,.13);
+      color:var(--accent-strong);
+      font-weight:900;
+      line-height:1.12;
+      letter-spacing:.025em;
+      font-variant-numeric:tabular-nums;
+    }
+
+    .event-date-main{
+      display:block;
+      font-size:.95rem;
+      white-space:nowrap;
+    }
+
+    .event-date-dow{
+      display:block;
+      margin-top:5px;
+      font-size:.75rem;
+      letter-spacing:.14em;
+      opacity:.96;
+    }
+
+    .event-body{
+      min-width:0;
+      padding:9px 10px 8px 14px;
+    }
+
+    .event-name{
+      display:block;
+      color:#f7f8fb;
+      font-size:.98rem;
+      font-weight:900;
+      line-height:1.25;
+      letter-spacing:-.028em;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+    }
+
+    .event-sub{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      font-size:.82rem;
+      font-weight:700;
+      line-height:1.25;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+    }
+
+    .event-winner{
+      display:block;
+      margin-top:3px;
+      color:#d6dbea;
+      font-size:.82rem;
+      font-weight:800;
+      line-height:1.25;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+    }
+
+    .event-arrow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#e7ebf4;
+      font-size:1.55rem;
+      font-weight:800;
+      line-height:1;
+      opacity:.9;
+      transform:translateY(-1px);
+    }
+
+    .event-row.is-static .event-arrow{
+      display:none;
+    }
+
+    .ranking-row{
+      display:grid;
+      grid-template-columns:50px minmax(0, 1fr) auto;
+      align-items:center;
+      gap:8px;
+      min-height:58px;
+      padding:0 16px;
+      border:1px solid rgba(255,255,255,.115);
+      border-radius:15px;
+      background:rgba(13,16,25,.33);
+      box-shadow:0 0 0 1px rgba(255,255,255,.014) inset;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .ranking-row:hover{
+      transform:translateY(-1px);
+      border-color:rgba(216,180,106,.35);
+      background:rgba(18,22,33,.55);
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+    }
+
+    .rank-num{
+      color:var(--accent);
+      font-family:"Times New Roman", Georgia, serif;
+      font-style:italic;
+      font-size:1.15rem;
+      font-weight:800;
+      line-height:1;
+      text-align:center;
+      font-variant-numeric:tabular-nums;
+    }
+
+    .rank-name{
+      min-width:0;
+      color:#f7f8fb;
+      font-size:.98rem;
+      font-weight:900;
+      line-height:1.2;
+      letter-spacing:-.025em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .rank-value{
+      color:#c6ccda;
+      font-size:.92rem;
+      font-weight:900;
+      line-height:1.2;
+      font-variant-numeric:tabular-nums;
+      white-space:nowrap;
+      text-align:right;
+    }
+
+    .status{
+      color:var(--muted);
+      font-size:.82rem;
+      font-weight:700;
+      padding:2px 2px 0;
+    }
+
+    .status.error{
+      color:var(--danger);
+    }
+
+    .status.hidden{
+      display:none;
+    }
+
+    .home-card.is-empty .event-list,
+    .home-card.is-empty .ranking-list{
+      display:none;
+    }
+
+    .home-card.is-empty .status{
+      padding-top:0;
+      line-height:1.35;
+    }
+
+    .footer-space{
+      height:16px;
+    }
+
+    @media (min-width: 1024px){
+      .container,
+      .home-header-inner{
+        width:min(var(--content-max), calc(100% - var(--pc-left-gutter) - var(--page-gutter)));
+        margin-left:var(--pc-left-gutter);
+        margin-right:auto;
+      }
+
+      .home-header{
+        padding-top:26px;
+      }
+
+      .home-logo{
+        font-size:3rem;
+      }
+
+      .main-stack{
+        gap:11px;
+      }
+
+      .simulation-hero{
+        min-height:158px;
+      }
+
+      .simulation-content{
+        min-height:158px;
+        padding:22px 30px 21px;
+      }
+
+      .dashboard-grid{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:13px;
+      }
+    }
+
+    @media (max-width: 980px){
+      .dashboard-grid{
+        display:flex;
+        flex-direction:column;
+        gap:11px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .site-shell{
+        padding-top:0;
+        padding-bottom:22px;
+      }
+
+      .container,
+      .home-header-inner{
+        width:calc(100% - 24px);
+      }
+
+      .home-header{
+        margin-bottom:9px;
+        padding:38px 0 0;
+      }
+
+      .home-logo{
+        margin-bottom:5px;
+        font-size:2.42rem;
+      }
+
+      .home-lead{
+        margin-bottom:12px;
+        font-size:.96rem;
+        line-height:1.42;
+        letter-spacing:-.025em;
+      }
+
+      .home-tabs{
+        margin-left:-1px;
+        margin-right:-1px;
+      }
+
+      .home-tab,
+      .home-menu-summary{
+        padding:10px 5px 11px;
+        font-size:.9rem;
+      }
+
+      .home-tab.is-active::after,
+      .home-menu[open] .home-menu-summary::before{
+        left:8px;
+        right:8px;
+        height:3px;
+      }
+
+      .home-submenu{
+        min-width:158px;
+        top:calc(100% + 7px);
+      }
+
+      .home-submenu a{
+        min-height:37px;
+        font-size:.86rem;
+      }
+
+      .main-stack{
+        gap:9px;
+      }
+
+      .simulation-hero{
+        min-height:132px;
+        border-radius:19px;
+      }
+
+      .simulation-content{
+        width:74%;
+        min-height:132px;
+        padding:17px 21px 16px;
+      }
+
+      .simulation-title{
+        margin-bottom:7px;
+        font-size:1.42rem;
+        line-height:1.08;
+        letter-spacing:-.055em;
+      }
+
+      .simulation-lead{
+        max-width:16em;
+        font-size:.8rem;
+        line-height:1.38;
+      }
+
+      .home-card{
+        border-radius:18px;
+      }
+
+      .home-card-inner{
+        padding:13px 14px 14px;
+      }
+
+      .section-head{
+        margin-bottom:9px;
+      }
+
+      .section-title{
+        gap:7px;
+        font-size:1.04rem;
+      }
+
+      .section-more{
+        font-size:.8rem;
+      }
+
+      .hot-mc-list{
+        gap:7px;
+      }
+
+      .hot-mc-link{
+        min-height:32px;
+        padding:0 12px;
+        font-size:.82rem;
+      }
+
+      .event-list,
+      .ranking-list{
+        gap:7px;
+      }
+
+      .event-row{
+        grid-template-columns:92px minmax(0, 1fr) 24px;
+        min-height:58px;
+        border-radius:14px;
+      }
+
+      .event-date-main{
+        font-size:.84rem;
+      }
+
+      .event-date-dow{
+        margin-top:4px;
+        font-size:.68rem;
+      }
+
+      .event-body{
+        padding:8px 8px 7px 12px;
+      }
+
+      .event-name{
+        font-size:.88rem;
+        line-height:1.22;
+      }
+
+      .event-sub,
+      .event-winner{
+        margin-top:2px;
+        font-size:.75rem;
+      }
+
+      .event-arrow{
+        font-size:1.38rem;
+      }
+
+      .ranking-row{
+        grid-template-columns:42px minmax(0, 1fr) auto;
+        min-height:54px;
+        padding:0 13px;
+        border-radius:14px;
+      }
+
+      .rank-num{
+        font-size:1.03rem;
+      }
+
+      .rank-name{
+        font-size:.9rem;
+      }
+
+      .rank-value{
+        font-size:.82rem;
+      }
+
+      .status{
+        font-size:.78rem;
+      }
+
+      .footer-space{
+        height:12px;
+      }
+    }
+
+    @media (max-width: 390px){
+      .container,
+      .home-header-inner{
+        width:calc(100% - 20px);
+      }
+
+      .home-logo{
+        font-size:2.32rem;
+      }
+
+      .home-lead{
+        font-size:.92rem;
+      }
+
+      .home-tab,
+      .home-menu-summary{
+        padding-left:4px;
+        padding-right:4px;
+        font-size:.84rem;
+      }
+
+      .simulation-content{
+        width:76%;
+        padding-left:18px;
+        padding-right:12px;
+      }
+
+      .simulation-title{
+        font-size:1.33rem;
+      }
+
+      .simulation-lead{
+        font-size:.77rem;
+      }
+
+      .event-row{
+        grid-template-columns:86px minmax(0, 1fr) 22px;
+      }
+
+      .event-date-main{
+        font-size:.79rem;
+      }
+
+      .event-body{
+        padding-left:10px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="container page-top">
-    <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
-    <div class="site-header-copy">
-      <p class="header-message">日本一情報量の多いMCバトルポータル。<br>大会記録・戦績・独自スコアをまとめています。</p>
-      <a class="header-spec-link" href="score_spec.html">スコアリング仕様を見る</a>
-    </div>
-  </header>
+  <div class="site-shell">
+    <header class="home-header">
+      <div class="home-header-inner">
+        <h1 class="home-logo"><a href="./">MCBattle.jp</a></h1>
+        <p class="home-lead">日本一情報量の多いMCバトルポータル。<br>大会記録・戦績・独自スコアをまとめています。</p>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <div class="hero-stack">
-          <a class="sim-card" href="simulation.html">
-            <span class="sim-kicker">現役勢の8人を選んで戦わせる</span>
-            <h3 class="sim-title">仮想MCバトルシミュレーション</h3>
-            <p class="sim-sub"></p>
-          </a>
+        <nav class="home-tabs" aria-label="主要メニュー">
+          <a class="home-tab is-active" href="./">ホーム</a>
 
-          <div class="link-grid">
-            <a class="link-card" href="score_ranking.html">スコアランキング</a>
-            <a class="link-card" href="prize_ranking.html">賞金ランキング</a>
-            <a class="link-card" href="list_event.html">大会一覧</a>
-            <a class="link-card" href="list_mc.html">MC一覧</a>
-          </div>
+          <details class="home-menu" data-menu="data">
+            <summary class="home-menu-summary">データ</summary>
+            <div class="home-submenu">
+              <a href="list_mc.html">MC一覧</a>
+              <a href="list_event.html">大会一覧</a>
+            </div>
+          </details>
 
-          <section id="hot-mc-card" class="hot-mc-card" aria-label="閲覧数の多いMC">
-            <h2 class="hot-mc-title">閲覧数の多いMC(ランダム10件)</h2>
-            <ul id="hot-mc-list" class="hot-mc-list"></ul>
-          </section>
-        </div>
-      </div>
-    </section>
+          <details class="home-menu" data-menu="ranking">
+            <summary class="home-menu-summary">ランキング</summary>
+            <div class="home-submenu">
+              <a href="score_ranking.html">スコアランキング</a>
+              <a href="prize_ranking.html">賞金ランキング</a>
+            </div>
+          </details>
 
-    <section class="dashboard">
-      <div class="container">
-        <div class="dashboard-grid">
-          <section id="future-events-card" class="panel dashboard-card">
-            <h2 class="dashboard-title">Upcoming</h2>
-            <div id="future-events" class="dashboard-list"></div>
-            <div id="future-events-status" class="status">読み込み中…</div>
-          </section>
+          <a class="home-tab" href="articles.html">読み物</a>
+        </nav>
+      </div>
+    </header>
 
-          <section class="panel dashboard-card">
-            <h2 class="dashboard-title">Recent Events</h2>
-            <div id="recent-events" class="dashboard-list"></div>
-            <div id="recent-events-status" class="status">読み込み中…</div>
-          </section>
+    <main class="container">
+      <div class="main-stack">
+        <a class="simulation-hero" href="simulation.html">
+          <div class="simulation-content">
+            <h2 class="simulation-title">MCバトル<span class="title-break">シミュレーション</span></h2>
+            <p class="simulation-lead">独自スコアを用いた現役勢8人の大会シミュレーション</p>
+          </div>
+        </a>
 
-          <section class="panel dashboard-card">
-            <h2 class="dashboard-title">スコアランキング</h2>
-            <div id="score-ranking" class="dashboard-list"></div>
-            <div id="score-ranking-status" class="status">読み込み中…</div>
-          </section>
+        <section id="hot-mc-card" class="home-card hot-mc-card" aria-label="閲覧数の多いMC">
+          <div class="home-card-inner">
+            <div class="section-head">
+              <h2 class="section-title">
+                <span class="section-title-label">閲覧数の多いMC</span>
+              </h2>
+            </div>
+            <ul id="hot-mc-list" class="hot-mc-list"></ul>
+          </div>
+        </section>
 
-          <section class="panel dashboard-card">
-            <h2 class="dashboard-title">賞金ランキング</h2>
-            <div id="prize-ranking" class="dashboard-list"></div>
-            <div id="prize-ranking-status" class="status">読み込み中…</div>
-          </section>
-        </div>
-      </div>
-    </section>
+        <section id="future-events-card" class="home-card">
+          <div class="home-card-inner">
+            <div class="section-head">
+              <h2 class="section-title">
+                <span class="section-title-label">Upcoming</span>
+              </h2>
+            </div>
+            <div id="future-events" class="event-list"></div>
+            <div id="future-events-status" class="status">読み込み中…</div>
+          </div>
+        </section>
 
-    <div class="footer-space"></div>
-  </main>
+        <section class="home-card">
+          <div class="home-card-inner">
+            <div class="section-head">
+              <h2 class="section-title">
+                <span class="section-title-label">Recent Events</span>
+              </h2>
+              <a class="section-more" href="list_event.html">もっと見る</a>
+            </div>
+            <div id="recent-events" class="event-list"></div>
+            <div id="recent-events-status" class="status">読み込み中…</div>
+          </div>
+        </section>
 
-  <script>
-    const TOP_JSON_URL = "./data/top.json";
+        <section class="home-card">
+          <div class="home-card-inner">
+            <div class="section-head">
+              <h2 class="section-title">
+                <span class="section-title-label">スコアランキング</span>
+              </h2>
+              <a class="section-more" href="score_ranking.html">もっと見る</a>
+            </div>
+            <div id="score-ranking" class="ranking-list"></div>
+            <div id="score-ranking-status" class="status">読み込み中…</div>
+          </div>
+        </section>
 
-    function escapeHtml(value) {
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
+        <section class="home-card">
+          <div class="home-card-inner">
+            <div class="section-head">
+              <h2 class="section-title">
+                <span class="section-title-label">賞金ランキング</span>
+              </h2>
+              <a class="section-more" href="prize_ranking.html">もっと見る</a>
+            </div>
+            <div id="prize-ranking" class="ranking-list"></div>
+            <div id="prize-ranking-status" class="status">読み込み中…</div>
+          </div>
+        </section>
+      </div>
 
-    function formatDateJP(raw) {
-      if (!raw) return "";
-      const s = String(raw).trim();
+      <div class="footer-space"></div>
+    </main>
+  </div>
 
-      if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
-        const [y, m, d] = s.split("-");
-        return `${y}.${m}.${d}`;
-      }
+  <script>
+    const TOP_JSON_URL = "./data/top.json";
 
-      if (/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(s)) {
-        const [y, m, d] = s.split("/");
-        return `${y}.${String(m).padStart(2, "0")}.${String(d).padStart(2, "0")}`;
-      }
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
 
-      const date = new Date(s);
-      if (!Number.isNaN(date.getTime())) {
-        const y = date.getFullYear();
-        const m = String(date.getMonth() + 1).padStart(2, "0");
-        const d = String(date.getDate()).padStart(2, "0");
-        return `${y}.${m}.${d}`;
-      }
+    function closeOtherMenus(currentMenu) {
+      const menus = document.querySelectorAll(".home-menu");
+      menus.forEach((menu) => {
+        if (menu !== currentMenu) {
+          menu.removeAttribute("open");
+        }
+      });
+    }
 
-      return s;
-    }
+    function setupHeaderMenus() {
+      const menus = document.querySelectorAll(".home-menu");
 
-    function getEventId(event) {
-      return event.event_id || event.id || event.eventId || "";
-    }
+      menus.forEach((menu) => {
+        menu.addEventListener("toggle", () => {
+          if (menu.open) {
+            closeOtherMenus(menu);
+          }
+        });
+      });
 
-    function getEventName(event) {
-      return event.event_name || event.name || event.title || "";
-    }
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest(".home-menu")) return;
 
-    function getEventDate(event) {
-      return event.event_date || event.date || event.EventDate || "";
-    }
+        menus.forEach((menu) => {
+          menu.removeAttribute("open");
+        });
+      });
+    }
 
-    function getEventStage(event) {
-      return event.event_stage || event.stage || "";
-    }
+    function formatDateJP(raw) {
+      if (!raw) return "";
+      const s = String(raw).trim();
 
-    function getEventLocation(event) {
-      return event.location || "";
-    }
+      if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+        const [y, m, d] = s.split("-");
+        return `${y}.${m}.${d}`;
+      }
 
-    function getUpcomingSubText(event) {
-      const location = String(getEventLocation(event) || "").trim();
-      if (location) return location;
+      if (/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(s)) {
+        const [y, m, d] = s.split("/");
+        return `${y}.${String(m).padStart(2, "0")}.${String(d).padStart(2, "0")}`;
+      }
 
-      const stage = String(getEventStage(event) || "").trim();
-      if (stage) return stage;
+      const date = new Date(s);
+      if (!Number.isNaN(date.getTime())) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        return `${y}.${m}.${d}`;
+      }
 
-      return "";
-    }
+      return s;
+    }
 
-    function getMcId(item) {
-      return item.mc_id || item.id || item.mcId || "";
-    }
+    function getDayOfWeekJP(raw) {
+      if (!raw) return "";
+      const s = String(raw).trim();
+      let date = null;
 
-    function getMcName(item) {
-      return item.mc_name || item.name || item.mc || "";
-    }
+      if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+        date = new Date(`${s}T00:00:00`);
+      } else if (/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(s)) {
+        const [y, m, d] = s.split("/");
+        date = new Date(Number(y), Number(m) - 1, Number(d));
+      } else {
+        const parsed = new Date(s);
+        if (!Number.isNaN(parsed.getTime())) date = parsed;
+      }
 
-    function getRank(item, index) {
-      return item.rank || item.ranking || item.position || (index + 1);
-    }
+      if (!date || Number.isNaN(date.getTime())) return "";
 
-    function getScore(item) {
-      const raw =
-        item.current_strength_score_v2 ??
-        item.score ??
-        item.current_score ??
-        item.current_strength_score ??
-        item.rating ??
-        "";
-      const num = Number(raw);
-      if (Number.isFinite(num)) return num.toFixed(2);
-      return raw ? String(raw) : "";
-    }
+      const labels = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+      return labels[date.getDay()] || "";
+    }
 
-    function getPrize(item) {
-      const raw =
-        item.total_prize_money ??
-        item.prize_money ??
-        item.prize ??
-        item.total ??
-        "";
-      const num = Number(raw);
-      if (Number.isFinite(num)) {
-        const rounded = Math.round(num);
-        return "¥" + rounded.toLocaleString("ja-JP");
-      }
-      return raw ? String(raw) : "";
-    }
+    function getEventId(event) {
+      return event.event_id || event.id || event.eventId || "";
+    }
 
-    function setStatus(id, message, isError = false) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.textContent = message;
-      el.classList.toggle("error", !!isError);
-      el.classList.toggle("hidden", !message);
-    }
+    function getEventName(event) {
+      return event.event_name || event.event_name_full || event.event_name_simple || event.name || event.title || "";
+    }
 
-    function setEmptyCard(cardId, isEmpty) {
-      const card = document.getElementById(cardId);
-      if (!card) return;
-      card.classList.toggle("is-empty", !!isEmpty);
-    }
+    function getEventDate(event) {
+      return event.event_date || event.date || event.EventDate || "";
+    }
 
-    function shuffleArray(items) {
-      const result = [...items];
-      for (let i = result.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const temp = result[i];
-        result[i] = result[j];
-        result[j] = temp;
-      }
-      return result;
-    }
+    function getEventStage(event) {
+      return event.event_stage || event.stage || "";
+    }
 
-    async function loadTopJson() {
-      const res = await fetch(TOP_JSON_URL, { cache: "no-store" });
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-      return await res.json();
-    }
+    function getEventLocation(event) {
+      return event.location || "";
+    }
 
-    function renderRecentEventList(containerId, items, emptyMessage) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
+    function getEventWinner(event) {
+      return event.winner_name || event.winner_team_name || event.champion || event.winner || "";
+    }
 
-      if (!items.length) {
-        container.innerHTML = `<div class="status">${escapeHtml(emptyMessage)}</div>`;
-        return;
-      }
+    function getEventSubText(event) {
+      const location = String(getEventLocation(event) || "").trim();
+      if (location) return location;
 
-      container.innerHTML = items.map((event) => {
-        const eventId = getEventId(event);
-        const name = getEventName(event);
-        const date = formatDateJP(getEventDate(event));
-        const href = eventId ? `detail_event/${encodeURIComponent(eventId)}.html` : "list_event.html";
+      const stage = String(getEventStage(event) || "").trim();
+      if (stage) return stage;
 
-        return `
-          <a class="list-row" href="${href}">
-            <span class="event-date">${escapeHtml(date)}</span>
-            <span class="event-name">${escapeHtml(name)}</span>
-          </a>
-        `;
-      }).join("");
-    }
+      return "";
+    }
 
-    function renderUpcomingEventList(containerId, items, emptyMessage) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
+    function getMcId(item) {
+      return item.mc_id || item.id || item.mcId || "";
+    }
 
-      if (!items.length) {
-        container.innerHTML = `<div class="status">${escapeHtml(emptyMessage)}</div>`;
-        return;
-      }
+    function getMcName(item) {
+      return item.mc_name || item.name || item.mc || "";
+    }
 
-      container.innerHTML = items.map((event) => {
-        const name = getEventName(event);
-        const date = formatDateJP(getEventDate(event));
-        const subText = getUpcomingSubText(event);
+    function getRank(item, index) {
+      return item.rank || item.ranking || item.position || (index + 1);
+    }
 
-        return `
-          <div class="list-row-static">
-            <span class="event-date">${escapeHtml(date)}</span>
-            <span class="event-name">${escapeHtml(name)}</span>
-            ${subText ? `<span class="event-stage">${escapeHtml(subText)}</span>` : ""}
-          </div>
-        `;
-      }).join("");
-    }
+    function getScore(item) {
+      const raw =
+        item.current_strength_score_v2 ??
+        item.score ??
+        item.current_score ??
+        item.current_strength_score ??
+        item.rating ??
+        "";
 
-    function renderScoreRanking(containerId, items, emptyMessage) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
+      const num = Number(raw);
+      if (Number.isFinite(num)) return num.toFixed(2);
 
-      if (!items.length) {
-        container.innerHTML = `<div class="status">${escapeHtml(emptyMessage)}</div>`;
-        return;
-      }
+      return raw ? String(raw) : "";
+    }
 
-      container.innerHTML = items.map((item, index) => {
-        const mcId = getMcId(item);
-        const name = getMcName(item);
-        const rank = getRank(item, index);
-        const score = getScore(item);
-        const href = mcId ? `detail_mc/${encodeURIComponent(mcId)}.html` : "list_mc.html";
+    function getPrize(item) {
+      const raw =
+        item.total_prize_money ??
+        item.prize_money ??
+        item.prize ??
+        item.total ??
+        "";
 
-        return `
-          <a class="list-row" href="${href}">
-            <div class="rank-row">
-              <div class="rank-num">${escapeHtml(rank)}</div>
-              <div class="rank-name">${escapeHtml(name)}</div>
-              <div class="rank-score">${escapeHtml(score)}</div>
-            </div>
-          </a>
-        `;
-      }).join("");
-    }
+      const num = Number(raw);
+      if (Number.isFinite(num)) {
+        const rounded = Math.round(num);
+        return "¥" + rounded.toLocaleString("ja-JP");
+      }
 
-    function renderPrizeRanking(containerId, items, emptyMessage) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
+      return raw ? String(raw) : "";
+    }
 
-      if (!items.length) {
-        container.innerHTML = `<div class="status">${escapeHtml(emptyMessage)}</div>`;
-        return;
-      }
+    function setStatus(id, message, isError = false) {
+      const el = document.getElementById(id);
+      if (!el) return;
 
-      container.innerHTML = items.map((item, index) => {
-        const mcId = getMcId(item);
-        const name = getMcName(item);
-        const rank = getRank(item, index);
-        const prize = getPrize(item);
-        const href = mcId ? `detail_mc/${encodeURIComponent(mcId)}.html` : "list_mc.html";
+      el.textContent = message;
+      el.classList.toggle("error", !!isError);
+      el.classList.toggle("hidden", !message);
+    }
 
-        return `
-          <a class="list-row" href="${href}">
-            <div class="rank-row">
-              <div class="rank-num">${escapeHtml(rank)}</div>
-              <div class="rank-name">${escapeHtml(name)}</div>
-              <div class="rank-score">${escapeHtml(prize)}</div>
-            </div>
-          </a>
-        `;
-      }).join("");
-    }
+    function setEmptyCard(cardId, isEmpty) {
+      const card = document.getElementById(cardId);
+      if (!card) return;
 
-    function renderHotMcs(items) {
-      const card = document.getElementById("hot-mc-card");
-      const list = document.getElementById("hot-mc-list");
-      if (!card || !list) return;
+      card.classList.toggle("is-empty", !!isEmpty);
+    }
 
-      const hotMcs = Array.isArray(items) ? shuffleArray(items).slice(0, 10) : [];
+    function shuffleArray(items) {
+      const result = [...items];
 
-      if (!hotMcs.length) {
-        card.classList.remove("is-visible");
-        list.innerHTML = "";
-        return;
-      }
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = result[i];
+        result[i] = result[j];
+        result[j] = temp;
+      }
 
-      list.innerHTML = hotMcs.map((item) => {
-        const mcId = getMcId(item);
-        const name = getMcName(item);
-        const href = mcId ? `detail_mc/${encodeURIComponent(mcId)}.html` : "list_mc.html";
+      return result;
+    }
 
-        return `
-          <li>
-            <a class="hot-mc-link" href="${href}">${escapeHtml(name)}</a>
-          </li>
-        `;
-      }).join("");
+    async function loadTopJson() {
+      const res = await fetch(TOP_JSON_URL, { cache: "no-store" });
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      return await res.json();
+    }
 
-      card.classList.add("is-visible");
-    }
+    function renderEventList(containerId, items, emptyMessage, options = {}) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
 
-    async function loadIndexData() {
-      try {
-        const payload = await loadTopJson();
-        if (payload?.error) throw new Error(payload.message || "top data error");
+      if (!items.length) {
+        container.innerHTML = `<div class="status">${escapeHtml(emptyMessage)}</div>`;
+        return;
+      }
 
-        const recentEvents = Array.isArray(payload?.recent_events) ? payload.recent_events.slice(0, 5) : [];
-        const upcomingEvents = Array.isArray(payload?.upcoming_events) ? payload.upcoming_events.slice(0, 5) : [];
-        const scoreRankings = Array.isArray(payload?.score_rankings) ? payload.score_rankings.slice(0, 10) : [];
-        const prizeRankings = Array.isArray(payload?.prize_rankings) ? payload.prize_rankings.slice(0, 10) : [];
-        const hotMcs = Array.isArray(payload?.hot_mcs) ? payload.hot_mcs : [];
+      const limit = Number(options.limit || items.length);
+      const source = items.slice(0, limit);
 
-        renderHotMcs(hotMcs);
+      container.innerHTML = source.map((event) => {
+        const eventId = getEventId(event);
+        const name = getEventName(event);
+        const rawDate = getEventDate(event);
+        const date = formatDateJP(rawDate);
+        const day = getDayOfWeekJP(rawDate);
+        const subText = getEventSubText(event);
+        const winner = getEventWinner(event);
 
-        renderRecentEventList("recent-events", recentEvents, "データがありません");
-        setStatus("recent-events-status", recentEvents.length ? "" : "データがありません");
+        const href = options.linkEvents === false
+          ? ""
+          : eventId
+            ? `detail_event/${encodeURIComponent(eventId)}.html`
+            : "list_event.html";
 
-        renderUpcomingEventList("future-events", upcomingEvents, "今後開催予定の大会はありません");
-        setStatus("future-events-status", upcomingEvents.length ? "" : "今後開催予定の大会はありません");
-        setEmptyCard("future-events-card", upcomingEvents.length === 0);
+        const winnerHtml = options.showWinner && winner
+          ? `<span class="event-winner">優勝：${escapeHtml(winner)}</span>`
+          : "";
 
-        renderScoreRanking("score-ranking", scoreRankings, "データがありません");
-        setStatus("score-ranking-status", scoreRankings.length ? "" : "データがありません");
+        const inner = `
+          <span class="event-date-box">
+            <span class="event-date-main">${escapeHtml(date)}</span>
+            ${day ? `<span class="event-date-dow">${escapeHtml(day)}</span>` : ""}
+          </span>
+          <span class="event-body">
+            <span class="event-name">${escapeHtml(name)}</span>
+            ${subText ? `<span class="event-sub">${escapeHtml(subText)}</span>` : ""}
+            ${winnerHtml}
+          </span>
+          <span class="event-arrow" aria-hidden="true">›</span>
+        `;
 
-        renderPrizeRanking("prize-ranking", prizeRankings, "データがありません");
-        setStatus("prize-ranking-status", prizeRankings.length ? "" : "データがありません");
-      } catch (error) {
-        console.error(error);
-        setStatus("recent-events-status", "直近大会の読み込みに失敗しました。", true);
-        setStatus("future-events-status", "今後開催予定の大会の読み込みに失敗しました。", true);
-        setStatus("score-ranking-status", "スコアランキングの読み込みに失敗しました。", true);
-        setStatus("prize-ranking-status", "賞金ランキングの読み込みに失敗しました。", true);
-        setEmptyCard("future-events-card", false);
-      }
-    }
+        if (href) {
+          return `<a class="event-row" href="${href}">${inner}</a>`;
+        }
 
-    loadIndexData();
-  </script>
+        return `<div class="event-row is-static">${inner}</div>`;
+      }).join("");
+    }
+
+    function renderRanking(containerId, items, emptyMessage, options = {}) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      if (!items.length) {
+        container.innerHTML = `<div class="status">${escapeHtml(emptyMessage)}</div>`;
+        return;
+      }
+
+      const limit = Number(options.limit || items.length);
+      const source = items.slice(0, limit);
+
+      container.innerHTML = source.map((item, index) => {
+        const mcId = getMcId(item);
+        const name = getMcName(item);
+        const rank = getRank(item, index);
+        const value = options.type === "prize" ? getPrize(item) : getScore(item);
+        const href = mcId ? `detail_mc/${encodeURIComponent(mcId)}.html` : "list_mc.html";
+
+        return `
+          <a class="ranking-row" href="${href}">
+            <span class="rank-num">${escapeHtml(rank)}</span>
+            <span class="rank-name">${escapeHtml(name)}</span>
+            <span class="rank-value">${escapeHtml(value)}</span>
+          </a>
+        `;
+      }).join("");
+    }
+
+    function renderHotMcs(items) {
+      const card = document.getElementById("hot-mc-card");
+      const list = document.getElementById("hot-mc-list");
+      if (!card || !list) return;
+
+      const hotMcs = Array.isArray(items) ? shuffleArray(items).slice(0, 10) : [];
+
+      if (!hotMcs.length) {
+        card.classList.remove("is-visible");
+        list.innerHTML = "";
+        return;
+      }
+
+      list.innerHTML = hotMcs.map((item) => {
+        const mcId = getMcId(item);
+        const name = getMcName(item);
+        const href = mcId ? `detail_mc/${encodeURIComponent(mcId)}.html` : "list_mc.html";
+
+        return `
+          <li>
+            <a class="hot-mc-link" href="${href}">${escapeHtml(name)}</a>
+          </li>
+        `;
+      }).join("");
+
+      card.classList.add("is-visible");
+    }
+
+    async function loadIndexData() {
+      try {
+        const payload = await loadTopJson();
+        if (payload?.error) throw new Error(payload.message || "top data error");
+
+        const recentEvents = Array.isArray(payload?.recent_events) ? payload.recent_events.slice(0, 5) : [];
+        const upcomingEvents = Array.isArray(payload?.upcoming_events) ? payload.upcoming_events.slice(0, 5) : [];
+        const scoreRankings = Array.isArray(payload?.score_rankings) ? payload.score_rankings.slice(0, 5) : [];
+        const prizeRankings = Array.isArray(payload?.prize_rankings) ? payload.prize_rankings.slice(0, 5) : [];
+        const hotMcs = Array.isArray(payload?.hot_mcs) ? payload.hot_mcs : [];
+
+        renderHotMcs(hotMcs);
+
+        renderEventList("future-events", upcomingEvents, "今後開催予定の大会はありません", {
+          limit: 2,
+          linkEvents: false,
+          showWinner: false
+        });
+        setStatus("future-events-status", upcomingEvents.length ? "" : "今後開催予定の大会はありません");
+        setEmptyCard("future-events-card", upcomingEvents.length === 0);
+
+        renderEventList("recent-events", recentEvents, "データがありません", {
+          limit: 3,
+          linkEvents: true,
+          showWinner: true
+        });
+        setStatus("recent-events-status", recentEvents.length ? "" : "データがありません");
+
+        renderRanking("score-ranking", scoreRankings, "データがありません", {
+          type: "score",
+          limit: 5
+        });
+        setStatus("score-ranking-status", scoreRankings.length ? "" : "データがありません");
+
+        renderRanking("prize-ranking", prizeRankings, "データがありません", {
+          type: "prize",
+          limit: 5
+        });
+        setStatus("prize-ranking-status", prizeRankings.length ? "" : "データがありません");
+      } catch (error) {
+        console.error(error);
+        setStatus("future-events-status", "今後開催予定の大会の読み込みに失敗しました。", true);
+        setStatus("recent-events-status", "直近大会の読み込みに失敗しました。", true);
+        setStatus("score-ranking-status", "スコアランキングの読み込みに失敗しました。", true);
+        setStatus("prize-ranking-status", "賞金ランキングの読み込みに失敗しました。", true);
+        setEmptyCard("future-events-card", false);
+      }
+    }
+
+    setupHeaderMenus();
+    loadIndexData();
+  </script>
 </body>
 </html>
