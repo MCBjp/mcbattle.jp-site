@@ -32,6 +32,10 @@
   </script>
   <link rel="stylesheet" href="style.css" />
   <style>
+    :root{
+      --home-header-max: 1040px;
+    }
+
     .home-header{
       position:relative;
       margin-bottom:18px;
@@ -44,7 +48,7 @@
     }
 
     .home-header-inner{
-      width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
+      width:min(calc(100% - (var(--page-gutter) * 2)), var(--home-header-max));
       margin-left:auto;
       margin-right:auto;
     }
@@ -112,6 +116,25 @@
       text-decoration:none !important;
     }
 
+    .home-tab.is-active,
+    .home-menu.is-current .home-menu-summary{
+      color:var(--accent);
+    }
+
+    .home-tab.is-active::after,
+    .home-menu.is-current .home-menu-summary::before,
+    .home-menu[open] .home-menu-summary::before{
+      content:"";
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:-1px;
+      height:3px;
+      border-radius:999px 999px 0 0;
+      background:var(--accent);
+      box-shadow:0 0 18px rgba(216,180,106,.28);
+    }
+
     .home-menu{
       position:relative;
       flex:1 1 0;
@@ -141,18 +164,6 @@
 
     .home-menu[open] .home-menu-summary{
       color:var(--accent);
-    }
-
-    .home-menu[open] .home-menu-summary::before{
-      content:"";
-      position:absolute;
-      left:12px;
-      right:12px;
-      bottom:-1px;
-      height:3px;
-      border-radius:999px 999px 0 0;
-      background:var(--accent);
-      box-shadow:0 0 18px rgba(216,180,106,.28);
     }
 
     .home-submenu{
@@ -549,13 +560,17 @@
 
     @media (min-width: 1024px){
       .home-header-inner{
-        width:min(var(--content-max), calc(100% - var(--pc-left-gutter) - var(--page-gutter)));
+        width:min(var(--home-header-max), calc(100% - var(--pc-left-gutter) - var(--page-gutter)));
         margin-left:var(--pc-left-gutter);
         margin-right:auto;
       }
 
       .home-logo{
         font-size:3rem;
+      }
+
+      .home-lead{
+        white-space:nowrap;
       }
     }
 
@@ -592,6 +607,8 @@
         font-size:.9rem;
       }
 
+      .home-tab.is-active::after,
+      .home-menu.is-current .home-menu-summary::before,
       .home-menu[open] .home-menu-summary::before{
         left:8px;
         right:8px;
@@ -748,7 +765,7 @@
       <nav class="home-tabs" aria-label="主要メニュー">
         <a class="home-tab" href="./">ホーム</a>
 
-        <details class="home-menu" data-menu="data">
+        <details class="home-menu is-current" data-menu="data">
           <summary class="home-menu-summary">データ</summary>
           <div class="home-submenu">
             <a href="list_mc.html">MC一覧</a>
