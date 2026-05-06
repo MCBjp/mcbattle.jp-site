@@ -84,6 +84,196 @@ ${escapeScriptJson(jsonLd)}
   <link rel="stylesheet" href="style.css" />
 
   <style>
+    .home-header{
+      position:relative;
+      margin-bottom:18px;
+      padding:26px 0 0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
+        radial-gradient(circle at 96% 0%, rgba(216,180,106,.07), transparent 34%);
+      border-bottom:1px solid rgba(255,255,255,.14);
+      z-index:40;
+    }
+
+    .home-header-inner{
+      width:min(calc(100% - (var(--page-gutter) * 2)), var(--content-max));
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .home-logo{
+      margin:0 0 6px;
+      font-family:"Times New Roman", Georgia, serif;
+      font-style:italic;
+      font-size:clamp(2.08rem, 7.8vw, 3.15rem);
+      font-weight:800;
+      line-height:.95;
+      letter-spacing:-.055em;
+      color:var(--accent);
+      text-shadow:0 10px 26px rgba(0,0,0,.18);
+    }
+
+    .home-logo a{
+      color:inherit;
+      text-decoration:none !important;
+    }
+
+    .home-lead{
+      margin:0 0 13px;
+      color:#f0f2f6;
+      font-size:1rem;
+      font-weight:700;
+      line-height:1.48;
+      letter-spacing:-.02em;
+    }
+
+    .home-tabs{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:0;
+      width:100%;
+      border-top:1px solid rgba(255,255,255,.13);
+      border-bottom:1px solid rgba(255,255,255,.13);
+      overflow:visible;
+      z-index:50;
+    }
+
+    .home-tab,
+    .home-menu-summary{
+      position:relative;
+      flex:1 1 0;
+      min-width:0;
+      padding:11px 8px 12px;
+      color:#f3f4f6;
+      font-size:.96rem;
+      font-weight:800;
+      line-height:1.1;
+      text-align:center;
+      white-space:nowrap;
+      opacity:.96;
+      transition:color .18s ease, opacity .18s ease;
+      cursor:pointer;
+      text-decoration:none !important;
+    }
+
+    .home-tab:hover,
+    .home-menu-summary:hover{
+      color:#fff7e8;
+      opacity:1;
+      text-decoration:none !important;
+    }
+
+    .home-menu{
+      position:relative;
+      flex:1 1 0;
+      min-width:0;
+    }
+
+    .home-menu summary{
+      list-style:none;
+    }
+
+    .home-menu summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .home-menu-summary::after{
+      content:"";
+      display:inline-block;
+      width:0;
+      height:0;
+      margin-left:5px;
+      border-left:4px solid transparent;
+      border-right:4px solid transparent;
+      border-top:5px solid currentColor;
+      transform:translateY(-1px);
+      opacity:.75;
+    }
+
+    .home-menu[open] .home-menu-summary{
+      color:var(--accent);
+    }
+
+    .home-menu[open] .home-menu-summary::before{
+      content:"";
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:-1px;
+      height:3px;
+      border-radius:999px 999px 0 0;
+      background:var(--accent);
+      box-shadow:0 0 18px rgba(216,180,106,.28);
+    }
+
+    .home-submenu{
+      position:absolute;
+      top:calc(100% + 8px);
+      left:50%;
+      z-index:80;
+      min-width:176px;
+      padding:8px;
+      border:1px solid rgba(216,180,106,.24);
+      border-radius:14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)),
+        rgba(18,21,30,.98);
+      box-shadow:
+        0 16px 34px rgba(0,0,0,.34),
+        0 0 0 1px rgba(255,255,255,.018) inset;
+      transform:translateX(-50%);
+    }
+
+    .home-submenu a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      min-height:38px;
+      padding:0 12px;
+      border-radius:10px;
+      color:#f3f4f6;
+      font-size:.9rem;
+      font-weight:800;
+      line-height:1;
+      white-space:nowrap;
+      text-decoration:none !important;
+      transition:
+        background-color .18s ease,
+        color .18s ease,
+        opacity .18s ease;
+    }
+
+    .home-submenu a::after{
+      content:"›";
+      color:var(--accent);
+      font-size:1.15rem;
+      line-height:1;
+      opacity:.8;
+    }
+
+    .home-submenu a:hover{
+      background:rgba(216,180,106,.1);
+      color:#fff7e8;
+      text-decoration:none !important;
+    }
+
+    .page-top{
+      margin-bottom:14px;
+    }
+
+    .page-header-block{
+      margin-bottom:14px;
+    }
+
+    .page-header-block h1{
+      margin:0;
+      text-wrap:balance;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
+
     .event-page-lead {
       margin: 0 0 14px;
       color: var(--muted);
@@ -286,7 +476,80 @@ ${escapeScriptJson(jsonLd)}
       color: var(--danger);
     }
 
+    @media (min-width: 1024px){
+      .home-header-inner{
+        width:min(var(--content-max), calc(100% - var(--pc-left-gutter) - var(--page-gutter)));
+        margin-left:var(--pc-left-gutter);
+        margin-right:auto;
+      }
+
+      .home-logo{
+        font-size:3rem;
+      }
+    }
+
     @media (max-width: 640px) {
+      .home-header{
+        margin-bottom:14px;
+        padding:38px 0 0;
+      }
+
+      .home-header-inner{
+        width:calc(100% - 24px);
+      }
+
+      .home-logo{
+        margin-bottom:5px;
+        font-size:2.42rem;
+      }
+
+      .home-lead{
+        margin-bottom:12px;
+        font-size:.96rem;
+        line-height:1.42;
+        letter-spacing:-.025em;
+      }
+
+      .home-tabs{
+        margin-left:-1px;
+        margin-right:-1px;
+      }
+
+      .home-tab,
+      .home-menu-summary{
+        padding:10px 5px 11px;
+        font-size:.9rem;
+      }
+
+      .home-menu[open] .home-menu-summary::before{
+        left:8px;
+        right:8px;
+        height:3px;
+      }
+
+      .home-submenu{
+        min-width:158px;
+        top:calc(100% + 7px);
+      }
+
+      .home-submenu a{
+        min-height:37px;
+        font-size:.86rem;
+      }
+
+      .page-top{
+        margin-bottom:12px;
+      }
+
+      .page-header-block{
+        margin-bottom:12px;
+      }
+
+      .page-header-block h1{
+        font-size:clamp(1.5rem, 5.3vw, 1.95rem);
+        line-height:1.12;
+      }
+
       .event-page-lead {
         margin-bottom: 11px;
         font-size: 0.86rem;
@@ -348,21 +611,62 @@ ${escapeScriptJson(jsonLd)}
         font-size: 0.72rem;
       }
     }
+
+    @media (max-width: 390px){
+      .home-header-inner{
+        width:calc(100% - 20px);
+      }
+
+      .home-logo{
+        font-size:2.32rem;
+      }
+
+      .home-lead{
+        font-size:.92rem;
+      }
+
+      .home-tab,
+      .home-menu-summary{
+        padding-left:4px;
+        padding-right:4px;
+        font-size:.84rem;
+      }
+    }
   </style>
 </head>
 <body>
+  <header class="home-header">
+    <div class="home-header-inner">
+      <h1 class="home-logo"><a href="./">MCBattle.jp</a></h1>
+      <p class="home-lead">日本一情報量の多いMCバトルポータル。<br>大会記録・戦績・独自スコアをまとめています。</p>
+
+      <nav class="home-tabs" aria-label="主要メニュー">
+        <a class="home-tab" href="./">ホーム</a>
+
+        <details class="home-menu" data-menu="data">
+          <summary class="home-menu-summary">データ</summary>
+          <div class="home-submenu">
+            <a href="list_mc.html">MC一覧</a>
+            <a href="list_event.html">大会一覧</a>
+          </div>
+        </details>
+
+        <details class="home-menu" data-menu="ranking">
+          <summary class="home-menu-summary">ランキング</summary>
+          <div class="home-submenu">
+            <a href="score_ranking.html">スコアランキング</a>
+            <a href="prize_ranking.html">賞金ランキング</a>
+            <a href="score_spec.html">スコアリング仕様</a>
+          </div>
+        </details>
+
+        <a class="home-tab" href="articles.html">読み物</a>
+      </nav>
+    </div>
+  </header>
+
   <div class="events-page">
     <div class="page-top">
-      <p class="page-mini-logo"><a href="./" class="site-mini-logo">MCBattle.jp</a></p>
-
-      <nav class="page-nav-pills" aria-label="主要メニュー">
-        <a class="page-nav-pill" href="list_mc.html">MC一覧</a>
-        <a class="page-nav-pill" href="score_ranking.html">スコアランキング</a>
-        <span class="page-nav-break" aria-hidden="true"></span>
-        <a class="page-nav-pill" href="prize_ranking.html">賞金ランキング</a>
-        <a class="page-nav-pill" href="simulation.html">大会シミュレーション</a>
-      </nav>
-
       <div class="page-header-block">
         <h1>MCバトル大会一覧</h1>
       </div>
@@ -378,6 +682,37 @@ ${indent(groupHtml, 6)}
   </div>
 
   <script>
+    function closeOtherMenus(currentMenu) {
+      const menus = document.querySelectorAll(".home-menu");
+      menus.forEach((menu) => {
+        if (menu !== currentMenu) {
+          menu.removeAttribute("open");
+        }
+      });
+    }
+
+    function setupHeaderMenus() {
+      const menus = document.querySelectorAll(".home-menu");
+
+      menus.forEach((menu) => {
+        menu.addEventListener("toggle", () => {
+          if (menu.open) {
+            closeOtherMenus(menu);
+          }
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest(".home-menu")) return;
+
+        menus.forEach((menu) => {
+          menu.removeAttribute("open");
+        });
+      });
+    }
+
     function attachAccordionEvents() {
       const toggles = document.querySelectorAll(".event-group-toggle");
       toggles.forEach(btn => {
@@ -393,6 +728,7 @@ ${indent(groupHtml, 6)}
       });
     }
 
+    setupHeaderMenus();
     attachAccordionEvents();
   </script>
 </body>
