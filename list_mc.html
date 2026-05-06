@@ -1282,7 +1282,77 @@
         margin-right: auto !important;
       }
     }
-  
+
+    /* === Menu color test: subtle category backgrounds === */
+    .home-menu[data-menu="data"] .home-menu-summary {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.010)),
+        rgba(10, 42, 32, .52);
+      border-radius: 12px 12px 0 0;
+    }
+
+    .home-menu[data-menu="ranking"] .home-menu-summary {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.010)),
+        rgba(18, 34, 64, .54);
+      border-radius: 12px 12px 0 0;
+    }
+
+    .home-tab[href="simulation.html"] {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.010)),
+        rgba(72, 22, 26, .50);
+      border-radius: 12px 12px 0 0;
+    }
+
+    .home-tab[href="articles.html"] {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.010)),
+        rgba(74, 50, 24, .50);
+      border-radius: 12px 12px 0 0;
+    }
+
+    .home-menu[data-menu="data"] .home-menu-summary:hover,
+    .home-menu[data-menu="ranking"] .home-menu-summary:hover,
+    .home-tab[href="simulation.html"]:hover,
+    .home-tab[href="articles.html"]:hover {
+      filter: brightness(1.12);
+    }
+
+    .home-tab.is-current {
+      color: var(--accent);
+      opacity: 1;
+      position: relative;
+    }
+
+    .home-tab.is-current::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 4px;
+      border-radius: 999px 999px 0 0;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(216,180,106,.28);
+    }
+
+    .home-menu.is-current .home-menu-summary,
+    .home-tab.is-current {
+      color: var(--accent);
+    }
+
+    @media (max-width: 767px) {
+      .home-tab,
+      .home-menu-summary {
+        font-size: .92rem;
+      }
+
+      .home-tab[href="simulation.html"] {
+        letter-spacing: -.04em;
+      }
+    }
+
   </style>  
 </head>  
 <body>  
@@ -1309,7 +1379,7 @@
           </div>    
         </details>    
     
-        <a class="home-tab" href="simulation.html">Simulation</a>    
+        <a class="home-tab" href="simulation.html">Simulator</a>    
         <a class="home-tab" href="articles.html">Reading</a>    
       </nav>    
     </div>    
