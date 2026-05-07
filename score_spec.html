@@ -1241,6 +1241,19 @@
       content: none !important;
     }
 
+    /* === Explicit separator fix: Simulator to Reading === */
+    @media (min-width: 768px) {
+      .home-tab[href="simulation.html"],
+      .home-tab[href="../simulation.html"] {
+        border-right: 2px solid rgba(255, 255, 255, .82) !important;
+      }
+
+      .home-tab[href="articles.html"],
+      .home-tab[href="../articles.html"] {
+        border-right: none !important;
+      }
+    }
+
   </style>    
 </head>    
 <body>    
