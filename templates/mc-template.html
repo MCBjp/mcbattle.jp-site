@@ -303,54 +303,97 @@ __PROFILE_JSON_LD__
 
     .battle-section-heading,
     .appearance-section-heading{
-      position: sticky;
-      top: 8px;
-      z-index: 5;
-      display: inline-flex;
+      position: relative;
+      display: flex;
       align-items: center;
-      gap: 0.5em;
-      max-width: min(100%, 92vw);
-      margin: 0 0 8px;
-      padding: 6px 9px;
-      border: 1px solid rgba(216,180,106,0.18);
-      border-radius: 10px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
-        linear-gradient(180deg, rgba(24, 28, 41, 0.92) 0%, rgba(14, 18, 28, 0.92) 100%);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.015) inset,
-        0 8px 18px rgba(0,0,0,0.12);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      min-width: 0;
+      max-width: 100%;
+      margin: 0 0 9px;
+      padding: 0 0 9px 12px;
+      border-bottom: 1px solid rgba(216,180,106,0.34);
+      color: var(--text);
+      font-size: clamp(1.03rem, 2.7vw, 1.24rem);
+      font-weight: 800;
+      line-height: 1.24;
+      letter-spacing: 0.01em;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .battle-section-heading::before,
+    .appearance-section-heading::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.08em;
+      width: 4px;
+      height: 1.06em;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(216,180,106,0.98), rgba(216,180,106,0.48));
+      box-shadow: 0 0 14px rgba(216,180,106,0.18);
+    }
+
+    .section-heading-text{
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .section-heading-name{
-      min-width: 0;
-      max-width: 14em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      color: var(--accent);
+      color: var(--text);
       font-weight: 800;
     }
 
     .section-heading-sep{
-      flex: 0 0 auto;
       color: var(--muted);
       opacity: 0.9;
+      padding: 0 0.18em;
     }
 
     .section-heading-label{
-      flex: 0 1 auto;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
       color: var(--text);
-      font-weight: 700;
+      font-weight: 800;
+    }
+
+    .battle-filter{
+      margin: 0 0 8px;
+    }
+
+    .battle-filter-input{
+      display: block;
+      width: 100%;
+      min-height: 38px;
+      box-sizing: border-box;
+      padding: 0 12px;
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.045);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      outline: none;
+      transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .battle-filter-input::placeholder{
+      color: rgba(178,184,199,0.74);
+    }
+
+    .battle-filter-input:focus{
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(216,180,106,0.42);
+      box-shadow: 0 0 0 3px rgba(216,180,106,0.10);
+    }
+
+    .battle-filter-empty{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
     }
 
     .battle-list,
@@ -375,58 +418,39 @@ __PROFILE_JSON_LD__
     .battle-opponent{
       display: block;
       min-width: 0;
-      line-height: 1.36;
-      font-size: 0.98rem;
-      font-weight: 600;
+      line-height: 1.34;
+      font-size: 1.02rem;
+      font-weight: 800;
       word-break: break-word;
       overflow-wrap: anywhere;
     }
 
     .battle-opponent-link{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      display: inline;
       min-width: 0;
       max-width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: var(--text) !important;
       text-decoration: none !important;
-      border-radius: 999px;
+      border-bottom: 1px solid rgba(216,180,106,0.28);
       transition:
-        transform 0.18s ease,
-        background-color 0.18s ease,
         border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        color 0.18s ease;
-      min-height: 34px;
-      padding: 0 12px;
-      background: linear-gradient(180deg, rgba(216,180,106,.18), rgba(216,180,106,.07));
-      border: 1px solid rgba(216,180,106,.34);
-      color: #fff4dc !important;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.025) inset;
+        color 0.18s ease,
+        opacity 0.18s ease;
     }
 
     .battle-opponent-link:hover{
-      background: linear-gradient(180deg, rgba(216,180,106,.26), rgba(216,180,106,.11));
-      border-color: rgba(216,180,106,.48);
-      color: #fff7e8 !important;
-      transform: translateY(-1px);
-      box-shadow: 0 0 20px rgba(216,180,106,.18);
+      color: #fff4dc !important;
+      border-bottom-color: rgba(216,180,106,0.68);
+      opacity: 1;
     }
 
     .battle-opponent-label{
-      display: inline-block;
+      display: inline;
       min-width: 0;
-      white-space: nowrap;
     }
 
     .battle-opponent-link.is-long{
-      justify-content: flex-start;
-      text-align: left;
-      padding-left: 12px;
-      padding-right: 10px;
-      font-size: 0.88rem;
+      font-size: inherit;
     }
 
     .smart-measure-probe{
@@ -781,14 +805,30 @@ __PROFILE_JSON_LD__
 
       .battle-section-heading,
       .appearance-section-heading{
-        top: 6px;
-        margin-bottom: 7px;
-        padding: 5px 8px;
-        max-width: calc(100vw - 48px);
+        margin-bottom: 8px;
+        padding: 0 0 8px 10px;
+        font-size: 1.03rem;
+        line-height: 1.22;
       }
 
-      .section-heading-name{
-        max-width: 8.5em;
+      .battle-section-heading::before,
+      .appearance-section-heading::before{
+        width: 3px;
+      }
+
+      .battle-filter{
+        margin-bottom: 7px;
+      }
+
+      .battle-filter-input{
+        min-height: 36px;
+        padding: 0 10px;
+        border-radius: 9px;
+        font-size: 0.82rem;
+      }
+
+      .battle-filter-empty{
+        font-size: 0.8rem;
       }
 
       .battle-list li,
@@ -797,19 +837,8 @@ __PROFILE_JSON_LD__
       }
 
       .battle-opponent{
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         line-height: 1.3;
-      }
-
-      .battle-opponent-link{
-        min-height: 32px;
-        padding: 0 10px;
-      }
-
-      .battle-opponent-link.is-long{
-        padding-left: 10px;
-        padding-right: 8px;
-        font-size: 0.80rem;
       }
 
       .battle-event{
@@ -890,10 +919,12 @@ __MC_INFO_LIST_ITEMS__
     <section id="wins-section" class="card __WINS_SECTION_HIDDEN_CLASS__">
       <div class="mc-card-inner">
         <h2 id="wins-heading" class="battle-section-heading">
-          <span class="section-heading-name">__MC_TITLE__</span>
-          <span class="section-heading-sep">/</span>
-          <span class="section-heading-label">Win</span>
+          <span class="section-heading-text"><span class="section-heading-name">__MC_TITLE__</span><span class="section-heading-sep"> - </span><span class="section-heading-label">Win</span></span>
         </h2>
+        <div id="wins-filter" class="battle-filter is-hidden">
+          <input id="wins-filter-input" class="battle-filter-input" type="search" inputmode="search" autocomplete="off" placeholder="対戦相手・大会名・ラウンドで絞り込み" aria-label="Winを絞り込み" />
+          <p id="wins-filter-empty" class="battle-filter-empty is-hidden">一致する結果がありません。</p>
+        </div>
         <p id="wins-status" class="muted __WINS_STATUS_HIDDEN_CLASS__">__WINS_STATUS__</p>
         <ul id="wins-list" class="battle-list">
 __WINS_LIST_ITEMS__
@@ -905,10 +936,12 @@ __WINS_LIST_ITEMS__
     <section id="losses-section" class="card __LOSSES_SECTION_HIDDEN_CLASS__">
       <div class="mc-card-inner">
         <h2 id="losses-heading" class="battle-section-heading">
-          <span class="section-heading-name">__MC_TITLE__</span>
-          <span class="section-heading-sep">/</span>
-          <span class="section-heading-label">Lose</span>
+          <span class="section-heading-text"><span class="section-heading-name">__MC_TITLE__</span><span class="section-heading-sep"> - </span><span class="section-heading-label">Lose</span></span>
         </h2>
+        <div id="losses-filter" class="battle-filter is-hidden">
+          <input id="losses-filter-input" class="battle-filter-input" type="search" inputmode="search" autocomplete="off" placeholder="対戦相手・大会名・ラウンドで絞り込み" aria-label="Loseを絞り込み" />
+          <p id="losses-filter-empty" class="battle-filter-empty is-hidden">一致する結果がありません。</p>
+        </div>
         <p id="losses-status" class="muted __LOSSES_STATUS_HIDDEN_CLASS__">__LOSSES_STATUS__</p>
         <ul id="losses-list" class="battle-list">
 __LOSSES_LIST_ITEMS__
@@ -920,10 +953,12 @@ __LOSSES_LIST_ITEMS__
     <section id="team-wins-section" class="card __TEAM_WINS_SECTION_HIDDEN_CLASS__">
       <div class="mc-card-inner">
         <h2 id="team-wins-heading" class="battle-section-heading">
-          <span class="section-heading-name">__MC_TITLE__</span>
-          <span class="section-heading-sep">/</span>
-          <span class="section-heading-label">チーム戦 Win</span>
+          <span class="section-heading-text"><span class="section-heading-name">__MC_TITLE__</span><span class="section-heading-sep"> - </span><span class="section-heading-label">Team Win</span></span>
         </h2>
+        <div id="team-wins-filter" class="battle-filter is-hidden">
+          <input id="team-wins-filter-input" class="battle-filter-input" type="search" inputmode="search" autocomplete="off" placeholder="相手チーム・大会名・ラウンドで絞り込み" aria-label="Team Winを絞り込み" />
+          <p id="team-wins-filter-empty" class="battle-filter-empty is-hidden">一致する結果がありません。</p>
+        </div>
         <p id="team-wins-status" class="muted __TEAM_WINS_STATUS_HIDDEN_CLASS__">__TEAM_WINS_STATUS__</p>
         <ul id="team-wins-list" class="team-battle-list">
 __TEAM_WINS_LIST_ITEMS__
@@ -935,10 +970,12 @@ __TEAM_WINS_LIST_ITEMS__
     <section id="team-losses-section" class="card __TEAM_LOSSES_SECTION_HIDDEN_CLASS__">
       <div class="mc-card-inner">
         <h2 id="team-losses-heading" class="battle-section-heading">
-          <span class="section-heading-name">__MC_TITLE__</span>
-          <span class="section-heading-sep">/</span>
-          <span class="section-heading-label">チーム戦 Lose</span>
+          <span class="section-heading-text"><span class="section-heading-name">__MC_TITLE__</span><span class="section-heading-sep"> - </span><span class="section-heading-label">Team Lose</span></span>
         </h2>
+        <div id="team-losses-filter" class="battle-filter is-hidden">
+          <input id="team-losses-filter-input" class="battle-filter-input" type="search" inputmode="search" autocomplete="off" placeholder="相手チーム・大会名・ラウンドで絞り込み" aria-label="Team Loseを絞り込み" />
+          <p id="team-losses-filter-empty" class="battle-filter-empty is-hidden">一致する結果がありません。</p>
+        </div>
         <p id="team-losses-status" class="muted __TEAM_LOSSES_STATUS_HIDDEN_CLASS__">__TEAM_LOSSES_STATUS__</p>
         <ul id="team-losses-list" class="team-battle-list">
 __TEAM_LOSSES_LIST_ITEMS__
@@ -950,9 +987,7 @@ __TEAM_LOSSES_LIST_ITEMS__
     <section id="appearances-section" class="card __APPEARANCES_SECTION_HIDDEN_CLASS__">
       <div class="mc-card-inner">
         <h2 class="appearance-section-heading">
-          <span class="section-heading-name">__MC_TITLE__</span>
-          <span class="section-heading-sep">/</span>
-          <span class="section-heading-label">出場大会</span>
+          <span class="section-heading-text"><span class="section-heading-name">__MC_TITLE__</span><span class="section-heading-sep"> - </span><span class="section-heading-label">出場大会</span></span>
         </h2>
         <p id="appearances-status" class="muted __APPEARANCES_STATUS_HIDDEN_CLASS__">__APPEARANCES_STATUS__</p>
         <ul id="appearances-list" class="appearance-list">
@@ -965,37 +1000,107 @@ __APPEARANCES_LIST_ITEMS__
 
   <script>
     (function () {
+      function normalizeSearchText(value) {
+        return String(value || "")
+          .toLowerCase()
+          .replace(/\s+/g, "")
+          .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (char) {
+            return String.fromCharCode(char.charCodeAt(0) - 0xFEE0);
+          });
+      }
+
       function setupCollapsibleList(listId, buttonId, limit) {
         const listEl = document.getElementById(listId);
         const buttonEl = document.getElementById(buttonId);
-        if (!listEl || !buttonEl) return;
+        if (!listEl || !buttonEl) return null;
 
         const items = Array.from(listEl.children).filter((el) => !el.classList.contains("is-static-empty"));
         if (items.length <= limit) {
           buttonEl.classList.add("is-hidden");
-          return;
         }
 
         let expanded = false;
+        let filterText = "";
+
+        function getMatchedItems() {
+          if (!filterText) return items;
+          return items.filter((item) => {
+            const source = item.dataset.searchText || item.textContent || "";
+            return normalizeSearchText(source).includes(filterText);
+          });
+        }
 
         function render() {
-          items.forEach((item, index) => {
-            if (!expanded && index >= limit) {
-              item.classList.add("is-hidden");
-            } else {
+          const matchedItems = getMatchedItems();
+          const matchedSet = new Set(matchedItems);
+          const isFiltering = Boolean(filterText);
+
+          items.forEach((item) => {
+            item.classList.add("is-hidden");
+          });
+
+          matchedItems.forEach((item, index) => {
+            if (isFiltering || expanded || index < limit) {
               item.classList.remove("is-hidden");
             }
           });
-          buttonEl.textContent = expanded ? "閉じる" : "すべて見る";
+
+          if (matchedItems.length <= limit || isFiltering) {
+            buttonEl.classList.add("is-hidden");
+          } else {
+            buttonEl.classList.remove("is-hidden");
+            buttonEl.textContent = expanded ? "閉じる" : "すべて見る";
+          }
+
+          return {
+            totalCount: items.length,
+            matchedCount: matchedItems.length,
+            isFiltering: isFiltering,
+            matchedSet: matchedSet
+          };
         }
 
-        buttonEl.classList.remove("is-hidden");
         buttonEl.addEventListener("click", function () {
           expanded = !expanded;
           render();
         });
 
         render();
+
+        return {
+          render: render,
+          setFilter: function (value) {
+            filterText = normalizeSearchText(value);
+            return render();
+          },
+          getTotalCount: function () {
+            return items.length;
+          }
+        };
+      }
+
+      function setupListFilter(options) {
+        const filterWrap = document.getElementById(options.filterId);
+        const inputEl = document.getElementById(options.inputId);
+        const emptyEl = document.getElementById(options.emptyId);
+        const controller = options.controller;
+        if (!filterWrap || !inputEl || !emptyEl || !controller) return;
+
+        if (controller.getTotalCount() < 5) {
+          filterWrap.classList.add("is-hidden");
+          return;
+        }
+
+        filterWrap.classList.remove("is-hidden");
+
+        inputEl.addEventListener("input", function () {
+          const result = controller.setFilter(inputEl.value);
+          if (result.isFiltering && result.matchedCount === 0) {
+            emptyEl.classList.remove("is-hidden");
+          } else {
+            emptyEl.classList.add("is-hidden");
+          }
+        });
       }
 
       function measureBattleOpponentOverflow(el) {
@@ -1013,16 +1118,15 @@ __APPEARANCES_LIST_ITEMS__
         probe.style.fontWeight = computed.fontWeight;
         probe.style.letterSpacing = computed.letterSpacing;
         probe.style.textTransform = computed.textTransform;
-        probe.style.fontSize = isMobile ? "0.80rem" : "0.88rem";
+        probe.style.fontSize = isMobile ? "0.95rem" : "1.02rem";
 
         document.body.appendChild(probe);
 
-        const horizontalPadding = isMobile ? 18 : 22;
-        const available = el.clientWidth - horizontalPadding - 8;
+        const available = el.clientWidth || 0;
         const needed = Math.ceil(probe.getBoundingClientRect().width);
 
         probe.remove();
-        return needed > available;
+        return available > 0 && needed > available;
       }
 
       function applyBattleOpponentSmartAlign() {
@@ -1042,11 +1146,39 @@ __APPEARANCES_LIST_ITEMS__
         resizeTimer = setTimeout(applyBattleOpponentSmartAlign, 80);
       }
 
-      setupCollapsibleList("wins-list", "wins-more-button", 5);
-      setupCollapsibleList("losses-list", "losses-more-button", 5);
-      setupCollapsibleList("team-wins-list", "team-wins-more-button", 5);
-      setupCollapsibleList("team-losses-list", "team-losses-more-button", 5);
+      const winsController = setupCollapsibleList("wins-list", "wins-more-button", 5);
+      const lossesController = setupCollapsibleList("losses-list", "losses-more-button", 5);
+      const teamWinsController = setupCollapsibleList("team-wins-list", "team-wins-more-button", 5);
+      const teamLossesController = setupCollapsibleList("team-losses-list", "team-losses-more-button", 5);
       setupCollapsibleList("appearances-list", "appearances-more-button", 10);
+
+      setupListFilter({
+        filterId: "wins-filter",
+        inputId: "wins-filter-input",
+        emptyId: "wins-filter-empty",
+        controller: winsController
+      });
+
+      setupListFilter({
+        filterId: "losses-filter",
+        inputId: "losses-filter-input",
+        emptyId: "losses-filter-empty",
+        controller: lossesController
+      });
+
+      setupListFilter({
+        filterId: "team-wins-filter",
+        inputId: "team-wins-filter-input",
+        emptyId: "team-wins-filter-empty",
+        controller: teamWinsController
+      });
+
+      setupListFilter({
+        filterId: "team-losses-filter",
+        inputId: "team-losses-filter-input",
+        emptyId: "team-losses-filter-empty",
+        controller: teamLossesController
+      });
 
       window.addEventListener("load", applyBattleOpponentSmartAlign);
       window.addEventListener("resize", requestBattleOpponentSmartAlign);
