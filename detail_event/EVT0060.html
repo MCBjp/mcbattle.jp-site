@@ -1263,7 +1263,7 @@
 
     <section class="card" id="event-comments-approved-section">
       <div class="event-card-inner">
-        <h2>公開済みComment</h2>
+        <h2>Comment</h2>
         <div class="event-comments-approved">
           <div id="event-comment-list" class="event-comment-list">
             <p class="event-comment-empty">コメントを読み込み中です。</p>
@@ -1290,7 +1290,7 @@
 
           <div class="event-comment-row">
             <label class="event-comment-label" for="event-comment-body">コメント（必須）</label>
-            <textarea id="event-comment-body" class="event-comment-textarea" name="comment" maxlength="280" required placeholder="例：この大会の好きな試合やパンチラインを書いてください。"></textarea>
+            <textarea id="event-comment-body" class="event-comment-textarea" name="comment" maxlength="280" required placeholder="。"></textarea>
           </div>
 
           <button id="event-comment-submit" class="event-comment-submit" type="submit">
@@ -1527,7 +1527,7 @@
         const visibleComments = normalizeComments(comments);
 
         if (!visibleComments.length) {
-          listEl.innerHTML = '<p class="event-comment-empty">まだ公開済みCommentはありません。</p>';
+          listEl.innerHTML = '<p class="event-comment-empty">まだCommentはありません。</p>';
           return;
         }
 
