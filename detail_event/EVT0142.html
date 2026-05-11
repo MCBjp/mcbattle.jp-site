@@ -703,6 +703,196 @@
       letter-spacing:.08em !important;
     }
 
+
+    .event-comments-lead{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .event-comment-form{
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
+        rgba(255,255,255,.025);
+    }
+
+    .event-comment-row{
+      display: grid;
+      gap: 6px;
+    }
+
+    .event-comment-label{
+      color: #c7cedc;
+      font-size: .78rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .event-comment-input,
+    .event-comment-textarea{
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px;
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      font: inherit;
+      font-size: .92rem;
+      line-height: 1.55;
+      outline: none;
+    }
+
+    .event-comment-input{
+      min-height: 42px;
+      padding: 0 12px;
+    }
+
+    .event-comment-textarea{
+      min-height: 96px;
+      resize: vertical;
+      padding: 10px 12px;
+    }
+
+    .event-comment-input:focus,
+    .event-comment-textarea:focus{
+      border-color: rgba(216,180,106,.50);
+      box-shadow: 0 0 0 2px rgba(216,180,106,.10);
+    }
+
+    .event-comment-submit{
+      justify-self: start;
+      min-height: 40px;
+      padding: 0 16px;
+      border: 1px solid rgba(216,180,106,.42);
+      border-radius: 999px;
+      background:
+        linear-gradient(180deg, rgba(216,180,106,.22), rgba(216,180,106,.09)),
+        rgba(255,255,255,.04);
+      color: #fff4dc;
+      font-size: .88rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .event-comment-submit:hover,
+    .event-comment-submit:focus-visible{
+      transform: translateY(-1px);
+      border-color: rgba(216,180,106,.64);
+      box-shadow: 0 0 18px rgba(216,180,106,.14);
+      outline: none;
+    }
+
+    .event-comment-submit:disabled{
+      cursor: wait;
+      opacity: .58;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .event-comment-status{
+      min-height: 1.4em;
+      margin: 0;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.5;
+    }
+
+    .event-comment-status.is-success{
+      color: #d6b46a;
+    }
+
+    .event-comment-status.is-error{
+      color: #ff9b9b;
+    }
+
+    .event-comments-approved{
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .event-comment-list{
+      display: grid;
+      gap: 10px;
+    }
+
+    .event-comment-card{
+      padding: 12px 13px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.012) inset;
+    }
+
+    .event-comment-body{
+      margin: 0 0 9px;
+      color: var(--text);
+      font-size: .92rem;
+      line-height: 1.68;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .event-comment-meta{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .76rem;
+      line-height: 1.4;
+    }
+
+    .event-comment-author{
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .event-comment-like{
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      min-height: 28px;
+      padding: 0 10px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      color: #f3f4f6;
+      font-size: .78rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .event-comment-like:hover,
+    .event-comment-like:focus-visible{
+      border-color: rgba(216,180,106,.42);
+      color: #fff4dc;
+      outline: none;
+    }
+
+    .event-comment-like.is-liked,
+    .event-comment-like:disabled{
+      cursor: default;
+      opacity: .72;
+    }
+
+    .event-comment-empty{
+      margin: 0;
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.6;
+    }
+
     @media (max-width: 640px) {
       .page-top{
         margin-bottom: 10px;
@@ -883,6 +1073,20 @@
         font-size:.90rem !important;
         line-height:1.34 !important;
       }
+
+      .event-comment-form{
+        padding: 11px;
+        border-radius: 14px;
+      }
+
+      .event-comment-textarea{
+        min-height: 88px;
+      }
+
+      .event-comment-submit{
+        width: 100%;
+        justify-self: stretch;
+      }
     }
   </style>
 </head>
@@ -978,6 +1182,47 @@
         </a>
       </div>
     </section>
+
+    <section class="card" id="event-comments-approved-section">
+      <div class="event-card-inner">
+        <h2>公開済みComment</h2>
+        <div class="event-comments-approved">
+          <div id="event-comment-list" class="event-comment-list">
+            <p class="event-comment-empty">コメントを読み込み中です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="event-comments-section">
+      <div class="event-card-inner">
+        <h2>Commentフォーム</h2>
+        <p class="event-comments-lead">
+          感想や好きなパンチラインなどを2,3文程度で投稿できます。<br>
+          投稿内容は管理者確認後に公開されます。
+        </p>
+
+        <form id="event-comment-form" class="event-comment-form">
+          <input type="hidden" id="event-comment-event-id" name="event_id" value="EVT0142">
+
+          <div class="event-comment-row">
+            <label class="event-comment-label" for="event-comment-name">名前（任意）</label>
+            <input id="event-comment-name" class="event-comment-input" name="user_name" type="text" maxlength="32" placeholder="匿名でも投稿できます">
+          </div>
+
+          <div class="event-comment-row">
+            <label class="event-comment-label" for="event-comment-body">コメント（必須）</label>
+            <textarea id="event-comment-body" class="event-comment-textarea" name="comment" maxlength="280" required placeholder="例：この大会の好きな試合やパンチラインを書いてください。"></textarea>
+          </div>
+
+          <button id="event-comment-submit" class="event-comment-submit" type="submit">
+            投稿する
+          </button>
+
+          <p id="event-comment-status" class="event-comment-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
   </div>
 
   <script>
@@ -1064,6 +1309,236 @@
       document.addEventListener("DOMContentLoaded", applySmartAlign);
     })();
   </script>
+
+  <script>
+    (function () {
+      const API_BASE_URL = "https://script.google.com/macros/s/AKfycbyhs1MAehpfkicBmd5GfebPdrQqtanheYtONWAOsJ-D30s79xEf0wHB1afK9JShGJMgUQ/exec";
+      const EVENT_ID = "EVT0142";
+      const USER_KEY_STORAGE = "mcbattle_comment_user_key";
+      const LIKED_STORAGE_PREFIX = "mcbattle_liked_comment_";
+
+      const form = document.getElementById("event-comment-form");
+      const nameInput = document.getElementById("event-comment-name");
+      const commentInput = document.getElementById("event-comment-body");
+      const submitButton = document.getElementById("event-comment-submit");
+      const statusEl = document.getElementById("event-comment-status");
+      const listEl = document.getElementById("event-comment-list");
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function getUserKey() {
+        try {
+          let key = localStorage.getItem(USER_KEY_STORAGE);
+          if (!key) {
+            key = "uk_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 12);
+            localStorage.setItem(USER_KEY_STORAGE, key);
+          }
+          return key;
+        } catch (error) {
+          return "uk_no_storage_" + Date.now().toString(36);
+        }
+      }
+
+      function isLiked(commentId) {
+        try {
+          return localStorage.getItem(LIKED_STORAGE_PREFIX + commentId) === "1";
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function setLiked(commentId) {
+        try {
+          localStorage.setItem(LIKED_STORAGE_PREFIX + commentId, "1");
+        } catch (error) {}
+      }
+
+      function setStatus(message, type) {
+        if (!statusEl) return;
+        statusEl.textContent = message || "";
+        statusEl.classList.remove("is-success", "is-error");
+        if (type) statusEl.classList.add(type);
+      }
+
+      function normalizeComments(payload) {
+        if (!payload) return [];
+        if (Array.isArray(payload)) return payload;
+        if (Array.isArray(payload.comments)) return payload.comments;
+        if (Array.isArray(payload.items)) return payload.items;
+        return [];
+      }
+
+      function formatCreatedAt(value) {
+        const raw = String(value || "").trim();
+        if (!raw) return "";
+        if (/^\d{4}-\d{2}-\d{2}/.test(raw)) {
+          return raw.slice(0, 10).replace(/-/g, ".");
+        }
+        return raw;
+      }
+
+      function renderComments(comments) {
+        if (!listEl) return;
+
+        const visibleComments = normalizeComments(comments);
+
+        if (!visibleComments.length) {
+          listEl.innerHTML = '<p class="event-comment-empty">まだ公開済みCommentはありません。</p>';
+          return;
+        }
+
+        listEl.innerHTML = visibleComments.map((item) => {
+          const commentId = escapeHtml(item.comment_id || "");
+          const name = escapeHtml(item.user_name || "匿名");
+          const comment = escapeHtml(item.comment || "");
+          const likeCount = Number(item.like_count || 0);
+          const date = escapeHtml(formatCreatedAt(item.created_at || ""));
+          const liked = commentId && isLiked(commentId);
+
+          return [
+            '<article class="event-comment-card">',
+            `<p class="event-comment-body">${comment}</p>`,
+            '<div class="event-comment-meta">',
+            `<span class="event-comment-author">— ${name}${date ? ` / ${date}` : ""}</span>`,
+            `<button class="event-comment-like${liked ? " is-liked" : ""}" type="button" data-comment-id="${commentId}" ${liked ? "disabled" : ""} aria-label="このCommentにいいねする">👍 <span>${likeCount}</span></button>`,
+            '</div>',
+            '</article>'
+          ].join("");
+        }).join("");
+      }
+
+      async function loadComments() {
+        if (!listEl) return;
+
+        try {
+          const url = `${API_BASE_URL}?mode=event_comments&event_id=${encodeURIComponent(EVENT_ID)}`;
+          const response = await fetch(url, { method: "GET" });
+
+          if (!response.ok) {
+            throw new Error("Comment取得に失敗しました。");
+          }
+
+          const payload = await response.json();
+          const comments = normalizeComments(payload).filter((item) => {
+            return !item.status || item.status === "visible";
+          });
+
+          renderComments(comments);
+        } catch (error) {
+          renderComments([]);
+        }
+      }
+
+      async function postComment(event) {
+        event.preventDefault();
+
+        const userName = (nameInput && nameInput.value ? nameInput.value : "").trim();
+        const comment = (commentInput && commentInput.value ? commentInput.value : "").trim();
+
+        if (!comment) {
+          setStatus("コメントを入力してください。", "is-error");
+          if (commentInput) commentInput.focus();
+          return;
+        }
+
+        submitButton.disabled = true;
+        setStatus("送信中です。", "");
+
+        const params = new URLSearchParams();
+        params.append("mode", "post_event_comment");
+        params.append("event_id", EVENT_ID);
+        params.append("user_name", userName);
+        params.append("comment", comment);
+        params.append("user_key", getUserKey());
+
+        try {
+          const response = await fetch(API_BASE_URL, {
+            method: "POST",
+            body: params
+          });
+
+          if (!response.ok) {
+            throw new Error("投稿に失敗しました。");
+          }
+
+          const payload = await response.json();
+          if (payload && payload.error) {
+            throw new Error(payload.message || "投稿に失敗しました。");
+          }
+
+          commentInput.value = "";
+          setStatus("投稿を受け付けました。管理者確認後に公開されます。", "is-success");
+        } catch (error) {
+          setStatus(error && error.message ? error.message : "投稿に失敗しました。時間をおいて再度お試しください。", "is-error");
+        } finally {
+          submitButton.disabled = false;
+        }
+      }
+
+      async function likeComment(button) {
+        const commentId = button.getAttribute("data-comment-id");
+        if (!commentId || isLiked(commentId)) return;
+
+        button.disabled = true;
+
+        const params = new URLSearchParams();
+        params.append("mode", "like_event_comment");
+        params.append("comment_id", commentId);
+        params.append("event_id", EVENT_ID);
+        params.append("user_key", getUserKey());
+
+        try {
+          const response = await fetch(API_BASE_URL, {
+            method: "POST",
+            body: params
+          });
+
+          if (!response.ok) {
+            throw new Error("いいねに失敗しました。");
+          }
+
+          const payload = await response.json();
+          if (payload && payload.error) {
+            throw new Error(payload.message || "いいねに失敗しました。");
+          }
+
+          const countEl = button.querySelector("span");
+          const nextCount = payload && payload.like_count !== undefined
+            ? Number(payload.like_count)
+            : Number(countEl.textContent || 0) + 1;
+
+          countEl.textContent = String(nextCount);
+          button.classList.add("is-liked");
+          setLiked(commentId);
+        } catch (error) {
+          button.disabled = false;
+          return;
+        }
+      }
+
+      if (form) {
+        form.addEventListener("submit", postComment);
+      }
+
+      if (listEl) {
+        listEl.addEventListener("click", function (event) {
+          const button = event.target.closest(".event-comment-like");
+          if (!button) return;
+          likeComment(button);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", loadComments);
+    })();
+  </script>
+
   <script src="../site-header.js"></script>
 </body>
 </html>
