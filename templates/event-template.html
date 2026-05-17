@@ -879,6 +879,8 @@
 
     .event-comment-like{
       flex: 0 0 auto;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -1586,19 +1588,24 @@
 
       async function likeComment(button) {
         const commentId = button.getAttribute("data-comment-id");
-        if (!commentId || isLiked(commentId)) return;
+        if (!commentId) return;
+
+        if (button.classList.contains("is-liked") || button.dataset.likeProcessing === "1" || isLiked(commentId)) {
+          return;
+        }
 
         const countEl = button.querySelector("span");
         const previousCount = Number(countEl && countEl.textContent ? countEl.textContent : 0);
         const optimisticCount = previousCount + 1;
 
+        button.dataset.likeProcessing = "1";
+        button.classList.add("is-liked");
+        button.setAttribute("aria-disabled", "true");
+        setLiked(commentId);
+
         if (countEl) {
           countEl.textContent = String(optimisticCount);
         }
-
-        button.disabled = true;
-        button.classList.add("is-liked");
-        setLiked(commentId);
 
         try {
           const payload = await jsonpRequest({
@@ -1625,8 +1632,10 @@
           }
 
           button.classList.remove("is-liked");
-          button.disabled = false;
+          button.removeAttribute("aria-disabled");
           unsetLiked(commentId);
+        } finally {
+          delete button.dataset.likeProcessing;
         }
       }
 
@@ -1634,12 +1643,21 @@
         form.addEventListener("submit", postComment);
       }
 
+      function handleLikePress(event) {
+        const button = event.target.closest(".event-comment-like");
+        if (!button) return;
+
+        event.preventDefault();
+        likeComment(button);
+      }
+
       if (listEl) {
-        listEl.addEventListener("click", function (event) {
-          const button = event.target.closest(".event-comment-like");
-          if (!button) return;
-          likeComment(button);
-        });
+        if (window.PointerEvent) {
+          listEl.addEventListener("pointerup", handleLikePress);
+        } else {
+          listEl.addEventListener("touchend", handleLikePress, { passive: false });
+          listEl.addEventListener("click", handleLikePress);
+        }
       }
 
       document.addEventListener("DOMContentLoaded", loadComments);
