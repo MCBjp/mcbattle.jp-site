@@ -54,6 +54,7 @@ function buildEventHtml(template, eventId, detail, mcNameById, neighborMap) {
   groupedMatches.sort((a, b) => getRoundSortValue(a.round_name) - getRoundSortValue(b.round_name));
 
   const eventTitle = safeString(event.event_name_full || event.event_name || "大会名不明");
+  const seoEventName = getSeoEventName(event, eventTitle);
   const eventDateText = formatDateJP(event.event_date || "");
   const eventDateLongText = formatDateLongJP(event.event_date || "");
   const winnerName = safeString(event.winner_name || event.winner_team_name || "");
@@ -62,8 +63,8 @@ function buildEventHtml(template, eventId, detail, mcNameById, neighborMap) {
   const pageTitle = `${eventTitle} | 大会結果・優勝者・試合結果 | MCBattle.jp`;
   const metaDescription = buildMetaDescription(eventTitle, eventDateText, winnerName, runnerUpName, totalMatches, isTeamEvent);
 
-  const seoTitle = buildEventSeoTitle(event, eventTitle, winnerName, runnerUpName, isTeamEvent);
-  const seoDescription = buildEventSeoDescription(event, eventTitle, eventDateLongText || eventDateText, winnerName, runnerUpName, totalMatches, groupedMatches, isTeamEvent);
+  const seoTitle = buildEventSeoTitle(event, seoEventName, winnerName, runnerUpName, isTeamEvent);
+  const seoDescription = buildEventSeoDescription(event, seoEventName, eventDateLongText || eventDateText, winnerName, runnerUpName, totalMatches, groupedMatches, isTeamEvent);
 
   const eventInfoListItems = buildEventInfoListItems(detail, groupedMatches, mcNameById);
   const eventNeighborNavHtml = buildEventNeighborNavHtml(eventId, neighborMap);
@@ -93,7 +94,6 @@ function buildEventHtml(template, eventId, detail, mcNameById, neighborMap) {
   return html;
 }
 
-
 function buildEventNeighborMap(detailMap) {
   const map = new Map();
   const groups = new Map();
@@ -111,7 +111,7 @@ function buildEventNeighborMap(detailMap) {
       category_id: categoryId,
       event_date: eventDate,
       sort_time: getEventDateSortTime(eventDate),
-      event_name: safeString(event.event_name_full || event.event_name || event.event_name_simple || "大会名不明")
+      event_name: safeString(event.event_name_full || event.event_name || "大会名不明")
     };
 
     if (!Number.isFinite(item.sort_time)) return;
@@ -189,9 +189,14 @@ function getEventDateSortTime(value) {
   return d.getTime();
 }
 
+function getSeoEventName(event, eventTitle) {
+  const seoEventName = safeString(event && event.seo_event_name ? event.seo_event_name : "").trim();
+  if (seoEventName) return normalizeSeoEventName(seoEventName);
+  return normalizeSeoEventName(eventTitle);
+}
 
-function buildEventSeoTitle(event, eventTitle, winnerName, runnerUpName, isTeamEvent = false) {
-  const seoBaseName = buildEventSeoBaseName(event, eventTitle);
+function buildEventSeoTitle(event, seoEventName, winnerName, runnerUpName, isTeamEvent = false) {
+  const seoBaseName = getSeoEventName(event, seoEventName);
   const winnerLabel = isTeamEvent ? "優勝チーム" : "優勝";
   const runnerUpLabel = isTeamEvent ? "準優勝チーム" : "準優勝";
 
@@ -206,15 +211,14 @@ function buildEventSeoTitle(event, eventTitle, winnerName, runnerUpName, isTeamE
   return `${seoBaseName} 結果・試合結果 | MCBattle.jp`;
 }
 
-function buildEventSeoDescription(event, eventTitle, eventDateText, winnerName, runnerUpName, totalMatches, groupedMatches, isTeamEvent = false) {
-  const seoBaseName = buildEventSeoBaseName(event, eventTitle);
-  const seoSubName = buildEventSeoSubName(event, eventTitle);
+function buildEventSeoDescription(event, seoEventName, eventDateText, winnerName, runnerUpName, totalMatches, groupedMatches, isTeamEvent = false) {
+  const seoBaseName = getSeoEventName(event, seoEventName);
   const winnerLabel = isTeamEvent ? "優勝チーム" : "優勝";
   const runnerUpLabel = isTeamEvent ? "準優勝チーム" : "準優勝";
   const roundRange = buildRoundRangeText(groupedMatches);
 
   const parts = [
-    `${seoBaseName}${seoSubName ? `（${seoSubName}）` : ""}の大会結果まとめ。`,
+    `${seoBaseName}の大会結果まとめ。`,
     eventDateText ? `${eventDateText}開催、` : "",
     winnerName ? `${winnerLabel}は${winnerName}` : "",
     runnerUpName ? `、${runnerUpLabel}は${runnerUpName}` : "",
@@ -227,56 +231,12 @@ function buildEventSeoDescription(event, eventTitle, eventDateText, winnerName, 
   return parts.filter(Boolean).join("");
 }
 
-function buildEventSeoBaseName(event, eventTitle) {
-  const fullName = safeString(eventTitle || "");
-  const simpleName = safeString(event.event_name_simple || event.event_name || "").trim();
-  const nameForYear = `${simpleName} ${fullName}`;
-  const year = extractEventYear(nameForYear);
-
-  if (isUmbGrandChampionship(fullName) || isUmbGrandChampionship(simpleName)) {
-    return year ? `UMB${year} 本戦` : "UMB 本戦";
-  }
-
-  if (/^UMB\s*\d{4}$/i.test(simpleName) && /本戦|Grand\s*Championship|Grand\s*Champion\s*Ship|Grand\s*Chanpion\s*Ship/i.test(fullName)) {
-    return `${simpleName.replace(/\s+/g, "")} 本戦`;
-  }
-
-  return normalizeSeoEventName(simpleName || fullName);
-}
-
-function buildEventSeoSubName(event, eventTitle) {
-  const fullName = safeString(eventTitle || "");
-  const simpleName = safeString(event.event_name_simple || event.event_name || "").trim();
-
-  if (isUmbGrandChampionship(fullName) || isUmbGrandChampionship(simpleName)) {
-    return "Grand Championship";
-  }
-
-  return "";
-}
-
-function isUmbGrandChampionship(value) {
-  const name = safeString(value || "");
-  return /UMB/i.test(name) && /Grand\s*Chanpion\s*Ship|Grand\s*Champion\s*Ship|Grand\s*Championship|本戦/i.test(name);
-}
-
 function normalizeSeoEventName(value) {
   return safeString(value || "")
     .replace(/Grand\s*Chanpion\s*Ship/ig, "Grand Championship")
     .replace(/Grand\s*Champion\s*Ship/ig, "Grand Championship")
     .replace(/\s+/g, " ")
     .trim();
-}
-
-function extractEventYear(value) {
-  const text = safeString(value || "");
-  const umbYear = text.match(/UMB\s*(20\d{2}|19\d{2})/i);
-  if (umbYear) return umbYear[1];
-
-  const anyYear = text.match(/\b(20\d{2}|19\d{2})\b/);
-  if (anyYear) return anyYear[1];
-
-  return "";
 }
 
 function buildRoundRangeText(groupedMatches) {
@@ -458,7 +418,7 @@ function normalizeEventPrizeSupplements(detail) {
           mc_id: safeString(item.mc_id || "").trim(),
           mc_name: safeString(item.mc_name || item.name || item.mc || item.player_name || "").trim(),
           event_id: safeString(item.event_id || event.event_id || "").trim(),
-          event_name: safeString(item.event_name || event.event_name_simple || event.event_name_full || event.event_name || "").trim(),
+          event_name: safeString(item.event_name || event.event_name_full || event.event_name || "").trim(),
           event_date: safeString(item.event_date || event.event_date || "").trim()
         };
       })
@@ -702,7 +662,6 @@ function buildOneRoundMatchesHtml(group) {
     "</div>"
   ].join("\n");
 }
-
 
 function buildTeamResultsHtml(event, mcNameById) {
   const teamResults = Array.isArray(event.team_results) ? event.team_results : [];
@@ -978,14 +937,6 @@ function buildEventJsonLd(eventId, event, eventTitle, description, winnerName, i
   const normalizedDate = normalizeDateForSchema(event.event_date || "");
   const locationName = safeString(event.location || "").trim();
 
-  const organizerName = safeString(
-    event.organizer ||
-    event.host ||
-    event.promoter ||
-    event.event_organizer ||
-    ""
-  ).trim();
-
   const obj = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -1015,13 +966,6 @@ function buildEventJsonLd(eventId, event, eventTitle, description, winnerName, i
     obj.performer = {
       "@type": isTeamEvent ? "Organization" : "Person",
       name: winnerName
-    };
-  }
-
-  if (organizerName) {
-    obj.organizer = {
-      "@type": "Organization",
-      name: organizerName
     };
   }
 
