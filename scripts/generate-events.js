@@ -7,7 +7,16 @@ const DATA_PATH = path.join(ROOT_DIR, "data", "event_details_all.json");
 const MC_DETAILS_PATH = path.join(ROOT_DIR, "data", "mc_details_all.json");
 const OUTPUT_DIR = path.join(ROOT_DIR, "detail_event");
 const LONG_NAME_THRESHOLD = 10;
-const VISIBLE_MATCH_ROUNDS = new Set(["Final", "Best4", "Best8"]);
+function shouldShowRoundByDefault(roundName) {
+  const normalized = normalizeRoundLabel(roundName);
+
+  if (normalized === "Final") return true;
+
+  const bestMatch = normalized.match(/^Best(\d+)$/i);
+  if (!bestMatch) return false;
+
+  return Number(bestMatch[1]) <= 8;
+}
 
 function main() {
   ensureFileExists(TEMPLATE_PATH);
@@ -89,7 +98,15 @@ function buildEventHtml(template, eventId, detail, mcNameById, neighborMap) {
     .replaceAll("__EVENT_NEIGHBOR_NAV_HTML__", eventNeighborNavHtml)
     .replaceAll("__MATCHES_STATUS_HTML__", matchesStatusHtml)
     .replaceAll("__MATCHES_HTML__", matchesHtml)
-    .replaceAll("__CONTACT_EVENT_NAME_URL__", escapeHtml(encodeURIComponent(eventTitle)));
+    .replaceAll("__CONTACT_EVENT_NAME_URL__", escapeHtml(encodeURIComponent(eventTitle)))
+    .replaceAll("__COMMENTS_HTML__", "")
+    .replaceAll("__COMMENT_HTML__", "")
+    .replaceAll("__EVENT_COMMENTS_HTML__", "")
+    .replaceAll("__EVENT_COMMENT_HTML__", "")
+    .replaceAll("__COMMENTS_STATUS_HTML__", "")
+    .replaceAll("__COMMENT_STATUS_HTML__", "")
+    .replaceAll("__EVENT_COMMENTS_STATUS_HTML__", "")
+    .replaceAll("__EVENT_COMMENT_STATUS_HTML__", "");
 
   return html;
 }
@@ -598,7 +615,7 @@ function buildMatchesHtml(groupedMatches) {
   groupedMatches.forEach((group) => {
     const roundName = normalizeRoundLabel(group.round_name) || "ラウンド不明";
 
-    if (VISIBLE_MATCH_ROUNDS.has(roundName)) {
+    if (shouldShowRoundByDefault(roundName)) {
       visibleGroups.push(group);
     } else {
       collapsedGroups.push(group);
@@ -621,7 +638,7 @@ function buildMatchesHtml(groupedMatches) {
     visibleHtml,
     '<details class="matches-lower-accordion">',
     '<summary class="matches-lower-summary">',
-    '<span>Best16以前の試合結果を表示</span>',
+    '<span>試合結果を全て見る</span>',
     '<span class="matches-accordion-icon" aria-hidden="true"></span>',
     '</summary>',
     '<div class="matches-lower-body">',
@@ -699,7 +716,7 @@ function buildTeamMatchesHtml(groupedMatches, mcNameById) {
   groupedMatches.forEach((group) => {
     const roundName = normalizeRoundLabel(group.round_name) || "ラウンド不明";
 
-    if (VISIBLE_MATCH_ROUNDS.has(roundName)) {
+    if (shouldShowRoundByDefault(roundName)) {
       visibleGroups.push(group);
     } else {
       collapsedGroups.push(group);
@@ -722,7 +739,7 @@ function buildTeamMatchesHtml(groupedMatches, mcNameById) {
     visibleHtml,
     '<details class="matches-lower-accordion">',
     '<summary class="matches-lower-summary">',
-    '<span>Best16以前の試合結果を表示</span>',
+    '<span>試合結果を全て見る</span>',
     '<span class="matches-accordion-icon" aria-hidden="true"></span>',
     '</summary>',
     '<div class="matches-lower-body">',
