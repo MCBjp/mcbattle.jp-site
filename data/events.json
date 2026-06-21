@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-19T15:25:50.751Z",
+  "updated_at": "2026-06-21T13:32:36.915Z",
   "total": 176,
   "events": [
     {
@@ -773,7 +773,7 @@
       "event_name_full": "戦極MCBATTLE 第42章",
       "seo_event_name": "戦極MCBATTLE 第42章",
       "event_date": "2026-06-20",
-      "prize_money_winner": 0,
+      "prize_money_winner": 300000,
       "prize_money_total": null,
       "category_id": "EVTCat004",
       "category_name": "戦極MC BATTLE",
@@ -782,7 +782,7 @@
       "location": "川崎CLUB CITTA'",
       "check": "",
       "battle_format": "1on1",
-      "winner_name": ""
+      "winner_name": "クボタカイ"
     },
     {
       "event_id": "EVT0163",

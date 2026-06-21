@@ -1,6 +1,19 @@
 {
-  "updated_at": "2026-05-19T15:25:49.010Z",
+  "updated_at": "2026-06-21T13:32:35.724Z",
   "recent_events": [
+    {
+      "event_id": "EVT0161",
+      "event_name": "戦極MCBATTLE 第42章",
+      "event_name_full": "戦極MCBATTLE 第42章",
+      "seo_event_name": "戦極MCBATTLE 第42章",
+      "event_date": "2026-06-20",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "location": "川崎CLUB CITTA'",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": "クボタカイ"
+    },
     {
       "event_id": "EVT0164",
       "event_name": "3150×LUSHBOMU MC BATTLE vol.3",
@@ -117,32 +130,9 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "Donatello"
-    },
-    {
-      "event_id": "EVT0185",
-      "event_name": "戦極MCBATTLE 第39章",
-      "event_name_full": "戦極MCBATTLE 第39章",
-      "seo_event_name": "戦極MCBATTLE 第39章 -YOKOHAMA- TEAM OF 3on3",
-      "event_date": "2025-06-08",
-      "prize_money_winner": 50000,
-      "prize_money_total": 50000,
-      "location": "KT Zepp Yokohama",
-      "check": "",
-      "battle_format": "team",
-      "winner_name": ""
     }
   ],
   "upcoming_events": [
-    {
-      "event_id": "EVT0161",
-      "event_name": "戦極MCBATTLE 第42章",
-      "event_name_full": "戦極MCBATTLE 第42章",
-      "seo_event_name": "戦極MCBATTLE 第42章",
-      "event_date": "2026-06-20",
-      "location": "川崎CLUB CITTA'",
-      "check": "",
-      "battle_format": "1on1"
-    },
     {
       "event_id": "EVT0162",
       "event_name": "BATTLE SUMMITⅢ",

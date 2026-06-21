@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-05-19T15:26:32.587Z",
+  "updated_at": "2026-06-21T13:33:32.026Z",
   "min_matches": 2,
-  "total": 431,
+  "total": 434,
   "summaries": [
     {
       "pair_key": "MC0376__MC0434",
@@ -1952,6 +1952,45 @@
       "last_match_date": "2012-12-23",
       "last_event_id": "EVT0158",
       "last_event_name": "Spotlight 2012"
+    },
+    {
+      "pair_key": "MC0100__MC0617",
+      "mc_id_a": "MC0100",
+      "mc_name_a": "DOTAMA",
+      "mc_id_b": "MC0617",
+      "mc_name_b": "#KTちゃん",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2026-06-20",
+      "last_event_id": "EVT0161",
+      "last_event_name": "戦極MCBATTLE 第42章"
+    },
+    {
+      "pair_key": "MC0467__MC0689",
+      "mc_id_a": "MC0467",
+      "mc_name_a": "Yella goat",
+      "mc_id_b": "MC0689",
+      "mc_name_b": "GOMESS",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2026-06-20",
+      "last_event_id": "EVT0161",
+      "last_event_name": "戦極MCBATTLE 第42章"
+    },
+    {
+      "pair_key": "MC0468__MC0469",
+      "mc_id_a": "MC0468",
+      "mc_name_a": "がーどまん",
+      "mc_id_b": "MC0469",
+      "mc_name_b": "ミメイ",
+      "a_wins": 0,
+      "b_wins": 2,
+      "total_matches": 2,
+      "last_match_date": "2026-06-20",
+      "last_event_id": "EVT0161",
+      "last_event_name": "戦極MCBATTLE 第42章"
     },
     {
       "pair_key": "MC0015__MC0434",

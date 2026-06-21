@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-05-19T15:25:51.111Z",
-  "total": 924,
+  "updated_at": "2026-06-21T13:32:37.198Z",
+  "total": 925,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -2078,6 +2078,15 @@
       "mc_name_sub": "",
       "mc_description": "三重代表としてUMB 2025 GRAND CHAMPIONSHIP出場。UMB 2025 三重予選優勝。",
       "mc_yomi": "ぎんとき",
+      "hot_mc": 0,
+      "kana_group": "か"
+    },
+    {
+      "mc_id": "MC1125",
+      "mc_name": "空廻",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "くうかい",
       "hot_mc": 0,
       "kana_group": "か"
     },
