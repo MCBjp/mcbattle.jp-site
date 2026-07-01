@@ -7,6 +7,22 @@ const DATA_PATH = path.join(ROOT_DIR, "data", "event_details_all.json");
 const MC_DETAILS_PATH = path.join(ROOT_DIR, "data", "mc_details_all.json");
 const OUTPUT_DIR = path.join(ROOT_DIR, "detail_event");
 const LONG_NAME_THRESHOLD = 10;
+
+const EVENT_CATEGORY_SERIES_LINKS = {
+  EVTCat001: { name: "UMB 本戦", slug: "umb-main" },
+  EVTCat002: { name: "UMB The Choise is yours", slug: "umb-the-choise-is-yours" },
+  EVTCat003: { name: "King of Kings 本戦", slug: "king-of-kings-main" },
+  EVTCat004: { name: "戦極MC BATTLE", slug: "sengoku-mc-battle" },
+  EVTCat005: { name: "凱旋MC battle", slug: "gaisen-mc-battle" },
+  EVTCat006: { name: "口喧嘩祭", slug: "kuchigenka-matsuri" },
+  EVTCat007: { name: "ADRENALINE", slug: "adrenaline" },
+  EVTCat008: { name: "BUTTLE SUMMIT", slug: "buttle-summit" },
+  EVTCat009: { name: "NEO GENESIS MC BATTLE", slug: "neo-genesis-mc-battle" },
+  EVTCat010: { name: "Spotlight", slug: "spotlight" },
+  EVTCat011: { name: "LUSHBOMU MC BATTLE", slug: "lushbomu-mc-battle" },
+  EVTCat012: { name: "The罵倒", slug: "the-batou" }
+};
+
 function shouldShowRoundByDefault(roundName) {
   const normalized = normalizeRoundLabel(roundName);
 
@@ -76,7 +92,10 @@ function buildEventHtml(template, eventId, detail, mcNameById, neighborMap) {
   const seoDescription = buildEventSeoDescription(event, seoEventName, eventDateLongText || eventDateText, winnerName, runnerUpName, totalMatches, groupedMatches, isTeamEvent);
 
   const eventInfoListItems = buildEventInfoListItems(detail, groupedMatches, mcNameById);
-  const eventNeighborNavHtml = buildEventNeighborNavHtml(eventId, neighborMap);
+  const eventNeighborNavHtml = [
+    buildEventSeriesLinkHtml(event),
+    buildEventNeighborNavHtml(eventId, neighborMap)
+  ].filter(Boolean).join("\n");
   const matchesHtml = isTeamEvent ? buildTeamMatchesHtml(groupedMatches, mcNameById) : buildMatchesHtml(groupedMatches);
   const matchesStatusHtml = totalMatches === 0
     ? '<p id="matches-status" class="muted">試合結果がありません</p>'
@@ -154,6 +173,21 @@ function buildEventNeighborMap(detailMap) {
   });
 
   return map;
+}
+
+function buildEventSeriesLinkHtml(event) {
+  const categoryId = safeString(event && event.category_id || "").trim();
+  const category = EVENT_CATEGORY_SERIES_LINKS[categoryId];
+
+  if (!category) return "";
+
+  return [
+    '<nav class="event-neighbor-nav event-series-link-nav" aria-label="大会シリーズ">',
+    `<a class="event-neighbor-link event-series-link" href="../series/${escapeHtml(category.slug)}/">`,
+    `<span class="event-neighbor-label">${escapeHtml(category.name)}の歴代優勝者一覧</span>`,
+    '</a>',
+    '</nav>'
+  ].join("\n");
 }
 
 function buildEventNeighborNavHtml(eventId, neighborMap) {
