@@ -34,6 +34,9 @@ jobs:
       - name: Generate sitemap
         run: node scripts/generate-sitemap.js
 
+      - name: Generate event series pages
+        run: node scripts/generate-event-series.js
+
       - name: Commit generated files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
@@ -42,4 +45,5 @@ jobs:
             list_event.html
             detail_event/*.html
             detail_mc/*.html
+            series/**/*.html
             sitemap.xml
