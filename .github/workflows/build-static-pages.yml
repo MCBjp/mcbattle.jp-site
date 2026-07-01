@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -37,13 +39,27 @@ jobs:
       - name: Generate event series pages
         run: node scripts/generate-event-series.js
 
+      - name: Show generated changes
+        run: |
+          echo "Generated series files:"
+          find series -maxdepth 2 -type f | sort || true
+          echo "Git status:"
+          git status --short --untracked-files=all
+
       - name: Commit generated files
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Generate static pages"
-          file_pattern: |
-            list_event.html
-            detail_event/*.html
-            detail_mc/*.html
-            series
-            sitemap.xml
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add list_event.html
+          git add detail_event/*.html
+          git add detail_mc/*.html
+          git add sitemap.xml
+          git add series/
+
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "Generate static pages"
+            git push
+          fi
