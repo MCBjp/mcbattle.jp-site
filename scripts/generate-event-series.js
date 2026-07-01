@@ -191,16 +191,6 @@ ${escapeScriptJson(jsonLd)}
       word-break: break-word;
     }
 
-    .series-page-lead{
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.72;
-      max-width: 820px;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
     .series-description{
       margin: 11px 0 0;
       padding: 11px 12px;
@@ -222,40 +212,6 @@ ${escapeScriptJson(jsonLd)}
 
     .series-description p + p{
       margin-top: 5px;
-    }
-
-    .series-summary{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 14px 0 0;
-    }
-
-    .series-summary-card{
-      display: inline-flex;
-      align-items: baseline;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.018);
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.015) inset;
-    }
-
-    .series-summary-label{
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 700;
-      line-height: 1.35;
-      white-space: nowrap;
-    }
-
-    .series-summary-value{
-      color: #ffffff;
-      font-size: 0.94rem;
-      font-weight: 800;
-      line-height: 1.35;
-      white-space: nowrap;
     }
 
     .series-section{
@@ -420,32 +376,11 @@ ${escapeScriptJson(jsonLd)}
         line-height: 1.12;
       }
 
-      .series-page-lead{
-        font-size: 0.86rem;
-        line-height: 1.62;
-      }
-
       .series-description{
         padding: 10px 11px;
         border-radius: 13px;
         font-size: 0.78rem;
         line-height: 1.58;
-      }
-
-      .series-summary{
-        margin-top: 12px;
-      }
-
-      .series-summary-card{
-        padding: 8px 11px;
-      }
-
-      .series-summary-label{
-        font-size: 0.68rem;
-      }
-
-      .series-summary-value{
-        font-size: 0.88rem;
       }
 
       .series-section{
@@ -494,10 +429,6 @@ ${escapeScriptJson(jsonLd)}
       <div class="series-header-block">
         <h1>${escapeHtml(category)} 歴代結果一覧</h1>
       </div>
-
-      <p class="series-page-lead">
-        ${escapeHtml(category)}の歴代大会結果をまとめています。各大会の開催日、優勝、準優勝、優勝賞金、詳細結果を確認できます。
-      </p>
 
 ${categoryDescriptionHtml ? indent(categoryDescriptionHtml, 6) + "\n" : ""}      <div class="series-summary" aria-label="掲載情報">
         <div class="series-summary-card">
