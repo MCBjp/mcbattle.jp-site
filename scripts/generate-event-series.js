@@ -9,23 +9,48 @@ const SITE_NAME = "MCBattle.jp";
 const SITE_URL = "https://mcbattle.jp";
 const OGP_IMAGE_URL = "https://mcbattle.jp/ogp.png?v=2";
 
-const CATEGORY_SLUGS = {
-  "戦極MCBATTLE": "sengoku-mcbattle",
-  "戦極MC BATTLE": "sengoku-mcbattle",
-  "戦極": "sengoku-mcbattle",
-  "UMB": "umb",
-  "ULTIMATE MC BATTLE": "umb",
-  "KOK": "kok",
-  "KING OF KINGS": "kok",
-  "凱旋MCBattle": "gaisen-mcbattle",
-  "凱旋MC battle": "gaisen-mcbattle",
-  "凱旋": "gaisen-mcbattle",
-  "ADRENALINE": "adrenaline",
-  "ADRENALINE MC BATTLE": "adrenaline",
-  "真ADRENALINE": "shin-adrenaline",
-  "戦極MCBATTLE vs THE 罵倒": "sengoku-vs-batou",
-  "THE 罵倒": "the-batou"
-};
+/**
+ * event_categoryシートの定義。
+ * URLはこのslugを正とする。
+ *
+ * groupingは category_id 優先。
+ * category_id が events.json にない場合は、category_name / event_category を正規化して照合する。
+ * 例:
+ * - "UMB 本戦" / "UMB本戦" / "UMB　本戦" は同じ扱い
+ * - "戦極MC BATTLE" / "戦極MCBATTLE" は同じ扱い
+ * - "凱旋MC battle" / "凱旋MCBattle" は同じ扱い
+ */
+const CATEGORY_DEFINITIONS = [
+  { id: "EVTCat001", name: "UMB 本戦", slug: "umb-main" },
+  { id: "EVTCat002", name: "UMB The Choise is yours", slug: "umb-the-choise-is-yours" },
+  { id: "EVTCat003", name: "King of Kings 本戦", slug: "king-of-kings-main" },
+  { id: "EVTCat004", name: "戦極MC BATTLE", slug: "sengoku-mc-battle" },
+  { id: "EVTCat005", name: "凱旋MC battle", slug: "gaisen-mc-battle" },
+  { id: "EVTCat006", name: "口喧嘩祭", slug: "kuchigenka-matsuri" },
+  { id: "EVTCat007", name: "ADRENALINE", slug: "adrenaline" },
+  { id: "EVTCat008", name: "BUTTLE SUMMIT", slug: "buttle-summit" },
+  { id: "EVTCat009", name: "NEO GENESIS MC BATTLE", slug: "neo-genesis-mc-battle" },
+  { id: "EVTCat010", name: "Spotlight", slug: "spotlight" },
+  { id: "EVTCat011", name: "LUSHBOMU MC BATTLE", slug: "lushbomu-mc-battle" },
+  { id: "EVTCat012", name: "The罵倒", slug: "the-batou" }
+];
+
+const CATEGORY_BY_ID = new Map();
+const CATEGORY_BY_NORMALIZED_NAME = new Map();
+
+CATEGORY_DEFINITIONS.forEach((category, index) => {
+  const normalizedCategory = {
+    ...category,
+    show_order: index + 1
+  };
+
+  CATEGORY_BY_ID.set(normalizedCategory.id, normalizedCategory);
+
+  const nameKey = normalizeCategoryKey(normalizedCategory.name);
+  if (nameKey) {
+    CATEGORY_BY_NORMALIZED_NAME.set(nameKey, normalizedCategory);
+  }
+});
 
 function main() {
   ensureFileExists(DATA_PATH);
@@ -43,27 +68,33 @@ function main() {
 
   const groups = groupEvents(events);
 
+  // 古いslugで生成されたファイルが残らないように、series配下はいったん作り直す。
+  if (fs.existsSync(OUTPUT_DIR)) {
+    fs.rmSync(OUTPUT_DIR, { recursive: true, force: true });
+  }
+
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
   groups.forEach((group) => {
-    const slug = getCategorySlug(group.category);
-    const dir = path.join(OUTPUT_DIR, slug);
+    const dir = path.join(OUTPUT_DIR, group.slug);
     const outputPath = path.join(dir, "index.html");
 
     fs.mkdirSync(dir, { recursive: true });
 
-    const html = buildHtml(group, slug);
+    const html = buildHtml(group);
     fs.writeFileSync(outputPath, html, "utf8");
 
-    console.log(`シリーズページ生成完了: ${outputPath} (${group.items.length}件)`);
+    console.log(
+      `シリーズページ生成完了: ${outputPath} (${group.items.length}件 / ${group.category_id || "no-category-id"} / ${group.category_name})`
+    );
   });
 
   console.log(`シリーズカテゴリ数: ${groups.length}`);
 }
 
-function buildHtml(group, slug) {
-  const category = group.category;
-  const canonicalUrl = `${SITE_URL}/series/${slug}/`;
+function buildHtml(group) {
+  const category = group.category_name;
+  const canonicalUrl = `${SITE_URL}/series/${group.slug}/`;
   const pageTitle = `${category} 歴代結果一覧 | 優勝者・大会結果まとめ | MCBattle.jp`;
   const pageDescription = `${category}の歴代大会結果一覧。各大会の開催日、優勝者、詳細結果をまとめています。`;
 
@@ -589,7 +620,7 @@ function buildJsonLd(group, canonicalUrl, pageTitle, pageDescription) {
     },
     about: {
       "@type": "Thing",
-      name: group.category
+      name: group.category_name
     },
     mainEntity: {
       "@type": "ItemList",
@@ -605,20 +636,22 @@ function groupEvents(events) {
   const map = new Map();
 
   events.forEach(event => {
-    const categoryName = getCategoryName(event);
-    const categoryDescription = getCategoryDescription(event);
-    const key = `${getCategoryShowOrder(event)}__${categoryName}`;
+    const category = resolveCategory(event);
+    const key = category.id || normalizeCategoryKey(category.name) || category.name;
 
     if (!map.has(key)) {
       map.set(key, {
-        category_name: categoryName,
-        category_show_order: getCategoryShowOrder(event),
-        category_description: categoryDescription,
+        category_id: category.id,
+        category_name: category.name,
+        category_show_order: category.show_order,
+        category_description: getCategoryDescription(event),
+        slug: category.slug,
         items: []
       });
     }
 
     const group = map.get(key);
+    const categoryDescription = getCategoryDescription(event);
 
     if (!group.category_description && categoryDescription) {
       group.category_description = categoryDescription;
@@ -629,9 +662,7 @@ function groupEvents(events) {
 
   const groups = Array.from(map.values()).map(group => {
     return {
-      category: group.category_name,
-      category_show_order: group.category_show_order,
-      category_description: group.category_description,
+      ...group,
       items: group.items.slice().sort(compareEventsByDateDesc)
     };
   });
@@ -640,10 +671,54 @@ function groupEvents(events) {
     if (a.category_show_order !== b.category_show_order) {
       return a.category_show_order - b.category_show_order;
     }
-    return a.category.localeCompare(b.category, "ja");
+    return a.category_name.localeCompare(b.category_name, "ja");
   });
 
   return groups;
+}
+
+function resolveCategory(event) {
+  const categoryId = getCategoryId(event);
+  if (categoryId && CATEGORY_BY_ID.has(categoryId)) {
+    return CATEGORY_BY_ID.get(categoryId);
+  }
+
+  const eventCategoryName = getCategoryNameFromEvent(event);
+  const normalizedName = normalizeCategoryKey(eventCategoryName);
+
+  if (normalizedName && CATEGORY_BY_NORMALIZED_NAME.has(normalizedName)) {
+    return CATEGORY_BY_NORMALIZED_NAME.get(normalizedName);
+  }
+
+  const fallbackName = eventCategoryName || "その他";
+
+  return {
+    id: categoryId || "",
+    name: fallbackName,
+    slug: slugify(fallbackName) || "other",
+    show_order: getCategoryShowOrder(event)
+  };
+}
+
+function getCategoryId(event) {
+  return toStr(
+    event.category_id ||
+    event.event_category_id ||
+    event.event_category_code ||
+    ""
+  ).trim();
+}
+
+function getCategoryNameFromEvent(event) {
+  return toStr(event.category_name).trim() || toStr(event.event_category).trim();
+}
+
+function normalizeCategoryKey(value) {
+  return toStr(value)
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .trim();
 }
 
 function getEventHref(event) {
@@ -661,10 +736,6 @@ function getWinnerName(event) {
   return toStr(event.winner_name).trim();
 }
 
-function getCategoryName(event) {
-  return toStr(event.category_name).trim() || toStr(event.event_category).trim() || "その他";
-}
-
 function getCategoryDescription(event) {
   return toStr(event.category_description).trim();
 }
@@ -672,13 +743,6 @@ function getCategoryDescription(event) {
 function getCategoryShowOrder(event) {
   const n = Number(event.category_show_order);
   return Number.isFinite(n) ? n : 999999;
-}
-
-function getCategorySlug(category) {
-  const name = toStr(category).trim();
-  if (CATEGORY_SLUGS[name]) return CATEGORY_SLUGS[name];
-
-  return slugify(name) || "other";
 }
 
 function slugify(value) {
