@@ -45,5 +45,5 @@ jobs:
             list_event.html
             detail_event/*.html
             detail_mc/*.html
-            series/**/*.html
+            series
             sitemap.xml
