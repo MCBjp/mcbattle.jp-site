@@ -7,28 +7,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>戦極MC BATTLE 歴代結果一覧 | 優勝者・大会結果まとめ | MCBattle.jp</title>
-  <meta name="description" content="戦極MC BATTLEの歴代大会結果一覧。各大会の開催日、優勝者、詳細結果をまとめています。">
+  <title>戦極MC BATTLE 歴代結果一覧 | 優勝者・準優勝・大会結果まとめ | MCBattle.jp</title>
+  <meta name="description" content="戦極MC BATTLEの歴代大会結果一覧。各大会の開催日、優勝者、準優勝、優勝賞金、詳細結果をまとめています。">
   <link rel="canonical" href="https://mcbattle.jp/series/sengoku-mc-battle/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MCBattle.jp" />
-  <meta property="og:title" content="戦極MC BATTLE 歴代結果一覧 | 優勝者・大会結果まとめ | MCBattle.jp" />
-  <meta property="og:description" content="戦極MC BATTLEの歴代大会結果一覧。各大会の開催日、優勝者、詳細結果をまとめています。" />
+  <meta property="og:title" content="戦極MC BATTLE 歴代結果一覧 | 優勝者・準優勝・大会結果まとめ | MCBattle.jp" />
+  <meta property="og:description" content="戦極MC BATTLEの歴代大会結果一覧。各大会の開催日、優勝者、準優勝、優勝賞金、詳細結果をまとめています。" />
   <meta property="og:url" content="https://mcbattle.jp/series/sengoku-mc-battle/" />
   <meta property="og:image" content="https://mcbattle.jp/ogp.png?v=2" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="戦極MC BATTLE 歴代結果一覧 | 優勝者・大会結果まとめ | MCBattle.jp" />
-  <meta name="twitter:description" content="戦極MC BATTLEの歴代大会結果一覧。各大会の開催日、優勝者、詳細結果をまとめています。" />
+  <meta name="twitter:title" content="戦極MC BATTLE 歴代結果一覧 | 優勝者・準優勝・大会結果まとめ | MCBattle.jp" />
+  <meta name="twitter:description" content="戦極MC BATTLEの歴代大会結果一覧。各大会の開催日、優勝者、準優勝、優勝賞金、詳細結果をまとめています。" />
   <meta name="twitter:image" content="https://mcbattle.jp/ogp.png?v=2" />
 
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "戦極MC BATTLE 歴代結果一覧 | 優勝者・大会結果まとめ | MCBattle.jp",
-  "description": "戦極MC BATTLEの歴代大会結果一覧。各大会の開催日、優勝者、詳細結果をまとめています。",
+  "name": "戦極MC BATTLE 歴代結果一覧 | 優勝者・準優勝・大会結果まとめ | MCBattle.jp",
+  "description": "戦極MC BATTLEの歴代大会結果一覧。各大会の開催日、優勝者、準優勝、優勝賞金、詳細結果をまとめています。",
   "url": "https://mcbattle.jp/series/sengoku-mc-battle/",
   "isPartOf": {
     "@type": "WebSite",
@@ -344,7 +344,7 @@
 
   <style>
     .series-page{
-      max-width: 980px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 18px 14px 44px;
     }
@@ -417,50 +417,41 @@
     }
 
     .series-summary{
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      margin: 14px 0;
+      margin: 14px 0 0;
     }
 
     .series-summary-card{
-      padding: 11px 12px;
-      border-radius: 15px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.018);
       box-shadow: 0 0 0 1px rgba(255,255,255,0.015) inset;
     }
 
     .series-summary-label{
-      display: block;
-      margin-bottom: 3px;
       color: var(--muted);
       font-size: 0.72rem;
       font-weight: 700;
       line-height: 1.35;
+      white-space: nowrap;
     }
 
     .series-summary-value{
-      display: block;
       color: #ffffff;
-      font-size: 1.06rem;
+      font-size: 0.94rem;
       font-weight: 800;
       line-height: 1.35;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      white-space: nowrap;
     }
 
     .series-section{
-      margin-top: 9px;
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.018);
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.025) inset;
-    }
-
-    .series-section-inner{
-      padding: 14px 14px 13px;
+      margin-top: 14px;
     }
 
     .series-section h2{
@@ -473,13 +464,18 @@
       word-break: break-word;
     }
 
-    .latest-event-card{
-      display: block;
-      padding: 10px 11px;
-      border-radius: 13px;
-      border: 1px solid rgba(255,255,255,0.10);
+    .series-event-list{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .series-event-card{
+      padding: 11px 12px 10px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.018);
-      text-decoration: none !important;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.015) inset;
       transition:
         transform 0.18s ease,
         border-color 0.18s ease,
@@ -487,99 +483,119 @@
         box-shadow 0.18s ease;
     }
 
-    .latest-event-card:hover{
+    .series-event-card:hover{
       background: rgba(255,255,255,0.032);
       border-color: rgba(255,255,255,0.16);
       transform: translateY(-1px);
       box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-      text-decoration: none !important;
     }
 
-    .latest-event-date{
+    .series-event-date{
       color: var(--accent);
-      font-size: 0.76rem;
-      font-weight: 700;
+      font-size: 0.74rem;
+      font-weight: 800;
       letter-spacing: 0.04em;
-      margin-bottom: 3px;
+      line-height: 1.3;
+      margin-bottom: 4px;
     }
 
-    .latest-event-name{
-      color: #ffffff;
+    .series-event-title{
+      margin: 0 0 8px;
       font-size: 0.98rem;
       font-weight: 800;
-      line-height: 1.36;
+      line-height: 1.38;
       overflow-wrap: anywhere;
       word-break: break-word;
     }
 
-    .latest-event-meta{
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.45;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .series-table-wrap{
-      overflow-x: auto;
-      border-radius: 13px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.012);
-    }
-
-    .series-table{
-      width: 100%;
-      min-width: 580px;
-      border-collapse: collapse;
-    }
-
-    .series-table th,
-    .series-table td{
-      padding: 9px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      text-align: left;
-      vertical-align: top;
-      font-size: 0.82rem;
-      line-height: 1.45;
-    }
-
-    .series-table th{
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 800;
-      white-space: nowrap;
-      background: rgba(255,255,255,0.02);
-    }
-
-    .series-table tr:last-child td{
-      border-bottom: none;
-    }
-
-    .series-table a{
+    .series-event-title a{
       color: #ffffff;
       text-decoration: none;
-      font-weight: 700;
     }
 
-    .series-table a:hover{
+    .series-event-title a:hover{
       color: #f0cd87;
       text-decoration: none;
     }
 
-    .series-event-title{
-      min-width: 220px;
+    .series-result-list{
+      display: grid;
+      gap: 5px;
+      margin: 0;
     }
 
-    .series-date{
-      color: var(--accent);
-      font-weight: 700;
+    .series-result-row{
+      display: grid;
+      grid-template-columns: 4.7em minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      font-size: 0.82rem;
+      line-height: 1.48;
+    }
+
+    .series-result-row dt{
+      color: var(--muted);
+      font-weight: 800;
       white-space: nowrap;
     }
 
-    .series-muted{
+    .series-result-row dd{
+      margin: 0;
+      color: #ffffff;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .series-result-row.is-empty{
+      display: none;
+    }
+
+    .series-mc-link,
+    .series-team-member-link{
+      color: #ffffff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .series-mc-link:hover,
+    .series-team-member-link:hover{
+      color: #f0cd87;
+      text-decoration: none;
+    }
+
+    .series-team-name{
+      display: block;
+      color: #ffffff;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .series-team-members{
+      display: block;
+      margin-top: 1px;
+      color: #c7cedc;
+      line-height: 1.5;
+    }
+
+    .series-team-member-text{
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .series-team-member-separator{
       color: var(--muted);
+      margin: 0 0.22em;
+    }
+
+    .series-muted,
+    .series-status{
+      color: var(--muted);
+    }
+
+    .series-status{
+      margin: 0;
+      font-size: 0.88rem;
     }
 
     @media (max-width: 640px){
@@ -609,56 +625,50 @@
       }
 
       .series-summary{
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 6px;
-        margin: 12px 0;
+        margin-top: 12px;
       }
 
       .series-summary-card{
-        padding: 9px 9px;
-        border-radius: 13px;
+        padding: 8px 11px;
       }
 
       .series-summary-label{
-        font-size: 0.66rem;
+        font-size: 0.68rem;
       }
 
       .series-summary-value{
-        font-size: 0.86rem;
+        font-size: 0.88rem;
       }
 
       .series-section{
-        border-radius: 16px;
-      }
-
-      .series-section-inner{
-        padding: 12px 11px 11px;
+        margin-top: 12px;
       }
 
       .series-section h2{
         font-size: 1rem;
       }
 
-      .latest-event-card{
-        padding: 9px 10px;
-        border-radius: 12px;
+      .series-event-list{
+        gap: 7px;
       }
 
-      .latest-event-date{
-        font-size: 0.72rem;
+      .series-event-card{
+        padding: 10px 11px 9px;
+        border-radius: 14px;
       }
 
-      .latest-event-name{
+      .series-event-date{
+        font-size: 0.71rem;
+      }
+
+      .series-event-title{
         font-size: 0.92rem;
+        margin-bottom: 7px;
       }
 
-      .latest-event-meta{
-        font-size: 0.72rem;
-      }
-
-      .series-table th,
-      .series-table td{
-        padding: 8px 9px;
+      .series-result-row{
+        grid-template-columns: 4.4em minmax(0, 1fr);
+        gap: 7px;
         font-size: 0.78rem;
       }
     }
@@ -678,7 +688,7 @@
       </div>
 
       <p class="series-page-lead">
-        戦極MC BATTLEの歴代大会結果をまとめています。各大会の開催日、優勝者、詳細結果を確認できます。
+        戦極MC BATTLEの歴代大会結果をまとめています。各大会の開催日、優勝、準優勝、優勝賞金、詳細結果を確認できます。
       </p>
 
       <div class="series-description">
@@ -686,333 +696,911 @@
         <p>前身の戦慄MC BATTLEから戦極MC BATTLEへと展開し、YouTube時代のバトル普及を大きく押し進めた。</p>
         <p>武道館・国技館級の会場まで広がり、現代MCバトルの大衆化を象徴する大会。</p>
       </div>
-      <div class="series-summary">
+      <div class="series-summary" aria-label="掲載情報">
         <div class="series-summary-card">
           <span class="series-summary-label">掲載大会数</span>
-          <span class="series-summary-value">47</span>
-        </div>
-        <div class="series-summary-card">
-          <span class="series-summary-label">最新大会</span>
-          <span class="series-summary-value">第42章</span>
-        </div>
-        <div class="series-summary-card">
-          <span class="series-summary-label">最新優勝者</span>
-          <span class="series-summary-value">クボタカイ</span>
+          <span class="series-summary-value">47件</span>
         </div>
       </div>
     </div>
 
     <section class="series-section">
-      <div class="series-section-inner">
-        <h2>最新大会</h2>
+      <h2>戦極MC BATTLE 歴代大会結果</h2>
 
-        <a class="latest-event-card" href="/detail_event/EVT0161.html">
-          <div class="latest-event-date">2026.06.20</div>
-          <div class="latest-event-name">戦極MCBATTLE 第42章</div>
-          <span class="latest-event-meta">優勝：クボタカイ / 優勝賞金 ¥300,000</span>
-        </a>
-      </div>
-    </section>
-    <section class="series-section">
-      <div class="series-section-inner">
-        <h2>戦極MC BATTLE 歴代大会結果</h2>
+      <div class="series-event-list">
+        <article class="series-event-card">
+          <div class="series-event-date">2026.06.20</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0161.html">戦極MCBATTLE 第42章</a></h3>
 
-        <div class="series-table-wrap">
-          <table class="series-table">
-            <thead>
-              <tr>
-                <th>開催日</th>
-                <th>大会名</th>
-                <th>優勝</th>
-                <th>優勝賞金</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="series-date">2026.06.20</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0161.html">戦極MCBATTLE 第42章</a></td>
-                <td>クボタカイ</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2026.04.19</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0163.html">戦極MCBATTLE vs THE罵倒</a></td>
-                <td>椿</td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2026.02.14</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0186.html">戦極MCBATTLE 第41章</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2025.06.08</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0185.html">戦極MCBATTLE 第39章</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥50,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2025.05.25</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0184.html">戦極MCBATTLE 第38章</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥50,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2025.05.24</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0040.html">戦極MCBATTLE 第37章</a></td>
-                <td>NAIKA MC</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2025.02.02</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0039.html">戦極MCBATTLE 第36章</a></td>
-                <td>Sitissy luvit</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2024.09.28</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0183.html">戦極MCBATTLE 第35章</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥400,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2024.06.15</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0038.html">戦極MCBATTLE 第34章 </a></td>
-                <td>KOPERU</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2024.06.01</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0182.html">戦極MCBATTLE 第33章</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥600,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2023.12.30</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0122.html">戦極MCBATTLE 第31章 </a></td>
-                <td>SAM</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2023.07.22</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0181.html">戦極MCBATTLE 第30章 The 3on3 MATCH</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥1,000,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2023.03.12</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0121.html">戦極MCBATTLE 第29章 </a></td>
-                <td>SAM</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2022.12.30</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0120.html">戦極MCBATTLE 第28章 </a></td>
-                <td>ミメイ</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2022.10.29</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0119.html">戦極MCBATTLE 第27章 </a></td>
-                <td>COCRGI WHITE</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2022.06.19</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0118.html">戦極MCBATTLE 第26章 </a></td>
-                <td>COCRGI WHITE</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2021.12.30</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0117.html">戦極MCBATTLE 第25章 </a></td>
-                <td>SAM</td>
-                <td>¥500,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2021.10.09</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0116.html">戦極MCBATTLE 第24章 </a></td>
-                <td>呂布カルマ</td>
-                <td>¥1,000,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2021.04.10</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0115.html">戦極MCBATTLE 第23章 </a></td>
-                <td>SKRYU</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2021.03.14</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0180.html">U22 MCBATTLE 3vs3 SP 2021 -THE TRIPOD-</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2020.12.26</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0114.html">戦極MCBATTLE 第22章 </a></td>
-                <td>COCRGI WHITE</td>
-                <td>¥1,000,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2020.11.03</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0179.html">戦極西の2on2 GROOVE On FIGHT2020</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2020.02.15</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0113.html">戦極MCBATTLE 第21章 </a></td>
-                <td>AUTHORITY</td>
-                <td>¥1,000,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2020.02.01</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0177.html">U-22 MCBATTLE 3on3 SP 2020</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2020.01.04</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0178.html">戦極東海獏丸祭2 3on3新春スペシャル</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2019.09.15</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0112.html">戦極MCBATTLE 第20章 </a></td>
-                <td>SAM</td>
-                <td>¥1,000,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2019.04.29</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0176.html">戦極CROSSOVERⅣ AsONE×戦極MCBATTLE</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2019.03.31</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0175.html">戦極MCBATTLE 第19章</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥1,000,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2018.08.11</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0111.html">戦極MCBATTLE 第18章 </a></td>
-                <td>漢 a.k.a. GAMI</td>
-                <td>¥1,000,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2018.07.14</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0174.html">戦極CROSSOVERⅡ / U-22 MCBATTLE SP 3on3</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2018.02.17</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0110.html">戦極MCBATTLE 第17章 </a></td>
-                <td>GIL</td>
-                <td>¥1,000,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2017.05.21</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0109.html">戦極MCBATTLE 第16章 </a></td>
-                <td>RAWAXXX</td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2016.11.06</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0041.html">戦極MCBATTLE 第15章</a></td>
-                <td>GADORO</td>
-                <td>¥500,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2016.05.29</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0173.html">戦極MCBATTLE 第14章 (Tag match)</a></td>
-                <td><span class="series-muted">-</span></td>
-                <td>¥300,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2015.12.27</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0107.html">戦極MCBATTLE 第13章 </a></td>
-                <td>NAIKA MC</td>
-                <td>¥150,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2015.06.14</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0106.html">戦極MCBATTLE 第12章 </a></td>
-                <td>呂布カルマ</td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2015.02.21</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0105.html">戦極MCBATTLE 第11章 </a></td>
-                <td>GOLBY</td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2014.10.19</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0104.html">戦極MCBATTLE 第10章 </a></td>
-                <td>晋平太</td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2014.04.13</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0103.html">戦極MCBATTLE 第9章 </a></td>
-                <td>DOTAMA</td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2014.01.26</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0102.html">戦極MCBATTLE 第8章 </a></td>
-                <td>サイプレス上野</td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2013.07.21</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0101.html">戦極MCBATTLE 第7章 </a></td>
-                <td>DOTAMA</td>
-                <td>¥50,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2013.04.28</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0100.html">戦極MCBATTLE 第6章 </a></td>
-                <td>鎮座DOPENESS</td>
-                <td>¥50,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2013.01.20</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0099.html">戦極MCBATTLE 第5章 </a></td>
-                <td>チプルソ</td>
-                <td>¥100,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2012.09.15</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0098.html">戦極MCBATTLE 第4章 </a></td>
-                <td>TKda黒ぶち</td>
-                <td>¥50,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2012.03.24</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0097.html">戦極MCBATTLE 第3章 </a></td>
-                <td>TKda黒ぶち</td>
-                <td>¥50,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2012.03.11</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0096.html">戦極MCBATTLE 第2章 </a></td>
-                <td>黄猿</td>
-                <td>¥50,000</td>
-              </tr>
-              <tr>
-                <td class="series-date">2012.01.12</td>
-                <td class="series-event-title"><a href="/detail_event/EVT0095.html">戦極MCBATTLE 第1章 </a></td>
-                <td>晋平太</td>
-                <td>¥50,000</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0771.html">クボタカイ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0617.html">#KTちゃん</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2026.04.19</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0163.html">戦極MCBATTLE vs THE罵倒</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0400.html">椿</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0425.html">蘇流邪</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2026.02.14</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0186.html">戦極MCBATTLE 第41章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">てるみめい</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0300.html">TERU</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0469.html">ミメイ</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">即興コンビ</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0447.html">9for</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0434.html">輪入道</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2025.06.08</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0185.html">戦極MCBATTLE 第39章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">梅田サイファー</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0243.html">peko</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0171.html">KBD</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0454.html">KOPERU</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">伝説建設</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0214.html">RAWAXXX</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0279.html">SILENT KILLA JOINT</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0080.html">CIMA</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥50,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2025.05.25</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0184.html">戦極MCBATTLE 第38章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">タング&amp;ドニー</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0296.html">T-TANGG</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0450.html">Donatello</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">ミメイとがーどまん</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0469.html">ミメイ</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0468.html">がーどまん</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥50,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2025.05.24</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0040.html">戦極MCBATTLE 第37章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0222.html">NAIKA MC</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0023.html">S-kainê</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2025.02.02</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0039.html">戦極MCBATTLE 第36章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0466.html">Sitissy luvit</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0280.html">SIMON JAP</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2024.09.28</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0183.html">戦極MCBATTLE 第35章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">アイスグランド</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0397.html">杏地</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0421.html">脱走</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">がんばる組</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0159.html">K-rush</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0621.html">バチスタ</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥400,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2024.06.15</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0038.html">戦極MCBATTLE 第34章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0454.html">KOPERU</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0266.html">Ryo</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2024.06.01</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0182.html">戦極MCBATTLE 第33章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">ライマーズ改</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0469.html">ミメイ</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0621.html">バチスタ</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0159.html">K-rush</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">109</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0300.html">TERU</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0958.html">crap the grubby</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC1113.html">Riddle-K</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥600,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2023.12.30</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0122.html">戦極MCBATTLE 第31章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0271.html">SAM</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0046.html">Authority</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2023.07.22</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0181.html">戦極MCBATTLE 第30章 The 3on3 MATCH</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">栃木9900万パワーズ</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0271.html">SAM</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0204.html">MAKA</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0100.html">DOTAMA</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">トリプルリーチ</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0434.html">輪入道</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0474.html">泰斗(裂固)</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0376.html">呂布カルマ</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥1,000,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2023.03.12</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0121.html">戦極MCBATTLE 第29章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0271.html">SAM</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2022.12.30</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0120.html">戦極MCBATTLE 第28章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0469.html">ミメイ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0756.html">COCRGI WHITE</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2022.10.29</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0119.html">戦極MCBATTLE 第27章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0756.html">COCRGI WHITE</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2022.06.19</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0118.html">戦極MCBATTLE 第26章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0756.html">COCRGI WHITE</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0689.html">GOMESS</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2021.12.30</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0117.html">戦極MCBATTLE 第25章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0271.html">SAM</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥500,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2021.10.09</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0116.html">戦極MCBATTLE 第24章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0214.html">RAWAXXX</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥1,000,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2021.04.10</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0115.html">戦極MCBATTLE 第23章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0283.html">SKRYU</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2021.03.14</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0180.html">U22 MCBATTLE 3vs3 SP 2021 -THE TRIPOD-</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">TERUとミメイとがーどまん</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0300.html">TERU</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0469.html">ミメイ</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0468.html">がーどまん</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">PKK</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0159.html">K-rush</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC1111.html">KAJA</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0335.html">だーひー</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2020.12.26</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0114.html">戦極MCBATTLE 第22章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0756.html">COCRGI WHITE</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0279.html">SILENT KILLA JOINT</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥1,000,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2020.11.03</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0179.html">戦極西の2on2 GROOVE On FIGHT2020</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">SquadWords</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0164.html">KAKKY</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0279.html">SILENT KILLA JOINT</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">MADBAG</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0214.html">RAWAXXX</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0579.html">MADJAG</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2020.02.15</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0113.html">戦極MCBATTLE 第21章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0046.html">AUTHORITY</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥1,000,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2020.02.01</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0177.html">U-22 MCBATTLE 3on3 SP 2020</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">99年</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0335.html">だーひー</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0685.html">SHOHEI</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0763.html">U-mallow</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">O1D RRA&#39;s</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0023.html">S-kainê</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC1017.html">KK</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC1091.html">David ronroll</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2020.01.04</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0178.html">戦極東海獏丸祭2 3on3新春スペシャル</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">JET CITY PEOPLE</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0161.html">K.Lee</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0376.html">呂布カルマ</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0055.html">BASE</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">真ライマーズ</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0395.html">晋平太</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0469.html">ミメイ</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0468.html">がーどまん</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2019.09.15</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0112.html">戦極MCBATTLE 第20章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0271.html">SAM</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥1,000,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2019.04.29</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0176.html">戦極CROSSOVERⅣ AsONE×戦極MCBATTLE</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">栃木5000万パワーズ</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0204.html">MAKA</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0271.html">SAM</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">ナイスパニック</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0614.html">ID</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0245.html">PONEY</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2019.03.31</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0175.html">戦極MCBATTLE 第19章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">94-95チーム</span><span class="series-team-members">メンバー：<span class="series-team-member-text">mu-ton</span><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0271.html">SAM</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0614.html">ID</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">じょうにがりかしわ</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0334.html">じょう</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC1083.html">かしわ</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0015.html">MC☆ニガリ</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥1,000,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2018.08.11</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0111.html">戦極MCBATTLE 第18章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0475.html">漢 a.k.a. GAMI</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥1,000,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2018.07.14</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0174.html">戦極CROSSOVERⅡ / U-22 MCBATTLE SP 3on3</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">KNGW</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0296.html">T-TANGG</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0450.html">Donatello</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0104.html">ENEMY</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">Young Osaka Kids</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0334.html">じょう</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0592.html">DOPEMAN</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0452.html">HARDY</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2018.02.17</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0110.html">戦極MCBATTLE 第17章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0118.html">GIL</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥1,000,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2017.05.21</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0109.html">戦極MCBATTLE 第16章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0214.html">RAWAXXX</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0271.html">SAM</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2016.11.06</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0041.html">戦極MCBATTLE 第15章</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0116.html">GADORO</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0214.html">RAWAXXX</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥500,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2016.05.29</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0173.html">戦極MCBATTLE 第14章 (Tag match)</a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><span class="series-team-name">ザ＊どストライクス</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0376.html">呂布カルマ</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0161.html">K.Lee</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><span class="series-team-name">今日の2MC</span><span class="series-team-members">メンバー：<a class="series-team-member-link" href="/detail_mc/MC0100.html">DOTAMA</a><span class="series-team-member-separator">・</span><a class="series-team-member-link" href="/detail_mc/MC0222.html">NAIKA MC</a></span></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥300,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2015.12.27</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0107.html">戦極MCBATTLE 第13章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0222.html">NAIKA MC</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0173.html">KEN THE 390</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥150,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2015.06.14</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0106.html">戦極MCBATTLE 第12章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0376.html">呂布カルマ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0188.html">KZ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2015.02.21</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0105.html">戦極MCBATTLE 第11章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0121.html">GOLBY</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0173.html">KEN THE 390</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2014.10.19</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0104.html">戦極MCBATTLE 第10章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0395.html">晋平太</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0444.html">黄猿</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2014.04.13</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0103.html">戦極MCBATTLE 第9章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0100.html">DOTAMA</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0280.html">SIMON JAP</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2014.01.26</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0102.html">戦極MCBATTLE 第8章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0351.html">サイプレス上野</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0173.html">KEN THE 390</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2013.07.21</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0101.html">戦極MCBATTLE 第7章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0100.html">DOTAMA</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0106.html">ERONE</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥50,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2013.04.28</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0100.html">戦極MCBATTLE 第6章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0440.html">鎮座DOPENESS</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0171.html">KBD</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥50,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2013.01.20</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0099.html">戦極MCBATTLE 第5章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0357.html">チプルソ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0395.html">晋平太</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥100,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2012.09.15</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0098.html">戦極MCBATTLE 第4章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0025.html">TKda黒ぶち</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0554.html">オロカモノポテチ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥50,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2012.03.24</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0097.html">戦極MCBATTLE 第3章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0025.html">TKda黒ぶち</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0472.html">崇勲</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥50,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2012.03.11</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0096.html">戦極MCBATTLE 第2章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0444.html">黄猿</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0842.html">KIKUMARU</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥50,000</dd>
+            </div>
+          </dl>
+        </article>
+        <article class="series-event-card">
+          <div class="series-event-date">2012.01.12</div>
+          <h3 class="series-event-title"><a href="/detail_event/EVT0095.html">戦極MCBATTLE 第1章 </a></h3>
+
+          <dl class="series-result-list">
+            <div class="series-result-row">
+              <dt>優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0395.html">晋平太</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>準優勝</dt>
+              <dd><a class="series-mc-link" href="/detail_mc/MC0357.html">チプルソ</a></dd>
+            </div>
+            <div class="series-result-row">
+              <dt>優勝賞金</dt>
+              <dd>¥50,000</dd>
+            </div>
+          </dl>
+        </article>
       </div>
     </section>
   </main>
