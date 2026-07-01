@@ -107,8 +107,6 @@ function buildHtml(group, mcNameById) {
     : '<p class="series-status">大会がありません</p>';
 
   const jsonLd = buildJsonLd(group, canonicalUrl, pageTitle, pageDescription);
-  const categoryDescriptionHtml = buildCategoryDescriptionHtml(group.category_description);
-
   return `<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -191,41 +189,8 @@ ${escapeScriptJson(jsonLd)}
       word-break: break-word;
     }
 
-    .series-description{
-      margin: 11px 0 0;
-      padding: 11px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(216,180,106,0.22);
-      background:
-        linear-gradient(180deg, rgba(216,180,106,0.08), rgba(216,180,106,0.025)),
-        rgba(255,255,255,0.018);
-      color: #c7cedc;
-      font-size: 0.84rem;
-      line-height: 1.68;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .series-description p{
-      margin: 0;
-    }
-
-    .series-description p + p{
-      margin-top: 5px;
-    }
-
     .series-section{
-      margin-top: 14px;
-    }
-
-    .series-section h2{
-      margin: 0 0 10px;
-      color: var(--accent);
-      font-size: 1.08rem;
-      line-height: 1.35;
-      text-wrap: balance;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      margin-top: 10px;
     }
 
     .series-event-list{
@@ -376,19 +341,8 @@ ${escapeScriptJson(jsonLd)}
         line-height: 1.12;
       }
 
-      .series-description{
-        padding: 10px 11px;
-        border-radius: 13px;
-        font-size: 0.78rem;
-        line-height: 1.58;
-      }
-
       .series-section{
-        margin-top: 12px;
-      }
-
-      .series-section h2{
-        font-size: 1rem;
+        margin-top: 8px;
       }
 
       .series-event-list{
@@ -429,18 +383,9 @@ ${escapeScriptJson(jsonLd)}
       <div class="series-header-block">
         <h1>${escapeHtml(category)} 歴代結果一覧</h1>
       </div>
-
-${categoryDescriptionHtml ? indent(categoryDescriptionHtml, 6) + "\n" : ""}      <div class="series-summary" aria-label="掲載情報">
-        <div class="series-summary-card">
-          <span class="series-summary-label">掲載大会数</span>
-          <span class="series-summary-value">${escapeHtml(String(group.items.length))}件</span>
-        </div>
-      </div>
     </div>
 
     <section class="series-section">
-      <h2>${escapeHtml(category)} 歴代大会結果</h2>
-
       <div class="series-event-list">
 ${indent(cardsHtml, 8)}
       </div>
