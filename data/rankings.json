@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-21T13:32:45.500Z",
+  "updated_at": "2026-07-05T11:45:35.100Z",
   "total": 100,
   "rankings": [
     {
@@ -17,7 +17,7 @@
       "wins_last_365d": 11,
       "win_rate_last_365d": 0.7857142857142857,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 2,
@@ -26,15 +26,15 @@
       "score": 2768.51,
       "current_score": 2768.51,
       "peak_score": 2768.51,
-      "total_matches": 251,
-      "wins": 185,
+      "total_matches": 254,
+      "wins": 188,
       "losses": 66,
-      "win_rate": 0.7370517928286853,
+      "win_rate": 0.7401574803149606,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-02-02",
-      "days_since_last_match": 504
+      "days_since_last_match": 518
     },
     {
       "rank": 3,
@@ -43,15 +43,15 @@
       "score": 2579.13,
       "current_score": 2579.13,
       "peak_score": 2579.13,
-      "total_matches": 193,
-      "wins": 132,
-      "losses": 61,
-      "win_rate": 0.6839378238341969,
+      "total_matches": 198,
+      "wins": 135,
+      "losses": 63,
+      "win_rate": 0.6818181818181818,
       "matches_last_365d": 6,
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 4,
@@ -68,7 +68,7 @@
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.625,
       "last_match_date": "2026-04-19",
-      "days_since_last_match": 63
+      "days_since_last_match": 77
     },
     {
       "rank": 5,
@@ -77,15 +77,15 @@
       "score": 2224.87,
       "current_score": 2224.87,
       "peak_score": 2224.87,
-      "total_matches": 124,
-      "wins": 77,
-      "losses": 47,
-      "win_rate": 0.6209677419354839,
+      "total_matches": 127,
+      "wins": 78,
+      "losses": 49,
+      "win_rate": 0.6141732283464567,
       "matches_last_365d": 17,
       "wins_last_365d": 12,
       "win_rate_last_365d": 0.7058823529411765,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 6,
@@ -94,15 +94,15 @@
       "score": 2175.78,
       "current_score": 2175.78,
       "peak_score": 2175.78,
-      "total_matches": 142,
-      "wins": 95,
+      "total_matches": 147,
+      "wins": 100,
       "losses": 47,
-      "win_rate": 0.6690140845070423,
+      "win_rate": 0.6802721088435374,
       "matches_last_365d": 6,
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.8333333333333334,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 7,
@@ -111,15 +111,15 @@
       "score": 2157.01,
       "current_score": 2157.01,
       "peak_score": 2157.01,
-      "total_matches": 157,
-      "wins": 102,
+      "total_matches": 155,
+      "wins": 100,
       "losses": 55,
-      "win_rate": 0.6496815286624203,
+      "win_rate": 0.6451612903225806,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-03-28",
-      "days_since_last_match": 815
+      "days_since_last_match": 829
     },
     {
       "rank": 8,
@@ -136,7 +136,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-09-27",
-      "days_since_last_match": 267
+      "days_since_last_match": 281
     },
     {
       "rank": 9,
@@ -145,15 +145,15 @@
       "score": 2119.58,
       "current_score": 2119.58,
       "peak_score": 2119.58,
-      "total_matches": 89,
-      "wins": 60,
-      "losses": 29,
-      "win_rate": 0.6741573033707865,
+      "total_matches": 94,
+      "wins": 64,
+      "losses": 30,
+      "win_rate": 0.6808510638297872,
       "matches_last_365d": 7,
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.7142857142857143,
-      "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "last_match_date": "2026-05-23",
+      "days_since_last_match": 43
     },
     {
       "rank": 10,
@@ -170,7 +170,7 @@
       "wins_last_365d": 13,
       "win_rate_last_365d": 0.8125,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 11,
@@ -179,15 +179,15 @@
       "score": 2057.64,
       "current_score": 2057.64,
       "peak_score": 2057.64,
-      "total_matches": 84,
-      "wins": 59,
-      "losses": 25,
-      "win_rate": 0.7023809523809523,
+      "total_matches": 87,
+      "wins": 61,
+      "losses": 26,
+      "win_rate": 0.7011494252873564,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 12,
@@ -204,7 +204,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 162
+      "days_since_last_match": 176
     },
     {
       "rank": 13,
@@ -213,15 +213,15 @@
       "score": 1945.57,
       "current_score": 1945.57,
       "peak_score": 1945.57,
-      "total_matches": 102,
-      "wins": 68,
+      "total_matches": 101,
+      "wins": 67,
       "losses": 34,
-      "win_rate": 0.6666666666666666,
+      "win_rate": 0.6633663366336634,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-08-20",
-      "days_since_last_match": 1036
+      "days_since_last_match": 1050
     },
     {
       "rank": 14,
@@ -230,15 +230,15 @@
       "score": 1881.4,
       "current_score": 1881.4,
       "peak_score": 1881.4,
-      "total_matches": 42,
+      "total_matches": 43,
       "wins": 27,
-      "losses": 15,
-      "win_rate": 0.6428571428571429,
+      "losses": 16,
+      "win_rate": 0.627906976744186,
       "matches_last_365d": 7,
       "wins_last_365d": 4,
       "win_rate_last_365d": 0.5714285714285714,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 15,
@@ -255,7 +255,7 @@
       "wins_last_365d": 10,
       "win_rate_last_365d": 0.7142857142857143,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 16,
@@ -272,7 +272,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-01-08",
-      "days_since_last_match": 895
+      "days_since_last_match": 909
     },
     {
       "rank": 17,
@@ -281,15 +281,15 @@
       "score": 1843.52,
       "current_score": 1843.52,
       "peak_score": 1843.52,
-      "total_matches": 132,
-      "wins": 78,
-      "losses": 54,
-      "win_rate": 0.5909090909090909,
+      "total_matches": 134,
+      "wins": 79,
+      "losses": 55,
+      "win_rate": 0.5895522388059702,
       "matches_last_365d": 7,
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.7142857142857143,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 18,
@@ -306,7 +306,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-01-11",
-      "days_since_last_match": 526
+      "days_since_last_match": 540
     },
     {
       "rank": 19,
@@ -323,7 +323,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-05-24",
-      "days_since_last_match": 393
+      "days_since_last_match": 407
     },
     {
       "rank": 20,
@@ -340,7 +340,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 21,
@@ -349,15 +349,15 @@
       "score": 1796.39,
       "current_score": 1796.39,
       "peak_score": 1796.39,
-      "total_matches": 56,
+      "total_matches": 57,
       "wins": 31,
-      "losses": 25,
-      "win_rate": 0.5535714285714286,
+      "losses": 26,
+      "win_rate": 0.543859649122807,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 22,
@@ -374,7 +374,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-07-01",
-      "days_since_last_match": 1451
+      "days_since_last_match": 1465
     },
     {
       "rank": 23,
@@ -391,7 +391,7 @@
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-09-27",
-      "days_since_last_match": 267
+      "days_since_last_match": 281
     },
     {
       "rank": 24,
@@ -408,7 +408,7 @@
       "wins_last_365d": 4,
       "win_rate_last_365d": 1,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 162
+      "days_since_last_match": 176
     },
     {
       "rank": 25,
@@ -417,15 +417,15 @@
       "score": 1719.64,
       "current_score": 1719.64,
       "peak_score": 1719.64,
-      "total_matches": 52,
-      "wins": 26,
-      "losses": 26,
-      "win_rate": 0.5,
+      "total_matches": 58,
+      "wins": 30,
+      "losses": 28,
+      "win_rate": 0.5172413793103449,
       "matches_last_365d": 5,
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.6,
-      "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "last_match_date": "2026-05-23",
+      "days_since_last_match": 43
     },
     {
       "rank": 26,
@@ -442,7 +442,7 @@
       "wins_last_365d": 4,
       "win_rate_last_365d": 0.5714285714285714,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 27,
@@ -459,7 +459,7 @@
       "wins_last_365d": 6,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-01-10",
-      "days_since_last_match": 162
+      "days_since_last_match": 176
     },
     {
       "rank": 28,
@@ -476,7 +476,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-14",
-      "days_since_last_match": 676
+      "days_since_last_match": 690
     },
     {
       "rank": 29,
@@ -493,7 +493,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-14",
-      "days_since_last_match": 676
+      "days_since_last_match": 690
     },
     {
       "rank": 30,
@@ -510,7 +510,7 @@
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-05-24",
-      "days_since_last_match": 393
+      "days_since_last_match": 407
     },
     {
       "rank": 31,
@@ -519,15 +519,15 @@
       "score": 1683.42,
       "current_score": 1683.42,
       "peak_score": 1683.42,
-      "total_matches": 78,
-      "wins": 44,
-      "losses": 34,
-      "win_rate": 0.5641025641025641,
+      "total_matches": 81,
+      "wins": 46,
+      "losses": 35,
+      "win_rate": 0.5679012345679012,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
-      "last_match_date": "2024-02-02",
-      "days_since_last_match": 870
+      "last_match_date": "2026-02-21",
+      "days_since_last_match": 134
     },
     {
       "rank": 32,
@@ -544,7 +544,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 540
+      "days_since_last_match": 554
     },
     {
       "rank": 33,
@@ -553,15 +553,15 @@
       "score": 1666.02,
       "current_score": 1666.02,
       "peak_score": 1666.02,
-      "total_matches": 22,
+      "total_matches": 23,
       "wins": 14,
-      "losses": 8,
-      "win_rate": 0.6363636363636364,
+      "losses": 9,
+      "win_rate": 0.6086956521739131,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
-      "last_match_date": "2025-01-04",
-      "days_since_last_match": 533
+      "last_match_date": "2026-05-23",
+      "days_since_last_match": 43
     },
     {
       "rank": 34,
@@ -578,7 +578,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-14",
-      "days_since_last_match": 554
+      "days_since_last_match": 568
     },
     {
       "rank": 35,
@@ -595,7 +595,7 @@
       "wins_last_365d": 9,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 36,
@@ -612,7 +612,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-07-14",
-      "days_since_last_match": 1073
+      "days_since_last_match": 1087
     },
     {
       "rank": 37,
@@ -629,7 +629,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 259
+      "days_since_last_match": 273
     },
     {
       "rank": 38,
@@ -646,7 +646,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-25",
-      "days_since_last_match": 665
+      "days_since_last_match": 679
     },
     {
       "rank": 39,
@@ -663,7 +663,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-04-18",
-      "days_since_last_match": 429
+      "days_since_last_match": 443
     },
     {
       "rank": 40,
@@ -680,7 +680,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 41,
@@ -697,7 +697,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 42,
@@ -714,7 +714,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 540
+      "days_since_last_match": 554
     },
     {
       "rank": 43,
@@ -723,15 +723,15 @@
       "score": 1622.42,
       "current_score": 1622.42,
       "peak_score": 1622.42,
-      "total_matches": 17,
-      "wins": 8,
-      "losses": 9,
-      "win_rate": 0.47058823529411764,
+      "total_matches": 26,
+      "wins": 15,
+      "losses": 11,
+      "win_rate": 0.5769230769230769,
       "matches_last_365d": 8,
       "wins_last_365d": 6,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 44,
@@ -748,7 +748,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-14",
-      "days_since_last_match": 676
+      "days_since_last_match": 690
     },
     {
       "rank": 45,
@@ -765,7 +765,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 259
+      "days_since_last_match": 273
     },
     {
       "rank": 46,
@@ -782,7 +782,7 @@
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.7142857142857143,
       "last_match_date": "2026-04-19",
-      "days_since_last_match": 63
+      "days_since_last_match": 77
     },
     {
       "rank": 47,
@@ -799,7 +799,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-09-27",
-      "days_since_last_match": 267
+      "days_since_last_match": 281
     },
     {
       "rank": 48,
@@ -816,7 +816,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-12-17",
-      "days_since_last_match": 917
+      "days_since_last_match": 931
     },
     {
       "rank": 49,
@@ -833,7 +833,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-09-30",
-      "days_since_last_match": 995
+      "days_since_last_match": 1009
     },
     {
       "rank": 50,
@@ -850,7 +850,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.6,
       "last_match_date": "2025-10-05",
-      "days_since_last_match": 259
+      "days_since_last_match": 273
     },
     {
       "rank": 51,
@@ -867,7 +867,7 @@
       "wins_last_365d": 5,
       "win_rate_last_365d": 0.8333333333333334,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 52,
@@ -884,7 +884,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-14",
-      "days_since_last_match": 676
+      "days_since_last_match": 690
     },
     {
       "rank": 53,
@@ -901,7 +901,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-08-20",
-      "days_since_last_match": 1036
+      "days_since_last_match": 1050
     },
     {
       "rank": 54,
@@ -918,7 +918,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-01-04",
-      "days_since_last_match": 168
+      "days_since_last_match": 182
     },
     {
       "rank": 55,
@@ -935,7 +935,7 @@
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2025-09-27",
-      "days_since_last_match": 267
+      "days_since_last_match": 281
     },
     {
       "rank": 56,
@@ -952,7 +952,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-04-18",
-      "days_since_last_match": 429
+      "days_since_last_match": 443
     },
     {
       "rank": 57,
@@ -969,7 +969,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 174
+      "days_since_last_match": 188
     },
     {
       "rank": 58,
@@ -986,7 +986,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 174
+      "days_since_last_match": 188
     },
     {
       "rank": 59,
@@ -995,15 +995,15 @@
       "score": 1564,
       "current_score": 1564,
       "peak_score": 1564,
-      "total_matches": 23,
+      "total_matches": 25,
       "wins": 14,
-      "losses": 9,
-      "win_rate": 0.6086956521739131,
+      "losses": 11,
+      "win_rate": 0.56,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
-      "last_match_date": "2025-03-30",
-      "days_since_last_match": 448
+      "last_match_date": "2026-05-23",
+      "days_since_last_match": 43
     },
     {
       "rank": 60,
@@ -1020,7 +1020,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 61,
@@ -1037,7 +1037,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-08-31",
-      "days_since_last_match": 1390
+      "days_since_last_match": 1404
     },
     {
       "rank": 62,
@@ -1054,7 +1054,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 174
+      "days_since_last_match": 188
     },
     {
       "rank": 63,
@@ -1071,7 +1071,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-12-26",
-      "days_since_last_match": 908
+      "days_since_last_match": 922
     },
     {
       "rank": 64,
@@ -1088,7 +1088,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 65,
@@ -1105,7 +1105,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-06-19",
-      "days_since_last_match": 1463
+      "days_since_last_match": 1477
     },
     {
       "rank": 66,
@@ -1122,7 +1122,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 540
+      "days_since_last_match": 554
     },
     {
       "rank": 67,
@@ -1139,7 +1139,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 183
+      "days_since_last_match": 197
     },
     {
       "rank": 68,
@@ -1156,7 +1156,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 540
+      "days_since_last_match": 554
     },
     {
       "rank": 69,
@@ -1173,7 +1173,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 540
+      "days_since_last_match": 554
     },
     {
       "rank": 70,
@@ -1190,7 +1190,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-06-19",
-      "days_since_last_match": 1463
+      "days_since_last_match": 1477
     },
     {
       "rank": 71,
@@ -1207,7 +1207,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 174
+      "days_since_last_match": 188
     },
     {
       "rank": 72,
@@ -1224,7 +1224,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.5,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 73,
@@ -1241,7 +1241,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-09-27",
-      "days_since_last_match": 267
+      "days_since_last_match": 281
     },
     {
       "rank": 74,
@@ -1250,15 +1250,15 @@
       "score": 1536.31,
       "current_score": 1536.31,
       "peak_score": 1536.31,
-      "total_matches": 16,
-      "wins": 8,
-      "losses": 8,
-      "win_rate": 0.5,
+      "total_matches": 19,
+      "wins": 10,
+      "losses": 9,
+      "win_rate": 0.5263157894736842,
       "matches_last_365d": 3,
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.3333333333333333,
       "last_match_date": "2026-06-20",
-      "days_since_last_match": 1
+      "days_since_last_match": 15
     },
     {
       "rank": 75,
@@ -1275,7 +1275,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2026-01-04",
-      "days_since_last_match": 168
+      "days_since_last_match": 182
     },
     {
       "rank": 76,
@@ -1292,7 +1292,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-04-29",
-      "days_since_last_match": 1149
+      "days_since_last_match": 1163
     },
     {
       "rank": 77,
@@ -1309,7 +1309,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-23",
-      "days_since_last_match": 667
+      "days_since_last_match": 681
     },
     {
       "rank": 78,
@@ -1326,7 +1326,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-08-20",
-      "days_since_last_match": 1036
+      "days_since_last_match": 1050
     },
     {
       "rank": 79,
@@ -1343,7 +1343,7 @@
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.75,
       "last_match_date": "2026-04-19",
-      "days_since_last_match": 63
+      "days_since_last_match": 77
     },
     {
       "rank": 80,
@@ -1360,7 +1360,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2026-01-04",
-      "days_since_last_match": 168
+      "days_since_last_match": 182
     },
     {
       "rank": 81,
@@ -1377,7 +1377,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-03-17",
-      "days_since_last_match": 826
+      "days_since_last_match": 840
     },
     {
       "rank": 82,
@@ -1394,7 +1394,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 174
+      "days_since_last_match": 188
     },
     {
       "rank": 83,
@@ -1411,7 +1411,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2022-12-23",
-      "days_since_last_match": 1276
+      "days_since_last_match": 1290
     },
     {
       "rank": 84,
@@ -1428,7 +1428,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 183
+      "days_since_last_match": 197
     },
     {
       "rank": 85,
@@ -1445,7 +1445,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-29",
-      "days_since_last_match": 174
+      "days_since_last_match": 188
     },
     {
       "rank": 86,
@@ -1462,7 +1462,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-12-26",
-      "days_since_last_match": 908
+      "days_since_last_match": 922
     },
     {
       "rank": 87,
@@ -1479,7 +1479,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 183
+      "days_since_last_match": 197
     },
     {
       "rank": 88,
@@ -1496,7 +1496,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-12-28",
-      "days_since_last_match": 540
+      "days_since_last_match": 554
     },
     {
       "rank": 89,
@@ -1513,7 +1513,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-03-30",
-      "days_since_last_match": 448
+      "days_since_last_match": 462
     },
     {
       "rank": 90,
@@ -1522,15 +1522,15 @@
       "score": 1529.64,
       "current_score": 1529.64,
       "peak_score": 1529.64,
-      "total_matches": 20,
+      "total_matches": 21,
       "wins": 8,
-      "losses": 12,
-      "win_rate": 0.4,
+      "losses": 13,
+      "win_rate": 0.38095238095238093,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
-      "last_match_date": "2024-08-25",
-      "days_since_last_match": 665
+      "last_match_date": "2026-02-21",
+      "days_since_last_match": 134
     },
     {
       "rank": 91,
@@ -1547,7 +1547,7 @@
       "wins_last_365d": 4,
       "win_rate_last_365d": 0.5714285714285714,
       "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "days_since_last_match": 70
     },
     {
       "rank": 92,
@@ -1556,15 +1556,15 @@
       "score": 1527.44,
       "current_score": 1527.44,
       "peak_score": 1527.44,
-      "total_matches": 5,
-      "wins": 3,
-      "losses": 2,
-      "win_rate": 0.6,
+      "total_matches": 7,
+      "wins": 4,
+      "losses": 3,
+      "win_rate": 0.5714285714285714,
       "matches_last_365d": 5,
       "wins_last_365d": 3,
       "win_rate_last_365d": 0.6,
-      "last_match_date": "2025-10-05",
-      "days_since_last_match": 259
+      "last_match_date": "2026-02-21",
+      "days_since_last_match": 134
     },
     {
       "rank": 93,
@@ -1581,7 +1581,7 @@
       "wins_last_365d": 1,
       "win_rate_last_365d": 0.25,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 183
+      "days_since_last_match": 197
     },
     {
       "rank": 94,
@@ -1590,15 +1590,15 @@
       "score": 1522.65,
       "current_score": 1522.65,
       "peak_score": 1522.65,
-      "total_matches": 7,
-      "wins": 4,
-      "losses": 3,
-      "win_rate": 0.5714285714285714,
+      "total_matches": 9,
+      "wins": 5,
+      "losses": 4,
+      "win_rate": 0.5555555555555556,
       "matches_last_365d": 7,
       "wins_last_365d": 4,
       "win_rate_last_365d": 0.5714285714285714,
-      "last_match_date": "2026-04-26",
-      "days_since_last_match": 56
+      "last_match_date": "2026-05-23",
+      "days_since_last_match": 43
     },
     {
       "rank": 95,
@@ -1615,7 +1615,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-02-19",
-      "days_since_last_match": 1218
+      "days_since_last_match": 1232
     },
     {
       "rank": 96,
@@ -1632,7 +1632,7 @@
       "wins_last_365d": 2,
       "win_rate_last_365d": 0.6666666666666666,
       "last_match_date": "2025-12-20",
-      "days_since_last_match": 183
+      "days_since_last_match": 197
     },
     {
       "rank": 97,
@@ -1641,15 +1641,15 @@
       "score": 1516.96,
       "current_score": 1516.96,
       "peak_score": 1516.96,
-      "total_matches": 38,
-      "wins": 20,
-      "losses": 18,
-      "win_rate": 0.5263157894736842,
+      "total_matches": 40,
+      "wins": 21,
+      "losses": 19,
+      "win_rate": 0.525,
       "matches_last_365d": 1,
       "wins_last_365d": 0,
       "win_rate_last_365d": 0,
-      "last_match_date": "2025-12-20",
-      "days_since_last_match": 183
+      "last_match_date": "2026-02-21",
+      "days_since_last_match": 134
     },
     {
       "rank": 98,
@@ -1666,7 +1666,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2024-08-23",
-      "days_since_last_match": 667
+      "days_since_last_match": 681
     },
     {
       "rank": 99,
@@ -1683,7 +1683,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2023-08-27",
-      "days_since_last_match": 1029
+      "days_since_last_match": 1043
     },
     {
       "rank": 100,
@@ -1700,7 +1700,7 @@
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
       "last_match_date": "2025-04-18",
-      "days_since_last_match": 429
+      "days_since_last_match": 443
     }
   ]
 }

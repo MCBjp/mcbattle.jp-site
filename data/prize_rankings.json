@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-21T13:32:47.335Z",
+  "updated_at": "2026-07-05T11:45:36.510Z",
   "total": 91,
   "rankings": [
     {
@@ -94,21 +94,21 @@
     },
     {
       "rank": 16,
+      "mc_id": "MC0100",
+      "mc_name": "DOTAMA",
+      "total_prize_money": 3233333.33
+    },
+    {
+      "rank": 17,
       "mc_id": "MC0296",
       "mc_name": "T-TANGG",
       "total_prize_money": 3158333.33
     },
     {
-      "rank": 17,
+      "rank": 18,
       "mc_id": "MC0447",
       "mc_name": "9for",
       "total_prize_money": 3100000
-    },
-    {
-      "rank": 18,
-      "mc_id": "MC0100",
-      "mc_name": "DOTAMA",
-      "total_prize_money": 3083333.33
     },
     {
       "rank": 19,
@@ -280,117 +280,117 @@
     },
     {
       "rank": 47,
+      "mc_id": "MC0300",
+      "mc_name": "TERU",
+      "total_prize_money": 483333.33
+    },
+    {
+      "rank": 48,
       "mc_id": "MC0444",
       "mc_name": "黄猿",
       "total_prize_money": 350000
     },
     {
-      "rank": 48,
+      "rank": 49,
       "mc_id": "",
       "mc_name": "mu-ton",
       "total_prize_money": 333333.33
     },
     {
-      "rank": 49,
+      "rank": 50,
       "mc_id": "MC0454",
       "mc_name": "KOPERU",
       "total_prize_money": 316666.67
     },
     {
-      "rank": 50,
+      "rank": 51,
       "mc_id": "MC0448",
       "mc_name": "CHEHON",
       "total_prize_money": 300000
     },
     {
-      "rank": 51,
+      "rank": 52,
       "mc_id": "MC0121",
       "mc_name": "GOLBY",
       "total_prize_money": 300000
     },
     {
-      "rank": 52,
+      "rank": 53,
       "mc_id": "MC1041",
       "mc_name": "Juda",
       "total_prize_money": 300000
     },
     {
-      "rank": 53,
+      "rank": 54,
       "mc_id": "MC0456",
       "mc_name": "Lick-G",
       "total_prize_money": 300000
     },
     {
-      "rank": 54,
+      "rank": 55,
       "mc_id": "MC0692",
       "mc_name": "POWER WAVE",
       "total_prize_money": 300000
     },
     {
-      "rank": 55,
+      "rank": 56,
       "mc_id": "MC0599",
       "mc_name": "Rude-α",
       "total_prize_money": 300000
     },
     {
-      "rank": 56,
+      "rank": 57,
       "mc_id": "MC0771",
       "mc_name": "クボタカイ",
       "total_prize_money": 300000
     },
     {
-      "rank": 57,
+      "rank": 58,
       "mc_id": "MC0621",
       "mc_name": "バチスタ",
       "total_prize_money": 300000
     },
     {
-      "rank": 58,
+      "rank": 59,
       "mc_id": "MC0640",
       "mc_name": "よんろく",
       "total_prize_money": 300000
     },
     {
-      "rank": 59,
+      "rank": 60,
       "mc_id": "MC0367",
       "mc_name": "レイジ",
       "total_prize_money": 300000
     },
     {
-      "rank": 60,
+      "rank": 61,
       "mc_id": "MC0764",
       "mc_name": "孫GONG",
       "total_prize_money": 300000
     },
     {
-      "rank": 61,
+      "rank": 62,
       "mc_id": "MC0161",
       "mc_name": "K.Lee",
       "total_prize_money": 250000
     },
     {
-      "rank": 62,
+      "rank": 63,
       "mc_id": "MC0126",
       "mc_name": "Hawk-I",
       "total_prize_money": 200000
     },
     {
-      "rank": 63,
+      "rank": 64,
       "mc_id": "MC0397",
       "mc_name": "杏地",
       "total_prize_money": 200000
     },
     {
-      "rank": 64,
+      "rank": 65,
       "mc_id": "MC0421",
       "mc_name": "脱走",
       "total_prize_money": 200000
-    },
-    {
-      "rank": 65,
-      "mc_id": "MC0300",
-      "mc_name": "TERU",
-      "total_prize_money": 183333.33
     },
     {
       "rank": 66,

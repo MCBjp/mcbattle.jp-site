@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-21T13:32:36.915Z",
-  "total": 176,
+  "updated_at": "2026-07-05T11:45:24.105Z",
+  "total": 178,
   "events": [
     {
       "event_id": "EVT0021",
@@ -1854,6 +1854,40 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "R-指定"
+    },
+    {
+      "event_id": "EVT0187",
+      "event_name": "凱旋MC battle KING OF KINGS 2026への陣",
+      "event_name_full": "凱旋MC battle KING OF KINGS 2026への陣",
+      "seo_event_name": "凱旋MC battle KING OF KINGS 2026への陣",
+      "event_date": "2026-05-23",
+      "prize_money_winner": 150000,
+      "prize_money_total": null,
+      "category_id": "EVTCat005",
+      "category_name": "凱旋MC battle",
+      "category_show_order": 700,
+      "category_description": "怨念JAPを中心に、2017年に渋谷から始まったMCバトルシリーズ。\n若手の勢いと大型会場への拡張力を武器に、短期間で全国規模の注目大会へ成長した。\nYouTube・配信時代のMCバトルを象徴する、エンタメ性と現場感を併せ持つシリーズ。\n",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": "DOTAMA"
+    },
+    {
+      "event_id": "EVT0188",
+      "event_name": "凱旋MC battle 怨念JAP引退ノ陣",
+      "event_name_full": "凱旋MC battle 怨念JAP引退ノ陣",
+      "seo_event_name": "凱旋MC battle 怨念JAP引退ノ陣",
+      "event_date": "2026-02-21",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "category_id": "EVTCat005",
+      "category_name": "凱旋MC battle",
+      "category_show_order": 700,
+      "category_description": "怨念JAPを中心に、2017年に渋谷から始まったMCバトルシリーズ。\n若手の勢いと大型会場への拡張力を武器に、短期間で全国規模の注目大会へ成長した。\nYouTube・配信時代のMCバトルを象徴する、エンタメ性と現場感を併せ持つシリーズ。\n",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": "TERU"
     },
     {
       "event_id": "EVT0142",

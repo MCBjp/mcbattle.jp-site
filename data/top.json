@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-21T13:32:35.724Z",
+  "updated_at": "2026-07-05T11:45:23.022Z",
   "recent_events": [
     {
       "event_id": "EVT0161",
@@ -13,6 +13,19 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "クボタカイ"
+    },
+    {
+      "event_id": "EVT0187",
+      "event_name": "凱旋MC battle KING OF KINGS 2026への陣",
+      "event_name_full": "凱旋MC battle KING OF KINGS 2026への陣",
+      "seo_event_name": "凱旋MC battle KING OF KINGS 2026への陣",
+      "event_date": "2026-05-23",
+      "prize_money_winner": 150000,
+      "prize_money_total": null,
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": "DOTAMA"
     },
     {
       "event_id": "EVT0164",
@@ -39,6 +52,19 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "椿"
+    },
+    {
+      "event_id": "EVT0188",
+      "event_name": "凱旋MC battle 怨念JAP引退ノ陣",
+      "event_name_full": "凱旋MC battle 怨念JAP引退ノ陣",
+      "seo_event_name": "凱旋MC battle 怨念JAP引退ノ陣",
+      "event_date": "2026-02-21",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": "TERU"
     },
     {
       "event_id": "EVT0186",
@@ -104,32 +130,6 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "レイジ"
-    },
-    {
-      "event_id": "EVT0139",
-      "event_name": "NEO GENESIS MC BATTLE Vol.8",
-      "event_name_full": "NEO GENESIS MC BATTLE Vol.8",
-      "seo_event_name": "NEO GENESIS MC BATTLE Vol.8",
-      "event_date": "2025-10-05",
-      "prize_money_winner": 150000,
-      "prize_money_total": null,
-      "location": "JOULE",
-      "check": "",
-      "battle_format": "1on1",
-      "winner_name": "REDWING"
-    },
-    {
-      "event_id": "EVT0165",
-      "event_name": "3150×LUSHBOMU MC BATTLE vol.2",
-      "event_name_full": "3150×LUSHBOMU MC BATTLE vol.2",
-      "seo_event_name": "3150×LUSHBOMU MC BATTLE vol.2",
-      "event_date": "2025-09-27",
-      "prize_money_winner": 6800000,
-      "prize_money_total": null,
-      "location": "TOKYO FMホール",
-      "check": "",
-      "battle_format": "1on1",
-      "winner_name": "Donatello"
     }
   ],
   "upcoming_events": [

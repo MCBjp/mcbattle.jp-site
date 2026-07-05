@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-21T13:32:37.198Z",
-  "total": 925,
+  "updated_at": "2026-07-05T11:45:25.116Z",
+  "total": 934,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -476,6 +476,15 @@
       "mc_name_sub": "",
       "mc_description": "",
       "mc_yomi": "あるしーど",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC1131",
+      "mc_name": "Albert Connor",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "あるばーとこなー",
       "hot_mc": 0,
       "kana_group": "あ"
     },
@@ -1313,6 +1322,15 @@
       "mc_name_sub": "",
       "mc_description": "",
       "mc_yomi": "おー",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC1132",
+      "mc_name": "OKBOY",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "おーけーぼーい",
       "hot_mc": 0,
       "kana_group": "あ"
     },
@@ -2955,6 +2973,15 @@
       "kana_group": "さ"
     },
     {
+      "mc_id": "MC1127",
+      "mc_name": "佐山咲月",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "さやまさつき",
+      "hot_mc": 0,
+      "kana_group": "さ"
+    },
+    {
       "mc_id": "MC0291",
       "mc_name": "SURRY",
       "mc_name_sub": "",
@@ -3837,6 +3864,15 @@
       "kana_group": "さ"
     },
     {
+      "mc_id": "MC1134",
+      "mc_name": "STARK",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "すたーく",
+      "hot_mc": 0,
+      "kana_group": "さ"
+    },
+    {
       "mc_id": "MC0024",
       "mc_name": "STARGAZE",
       "mc_name_sub": "MC龍",
@@ -4301,6 +4337,15 @@
       "mc_name_sub": "",
       "mc_description": "UMB 2005 GRAND CHAMPIONSHIP出場。ZIOPS所属。",
       "mc_yomi": "だいふく",
+      "hot_mc": 0,
+      "kana_group": "た"
+    },
+    {
+      "mc_id": "MC1130",
+      "mc_name": "DAIMON",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "だいもん",
       "hot_mc": 0,
       "kana_group": "た"
     },
@@ -5165,6 +5210,15 @@
       "mc_name_sub": "",
       "mc_description": "1984年生まれ。2005年からマイクを握り、2006年にジャマイカへ渡る。親指HEAD aka TRIGA FINGA名義でも活動。",
       "mc_yomi": "とりがふぃんが",
+      "hot_mc": 0,
+      "kana_group": "た"
+    },
+    {
+      "mc_id": "MC1126",
+      "mc_name": "Tricky Vicky",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "とりっきーヴぃっきー",
       "hot_mc": 0,
       "kana_group": "た"
     },
@@ -6933,6 +6987,15 @@
       "kana_group": "ま"
     },
     {
+      "mc_id": "MC1128",
+      "mc_name": "マツバ",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "まつば",
+      "hot_mc": 0,
+      "kana_group": "ま"
+    },
+    {
       "mc_id": "MC0398",
       "mc_name": "松元",
       "mc_name_sub": "",
@@ -7532,6 +7595,15 @@
       "mc_name_sub": "",
       "mc_description": "神奈川県藤沢市出身、DINARY DELTA FORCEのメンバー。UMB横浜予選優勝、藤沢北口サンパール杯優勝など。アルバム『MIND VOOK』『FLOWMOTION』など。",
       "mc_yomi": "らいむぼーや",
+      "hot_mc": 0,
+      "kana_group": "ら"
+    },
+    {
+      "mc_id": "MC1129",
+      "mc_name": "Rava-ge",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "らヴぁーげ",
       "hot_mc": 0,
       "kana_group": "ら"
     },
@@ -8234,6 +8306,15 @@
       "mc_name_sub": "",
       "mc_description": "凱旋MCbattle東西選抜2018、U-22 MCBATTLEなどに出場。",
       "mc_yomi": "わいじにあす",
+      "hot_mc": 0,
+      "kana_group": "わ"
+    },
+    {
+      "mc_id": "MC1133",
+      "mc_name": "Y1ee COYOTE",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "わいりーこよーて",
       "hot_mc": 0,
       "kana_group": "わ"
     },
