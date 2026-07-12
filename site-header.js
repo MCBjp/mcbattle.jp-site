@@ -38,10 +38,7 @@
     return "";
   }
 
-  function createHeader() {
-    const base = getBasePrefix();
-    const current = getCurrentSection();
-
+  function createBrandHeader(base) {
     return `
       <header class="home-header">
         <div class="home-header-inner">
@@ -55,8 +52,12 @@
           </p>
         </div>
       </header>
+    `;
+  }
 
-      <div class="home-tabs-sticky">
+  function createStickyNavigation(base, current) {
+    return `
+      <div class="home-tabs-sticky" data-site-sticky-nav>
         <div class="home-header-inner">
           <nav class="home-tabs" aria-label="主要メニュー">
             <div class="home-tabs-row home-tabs-row-primary">
@@ -98,7 +99,18 @@
     const mount = document.getElementById("site-header");
     if (!mount) return;
 
-    mount.innerHTML = createHeader();
+    const base = getBasePrefix();
+    const current = getCurrentSection();
+
+    document
+      .querySelectorAll("[data-site-sticky-nav]")
+      .forEach((element) => element.remove());
+
+    mount.innerHTML = createBrandHeader(base);
+    mount.insertAdjacentHTML(
+      "afterend",
+      createStickyNavigation(base, current)
+    );
   }
 
   if (document.readyState === "loading") {
