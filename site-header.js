@@ -1,9 +1,7 @@
-// site-header.js
-// MCBattle.jp shared header / navigation
+// site-header.js // MCBattle.jp shared header / navigation
 
-(function () {
-  function getBasePrefix() {
-    const path = window.location.pathname || "";
+(function () { function getBasePrefix() { const path =
+window.location.pathname || ““;
 
     if (
       path.includes("/detail_mc/") ||
@@ -13,11 +11,13 @@
     }
 
     return "./";
-  }
 
-  function getCurrentSection() {
-    const file = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
-    const path = window.location.pathname.toLowerCase();
+}
+
+function getCurrentSection() { const file =
+(window.location.pathname.split(“/”).pop() ||
+“index.html”).toLowerCase(); const path =
+window.location.pathname.toLowerCase();
 
     if (file === "list_event.html" || path.includes("/detail_event/")) {
       return "events";
@@ -35,20 +35,12 @@
       return "prize";
     }
 
-    if (file === "simulation.html") {
-      return "simulator";
-    }
-
-    if (file === "articles.html" || file.startsWith("article")) {
-      return "reading";
-    }
-
     return "";
-  }
 
-  function createHeader() {
-    const base = getBasePrefix();
-    const current = getCurrentSection();
+}
+
+function createHeader() { const base = getBasePrefix(); const current =
+getCurrentSection();
 
     return `
       <header class="home-header">
@@ -92,38 +84,20 @@
                 <span class="home-tab-text">賞金</span>
               </a>
             </div>
-
-            <div class="home-tabs-row home-tabs-row-secondary">
-              <a
-                class="home-tab home-tab-simulator ${current === "simulator" ? "is-current" : ""}"
-                href="${base}simulation.html"
-              >
-                <span class="home-tab-text">Simulator</span>
-              </a>
-
-              <a
-                class="home-tab home-tab-reading ${current === "reading" ? "is-current" : ""}"
-                href="${base}articles.html"
-              >
-                <span class="home-tab-text">Reading</span>
-              </a>
-            </div>
           </nav>
         </div>
       </header>
     `;
-  }
 
-  function mountHeader() {
-    const mount = document.getElementById("site-header");
-    if (!mount) return;
+}
+
+function mountHeader() { const mount =
+document.getElementById(“site-header”); if (!mount) return;
 
     mount.innerHTML = createHeader();
-  }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mountHeader);
-  } else {
-    mountHeader();
-  }
-})();
+}
+
+if (document.readyState === “loading”) {
+document.addEventListener(“DOMContentLoaded”, mountHeader); } else {
+mountHeader(); } })();
