@@ -7,12 +7,11 @@
 
 .home-header {
   position: relative;
-  margin-bottom: 18px;
-  padding: 26px 0 0;
+  margin-bottom: 0;
+  padding: 26px 0 13px;
   background:
     linear-gradient(120deg, rgba(255,255,255,.035), rgba(255,255,255,.012)),
     radial-gradient(circle at 96% 0%, rgba(216,180,106,.07), transparent 34%);
-  border-bottom: 1px solid rgba(255,255,255,.14);
   z-index: 40;
 }
 
@@ -40,11 +39,23 @@
 }
 
 .home-lead {
-  margin: 0 0 13px;
+  margin: 0;
   color: #f0f2f6;
   font-size: 1rem;
   line-height: 1.45;
   letter-spacing: -.02em;
+}
+
+.home-tabs-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 0 1px;
+  margin-bottom: 18px;
+  background: rgba(12,13,18,.94);
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 .home-tabs {
@@ -73,11 +84,6 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.home-tabs-row-secondary {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid rgba(255,255,255,.14);
-}
-
 .home-tab {
   position: relative;
   display: flex;
@@ -104,8 +110,7 @@
   box-sizing: border-box;
 }
 
-.home-tabs-row-primary .home-tab + .home-tab,
-.home-tabs-row-secondary .home-tab + .home-tab {
+.home-tabs-row-primary .home-tab + .home-tab {
   border-left: 1px solid rgba(255,255,255,.14);
 }
 
@@ -122,19 +127,7 @@
 .home-tab-prize {
   background:
     linear-gradient(180deg, rgba(216,180,106,.12), rgba(216,180,106,.035)),
-    rgba(42, 32, 12, .36);
-}
-
-.home-tab-simulator {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.010)),
-    rgba(72, 22, 26, .50);
-}
-
-.home-tab-reading {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.010)),
-    rgba(18, 34, 64, .54);
+    rgba(42,32,12,.36);
 }
 
 .home-tab.is-current {
@@ -167,8 +160,8 @@
   outline: none;
   color: #ffffff;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, .14) inset,
-    0 0 14px rgba(216, 180, 106, .16);
+    0 0 0 1px rgba(255,255,255,.14) inset,
+    0 0 14px rgba(216,180,106,.16);
 }
 
 .home-tab:not(.is-current):hover::before,
@@ -180,7 +173,10 @@
 
 @media (min-width: 768px) {
   .home-header-inner {
-    width: min(var(--home-header-max), calc(100% - var(--pc-left-gutter, 24px) - var(--page-gutter, 24px)));
+    width: min(
+      var(--home-header-max),
+      calc(100% - var(--pc-left-gutter, 24px) - var(--page-gutter, 24px))
+    );
     margin-left: var(--pc-left-gutter, 24px);
     margin-right: auto;
   }
@@ -219,6 +215,10 @@
     overflow-wrap: anywhere;
   }
 
+  .home-tabs-sticky {
+    margin-bottom: 18px;
+  }
+
   .home-tabs {
     border-radius: 12px;
   }
@@ -228,12 +228,6 @@
     padding: 9px 5px 10px;
     font-size: .84rem;
     letter-spacing: -.035em;
-  }
-
-  .home-tab-simulator,
-  .home-tab-reading {
-    font-size: .90rem;
-    letter-spacing: -.02em;
   }
 }
 
@@ -249,10 +243,5 @@
     padding-left: 4px;
     padding-right: 4px;
     font-size: .78rem;
-  }
-
-  .home-tab-simulator,
-  .home-tab-reading {
-    font-size: .84rem;
   }
 }
