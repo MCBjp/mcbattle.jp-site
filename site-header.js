@@ -1,7 +1,9 @@
-// site-header.js // MCBattle.jp shared header / navigation
+// site-header.js
+// MCBattle.jp shared header / navigation
 
-(function () { function getBasePrefix() { const path =
-window.location.pathname || ““;
+(function () {
+  function getBasePrefix() {
+    const path = window.location.pathname || "";
 
     if (
       path.includes("/detail_mc/") ||
@@ -11,13 +13,11 @@ window.location.pathname || ““;
     }
 
     return "./";
+  }
 
-}
-
-function getCurrentSection() { const file =
-(window.location.pathname.split(“/”).pop() ||
-“index.html”).toLowerCase(); const path =
-window.location.pathname.toLowerCase();
+  function getCurrentSection() {
+    const file = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+    const path = window.location.pathname.toLowerCase();
 
     if (file === "list_event.html" || path.includes("/detail_event/")) {
       return "events";
@@ -36,11 +36,11 @@ window.location.pathname.toLowerCase();
     }
 
     return "";
+  }
 
-}
-
-function createHeader() { const base = getBasePrefix(); const current =
-getCurrentSection();
+  function createHeader() {
+    const base = getBasePrefix();
+    const current = getCurrentSection();
 
     return `
       <header class="home-header">
@@ -88,16 +88,18 @@ getCurrentSection();
         </div>
       </header>
     `;
+  }
 
-}
-
-function mountHeader() { const mount =
-document.getElementById(“site-header”); if (!mount) return;
+  function mountHeader() {
+    const mount = document.getElementById("site-header");
+    if (!mount) return;
 
     mount.innerHTML = createHeader();
+  }
 
-}
-
-if (document.readyState === “loading”) {
-document.addEventListener(“DOMContentLoaded”, mountHeader); } else {
-mountHeader(); } })();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mountHeader);
+  } else {
+    mountHeader();
+  }
+})();
