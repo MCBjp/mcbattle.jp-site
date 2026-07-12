@@ -46,17 +46,31 @@
   letter-spacing: -.02em;
 }
 
-.home-tabs-sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+.home-tabs-slot {
+  position: relative;
   margin-bottom: 18px;
+}
+
+.home-tabs-slot.is-fixed {
+  height: var(--site-tabs-height, 47px);
+}
+
+.home-tabs-fixed-layer {
+  position: relative;
+  z-index: 100;
   padding-bottom: 1px;
   background: rgba(12,13,18,.94);
   border-bottom: 1px solid rgba(255,255,255,.14);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
+}
+
+.home-tabs-slot.is-fixed .home-tabs-fixed-layer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .home-tabs {
@@ -143,9 +157,7 @@
   right: 0;
   bottom: -1px;
   height: 4px;
-  border-radius: 0 !important;
   background: var(--accent);
-  box-shadow: none !important;
   display: block;
 }
 
