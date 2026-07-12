@@ -47,11 +47,12 @@
 }
 
 .home-tabs-sticky {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 100;
-  padding: 0 0 1px;
+  z-index: 1000;
   margin-bottom: 18px;
+  padding-bottom: 1px;
   background: rgba(12,13,18,.94);
   border-bottom: 1px solid rgba(255,255,255,.14);
   -webkit-backdrop-filter: blur(12px);
@@ -213,10 +214,6 @@
     font-size: 1rem;
     line-height: 1.45;
     overflow-wrap: anywhere;
-  }
-
-  .home-tabs-sticky {
-    margin-bottom: 18px;
   }
 
   .home-tabs {
