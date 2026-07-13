@@ -1213,32 +1213,62 @@
       hidden
     >
       <div class="mc-history-toolbar">
-        <div class="mc-filter-group" role="group" aria-label="戦績フィルター">
-          <button
+        <div class="mc-filter-stack">
+          <div class="mc-filter-row">
+            <span class="mc-filter-label">試合形式</span>
+            <div class="mc-filter-group" role="group" aria-label="試合形式">
+              <button
       type="button"
       class="mc-filter-button is-active"
-      data-history-filter="all"
+      data-filter-axis="mode"
+      data-filter-value="all"
       aria-pressed="true"
     >全て</button>
-          <button
+              <button
       type="button"
       class="mc-filter-button"
-      data-history-filter="win"
+      data-filter-axis="mode"
+      data-filter-value="solo"
       aria-pressed="false"
-    >Win</button>
-          <button
+    >個人</button>
+              <button
       type="button"
       class="mc-filter-button"
-      data-history-filter="loss"
-      aria-pressed="false"
-    >Lose</button>
-          <button
-      type="button"
-      class="mc-filter-button"
-      data-history-filter="team"
+      data-filter-axis="mode"
+      data-filter-value="team"
       aria-pressed="false"
     >Team</button>
+            </div>
+          </div>
+
+          <div class="mc-filter-row">
+            <span class="mc-filter-label">勝敗</span>
+            <div class="mc-filter-group" role="group" aria-label="勝敗">
+              <button
+      type="button"
+      class="mc-filter-button is-active"
+      data-filter-axis="result"
+      data-filter-value="all"
+      aria-pressed="true"
+    >全て</button>
+              <button
+      type="button"
+      class="mc-filter-button"
+      data-filter-axis="result"
+      data-filter-value="win"
+      aria-pressed="false"
+    >Win</button>
+              <button
+      type="button"
+      class="mc-filter-button"
+      data-filter-axis="result"
+      data-filter-value="loss"
+      aria-pressed="false"
+    >Lose</button>
+            </div>
+          </div>
         </div>
+
         <div class="mc-history-count" aria-live="polite">
           <span data-visible-count>87</span>件
         </div>
@@ -1247,7 +1277,8 @@
       <ol class="mc-timeline" data-timeline><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1274,7 +1305,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1301,7 +1333,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1328,7 +1361,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1355,7 +1389,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1382,7 +1417,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1409,7 +1445,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1436,7 +1473,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1463,7 +1501,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1490,7 +1529,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1517,7 +1557,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1544,7 +1585,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1571,7 +1613,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1598,7 +1641,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1625,7 +1669,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1652,7 +1697,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1679,7 +1725,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1706,7 +1753,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1733,7 +1781,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1760,7 +1809,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1787,7 +1837,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1814,7 +1865,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1841,7 +1893,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1868,7 +1921,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1895,7 +1949,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1922,7 +1977,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1949,7 +2005,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1976,7 +2033,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2003,7 +2061,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2030,7 +2089,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2057,7 +2117,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2084,7 +2145,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2111,7 +2173,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2138,7 +2201,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2165,7 +2229,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2192,7 +2257,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2219,7 +2285,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2246,7 +2313,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2273,7 +2341,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2300,7 +2369,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2327,7 +2397,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2354,7 +2425,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2381,7 +2453,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2408,7 +2481,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2435,7 +2509,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2462,7 +2537,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2489,7 +2565,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2516,7 +2593,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2543,7 +2621,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2570,7 +2649,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2597,7 +2677,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2624,7 +2705,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2651,7 +2733,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2678,7 +2761,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2705,7 +2789,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2732,7 +2817,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2759,7 +2845,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2786,7 +2873,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2813,7 +2901,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2840,7 +2929,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2867,7 +2957,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2894,7 +2985,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2921,7 +3013,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2948,7 +3041,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -2975,7 +3069,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3002,7 +3097,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3029,7 +3125,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3056,7 +3153,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3083,7 +3181,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3110,7 +3209,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3137,7 +3237,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3164,7 +3265,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3191,7 +3293,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3218,7 +3321,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3245,7 +3349,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3272,7 +3377,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3299,7 +3405,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3326,7 +3433,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3353,7 +3461,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3380,7 +3489,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3407,7 +3517,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3434,7 +3545,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3461,7 +3573,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3488,7 +3601,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3515,7 +3629,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3542,7 +3657,8 @@
     </li><li
       class="mc-timeline-item is-win"
       data-history-item
-      data-history-types="win"
+      data-match-mode="solo"
+      data-result-type="win"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -3569,7 +3685,8 @@
     </li><li
       class="mc-timeline-item is-loss"
       data-history-item
-      data-history-types="loss"
+      data-match-mode="solo"
+      data-result-type="loss"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -4077,6 +4194,27 @@
         backdrop-filter: blur(14px);
       }
 
+      .mc-filter-stack {
+        display: grid;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .mc-filter-row {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        align-items: center;
+        gap: 10px;
+      }
+
+      .mc-filter-label {
+        color: rgba(255, 255, 255, .42);
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .06em;
+        white-space: nowrap;
+      }
+
       .mc-filter-group {
         display: flex;
         flex-wrap: wrap;
@@ -4428,12 +4566,22 @@
           display: block;
         }
 
+        .mc-filter-stack {
+          gap: 9px;
+        }
+
+        .mc-filter-row {
+          grid-template-columns: 58px minmax(0, 1fr);
+          gap: 8px;
+        }
+
         .mc-filter-group {
           display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
         .mc-filter-button {
+          min-width: 0;
           padding: 0 7px;
           font-size: .75rem;
         }
@@ -4486,7 +4634,7 @@
 
         const tabButtons = Array.from(app.querySelectorAll("[data-tab-target]"));
         const tabPanels = Array.from(app.querySelectorAll("[data-tab-panel]"));
-        const filterButtons = Array.from(app.querySelectorAll("[data-history-filter]"));
+        const filterButtons = Array.from(app.querySelectorAll("[data-filter-axis][data-filter-value]"));
         const historyItems = Array.from(app.querySelectorAll("[data-history-item]"));
         const visibleCount = app.querySelector("[data-visible-count]");
         const filterEmpty = app.querySelector("[data-filter-empty]");
@@ -4517,18 +4665,37 @@
           }
         };
 
-        const applyHistoryFilter = (filterName) => {
+        const historyFilter = {
+          mode: "all",
+          result: "all"
+        };
+
+        const applyHistoryFilters = () => {
           let count = 0;
 
           historyItems.forEach((item) => {
-            const types = String(item.dataset.historyTypes || "").split(/\s+/);
-            const visible = filterName === "all" || types.includes(filterName);
+            const itemMode = item.dataset.matchMode || "solo";
+            const itemResult = item.dataset.resultType || "";
+
+            const matchesMode =
+              historyFilter.mode === "all" ||
+              itemMode === historyFilter.mode;
+
+            const matchesResult =
+              historyFilter.result === "all" ||
+              itemResult === historyFilter.result;
+
+            const visible = matchesMode && matchesResult;
             item.hidden = !visible;
+
             if (visible) count += 1;
           });
 
           filterButtons.forEach((button) => {
-            const active = button.dataset.historyFilter === filterName;
+            const axis = button.dataset.filterAxis;
+            const value = button.dataset.filterValue;
+            const active = historyFilter[axis] === value;
+
             button.classList.toggle("is-active", active);
             button.setAttribute("aria-pressed", String(active));
           });
@@ -4575,7 +4742,13 @@
 
         filterButtons.forEach((button) => {
           button.addEventListener("click", () => {
-            applyHistoryFilter(button.dataset.historyFilter || "all");
+            const axis = button.dataset.filterAxis;
+            const value = button.dataset.filterValue;
+
+            if (!axis || !value || !(axis in historyFilter)) return;
+
+            historyFilter[axis] = value;
+            applyHistoryFilters();
           });
         });
 
@@ -4587,7 +4760,7 @@
         activateTab(validInitialTab ? initialTab : "overview", {
           updateHash: false
         });
-        applyHistoryFilter("all");
+        applyHistoryFilters();
       })();
     </script></p>
       </div>
