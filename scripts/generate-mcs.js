@@ -23,15 +23,18 @@ function main() {
     return;
   }
 
+  const normalizedEntries = entries
+    .filter(([, rawDetail]) => isObject(rawDetail) && isObject(rawDetail.mc))
+    .map(([mcId, rawDetail]) => [mcId, normalizeDetail(rawDetail)]);
+
+  const globalRankingContext = buildGlobalRankingContext(normalizedEntries);
+
   let generatedCount = 0;
   const errors = [];
 
-  for (const [mcId, rawDetail] of entries) {
-    if (!isObject(rawDetail) || !isObject(rawDetail.mc)) continue;
-
+  for (const [mcId, detail] of normalizedEntries) {
     try {
-      const detail = normalizeDetail(rawDetail);
-      const html = buildMcPage(template, mcId, detail);
+      const html = buildMcPage(template, mcId, detail, globalRankingContext);
       fs.writeFileSync(path.join(OUTPUT_DIR, `${mcId}.html`), html, "utf8");
       generatedCount += 1;
     } catch (error) {
@@ -48,8 +51,8 @@ function main() {
   }
 }
 
-function buildMcPage(template, mcId, detail) {
-  const view = createPageViewModel(mcId, detail);
+function buildMcPage(template, mcId, detail, globalRankingContext) {
+  const view = createPageViewModel(mcId, detail, globalRankingContext);
   const replacements = createTemplateReplacements(view);
 
   let html = template;
@@ -61,7 +64,7 @@ function buildMcPage(template, mcId, detail) {
   return html;
 }
 
-function createPageViewModel(mcId, detail) {
+function createPageViewModel(mcId, detail, globalRankingContext) {
   const mcName = cleanText(detail.mc.mc_name) || "このMC";
   const mcSubName = cleanText(detail.mc.mc_name_sub);
   const mcDescription = cleanText(
@@ -74,6 +77,8 @@ function createPageViewModel(mcId, detail) {
   const rankDisplay = getRankDisplay(detail.ranking);
   const scoreDisplay = getScoreDisplay(detail.ranking);
   const rankingInactive = isInactiveRanking(rankingStatus);
+  const prizeRanking = globalRankingContext.prize.get(mcId) || createEmptyMetricRanking();
+  const scoreRanking = globalRankingContext.score.get(mcId) || createEmptyMetricRanking();
 
   const timeline = buildTimeline(detail);
   const appearances = mergeAppearances(
@@ -102,6 +107,8 @@ function createPageViewModel(mcId, detail) {
     rankingInactive,
     rankDisplay,
     scoreDisplay,
+    prizeRanking,
+    scoreRanking,
     detail,
     timeline,
     appearances,
@@ -230,8 +237,9 @@ function buildOverviewTab(view) {
   const {
     detail,
     rankingInactive,
-    rankDisplay,
     scoreDisplay,
+    prizeRanking,
+    scoreRanking,
     appearances
   } = view;
 
@@ -250,12 +258,17 @@ function buildOverviewTab(view) {
       data-tab-panel="overview"
     >
       <div class="mc-overview-grid">
-        ${buildPrimaryStats(summary, teamSummary, detail.totalPrizeMoney)}
-        ${buildRankingCard({
-          rankingInactive,
-          rankDisplay,
-          scoreDisplay,
-          rankingNote
+        ${buildPrimaryStats(summary, teamSummary)}
+        ${buildRankedMetricCard({
+          title: "獲得賞金",
+          value: `¥${formatYen(detail.totalPrizeMoney)}`,
+          ranking: prizeRanking
+        })}
+        ${buildRankedMetricCard({
+          title: "スコア",
+          value: rankingInactive ? "−" : displayValue(scoreDisplay),
+          ranking: rankingInactive ? createEmptyMetricRanking() : scoreRanking,
+          note: rankingNote
         })}
       </div>
 
@@ -265,16 +278,25 @@ function buildOverviewTab(view) {
   `.trim();
 }
 
-function buildPrimaryStats(summary, teamSummary, totalPrizeMoney) {
+function buildPrimaryStats(summary, teamSummary) {
   const soloWinRate = calculateRate(summary.wins, summary.totalMatches);
   const teamWinRate = calculateRate(teamSummary.wins, teamSummary.totalMatches);
 
   const cards = [
-    buildStatCard("個人戦", `${summary.totalMatches}試合`, `${summary.wins}勝 ${summary.losses}敗`, soloWinRate),
+    buildStatCard(
+      "個人戦",
+      `${summary.totalMatches}試合`,
+      `${summary.wins}勝 ${summary.losses}敗`,
+      soloWinRate
+    ),
     teamSummary.totalMatches > 0
-      ? buildStatCard("チーム戦", `${teamSummary.totalMatches}試合`, `${teamSummary.wins}勝 ${teamSummary.losses}敗`, teamWinRate)
-      : "",
-    buildStatCard("獲得賞金", `¥${formatYen(totalPrizeMoney)}`, "確認できた賞金の合計")
+      ? buildStatCard(
+          "チーム戦",
+          `${teamSummary.totalMatches}試合`,
+          `${teamSummary.wins}勝 ${teamSummary.losses}敗`,
+          teamWinRate
+        )
+      : ""
   ].filter(Boolean);
 
   return `<div class="mc-stat-grid">${cards.join("")}</div>`;
@@ -291,29 +313,45 @@ function buildStatCard(label, main, sub, rate = null) {
   `.trim();
 }
 
-function buildRankingCard(params) {
+function buildRankedMetricCard(params) {
   const {
-    rankingInactive,
-    rankDisplay,
-    scoreDisplay,
-    rankingNote
+    title,
+    value,
+    ranking,
+    note = ""
   } = params;
+
+  const rankText = ranking.rank === null ? "−" : `${ranking.rank}位`;
 
   return `
     <article class="mc-ranking-card">
-      <h2 class="mc-card-title">スコアランキング</h2>
-      <dl class="mc-ranking-list">
-        <div>
-          <dt>順位</dt>
-          <dd>${escapeHtml(rankingInactive ? "対象外" : displayValue(rankDisplay))}</dd>
-        </div>
-        <div>
-          <dt>スコア</dt>
-          <dd>${escapeHtml(rankingInactive ? "−" : displayValue(scoreDisplay))}</dd>
-        </div>
-      </dl>
-      ${rankingNote ? `<p class="mc-card-note">${escapeHtml(rankingNote)}</p>` : ""}
+      <h2 class="mc-card-title">${escapeHtml(title)}</h2>
+
+      <div class="mc-ranked-metric-main">
+        <div class="mc-ranked-metric-value">${escapeHtml(value)}</div>
+        <div class="mc-ranked-metric-rank">${escapeHtml(rankText)}</div>
+      </div>
+
+      ${buildRankingNeighbor("up", ranking.above)}
+      ${buildRankingNeighbor("down", ranking.below)}
+
+      ${note ? `<p class="mc-card-note">${escapeHtml(note)}</p>` : ""}
     </article>
+  `.trim();
+}
+
+function buildRankingNeighbor(direction, neighbor) {
+  if (!neighbor) return "";
+
+  const arrow = direction === "up" ? "↑" : "↓";
+  const directionClass = direction === "up" ? "is-up" : "is-down";
+
+  return `
+    <div class="mc-ranking-neighbor ${directionClass}">
+      <span class="mc-ranking-neighbor-arrow" aria-hidden="true">${arrow}</span>
+      <span class="mc-ranking-neighbor-rank">${neighbor.rank}位</span>
+      ${renderMcLink(neighbor.mcName, neighbor.mcId, "mc-ranking-neighbor-link")}
+    </div>
   `.trim();
 }
 
@@ -876,6 +914,118 @@ function buildActiveSpanLabel(appearances) {
     : `${first}年〜${last}年`;
 }
 
+function buildGlobalRankingContext(normalizedEntries) {
+  const prizeRows = normalizedEntries
+    .map(([mcId, detail]) => ({
+      mcId,
+      mcName: cleanText(detail.mc.mc_name) || "名称不明",
+      value: detail.totalPrizeMoney
+    }))
+    .filter((row) => Number.isFinite(row.value) && row.value > 0);
+
+  const scoreRows = normalizedEntries
+    .map(([mcId, detail]) => {
+      const rankingStatus = cleanText(detail.ranking.ranking_status);
+      const score = getNumericScore(detail.ranking);
+      const suppliedRank = toNullableFiniteNumber(detail.ranking.rank);
+
+      return {
+        mcId,
+        mcName: cleanText(detail.mc.mc_name) || "名称不明",
+        value: score,
+        suppliedRank,
+        inactive: isInactiveRanking(rankingStatus)
+      };
+    })
+    .filter((row) => !row.inactive && row.value !== null);
+
+  return {
+    prize: buildMetricRankingMap(prizeRows, {
+      compare: (a, b) => {
+        if (b.value !== a.value) return b.value - a.value;
+        return a.mcName.localeCompare(b.mcName, "ja");
+      }
+    }),
+    score: buildMetricRankingMap(scoreRows, {
+      compare: (a, b) => {
+        const rankA = a.suppliedRank ?? Number.POSITIVE_INFINITY;
+        const rankB = b.suppliedRank ?? Number.POSITIVE_INFINITY;
+
+        if (rankA !== rankB) return rankA - rankB;
+        if (b.value !== a.value) return b.value - a.value;
+        return a.mcName.localeCompare(b.mcName, "ja");
+      },
+      useSuppliedRank: true
+    })
+  };
+}
+
+function buildMetricRankingMap(rows, options = {}) {
+  const {
+    compare,
+    useSuppliedRank = false
+  } = options;
+
+  const sorted = [...rows].sort(compare);
+  const ranked = [];
+  let previousValue = null;
+  let previousRank = 0;
+
+  sorted.forEach((row, index) => {
+    let rank;
+
+    if (useSuppliedRank && row.suppliedRank !== null) {
+      rank = row.suppliedRank;
+    } else if (previousValue !== null && row.value === previousValue) {
+      rank = previousRank;
+    } else {
+      rank = index + 1;
+    }
+
+    ranked.push({
+      ...row,
+      rank
+    });
+
+    previousValue = row.value;
+    previousRank = rank;
+  });
+
+  const map = new Map();
+
+  ranked.forEach((row, index) => {
+    map.set(row.mcId, {
+      rank: row.rank,
+      above: index > 0 ? toRankingNeighbor(ranked[index - 1]) : null,
+      below: index < ranked.length - 1 ? toRankingNeighbor(ranked[index + 1]) : null
+    });
+  });
+
+  return map;
+}
+
+function toRankingNeighbor(row) {
+  return {
+    mcId: row.mcId,
+    mcName: row.mcName,
+    rank: row.rank
+  };
+}
+
+function createEmptyMetricRanking() {
+  return {
+    rank: null,
+    above: null,
+    below: null
+  };
+}
+
+function getNumericScore(ranking) {
+  const value = ranking.current_score ?? ranking.score;
+  const score = Number(value);
+  return Number.isFinite(score) ? score : null;
+}
+
 function normalizeDetail(detail) {
   return {
     mc: isObject(detail.mc) ? detail.mc : {},
@@ -1359,7 +1509,7 @@ function buildMcDetailStyles() {
 
       .mc-stat-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 12px;
       }
 
@@ -1379,10 +1529,6 @@ function buildMcDetailStyles() {
       .mc-analysis-metric {
         border-radius: 16px;
         padding: 14px 16px;
-      }
-
-      .mc-stat-card:first-child {
-        grid-column: span 2;
       }
 
       .mc-stat-label,
@@ -1417,6 +1563,68 @@ function buildMcDetailStyles() {
         color: #d8b46a;
         font-size: .83rem;
         font-weight: 700;
+      }
+
+      .mc-ranked-metric-main {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 10px 0 13px;
+      }
+
+      .mc-ranked-metric-value {
+        min-width: 0;
+        color: #fff;
+        font-size: clamp(1.45rem, 5vw, 2rem);
+        font-weight: 850;
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+      }
+
+      .mc-ranked-metric-rank {
+        flex: 0 0 auto;
+        color: #d8b46a;
+        font-size: 1rem;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .mc-ranking-neighbor {
+        display: grid;
+        grid-template-columns: 18px auto minmax(0, 1fr);
+        align-items: baseline;
+        gap: 7px;
+        padding: 8px 0;
+        border-top: 1px solid rgba(255, 255, 255, .07);
+        color: rgba(255, 255, 255, .58);
+        font-size: .78rem;
+        line-height: 1.4;
+      }
+
+      .mc-ranking-neighbor-arrow {
+        color: #d8b46a;
+        font-weight: 900;
+      }
+
+      .mc-ranking-neighbor-rank {
+        white-space: nowrap;
+      }
+
+      .mc-ranking-neighbor-link {
+        min-width: 0;
+        color: rgba(255, 255, 255, .76);
+        font-weight: 700;
+        text-decoration: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .mc-ranking-neighbor-link:hover {
+        color: #d8b46a;
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
 
       .mc-card-title {
@@ -1954,10 +2162,6 @@ function buildMcDetailStyles() {
         .mc-stat-grid,
         .mc-analysis-grid {
           grid-template-columns: 1fr;
-        }
-
-        .mc-stat-card:first-child {
-          grid-column: auto;
         }
 
         .mc-history-toolbar {
