@@ -983,18 +983,17 @@
       <div class="mc-stat-sub">8勝 3敗</div>
       <div class="mc-stat-rate">勝率 72.7%</div>
     </article><article class="mc-stat-card">
-      <div class="mc-stat-label">獲得賞金</div>
-      <div class="mc-stat-main">¥300,000</div>
-      <div class="mc-stat-sub">確認できた賞金の合計</div>
-      
-    </article><article class="mc-stat-card">
       <div class="mc-stat-label">チーム戦</div>
       <div class="mc-stat-main">1試合</div>
       <div class="mc-stat-sub">0勝 1敗</div>
       <div class="mc-stat-rate">勝率 0%</div>
+    </article><article class="mc-stat-card">
+      <div class="mc-stat-label">獲得賞金</div>
+      <div class="mc-stat-main">¥300,000</div>
+      <div class="mc-stat-sub">確認できた賞金の合計</div>
+      
     </article></div>
         <article class="mc-ranking-card">
-      <div class="mc-section-kicker">Ranking</div>
       <h2 class="mc-card-title">スコアランキング</h2>
       <dl class="mc-ranking-list">
         <div>
@@ -1013,26 +1012,28 @@
       <section class="mc-content-section">
       <div class="mc-section-heading">
         <div>
-          <div class="mc-section-kicker">Titles</div>
           <h2>優勝歴</h2>
         </div>
         <span class="mc-section-count">1</span>
       </div>
-      <ul class="mc-link-list"><li>
-      <a href="../detail_event/EVT0161.html" class="championship-event-link">戦極MCBATTLE 第42章</a>
-    </li></ul>
-    </section>
       
+      <ul class="mc-link-list" data-collapsible-list>
+        <li>
+      <a href="../detail_event/EVT0161.html" class="championship-event-link">戦極MCBATTLE 第42章</a>
+    </li>
+      </ul>
+      
+    
+    </section>
       <section class="mc-content-section">
       <div class="mc-section-heading">
         <div>
-          <div class="mc-section-kicker">Events</div>
           <h2>出場大会</h2>
         </div>
         <span class="mc-section-count">5</span>
       </div>
       
-      <ol class="mc-appearance-list">
+      <ol class="mc-appearance-list" data-collapsible-list>
         <li>
       <div class="mc-appearance-date">2026.06.20</div>
       <div class="mc-appearance-event">
@@ -1060,12 +1061,9 @@
       </div>
     </li>
       </ol>
+      
     
     </section>
-      <p class="mc-footnote">
-      チーム戦は個人戦とは分けて集計しています。
-      1試合 0勝 1敗。
-    </p>
     </section>
 <section
       class="mc-tab-panel"
@@ -2212,6 +2210,38 @@
         background: #d8b46a;
       }
 
+
+      .mc-collapse-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        margin-top: 14px;
+        padding: 0 16px;
+        border: 1px solid rgba(216, 180, 106, .38);
+        border-radius: 10px;
+        color: rgba(255, 255, 255, .9);
+        background: transparent;
+        font: inherit;
+        font-size: .84rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .mc-collapse-button:hover {
+        color: #17130b;
+        background: #d8b46a;
+      }
+
+      .mc-collapse-button:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+
+      .is-collapsed-item[hidden] {
+        display: none !important;
+      }
+
       .mc-empty-state,
       .mc-filter-empty {
         padding: 28px 18px;
@@ -2340,6 +2370,7 @@
         const historyItems = Array.from(app.querySelectorAll("[data-history-item]"));
         const visibleCount = app.querySelector("[data-visible-count]");
         const filterEmpty = app.querySelector("[data-filter-empty]");
+        const collapseButtons = Array.from(app.querySelectorAll("[data-collapse-button]"));
 
         const activateTab = (targetName, options = {}) => {
           const { focus = false, updateHash = true } = options;
@@ -2451,6 +2482,30 @@
 
             historyFilter[axis] = value;
             applyHistoryFilters();
+          });
+        });
+
+
+        collapseButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const section = button.closest(".mc-content-section");
+            if (!section) return;
+
+            const hiddenItems = Array.from(
+              section.querySelectorAll(".is-collapsed-item")
+            );
+
+            const expanded = button.getAttribute("aria-expanded") === "true";
+            const nextExpanded = !expanded;
+
+            hiddenItems.forEach((item) => {
+              item.hidden = !nextExpanded;
+            });
+
+            button.setAttribute("aria-expanded", String(nextExpanded));
+            button.textContent = nextExpanded
+              ? "閉じる"
+              : "もっと見る（あと" + (button.dataset.remainingCount || hiddenItems.length) + "件）";
           });
         });
 

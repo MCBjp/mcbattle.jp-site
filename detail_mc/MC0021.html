@@ -989,7 +989,6 @@
       
     </article></div>
         <article class="mc-ranking-card">
-      <div class="mc-section-kicker">Ranking</div>
       <h2 class="mc-card-title">スコアランキング</h2>
       <dl class="mc-ranking-list">
         <div>
@@ -1008,12 +1007,13 @@
       <section class="mc-content-section">
       <div class="mc-section-heading">
         <div>
-          <div class="mc-section-kicker">Titles</div>
           <h2>優勝歴</h2>
         </div>
         <span class="mc-section-count">5</span>
       </div>
-      <ul class="mc-link-list"><li>
+      
+      <ul class="mc-link-list" data-collapsible-list>
+        <li>
       <a href="../detail_event/EVT0010.html" class="championship-event-link">UMB2014本戦</a>
     </li><li>
       <a href="../detail_event/EVT0076.html" class="championship-event-link">ADRENALINE2014</a>
@@ -1023,19 +1023,20 @@
       <a href="../detail_event/EVT0008.html" class="championship-event-link">UMB2012本戦</a>
     </li><li>
       <a href="../detail_event/EVT0160.html" class="championship-event-link">Spotlight 2009</a>
-    </li></ul>
-    </section>
+    </li>
+      </ul>
       
+    
+    </section>
       <section class="mc-content-section">
       <div class="mc-section-heading">
         <div>
-          <div class="mc-section-kicker">Events</div>
           <h2>出場大会</h2>
         </div>
         <span class="mc-section-count">10</span>
       </div>
       
-      <ol class="mc-appearance-list">
+      <ol class="mc-appearance-list" data-collapsible-list>
         <li>
       <div class="mc-appearance-date">2014.12.30</div>
       <div class="mc-appearance-event">
@@ -1061,36 +1062,44 @@
       <div class="mc-appearance-event">
         <a href="../detail_event/EVT0008.html" class="mc-inline-link">UMB2012本戦</a>
       </div>
-    </li><li>
+    </li><li class="is-collapsed-item" hidden>
       <div class="mc-appearance-date">2012.12.23</div>
       <div class="mc-appearance-event">
         <a href="../detail_event/EVT0158.html" class="mc-inline-link">Spotlight 2012</a>
       </div>
-    </li><li>
+    </li><li class="is-collapsed-item" hidden>
       <div class="mc-appearance-date">2011.12.30</div>
       <div class="mc-appearance-event">
         <a href="../detail_event/EVT0007.html" class="mc-inline-link">UMB2011本戦</a>
       </div>
-    </li><li>
+    </li><li class="is-collapsed-item" hidden>
       <div class="mc-appearance-date">2010.12.24</div>
       <div class="mc-appearance-event">
         <a href="../detail_event/EVT0006.html" class="mc-inline-link">UMB2010本戦</a>
       </div>
-    </li><li>
+    </li><li class="is-collapsed-item" hidden>
       <div class="mc-appearance-date">2010.12.23</div>
       <div class="mc-appearance-event">
         <a href="../detail_event/EVT0159.html" class="mc-inline-link">Spotlight 2010</a>
       </div>
-    </li><li>
+    </li><li class="is-collapsed-item" hidden>
       <div class="mc-appearance-date">2009.10.25</div>
       <div class="mc-appearance-event">
         <a href="../detail_event/EVT0160.html" class="mc-inline-link">Spotlight 2009</a>
       </div>
     </li>
       </ol>
+      <button
+      type="button"
+      class="mc-collapse-button"
+      data-collapse-button
+      data-remaining-count="5"
+      aria-expanded="false"
+    >
+      もっと見る（あと5件）
+    </button>
     
     </section>
-      
     </section>
 <section
       class="mc-tab-panel"
@@ -2790,6 +2799,38 @@
         background: #d8b46a;
       }
 
+
+      .mc-collapse-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        margin-top: 14px;
+        padding: 0 16px;
+        border: 1px solid rgba(216, 180, 106, .38);
+        border-radius: 10px;
+        color: rgba(255, 255, 255, .9);
+        background: transparent;
+        font: inherit;
+        font-size: .84rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .mc-collapse-button:hover {
+        color: #17130b;
+        background: #d8b46a;
+      }
+
+      .mc-collapse-button:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+
+      .is-collapsed-item[hidden] {
+        display: none !important;
+      }
+
       .mc-empty-state,
       .mc-filter-empty {
         padding: 28px 18px;
@@ -2918,6 +2959,7 @@
         const historyItems = Array.from(app.querySelectorAll("[data-history-item]"));
         const visibleCount = app.querySelector("[data-visible-count]");
         const filterEmpty = app.querySelector("[data-filter-empty]");
+        const collapseButtons = Array.from(app.querySelectorAll("[data-collapse-button]"));
 
         const activateTab = (targetName, options = {}) => {
           const { focus = false, updateHash = true } = options;
@@ -3029,6 +3071,30 @@
 
             historyFilter[axis] = value;
             applyHistoryFilters();
+          });
+        });
+
+
+        collapseButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const section = button.closest(".mc-content-section");
+            if (!section) return;
+
+            const hiddenItems = Array.from(
+              section.querySelectorAll(".is-collapsed-item")
+            );
+
+            const expanded = button.getAttribute("aria-expanded") === "true";
+            const nextExpanded = !expanded;
+
+            hiddenItems.forEach((item) => {
+              item.hidden = !nextExpanded;
+            });
+
+            button.setAttribute("aria-expanded", String(nextExpanded));
+            button.textContent = nextExpanded
+              ? "閉じる"
+              : "もっと見る（あと" + (button.dataset.remainingCount || hiddenItems.length) + "件）";
           });
         });
 
