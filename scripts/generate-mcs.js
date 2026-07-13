@@ -87,8 +87,16 @@ function createPageViewModel(mcId, detail, globalRankingContext) {
   );
   const analysis = analyzeDetail(detail, timeline, appearances);
 
-  const pageTitle = `${mcName} | 戦績・優勝歴・賞金・出場大会 | MCBattle.jp`;
+  const pageTitle = `${mcName}の戦績・勝率・優勝歴・賞金 | MCBattle.jp`;
   const metaDescription = buildMetaDescription({
+    mcName,
+    summary: detail.summary,
+    teamSummary: detail.teamSummary,
+    championships: detail.championships,
+    totalPrizeMoney: detail.totalPrizeMoney
+  });
+
+  const seoSummary = buildSeoSummary({
     mcName,
     summary: detail.summary,
     teamSummary: detail.teamSummary,
@@ -103,6 +111,7 @@ function createPageViewModel(mcId, detail, globalRankingContext) {
     mcDescription,
     pageTitle,
     metaDescription,
+    seoSummary,
     rankingStatus,
     rankingInactive,
     rankDisplay,
@@ -127,7 +136,7 @@ function createTemplateReplacements(view) {
       buildBreadcrumbJsonLd(view.mcId, view.mcName)
     ),
     "__PROFILE_JSON_LD__": escapeScriptJson(
-      buildProfileJsonLd(view.mcId, view.mcName, view.metaDescription)
+      buildProfileJsonLd(view)
     ),
     "__MC_TITLE__": escapeHtml(view.mcName),
     "__MC_SUBNAME__": escapeHtml(view.mcSubName),
@@ -257,6 +266,8 @@ function buildOverviewTab(view) {
       aria-labelledby="mc-tab-button-overview"
       data-tab-panel="overview"
     >
+      <p class="mc-seo-summary">${escapeHtml(view.seoSummary)}</p>
+
       <div class="mc-overview-grid">
         ${buildPrimaryStats(summary, teamSummary)}
         ${buildRankedMetricCard({
@@ -1217,22 +1228,63 @@ function buildMetaDescription(params) {
     totalPrizeMoney
   } = params;
 
+  const soloWinRate = calculateRate(summary.wins, summary.totalMatches);
+
   return [
-    `${mcName}の戦績・優勝歴・出場大会ページです。`,
+    `${mcName}のMCバトル戦績。`,
     summary.totalMatches > 0
-      ? `個人戦は${summary.totalMatches}戦${summary.wins}勝${summary.losses}敗。`
+      ? `個人戦${summary.totalMatches}戦${summary.wins}勝${summary.losses}敗（勝率${formatPercent(soloWinRate)}）。`
       : "",
     teamSummary.totalMatches > 0
-      ? `チーム戦は${teamSummary.totalMatches}戦${teamSummary.wins}勝${teamSummary.losses}敗。`
+      ? `チーム戦${teamSummary.totalMatches}戦${teamSummary.wins}勝${teamSummary.losses}敗。`
       : "",
     championships.length > 0
-      ? `優勝歴は${championships.length}回。`
+      ? `優勝${championships.length}回。`
       : "",
     totalPrizeMoney > 0
-      ? `獲得賞金総額は¥${formatYen(totalPrizeMoney)}。`
+      ? `獲得賞金¥${formatYen(totalPrizeMoney)}。`
       : "",
-    "出場大会、対戦履歴、スコア、戦績分析を掲載しています。"
-  ].filter(Boolean).join(" ");
+    "優勝歴、出場大会、対戦履歴、スコア、年別成績を掲載。"
+  ].filter(Boolean).join("");
+}
+
+function buildSeoSummary(params) {
+  const {
+    mcName,
+    summary,
+    teamSummary,
+    championships,
+    totalPrizeMoney
+  } = params;
+
+  const soloWinRate = calculateRate(summary.wins, summary.totalMatches);
+  const parts = [];
+
+  if (summary.totalMatches > 0) {
+    parts.push(
+      `個人戦${summary.totalMatches}戦${summary.wins}勝${summary.losses}敗、勝率${formatPercent(soloWinRate)}`
+    );
+  }
+
+  if (teamSummary.totalMatches > 0) {
+    parts.push(
+      `チーム戦${teamSummary.totalMatches}戦${teamSummary.wins}勝${teamSummary.losses}敗`
+    );
+  }
+
+  if (championships.length > 0) {
+    parts.push(`優勝${championships.length}回`);
+  }
+
+  if (totalPrizeMoney > 0) {
+    parts.push(`獲得賞金¥${formatYen(totalPrizeMoney)}`);
+  }
+
+  const recordText = parts.length
+    ? `${parts.join("、")}。`
+    : "公開されている大会データを掲載しています。";
+
+  return `${mcName}のMCバトル戦績ページです。${recordText}対戦履歴、出場大会、スコア、年別成績を確認できます。`;
 }
 
 function buildBreadcrumbJsonLd(mcId, mcName) {
@@ -1262,16 +1314,103 @@ function buildBreadcrumbJsonLd(mcId, mcName) {
   }, null, 2);
 }
 
-function buildProfileJsonLd(mcId, mcName, description) {
+function buildProfileJsonLd(view) {
+  const {
+    mcId,
+    mcName,
+    metaDescription,
+    detail,
+    rankingInactive,
+    rankDisplay,
+    scoreDisplay,
+    prizeRanking
+  } = view;
+
+  const properties = [];
+  const soloWinRate = calculateRate(
+    detail.summary.wins,
+    detail.summary.totalMatches
+  );
+
+  if (detail.summary.totalMatches > 0) {
+    properties.push({
+      "@type": "PropertyValue",
+      name: "個人戦戦績",
+      value: `${detail.summary.totalMatches}戦${detail.summary.wins}勝${detail.summary.losses}敗`
+    });
+
+    properties.push({
+      "@type": "PropertyValue",
+      name: "個人戦勝率",
+      value: formatPercent(soloWinRate)
+    });
+  }
+
+  if (detail.teamSummary.totalMatches > 0) {
+    properties.push({
+      "@type": "PropertyValue",
+      name: "チーム戦戦績",
+      value: `${detail.teamSummary.totalMatches}戦${detail.teamSummary.wins}勝${detail.teamSummary.losses}敗`
+    });
+  }
+
+  if (detail.championships.length > 0) {
+    properties.push({
+      "@type": "PropertyValue",
+      name: "優勝回数",
+      value: `${detail.championships.length}回`
+    });
+  }
+
+  if (detail.totalPrizeMoney > 0) {
+    properties.push({
+      "@type": "PropertyValue",
+      name: "獲得賞金",
+      value: `¥${formatYen(detail.totalPrizeMoney)}`
+    });
+  }
+
+  if (prizeRanking.rank !== null) {
+    properties.push({
+      "@type": "PropertyValue",
+      name: "賞金ランキング",
+      value: `${prizeRanking.rank}位`
+    });
+  }
+
+  if (!rankingInactive && hasValue(scoreDisplay)) {
+    properties.push({
+      "@type": "PropertyValue",
+      name: "スコア",
+      value: String(scoreDisplay)
+    });
+
+    if (hasValue(rankDisplay) && rankDisplay !== "圏外") {
+      properties.push({
+        "@type": "PropertyValue",
+        name: "スコアランキング",
+        value: `${rankDisplay}位`
+      });
+    }
+  }
+
   return JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ProfilePage",
-    name: `${mcName} | MCBattle.jp`,
-    description,
+    name: `${mcName}の戦績・勝率・優勝歴・賞金`,
+    description: metaDescription,
     url: `${SITE_URL}/detail_mc/${mcId}.html`,
+    inLanguage: "ja",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "MCBattle.jp",
+      url: `${SITE_URL}/`
+    },
     mainEntity: {
       "@type": "Person",
-      name: mcName
+      name: mcName,
+      url: `${SITE_URL}/detail_mc/${mcId}.html`,
+      additionalProperty: properties
     }
   }, null, 2);
 }
@@ -1556,6 +1695,13 @@ function buildMcDetailStyles() {
 
       .mc-tab-panel[hidden] {
         display: none !important;
+      }
+
+      .mc-seo-summary {
+        margin: 0 0 14px;
+        color: rgba(255, 255, 255, .58);
+        font-size: .84rem;
+        line-height: 1.7;
       }
 
       .mc-overview-grid {
