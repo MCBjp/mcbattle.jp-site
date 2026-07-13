@@ -1,30 +1,28 @@
-  
-    
-<!DOCTYPE html>        
-<html lang="ja">        
-<head>        
-  <link rel="icon" href="/favicon.ico" sizes="any">        
-  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">        
-  <link rel="apple-touch-icon" href="/favicon-180x180.png">        
-  <meta charset="UTF-8" />        
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
-        
-  <title>スコアリング仕様について | MCBattle.jp</title>        
-  <meta name="description" content="国内MCバトルの独自スコアの算出方法を説明するページです。誰に勝ったか、いつの試合か、どのラウンドか、敗戦の扱い、優勝・準優勝・上位相手勝利・勝率・無敗の補助加点など、現在のスコアリングの考え方を掲載しています。">        
-  <link rel="canonical" href="https://mcbattle.jp/score_spec.html" />        
-        
-  <meta property="og:type" content="website" />        
-  <meta property="og:site_name" content="MCBattle.jp" />        
-  <meta property="og:title" content="スコアリング仕様について | MCBattle.jp" />        
-  <meta property="og:description" content="国内MCバトルの独自スコアの算出方法を説明するページです。誰に勝ったか、いつの試合か、どのラウンドか、敗戦の扱い、優勝・準優勝・上位相手勝利・勝率・無敗の補助加点など、現在のスコアリングの考え方を掲載しています。" />        
-  <meta property="og:url" content="https://mcbattle.jp/score_spec.html" />        
-  <meta property="og:image" content="https://mcbattle.jp/ogp.png?v=2" />        
-        
-  <meta name="twitter:card" content="summary_large_image" />        
-  <meta name="twitter:title" content="スコアリング仕様について | MCBattle.jp" />        
-  <meta name="twitter:description" content="国内MCバトルの独自スコアの算出方法を説明するページです。誰に勝ったか、いつの試合か、どのラウンドか、敗戦の扱い、優勝・準優勝・上位相手勝利・勝率・無敗の補助加点など、現在のスコアリングの考え方を掲載しています。" />        
-  <meta name="twitter:image" content="https://mcbattle.jp/ogp.png?v=2" />        
-        
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/favicon-180x180.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>スコアリング仕様について | MCBattle.jp</title>
+  <meta name="description" content="国内MCバトルの独自スコアの算出方法を説明するページです。誰に勝ったか、いつの試合か、どのラウンドか、敗戦の扱い、優勝・準優勝・上位相手勝利・勝率・無敗の補助加点など、現在のスコアリングの考え方を掲載しています。">
+  <link rel="canonical" href="https://mcbattle.jp/score_spec.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MCBattle.jp" />
+  <meta property="og:title" content="スコアリング仕様について | MCBattle.jp" />
+  <meta property="og:description" content="国内MCバトルの独自スコアの算出方法を説明するページです。誰に勝ったか、いつの試合か、どのラウンドか、敗戦の扱い、優勝・準優勝・上位相手勝利・勝率・無敗の補助加点など、現在のスコアリングの考え方を掲載しています。" />
+  <meta property="og:url" content="https://mcbattle.jp/score_spec.html" />
+  <meta property="og:image" content="https://mcbattle.jp/ogp.png?v=2" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="スコアリング仕様について | MCBattle.jp" />
+  <meta name="twitter:description" content="国内MCバトルの独自スコアの算出方法を説明するページです。誰に勝ったか、いつの試合か、どのラウンドか、敗戦の扱い、優勝・準優勝・上位相手勝利・勝率・無敗の補助加点など、現在のスコアリングの考え方を掲載しています。" />
+  <meta name="twitter:image" content="https://mcbattle.jp/ogp.png?v=2" />
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9C8VGD3THB"></script>
   <script>
@@ -35,500 +33,479 @@
   </script>
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="site-header.css" />        
-  <style>  
-:root{        
-      --home-header-max: 1040px;        
-    }        
-        
-    body {        
-      overflow-x: hidden;        
-    }        
-        
-    .spec-page {        
-      overflow-x: hidden;        
-    }        
-        
-    .page-top{        
-      margin-bottom: 18px;        
-    }        
-        
-    .page-header-block{        
-      margin-bottom: 14px;        
-    }        
-        
-    .page-header-title-row{        
-      display: flex;        
-      align-items: baseline;        
-      gap: 10px;        
-      flex-wrap: wrap;        
-    }        
-        
-    .page-header-block h1{        
-      margin: 0;        
-      text-wrap: balance;        
-      overflow-wrap: anywhere;        
-      word-break: break-word;        
-    }        
-        
-    .page-version{        
-      color: var(--muted);        
-      font-size: 0.76rem;        
-      line-height: 1.2;        
-      letter-spacing: 0.03em;        
-      white-space: nowrap;        
-    }        
-        
-    .spec-grid {        
-      display: grid;        
-      gap: 18px;        
-    }        
-        
-    .spec-card {        
-      border: 1px solid var(--line);        
-      border-radius: 18px;        
-      background:        
-        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),        
-        linear-gradient(180deg, var(--panel) 0%, rgba(14, 18, 28, 0.98) 100%);        
-      box-shadow: var(--shadow);        
-      padding: 18px;        
-      min-width: 0;        
-      overflow-wrap: anywhere;        
-      word-break: break-word;        
-    }        
-        
-    .spec-card h2 {        
-      margin-bottom: 12px;        
-    }        
-        
-    .spec-card h3 {        
-      margin: 20px 0 10px;        
-      font-size: 1rem;        
-      line-height: 1.35;        
-      font-weight: 750;        
-      color: var(--accent);        
-    }        
-        
-    .spec-card h3:first-of-type {        
-      margin-top: 0;        
-    }        
-        
-    .spec-list {        
-      margin: 0;        
-      padding-left: 1.2em;        
-    }        
-        
-    .spec-list li {        
-      margin: 0 0 8px;        
-    }        
-        
-    .spec-formula {        
-      margin: 12px 0;        
-      padding: 14px 16px;        
-      border: 1px solid var(--line);        
-      border-radius: 14px;        
-      background: rgba(255,255,255,0.04);        
-      overflow-x: auto;        
-      -webkit-overflow-scrolling: touch;        
-      font-family:        
-        ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;        
-      font-size: 0.95rem;        
-      line-height: 1.8;        
-      white-space: pre-wrap;        
-      word-break: break-word;        
-    }        
-        
-    .spec-link-row {        
-      display: flex;        
-      gap: 10px;        
-      flex-wrap: wrap;        
-      margin-top: 10px;        
-    }        
-        
-    .spec-chip {        
-      display: inline-flex;        
-      align-items: center;        
-      min-height: 34px;        
-      padding: 0 12px;        
-      border: 1px solid var(--line);        
-      border-radius: 999px;        
-      background: rgba(255,255,255,0.04);        
-      color: var(--accent-soft);        
-      font-size: 0.92rem;        
-      font-weight: 700;        
-    }        
-        
-    .form-card {        
-      margin-top: 14px;        
-      padding: 16px;        
-      border: 1px solid rgba(255,255,255,0.14);        
-      border-radius: 14px;        
-      background: rgba(255,255,255,0.03);        
-    }        
-        
-    .form-card p:last-child {        
-      margin-bottom: 0;        
-    }        
-        
-    .form-link {        
-      display: inline-flex;        
-      align-items: center;        
-      justify-content: center;        
-      min-height: 42px;        
-      padding: 0 16px;        
-      border-radius: 999px;        
-      border: 1px solid rgba(255,255,255,0.14);        
-      background: rgba(70, 70, 78, 0.92);        
-      color: #f3f4f6;        
-      text-decoration: none;        
-      font-weight: 700;        
-      transition:        
-        transform 0.18s ease,        
-        opacity 0.18s ease,        
-        border-color 0.18s ease,        
-        background-color 0.18s ease,        
-        box-shadow 0.18s ease;        
-    }        
-        
-    .form-link:hover {        
-      text-decoration: none;        
-      transform: translateY(-1px);        
-      opacity: 0.98;        
-      background: rgba(92, 92, 102, 0.96);        
-      border-color: rgba(255,255,255,0.22);        
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.18);        
-    }        
-        
-            
-        
-    @media (max-width: 640px) {        
-        
-      .page-top{        
-        margin-bottom: 14px;        
-      }        
-        
-      .page-header-block{        
-        margin-bottom: 12px;        
-      }        
-        
-      .page-header-block h1{        
-        font-size:clamp(1.5rem, 5.3vw, 1.95rem);        
-        line-height:1.12;        
-      }        
-        
-      .page-version{        
-        font-size: 0.70rem;        
-      }        
-        
-      .spec-grid {        
-        gap: 14px;        
-      }        
-        
-      .spec-card {        
-        padding: 14px;        
-        border-radius: 16px;        
-      }        
-        
-      .spec-formula {        
-        font-size: 0.88rem;        
-        padding: 12px 12px;        
-        line-height: 1.7;        
-      }        
-        
-      .spec-chip {        
-        font-size: 0.86rem;        
-      }        
-        
-      .form-card {        
-        padding: 14px;        
-      }        
-        
-      .form-link {        
-        width: 100%;        
-      }        
-    }  
-  </style>        
-</head>        
-<body>        
- <div id="site-header"></div>    
-        
-  <div class="page spec-page">        
-    <div class="page-top">        
-      <div class="page-header-block">        
-        <div class="page-header-title-row">        
-          <h1>スコアリング仕様について</h1>        
-          <span class="page-version">Ver.1.128</span>        
-        </div>        
-      </div>        
-    </div>        
-        
-    <div class="spec-grid">        
-      <section class="spec-card">        
-        <h2>1. このページで説明するもの</h2>        
-        <p>        
-          このページは、<strong>MCBattle.jp の独自スコアがどう計算されているか</strong>を説明するためのページです。        
-        </p>        
-        <p>        
-          ここでいうスコアは、単なる勝利数や優勝回数ではなく、<strong>試合結果をもとに現在の強さを数値化した推定値</strong>です。        
-        </p>        
-        <p>        
-          ランキングは、このスコアをもとに並べた表示結果です。          
-          つまり、主役はランキングではなく、<strong>スコアそのものの算出ロジック</strong>です。        
-        </p>        
-        
-        <div class="spec-link-row">        
-          <span class="spec-chip">主役：スコアの算出</span>        
-          <span class="spec-chip">補足：ランキング表示</span>        
-        </div>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>2. スコアが表したいもの</h2>        
-        <p>        
-          このスコアが表したいのは、<strong>「今バトルに出た場合、どれくらい強いと推定されるか」</strong>です。        
-        </p>        
-        <p>        
-          歴代最強や知名度の指標ではなく、<strong>過去の蓄積を残しつつ、最近の試合をより重く見た現在の強さ</strong>を表すことを目的にしています。        
-        </p>        
-        <p>        
-          そのため、単純な勝利数や優勝回数の足し算ではなく、<strong>誰に勝ったか、いつの試合か、どのラウンドか、負けをどう扱うか</strong>を組み合わせて計算しています。        
-        </p>        
-        
-        <div class="spec-link-row">        
-          <span class="spec-chip">中心：誰に勝ったか</span>        
-          <span class="spec-chip">補助：いつの試合か</span>        
-          <span class="spec-chip">補助：どのラウンドか</span>        
-          <span class="spec-chip">補助：負けも反映</span>        
-        </div>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>3. スコア計算の対象</h2>        
-        <p>        
-          スコア計算には、<strong>2005年以降の対象大会の全試合</strong>を使います。        
-        </p>        
-        
-        <h3>含めるもの</h3>        
-        <ul class="spec-list">        
-          <li>国内主要大会における1on1本戦の試合結果</li>        
-        </ul>        
-        
-        <h3>除外するもの</h3>        
-        <ul class="spec-list">        
-          <li>予選</li>        
-          <li>不戦勝</li>        
-          <li>2on2・団体戦</li>        
-          <li>エキシビション</li>        
-        </ul>        
-        
-        <p>        
-          つまり、スコアは<strong>対象となる本戦試合だけ</strong>を用いて機械的に更新しています。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>4. スコアの基本構造</h2>        
-        <p>        
-          現在の実装は、<strong>Elo を補助的な土台として使いながら、最終順位自体は独自の direct score で決める方式</strong>です。        
-        </p>        
-        <p>        
-          まず各試合について、相手の評価差・ラウンド・開催日の重みを使って期待値を出し、そこから<strong>Elo 系の更新</strong>を行います。        
-        </p>        
-        <p>        
-          ただし、最終スコアはその Elo 値そのものではなく、<strong>重み付きの勝利加点・敗戦減点・補助ボーナス・Elo残差</strong>を合算した独自スコアです。        
-        </p>        
-        
-        <h3>試合ごとの期待値とElo更新</h3>        
-        <div class="spec-formula">expectedWinner = 1 / (1 + 10 ^ ((loserRating - winnerRating) / 400))        
-        
-eloDelta = baseK × roundWeight × recencyWeight × (1 - expectedWinner)        
-loserEloDelta = eloDelta × lossPenaltyRate        
-        
-winnerElo = winnerElo + eloDelta        
-loserElo  = loserElo  - loserEloDelta</div>        
-        
-        <h3>最終スコアの考え方</h3>        
-        <div class="spec-formula">directScore =        
-  BASE_SCORE        
-+ weighted win sum        
-- weighted loss sum        
-+ champion bonus        
-+ runner-up bonus        
-+ top opponent win bonus        
-+ win-rate bonus        
-+ undefeated bonus        
-+ small Elo residual</div>        
-        
-        <div class="spec-formula">initialRating = 1500.00        
-BASE_SCORE = 1500.00        
-baseK = 20.00        
-lossPenaltyRate = 1.00        
-ELO_RESIDUAL_RATE = 0.18</div>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>5. 誰に勝ったか</h2>        
-        <p>        
-          スコアの中心は、<strong>対戦相手の強さ</strong>です。        
-        </p>        
-        <p>        
-          すでに高い評価を受けている相手に勝つほど、上がり幅は大きくなります。          
-          逆に、評価が低い相手への勝利は、上がり幅が比較的小さくなります。        
-        </p>        
-        <p>        
-          現在は、各試合ごとに期待値を計算したうえで、<strong>格上への勝利はやや大きく、格下への勝利はやや小さく</strong>なるように重み付けしています。        
-        </p>        
-        <p>        
-          このため、同じ1勝でも価値は一律ではなく、<strong>勝利数そのものより「誰に勝ったか」</strong>を重く見ています。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>6. 負けの扱い</h2>        
-        <p>        
-          このスコアでは、<strong>敗戦も反映</strong>します。        
-        </p>        
-        <p>        
-          現在の実装では、Elo更新部分の敗者側減点は<strong>勝者側上昇分と同率</strong>で扱っています。        
-        </p>        
-        <p>        
-          また最終スコアでも、<strong>重み付きの敗戦減点</strong>を明確に差し引いています。        
-        </p>        
-        <p>        
-          つまり、負けは無視しておらず、<strong>勝ちだけでなく負けも現在評価にきちんと効く設計</strong>です。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>7. いつの試合か</h2>        
-        <p>        
-          このスコアは「今の強さ」を見るため、試合の新しさも加味しています。        
-        </p>        
-        <p>        
-          ただし、古い試合を切り捨てるのではなく、<strong>古い試合ほど効き方を弱める</strong>方式です。        
-          そのため、昔の実績も残しつつ、最近の試合をより強く反映します。        
-        </p>        
-        
-        <ul class="spec-list">        
-          <li>3年以内：1.15</li>        
-          <li>3年超〜5年以内：1.00</li>        
-          <li>5年超〜8年以内：0.92</li>        
-          <li>8年超〜13年以内：0.84</li>        
-          <li>13年超：0.76</li>        
-        </ul>        
-        
-        <p>        
-          つまり、2005年以降の全試合を使いながら、<strong>最近の試合ほど現在スコアに強く効く</strong>ようにしています。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>8. どのラウンドか</h2>        
-        <p>        
-          同じ1勝でも、<strong>大会の深いラウンドでの勝利ほど重く扱います</strong>。        
-        </p>        
-        <p>        
-          序盤よりも、準決勝や決勝の勝敗の方が価値が高いと考えるためです。        
-        </p>        
-        <p>        
-          現在は、<strong>Final を最大、Best4〜Best64 付近を段階的に傾斜</strong>させる方式です。          
-          また、<strong>Best8 以降はやや強めに効く</strong>ように調整しています。        
-        </p>        
-        <p>        
-          これも固定点を後から加える方式ではなく、<strong>各試合の変動幅そのものに掛けて反映</strong>しています。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>9. 補助的に入れているもの</h2>        
-        <p>        
-          現在のスコアでは、試合ごとの勝敗評価に加えて、次の要素を<strong>補助的に加点</strong>しています。        
-        </p>        
-        
-        <ul class="spec-list">        
-          <li>直近4年の優勝回数</li>        
-          <li>直近4年の準優勝回数</li>        
-          <li>直近4年における上位相手への勝利回数</li>        
-          <li>直近4年の勝率</li>        
-          <li>直近4年で一定試合数以上かつ無敗であること</li>        
-          <li>Elo の最終値からの小さな残差</li>        
-        </ul>        
-        
-        <p>        
-          つまり、主役はあくまで試合単位の勝敗評価ですが、<strong>最近の実績の見え方を少し補正する補助要素</strong>も入れています。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>10. 直接入れていないもの</h2>        
-        <p>        
-          このスコアでは、次のような要素は直接入れていません。        
-        </p>        
-        
-        <ul class="spec-list">        
-          <li>人気</li>        
-          <li>知名度</li>        
-          <li>賞金額そのもの</li>        
-          <li>主観的な「全盛期」評価</li>        
-          <li>大会ごとの主観的な強度補正</li>        
-        </ul>        
-        
-        <p>        
-          つまり、<strong>人の印象ではなく、試合結果ベースで機械的に算出した指標</strong>です。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>11. ランキングとの関係</h2>        
-        <p>        
-          スコアランキングは、<strong>このスコアを順位順に並べて表示したもの</strong>です。        
-        </p>        
-        <p>        
-          ただし、ランキング表示の対象は、<strong>直近4年以内に対象大会で1試合以上あるMC</strong>のみです。        
-        </p>        
-        <p>        
-          そのため、スコア計算には過去試合が使われていても、<strong>長期不出場MCはランキング表示対象外</strong>となります。        
-        </p>        
-        <p>        
-          対象外のMCについては、ランキングだけでなくMC詳細ページでもスコアを表示しません。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>12. 仮想MCバトルとの関係</h2>        
-        <p>        
-          仮想MCバトルの「今の強さでシミュレーションする」モードも、基本的にはこのスコアの考え方を土台にしています。        
-        </p>        
-        <p>        
-          そのため、ランキング表示対象外となる長期不出場MCは、シミュレーション候補からも外れます。        
-        </p>        
-        <p>        
-          ただし、シミュレーションでは現在スコアをベースにしつつ、特定のMC同士の直接対戦相性も少しだけ加味しているため、<strong>順位と優勝率がそのまま1対1対応するわけではありません</strong>。        
-        </p>        
-      </section>        
-        
-      <section class="spec-card">        
-        <h2>13. 今後の見直し</h2>        
-        <p>        
-          スコアリングの考え方には、今後も改善の余地があります。        
-        </p>        
-        <p>        
-          特に、<strong>敗戦の重み、最近の試合をどこまで強く見るか、ラウンド重みの傾斜</strong>については、継続的に見直していきます。        
-        </p>        
-        
-        <div class="form-card">        
-          <p>スコアリングの仕様について意見がある場合は、以下のフォームから連絡して下さい。（内容により返信できない場合があります）</p>        
-          <a href="contact.html" class="form-link">問い合わせフォーム</a>        
-        </div>        
-      </section>        
-    </div>        
-  </div>        
-        
+  <link rel="stylesheet" href="site-header.css" />
+  <style>
+    :root{
+      --home-header-max: 1040px;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .spec-page {
+      overflow-x: hidden;
+    }
+
+    .page-top{
+      margin-bottom: 18px;
+    }
+
+    .page-header-block{
+      margin-bottom: 14px;
+    }
+
+    .page-header-title-row{
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .page-header-block h1{
+      margin: 0;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .page-version{
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .spec-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .spec-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
+        linear-gradient(180deg, var(--panel) 0%, rgba(14, 18, 28, 0.98) 100%);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .spec-card h2 {
+      margin-bottom: 12px;
+    }
+
+    .spec-card h3 {
+      margin: 20px 0 10px;
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 750;
+      color: var(--accent);
+    }
+
+    .spec-card h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .spec-list {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+
+    .spec-list li {
+      margin: 0 0 8px;
+    }
+
+    .spec-formula {
+      margin: 12px 0;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .spec-link-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .spec-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--accent-soft);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .form-card {
+      margin-top: 14px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .form-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(70, 70, 78, 0.92);
+      color: #f3f4f6;
+      text-decoration: none;
+      font-weight: 700;
+      transition:
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        border-color 0.18s ease,
+        background-color 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .form-link:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+      opacity: 0.98;
+      background: rgba(92, 92, 102, 0.96);
+      border-color: rgba(255,255,255,0.22);
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.18);
+    }
+
+    @media (max-width: 640px) {
+      .page-top{
+        margin-bottom: 14px;
+      }
+
+      .page-header-block{
+        margin-bottom: 12px;
+      }
+
+      .page-header-block h1{
+        font-size:clamp(1.5rem, 5.3vw, 1.95rem);
+        line-height:1.12;
+      }
+
+      .page-version{
+        font-size: 0.70rem;
+      }
+
+      .spec-grid {
+        gap: 14px;
+      }
+
+      .spec-card {
+        padding: 14px;
+        border-radius: 16px;
+      }
+
+      .spec-formula {
+        font-size: 0.88rem;
+        padding: 12px 12px;
+        line-height: 1.7;
+      }
+
+      .spec-chip {
+        font-size: 0.86rem;
+      }
+
+      .form-card {
+        padding: 14px;
+      }
+
+      .form-link {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="page spec-page">
+    <div class="page-top">
+      <div class="page-header-block">
+        <div class="page-header-title-row">
+          <h1>スコアリング仕様について</h1>
+          <span class="page-version">Ver.1.128</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-grid">
+      <section class="spec-card">
+        <h2>1. このページで説明するもの</h2>
+        <p>
+          このページは、<strong>MCBattle.jp の独自スコアがどう計算されているか</strong>を説明するためのページです。
+        </p>
+        <p>
+          ここでいうスコアは、単なる勝利数や優勝回数ではなく、<strong>試合結果をもとに現在の強さを数値化した推定値</strong>です。
+        </p>
+        <p>
+          ランキングは、このスコアをもとに並べた表示結果です。
+          つまり、主役はランキングではなく、<strong>スコアそのものの算出ロジック</strong>です。
+        </p>
+
+        <div class="spec-link-row">
+          <span class="spec-chip">主役：スコアの算出</span>
+          <span class="spec-chip">補足：ランキング表示</span>
+        </div>
+      </section>
+
+      <section class="spec-card">
+        <h2>2. スコアが表したいもの</h2>
+        <p>
+          このスコアが表したいのは、<strong>「今バトルに出た場合、どれくらい強いと推定されるか」</strong>です。
+        </p>
+        <p>
+          歴代最強や知名度の指標ではなく、<strong>過去の蓄積を残しつつ、最近の試合をより重く見た現在の強さ</strong>を表すことを目的にしています。
+        </p>
+        <p>
+          そのため、単純な勝利数や優勝回数の足し算ではなく、<strong>誰に勝ったか、いつの試合か、どのラウンドか、負けをどう扱うか</strong>を組み合わせて計算しています。
+        </p>
+
+        <div class="spec-link-row">
+          <span class="spec-chip">中心：誰に勝ったか</span>
+          <span class="spec-chip">補助：いつの試合か</span>
+          <span class="spec-chip">補助：どのラウンドか</span>
+          <span class="spec-chip">補助：負けも反映</span>
+        </div>
+      </section>
+
+      <section class="spec-card">
+        <h2>3. スコア計算の対象</h2>
+        <p>
+          スコア計算には、<strong>2005年以降の対象大会の全試合</strong>を使います。
+        </p>
+
+        <h3>含めるもの</h3>
+        <ul class="spec-list">
+          <li>国内主要大会における1on1本戦の試合結果</li>
+        </ul>
+
+        <h3>除外するもの</h3>
+        <ul class="spec-list">
+          <li>予選</li>
+          <li>不戦勝</li>
+          <li>2on2・団体戦</li>
+          <li>エキシビション</li>
+        </ul>
+
+        <p>
+          つまり、スコアは<strong>対象となる本戦試合だけ</strong>を用いて機械的に更新しています。
+        </p>
+      </section>
+
+      <section class="spec-card">
+        <h2>4. スコアの基本構造</h2>
+        <p>
+          現在の実装は、<strong>Elo を補助的な土台として使いながら、最終順位自体は独自の direct score で決める方式</strong>です。
+        </p>
+        <p>
+          まず各試合について、相手の評価差・ラウンド・開催日の重みを使って期待値を出し、そこから<strong>Elo 系の更新</strong>を行います。
+        </p>
+        <p>
+          ただし、最終スコアはその Elo 値そのものではなく、<strong>重み付きの勝利加点・敗戦減点・補助ボーナス・Elo残差</strong>を合算した独自スコアです。
+        </p>
+
+        <h3>試合ごとの期待値とElo更新</h3>
+        <div class="spec-formula">expectedWinner = 1 / (1 + 10 ^ ((loserRating - winnerRating) / 400))
+
+eloDelta = baseK × roundWeight × recencyWeight × (1 - expectedWinner)
+loserEloDelta = eloDelta × lossPenaltyRate
+
+winnerElo = winnerElo + eloDelta
+loserElo  = loserElo  - loserEloDelta</div>
+
+        <h3>最終スコアの考え方</h3>
+        <div class="spec-formula">directScore =
+  BASE_SCORE
++ weighted win sum
+- weighted loss sum
++ champion bonus
++ runner-up bonus
++ top opponent win bonus
++ win-rate bonus
++ undefeated bonus
++ small Elo residual</div>
+
+        <div class="spec-formula">initialRating = 1500.00
+BASE_SCORE = 1500.00
+baseK = 20.00
+lossPenaltyRate = 1.00
+ELO_RESIDUAL_RATE = 0.18</div>
+      </section>
+
+      <section class="spec-card">
+        <h2>5. 誰に勝ったか</h2>
+        <p>
+          スコアの中心は、<strong>対戦相手の強さ</strong>です。
+        </p>
+        <p>
+          すでに高い評価を受けている相手に勝つほど、上がり幅は大きくなります。
+          逆に、評価が低い相手への勝利は、上がり幅が比較的小さくなります。
+        </p>
+        <p>
+          現在は、各試合ごとに期待値を計算したうえで、<strong>格上への勝利はやや大きく、格下への勝利はやや小さく</strong>なるように重み付けしています。
+        </p>
+        <p>
+          このため、同じ1勝でも価値は一律ではなく、<strong>勝利数そのものより「誰に勝ったか」</strong>を重く見ています。
+        </p>
+      </section>
+
+      <section class="spec-card">
+        <h2>6. 負けの扱い</h2>
+        <p>
+          このスコアでは、<strong>敗戦も反映</strong>します。
+        </p>
+        <p>
+          現在の実装では、Elo更新部分の敗者側減点は<strong>勝者側上昇分と同率</strong>で扱っています。
+        </p>
+        <p>
+          また最終スコアでも、<strong>重み付きの敗戦減点</strong>を明確に差し引いています。
+        </p>
+        <p>
+          つまり、負けは無視しておらず、<strong>勝ちだけでなく負けも現在評価にきちんと効く設計</strong>です。
+        </p>
+      </section>
+
+      <section class="spec-card">
+        <h2>7. いつの試合か</h2>
+        <p>
+          このスコアは「今の強さ」を見るため、試合の新しさも加味しています。
+        </p>
+        <p>
+          ただし、古い試合を切り捨てるのではなく、<strong>古い試合ほど効き方を弱める</strong>方式です。
+          そのため、昔の実績も残しつつ、最近の試合をより強く反映します。
+        </p>
+
+        <ul class="spec-list">
+          <li>3年以内：1.15</li>
+          <li>3年超〜5年以内：1.00</li>
+          <li>5年超〜8年以内：0.92</li>
+          <li>8年超〜13年以内：0.84</li>
+          <li>13年超：0.76</li>
+        </ul>
+
+        <p>
+          つまり、2005年以降の全試合を使いながら、<strong>最近の試合ほど現在スコアに強く効く</strong>ようにしています。
+        </p>
+      </section>
+
+      <section class="spec-card">
+        <h2>8. どのラウンドか</h2>
+        <p>
+          同じ1勝でも、<strong>大会の深いラウンドでの勝利ほど重く扱います</strong>。
+        </p>
+        <p>
+          序盤よりも、準決勝や決勝の勝敗の方が価値が高いと考えるためです。
+        </p>
+        <p>
+          現在は、<strong>Final を最大、Best4〜Best64 付近を段階的に傾斜</strong>させる方式です。
+          また、<strong>Best8 以降はやや強めに効く</strong>ように調整しています。
+        </p>
+        <p>
+          これも固定点を後から加える方式ではなく、<strong>各試合の変動幅そのものに掛けて反映</strong>しています。
+        </p>
+      </section>
+
+      <section class="spec-card">
+        <h2>9. 補助的に入れているもの</h2>
+        <p>
+          現在のスコアでは、試合ごとの勝敗評価に加えて、次の要素を<strong>補助的に加点</strong>しています。
+        </p>
+
+        <ul class="spec-list">
+          <li>直近4年の優勝回数</li>
+          <li>直近4年の準優勝回数</li>
+          <li>直近4年における上位相手への勝利回数</li>
+          <li>直近4年の勝率</li>
+          <li>直近4年で一定試合数以上かつ無敗であること</li>
+          <li>Elo の最終値からの小さな残差</li>
+        </ul>
+
+        <p>
+          つまり、主役はあくまで試合単位の勝敗評価ですが、<strong>最近の実績の見え方を少し補正する補助要素</strong>も入れています。
+        </p>
+      </section>
+
+      <section class="spec-card">
+        <h2>10. 直接入れていないもの</h2>
+        <p>
+          このスコアでは、次のような要素は直接入れていません。
+        </p>
+
+        <ul class="spec-list">
+          <li>人気</li>
+          <li>知名度</li>
+          <li>賞金額そのもの</li>
+          <li>主観的な「全盛期」評価</li>
+          <li>大会ごとの主観的な強度補正</li>
+        </ul>
+
+        <p>
+          つまり、<strong>人の印象ではなく、試合結果ベースで機械的に算出した指標</strong>です。
+        </p>
+      </section>
+
+      <section class="spec-card">
+        <h2>11. ランキングとの関係</h2>
+        <p>
+          スコアランキングは、<strong>このスコアを順位順に並べて表示したもの</strong>です。
+        </p>
+        <p>
+          ただし、ランキング表示の対象は、<strong>直近4年以内に対象大会で1試合以上あるMC</strong>のみです。
+        </p>
+        <p>
+          そのため、スコア計算には過去試合が使われていても、<strong>長期不出場MCはランキング表示対象外</strong>となります。
+        </p>
+        <p>
+          対象外のMCについては、ランキングだけでなくMC詳細ページでもスコアを表示しません。
+        </p>
+      </section>
+
+      <section class="spec-card">
+        <h2>12. 今後の見直し</h2>
+        <p>
+          スコアリングの考え方には、今後も改善の余地があります。
+        </p>
+        <p>
+          特に、<strong>敗戦の重み、最近の試合をどこまで強く見るか、ラウンド重みの傾斜</strong>については、継続的に見直していきます。
+        </p>
+
+        <div class="form-card">
+          <p>スコアリングの仕様について意見がある場合は、以下のフォームから連絡して下さい。（内容により返信できない場合があります）</p>
+          <a href="contact.html" class="form-link">問い合わせフォーム</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
   <script src="site-header.js"></script>
-</body>        
-</html>        
-    
-  
-     
-          
-  
+</body>
+</html>
