@@ -556,7 +556,7 @@ function buildAnalysisTab(view) {
       <div class="mc-analysis-grid">
         ${buildAnalysisMetric("個人戦勝率", formatPercent(a.soloWinRate), `${a.soloWins}勝 / ${a.soloMatches}試合`)}
         ${buildAnalysisMetric("チーム戦勝率", a.teamMatches ? formatPercent(a.teamWinRate) : "−", a.teamMatches ? `${a.teamWins}勝 / ${a.teamMatches}試合` : "チーム戦データなし")}
-        ${buildAnalysisMetric("通算優勝回数", `${a.championshipCount}回`, a.championshipCount ? "確認できた優勝歴" : "優勝歴なし")}
+        ${buildAnalysisMetric("通算優勝回数", `${a.championshipCount}回`, "")}
         ${buildAnalysisMetric("出場大会数", `${a.appearanceCount}大会`, a.activeSpanLabel)}
       </div>
 
