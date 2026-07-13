@@ -428,12 +428,26 @@ function buildHistoryTab(view) {
       hidden
     >
       <div class="mc-history-toolbar">
-        <div class="mc-filter-group" role="group" aria-label="戦績フィルター">
-          ${buildFilterButton("all", "全て", true)}
-          ${buildFilterButton("win", "Win")}
-          ${buildFilterButton("loss", "Lose")}
-          ${buildFilterButton("team", "Team")}
+        <div class="mc-filter-stack">
+          <div class="mc-filter-row">
+            <span class="mc-filter-label">試合形式</span>
+            <div class="mc-filter-group" role="group" aria-label="試合形式">
+              ${buildFilterButton("mode", "all", "全て", true)}
+              ${buildFilterButton("mode", "solo", "個人")}
+              ${buildFilterButton("mode", "team", "Team")}
+            </div>
+          </div>
+
+          <div class="mc-filter-row">
+            <span class="mc-filter-label">勝敗</span>
+            <div class="mc-filter-group" role="group" aria-label="勝敗">
+              ${buildFilterButton("result", "all", "全て", true)}
+              ${buildFilterButton("result", "win", "Win")}
+              ${buildFilterButton("result", "loss", "Lose")}
+            </div>
+          </div>
         </div>
+
         <div class="mc-history-count" aria-live="polite">
           <span data-visible-count>${count}</span>件
         </div>
@@ -452,12 +466,13 @@ function buildHistoryTab(view) {
   `.trim();
 }
 
-function buildFilterButton(filter, label, active = false) {
+function buildFilterButton(axis, value, label, active = false) {
   return `
     <button
       type="button"
       class="mc-filter-button${active ? " is-active" : ""}"
-      data-history-filter="${escapeHtml(filter)}"
+      data-filter-axis="${escapeHtml(axis)}"
+      data-filter-value="${escapeHtml(value)}"
       aria-pressed="${active ? "true" : "false"}"
     >${escapeHtml(label)}</button>
   `.trim();
@@ -465,15 +480,15 @@ function buildFilterButton(filter, label, active = false) {
 
 function renderTimelineItem(item) {
   const typeClass = `is-${item.type}`;
-  const filterTypes = item.isTeam
-    ? `${item.type} team`
-    : item.type;
+  const matchMode = item.isTeam ? "team" : "solo";
+  const resultType = item.type;
 
   return `
     <li
       class="mc-timeline-item ${typeClass}"
       data-history-item
-      data-history-types="${escapeHtml(filterTypes)}"
+      data-match-mode="${escapeHtml(matchMode)}"
+      data-result-type="${escapeHtml(resultType)}"
     >
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
@@ -1551,6 +1566,27 @@ function buildMcDetailStyles() {
         backdrop-filter: blur(14px);
       }
 
+      .mc-filter-stack {
+        display: grid;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .mc-filter-row {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        align-items: center;
+        gap: 10px;
+      }
+
+      .mc-filter-label {
+        color: rgba(255, 255, 255, .42);
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .06em;
+        white-space: nowrap;
+      }
+
       .mc-filter-group {
         display: flex;
         flex-wrap: wrap;
@@ -1902,12 +1938,22 @@ function buildMcDetailStyles() {
           display: block;
         }
 
+        .mc-filter-stack {
+          gap: 9px;
+        }
+
+        .mc-filter-row {
+          grid-template-columns: 58px minmax(0, 1fr);
+          gap: 8px;
+        }
+
         .mc-filter-group {
           display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
         .mc-filter-button {
+          min-width: 0;
           padding: 0 7px;
           font-size: .75rem;
         }
@@ -1965,7 +2011,7 @@ function buildMcDetailScript() {
 
         const tabButtons = Array.from(app.querySelectorAll("[data-tab-target]"));
         const tabPanels = Array.from(app.querySelectorAll("[data-tab-panel]"));
-        const filterButtons = Array.from(app.querySelectorAll("[data-history-filter]"));
+        const filterButtons = Array.from(app.querySelectorAll("[data-filter-axis][data-filter-value]"));
         const historyItems = Array.from(app.querySelectorAll("[data-history-item]"));
         const visibleCount = app.querySelector("[data-visible-count]");
         const filterEmpty = app.querySelector("[data-filter-empty]");
@@ -1996,18 +2042,37 @@ function buildMcDetailScript() {
           }
         };
 
-        const applyHistoryFilter = (filterName) => {
+        const historyFilter = {
+          mode: "all",
+          result: "all"
+        };
+
+        const applyHistoryFilters = () => {
           let count = 0;
 
           historyItems.forEach((item) => {
-            const types = String(item.dataset.historyTypes || "").split(/\\s+/);
-            const visible = filterName === "all" || types.includes(filterName);
+            const itemMode = item.dataset.matchMode || "solo";
+            const itemResult = item.dataset.resultType || "";
+
+            const matchesMode =
+              historyFilter.mode === "all" ||
+              itemMode === historyFilter.mode;
+
+            const matchesResult =
+              historyFilter.result === "all" ||
+              itemResult === historyFilter.result;
+
+            const visible = matchesMode && matchesResult;
             item.hidden = !visible;
+
             if (visible) count += 1;
           });
 
           filterButtons.forEach((button) => {
-            const active = button.dataset.historyFilter === filterName;
+            const axis = button.dataset.filterAxis;
+            const value = button.dataset.filterValue;
+            const active = historyFilter[axis] === value;
+
             button.classList.toggle("is-active", active);
             button.setAttribute("aria-pressed", String(active));
           });
@@ -2054,7 +2119,13 @@ function buildMcDetailScript() {
 
         filterButtons.forEach((button) => {
           button.addEventListener("click", () => {
-            applyHistoryFilter(button.dataset.historyFilter || "all");
+            const axis = button.dataset.filterAxis;
+            const value = button.dataset.filterValue;
+
+            if (!axis || !value || !(axis in historyFilter)) return;
+
+            historyFilter[axis] = value;
+            applyHistoryFilters();
           });
         });
 
@@ -2066,7 +2137,7 @@ function buildMcDetailScript() {
         activateTab(validInitialTab ? initialTab : "overview", {
           updateHash: false
         });
-        applyHistoryFilter("all");
+        applyHistoryFilters();
       })();
     </script>
   `.trim();
