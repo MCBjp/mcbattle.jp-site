@@ -1881,8 +1881,60 @@
 </div>
 </div>
 <style>
+      /*
+       * MC詳細UIがページ上部の共通ヘッダーを覆わないように
+       * stacking contextを明示的に分離する。
+       */
       .mc-detail-app {
+        position: relative;
+        z-index: 0;
+        isolation: isolate;
         margin-top: 24px;
+      }
+
+      .mc-tab-panels,
+      .mc-tab-panel {
+        position: relative;
+        z-index: 0;
+      }
+
+      /*
+       * 共通ヘッダー／ナビゲーションを常にクリック可能にする。
+       * テンプレート側のクラス差異にも対応するため、
+       * home-header・site-header・headerをまとめて保護する。
+       */
+      .home-header,
+      .site-header,
+      body > header,
+      header[role="banner"] {
+        position: relative;
+        z-index: 1000;
+        pointer-events: auto;
+      }
+
+      .home-header a,
+      .home-header button,
+      .site-header a,
+      .site-header button,
+      body > header a,
+      body > header button,
+      header[role="banner"] a,
+      header[role="banner"] button {
+        position: relative;
+        z-index: 1001;
+        pointer-events: auto;
+        touch-action: manipulation;
+      }
+
+      .home-header::before,
+      .home-header::after,
+      .site-header::before,
+      .site-header::after,
+      body > header::before,
+      body > header::after,
+      header[role="banner"]::before,
+      header[role="banner"]::after {
+        pointer-events: none;
       }
 
       .mc-tabs {
