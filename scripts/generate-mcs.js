@@ -285,14 +285,14 @@ function buildPrimaryStats(summary, teamSummary) {
   const cards = [
     buildStatCard(
       "個人戦",
-      `${summary.totalMatches}試合`,
+      `${summary.totalMatches}戦`,
       `${summary.wins}勝 ${summary.losses}敗`,
       soloWinRate
     ),
     teamSummary.totalMatches > 0
       ? buildStatCard(
           "チーム戦",
-          `${teamSummary.totalMatches}試合`,
+          `${teamSummary.totalMatches}戦`,
           `${teamSummary.wins}勝 ${teamSummary.losses}敗`,
           teamWinRate
         )
@@ -335,6 +335,11 @@ function buildRankedMetricCard(params) {
       ${buildRankingNeighbor("up", ranking.above)}
       ${buildRankingNeighbor("down", ranking.below)}
 
+      ${
+        title === "獲得賞金"
+          ? `<p class="mc-card-note">※予選や一部大会の金額は反映されていません</p>`
+          : ""
+      }
       ${note ? `<p class="mc-card-note">${escapeHtml(note)}</p>` : ""}
     </article>
   `.trim();
@@ -463,8 +468,8 @@ function buildHistoryTab(view) {
       <div class="mc-history-toolbar">
         <div class="mc-filter-stack">
           <div class="mc-filter-row">
-            <span class="mc-filter-label">試合形式</span>
-            <div class="mc-filter-group" role="group" aria-label="試合形式">
+            <span class="mc-filter-label">形式</span>
+            <div class="mc-filter-group" role="group" aria-label="形式">
               ${buildFilterButton("mode", "all", "全て", true)}
               ${buildFilterButton("mode", "solo", "個人")}
               ${buildFilterButton("mode", "team", "Team")}
@@ -587,8 +592,8 @@ function buildAnalysisTab(view) {
       hidden
     >
       <div class="mc-analysis-grid">
-        ${buildAnalysisMetric("個人戦勝率", formatPercent(a.soloWinRate), `${a.soloWins}勝 / ${a.soloMatches}試合`)}
-        ${buildAnalysisMetric("チーム戦勝率", a.teamMatches ? formatPercent(a.teamWinRate) : "−", a.teamMatches ? `${a.teamWins}勝 / ${a.teamMatches}試合` : "チーム戦データなし")}
+        ${buildAnalysisMetric("個人戦勝率", formatPercent(a.soloWinRate), `${a.soloWins}勝 / ${a.soloMatches}戦`)}
+        ${buildAnalysisMetric("チーム戦勝率", a.teamMatches ? formatPercent(a.teamWinRate) : "−", a.teamMatches ? `${a.teamWins}勝 / ${a.teamMatches}戦` : "チーム戦データなし")}
         ${buildAnalysisMetric("通算優勝回数", `${a.championshipCount}回`, "")}
         ${buildAnalysisMetric("出場大会数", `${a.appearanceCount}大会`, a.activeSpanLabel)}
       </div>
@@ -638,13 +643,13 @@ function buildRecentFormSection(analysis) {
       <div class="mc-section-heading">
         <div>
           <div class="mc-section-kicker">Recent form</div>
-          <h2>直近${analysis.recentMatches.length}試合</h2>
+          <h2>直近${analysis.recentMatches.length}戦</h2>
         </div>
         <span class="mc-section-count">${analysis.recentWins}勝</span>
       </div>
       <div class="mc-form-row" aria-label="直近の勝敗">${resultHtml}</div>
       <p class="mc-analysis-copy">
-        直近${analysis.recentMatches.length}試合の勝率は${formatPercent(analysis.recentWinRate)}です。
+        直近${analysis.recentMatches.length}戦の勝率は${formatPercent(analysis.recentWinRate)}です。
       </p>
     </section>
   `.trim();
@@ -721,11 +726,11 @@ function buildAnalysisNotes(analysis) {
   const notes = [];
 
   if (analysis.soloMatches > 0) {
-    notes.push(`個人戦は通算${analysis.soloMatches}試合、勝率${formatPercent(analysis.soloWinRate)}。`);
+    notes.push(`個人戦は通算${analysis.soloMatches}戦、勝率${formatPercent(analysis.soloWinRate)}。`);
   }
 
   if (analysis.teamMatches > 0) {
-    notes.push(`チーム戦は通算${analysis.teamMatches}試合、勝率${formatPercent(analysis.teamWinRate)}。`);
+    notes.push(`チーム戦は通算${analysis.teamMatches}戦、勝率${formatPercent(analysis.teamWinRate)}。`);
   }
 
   if (analysis.bestYear) {
@@ -1215,10 +1220,10 @@ function buildMetaDescription(params) {
   return [
     `${mcName}の戦績・優勝歴・出場大会ページです。`,
     summary.totalMatches > 0
-      ? `個人戦は${summary.totalMatches}試合${summary.wins}勝${summary.losses}敗。`
+      ? `個人戦は${summary.totalMatches}戦${summary.wins}勝${summary.losses}敗。`
       : "",
     teamSummary.totalMatches > 0
-      ? `チーム戦は${teamSummary.totalMatches}試合${teamSummary.wins}勝${teamSummary.losses}敗。`
+      ? `チーム戦は${teamSummary.totalMatches}戦${teamSummary.wins}勝${teamSummary.losses}敗。`
       : "",
     championships.length > 0
       ? `優勝歴は${championships.length}回。`
