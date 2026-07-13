@@ -987,24 +987,47 @@
       <div class="mc-stat-main">9試合</div>
       <div class="mc-stat-sub">6勝 3敗</div>
       <div class="mc-stat-rate">勝率 66.7%</div>
-    </article><article class="mc-stat-card">
-      <div class="mc-stat-label">獲得賞金</div>
-      <div class="mc-stat-main">¥1,400,000</div>
-      <div class="mc-stat-sub">確認できた賞金の合計</div>
-      
     </article></div>
         <article class="mc-ranking-card">
-      <h2 class="mc-card-title">スコアランキング</h2>
-      <dl class="mc-ranking-list">
-        <div>
-          <dt>順位</dt>
-          <dd>9</dd>
-        </div>
-        <div>
-          <dt>スコア</dt>
-          <dd>2119.58</dd>
-        </div>
-      </dl>
+      <h2 class="mc-card-title">獲得賞金</h2>
+
+      <div class="mc-ranked-metric-main">
+        <div class="mc-ranked-metric-value">¥1,400,000</div>
+        <div class="mc-ranked-metric-rank">25位</div>
+      </div>
+
+      <div class="mc-ranking-neighbor is-up">
+      <span class="mc-ranking-neighbor-arrow" aria-hidden="true">↑</span>
+      <span class="mc-ranking-neighbor-rank">24位</span>
+      <a href="../detail_mc/MC0118.html" class="mc-ranking-neighbor-link">GIL</a>
+    </div>
+      <div class="mc-ranking-neighbor is-down">
+      <span class="mc-ranking-neighbor-arrow" aria-hidden="true">↓</span>
+      <span class="mc-ranking-neighbor-rank">26位</span>
+      <a href="../detail_mc/MC0280.html" class="mc-ranking-neighbor-link">SIMON JAP</a>
+    </div>
+
+      
+    </article>
+        <article class="mc-ranking-card">
+      <h2 class="mc-card-title">スコア</h2>
+
+      <div class="mc-ranked-metric-main">
+        <div class="mc-ranked-metric-value">2119.58</div>
+        <div class="mc-ranked-metric-rank">9位</div>
+      </div>
+
+      <div class="mc-ranking-neighbor is-up">
+      <span class="mc-ranking-neighbor-arrow" aria-hidden="true">↑</span>
+      <span class="mc-ranking-neighbor-rank">8位</span>
+      <a href="../detail_mc/MC0271.html" class="mc-ranking-neighbor-link">SAM</a>
+    </div>
+      <div class="mc-ranking-neighbor is-down">
+      <span class="mc-ranking-neighbor-arrow" aria-hidden="true">↓</span>
+      <span class="mc-ranking-neighbor-rank">10位</span>
+      <a href="../detail_mc/MC0222.html" class="mc-ranking-neighbor-link">NAIKA MC</a>
+    </div>
+
       
     </article>
       </div>
@@ -4519,7 +4542,7 @@
 
       .mc-stat-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 12px;
       }
 
@@ -4539,10 +4562,6 @@
       .mc-analysis-metric {
         border-radius: 16px;
         padding: 14px 16px;
-      }
-
-      .mc-stat-card:first-child {
-        grid-column: span 2;
       }
 
       .mc-stat-label,
@@ -4577,6 +4596,68 @@
         color: #d8b46a;
         font-size: .83rem;
         font-weight: 700;
+      }
+
+      .mc-ranked-metric-main {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 10px 0 13px;
+      }
+
+      .mc-ranked-metric-value {
+        min-width: 0;
+        color: #fff;
+        font-size: clamp(1.45rem, 5vw, 2rem);
+        font-weight: 850;
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+      }
+
+      .mc-ranked-metric-rank {
+        flex: 0 0 auto;
+        color: #d8b46a;
+        font-size: 1rem;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .mc-ranking-neighbor {
+        display: grid;
+        grid-template-columns: 18px auto minmax(0, 1fr);
+        align-items: baseline;
+        gap: 7px;
+        padding: 8px 0;
+        border-top: 1px solid rgba(255, 255, 255, .07);
+        color: rgba(255, 255, 255, .58);
+        font-size: .78rem;
+        line-height: 1.4;
+      }
+
+      .mc-ranking-neighbor-arrow {
+        color: #d8b46a;
+        font-weight: 900;
+      }
+
+      .mc-ranking-neighbor-rank {
+        white-space: nowrap;
+      }
+
+      .mc-ranking-neighbor-link {
+        min-width: 0;
+        color: rgba(255, 255, 255, .76);
+        font-weight: 700;
+        text-decoration: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .mc-ranking-neighbor-link:hover {
+        color: #d8b46a;
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
 
       .mc-card-title {
@@ -5114,10 +5195,6 @@
         .mc-stat-grid,
         .mc-analysis-grid {
           grid-template-columns: 1fr;
-        }
-
-        .mc-stat-card:first-child {
-          grid-column: auto;
         }
 
         .mc-history-toolbar {
