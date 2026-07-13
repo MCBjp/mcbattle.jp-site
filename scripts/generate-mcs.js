@@ -1368,7 +1368,7 @@ function buildMcDetailStyles() {
       .mc-ranking-card,
       .mc-analysis-metric {
         border-radius: 16px;
-        padding: 18px;
+        padding: 14px 16px;
       }
 
       .mc-stat-card:first-child {
@@ -1386,7 +1386,7 @@ function buildMcDetailStyles() {
       }
 
       .mc-stat-main {
-        margin-top: 8px;
+        margin-top: 4px;
         color: #fff;
         font-size: clamp(1.35rem, 4vw, 2rem);
         font-weight: 800;
@@ -1396,14 +1396,14 @@ function buildMcDetailStyles() {
       .mc-stat-sub,
       .mc-analysis-sub,
       .mc-card-note {
-        margin-top: 7px;
+        margin-top: 3px;
         color: rgba(255, 255, 255, .58);
         font-size: .86rem;
         line-height: 1.55;
       }
 
       .mc-stat-rate {
-        margin-top: 12px;
+        margin-top: 6px;
         color: #d8b46a;
         font-size: .83rem;
         font-weight: 700;
@@ -1442,7 +1442,7 @@ function buildMcDetailStyles() {
       .mc-content-section {
         margin-top: 14px;
         border-radius: 16px;
-        padding: 18px;
+        padding: 14px 16px;
       }
 
       .mc-section-heading {
@@ -1450,7 +1450,7 @@ function buildMcDetailStyles() {
         align-items: flex-end;
         justify-content: space-between;
         gap: 16px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
       }
 
       .mc-section-heading h2 {
@@ -1601,7 +1601,7 @@ function buildMcDetailStyles() {
 
       .mc-timeline-item {
         position: relative;
-        margin-bottom: 13px;
+        margin-bottom: 9px;
       }
 
       .mc-timeline-item[hidden] {
@@ -1630,7 +1630,7 @@ function buildMcDetailStyles() {
 
       .mc-timeline-card {
         border-radius: 15px;
-        padding: 16px;
+        padding: 13px 15px;
       }
 
       .mc-timeline-head {
@@ -1679,7 +1679,7 @@ function buildMcDetailStyles() {
       }
 
       .mc-timeline-match {
-        margin-top: 12px;
+        margin-top: 6px;
         color: #fff;
         font-size: 1rem;
         font-weight: 750;
@@ -1698,7 +1698,7 @@ function buildMcDetailStyles() {
         display: flex;
         flex-wrap: wrap;
         gap: 7px 10px;
-        margin-top: 11px;
+        margin-top: 6px;
         color: rgba(255, 255, 255, .6);
         font-size: .82rem;
         line-height: 1.45;
@@ -1752,7 +1752,7 @@ function buildMcDetailStyles() {
       }
 
       .mc-analysis-value {
-        margin-top: 8px;
+        margin-top: 4px;
         color: #fff;
         font-size: 1.45rem;
         font-weight: 850;
