@@ -356,17 +356,17 @@ function buildRankingNeighbor(direction, neighbor) {
 }
 
 function buildChampionshipSection(championships) {
+  if (!championships.length) return "";
+
   const visibleLimit = 5;
   const hasMore = championships.length > visibleLimit;
 
-  const body = championships.length
-    ? `
-      <ul class="mc-link-list" data-collapsible-list>
-        ${championships.map((item, index) => renderChampionshipItem(item, index >= visibleLimit)).join("")}
-      </ul>
-      ${hasMore ? buildCollapseButton(championships.length - visibleLimit) : ""}
-    `
-    : buildEmptyState("優勝歴はありません");
+  const body = `
+    <ul class="mc-link-list" data-collapsible-list>
+      ${championships.map((item, index) => renderChampionshipItem(item, index >= visibleLimit)).join("")}
+    </ul>
+    ${hasMore ? buildCollapseButton(championships.length - visibleLimit) : ""}
+  `;
 
   return `
     <section class="mc-content-section">
@@ -559,7 +559,7 @@ function renderTeamTimelineMatch(item) {
   return `
     <div class="mc-team-match">
       ${renderTeamSide(item.ownTeamName, item.ownMembers, true)}
-      <span class="mc-team-vs">VS</span>
+      <span class="mc-team-vs">vs</span>
       ${renderTeamSide(item.opponentTeamName, item.opponentMembers, false)}
     </div>
   `.trim();
@@ -2216,7 +2216,7 @@ function buildMcDetailStyles() {
         }
 
         .mc-team-side:last-child::before {
-          content: "VS ";
+          content: "vs ";
           color: rgba(255, 255, 255, .3);
           font-size: .7rem;
         }
