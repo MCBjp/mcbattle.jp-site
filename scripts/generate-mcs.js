@@ -550,7 +550,7 @@ function renderTimelineItem(item) {
 
 function renderSoloTimelineMatch(item) {
   return `
-    <span class="mc-match-prefix">${item.type === "win" ? "vs" : "lost to"}</span>
+    <span class="mc-match-prefix">vs</span>
     ${renderMcLink(item.opponentName || "不明", item.opponentMcId, "mc-opponent-link")}
   `.trim();
 }
