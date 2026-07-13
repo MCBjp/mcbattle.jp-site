@@ -237,7 +237,6 @@ function buildOverviewTab(view) {
 
   const summary = detail.summary;
   const teamSummary = detail.teamSummary;
-  const hasTeamMatches = teamSummary.totalMatches > 0;
   const rankingNote = rankingInactive
     ? "直近の参加実績不足によりスコア対象外"
     : "";
@@ -261,9 +260,7 @@ function buildOverviewTab(view) {
       </div>
 
       ${buildChampionshipSection(detail.championships)}
-      ${buildPrizeAdjustmentSection(detail.prizeAdjustments)}
       ${buildAppearanceSection(appearances)}
-      ${hasTeamMatches ? buildTeamSummaryNote(teamSummary) : ""}
     </section>
   `.trim();
 }
@@ -274,10 +271,10 @@ function buildPrimaryStats(summary, teamSummary, totalPrizeMoney) {
 
   const cards = [
     buildStatCard("個人戦", `${summary.totalMatches}試合`, `${summary.wins}勝 ${summary.losses}敗`, soloWinRate),
-    buildStatCard("獲得賞金", `¥${formatYen(totalPrizeMoney)}`, "確認できた賞金の合計"),
     teamSummary.totalMatches > 0
       ? buildStatCard("チーム戦", `${teamSummary.totalMatches}試合`, `${teamSummary.wins}勝 ${teamSummary.losses}敗`, teamWinRate)
-      : ""
+      : "",
+    buildStatCard("獲得賞金", `¥${formatYen(totalPrizeMoney)}`, "確認できた賞金の合計")
   ].filter(Boolean);
 
   return `<div class="mc-stat-grid">${cards.join("")}</div>`;
@@ -304,7 +301,6 @@ function buildRankingCard(params) {
 
   return `
     <article class="mc-ranking-card">
-      <div class="mc-section-kicker">Ranking</div>
       <h2 class="mc-card-title">スコアランキング</h2>
       <dl class="mc-ranking-list">
         <div>
@@ -322,15 +318,22 @@ function buildRankingCard(params) {
 }
 
 function buildChampionshipSection(championships) {
+  const visibleLimit = 5;
+  const hasMore = championships.length > visibleLimit;
+
   const body = championships.length
-    ? `<ul class="mc-link-list">${championships.map(renderChampionshipItem).join("")}</ul>`
+    ? `
+      <ul class="mc-link-list" data-collapsible-list>
+        ${championships.map((item, index) => renderChampionshipItem(item, index >= visibleLimit)).join("")}
+      </ul>
+      ${hasMore ? buildCollapseButton(championships.length - visibleLimit) : ""}
+    `
     : buildEmptyState("優勝歴はありません");
 
   return `
     <section class="mc-content-section">
       <div class="mc-section-heading">
         <div>
-          <div class="mc-section-kicker">Titles</div>
           <h2>優勝歴</h2>
         </div>
         <span class="mc-section-count">${championships.length}</span>
@@ -340,41 +343,28 @@ function buildChampionshipSection(championships) {
   `.trim();
 }
 
-function renderChampionshipItem(item) {
+function renderChampionshipItem(item, hidden = false) {
   const eventName = cleanText(item.event_name);
   if (!eventName) return "";
 
   return `
-    <li>
+    <li${hidden ? ' class="is-collapsed-item" hidden' : ""}>
       ${renderEventLink(eventName, item.event_id, "championship-event-link")}
     </li>
   `.trim();
 }
 
-function buildPrizeAdjustmentSection(items) {
-  if (!items.length) return "";
-
-  return `
-    <section class="mc-content-section">
-      <div class="mc-section-heading">
-        <div>
-          <div class="mc-section-kicker">Notes</div>
-          <h2>賞金補足</h2>
-        </div>
-      </div>
-      <ul class="mc-note-list">
-        ${items.map((item) => `<li>${escapeHtml(renderPrizeAdjustmentText(item))}</li>`).join("")}
-      </ul>
-    </section>
-  `.trim();
-}
 
 function buildAppearanceSection(appearances) {
+  const visibleLimit = 5;
+  const hasMore = appearances.length > visibleLimit;
+
   const body = appearances.length
     ? `
-      <ol class="mc-appearance-list">
-        ${appearances.map(renderAppearanceItem).join("")}
+      <ol class="mc-appearance-list" data-collapsible-list>
+        ${appearances.map((item, index) => renderAppearanceItem(item, index >= visibleLimit)).join("")}
       </ol>
+      ${hasMore ? buildCollapseButton(appearances.length - visibleLimit) : ""}
     `
     : buildEmptyState("出場大会がありません");
 
@@ -382,7 +372,6 @@ function buildAppearanceSection(appearances) {
     <section class="mc-content-section">
       <div class="mc-section-heading">
         <div>
-          <div class="mc-section-kicker">Events</div>
           <h2>出場大会</h2>
         </div>
         <span class="mc-section-count">${appearances.length}</span>
@@ -392,12 +381,12 @@ function buildAppearanceSection(appearances) {
   `.trim();
 }
 
-function renderAppearanceItem(item) {
+function renderAppearanceItem(item, hidden = false) {
   const eventName = cleanText(item.event_name) || "大会名不明";
   const eventDate = formatDateDots(item.event_date);
 
   return `
-    <li>
+    <li${hidden ? ' class="is-collapsed-item" hidden' : ""}>
       <div class="mc-appearance-date">${escapeHtml(eventDate || "日付不明")}</div>
       <div class="mc-appearance-event">
         ${renderEventLink(eventName, item.event_id, "mc-inline-link")}
@@ -406,14 +395,20 @@ function renderAppearanceItem(item) {
   `.trim();
 }
 
-function buildTeamSummaryNote(teamSummary) {
+function buildCollapseButton(remainingCount) {
   return `
-    <p class="mc-footnote">
-      チーム戦は個人戦とは分けて集計しています。
-      ${teamSummary.totalMatches}試合 ${teamSummary.wins}勝 ${teamSummary.losses}敗。
-    </p>
+    <button
+      type="button"
+      class="mc-collapse-button"
+      data-collapse-button
+      data-remaining-count="${remainingCount}"
+      aria-expanded="false"
+    >
+      もっと見る（あと${remainingCount}件）
+    </button>
   `.trim();
 }
+
 
 function buildHistoryTab(view) {
   const count = view.timeline.length;
@@ -1882,6 +1877,38 @@ function buildMcDetailStyles() {
         background: #d8b46a;
       }
 
+
+      .mc-collapse-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        margin-top: 14px;
+        padding: 0 16px;
+        border: 1px solid rgba(216, 180, 106, .38);
+        border-radius: 10px;
+        color: rgba(255, 255, 255, .9);
+        background: transparent;
+        font: inherit;
+        font-size: .84rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .mc-collapse-button:hover {
+        color: #17130b;
+        background: #d8b46a;
+      }
+
+      .mc-collapse-button:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+
+      .is-collapsed-item[hidden] {
+        display: none !important;
+      }
+
       .mc-empty-state,
       .mc-filter-empty {
         padding: 28px 18px;
@@ -2015,6 +2042,7 @@ function buildMcDetailScript() {
         const historyItems = Array.from(app.querySelectorAll("[data-history-item]"));
         const visibleCount = app.querySelector("[data-visible-count]");
         const filterEmpty = app.querySelector("[data-filter-empty]");
+        const collapseButtons = Array.from(app.querySelectorAll("[data-collapse-button]"));
 
         const activateTab = (targetName, options = {}) => {
           const { focus = false, updateHash = true } = options;
@@ -2126,6 +2154,30 @@ function buildMcDetailScript() {
 
             historyFilter[axis] = value;
             applyHistoryFilters();
+          });
+        });
+
+
+        collapseButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const section = button.closest(".mc-content-section");
+            if (!section) return;
+
+            const hiddenItems = Array.from(
+              section.querySelectorAll(".is-collapsed-item")
+            );
+
+            const expanded = button.getAttribute("aria-expanded") === "true";
+            const nextExpanded = !expanded;
+
+            hiddenItems.forEach((item) => {
+              item.hidden = !nextExpanded;
+            });
+
+            button.setAttribute("aria-expanded", String(nextExpanded));
+            button.textContent = nextExpanded
+              ? "閉じる"
+              : "もっと見る（あと" + (button.dataset.remainingCount || hiddenItems.length) + "件）";
           });
         });
 
