@@ -268,18 +268,20 @@ function buildOverviewTab(view) {
     >
       <p class="mc-seo-summary">${escapeHtml(view.seoSummary)}</p>
 
-      <div class="mc-overview-grid">
+      <div class="mc-overview-grid ${teamSummary.totalMatches > 0 ? "has-team" : "no-team"}">
         ${buildPrimaryStats(summary, teamSummary)}
         ${buildRankedMetricCard({
           title: "獲得賞金",
           value: `¥${formatYen(detail.totalPrizeMoney)}`,
-          ranking: prizeRanking
+          ranking: prizeRanking,
+          className: "is-prize"
         })}
         ${buildRankedMetricCard({
           title: "スコア",
           value: rankingInactive ? "−" : displayValue(scoreDisplay),
           ranking: rankingInactive ? createEmptyMetricRanking() : scoreRanking,
-          note: rankingNote
+          note: rankingNote,
+          className: "is-score"
         })}
       </div>
 
@@ -300,14 +302,16 @@ function buildPrimaryStats(summary, teamSummary) {
       "個人戦",
       `${summary.totalMatches}戦`,
       `${summary.wins}勝 ${summary.losses}敗`,
-      soloWinRate
+      soloWinRate,
+      "is-solo"
     ),
     teamSummary.totalMatches > 0
       ? buildStatCard(
           "チーム戦",
           `${teamSummary.totalMatches}戦`,
           `${teamSummary.wins}勝 ${teamSummary.losses}敗`,
-          teamWinRate
+          teamWinRate,
+          "is-team"
         )
       : ""
   ].filter(Boolean);
@@ -315,9 +319,9 @@ function buildPrimaryStats(summary, teamSummary) {
   return `<div class="mc-stat-grid">${cards.join("")}</div>`;
 }
 
-function buildStatCard(label, main, sub, rate = null) {
+function buildStatCard(label, main, sub, rate = null, className = "") {
   return `
-    <article class="mc-stat-card">
+    <article class="mc-stat-card ${escapeHtml(className)}">
       <div class="mc-stat-label">${escapeHtml(label)}</div>
       <div class="mc-stat-main">${escapeHtml(main)}</div>
       <div class="mc-stat-sub">${escapeHtml(sub)}</div>
@@ -331,13 +335,14 @@ function buildRankedMetricCard(params) {
     title,
     value,
     ranking,
-    note = ""
+    note = "",
+    className = ""
   } = params;
 
   const rankText = ranking.rank === null ? "−" : `${ranking.rank}位`;
 
   return `
-    <article class="mc-ranking-card">
+    <article class="mc-ranking-card ${escapeHtml(className)}">
       <h2 class="mc-card-title">${escapeHtml(title)}</h2>
 
       <div class="mc-ranked-metric-main">
@@ -2342,13 +2347,40 @@ function buildMcDetailStyles() {
         }
 
         .mc-overview-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 16px;
           align-items: stretch;
         }
 
+        .mc-overview-grid.has-team {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-areas:
+            "solo team"
+            "prize score";
+        }
+
+        .mc-overview-grid.no-team {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-areas: "solo prize score";
+        }
+
         .mc-stat-grid {
           display: contents;
+        }
+
+        .mc-stat-card.is-solo {
+          grid-area: solo;
+        }
+
+        .mc-stat-card.is-team {
+          grid-area: team;
+        }
+
+        .mc-ranking-card.is-prize {
+          grid-area: prize;
+        }
+
+        .mc-ranking-card.is-score {
+          grid-area: score;
         }
 
         .mc-stat-card,
@@ -2378,14 +2410,16 @@ function buildMcDetailStyles() {
 
         .mc-overview-secondary-grid {
           display: grid;
-          grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 16px;
-          align-items: start;
+          align-items: stretch;
         }
 
         .mc-overview-secondary-grid > .mc-content-section {
           margin-top: 16px;
           min-width: 0;
+          height: 100%;
+          box-sizing: border-box;
         }
 
         .mc-overview-secondary-grid > .mc-content-section:only-child {
@@ -2418,8 +2452,18 @@ function buildMcDetailStyles() {
       }
 
       @media (max-width: 760px) {
-        .mc-overview-grid {
+        .mc-overview-grid,
+        .mc-overview-grid.has-team,
+        .mc-overview-grid.no-team {
           grid-template-columns: 1fr;
+          grid-template-areas: none;
+        }
+
+        .mc-stat-card.is-solo,
+        .mc-stat-card.is-team,
+        .mc-ranking-card.is-prize,
+        .mc-ranking-card.is-score {
+          grid-area: auto;
         }
 
         .mc-overview-secondary-grid {
