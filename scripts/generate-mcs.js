@@ -900,6 +900,7 @@ function buildOpponentStats(wins, losses) {
   losses.forEach((item) => add(item, "loss"));
 
   return [...map.values()]
+    .filter((row) => row.matches >= 2)
     .sort((a, b) => {
       if (b.matches !== a.matches) return b.matches - a.matches;
       if (b.wins !== a.wins) return b.wins - a.wins;
