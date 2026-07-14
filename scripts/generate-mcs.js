@@ -268,7 +268,7 @@ function buildOverviewTab(view) {
     >
       <p class="mc-seo-summary">${escapeHtml(view.seoSummary)}</p>
 
-      <div class="mc-overview-grid ${teamSummary.totalMatches > 0 ? "has-team" : "no-team"}">
+      <div class="mc-overview-grid has-team">
         ${buildPrimaryStats(summary, teamSummary)}
         ${buildRankedMetricCard({
           title: "獲得賞金",
@@ -313,8 +313,12 @@ function buildPrimaryStats(summary, teamSummary) {
           teamWinRate,
           "is-team"
         )
-      : ""
-  ].filter(Boolean);
+      : buildEmptyStatCard(
+          "チーム戦",
+          "出場履歴なし",
+          "is-team"
+        )
+  ];
 
   return `<div class="mc-stat-grid">${cards.join("")}</div>`;
 }
@@ -326,6 +330,15 @@ function buildStatCard(label, main, sub, rate = null, className = "") {
       <div class="mc-stat-main">${escapeHtml(main)}</div>
       <div class="mc-stat-sub">${escapeHtml(sub)}</div>
       ${rate === null ? "" : `<div class="mc-stat-rate">勝率 ${formatPercent(rate)}</div>`}
+    </article>
+  `.trim();
+}
+
+function buildEmptyStatCard(label, message, className = "") {
+  return `
+    <article class="mc-stat-card mc-stat-card-empty ${escapeHtml(className)}">
+      <div class="mc-stat-label">${escapeHtml(label)}</div>
+      <div class="mc-stat-empty">${escapeHtml(message)}</div>
     </article>
   `.trim();
 }
@@ -1775,6 +1788,23 @@ function buildMcDetailStyles() {
         font-weight: 700;
       }
 
+      .mc-stat-card-empty {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mc-stat-empty {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 88px;
+        color: rgba(255, 255, 255, .42);
+        font-size: .95rem;
+        font-weight: 650;
+        text-align: center;
+      }
+
       .mc-ranked-metric-main {
         display: flex;
         align-items: baseline;
@@ -2358,11 +2388,6 @@ function buildMcDetailStyles() {
             "prize score";
         }
 
-        .mc-overview-grid.no-team {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          grid-template-areas: "solo prize score";
-        }
-
         .mc-stat-grid {
           display: contents;
         }
@@ -2453,8 +2478,7 @@ function buildMcDetailStyles() {
 
       @media (max-width: 760px) {
         .mc-overview-grid,
-        .mc-overview-grid.has-team,
-        .mc-overview-grid.no-team {
+        .mc-overview-grid.has-team {
           grid-template-columns: 1fr;
           grid-template-areas: none;
         }
