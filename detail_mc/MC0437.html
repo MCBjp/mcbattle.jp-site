@@ -997,12 +997,15 @@
     >
       <p class="mc-seo-summary">醍福のMCバトル戦績ページです。個人戦1戦0勝1敗、勝率0%。対戦履歴、出場大会、スコア、年別成績を確認できます。</p>
 
-      <div class="mc-overview-grid no-team">
+      <div class="mc-overview-grid has-team">
         <div class="mc-stat-grid"><article class="mc-stat-card is-solo">
       <div class="mc-stat-label">個人戦</div>
       <div class="mc-stat-main">1戦</div>
       <div class="mc-stat-sub">0勝 1敗</div>
       <div class="mc-stat-rate">勝率 0%</div>
+    </article><article class="mc-stat-card mc-stat-card-empty is-team">
+      <div class="mc-stat-label">チーム戦</div>
+      <div class="mc-stat-empty">出場履歴なし</div>
     </article></div>
         <article class="mc-ranking-card is-prize">
       <h2 class="mc-card-title">獲得賞金</h2>
@@ -1436,6 +1439,23 @@
         color: #d8b46a;
         font-size: .83rem;
         font-weight: 700;
+      }
+
+      .mc-stat-card-empty {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mc-stat-empty {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 88px;
+        color: rgba(255, 255, 255, .42);
+        font-size: .95rem;
+        font-weight: 650;
+        text-align: center;
       }
 
       .mc-ranked-metric-main {
@@ -2021,11 +2041,6 @@
             "prize score";
         }
 
-        .mc-overview-grid.no-team {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          grid-template-areas: "solo prize score";
-        }
-
         .mc-stat-grid {
           display: contents;
         }
@@ -2116,8 +2131,7 @@
 
       @media (max-width: 760px) {
         .mc-overview-grid,
-        .mc-overview-grid.has-team,
-        .mc-overview-grid.no-team {
+        .mc-overview-grid.has-team {
           grid-template-columns: 1fr;
           grid-template-areas: none;
         }

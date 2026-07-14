@@ -6552,6 +6552,23 @@
         font-weight: 700;
       }
 
+      .mc-stat-card-empty {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mc-stat-empty {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 88px;
+        color: rgba(255, 255, 255, .42);
+        font-size: .95rem;
+        font-weight: 650;
+        text-align: center;
+      }
+
       .mc-ranked-metric-main {
         display: flex;
         align-items: baseline;
@@ -7135,11 +7152,6 @@
             "prize score";
         }
 
-        .mc-overview-grid.no-team {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          grid-template-areas: "solo prize score";
-        }
-
         .mc-stat-grid {
           display: contents;
         }
@@ -7230,8 +7242,7 @@
 
       @media (max-width: 760px) {
         .mc-overview-grid,
-        .mc-overview-grid.has-team,
-        .mc-overview-grid.no-team {
+        .mc-overview-grid.has-team {
           grid-template-columns: 1fr;
           grid-template-areas: none;
         }
