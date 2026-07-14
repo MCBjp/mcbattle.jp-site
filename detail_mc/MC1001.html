@@ -92,11 +92,6 @@
         "@type": "PropertyValue",
         "name": "スコア",
         "value": "1415.65"
-      },
-      {
-        "@type": "PropertyValue",
-        "name": "スコアランキング",
-        "value": "100位圏外位"
       }
     ]
   }
@@ -967,262 +962,207 @@
         <p id="mc-description" class="page-header-description ">NEO GENESIS MC BATTLE Vol.1、NEO GENESIS at HARLEM、U-22 MCBATTLE 2025 FINALなどに出場。</p>
         <p id="mc-meta" class="page-header-meta"><div class="mc-detail-app" data-mc-detail-app>
 <div class="mc-tabs" role="tablist" aria-label="MC詳細">
-      <button
-        type="button"
-        class="mc-tab-button is-active"
-        role="tab"
-        aria-selected="true"
-        aria-controls="mc-tab-overview"
-        id="mc-tab-button-overview"
-        data-tab-target="overview"
-      >概要</button>
-      <button
-        type="button"
-        class="mc-tab-button"
-        role="tab"
-        aria-selected="false"
-        aria-controls="mc-tab-history"
-        id="mc-tab-button-history"
-        data-tab-target="history"
-        tabindex="-1"
-      >戦績</button>
-      <button
-        type="button"
-        class="mc-tab-button"
-        role="tab"
-        aria-selected="false"
-        aria-controls="mc-tab-analysis"
-        id="mc-tab-button-analysis"
-        data-tab-target="analysis"
-        tabindex="-1"
-      >分析</button>
+      
+        <button
+          type="button"
+          class="mc-tab-button is-active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="mc-tab-overview"
+          id="mc-tab-button-overview"
+          data-tab-target="overview"
+          tabindex="0"
+        >概要</button>
+      
+        <button
+          type="button"
+          class="mc-tab-button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="mc-tab-history"
+          id="mc-tab-button-history"
+          data-tab-target="history"
+          tabindex="-1"
+        >戦績</button>
+      
+        <button
+          type="button"
+          class="mc-tab-button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="mc-tab-analysis"
+          id="mc-tab-button-analysis"
+          data-tab-target="analysis"
+          tabindex="-1"
+        >分析</button>
+      
     </div>
 <div class="mc-tab-panels">
-<section
-      class="mc-tab-panel is-active"
-      id="mc-tab-overview"
-      role="tabpanel"
-      aria-labelledby="mc-tab-button-overview"
-      data-tab-panel="overview"
-    >
+<section class="mc-tab-panel is-active" id="mc-tab-overview" role="tabpanel"
+      aria-labelledby="mc-tab-button-overview" data-tab-panel="overview">
       <p class="mc-seo-summary">zvtterのMCバトル戦績ページです。個人戦2戦0勝2敗、勝率0%。対戦履歴、出場大会、スコア、年別成績を確認できます。</p>
 
-      <div class="mc-overview-grid has-team">
-        <div class="mc-stat-grid"><article class="mc-stat-card is-solo">
-      <div class="mc-stat-label">個人戦</div>
-      <div class="mc-stat-main">2戦</div>
-      <div class="mc-stat-sub">0勝 2敗</div>
-      <div class="mc-stat-rate">勝率 0%</div>
-    </article><article class="mc-stat-card mc-stat-card-empty is-team">
-      <div class="mc-stat-label">チーム戦</div>
-      <div class="mc-stat-empty">出場履歴なし</div>
-    </article></div>
-        <article class="mc-ranking-card is-prize">
-      <h2 class="mc-card-title">獲得賞金</h2>
-
-      <div class="mc-ranked-metric-main">
-        <div class="mc-ranked-metric-value">¥0</div>
-        <div class="mc-ranked-metric-rank">−</div>
+      <div class="mc-overview-grid">
+        <article class="mc-overview-card mc-stat-card is-solo">
+      <h2 class="mc-overview-card-title">個人戦</h2>
+      <div class="mc-overview-card-body">
+        
+          <div class="mc-stat-main">2戦</div>
+          <div class="mc-stat-sub">0勝 2敗</div>
+          <div class="mc-stat-rate">勝率 0%</div>
+        
       </div>
-
-      
-      
-
-      <p class="mc-card-note">※予選や一部大会の金額は反映されていません</p>
-      
+      <div class="mc-overview-card-footer" aria-hidden="true"></div>
     </article>
-        <article class="mc-ranking-card is-score">
-      <h2 class="mc-card-title">スコア</h2>
-
-      <div class="mc-ranked-metric-main">
-        <div class="mc-ranked-metric-value">1415.65</div>
-        <div class="mc-ranked-metric-rank">372位</div>
+        <article class="mc-overview-card mc-stat-card is-team">
+      <h2 class="mc-overview-card-title">チーム戦</h2>
+      <div class="mc-overview-card-body">
+        
+          <div class="mc-stat-empty">出場履歴なし</div>
+        
       </div>
-
-      <div class="mc-ranking-neighbor is-up">
+      <div class="mc-overview-card-footer" aria-hidden="true"></div>
+    </article>
+        <article class="mc-overview-card mc-ranking-card is-prize">
+      <h2 class="mc-overview-card-title">獲得賞金</h2>
+      <div class="mc-overview-card-body">
+        <div class="mc-ranked-metric-main">
+          <div class="mc-ranked-metric-value">¥0</div>
+          <div class="mc-ranked-metric-rank">−</div>
+        </div>
+        <div class="mc-ranking-neighbors">
+          <div class="mc-ranking-neighbor is-placeholder" aria-hidden="true"></div>
+          <div class="mc-ranking-neighbor is-placeholder" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="mc-overview-card-footer">
+        <p class="mc-card-note">※予選や一部大会の金額は反映されていません</p>
+        
+      </div>
+    </article>
+        <article class="mc-overview-card mc-ranking-card is-score">
+      <h2 class="mc-overview-card-title">スコア</h2>
+      <div class="mc-overview-card-body">
+        <div class="mc-ranked-metric-main">
+          <div class="mc-ranked-metric-value">1415.65</div>
+          <div class="mc-ranked-metric-rank">372位</div>
+        </div>
+        <div class="mc-ranking-neighbors">
+          <div class="mc-ranking-neighbor is-up">
       <span class="mc-ranking-neighbor-arrow" aria-hidden="true">↑</span>
       <span class="mc-ranking-neighbor-rank">371位</span>
       <a href="../detail_mc/MC1031.html" class="mc-ranking-neighbor-link">D-Nut&#39;s</a>
     </div>
-      <div class="mc-ranking-neighbor is-down">
+          <div class="mc-ranking-neighbor is-down">
       <span class="mc-ranking-neighbor-arrow" aria-hidden="true">↓</span>
       <span class="mc-ranking-neighbor-rank">373位</span>
       <a href="../detail_mc/MC0149.html" class="mc-ranking-neighbor-link">JINTOKU</a>
     </div>
-
-      
-      
+        </div>
+      </div>
+      <div class="mc-overview-card-footer">
+        
+        
+      </div>
     </article>
       </div>
 
       <div class="mc-overview-secondary-grid">
         
-        <section class="mc-content-section">
+        <section class="mc-content-section mc-balanced-section">
       <div class="mc-section-heading">
-        <div>
-          <h2>出場大会</h2>
-        </div>
+        <h2>出場大会</h2>
         <span class="mc-section-count">2</span>
       </div>
-      
-      <ol class="mc-appearance-list" data-collapsible-list>
-        <li>
+      <div class="mc-balanced-section-body"><ol class="mc-appearance-list" data-collapsible-list><li>
       <div class="mc-appearance-date">2023.10.01</div>
-      <div class="mc-appearance-event">
-        <a href="../detail_event/EVT0133.html" class="mc-inline-link">NEO GENESIS MC BATTLE Vol.2</a>
-      </div>
+      <div class="mc-appearance-event"><a href="../detail_event/EVT0133.html" class="mc-inline-link">NEO GENESIS MC BATTLE Vol.2</a></div>
     </li><li>
       <div class="mc-appearance-date">2023.03.18</div>
-      <div class="mc-appearance-event">
-        <a href="../detail_event/EVT0132.html" class="mc-inline-link">NEO GENESIS MC BATTLE Vol.1</a>
+      <div class="mc-appearance-event"><a href="../detail_event/EVT0132.html" class="mc-inline-link">NEO GENESIS MC BATTLE Vol.1</a></div>
+    </li></ol></div>
+      <div class="mc-balanced-section-footer">
+        
       </div>
-    </li>
-      </ol>
-      
-    
     </section>
       </div>
     </section>
-<section
-      class="mc-tab-panel"
-      id="mc-tab-history"
-      role="tabpanel"
-      aria-labelledby="mc-tab-button-history"
-      data-tab-panel="history"
-      hidden
-    >
+<section class="mc-tab-panel" id="mc-tab-history" role="tabpanel"
+      aria-labelledby="mc-tab-button-history" data-tab-panel="history" hidden>
       <div class="mc-history-toolbar">
         <div class="mc-filter-stack">
           <div class="mc-filter-row">
-            <span class="mc-filter-label">形式</span>
-            <div class="mc-filter-group" role="group" aria-label="形式">
-              <button
-      type="button"
-      class="mc-filter-button is-active"
-      data-filter-axis="mode"
-      data-filter-value="all"
-      aria-pressed="true"
-    >全て</button>
-              <button
-      type="button"
-      class="mc-filter-button"
-      data-filter-axis="mode"
-      data-filter-value="solo"
-      aria-pressed="false"
-    >個人</button>
-              <button
-      type="button"
-      class="mc-filter-button"
-      data-filter-axis="mode"
-      data-filter-value="team"
-      aria-pressed="false"
-    >Team</button>
-            </div>
-          </div>
-
-          <div class="mc-filter-row">
-            <span class="mc-filter-label">勝敗</span>
-            <div class="mc-filter-group" role="group" aria-label="勝敗">
-              <button
-      type="button"
-      class="mc-filter-button is-active"
-      data-filter-axis="result"
-      data-filter-value="all"
-      aria-pressed="true"
-    >全て</button>
-              <button
-      type="button"
-      class="mc-filter-button"
-      data-filter-axis="result"
-      data-filter-value="win"
-      aria-pressed="false"
-    >Win</button>
-              <button
-      type="button"
-      class="mc-filter-button"
-      data-filter-axis="result"
-      data-filter-value="loss"
-      aria-pressed="false"
-    >Lose</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="mc-history-count" aria-live="polite">
-          <span data-visible-count>2</span>件
-        </div>
+      <span class="mc-filter-label">形式</span>
+      <div class="mc-filter-group" role="group" aria-label="形式">
+        <button type="button" class="mc-filter-button is-active"
+      data-filter-axis="mode" data-filter-value="all" aria-pressed="true">
+      全て
+    </button><button type="button" class="mc-filter-button"
+      data-filter-axis="mode" data-filter-value="solo" aria-pressed="false">
+      個人
+    </button><button type="button" class="mc-filter-button"
+      data-filter-axis="mode" data-filter-value="team" aria-pressed="false">
+      Team
+    </button>
       </div>
-
-      <ol class="mc-timeline" data-timeline><li
-      class="mc-timeline-item is-loss"
-      data-history-item
-      data-match-mode="solo"
-      data-result-type="loss"
-    >
+    </div>
+          <div class="mc-filter-row">
+      <span class="mc-filter-label">勝敗</span>
+      <div class="mc-filter-group" role="group" aria-label="勝敗">
+        <button type="button" class="mc-filter-button is-active"
+      data-filter-axis="result" data-filter-value="all" aria-pressed="true">
+      全て
+    </button><button type="button" class="mc-filter-button"
+      data-filter-axis="result" data-filter-value="win" aria-pressed="false">
+      Win
+    </button><button type="button" class="mc-filter-button"
+      data-filter-axis="result" data-filter-value="loss" aria-pressed="false">
+      Lose
+    </button>
+      </div>
+    </div>
+        </div>
+        <div class="mc-history-count" aria-live="polite"><span data-visible-count>2</span>件</div>
+      </div>
+      <ol class="mc-timeline" data-timeline><li class="mc-timeline-item is-loss" data-history-item
+      data-match-mode="solo" data-result-type="loss">
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
         <div class="mc-timeline-head">
-          <time datetime="2023-10-01">
-            2023.10.01
-          </time>
+          <time datetime="2023-10-01">2023.10.01</time>
           <div class="mc-result-badges">
             <span class="mc-result-badge is-loss">LOSE</span>
             
           </div>
         </div>
-
-        <div class="mc-timeline-match">
-          <span class="mc-match-prefix">vs</span>
-    <a href="../detail_mc/MC0738.html" class="mc-opponent-link">Aicom</a>
-        </div>
-
+        <div class="mc-timeline-match"><span class="mc-match-prefix">vs</span><a href="../detail_mc/MC0738.html" class="mc-opponent-link">Aicom</a></div>
         <div class="mc-timeline-event">
           <a href="../detail_event/EVT0133.html" class="mc-inline-link">NEO GENESIS MC BATTLE Vol.2</a>
           <span class="mc-round-label">Best24</span>
         </div>
       </article>
-    </li><li
-      class="mc-timeline-item is-loss"
-      data-history-item
-      data-match-mode="solo"
-      data-result-type="loss"
-    >
+    </li><li class="mc-timeline-item is-loss" data-history-item
+      data-match-mode="solo" data-result-type="loss">
       <div class="mc-timeline-marker" aria-hidden="true"></div>
       <article class="mc-timeline-card">
         <div class="mc-timeline-head">
-          <time datetime="2023-03-18">
-            2023.03.18
-          </time>
+          <time datetime="2023-03-18">2023.03.18</time>
           <div class="mc-result-badges">
             <span class="mc-result-badge is-loss">LOSE</span>
             
           </div>
         </div>
-
-        <div class="mc-timeline-match">
-          <span class="mc-match-prefix">vs</span>
-    <a href="../detail_mc/MC0998.html" class="mc-opponent-link">Ha_ruto</a>
-        </div>
-
+        <div class="mc-timeline-match"><span class="mc-match-prefix">vs</span><a href="../detail_mc/MC0998.html" class="mc-opponent-link">Ha_ruto</a></div>
         <div class="mc-timeline-event">
           <a href="../detail_event/EVT0132.html" class="mc-inline-link">NEO GENESIS MC BATTLE Vol.1</a>
           <span class="mc-round-label">Best24</span>
         </div>
       </article>
     </li></ol>
-
-      <div class="mc-filter-empty" data-filter-empty hidden>
-        条件に一致する戦績がありません
-      </div>
+      <div class="mc-filter-empty" data-filter-empty hidden>条件に一致する戦績がありません</div>
     </section>
-<section
-      class="mc-tab-panel"
-      id="mc-tab-analysis"
-      role="tabpanel"
-      aria-labelledby="mc-tab-button-analysis"
-      data-tab-panel="analysis"
-      hidden
-    >
+<section class="mc-tab-panel" id="mc-tab-analysis" role="tabpanel"
+      aria-labelledby="mc-tab-button-analysis" data-tab-panel="analysis" hidden>
       <div class="mc-analysis-grid">
         <article class="mc-analysis-metric">
       <div class="mc-analysis-label">個人戦勝率</div>
@@ -1245,1061 +1185,210 @@
       <div class="mc-analysis-sub">2023年に出場</div>
     </article>
       </div>
-
       <section class="mc-content-section">
       <div class="mc-section-heading">
-        <div>
-          <div class="mc-section-kicker">Recent form</div>
-          <h2>直近2戦</h2>
-        </div>
+        <div><div class="mc-section-kicker">Recent form</div><h2>直近2戦</h2></div>
         <span class="mc-section-count">0勝</span>
       </div>
-      <div class="mc-form-row" aria-label="直近の勝敗"><span class="mc-form-dot is-loss" title="Lose">L</span><span class="mc-form-dot is-loss" title="Lose">L</span></div>
-      <p class="mc-analysis-copy">
-        直近2戦の勝率は0%です。
-      </p>
+      <div class="mc-form-row" aria-label="直近の勝敗"><span class="mc-form-dot is-loss" title="Lose">L</span><span class="mc-form-dot is-loss" title="Lose">L</span></div><p class="mc-analysis-copy">直近2戦の勝率は0%です。</p>
     </section>
       <section class="mc-content-section">
       <div class="mc-section-heading">
-        <div>
-          <div class="mc-section-kicker">Head to head</div>
-          <h2>対戦回数の多い相手</h2>
-        </div>
+        <div><div class="mc-section-kicker">Head to head</div><h2>対戦回数の多い相手</h2></div>
+        
       </div>
-      <div class="mc-empty-state">個人戦の対戦相手データがありません</div>
+      <div class="mc-empty-state">2回以上対戦した個人戦の相手はいません</div>
     </section>
       <section class="mc-content-section">
       <div class="mc-section-heading">
-        <div>
-          <div class="mc-section-kicker">By year</div>
-          <h2>年別戦績</h2>
-        </div>
+        <div><div class="mc-section-kicker">By year</div><h2>年別戦績</h2></div>
+        
       </div>
-      
-            <div class="mc-year-list">
-              
-                  <div class="mc-year-row">
-                    <div class="mc-year-head">
-                      <strong>2023</strong>
-                      <span>2戦 0勝 2敗</span>
-                    </div>
-                    <div class="mc-progress" aria-label="2023年 勝率 0%">
-                      <span style="width:0%"></span>
-                    </div>
-                  </div>
-                
-            </div>
-          
+      <div class="mc-year-list">
+          <div class="mc-year-row">
+            <div class="mc-year-head"><strong>2023</strong><span>2戦 0勝 2敗</span></div>
+            <div class="mc-progress" aria-label="2023年 勝率 0%"><span style="width:0%"></span></div>
+          </div></div>
     </section>
       <section class="mc-content-section">
       <div class="mc-section-heading">
-        <div>
-          <div class="mc-section-kicker">Summary</div>
-          <h2>データ要約</h2>
-        </div>
+        <div><div class="mc-section-kicker">Summary</div><h2>データ要約</h2></div>
+        
       </div>
-      <ul class="mc-analysis-notes">
-        <li>個人戦は通算2戦、勝率0%。</li><li>最も勝利数が多い年は2023年で、0勝。</li>
-      </ul>
+      <ul class="mc-analysis-notes"><li>個人戦は通算2戦、勝率0%。</li><li>最も勝利数が多い年は2023年で、0勝。</li></ul>
     </section>
     </section>
 </div>
 </div>
 <style>
-      /*
-       * MC詳細UIがページ上部の共通ヘッダーを覆わないように
-       * stacking contextを明示的に分離する。
-       */
-      .mc-detail-app {
-        position: relative;
-        z-index: 0;
-        isolation: isolate;
-        margin-top: 24px;
-      }
-
-      .mc-tab-panels,
-      .mc-tab-panel {
-        position: relative;
-        z-index: 0;
-      }
-
-      /*
-       * 共通ヘッダー／ナビゲーションを常にクリック可能にする。
-       * テンプレート側のクラス差異にも対応するため、
-       * home-header・site-header・headerをまとめて保護する。
-       */
-      .home-header,
-      .site-header,
-      body > header,
-      header[role="banner"] {
-        position: relative;
-        z-index: 1000;
-        pointer-events: auto;
-      }
-
-      .home-header a,
-      .home-header button,
-      .site-header a,
-      .site-header button,
-      body > header a,
-      body > header button,
-      header[role="banner"] a,
-      header[role="banner"] button {
-        position: relative;
-        z-index: 1001;
-        pointer-events: auto;
-        touch-action: manipulation;
-      }
-
-      .home-header::before,
-      .home-header::after,
-      .site-header::before,
-      .site-header::after,
-      body > header::before,
-      body > header::after,
-      header[role="banner"]::before,
-      header[role="banner"]::after {
-        pointer-events: none;
-      }
-
-      .mc-tabs {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 6px;
-        margin-bottom: 18px;
-        padding: 5px;
-        border: 1px solid rgba(255, 255, 255, .1);
-        border-radius: 14px;
-        background: rgba(255, 255, 255, .035);
-      }
-
-      .mc-tab-button,
-      .mc-filter-button {
-        appearance: none;
-        border: 0;
-        font: inherit;
-        cursor: pointer;
-      }
-
-      .mc-tab-button {
-        min-height: 42px;
-        border-radius: 10px;
-        color: rgba(255, 255, 255, .62);
-        background: transparent;
-        font-weight: 700;
-        letter-spacing: .04em;
-        transition: background .18s ease, color .18s ease;
-      }
-
-      .mc-tab-button:hover {
-        color: #fff;
-        background: rgba(255, 255, 255, .05);
-      }
-
-      .mc-tab-button.is-active {
-        color: #17130b;
-        background: #d8b46a;
-      }
-
-      .mc-tab-button:focus-visible,
-      .mc-filter-button:focus-visible {
-        outline: 2px solid #fff;
-        outline-offset: 2px;
-      }
-
-      .mc-tab-panel[hidden] {
-        display: none !important;
-      }
-
-      .mc-seo-summary {
-        margin: 0 0 14px;
-        color: rgba(255, 255, 255, .58);
-        font-size: .84rem;
-        line-height: 1.7;
-      }
-
-      .mc-overview-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.65fr) minmax(220px, .75fr);
-        gap: 14px;
-      }
-
-      .mc-stat-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .mc-stat-card,
-      .mc-ranking-card,
-      .mc-analysis-metric,
-      .mc-content-section,
-      .mc-timeline-card {
-        border: 1px solid rgba(255, 255, 255, .1);
-        background:
-          linear-gradient(135deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02));
-        box-shadow: 0 14px 34px rgba(0, 0, 0, .12);
-      }
-
-      .mc-stat-card,
-      .mc-ranking-card,
-      .mc-analysis-metric {
-        border-radius: 16px;
-        padding: 14px 16px;
-      }
-
-      .mc-stat-label,
-      .mc-analysis-label,
-      .mc-section-kicker {
-        color: rgba(255, 255, 255, .48);
-        font-size: .74rem;
-        font-weight: 700;
-        letter-spacing: .12em;
-        text-transform: uppercase;
-      }
-
-      .mc-stat-main {
-        margin-top: 4px;
-        color: #fff;
-        font-size: clamp(1.35rem, 4vw, 2rem);
-        font-weight: 800;
-        line-height: 1.15;
-      }
-
-      .mc-stat-sub,
-      .mc-analysis-sub,
-      .mc-card-note {
-        margin-top: 3px;
-        color: rgba(255, 255, 255, .58);
-        font-size: .86rem;
-        line-height: 1.55;
-      }
-
-      .mc-stat-rate {
-        margin-top: 6px;
-        color: #d8b46a;
-        font-size: .83rem;
-        font-weight: 700;
-      }
-
-      .mc-stat-card-empty {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .mc-stat-empty {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 88px;
-        color: rgba(255, 255, 255, .42);
-        font-size: .95rem;
-        font-weight: 650;
-        text-align: center;
-      }
-
-      .mc-ranked-metric-main {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 16px;
-        margin: 10px 0 13px;
-      }
-
-      .mc-ranked-metric-value {
-        min-width: 0;
-        color: #fff;
-        font-size: clamp(1.45rem, 5vw, 2rem);
-        font-weight: 850;
-        line-height: 1.15;
-        overflow-wrap: anywhere;
-      }
-
-      .mc-ranked-metric-rank {
-        flex: 0 0 auto;
-        color: #d8b46a;
-        font-size: 1rem;
-        font-weight: 800;
-        white-space: nowrap;
-      }
-
-      .mc-ranking-neighbor {
-        display: grid;
-        grid-template-columns: 18px auto minmax(0, 1fr);
-        align-items: baseline;
-        gap: 7px;
-        padding: 8px 0;
-        border-top: 1px solid rgba(255, 255, 255, .07);
-        color: rgba(255, 255, 255, .58);
-        font-size: .78rem;
-        line-height: 1.4;
-      }
-
-      .mc-ranking-neighbor-arrow {
-        color: #d8b46a;
-        font-weight: 900;
-      }
-
-      .mc-ranking-neighbor-rank {
-        white-space: nowrap;
-      }
-
-      .mc-ranking-neighbor-link {
-        min-width: 0;
-        color: rgba(255, 255, 255, .76);
-        font-weight: 700;
-        text-decoration: none;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .mc-ranking-neighbor-link:hover {
-        color: #d8b46a;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-      }
-
-      .mc-card-title {
-        margin: 6px 0 16px;
-        font-size: 1.1rem;
-      }
-
-      .mc-ranking-list {
-        margin: 0;
-      }
-
-      .mc-ranking-list > div {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 11px 0;
-        border-top: 1px solid rgba(255, 255, 255, .08);
-      }
-
-      .mc-ranking-list dt {
-        color: rgba(255, 255, 255, .55);
-        font-size: .84rem;
-      }
-
-      .mc-ranking-list dd {
-        margin: 0;
-        color: #fff;
-        font-size: 1.12rem;
-        font-weight: 800;
-      }
-
-      .mc-content-section {
-        margin-top: 14px;
-        border-radius: 16px;
-        padding: 14px 16px;
-      }
-
-      .mc-section-heading {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 10px;
-      }
-
-      .mc-section-heading h2 {
-        margin: 4px 0 0;
-        font-size: 1.08rem;
-      }
-
-      .mc-section-count {
-        color: #d8b46a;
-        font-size: .9rem;
-        font-weight: 800;
-      }
-
-      .mc-link-list,
-      .mc-note-list,
-      .mc-analysis-notes,
-      .mc-appearance-list,
-      .mc-ranking-table,
-      .mc-timeline {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .mc-link-list li,
-      .mc-note-list li,
-      .mc-analysis-notes li {
-        padding: 11px 0;
-        border-top: 1px solid rgba(255, 255, 255, .07);
-        line-height: 1.55;
-      }
-
-      .mc-link-list li:first-child,
-      .mc-note-list li:first-child,
-      .mc-analysis-notes li:first-child {
-        border-top: 0;
-      }
-
-      .mc-inline-link,
-      .championship-event-link,
-      .mc-opponent-link,
-      .mc-team-member-link {
-        color: inherit;
-        text-decoration-color: rgba(216, 180, 106, .55);
-        text-underline-offset: 3px;
-      }
-
-      .mc-inline-link:hover,
-      .championship-event-link:hover,
-      .mc-opponent-link:hover,
-      .mc-team-member-link:hover {
-        color: #d8b46a;
-      }
-
-      .mc-appearance-list li {
-        display: grid;
-        grid-template-columns: 112px minmax(0, 1fr);
-        gap: 14px;
-        padding: 12px 0;
-        border-top: 1px solid rgba(255, 255, 255, .07);
-      }
-
-      .mc-appearance-list li:first-child {
-        border-top: 0;
-      }
-
-      .mc-appearance-date {
-        color: rgba(255, 255, 255, .46);
-        font-size: .82rem;
-        font-variant-numeric: tabular-nums;
-      }
-
-      .mc-appearance-event {
-        min-width: 0;
-        line-height: 1.45;
-      }
-
-      .mc-footnote,
-      .mc-analysis-copy {
-        color: rgba(255, 255, 255, .55);
-        font-size: .82rem;
-        line-height: 1.65;
-      }
-
-      .mc-history-toolbar {
-        position: sticky;
-        top: 8px;
-        z-index: 5;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        margin-bottom: 22px;
-        padding: 10px;
-        border: 1px solid rgba(255, 255, 255, .1);
-        border-radius: 14px;
-        background: rgba(16, 16, 16, .92);
-        backdrop-filter: blur(14px);
-      }
-
-      .mc-filter-stack {
-        display: grid;
-        gap: 10px;
-        min-width: 0;
-      }
-
-      .mc-filter-row {
-        display: grid;
-        grid-template-columns: 64px minmax(0, 1fr);
-        align-items: center;
-        gap: 10px;
-      }
-
-      .mc-filter-label {
-        color: rgba(255, 255, 255, .42);
-        font-size: .72rem;
-        font-weight: 700;
-        letter-spacing: .06em;
-        white-space: nowrap;
-      }
-
-      .mc-filter-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-      }
-
-      .mc-filter-button {
-        min-height: 34px;
-        padding: 0 13px;
-        border-radius: 999px;
-        color: rgba(255, 255, 255, .62);
-        background: rgba(255, 255, 255, .06);
-        font-size: .82rem;
-        font-weight: 700;
-      }
-
-      .mc-filter-button:hover {
-        color: #fff;
-        background: rgba(255, 255, 255, .1);
-      }
-
-      .mc-filter-button.is-active {
-        color: #17130b;
-        background: #d8b46a;
-      }
-
-      .mc-history-count {
-        flex: 0 0 auto;
-        color: rgba(255, 255, 255, .48);
-        font-size: .82rem;
-        font-variant-numeric: tabular-nums;
-      }
-
-      .mc-timeline {
-        position: relative;
-        padding-left: 27px;
-      }
-
-      .mc-timeline::before {
-        content: "";
-        position: absolute;
-        top: 8px;
-        bottom: 8px;
-        left: 7px;
-        width: 1px;
-        background: rgba(255, 255, 255, .12);
-      }
-
-      .mc-timeline-item {
-        position: relative;
-        margin-bottom: 9px;
-      }
-
-      .mc-timeline-item[hidden] {
-        display: none;
-      }
-
-      .mc-timeline-marker {
-        position: absolute;
-        top: 22px;
-        left: -25px;
-        width: 11px;
-        height: 11px;
-        border: 3px solid #111;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, .38);
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, .14);
-      }
-
-      .mc-timeline-item.is-win .mc-timeline-marker {
-        background: #d8b46a;
-      }
-
-      .mc-timeline-item.is-loss .mc-timeline-marker {
-        background: #777;
-      }
-
-      .mc-timeline-card {
-        border-radius: 15px;
-        padding: 13px 15px;
-      }
-
-      .mc-timeline-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-
-      .mc-timeline-head time {
-        color: rgba(255, 255, 255, .48);
-        font-size: .78rem;
-        font-variant-numeric: tabular-nums;
-      }
-
-      .mc-result-badges {
-        display: flex;
-        gap: 6px;
-      }
-
-      .mc-result-badge {
-        display: inline-flex;
-        align-items: center;
-        min-height: 22px;
-        padding: 0 8px;
-        border-radius: 999px;
-        font-size: .67rem;
-        font-weight: 900;
-        letter-spacing: .08em;
-      }
-
-      .mc-result-badge.is-win {
-        color: #17130b;
-        background: #d8b46a;
-      }
-
-      .mc-result-badge.is-loss {
-        color: rgba(255, 255, 255, .78);
-        background: rgba(255, 255, 255, .12);
-      }
-
-      .mc-result-badge.is-team {
-        color: rgba(255, 255, 255, .78);
-        border: 1px solid rgba(255, 255, 255, .15);
-        background: transparent;
-      }
-
-      .mc-timeline-match {
-        margin-top: 6px;
-        color: #fff;
-        font-size: 1rem;
-        font-weight: 750;
-        line-height: 1.5;
-      }
-
-      .mc-match-prefix {
-        margin-right: 7px;
-        color: rgba(255, 255, 255, .42);
-        font-size: .78rem;
-        font-weight: 500;
-        text-transform: uppercase;
-      }
-
-      .mc-timeline-event {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px 10px;
-        margin-top: 6px;
-        color: rgba(255, 255, 255, .6);
-        font-size: .82rem;
-        line-height: 1.45;
-      }
-
-      .mc-round-label::before {
-        content: "/";
-        margin-right: 10px;
-        color: rgba(255, 255, 255, .22);
-      }
-
-      .mc-team-match {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-        align-items: center;
-        gap: 10px;
-      }
-
-      .mc-team-side {
-        min-width: 0;
-      }
-
-      .mc-team-side:last-child {
-        text-align: right;
-      }
-
-      .mc-team-name {
-        margin-bottom: 4px;
-        color: rgba(255, 255, 255, .52);
-        font-size: .73rem;
-        font-weight: 600;
-      }
-
-      .mc-team-members {
-        word-break: break-word;
-      }
-
-      .mc-team-vs {
-        color: rgba(255, 255, 255, .28);
-        font-size: .7rem;
-      }
-
-      .mc-team-member-separator {
-        color: rgba(255, 255, 255, .25);
-      }
-
-      .mc-analysis-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .mc-analysis-value {
-        margin-top: 4px;
-        color: #fff;
-        font-size: 1.45rem;
-        font-weight: 850;
-        line-height: 1.2;
-      }
-
-      .mc-form-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-      }
-
-      .mc-form-dot {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        font-size: .74rem;
-        font-weight: 900;
-      }
-
-      .mc-form-dot.is-win {
-        color: #17130b;
-        background: #d8b46a;
-      }
-
-      .mc-form-dot.is-loss {
-        color: rgba(255, 255, 255, .68);
-        background: rgba(255, 255, 255, .1);
-      }
-
-      .mc-ranking-table li {
-        display: grid;
-        grid-template-columns: 28px minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 0;
-        border-top: 1px solid rgba(255, 255, 255, .07);
-      }
-
-      .mc-ranking-table li:first-child {
-        border-top: 0;
-      }
-
-      .mc-table-rank {
-        color: rgba(255, 255, 255, .35);
-        font-size: .76rem;
-      }
-
-      .mc-table-name {
-        min-width: 0;
-        font-weight: 700;
-      }
-
-      .mc-table-record {
-        color: rgba(255, 255, 255, .52);
-        font-size: .8rem;
-      }
-
-      .mc-year-list {
-        display: grid;
-        gap: 15px;
-      }
-
-      .mc-year-head {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 7px;
-      }
-
-      .mc-year-head span {
-        color: rgba(255, 255, 255, .48);
-        font-size: .8rem;
-      }
-
-      .mc-progress {
-        overflow: hidden;
-        height: 7px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, .08);
-      }
-
-      .mc-progress span {
-        display: block;
-        height: 100%;
-        border-radius: inherit;
-        background: #d8b46a;
-      }
-
-
-      .mc-collapse-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 40px;
-        margin-top: 14px;
-        padding: 0 16px;
-        border: 1px solid rgba(216, 180, 106, .38);
-        border-radius: 10px;
-        color: rgba(255, 255, 255, .9);
-        background: transparent;
-        font: inherit;
-        font-size: .84rem;
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      .mc-collapse-button:hover {
-        color: #17130b;
-        background: #d8b46a;
-      }
-
-      .mc-collapse-button:focus-visible {
-        outline: 2px solid #fff;
-        outline-offset: 2px;
-      }
-
-      .is-collapsed-item[hidden] {
-        display: none !important;
-      }
-
-      .mc-empty-state,
-      .mc-filter-empty {
-        padding: 28px 18px;
-        border: 1px dashed rgba(255, 255, 255, .12);
-        border-radius: 14px;
-        color: rgba(255, 255, 255, .42);
-        text-align: center;
-        font-size: .88rem;
-      }
-
-      .mc-filter-empty {
-        margin-top: 16px;
+      :root {
+        --mc-bg: #090909;
+        --mc-card: #151515;
+        --mc-border: rgba(255,255,255,.12);
+        --mc-border-pc: rgba(255,255,255,.18);
+        --mc-border-hover: rgba(255,255,255,.28);
+        --mc-text: #f5f5f5;
+        --mc-muted: rgba(255,255,255,.56);
+        --mc-faint: rgba(255,255,255,.38);
+        --mc-accent: #d8b46a;
+        --mc-shadow: 0 8px 24px rgba(0,0,0,.45);
+      }
+
+      body { background: var(--mc-bg); }
+      .mc-detail-app { position: relative; z-index: 0; isolation: isolate; margin-top: 22px; color: var(--mc-text); }
+      .mc-tab-panels, .mc-tab-panel { position: relative; z-index: 0; }
+      .home-header, .site-header, body > header, header[role="banner"] { position: relative; z-index: 1000; pointer-events: auto; }
+      .home-header a, .home-header button, .site-header a, .site-header button, body > header a, body > header button, header[role="banner"] a, header[role="banner"] button { position: relative; z-index: 1001; pointer-events: auto; touch-action: manipulation; }
+      .home-header::before, .home-header::after, .site-header::before, .site-header::after, body > header::before, body > header::after, header[role="banner"]::before, header[role="banner"]::after { pointer-events: none; }
+
+      .mc-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 4px; margin-bottom: 14px; padding: 4px; border: 1px solid rgba(255,255,255,.10); border-radius: 13px; background: #111; }
+      .mc-tab-button, .mc-filter-button, .mc-collapse-button { appearance: none; font: inherit; cursor: pointer; }
+      .mc-tab-button { min-height: 40px; border: 0; border-radius: 9px; color: rgba(255,255,255,.58); background: transparent; font-weight: 750; letter-spacing: .03em; transition: background .16s ease,color .16s ease; }
+      .mc-tab-button:hover { color: #fff; background: rgba(255,255,255,.05); }
+      .mc-tab-button.is-active { color: #15110a; background: var(--mc-accent); }
+      .mc-tab-button:focus-visible, .mc-filter-button:focus-visible, .mc-collapse-button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+      .mc-tab-panel[hidden], .mc-timeline-item[hidden], .is-collapsed-item[hidden] { display: none !important; }
+      .mc-seo-summary { margin: 0 0 12px; color: var(--mc-muted); font-size: .82rem; line-height: 1.65; }
+
+      .mc-overview-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+      .mc-overview-card, .mc-analysis-metric, .mc-content-section, .mc-timeline-card { box-sizing: border-box; border: 1px solid var(--mc-border); background: var(--mc-card); box-shadow: var(--mc-shadow); transition: border-color .16s ease, transform .16s ease; }
+      .mc-overview-card:hover, .mc-analysis-metric:hover, .mc-content-section:hover, .mc-timeline-card:hover { border-color: var(--mc-border-hover); }
+      .mc-overview-card { display: grid; grid-template-rows: auto 1fr auto; min-height: 180px; border-radius: 15px; padding: 15px 16px; }
+      .mc-overview-card-title { margin: 0; color: rgba(255,255,255,.72); font-size: .86rem; font-weight: 800; letter-spacing: .04em; }
+      .mc-overview-card-body { display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+      .mc-overview-card-footer { min-height: 22px; }
+      .mc-stat-main, .mc-ranked-metric-value { color: #fff; font-size: clamp(1.65rem,5vw,2.25rem); font-weight: 850; line-height: 1.08; letter-spacing: -.025em; overflow-wrap: anywhere; }
+      .mc-stat-sub { margin-top: 7px; color: rgba(255,255,255,.66); font-size: .9rem; }
+      .mc-stat-rate { margin-top: 7px; color: var(--mc-accent); font-size: .82rem; font-weight: 750; }
+      .mc-stat-empty { display: flex; align-items: center; min-height: 82px; color: var(--mc-faint); font-size: .95rem; font-weight: 650; }
+      .mc-ranked-metric-main { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+      .mc-ranked-metric-rank { flex: 0 0 auto; color: var(--mc-accent); font-size: 1rem; font-weight: 850; }
+      .mc-ranking-neighbors { display: grid; min-height: 74px; }
+      .mc-ranking-neighbor { display: grid; grid-template-columns: 17px auto minmax(0,1fr); align-items: center; gap: 7px; min-height: 36px; border-top: 1px solid rgba(255,255,255,.07); color: var(--mc-muted); font-size: .77rem; }
+      .mc-ranking-neighbor-arrow { color: var(--mc-accent); font-weight: 900; }
+      .mc-ranking-neighbor-rank { white-space: nowrap; }
+      .mc-ranking-neighbor-link { min-width: 0; color: rgba(255,255,255,.76); font-weight: 700; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .mc-ranking-neighbor-link:hover { color: var(--mc-accent); text-decoration: underline; text-underline-offset: 3px; }
+      .mc-card-note { margin: 7px 0 0; color: var(--mc-faint); font-size: .73rem; line-height: 1.45; }
+
+      .mc-overview-secondary-grid { display: block; }
+      .mc-content-section { margin-top: 12px; border-radius: 15px; padding: 14px 16px; }
+      .mc-balanced-section { display: grid; grid-template-rows: auto 1fr auto; }
+      .mc-balanced-section-footer { min-height: 42px; display: flex; align-items: flex-end; }
+      .mc-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 9px; }
+      .mc-section-heading h2 { margin: 0; font-size: 1.04rem; font-weight: 800; }
+      .mc-section-kicker, .mc-analysis-label { color: var(--mc-faint); font-size: .71rem; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
+      .mc-section-count { color: var(--mc-accent); font-size: .88rem; font-weight: 850; }
+      .mc-link-list, .mc-analysis-notes, .mc-appearance-list, .mc-ranking-table, .mc-timeline { margin: 0; padding: 0; list-style: none; }
+      .mc-link-list li, .mc-analysis-notes li { padding: 10px 0; border-top: 1px solid rgba(255,255,255,.07); line-height: 1.5; }
+      .mc-link-list li:first-child, .mc-analysis-notes li:first-child { border-top: 0; }
+      .mc-appearance-list li { display: grid; grid-template-columns: 108px minmax(0,1fr); gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.07); }
+      .mc-appearance-list li:first-child { border-top: 0; }
+      .mc-appearance-date { color: var(--mc-faint); font-size: .79rem; font-variant-numeric: tabular-nums; }
+      .mc-appearance-event { min-width: 0; line-height: 1.45; }
+      .mc-inline-link, .championship-event-link, .mc-opponent-link, .mc-team-member-link { color: inherit; text-decoration-color: rgba(216,180,106,.52); text-underline-offset: 3px; }
+      .mc-inline-link:hover, .championship-event-link:hover, .mc-opponent-link:hover, .mc-team-member-link:hover { color: var(--mc-accent); }
+      .mc-collapse-button { min-height: 36px; margin-top: 10px; padding: 0 14px; border: 1px solid rgba(216,180,106,.34); border-radius: 9px; color: rgba(255,255,255,.86); background: transparent; font-size: .8rem; font-weight: 750; }
+      .mc-collapse-button:hover { color: #17130b; background: var(--mc-accent); }
+
+      .mc-history-toolbar { position: sticky; top: 8px; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; padding: 9px; border: 1px solid rgba(255,255,255,.14); border-radius: 13px; background: rgba(14,14,14,.94); backdrop-filter: blur(14px); box-shadow: 0 8px 22px rgba(0,0,0,.35); }
+      .mc-filter-stack { display: grid; gap: 8px; min-width: 0; }
+      .mc-filter-row { display: grid; grid-template-columns: 54px minmax(0,1fr); align-items: center; gap: 8px; }
+      .mc-filter-label { color: var(--mc-faint); font-size: .7rem; font-weight: 750; white-space: nowrap; }
+      .mc-filter-group { display: flex; flex-wrap: wrap; gap: 6px; }
+      .mc-filter-button { min-height: 31px; padding: 0 12px; border: 0; border-radius: 999px; color: rgba(255,255,255,.62); background: rgba(255,255,255,.06); font-size: .78rem; font-weight: 750; }
+      .mc-filter-button:hover { color: #fff; background: rgba(255,255,255,.11); }
+      .mc-filter-button.is-active { color: #17130b; background: var(--mc-accent); }
+      .mc-history-count { color: var(--mc-faint); font-size: .79rem; font-variant-numeric: tabular-nums; }
+      .mc-timeline { position: relative; padding-left: 25px; }
+      .mc-timeline::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: 7px; width: 1px; background: rgba(255,255,255,.17); }
+      .mc-timeline-item { position: relative; margin-bottom: 8px; }
+      .mc-timeline-marker { position: absolute; top: 21px; left: -23px; width: 10px; height: 10px; border: 3px solid #090909; border-radius: 50%; background: #777; box-shadow: 0 0 0 1px rgba(255,255,255,.20); }
+      .mc-timeline-item.is-win .mc-timeline-marker { background: var(--mc-accent); }
+      .mc-timeline-card { border-radius: 14px; padding: 12px 14px; }
+      .mc-timeline-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .mc-timeline-head time { color: var(--mc-faint); font-size: .76rem; font-variant-numeric: tabular-nums; }
+      .mc-result-badges { display: flex; gap: 5px; }
+      .mc-result-badge { display: inline-flex; align-items: center; min-height: 21px; padding: 0 7px; border-radius: 999px; font-size: .64rem; font-weight: 900; letter-spacing: .08em; }
+      .mc-result-badge.is-win { color: #17130b; background: var(--mc-accent); }
+      .mc-result-badge.is-loss { color: rgba(255,255,255,.76); background: rgba(255,255,255,.11); }
+      .mc-result-badge.is-team { color: rgba(255,255,255,.74); border: 1px solid rgba(255,255,255,.16); background: transparent; }
+      .mc-timeline-match { margin-top: 6px; color: #fff; font-size: 1rem; font-weight: 780; line-height: 1.45; }
+      .mc-match-prefix { margin-right: 7px; color: var(--mc-faint); font-size: .75rem; font-weight: 500; }
+      .mc-timeline-event { display: flex; flex-wrap: wrap; gap: 6px 9px; margin-top: 5px; color: var(--mc-muted); font-size: .79rem; line-height: 1.4; }
+      .mc-round-label::before { content: "/"; margin-right: 9px; color: rgba(255,255,255,.20); }
+      .mc-team-match { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 9px; }
+      .mc-team-side { min-width: 0; }
+      .mc-team-side:last-child { text-align: right; }
+      .mc-team-name { margin-bottom: 3px; color: var(--mc-faint); font-size: .71rem; font-weight: 650; }
+      .mc-team-members { word-break: break-word; }
+      .mc-team-vs { color: rgba(255,255,255,.28); font-size: .68rem; }
+      .mc-team-member-separator { color: rgba(255,255,255,.24); }
+
+      .mc-analysis-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+      .mc-analysis-metric { border-radius: 14px; padding: 13px 14px; }
+      .mc-analysis-value { margin-top: 5px; color: #fff; font-size: 1.55rem; font-weight: 850; line-height: 1.15; }
+      .mc-analysis-sub, .mc-analysis-copy { margin-top: 4px; color: var(--mc-muted); font-size: .8rem; line-height: 1.55; }
+      .mc-form-row { display: flex; flex-wrap: wrap; gap: 7px; }
+      .mc-form-dot { display: inline-flex; align-items: center; justify-content: center; width: 31px; height: 31px; border-radius: 50%; font-size: .72rem; font-weight: 900; }
+      .mc-form-dot.is-win { color: #17130b; background: var(--mc-accent); }
+      .mc-form-dot.is-loss { color: rgba(255,255,255,.66); background: rgba(255,255,255,.1); }
+      .mc-ranking-table li { display: grid; grid-template-columns: 26px minmax(0,1fr) auto; align-items: center; gap: 9px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.07); }
+      .mc-ranking-table li:first-child { border-top: 0; }
+      .mc-table-rank { color: var(--mc-faint); font-size: .74rem; }
+      .mc-table-name { min-width: 0; font-weight: 750; }
+      .mc-table-record { color: var(--mc-muted); font-size: .78rem; }
+      .mc-year-list { display: grid; gap: 13px; }
+      .mc-year-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+      .mc-year-head span { color: var(--mc-muted); font-size: .78rem; }
+      .mc-progress { overflow: hidden; height: 7px; border-radius: 999px; background: rgba(255,255,255,.08); }
+      .mc-progress span { display: block; height: 100%; border-radius: inherit; background: var(--mc-accent); }
+      .mc-empty-state, .mc-filter-empty { padding: 24px 16px; border: 1px dashed rgba(255,255,255,.13); border-radius: 13px; color: var(--mc-faint); text-align: center; font-size: .84rem; }
+      .mc-filter-empty { margin-top: 14px; }
+
+      @media (min-width: 761px) {
+        .mc-overview-card, .mc-analysis-metric, .mc-content-section, .mc-timeline-card { border-color: var(--mc-border-pc); }
       }
 
       @media (min-width: 900px) {
-        .mc-detail-app {
-          margin-top: 28px;
-        }
-
-        .mc-overview-grid {
-          gap: 16px;
-          align-items: stretch;
-        }
-
-        .mc-overview-grid.has-team {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          grid-template-areas:
-            "solo team"
-            "prize score";
-        }
-
-        .mc-stat-grid {
-          display: contents;
-        }
-
-        .mc-stat-card.is-solo {
-          grid-area: solo;
-        }
-
-        .mc-stat-card.is-team {
-          grid-area: team;
-        }
-
-        .mc-ranking-card.is-prize {
-          grid-area: prize;
-        }
-
-        .mc-ranking-card.is-score {
-          grid-area: score;
-        }
-
-        .mc-stat-card,
-        .mc-ranking-card {
-          min-height: 190px;
-          height: 100%;
-        }
-
-        .mc-stat-card {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .mc-ranking-card {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .mc-ranked-metric-main {
-          margin-top: 12px;
-        }
-
-        .mc-ranking-neighbor {
-          min-height: 38px;
-        }
-
-        .mc-overview-secondary-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 16px;
-          align-items: stretch;
-        }
-
-        .mc-overview-secondary-grid > .mc-content-section {
-          margin-top: 16px;
-          min-width: 0;
-          height: 100%;
-          box-sizing: border-box;
-        }
-
-        .mc-overview-secondary-grid > .mc-content-section:only-child {
-          grid-column: 1 / -1;
-        }
-
-        .mc-link-list li,
-        .mc-appearance-list li {
-          min-height: 52px;
-        }
-
-        .mc-history-toolbar {
-          top: 12px;
-        }
-
-        .mc-timeline {
-          max-width: 980px;
-          margin: 0 auto;
-        }
-
-        .mc-analysis-grid {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-
-        .mc-tab-panel[data-tab-panel="analysis"] .mc-content-section {
-          max-width: 1100px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-
-
-      @media (min-width: 761px) {
-        .mc-stat-card,
-        .mc-ranking-card,
-        .mc-analysis-metric,
-        .mc-content-section,
-        .mc-timeline-card {
-          border: 1px solid rgba(255, 255, 255, .30);
-          background:
-            linear-gradient(
-              180deg,
-              rgba(255, 255, 255, .085) 0%,
-              rgba(255, 255, 255, .035) 100%
-            );
-          box-shadow:
-            0 0 0 1px rgba(255, 255, 255, .10),
-            0 18px 42px rgba(0, 0, 0, .24);
-        }
+        .mc-detail-app { margin-top: 24px; }
+        .mc-overview-grid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; }
+        .mc-overview-card { min-height: 188px; padding: 14px 15px; }
+        .mc-overview-secondary-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; align-items: stretch; }
+        .mc-overview-secondary-grid > .mc-content-section { margin-top: 10px; min-width: 0; height: 100%; }
+        .mc-overview-secondary-grid > .mc-content-section:only-child { grid-column: 1 / -1; }
+        .mc-balanced-section { min-height: 356px; }
+        .mc-link-list li, .mc-appearance-list li { min-height: 47px; box-sizing: border-box; }
+        .mc-analysis-grid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; }
+        .mc-analysis-metric { padding: 12px 13px; }
+        .mc-tab-panel[data-tab-panel="analysis"] .mc-content-section { max-width: 1180px; margin-left: auto; margin-right: auto; }
+        .mc-timeline { max-width: 1100px; margin: 0 auto; }
+        .mc-history-toolbar { top: 10px; }
       }
 
       @media (max-width: 760px) {
-        .mc-overview-grid,
-        .mc-overview-grid.has-team {
-          grid-template-columns: 1fr;
-          grid-template-areas: none;
-        }
-
-        .mc-stat-card.is-solo,
-        .mc-stat-card.is-team,
-        .mc-ranking-card.is-prize,
-        .mc-ranking-card.is-score {
-          grid-area: auto;
-        }
-
-        .mc-overview-secondary-grid {
-          display: block;
-        }
-
-        .mc-analysis-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .mc-history-toolbar {
-          align-items: flex-start;
-        }
-
-        .mc-appearance-list li {
-          grid-template-columns: 94px minmax(0, 1fr);
-        }
+        .mc-overview-secondary-grid { display: block; }
+        .mc-appearance-list li { grid-template-columns: 92px minmax(0,1fr); }
       }
 
       @media (max-width: 520px) {
-        .mc-detail-app {
-          margin-top: 18px;
-        }
-
-        .mc-tab-button {
-          min-height: 40px;
-          font-size: .88rem;
-        }
-
-        .mc-stat-grid,
-        .mc-analysis-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .mc-history-toolbar {
-          position: static;
-          display: block;
-        }
-
-        .mc-filter-stack {
-          gap: 9px;
-        }
-
-        .mc-filter-row {
-          grid-template-columns: 58px minmax(0, 1fr);
-          gap: 8px;
-        }
-
-        .mc-filter-group {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .mc-filter-button {
-          min-width: 0;
-          padding: 0 7px;
-          font-size: .75rem;
-        }
-
-        .mc-history-count {
-          margin-top: 9px;
-          text-align: right;
-        }
-
-        .mc-timeline {
-          padding-left: 22px;
-        }
-
-        .mc-timeline-marker {
-          left: -20px;
-        }
-
-        .mc-team-match {
-          grid-template-columns: 1fr;
-          gap: 6px;
-        }
-
-        .mc-team-side:last-child {
-          text-align: left;
-        }
-
-        .mc-team-vs {
-          display: none;
-        }
-
-        .mc-team-side:last-child::before {
-          content: "vs ";
-          color: rgba(255, 255, 255, .3);
-          font-size: .7rem;
-        }
-
-        .mc-ranking-table li {
-          grid-template-columns: 24px minmax(0, 1fr);
-        }
-
-        .mc-table-record {
-          grid-column: 2;
-        }
+        .mc-detail-app { margin-top: 17px; }
+        .mc-tab-button { min-height: 39px; font-size: .86rem; }
+        .mc-overview-card { min-height: 168px; }
+        .mc-analysis-grid { grid-template-columns: 1fr; }
+        .mc-history-toolbar { position: static; display: block; }
+        .mc-filter-row { grid-template-columns: 52px minmax(0,1fr); }
+        .mc-filter-group { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+        .mc-filter-button { min-width: 0; padding: 0 6px; font-size: .73rem; }
+        .mc-history-count { margin-top: 8px; text-align: right; }
+        .mc-timeline { padding-left: 21px; }
+        .mc-timeline-marker { left: -19px; }
+        .mc-team-match { grid-template-columns: 1fr; gap: 5px; }
+        .mc-team-side:last-child { text-align: left; }
+        .mc-team-vs { display: none; }
+        .mc-team-side:last-child::before { content: "vs "; color: rgba(255,255,255,.3); font-size: .68rem; }
+        .mc-ranking-table li { grid-template-columns: 23px minmax(0,1fr); }
+        .mc-table-record { grid-column: 2; }
       }
     </style>
 <script>
@@ -2307,71 +1396,46 @@
         const app = document.querySelector("[data-mc-detail-app]");
         if (!app) return;
 
-        const tabButtons = Array.from(app.querySelectorAll("[data-tab-target]"));
-        const tabPanels = Array.from(app.querySelectorAll("[data-tab-panel]"));
-        const filterButtons = Array.from(app.querySelectorAll("[data-filter-axis][data-filter-value]"));
-        const historyItems = Array.from(app.querySelectorAll("[data-history-item]"));
+        const tabButtons = [...app.querySelectorAll("[data-tab-target]")];
+        const tabPanels = [...app.querySelectorAll("[data-tab-panel]")];
+        const filterButtons = [...app.querySelectorAll("[data-filter-axis][data-filter-value]")];
+        const historyItems = [...app.querySelectorAll("[data-history-item]")];
+        const collapseButtons = [...app.querySelectorAll("[data-collapse-button]")];
         const visibleCount = app.querySelector("[data-visible-count]");
         const filterEmpty = app.querySelector("[data-filter-empty]");
-        const collapseButtons = Array.from(app.querySelectorAll("[data-collapse-button]"));
+        const filters = { mode: "all", result: "all" };
 
-        const activateTab = (targetName, options = {}) => {
-          const { focus = false, updateHash = true } = options;
-
+        const activateTab = (name, { focus = false, updateHash = true } = {}) => {
           tabButtons.forEach((button) => {
-            const active = button.dataset.tabTarget === targetName;
+            const active = button.dataset.tabTarget === name;
             button.classList.toggle("is-active", active);
             button.setAttribute("aria-selected", String(active));
             button.tabIndex = active ? 0 : -1;
-
-            if (active && focus) {
-              button.focus();
-            }
+            if (active && focus) button.focus();
           });
 
           tabPanels.forEach((panel) => {
-            const active = panel.dataset.tabPanel === targetName;
+            const active = panel.dataset.tabPanel === name;
             panel.classList.toggle("is-active", active);
             panel.hidden = !active;
           });
 
           if (updateHash && history.replaceState) {
-            const hash = targetName === "overview" ? "" : "#" + targetName;
-            history.replaceState(null, "", location.pathname + location.search + hash);
+            history.replaceState(null, "", location.pathname + location.search + (name === "overview" ? "" : "#" + name));
           }
         };
 
-        const historyFilter = {
-          mode: "all",
-          result: "all"
-        };
-
-        const applyHistoryFilters = () => {
+        const applyFilters = () => {
           let count = 0;
-
           historyItems.forEach((item) => {
-            const itemMode = item.dataset.matchMode || "solo";
-            const itemResult = item.dataset.resultType || "";
-
-            const matchesMode =
-              historyFilter.mode === "all" ||
-              itemMode === historyFilter.mode;
-
-            const matchesResult =
-              historyFilter.result === "all" ||
-              itemResult === historyFilter.result;
-
-            const visible = matchesMode && matchesResult;
+            const visible = (filters.mode === "all" || item.dataset.matchMode === filters.mode) &&
+              (filters.result === "all" || item.dataset.resultType === filters.result);
             item.hidden = !visible;
-
             if (visible) count += 1;
           });
 
           filterButtons.forEach((button) => {
-            const axis = button.dataset.filterAxis;
-            const value = button.dataset.filterValue;
-            const active = historyFilter[axis] === value;
-
+            const active = filters[button.dataset.filterAxis] === button.dataset.filterValue;
             button.classList.toggle("is-active", active);
             button.setAttribute("aria-pressed", String(active));
           });
@@ -2381,86 +1445,45 @@
         };
 
         tabButtons.forEach((button, index) => {
-          button.addEventListener("click", () => {
-            activateTab(button.dataset.tabTarget);
-          });
-
+          button.addEventListener("click", () => activateTab(button.dataset.tabTarget));
           button.addEventListener("keydown", (event) => {
-            if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
-              return;
-            }
-
+            if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
             event.preventDefault();
-
-            let nextIndex = index;
-
-            if (event.key === "ArrowLeft") {
-              nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
-            }
-
-            if (event.key === "ArrowRight") {
-              nextIndex = (index + 1) % tabButtons.length;
-            }
-
-            if (event.key === "Home") {
-              nextIndex = 0;
-            }
-
-            if (event.key === "End") {
-              nextIndex = tabButtons.length - 1;
-            }
-
-            activateTab(tabButtons[nextIndex].dataset.tabTarget, {
-              focus: true
-            });
+            let next = index;
+            if (event.key === "ArrowLeft") next = (index - 1 + tabButtons.length) % tabButtons.length;
+            if (event.key === "ArrowRight") next = (index + 1) % tabButtons.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabButtons.length - 1;
+            activateTab(tabButtons[next].dataset.tabTarget, { focus: true });
           });
         });
 
         filterButtons.forEach((button) => {
           button.addEventListener("click", () => {
             const axis = button.dataset.filterAxis;
-            const value = button.dataset.filterValue;
-
-            if (!axis || !value || !(axis in historyFilter)) return;
-
-            historyFilter[axis] = value;
-            applyHistoryFilters();
+            if (!(axis in filters)) return;
+            filters[axis] = button.dataset.filterValue;
+            applyFilters();
           });
         });
-
 
         collapseButtons.forEach((button) => {
           button.addEventListener("click", () => {
             const section = button.closest(".mc-content-section");
             if (!section) return;
-
-            const hiddenItems = Array.from(
-              section.querySelectorAll(".is-collapsed-item")
-            );
-
+            const items = [...section.querySelectorAll(".is-collapsed-item")];
             const expanded = button.getAttribute("aria-expanded") === "true";
-            const nextExpanded = !expanded;
-
-            hiddenItems.forEach((item) => {
-              item.hidden = !nextExpanded;
-            });
-
-            button.setAttribute("aria-expanded", String(nextExpanded));
-            button.textContent = nextExpanded
-              ? "閉じる"
-              : "もっと見る（あと" + (button.dataset.remainingCount || hiddenItems.length) + "件）";
+            items.forEach((item) => { item.hidden = expanded; });
+            button.setAttribute("aria-expanded", String(!expanded));
+            button.textContent = expanded
+              ? "もっと見る（あと" + (button.dataset.remainingCount || items.length) + "件）"
+              : "閉じる";
           });
         });
 
-        const initialTab = location.hash.replace("#", "");
-        const validInitialTab = tabButtons.some(
-          (button) => button.dataset.tabTarget === initialTab
-        );
-
-        activateTab(validInitialTab ? initialTab : "overview", {
-          updateHash: false
-        });
-        applyHistoryFilters();
+        const initial = location.hash.slice(1);
+        activateTab(tabButtons.some((button) => button.dataset.tabTarget === initial) ? initial : "overview", { updateHash: false });
+        applyFilters();
       })();
     </script></p>
       </div>
