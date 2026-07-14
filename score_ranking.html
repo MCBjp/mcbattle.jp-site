@@ -29,7 +29,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-9C8VGD3THB');
   </script>
 
@@ -47,203 +46,231 @@
 
     .page-header-block h1{
       margin:0;
+      color:#17191f;
       text-wrap:balance;
       overflow-wrap:anywhere;
       word-break:break-word;
     }
 
     .spec-card-link{
-      display: block;
-      margin-bottom: 10px;
-      padding: 11px 14px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      text-decoration: none;
+      display:block;
+      margin-bottom:10px;
+      padding:11px 14px;
+      border:1px solid #dcc89b;
+      border-radius:16px;
+      background:#fbf6ea;
+      color:#17191f;
+      text-decoration:none;
+      box-shadow:0 1px 2px rgba(17,24,39,.04);
       transition:
-        transform 0.18s ease,
-        background-color 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        opacity 0.18s ease;
+        transform .18s ease,
+        background-color .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
     }
 
     .spec-card-link:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.06);
-      border-color: var(--line-strong);
-      box-shadow: 0 0 18px var(--glow);
-      text-decoration: none;
+      transform:translateY(-1px);
+      background:#f7edd8;
+      border-color:#caa65d;
+      box-shadow:0 8px 20px rgba(17,24,39,.08);
+      text-decoration:none;
     }
 
     .spec-card-title{
-      margin: 0;
-      color: var(--accent);
-      font-size: 0.96rem;
-      font-weight: 800;
-      line-height: 1.3;
+      margin:0;
+      color:#6d4a16;
+      font-size:.96rem;
+      font-weight:800;
+      line-height:1.3;
     }
 
-    .top3-wrap {
-      margin-bottom: 18px;
+    .top3-wrap{
+      margin-bottom:18px;
     }
 
-    .top3-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .top3-list{
+      display:flex;
+      flex-direction:column;
+      gap:0;
+      padding:0 14px;
+      border:1px solid #d9dde3;
+      border-radius:18px;
+      background:#ffffff;
+      box-shadow:
+        0 8px 24px rgba(17,24,39,.07),
+        0 1px 2px rgba(17,24,39,.04);
     }
 
-    .top3-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
+    .top3-row{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      align-items:center;
+      gap:12px;
+      padding:13px 0;
     }
 
-    .top3-row + .top3-row {
-      border-top: 1px solid rgba(255,255,255,0.08);
+    .top3-row + .top3-row{
+      border-top:1px solid #e4e7eb;
     }
 
-    .top3-left {
-      min-width: 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #ffffff;
-      font-size: 1.12rem;
-      font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -0.01em;
+    .top3-left{
+      min-width:0;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#17191f;
+      font-size:1.12rem;
+      font-weight:800;
+      line-height:1.12;
+      letter-spacing:-.01em;
     }
 
-    .top3-medal {
-      flex: 0 0 auto;
-      font-size: 0.96em;
-      line-height: 1;
+    .top3-medal{
+      flex:0 0 auto;
+      font-size:.96em;
+      line-height:1;
     }
 
-    .top3-name {
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .top3-name{
+      min-width:0;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .top3-name a {
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
+    .top3-name a{
+      color:#17191f;
+      text-decoration:underline;
+      text-decoration-color:#b8bec7;
+      text-underline-offset:.15em;
     }
 
-    .top3-name a:hover {
-      opacity: 0.85;
+    .top3-name a:hover{
+      color:#8a611f;
+      text-decoration-color:#c9ac72;
     }
 
-    .top3-score {
-      color: var(--accent);
-      font-weight: 800;
-      font-size: 1.08rem;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-      text-align: right;
+    .top3-score{
+      color:#8a611f;
+      font-weight:900;
+      font-size:1.08rem;
+      line-height:1;
+      letter-spacing:-.02em;
+      white-space:nowrap;
+      font-variant-numeric:tabular-nums;
+      text-align:right;
     }
 
-    .rankings-card-inner {
-      padding-left: 12px;
-      padding-right: 12px;
+    .rankings-page > .card{
+      border-color:#d9dde3;
+      background:#ffffff;
+      box-shadow:
+        0 8px 24px rgba(17,24,39,.07),
+        0 1px 2px rgba(17,24,39,.04);
+    }
+
+    .rankings-card-inner{
+      padding-left:12px;
+      padding-right:12px;
     }
 
     .rankings-card-head{
-      margin-bottom: 8px;
+      margin-bottom:8px;
     }
 
-    .rankings-table-wrap {
-      overflow-x: visible;
-      width: 100%;
+    .rankings-table-wrap{
+      overflow-x:visible;
+      width:100%;
     }
 
-    table.rankings-table {
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      table-layout: fixed;
-      border-collapse: collapse;
-      margin-top: 0;
+    table.rankings-table{
+      width:100%;
+      max-width:100%;
+      min-width:0;
+      table-layout:fixed;
+      border-collapse:collapse;
+      margin-top:0;
+      background:#ffffff;
     }
 
-    table.rankings-table col:nth-child(1) {
-      width: 58px;
+    table.rankings-table col:nth-child(1){
+      width:58px;
     }
 
-    table.rankings-table col:nth-child(2) {
-      width: auto;
+    table.rankings-table col:nth-child(2){
+      width:auto;
     }
 
-    table.rankings-table col:nth-child(3) {
-      width: 84px;
+    table.rankings-table col:nth-child(3){
+      width:84px;
     }
 
-    table.rankings-table td {
-      padding: 10px 8px;
-      vertical-align: middle;
+    table.rankings-table td{
+      padding:10px 8px;
+      vertical-align:middle;
+      color:#17191f;
+      border-bottom:0;
     }
 
-    table.rankings-table td:nth-child(1) {
-      text-align: right;
-      white-space: nowrap;
+    table.rankings-table td:nth-child(1){
+      text-align:right;
+      white-space:nowrap;
     }
 
-    table.rankings-table td:nth-child(2) {
-      text-align: left;
-      min-width: 0;
+    table.rankings-table td:nth-child(2){
+      text-align:left;
+      min-width:0;
     }
 
-    table.rankings-table td:nth-child(3) {
-      text-align: right;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
+    table.rankings-table td:nth-child(3){
+      text-align:right;
+      white-space:nowrap;
+      font-variant-numeric:tabular-nums;
     }
 
-    table.rankings-table tbody tr + tr {
-      border-top: 1px solid rgba(214,178,95,0.26);
+    table.rankings-table tbody tr + tr{
+      border-top:1px solid #e4e7eb;
     }
 
-    .rank-rank {
-      color: #ffffff;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
+    table.rankings-table tbody tr:hover{
+      background:#fafbfc;
+    }
+
+    .rank-rank{
+      color:#4f5763;
+      font-weight:800;
+      font-variant-numeric:tabular-nums;
     }
 
     .rank-name-link,
-    .rank-name-text {
-      display: block;
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.15em;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-      line-height: 1.35;
+    .rank-name-text{
+      display:block;
+      color:#17191f;
+      text-decoration:underline;
+      text-decoration-color:#c4c9d0;
+      text-underline-offset:.15em;
+      white-space:normal;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+      line-height:1.35;
+      font-weight:700;
     }
 
-    .rank-name-link:hover {
-      opacity: 0.85;
+    .rank-name-link:hover{
+      color:#8a611f;
+      text-decoration-color:#c9ac72;
     }
 
-    .rank-score {
-      color: #ffffff;
-      font-weight: 500;
-      font-size: 1rem;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: -0.01em;
+    .rank-score{
+      color:#20242b;
+      font-weight:700;
+      font-size:1rem;
+      font-variant-numeric:tabular-nums;
+      letter-spacing:-.01em;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width:640px){
       .page-top{
         margin-bottom:12px;
       }
@@ -253,67 +280,72 @@
       }
 
       .page-header-block h1{
-        font-size:clamp(1.5rem, 5.3vw, 1.95rem);
+        font-size:clamp(1.5rem,5.3vw,1.95rem);
         line-height:1.12;
       }
 
       .spec-card-link{
-        margin-bottom: 8px;
-        padding: 10px 12px;
-        border-radius: 15px;
+        margin-bottom:8px;
+        padding:10px 12px;
+        border-radius:15px;
       }
 
       .spec-card-title{
-        font-size: 0.9rem;
+        font-size:.9rem;
       }
 
-      .top3-row {
-        gap: 10px;
-        padding: 10px 0;
+      .top3-list{
+        padding:0 12px;
+        border-radius:16px;
       }
 
-      .top3-left {
-        gap: 7px;
-        font-size: 0.98rem;
+      .top3-row{
+        gap:10px;
+        padding:11px 0;
       }
 
-      .top3-medal {
-        font-size: 0.92em;
+      .top3-left{
+        gap:7px;
+        font-size:.98rem;
       }
 
-      .top3-score {
-        font-size: 0.98rem;
+      .top3-medal{
+        font-size:.92em;
       }
 
-      .rankings-card-inner {
-        padding-left: 10px;
-        padding-right: 10px;
+      .top3-score{
+        font-size:.98rem;
+      }
+
+      .rankings-card-inner{
+        padding-left:10px;
+        padding-right:10px;
       }
 
       .rankings-card-head{
-        margin-bottom: 6px;
+        margin-bottom:6px;
       }
 
-      table.rankings-table col:nth-child(1) {
-        width: 42px;
+      table.rankings-table col:nth-child(1){
+        width:42px;
       }
 
-      table.rankings-table col:nth-child(3) {
-        width: 62px;
+      table.rankings-table col:nth-child(3){
+        width:62px;
       }
 
-      table.rankings-table td {
-        padding: 8px 4px;
-        font-size: 0.9rem;
+      table.rankings-table td{
+        padding:8px 4px;
+        font-size:.9rem;
       }
 
       .rank-name-link,
-      .rank-name-text {
-        line-height: 1.28;
+      .rank-name-text{
+        line-height:1.28;
       }
 
-      .rank-score {
-        font-size: 0.94rem;
+      .rank-score{
+        font-size:.94rem;
       }
     }
   </style>
