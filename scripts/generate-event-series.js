@@ -72,7 +72,6 @@ function main() {
 
   const groups = groupEvents(items);
 
-  // 古いslugで生成されたファイルが残らないように、series配下はいったん作り直す。
   if (fs.existsSync(OUTPUT_DIR)) {
     fs.rmSync(OUTPUT_DIR, { recursive: true, force: true });
   }
@@ -107,6 +106,7 @@ function buildHtml(group, mcNameById) {
     : '<p class="series-status">大会がありません</p>';
 
   const jsonLd = buildJsonLd(group, canonicalUrl, pageTitle, pageDescription);
+
   return `<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -150,9 +150,10 @@ ${escapeScriptJson(jsonLd)}
 
   <style>
     .series-page{
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
       padding: 18px 14px 44px;
+      color: #17191f;
     }
 
     .series-page-top{
@@ -161,7 +162,7 @@ ${escapeScriptJson(jsonLd)}
 
     .series-breadcrumb{
       margin: 0 0 10px;
-      color: var(--muted);
+      color: #68707d;
       font-size: 0.78rem;
       line-height: 1.5;
       overflow-wrap: anywhere;
@@ -169,12 +170,12 @@ ${escapeScriptJson(jsonLd)}
     }
 
     .series-breadcrumb a{
-      color: var(--muted);
+      color: #68707d;
       text-decoration: none;
     }
 
     .series-breadcrumb a:hover{
-      color: var(--accent);
+      color: #8a611f;
       text-decoration: none;
     }
 
@@ -184,6 +185,7 @@ ${escapeScriptJson(jsonLd)}
 
     .series-header-block h1{
       margin: 0;
+      color: #17191f;
       text-wrap: balance;
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -196,15 +198,17 @@ ${escapeScriptJson(jsonLd)}
     .series-event-list{
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 9px;
     }
 
     .series-event-card{
-      padding: 11px 12px 10px;
+      padding: 12px 13px 11px;
       border-radius: 15px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.018);
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.015) inset;
+      border: 1px solid #d9dde3;
+      background: #ffffff;
+      box-shadow:
+        0 8px 24px rgba(17,24,39,.07),
+        0 1px 2px rgba(17,24,39,.04);
       transition:
         transform 0.18s ease,
         border-color 0.18s ease,
@@ -213,14 +217,16 @@ ${escapeScriptJson(jsonLd)}
     }
 
     .series-event-card:hover{
-      background: rgba(255,255,255,0.032);
-      border-color: rgba(255,255,255,0.16);
+      background: #fffdf8;
+      border-color: #c9ac72;
       transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+      box-shadow:
+        0 10px 24px rgba(17,24,39,.09),
+        0 0 0 1px rgba(169,121,40,.04) inset;
     }
 
     .series-event-date{
-      color: var(--accent);
+      color: #8a611f;
       font-size: 0.74rem;
       font-weight: 800;
       letter-spacing: 0.04em;
@@ -238,12 +244,12 @@ ${escapeScriptJson(jsonLd)}
     }
 
     .series-event-title a{
-      color: #ffffff;
+      color: #17191f;
       text-decoration: none;
     }
 
     .series-event-title a:hover{
-      color: #f0cd87;
+      color: #8a611f;
       text-decoration: none;
     }
 
@@ -263,14 +269,14 @@ ${escapeScriptJson(jsonLd)}
     }
 
     .series-result-row dt{
-      color: var(--muted);
+      color: #68707d;
       font-weight: 800;
       white-space: nowrap;
     }
 
     .series-result-row dd{
       margin: 0;
-      color: #ffffff;
+      color: #17191f;
       min-width: 0;
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -282,20 +288,20 @@ ${escapeScriptJson(jsonLd)}
 
     .series-mc-link,
     .series-team-member-link{
-      color: #ffffff;
+      color: #20242b;
       font-weight: 800;
       text-decoration: none;
     }
 
     .series-mc-link:hover,
     .series-team-member-link:hover{
-      color: #f0cd87;
+      color: #8a611f;
       text-decoration: none;
     }
 
     .series-team-name{
       display: block;
-      color: #ffffff;
+      color: #17191f;
       font-weight: 800;
       line-height: 1.45;
     }
@@ -303,23 +309,23 @@ ${escapeScriptJson(jsonLd)}
     .series-team-members{
       display: block;
       margin-top: 1px;
-      color: #c7cedc;
+      color: #68707d;
       line-height: 1.5;
     }
 
     .series-team-member-text{
-      color: #ffffff;
+      color: #20242b;
       font-weight: 800;
     }
 
     .series-team-member-separator{
-      color: var(--muted);
+      color: #9aa1ab;
       margin: 0 0.22em;
     }
 
     .series-muted,
     .series-status{
-      color: var(--muted);
+      color: #68707d;
     }
 
     .series-status{
@@ -567,7 +573,6 @@ function normalizeTeamMembers(members, mcNameById) {
   return list
     .map((member) => {
       const mcId = safeString(member.mc_id || member.id || "").trim();
-
       const name = getCanonicalTeamMemberName(member, mcNameById);
       if (!name) return null;
 
@@ -644,7 +649,6 @@ function isTeamBattleEvent(event, groupedMatches = []) {
     .toLowerCase();
 
   if (format === "team" || format === "tag" || format === "2on2" || format === "3on3") return true;
-
   if (Array.isArray(event && event.team_results) && event.team_results.length) return true;
 
   const finalMatch = getFinalMatch(groupedMatches);
