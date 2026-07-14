@@ -1027,19 +1027,19 @@
     >
       <p class="mc-seo-summary">IDのMCバトル戦績ページです。個人戦64戦33勝31敗、勝率51.6%、チーム戦14戦9勝5敗、優勝1回、獲得賞金¥833,333。対戦履歴、出場大会、スコア、年別成績を確認できます。</p>
 
-      <div class="mc-overview-grid">
-        <div class="mc-stat-grid"><article class="mc-stat-card">
+      <div class="mc-overview-grid has-team">
+        <div class="mc-stat-grid"><article class="mc-stat-card is-solo">
       <div class="mc-stat-label">個人戦</div>
       <div class="mc-stat-main">64戦</div>
       <div class="mc-stat-sub">33勝 31敗</div>
       <div class="mc-stat-rate">勝率 51.6%</div>
-    </article><article class="mc-stat-card">
+    </article><article class="mc-stat-card is-team">
       <div class="mc-stat-label">チーム戦</div>
       <div class="mc-stat-main">14戦</div>
       <div class="mc-stat-sub">9勝 5敗</div>
       <div class="mc-stat-rate">勝率 64.3%</div>
     </article></div>
-        <article class="mc-ranking-card">
+        <article class="mc-ranking-card is-prize">
       <h2 class="mc-card-title">獲得賞金</h2>
 
       <div class="mc-ranked-metric-main">
@@ -1061,7 +1061,7 @@
       <p class="mc-card-note">※予選や一部大会の金額は反映されていません</p>
       
     </article>
-        <article class="mc-ranking-card">
+        <article class="mc-ranking-card is-score">
       <h2 class="mc-card-title">スコア</h2>
 
       <div class="mc-ranked-metric-main">
@@ -4655,13 +4655,40 @@
         }
 
         .mc-overview-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 16px;
           align-items: stretch;
         }
 
+        .mc-overview-grid.has-team {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-areas:
+            "solo team"
+            "prize score";
+        }
+
+        .mc-overview-grid.no-team {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-areas: "solo prize score";
+        }
+
         .mc-stat-grid {
           display: contents;
+        }
+
+        .mc-stat-card.is-solo {
+          grid-area: solo;
+        }
+
+        .mc-stat-card.is-team {
+          grid-area: team;
+        }
+
+        .mc-ranking-card.is-prize {
+          grid-area: prize;
+        }
+
+        .mc-ranking-card.is-score {
+          grid-area: score;
         }
 
         .mc-stat-card,
@@ -4691,14 +4718,16 @@
 
         .mc-overview-secondary-grid {
           display: grid;
-          grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 16px;
-          align-items: start;
+          align-items: stretch;
         }
 
         .mc-overview-secondary-grid > .mc-content-section {
           margin-top: 16px;
           min-width: 0;
+          height: 100%;
+          box-sizing: border-box;
         }
 
         .mc-overview-secondary-grid > .mc-content-section:only-child {
@@ -4731,8 +4760,18 @@
       }
 
       @media (max-width: 760px) {
-        .mc-overview-grid {
+        .mc-overview-grid,
+        .mc-overview-grid.has-team,
+        .mc-overview-grid.no-team {
           grid-template-columns: 1fr;
+          grid-template-areas: none;
+        }
+
+        .mc-stat-card.is-solo,
+        .mc-stat-card.is-team,
+        .mc-ranking-card.is-prize,
+        .mc-ranking-card.is-score {
+          grid-area: auto;
         }
 
         .mc-overview-secondary-grid {
