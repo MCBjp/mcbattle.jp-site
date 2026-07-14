@@ -14,17 +14,14 @@ const OGP_IMAGE_URL = "https://mcbattle.jp/ogp.png?v=2";
 function main() {
   ensureFileExists(DATA_PATH);
 
-  const raw = fs.readFileSync(DATA_PATH, "utf8");
-  const payload = JSON.parse(raw);
+  const payload = readJson(DATA_PATH);
   const allEvents = Array.isArray(payload.events) ? payload.events : [];
-
   const today = startOfDay(new Date());
 
-  const events = allEvents
-    .filter((event) => {
-      const d = getDateValue(event.event_date);
-      return d && d.getTime() <= today.getTime();
-    });
+  const events = allEvents.filter((event) => {
+    const date = getDateValue(event.event_date);
+    return date && date.getTime() <= today.getTime();
+  });
 
   const groups = groupEvents(events);
   const html = buildHtml(groups, events);
@@ -49,6 +46,7 @@ function buildHtml(groups, events) {
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="/favicon-180x180.png">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -85,27 +83,28 @@ ${escapeScriptJson(jsonLd)}
   <link rel="stylesheet" href="site-header.css" />
 
   <style>
-    .page-top{
-      margin-bottom:14px;
+    .page-top {
+      margin-bottom: 14px;
     }
 
-    .page-header-block{
-      margin-bottom:14px;
+    .page-header-block {
+      margin-bottom: 14px;
     }
 
-    .page-header-block h1{
-      margin:0;
-      text-wrap:balance;
-      overflow-wrap:anywhere;
-      word-break:break-word;
+    .page-header-block h1 {
+      margin: 0;
+      color: var(--text);
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .event-page-lead {
+      max-width: 820px;
       margin: 0 0 14px;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: .95rem;
       line-height: 1.72;
-      max-width: 820px;
       overflow-wrap: anywhere;
       word-break: break-word;
     }
@@ -113,15 +112,17 @@ ${escapeScriptJson(jsonLd)}
     .event-group-list {
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 8px;
     }
 
     .event-group {
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.018);
       overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.025) inset;
+      border: 1px solid #d9dde3;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow:
+        0 8px 24px rgba(17, 24, 39, .07),
+        0 1px 2px rgba(17, 24, 39, .04);
     }
 
     .event-group-toggle {
@@ -130,23 +131,25 @@ ${escapeScriptJson(jsonLd)}
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 15px;
-      border: none;
-      background: rgba(255,255,255,0.02);
-      color: var(--accent);
+      padding: 13px 15px;
+      border: 0;
+      background: #ffffff;
+      color: #17191f;
       text-align: left;
       cursor: pointer;
       font: inherit;
       transition:
-        background-color 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        color 0.18s ease,
-        transform 0.18s ease;
+        background-color .18s ease,
+        color .18s ease;
     }
 
     .event-group-toggle:hover {
-      background: rgba(255,255,255,0.032);
+      background: #f8fafc;
+    }
+
+    .event-group-toggle:focus-visible {
+      outline: 2px solid #a97928;
+      outline-offset: -2px;
     }
 
     .event-group-left {
@@ -156,27 +159,27 @@ ${escapeScriptJson(jsonLd)}
     }
 
     .event-group-name {
-      font-size: 0.98rem;
+      color: #17191f;
+      font-size: .98rem;
       font-weight: 800;
       line-height: 1.32;
-      color: var(--accent);
       word-break: break-word;
     }
 
     .event-group-count {
       margin-left: 8px;
-      color: var(--muted);
-      font-size: 0.78rem;
+      color: #68707d;
+      font-size: .78rem;
       font-weight: 700;
       white-space: nowrap;
     }
 
     .event-group-icon {
       flex: 0 0 auto;
-      color: var(--muted);
+      color: #8a611f;
       font-size: 1.02rem;
       line-height: 1;
-      transition: transform 0.18s ease;
+      transition: transform .18s ease;
     }
 
     .event-group.is-open .event-group-icon {
@@ -186,7 +189,8 @@ ${escapeScriptJson(jsonLd)}
     .event-group-body {
       display: none;
       padding: 0 9px 9px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid #e4e7eb;
+      background: #ffffff;
     }
 
     .event-group.is-open .event-group-body {
@@ -196,13 +200,11 @@ ${escapeScriptJson(jsonLd)}
     .event-group-description {
       margin: 9px 0 8px;
       padding: 11px 12px;
+      border: 1px solid #dfc993;
       border-radius: 14px;
-      border: 1px solid rgba(216,180,106,0.22);
-      background:
-        linear-gradient(180deg, rgba(216,180,106,0.08), rgba(216,180,106,0.025)),
-        rgba(255,255,255,0.018);
-      color: #c7cedc;
-      font-size: 0.84rem;
+      background: #fbf6ea;
+      color: #4e4538;
+      font-size: .84rem;
       line-height: 1.68;
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -231,63 +233,58 @@ ${escapeScriptJson(jsonLd)}
 
     .event-row {
       display: block;
-      padding: 9px 10px 8px;
+      padding: 10px 11px 9px;
+      border: 1px solid #e1e5ea;
       border-radius: 13px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.018);
+      background: #f8fafc;
+      box-shadow: 0 1px 2px rgba(17, 24, 39, .035);
       transition:
-        transform 0.18s ease,
-        border-color 0.18s ease,
-        background-color 0.18s ease,
-        box-shadow 0.18s ease,
-        color 0.18s ease;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.015) inset;
+        transform .18s ease,
+        border-color .18s ease,
+        background-color .18s ease,
+        box-shadow .18s ease;
     }
 
     .event-row:hover {
-      background: rgba(255,255,255,0.032);
-      border-color: rgba(255,255,255,0.16);
       transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+      border-color: #c9ac72;
+      background: #fffdf8;
+      box-shadow:
+        0 8px 20px rgba(17, 24, 39, .08),
+        0 0 0 1px rgba(169, 121, 40, .04) inset;
     }
 
     .event-date {
-      font-size: 0.76rem;
-      color: var(--accent);
       margin-bottom: 3px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      transition: color 0.18s ease;
+      color: #8a611f;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .04em;
     }
 
     .event-row:hover .event-date {
-      color: #f0cd87;
+      color: #6d4a16;
     }
 
     .event-name {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: #ffffff;
+      color: #17191f;
+      font-size: .92rem;
+      font-weight: 800;
       line-height: 1.38;
       word-break: break-word;
-      transition: color 0.18s ease;
-    }
-
-    .event-row:hover .event-name {
-      color: #ffffff;
     }
 
     .event-winner {
       display: block;
-      color: #ffffff;
+      color: #39404a;
       font-weight: 700;
     }
 
     .event-meta {
       display: block;
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 0.78rem;
+      margin-top: 3px;
+      color: #68707d;
+      font-size: .78rem;
       line-height: 1.35;
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -302,30 +299,30 @@ ${escapeScriptJson(jsonLd)}
       color: var(--danger);
     }
 
-    @media (min-width: 1024px){
+    @media (min-width: 1024px) {
       .event-winner {
         display: inline;
-        margin-left: 0.45em;
+        margin-left: .45em;
       }
     }
 
     @media (max-width: 640px) {
-      .page-top{
-        margin-bottom:12px;
+      .page-top {
+        margin-bottom: 12px;
       }
 
-      .page-header-block{
-        margin-bottom:12px;
+      .page-header-block {
+        margin-bottom: 12px;
       }
 
-      .page-header-block h1{
-        font-size:clamp(1.5rem, 5.3vw, 1.95rem);
-        line-height:1.12;
+      .page-header-block h1 {
+        font-size: clamp(1.5rem, 5.3vw, 1.95rem);
+        line-height: 1.12;
       }
 
       .event-page-lead {
         margin-bottom: 11px;
-        font-size: 0.86rem;
+        font-size: .86rem;
         line-height: 1.62;
       }
 
@@ -349,7 +346,7 @@ ${escapeScriptJson(jsonLd)}
         margin: 8px 0 7px;
         padding: 10px 11px;
         border-radius: 13px;
-        font-size: 0.78rem;
+        font-size: .78rem;
         line-height: 1.58;
       }
 
@@ -363,25 +360,25 @@ ${escapeScriptJson(jsonLd)}
       }
 
       .event-group-name {
-        font-size: 0.94rem;
+        font-size: .94rem;
       }
 
       .event-group-count {
         margin-left: 7px;
-        font-size: 0.72rem;
+        font-size: .72rem;
       }
 
       .event-date {
-        font-size: 0.72rem;
+        font-size: .72rem;
       }
 
       .event-name {
-        font-size: 0.89rem;
+        font-size: .89rem;
         line-height: 1.34;
       }
 
       .event-meta {
-        font-size: 0.72rem;
+        font-size: .72rem;
       }
     }
   </style>
@@ -406,22 +403,18 @@ ${indent(groupHtml, 6)}
   </div>
 
   <script>
-    function attachAccordionEvents() {
-      const toggles = document.querySelectorAll(".event-group-toggle");
-      toggles.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const group = btn.closest(".event-group");
-          if (!group) return;
+    document.querySelectorAll(".event-group-toggle").forEach((button) => {
+      button.addEventListener("click", () => {
+        const group = button.closest(".event-group");
+        if (!group) return;
 
-          group.classList.toggle("is-open");
-
-          const expanded = group.classList.contains("is-open");
-          btn.setAttribute("aria-expanded", expanded ? "true" : "false");
-        });
+        group.classList.toggle("is-open");
+        button.setAttribute(
+          "aria-expanded",
+          group.classList.contains("is-open") ? "true" : "false"
+        );
       });
-    }
-
-    attachAccordionEvents();
+    });
   </script>
   <script src="site-header.js"></script>
 </body>
@@ -463,7 +456,10 @@ function buildEventRowHtml(event) {
   const location = toStr(event.location).trim();
   const prize = formatPrize(event.prize_money_winner);
 
-  const href = id ? `detail_event/${encodeURIComponent(id)}.html` : "list_event.html";
+  const href = id
+    ? `detail_event/${encodeURIComponent(id)}.html`
+    : "list_event.html";
+
   const winnerHtml = winnerName
     ? `<span class="event-winner">（${escapeHtml(winnerName)}）</span>`
     : "";
@@ -484,21 +480,19 @@ function buildEventRowHtml(event) {
 }
 
 function buildCategoryDescriptionHtml(description) {
-  const text = toStr(description).trim();
-  if (!text) return "";
-
-  const lines = text
+  const lines = toStr(description)
+    .trim()
     .replace(/\r\n/g, "\n")
     .replace(/\r/g, "\n")
     .replace(/<br\s*\/?>/gi, "\n")
     .split("\n")
-    .map(line => line.trim())
+    .map((line) => line.trim())
     .filter(Boolean);
 
   if (!lines.length) return "";
 
   return `<div class="event-group-description">
-${indent(lines.map(line => `<p>${escapeHtml(line)}</p>`).join("\n"), 2)}
+${indent(lines.map((line) => `<p>${escapeHtml(line)}</p>`).join("\n"), 2)}
 </div>`;
 }
 
@@ -509,19 +503,17 @@ function buildJsonLd(groups, events) {
     .slice(0, 200)
     .map((event, index) => {
       const id = toStr(event.event_id);
-      const url = id
-        ? `https://mcbattle.jp/detail_event/${encodeURIComponent(id)}.html`
-        : CANONICAL_URL;
-
       return {
         "@type": "ListItem",
         position: index + 1,
-        url,
+        url: id
+          ? `https://mcbattle.jp/detail_event/${encodeURIComponent(id)}.html`
+          : CANONICAL_URL,
         name: getName(event)
       };
     });
 
-  const collection = {
+  return JSON.stringify({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: PAGE_TITLE,
@@ -537,19 +529,17 @@ function buildJsonLd(groups, events) {
       numberOfItems: events.length,
       itemListElement: itemList
     },
-    about: groups.map(group => ({
+    about: groups.map((group) => ({
       "@type": "Thing",
       name: group.category
     }))
-  };
-
-  return JSON.stringify(collection, null, 2);
+  }, null, 2);
 }
 
 function groupEvents(events) {
   const map = new Map();
 
-  events.forEach(event => {
+  events.forEach((event) => {
     const categoryName = getCategoryName(event);
     const categoryDescription = getCategoryDescription(event);
     const key = `${getCategoryShowOrder(event)}__${categoryName}`;
@@ -572,27 +562,28 @@ function groupEvents(events) {
     group.items.push(event);
   });
 
-  const groups = Array.from(map.values()).map(group => {
-    return {
+  return [...map.values()]
+    .map((group) => ({
       category: group.category_name,
       category_show_order: group.category_show_order,
       category_description: group.category_description,
       items: group.items.slice().sort(compareEventsByDateDesc)
-    };
-  });
-
-  groups.sort((a, b) => {
-    if (a.category_show_order !== b.category_show_order) {
-      return a.category_show_order - b.category_show_order;
-    }
-    return a.category.localeCompare(b.category, "ja");
-  });
-
-  return groups;
+    }))
+    .sort((a, b) => {
+      if (a.category_show_order !== b.category_show_order) {
+        return a.category_show_order - b.category_show_order;
+      }
+      return a.category.localeCompare(b.category, "ja");
+    });
 }
 
 function getName(event) {
-  return toStr(event.event_name_full || event.event_name || event.event_name_simple || "");
+  return toStr(
+    event.event_name_full ||
+    event.event_name ||
+    event.event_name_simple ||
+    ""
+  );
 }
 
 function getWinnerName(event) {
@@ -600,7 +591,11 @@ function getWinnerName(event) {
 }
 
 function getCategoryName(event) {
-  return toStr(event.category_name).trim() || toStr(event.event_category).trim() || "その他";
+  return (
+    toStr(event.category_name).trim() ||
+    toStr(event.event_category).trim() ||
+    "その他"
+  );
 }
 
 function getCategoryDescription(event) {
@@ -608,17 +603,17 @@ function getCategoryDescription(event) {
 }
 
 function getCategoryShowOrder(event) {
-  const n = Number(event.category_show_order);
-  return Number.isFinite(n) ? n : 999999;
+  const value = Number(event.category_show_order);
+  return Number.isFinite(value) ? value : 999999;
 }
 
 function compareEventsByDateDesc(a, b) {
-  const da = getDateValue(a.event_date);
-  const db = getDateValue(b.event_date);
+  const dateA = getDateValue(a.event_date);
+  const dateB = getDateValue(b.event_date);
 
-  if (da && db) return db - da;
-  if (da) return -1;
-  if (db) return 1;
+  if (dateA && dateB) return dateB - dateA;
+  if (dateA) return -1;
+  if (dateB) return 1;
 
   return getName(a).localeCompare(getName(b), "ja");
 }
@@ -626,41 +621,44 @@ function compareEventsByDateDesc(a, b) {
 function getDateValue(value) {
   if (!value) return null;
 
-  const s = String(value).trim();
+  const text = String(value).trim();
 
-  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
-    const [y, m, d] = s.split("-");
-    return new Date(Number(y), Number(m) - 1, Number(d));
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+    const [year, month, day] = text.split("-");
+    return new Date(Number(year), Number(month) - 1, Number(day));
   }
 
-  if (/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(s)) {
-    const [y, m, d] = s.split("/");
-    return new Date(Number(y), Number(m) - 1, Number(d));
+  if (/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(text)) {
+    const [year, month, day] = text.split("/");
+    return new Date(Number(year), Number(month) - 1, Number(day));
   }
 
-  const d = new Date(s);
-  return Number.isNaN(d.getTime()) ? null : d;
+  const date = new Date(text);
+  return Number.isNaN(date.getTime()) ? null : date;
 }
 
 function formatDate(value) {
   if (!value) return "";
 
-  const s = String(value).trim();
+  const text = String(value).trim();
 
-  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
-    const [y, m, d] = s.split("-");
-    return `${y}.${m}.${d}`;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+    return text.replace(/-/g, ".");
   }
 
-  if (/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(s)) {
-    const [y, m, d] = s.split("/");
-    return `${y}.${String(m).padStart(2, "0")}.${String(d).padStart(2, "0")}`;
+  if (/^\d{4}\/\d{1,2}\/\d{1,2}$/.test(text)) {
+    const [year, month, day] = text.split("/");
+    return `${year}.${String(month).padStart(2, "0")}.${String(day).padStart(2, "0")}`;
   }
 
-  const d = new Date(s);
-  if (Number.isNaN(d.getTime())) return s;
+  const date = new Date(text);
+  if (Number.isNaN(date.getTime())) return text;
 
-  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0")
+  ].join(".");
 }
 
 function formatPrize(value) {
@@ -669,16 +667,24 @@ function formatPrize(value) {
   const normalized = String(value).replace(/,/g, "").trim();
   if (!/^\d+$/.test(normalized)) return "";
 
-  const n = Number(normalized);
-  if (!Number.isFinite(n) || n <= 0) return "";
+  const amount = Number(normalized);
+  if (!Number.isFinite(amount) || amount <= 0) return "";
 
-  return `¥${n.toLocaleString("ja-JP")}`;
+  return `¥${amount.toLocaleString("ja-JP")}`;
 }
 
 function startOfDay(date) {
-  const d = new Date(date);
-  d.setHours(0, 0, 0, 0);
-  return d;
+  const result = new Date(date);
+  result.setHours(0, 0, 0, 0);
+  return result;
+}
+
+function readJson(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    throw new Error(`JSONの読み込みに失敗しました: ${filePath}\n${error.message}`);
+  }
 }
 
 function escapeHtml(value) {
@@ -701,13 +707,12 @@ function indent(text, spaces) {
   const pad = " ".repeat(spaces);
   return String(text)
     .split("\n")
-    .map(line => line ? pad + line : line)
+    .map((line) => line ? pad + line : line)
     .join("\n");
 }
 
 function toStr(value) {
-  if (value === null || value === undefined) return "";
-  return String(value);
+  return value === null || value === undefined ? "" : String(value);
 }
 
 function ensureFileExists(filePath) {
