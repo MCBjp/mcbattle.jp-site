@@ -1044,8 +1044,9 @@
     </article>
       </div>
 
-      
-      <section class="mc-content-section">
+      <div class="mc-overview-secondary-grid">
+        
+        <section class="mc-content-section">
       <div class="mc-section-heading">
         <div>
           <h2>出場大会</h2>
@@ -1079,6 +1080,7 @@
       
     
     </section>
+      </div>
     </section>
 <section
       class="mc-tab-panel"
@@ -2239,9 +2241,94 @@
         margin-top: 16px;
       }
 
+      @media (min-width: 900px) {
+        .mc-detail-app {
+          margin-top: 28px;
+        }
+
+        .mc-overview-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+          align-items: stretch;
+        }
+
+        .mc-stat-grid {
+          display: contents;
+        }
+
+        .mc-stat-card,
+        .mc-ranking-card {
+          min-height: 190px;
+          height: 100%;
+        }
+
+        .mc-stat-card {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .mc-ranking-card {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .mc-ranked-metric-main {
+          margin-top: 12px;
+        }
+
+        .mc-ranking-neighbor {
+          min-height: 38px;
+        }
+
+        .mc-overview-secondary-grid {
+          display: grid;
+          grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+          gap: 16px;
+          align-items: start;
+        }
+
+        .mc-overview-secondary-grid > .mc-content-section {
+          margin-top: 16px;
+          min-width: 0;
+        }
+
+        .mc-overview-secondary-grid > .mc-content-section:only-child {
+          grid-column: 1 / -1;
+        }
+
+        .mc-link-list li,
+        .mc-appearance-list li {
+          min-height: 52px;
+        }
+
+        .mc-history-toolbar {
+          top: 12px;
+        }
+
+        .mc-timeline {
+          max-width: 980px;
+          margin: 0 auto;
+        }
+
+        .mc-analysis-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .mc-tab-panel[data-tab-panel="analysis"] .mc-content-section {
+          max-width: 1100px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
       @media (max-width: 760px) {
         .mc-overview-grid {
           grid-template-columns: 1fr;
+        }
+
+        .mc-overview-secondary-grid {
+          display: block;
         }
 
         .mc-analysis-grid {
