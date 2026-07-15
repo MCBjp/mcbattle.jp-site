@@ -326,10 +326,16 @@ function buildPrimaryStats(summary, teamSummary) {
 function buildStatCard(label, main, sub, rate = null, className = "") {
   return `
     <article class="mc-stat-card ${escapeHtml(className)}">
-      <div class="mc-stat-label">${escapeHtml(label)}</div>
+      <div class="mc-stat-head">
+        <div class="mc-stat-label">${escapeHtml(label)}</div>
+        ${
+          rate === null
+            ? ""
+            : `<div class="mc-stat-rate">勝率 ${formatPercent(rate)}</div>`
+        }
+      </div>
       <div class="mc-stat-main">${escapeHtml(main)}</div>
       <div class="mc-stat-sub">${escapeHtml(sub)}</div>
-      ${rate === null ? "" : `<div class="mc-stat-rate">勝率 ${formatPercent(rate)}</div>`}
     </article>
   `.trim();
 }
@@ -1782,11 +1788,27 @@ function buildMcDetailStyles() {
         line-height: 1.55;
       }
 
+      .mc-stat-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .mc-stat-head .mc-stat-label {
+        min-width: 0;
+      }
+
       .mc-stat-rate {
-        margin-top: 6px;
+        flex: 0 0 auto;
+        margin: 0;
         color: #d8b46a;
-        font-size: .83rem;
-        font-weight: 700;
+        font-size: .9rem;
+        font-weight: 800;
+        line-height: 1.2;
+        white-space: nowrap;
+        text-align: right;
       }
 
       .mc-stat-card-empty {
@@ -2531,6 +2553,14 @@ function buildMcDetailStyles() {
       @media (max-width: 520px) {
         .mc-detail-app {
           margin-top: 18px;
+        }
+
+        .mc-stat-head {
+          gap: 10px;
+        }
+
+        .mc-stat-rate {
+          font-size: .9rem;
         }
 
         .mc-tab-button {
