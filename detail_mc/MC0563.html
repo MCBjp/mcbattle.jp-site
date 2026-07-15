@@ -1004,15 +1004,19 @@
 
       <div class="mc-overview-grid has-team">
         <div class="mc-stat-grid"><article class="mc-stat-card is-solo">
-      <div class="mc-stat-label">個人戦</div>
+      <div class="mc-stat-head">
+        <div class="mc-stat-label">個人戦</div>
+        <div class="mc-stat-rate">勝率 12.5%</div>
+      </div>
       <div class="mc-stat-main">8戦</div>
       <div class="mc-stat-sub">1勝 7敗</div>
-      <div class="mc-stat-rate">勝率 12.5%</div>
     </article><article class="mc-stat-card is-team">
-      <div class="mc-stat-label">チーム戦</div>
+      <div class="mc-stat-head">
+        <div class="mc-stat-label">チーム戦</div>
+        <div class="mc-stat-rate">勝率 33.3%</div>
+      </div>
       <div class="mc-stat-main">3戦</div>
       <div class="mc-stat-sub">1勝 2敗</div>
-      <div class="mc-stat-rate">勝率 33.3%</div>
     </article></div>
         <article class="mc-ranking-card is-prize">
       <h2 class="mc-card-title">獲得賞金</h2>
@@ -1826,11 +1830,27 @@
         line-height: 1.55;
       }
 
+      .mc-stat-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .mc-stat-head .mc-stat-label {
+        min-width: 0;
+      }
+
       .mc-stat-rate {
-        margin-top: 6px;
+        flex: 0 0 auto;
+        margin: 0;
         color: #d8b46a;
-        font-size: .83rem;
-        font-weight: 700;
+        font-size: .9rem;
+        font-weight: 800;
+        line-height: 1.2;
+        white-space: nowrap;
+        text-align: right;
       }
 
       .mc-stat-card-empty {
@@ -2575,6 +2595,14 @@
       @media (max-width: 520px) {
         .mc-detail-app {
           margin-top: 18px;
+        }
+
+        .mc-stat-head {
+          gap: 10px;
+        }
+
+        .mc-stat-rate {
+          font-size: .9rem;
         }
 
         .mc-tab-button {
