@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-05T11:45:25.116Z",
+  "updated_at": "2026-07-18T12:09:06.991Z",
   "total": 934,
   "mcs": [
     {
@@ -186,7 +186,7 @@
       "mc_id": "MC0812",
       "mc_name": "aqua",
       "mc_name_sub": "",
-      "mc_description": "愛知県名古屋市出身。兄弟ユニット・エンヤサンの兄。JET CITY PEOPLE所属、アルバム『しらくべくリゾート』『Moody Night Cruise』など。",
+      "mc_description": "",
       "mc_yomi": "あくあ",
       "hot_mc": 0,
       "kana_group": "あ"
@@ -1257,7 +1257,7 @@
       "mc_id": "MC0806",
       "mc_name": "MY",
       "mc_name_sub": "",
-      "mc_description": "東京都出身。RHYMEBERRYのMC MIRIとして活動。戦極MCBATTLE、CINDERELLA MCBATTLEなどに出場。",
+      "mc_description": "ラッパー／YouTuber。チャンネルがーどまんのメンバー。楽曲『チヨコ』『吸ったらええやんか』など。",
       "mc_yomi": "えむわい",
       "hot_mc": 0,
       "kana_group": "あ"
@@ -3003,7 +3003,7 @@
       "mc_id": "MC0809",
       "mc_name": "Salvador Mani",
       "mc_name_sub": "",
-      "mc_description": "",
+      "mc_description": "東京都港区生まれ、品川・大田出身。高校生ラップ選手権、フリースタイルダンジョンなどに出演。",
       "mc_yomi": "さるばどーるまに",
       "hot_mc": 0,
       "kana_group": "さ"
@@ -5001,7 +5001,7 @@
       "mc_id": "MC0810",
       "mc_name": "TERESA",
       "mc_name_sub": "",
-      "mc_description": "東京都港区生まれ、品川・大田出身。高校生ラップ選手権、フリースタイルダンジョンなどに出演。",
+      "mc_description": "",
       "mc_yomi": "てれさ",
       "hot_mc": 0,
       "kana_group": "た"
@@ -5235,7 +5235,7 @@
       "mc_id": "MC0816",
       "mc_name": "NARVE",
       "mc_name_sub": "",
-      "mc_description": "凱旋MC Battle 西日本ZEPP TOUR 大阪ノ陣などに出場。",
+      "mc_description": "",
       "mc_yomi": "なーぶ",
       "hot_mc": 0,
       "kana_group": "な"
@@ -5532,7 +5532,7 @@
       "mc_id": "MC0807",
       "mc_name": "Novel Core",
       "mc_name_sub": "",
-      "mc_description": "ラッパー／YouTuber。チャンネルがーどまんのメンバー。楽曲『チヨコ』『吸ったらええやんか』など。",
+      "mc_description": "2001年生まれ、東京都出身。BMSG所属のラッパー／シンガーソングライター。高校生ラップ選手権、フリースタイルダンジョンなどに出演。",
       "mc_yomi": "のべるこあ",
       "hot_mc": 1,
       "kana_group": "な"
@@ -7773,7 +7773,7 @@
       "mc_id": "MC0808",
       "mc_name": "Rikki Swan",
       "mc_name_sub": "",
-      "mc_description": "2001年生まれ、東京都出身。BMSG所属のラッパー／シンガーソングライター。高校生ラップ選手権、フリースタイルダンジョンなどに出演。",
+      "mc_description": "",
       "mc_yomi": "りっきすわん",
       "hot_mc": 0,
       "kana_group": "ら"
@@ -7800,7 +7800,7 @@
       "mc_id": "MC0815",
       "mc_name": "Lil SteeZ",
       "mc_name_sub": "",
-      "mc_description": "U-22 MCBATTLE 2019 FINALなどに出場。",
+      "mc_description": "",
       "mc_yomi": "りっとすてぃーじー",
       "hot_mc": 0,
       "kana_group": "ら"
@@ -8295,7 +8295,7 @@
       "mc_id": "MC0811",
       "mc_name": "Y-クルーズ・エンヤ",
       "mc_name_sub": "",
-      "mc_description": "",
+      "mc_description": "愛知県名古屋市出身。兄弟ユニット・エンヤサンの兄。JET CITY PEOPLE所属、アルバム『しらくべくリゾート』『Moody Night Cruise』など。",
       "mc_yomi": "わいくるーずえんや",
       "hot_mc": 0,
       "kana_group": "わ"
