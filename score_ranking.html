@@ -99,7 +99,7 @@
       display:flex;
       flex-direction:column;
       gap:0;
-      padding:0 14px;
+      padding:0 12px;
       border:1px solid #d9dde3;
       border-radius:18px;
       background:#ffffff;
@@ -110,9 +110,9 @@
 
     .top3-row{
       display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
+      grid-template-columns:minmax(0,1fr) 84px;
       align-items:center;
-      gap:12px;
+      gap:0;
       padding:13px 0;
     }
 
@@ -122,9 +122,10 @@
 
     .top3-left{
       min-width:0;
-      display:flex;
+      display:grid;
+      grid-template-columns:58px minmax(0,1fr);
       align-items:center;
-      gap:8px;
+      gap:0;
       color:#17191f;
       font-size:1.12rem;
       font-weight:800;
@@ -133,13 +134,18 @@
     }
 
     .top3-medal{
-      flex:0 0 auto;
+      display:block;
+      padding-right:8px;
+      box-sizing:border-box;
       font-size:.96em;
       line-height:1;
+      text-align:right;
     }
 
     .top3-name{
       min-width:0;
+      padding-left:8px;
+      box-sizing:border-box;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -158,6 +164,8 @@
     }
 
     .top3-score{
+      padding:0 8px;
+      box-sizing:border-box;
       color:#8a611f;
       font-weight:900;
       font-size:1.08rem;
@@ -301,25 +309,34 @@
       }
 
       .top3-list{
-        padding:0 12px;
+        padding:0 10px;
         border-radius:16px;
       }
 
       .top3-row{
-        gap:10px;
+        grid-template-columns:minmax(0,1fr) 62px;
+        gap:0;
         padding:11px 0;
       }
 
       .top3-left{
-        gap:7px;
+        grid-template-columns:42px minmax(0,1fr);
+        gap:0;
         font-size:.98rem;
       }
 
       .top3-medal{
+        padding-right:4px;
         font-size:.92em;
       }
 
+      .top3-name{
+        padding-left:4px;
+      }
+
       .top3-score{
+        padding-left:4px;
+        padding-right:4px;
         font-size:.98rem;
       }
 
