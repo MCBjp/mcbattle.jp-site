@@ -36,6 +36,12 @@
   <link rel="stylesheet" href="site-header.css" />
 
   <style>
+    .rankings-page{
+      width:min(100%, 600px);
+      margin-left:auto;
+      margin-right:auto;
+    }
+
     .page-top{
       margin-bottom:14px;
     }
@@ -60,7 +66,7 @@
       display:flex;
       flex-direction:column;
       gap:0;
-      padding:0 14px;
+      padding:0 12px;
       border:1px solid #d9dde3;
       border-radius:18px;
       background:#ffffff;
@@ -71,9 +77,9 @@
 
     .top3-row{
       display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
+      grid-template-columns:minmax(0,1fr) 168px;
       align-items:center;
-      gap:12px;
+      gap:0;
       padding:13px 0;
     }
 
@@ -83,9 +89,10 @@
 
     .top3-left{
       min-width:0;
-      display:flex;
+      display:grid;
+      grid-template-columns:58px minmax(0,1fr);
       align-items:center;
-      gap:8px;
+      gap:0;
       color:#17191f;
       font-size:1.12rem;
       font-weight:800;
@@ -94,13 +101,18 @@
     }
 
     .top3-medal{
-      flex:0 0 auto;
+      display:block;
+      padding-right:8px;
+      box-sizing:border-box;
       font-size:.96em;
       line-height:1;
+      text-align:right;
     }
 
     .top3-name{
       min-width:0;
+      padding-left:8px;
+      box-sizing:border-box;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -119,6 +131,8 @@
     }
 
     .top3-amount{
+      padding:0 8px;
+      box-sizing:border-box;
       color:#8a611f;
       font-weight:900;
       font-size:1.08rem;
@@ -157,28 +171,34 @@
     }
 
     table.prize-table{
+      display:block;
       width:100%;
       max-width:100%;
       min-width:0;
-      table-layout:fixed;
-      border-collapse:collapse;
       margin-top:0;
+      border-collapse:collapse;
       background:#ffffff;
     }
 
-    table.prize-table col:nth-child(1){
-      width:58px;
+    table.prize-table colgroup{
+      display:none;
     }
 
-    table.prize-table col:nth-child(2){
-      width:auto;
+    table.prize-table tbody{
+      display:block;
+      width:100%;
     }
 
-    table.prize-table col:nth-child(3){
-      width:168px;
+    table.prize-table tbody tr{
+      display:grid !important;
+      grid-template-columns:58px minmax(0,1fr) 168px;
+      width:100%;
+      align-items:center;
     }
 
     table.prize-table td{
+      display:block;
+      box-sizing:border-box;
       padding:10px 8px;
       vertical-align:middle;
       color:#17191f;
@@ -257,25 +277,34 @@
       }
 
       .top3-list{
-        padding:0 12px;
+        padding:0 10px;
         border-radius:16px;
       }
 
       .top3-row{
-        gap:10px;
+        grid-template-columns:minmax(0,1fr) 116px;
+        gap:0;
         padding:11px 0;
       }
 
       .top3-left{
-        gap:7px;
+        grid-template-columns:42px minmax(0,1fr);
+        gap:0;
         font-size:.98rem;
       }
 
       .top3-medal{
+        padding-right:4px;
         font-size:.92em;
       }
 
+      .top3-name{
+        padding-left:4px;
+      }
+
       .top3-amount{
+        padding-left:4px;
+        padding-right:4px;
         font-size:.98rem;
       }
 
@@ -289,12 +318,8 @@
         line-height:1.42;
       }
 
-      table.prize-table col:nth-child(1){
-        width:42px;
-      }
-
-      table.prize-table col:nth-child(3){
-        width:116px;
+      table.prize-table tbody tr{
+        grid-template-columns:42px minmax(0,1fr) 116px;
       }
 
       table.prize-table td{
