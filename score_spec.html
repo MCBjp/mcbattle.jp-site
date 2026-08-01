@@ -84,11 +84,9 @@
 
     .spec-card {
       border: 1px solid var(--line);
-      border-radius: 18px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%),
-        linear-gradient(180deg, var(--panel) 0%, rgba(14, 18, 28, 0.98) 100%);
-      box-shadow: var(--shadow);
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(17,24,39,0.05);
       padding: 18px;
       min-width: 0;
       overflow-wrap: anywhere;
@@ -124,8 +122,9 @@
       margin: 12px 0;
       padding: 14px 16px;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      background: var(--panel-2);
+      color: var(--text);
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       font-family:
@@ -148,10 +147,10 @@
       align-items: center;
       min-height: 34px;
       padding: 0 12px;
-      border: 1px solid var(--line);
+      border: 1px solid #dcc89b;
       border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      color: var(--accent-soft);
+      background: #fbf6ea;
+      color: var(--accent-dim);
       font-size: 0.92rem;
       font-weight: 700;
     }
@@ -159,9 +158,9 @@
     .form-card {
       margin-top: 14px;
       padding: 16px;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel-2);
     }
 
     .form-card p:last-child {
@@ -175,9 +174,9 @@
       min-height: 42px;
       padding: 0 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(70, 70, 78, 0.92);
-      color: #f3f4f6;
+      border: 1px solid var(--accent-dim);
+      background: var(--accent-dim);
+      color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       transition:
@@ -192,9 +191,9 @@
       text-decoration: none;
       transform: translateY(-1px);
       opacity: 0.98;
-      background: rgba(92, 92, 102, 0.96);
-      border-color: rgba(255,255,255,0.22);
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.18);
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(17,24,39,0.10);
     }
 
     @media (max-width: 640px) {
@@ -221,7 +220,7 @@
 
       .spec-card {
         padding: 14px;
-        border-radius: 16px;
+        border-radius: 12px;
       }
 
       .spec-formula {
