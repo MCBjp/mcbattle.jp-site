@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T13:47:26.507Z",
+  "updated_at": "2026-08-11T14:27:16.193Z",
   "recent_events": [
     {
       "event_id": "EVT0162",
@@ -132,7 +132,68 @@
       "winner_name": "MC☆ニガリ"
     }
   ],
-  "upcoming_events": [],
+  "upcoming_events": [
+    {
+      "event_id": "EVT0189",
+      "event_name": "DOPAMINE MC BATTLE第一乱",
+      "event_name_full": "DOPAMINE MC BATTLE第一乱",
+      "seo_event_name": "DOPAMINE MC BATTLE第一乱",
+      "event_date": "2026-09-11",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "team"
+    },
+    {
+      "event_id": "EVT0190",
+      "event_name": "凱旋MC Battle GOLDEN TAG 2026",
+      "event_name_full": "凱旋MC Battle GOLDEN TAG 2026",
+      "seo_event_name": "凱旋MC Battle GOLDEN TAG 2026",
+      "event_date": "2026-09-26",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "teams"
+    },
+    {
+      "event_id": "EVT0191",
+      "event_name": "戦極MCBATTLE 第43章",
+      "event_name_full": "戦極MCBATTLE 第43章",
+      "seo_event_name": "戦極MCBATTLE 第43章",
+      "event_date": "2026-10-11",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1"
+    },
+    {
+      "event_id": "EVT0192",
+      "event_name": "3150×LUSHBOMU MC BATTLE vol.4",
+      "event_name_full": "3150×LUSHBOMU MC BATTLE vol.4",
+      "seo_event_name": "3150×LUSHBOMU MC BATTLE vol.4",
+      "event_date": "2026-10-17",
+      "location": "心斎橋SUNHALL",
+      "check": "",
+      "battle_format": "1on1"
+    },
+    {
+      "event_id": "EVT0193",
+      "event_name": "UMB2026本戦",
+      "event_name_full": "UMB2026本戦",
+      "seo_event_name": "UMB2026本戦",
+      "event_date": "2026-12-29",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1"
+    },
+    {
+      "event_id": "EVT0194",
+      "event_name": "KOK2026本戦",
+      "event_name_full": "KOK2026本戦",
+      "seo_event_name": "KOK2026本戦",
+      "event_date": "2027-01-09",
+      "location": "豊洲PIT",
+      "check": "",
+      "battle_format": "1on1"
+    }
+  ],
   "score_rankings": [
     {
       "rank": 1,

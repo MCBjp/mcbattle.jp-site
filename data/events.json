@@ -1,7 +1,24 @@
 {
-  "updated_at": "2026-08-11T13:47:28.345Z",
-  "total": 178,
+  "updated_at": "2026-08-11T14:27:18.017Z",
+  "total": 184,
   "events": [
+    {
+      "event_id": "EVT0193",
+      "event_name": "UMB2026本戦",
+      "event_name_full": "UMB2026本戦",
+      "seo_event_name": "UMB2026本戦",
+      "event_date": "2026-12-29",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "category_id": "EVTCat001",
+      "category_name": "UMB 本戦",
+      "category_show_order": 100,
+      "category_description": "漢 a.k.a. GAMIを中心に立ち上げられ、2005年に始まったLibra Records主催のMCバトル大会。\r\n全国各地の予選を勝ち抜いたMCが年末の本戦に集まり、日本一を争う形式を定着させた。\r\nB BOY PARK以降のMCバトル文化を全国規模に広げ、日本語ラップ史に大きな足跡を残した重要なシリーズ。\r",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": ""
+    },
     {
       "event_id": "EVT0021",
       "event_name": "UMB2025本戦",
@@ -479,6 +496,23 @@
       "winner_name": "RAWAXXX"
     },
     {
+      "event_id": "EVT0194",
+      "event_name": "KOK2026本戦",
+      "event_name_full": "KOK2026本戦",
+      "seo_event_name": "KOK2026本戦",
+      "event_date": "2027-01-09",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "category_id": "EVTCat003",
+      "category_name": "King of Kings 本戦",
+      "category_show_order": 300,
+      "category_description": "漢 a.k.a. GAMI presentsとして展開される、各大会王者・選抜MCが集まるMCバトル大会。\r\nUMB以後のシーンで、複数大会の勝者を横断して“真の王者”を決める構造を打ち出した。\r\n大会単体の強さだけでなく、シーン全体の勢力図を映すグランドチャンピオン型のシリーズ。\r",
+      "location": "豊洲PIT",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": ""
+    },
+    {
       "event_id": "EVT0032",
       "event_name": "KOK2025本戦",
       "event_name_full": "KOK2025本戦",
@@ -717,6 +751,23 @@
       "winner_name": "Authority"
     },
     {
+      "event_id": "EVT0192",
+      "event_name": "3150×LUSHBOMU MC BATTLE vol.4",
+      "event_name_full": "3150×LUSHBOMU MC BATTLE vol.4",
+      "seo_event_name": "3150×LUSHBOMU MC BATTLE vol.4",
+      "event_date": "2026-10-17",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "category_id": "EVTCat011",
+      "category_name": "LUSHBOMU MC BATTLE",
+      "category_show_order": 450,
+      "category_description": "3150FIGHTとLUSHBOMUの文脈から生まれた、高額賞金型のMCバトル大会。\r\n勝ち上がるごとに賞金が発生するファイトマネー式で、従来の優勝賞金型とは違う緊張感を作った。\r\nボクシング興行的な見せ方とMCバトルを接続した、新しい興行色の強いシリーズ。\r",
+      "location": "心斎橋SUNHALL",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": ""
+    },
+    {
       "event_id": "EVT0164",
       "event_name": "3150×LUSHBOMU MC BATTLE vol.3",
       "event_name_full": "3150×LUSHBOMU MC BATTLE vol.3",
@@ -766,6 +817,23 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "ミメイ"
+    },
+    {
+      "event_id": "EVT0191",
+      "event_name": "戦極MCBATTLE 第43章",
+      "event_name_full": "戦極MCBATTLE 第43章",
+      "seo_event_name": "戦極MCBATTLE 第43章",
+      "event_date": "2026-10-11",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "category_id": "EVTCat004",
+      "category_name": "戦極MC BATTLE",
+      "category_show_order": 500,
+      "category_description": "MC正社員を中心に発展した、国内最大級のMCバトルシリーズ。\r\n前身の戦慄MC BATTLEから戦極MC BATTLEへと展開し、YouTube時代のバトル普及を大きく押し進めた。\r\n武道館・国技館級の会場まで広がり、現代MCバトルの大衆化を象徴する大会。\r",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": ""
     },
     {
       "event_id": "EVT0161",
@@ -1854,6 +1922,23 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "R-指定"
+    },
+    {
+      "event_id": "EVT0190",
+      "event_name": "凱旋MC Battle GOLDEN TAG 2026",
+      "event_name_full": "凱旋MC Battle GOLDEN TAG 2026",
+      "seo_event_name": "凱旋MC Battle GOLDEN TAG 2026",
+      "event_date": "2026-09-26",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "category_id": "EVTCat005",
+      "category_name": "凱旋MC battle",
+      "category_show_order": 700,
+      "category_description": "怨念JAPを中心に、2017年に渋谷から始まったMCバトルシリーズ。\n若手の勢いと大型会場への拡張力を武器に、短期間で全国規模の注目大会へ成長した。\nYouTube・配信時代のMCバトルを象徴する、エンタメ性と現場感を併せ持つシリーズ。\n",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "teams",
+      "winner_name": ""
     },
     {
       "event_id": "EVT0187",
@@ -3027,6 +3112,23 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "ミメイ"
+    },
+    {
+      "event_id": "EVT0189",
+      "event_name": "DOPAMINE MC BATTLE第一乱",
+      "event_name_full": "DOPAMINE MC BATTLE第一乱",
+      "seo_event_name": "DOPAMINE MC BATTLE第一乱",
+      "event_date": "2026-09-11",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "category_id": "EVTCat013",
+      "category_name": "DOPAMINE MC BATTLE",
+      "category_show_order": 1100,
+      "category_description": "2026年に新設されたMCバトルイベント。合同会社A.moreが主催であり、ACEなどが運営に関わる。",
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "team",
+      "winner_name": ""
     }
   ]
 }
