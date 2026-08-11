@@ -425,11 +425,12 @@ function buildChampionshipSection(championships) {
 
 function renderChampionshipItem(item, hidden = false) {
   const eventName = cleanText(item.event_name);
+  const eventDate = formatDateDots(item.event_date);
   if (!eventName) return "";
 
   return `
     <li${hidden ? ' class="is-collapsed-item" hidden' : ""}>
-      ${renderEventLink(eventName, item.event_id, "championship-event-link")}
+      ${renderEventLink(eventName, item.event_id, "championship-event-link")}${eventDate ? ` <span class="mc-championship-date">(${escapeHtml(eventDate)})</span>` : ""}
     </li>
   `.trim();
 }
@@ -1121,7 +1122,12 @@ function mergeChampionships(soloChampionships, teamChampionships) {
     result.push(item);
   }
 
-  return result;
+  return result.sort((a, b) => {
+    const dateDifference = cleanText(b.event_date).localeCompare(cleanText(a.event_date));
+    if (dateDifference !== 0) return dateDifference;
+
+    return cleanText(a.event_name).localeCompare(cleanText(b.event_name), "ja");
+  });
 }
 
 function normalizeSummary(summary) {
