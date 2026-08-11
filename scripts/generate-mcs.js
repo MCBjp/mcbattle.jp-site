@@ -1070,6 +1070,12 @@ function getNumericScore(ranking) {
 }
 
 function normalizeDetail(detail) {
+  const teamWins = sortTeamMatchHistory(toArray(detail.team_wins));
+  const championships = mergeChampionships(
+    toArray(detail.championships),
+    deriveTeamChampionships(teamWins)
+  );
+
   return {
     mc: isObject(detail.mc) ? detail.mc : {},
     ranking: isObject(detail.ranking) ? detail.ranking : {},
@@ -1079,12 +1085,43 @@ function normalizeDetail(detail) {
     teamParticipatedEvents: sortAppearances(toArray(detail.team_participated_events)),
     wins: sortMatchHistory(toArray(detail.wins_against)),
     losses: sortMatchHistory(toArray(detail.losses_against)),
-    teamWins: sortTeamMatchHistory(toArray(detail.team_wins)),
+    teamWins,
     teamLosses: sortTeamMatchHistory(toArray(detail.team_losses)),
-    championships: toArray(detail.championships),
+    championships,
     prizeAdjustments: normalizePrizeAdjustments(detail),
     totalPrizeMoney: toFiniteNumber(detail.total_prize_money, 0)
   };
+}
+
+function deriveTeamChampionships(teamWins) {
+  return teamWins
+    .filter((item) => normalizeRoundLabel(item.round_name) === "Final")
+    .map((item) => ({
+      event_id: cleanText(item.event_id),
+      event_name: cleanText(item.event_name),
+      event_date: cleanText(item.event_date),
+      is_team: true
+    }))
+    .filter((item) => item.event_id || item.event_name);
+}
+
+function mergeChampionships(soloChampionships, teamChampionships) {
+  const result = [];
+  const seen = new Set();
+
+  for (const item of [...soloChampionships, ...teamChampionships]) {
+    const eventId = cleanText(item?.event_id);
+    const eventName = cleanText(item?.event_name);
+    const eventDate = cleanText(item?.event_date);
+    const key = eventId || `${eventName}__${eventDate}`;
+
+    if (!key || seen.has(key)) continue;
+
+    seen.add(key);
+    result.push(item);
+  }
+
+  return result;
 }
 
 function normalizeSummary(summary) {
