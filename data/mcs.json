@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-18T12:09:06.991Z",
-  "total": 934,
+  "updated_at": "2026-08-11T12:28:21.500Z",
+  "total": 953,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -966,6 +966,15 @@
       "kana_group": "あ"
     },
     {
+      "mc_id": "MC1150",
+      "mc_name": "X 1ark",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "えっくすらーく",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
       "mc_id": "MC0220",
       "mc_name": "n",
       "mc_name_sub": "",
@@ -1115,6 +1124,15 @@
       "mc_name_sub": "",
       "mc_description": "HIKIGANE SOUND関連作品に参加。戦極MCBATTLE、口喧嘩祭などに出場記録がある。",
       "mc_yomi": "えむしーすのう",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC1143",
+      "mc_name": "MC TYSON",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "えむしーたいそん",
       "hot_mc": 0,
       "kana_group": "あ"
     },
@@ -1272,6 +1290,15 @@
       "kana_group": "あ"
     },
     {
+      "mc_id": "MC1146",
+      "mc_name": "Eric.B.Jr",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "えりっくびーじゅにあ",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
       "mc_id": "MC0838",
       "mc_name": "L-指定",
       "mc_name_sub": "",
@@ -1394,6 +1421,15 @@
       "mc_name_sub": "",
       "mc_description": "鶴瀬Rep、坂が島POSSE所属。UMB 2011埼玉予選などに出場。",
       "mc_yomi": "おさかべ",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC1148",
+      "mc_name": "OSAMI",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "おさみ",
       "hot_mc": 0,
       "kana_group": "あ"
     },
@@ -3207,6 +3243,24 @@
       "kana_group": "さ"
     },
     {
+      "mc_id": "MC1152",
+      "mc_name": "jellyy",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "じぇりー",
+      "hot_mc": 0,
+      "kana_group": "さ"
+    },
+    {
+      "mc_id": "MC1151",
+      "mc_name": "Siero",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "しえろ",
+      "hot_mc": 0,
+      "kana_group": "さ"
+    },
+    {
       "mc_id": "MC0331",
       "mc_name": "しぇん",
       "mc_name_sub": "",
@@ -4503,6 +4557,15 @@
       "kana_group": "た"
     },
     {
+      "mc_id": "MC1142",
+      "mc_name": "DABO",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "だぼ",
+      "hot_mc": 0,
+      "kana_group": "た"
+    },
+    {
       "mc_id": "MC1029",
       "mc_name": "タマコテツ",
       "mc_name_sub": "",
@@ -4788,6 +4851,33 @@
       "mc_description": "1988年生まれ、埼玉県春日部市出身。フリースタイルダンジョン3代目モンスター。アルバム『LIFE IS ONE TIME, TODAY IS A GOOD DAY.』『Live in a dream!!』など。",
       "mc_yomi": "てぃーけーだ",
       "hot_mc": 1,
+      "kana_group": "た"
+    },
+    {
+      "mc_id": "MC1136",
+      "mc_name": "Tiji Jojo",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "ティージー ジョジョ",
+      "hot_mc": 0,
+      "kana_group": "その他"
+    },
+    {
+      "mc_id": "MC1149",
+      "mc_name": "Tee Shyne",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "てぃーしゃいん",
+      "hot_mc": 0,
+      "kana_group": "た"
+    },
+    {
+      "mc_id": "MC1140",
+      "mc_name": "Deech",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "でぃーち",
+      "hot_mc": 0,
       "kana_group": "た"
     },
     {
@@ -5084,6 +5174,15 @@
       "mc_name_sub": "",
       "mc_description": "1999年生まれ。慶應義塾大学在学中に楽曲制作を行い、SoundCloudやYouTubeで楽曲を発表。楽曲『Hot Girl』『廻』など。",
       "mc_yomi": "ときお",
+      "hot_mc": 0,
+      "kana_group": "た"
+    },
+    {
+      "mc_id": "MC1153",
+      "mc_name": "髑髏",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "どくろ",
       "hot_mc": 0,
       "kana_group": "た"
     },
@@ -5556,6 +5655,15 @@
       "kana_group": "な"
     },
     {
+      "mc_id": "MC1139",
+      "mc_name": "BARK",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "ばーく",
+      "hot_mc": 0,
+      "kana_group": "は"
+    },
+    {
       "mc_id": "MC0720",
       "mc_name": "VAAK",
       "mc_name_sub": "",
@@ -5895,6 +6003,15 @@
       "mc_description": "神奈川県大和市出身。UMB 2022 GRAND CHAMPIONSHIP準優勝。楽曲「流星」、BALA SBKN名義での音源制作など。",
       "mc_yomi": "ばらえーけーえーしばけん",
       "hot_mc": 1,
+      "kana_group": "は"
+    },
+    {
+      "mc_id": "MC1138",
+      "mc_name": "HARKA",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "はるか",
+      "hot_mc": 0,
       "kana_group": "は"
     },
     {
@@ -6573,6 +6690,15 @@
       "kana_group": "は"
     },
     {
+      "mc_id": "MC1147",
+      "mc_name": "Hezron",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "へずろん",
+      "hot_mc": 0,
+      "kana_group": "は"
+    },
+    {
       "mc_id": "MC0241",
       "mc_name": "PEDAL",
       "mc_name_sub": "",
@@ -6766,6 +6892,15 @@
       "mc_name": "Bonbero",
       "mc_name_sub": "",
       "mc_description": "2003年生まれ、千葉県出身。夜猫族のメンバー。Tade Dust & Bonbero名義のEP『Smooth Criminal』、1stアルバム『For A Reason』など。",
+      "mc_yomi": "ぼんべろ",
+      "hot_mc": 0,
+      "kana_group": "は"
+    },
+    {
+      "mc_id": "MC1141",
+      "mc_name": "Bonbero",
+      "mc_name_sub": "",
+      "mc_description": "",
       "mc_yomi": "ぼんべろ",
       "hot_mc": 0,
       "kana_group": "は"
@@ -7046,6 +7181,15 @@
       "mc_name_sub": "",
       "mc_description": "熊本代表としてUMB 2025 GRAND CHAMPIONSHIP出場。UMB 2025 熊本予選優勝。",
       "mc_yomi": "まんちーずないす",
+      "hot_mc": 0,
+      "kana_group": "ま"
+    },
+    {
+      "mc_id": "MC1137",
+      "mc_name": "MIKADO",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "みかど",
       "hot_mc": 0,
       "kana_group": "ま"
     },
@@ -7352,6 +7496,15 @@
       "mc_name_sub": "",
       "mc_description": "三重県を代表するラッパー。RC SLUM所属、WAVELENGTH PLANT主宰。アルバム『82PLACE』など。",
       "mc_yomi": "ゆーくすたいる",
+      "hot_mc": 0,
+      "kana_group": "や"
+    },
+    {
+      "mc_id": "MC1144",
+      "mc_name": "YOU THUG",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "ゆーさぐ",
       "hot_mc": 0,
       "kana_group": "や"
     },
@@ -8301,6 +8454,15 @@
       "kana_group": "わ"
     },
     {
+      "mc_id": "MC1135",
+      "mc_name": "YZERR",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "わいざー",
+      "hot_mc": 0,
+      "kana_group": "わ"
+    },
+    {
       "mc_id": "MC0793",
       "mc_name": "ワイジニアス",
       "mc_name_sub": "",
@@ -8342,6 +8504,15 @@
       "mc_name_sub": "",
       "mc_description": "島根Rep。戦極MCBATTLE第15章東京予選、UMB 2014埼玉予選などに出場。",
       "mc_yomi": "わたる",
+      "hot_mc": 0,
+      "kana_group": "わ"
+    },
+    {
+      "mc_id": "MC1145",
+      "mc_name": "Watson",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "わとそん",
       "hot_mc": 0,
       "kana_group": "わ"
     },
