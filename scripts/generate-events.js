@@ -670,7 +670,7 @@ function buildMatchesHtml(groupedMatches) {
 
   return [
     visibleHtml,
-    '<details class="matches-lower-accordion">',
+    '<details class="matches-lower-accordion" style="margin-bottom:28px;padding-bottom:22px;border-bottom:1px solid #d9dde3;">',
     '<summary class="matches-lower-summary">',
     '<span>試合結果を全て見る</span>',
     '<span class="matches-accordion-icon" aria-hidden="true"></span>',
@@ -771,7 +771,7 @@ function buildTeamMatchesHtml(groupedMatches, mcNameById) {
 
   return [
     visibleHtml,
-    '<details class="matches-lower-accordion">',
+    '<details class="matches-lower-accordion" style="margin-bottom:28px;padding-bottom:22px;border-bottom:1px solid #d9dde3;">',
     '<summary class="matches-lower-summary">',
     '<span>試合結果を全て見る</span>',
     '<span class="matches-accordion-icon" aria-hidden="true"></span>',
