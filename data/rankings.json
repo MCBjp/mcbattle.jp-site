@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T00:49:58.591Z",
+  "updated_at": "2026-08-13T01:12:19.378Z",
   "total": 100,
   "rankings": [
     {
@@ -876,10 +876,10 @@
       "score": 1574.56,
       "current_score": 1574.56,
       "peak_score": 1574.56,
-      "total_matches": 4,
-      "wins": 3,
+      "total_matches": 3,
+      "wins": 2,
       "losses": 1,
-      "win_rate": 0.75,
+      "win_rate": 0.6666666666666666,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
