@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T01:12:21.639Z",
+  "updated_at": "2026-08-13T14:05:56.463Z",
   "total": 92,
   "rankings": [
     {
@@ -64,21 +64,21 @@
     },
     {
       "rank": 11,
+      "mc_id": "MC0271",
+      "mc_name": "SAM",
+      "total_prize_money": 4516666.67
+    },
+    {
+      "rank": 12,
       "mc_id": "MC0111",
       "mc_name": "FORK",
       "total_prize_money": 4500000
     },
     {
-      "rank": 12,
+      "rank": 13,
       "mc_id": "MC0222",
       "mc_name": "NAIKA MC",
       "total_prize_money": 4350000
-    },
-    {
-      "rank": 13,
-      "mc_id": "MC0271",
-      "mc_name": "SAM",
-      "total_prize_money": 4216666.67
     },
     {
       "rank": 14,

@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-13T01:12:08.420Z",
-  "total": 954,
+  "updated_at": "2026-08-13T14:05:46.001Z",
+  "total": 955,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -80,6 +80,15 @@
       "mc_name_sub": "",
       "mc_description": "広島代表としてUMB 2018 GRAND CHAMPIONSHIP出場。UMB 2018 広島予選優勝。",
       "mc_yomi": "あいず",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC1154",
+      "mc_name": "IICEKRR",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "あいすかーる",
       "hot_mc": 0,
       "kana_group": "あ"
     },

@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-13T01:13:27.427Z",
+  "updated_at": "2026-08-13T14:06:50.930Z",
   "min_matches": 2,
-  "total": 436,
+  "total": 439,
   "summaries": [
     {
       "pair_key": "MC0376__MC0434",
@@ -444,6 +444,19 @@
       "last_match_date": "2026-02-21",
       "last_event_id": "EVT0188",
       "last_event_name": "凱旋MC battle 怨念JAP引退ノ陣"
+    },
+    {
+      "pair_key": "MC0100__MC0614",
+      "mc_id_a": "MC0100",
+      "mc_name_a": "DOTAMA",
+      "mc_id_b": "MC0614",
+      "mc_name_b": "ID",
+      "a_wins": 2,
+      "b_wins": 2,
+      "total_matches": 4,
+      "last_match_date": "2025-11-08",
+      "last_event_id": "EVT0195",
+      "last_event_name": "戦極MCBATTLE 第40章"
     },
     {
       "pair_key": "MC0214__MC0434",
@@ -951,19 +964,6 @@
       "last_match_date": "2024-04-29",
       "last_event_id": "EVT0144",
       "last_event_name": "Spotlight 2024 関東編"
-    },
-    {
-      "pair_key": "MC0100__MC0614",
-      "mc_id_a": "MC0100",
-      "mc_name_a": "DOTAMA",
-      "mc_id_b": "MC0614",
-      "mc_name_b": "ID",
-      "a_wins": 2,
-      "b_wins": 1,
-      "total_matches": 3,
-      "last_match_date": "2024-02-02",
-      "last_event_id": "EVT0094",
-      "last_event_name": "渋谷レゲエ祭 vs 真ADRENALINE"
     },
     {
       "pair_key": "MC0077__MC0373",
@@ -1993,6 +1993,19 @@
       "last_event_name": "戦極MCBATTLE 第42章"
     },
     {
+      "pair_key": "MC0619__MC1031",
+      "mc_id_a": "MC0619",
+      "mc_name_a": "SATORU",
+      "mc_id_b": "MC1031",
+      "mc_name_b": "D-Nut's",
+      "a_wins": 0,
+      "b_wins": 2,
+      "total_matches": 2,
+      "last_match_date": "2026-06-20",
+      "last_event_id": "EVT0161",
+      "last_event_name": "戦極MCBATTLE 第42章"
+    },
+    {
       "pair_key": "MC0467__MC0689",
       "mc_id_a": "MC0467",
       "mc_name_a": "Yella goat",
@@ -2225,6 +2238,32 @@
       "last_match_date": "2025-12-20",
       "last_event_id": "EVT0147",
       "last_event_name": "Spotlight 2025"
+    },
+    {
+      "pair_key": "MC0015__MC0621",
+      "mc_id_a": "MC0015",
+      "mc_name_a": "MC☆ニガリ",
+      "mc_id_b": "MC0621",
+      "mc_name_b": "バチスタ",
+      "a_wins": 2,
+      "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2025-11-08",
+      "last_event_id": "EVT0195",
+      "last_event_name": "戦極MCBATTLE 第40章"
+    },
+    {
+      "pair_key": "MC0271__MC0614",
+      "mc_id_a": "MC0271",
+      "mc_name_a": "SAM",
+      "mc_id_b": "MC0614",
+      "mc_name_b": "ID",
+      "a_wins": 2,
+      "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2025-11-08",
+      "last_event_id": "EVT0195",
+      "last_event_name": "戦極MCBATTLE 第40章"
     },
     {
       "pair_key": "MC0927__MC0950",

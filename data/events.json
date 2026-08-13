@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-13T01:12:07.856Z",
-  "total": 184,
+  "updated_at": "2026-08-13T14:05:45.490Z",
+  "total": 185,
   "events": [
     {
       "event_id": "EVT0193",
@@ -885,6 +885,23 @@
       "check": "",
       "battle_format": "team",
       "winner_name": ""
+    },
+    {
+      "event_id": "EVT0195",
+      "event_name": "戦極MCBATTLE 第40章",
+      "event_name_full": "戦極MCBATTLE 第40章",
+      "seo_event_name": "戦極MCBATTLE 第40章",
+      "event_date": "2025-11-08",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "category_id": "EVTCat004",
+      "category_name": "戦極MC BATTLE",
+      "category_show_order": 500,
+      "category_description": "MC正社員を中心に発展した、国内最大級のMCバトルシリーズ。\r\n前身の戦慄MC BATTLEから戦極MC BATTLEへと展開し、YouTube時代のバトル普及を大きく押し進めた。\r\n武道館・国技館級の会場まで広がり、現代MCバトルの大衆化を象徴する大会。\r",
+      "location": "CLUB CITTA'",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": "SAM"
     },
     {
       "event_id": "EVT0185",
