@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-12T22:47:04.959Z",
-  "total": 953,
+  "updated_at": "2026-08-13T00:49:46.417Z",
+  "total": 954,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -8303,6 +8303,15 @@
     {
       "mc_id": "MC0192",
       "mc_name": "LEON",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "れおん",
+      "hot_mc": 0,
+      "kana_group": "ら"
+    },
+    {
+      "mc_id": "MC1154",
+      "mc_name": "Leon Fanourakis",
       "mc_name_sub": "",
       "mc_description": "",
       "mc_yomi": "れおん",

@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-12T22:47:51.139Z",
+  "updated_at": "2026-08-13T00:51:12.326Z",
   "min_matches": 2,
-  "total": 437,
+  "total": 436,
   "summaries": [
     {
       "pair_key": "MC0376__MC0434",
@@ -2654,19 +2654,6 @@
       "last_match_date": "2024-08-25",
       "last_event_id": "EVT0142",
       "last_event_name": "凱旋MC battle 夏ノ陣 U-27"
-    },
-    {
-      "pair_key": "MC0702__MC0841",
-      "mc_id_a": "MC0702",
-      "mc_name_a": "JUMBO MAATCH",
-      "mc_id_b": "MC0841",
-      "mc_name_b": "CORN HEAD",
-      "a_wins": 2,
-      "b_wins": 0,
-      "total_matches": 2,
-      "last_match_date": "2024-08-14",
-      "last_event_id": "EVT0131",
-      "last_event_name": "BATTLE SUMMITⅡ"
     },
     {
       "pair_key": "MC0080__MC0266",

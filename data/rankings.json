@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12T22:47:11.666Z",
+  "updated_at": "2026-08-13T00:49:58.591Z",
   "total": 100,
   "rankings": [
     {
@@ -1675,15 +1675,15 @@
       "score": 1514.79,
       "current_score": 1514.79,
       "peak_score": 1514.79,
-      "total_matches": 7,
+      "total_matches": 8,
       "wins": 4,
-      "losses": 3,
-      "win_rate": 0.5714285714285714,
+      "losses": 4,
+      "win_rate": 0.5,
       "matches_last_365d": 0,
       "wins_last_365d": 0,
       "win_rate_last_365d": null,
-      "last_match_date": "2023-08-27",
-      "days_since_last_match": 1082
+      "last_match_date": "2024-08-14",
+      "days_since_last_match": 729
     },
     {
       "rank": 100,
