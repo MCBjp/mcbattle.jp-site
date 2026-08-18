@@ -443,6 +443,77 @@
       line-height:1.35;
     }
 
+    .amazon-mobile-slot{
+      display:block;
+      margin:0;
+    }
+
+    .amazon-mobile-slot:empty{
+      display:none;
+    }
+
+    .amazon-pc-rail{
+      display:none;
+    }
+
+    .amazon-affiliate-card{
+      display:block;
+      border:1px solid var(--line);
+      border-radius:17px;
+      background:var(--panel);
+      box-shadow:var(--shadow);
+      padding:14px 15px 15px;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .amazon-affiliate-card:hover{
+      transform:translateY(-1px);
+      border-color:#c9ac72;
+      box-shadow:0 8px 20px rgba(17,24,39,.08);
+    }
+
+    .amazon-affiliate-kicker{
+      display:block;
+      color:var(--muted);
+      font-size:.68rem;
+      font-weight:800;
+      line-height:1.2;
+      letter-spacing:.08em;
+    }
+
+    .amazon-affiliate-title{
+      display:block;
+      margin-top:6px;
+      color:var(--text);
+      font-size:.9rem;
+      font-weight:900;
+      line-height:1.4;
+      letter-spacing:-.015em;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+    }
+
+    .amazon-affiliate-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      margin-top:9px;
+      color:var(--accent-dark);
+      font-size:.78rem;
+      font-weight:900;
+      line-height:1.2;
+    }
+
+    .amazon-affiliate-cta::after{
+      content:"›";
+      font-size:1.18rem;
+      line-height:.8;
+      transform:translateY(-1px);
+    }
+
     .associate-disclosure{
       margin:4px 2px 0;
       color:var(--muted);
@@ -495,6 +566,27 @@
         box-shadow:
           0 10px 24px rgba(17,24,39,.09),
           0 0 0 1px rgba(169,121,40,.05) inset;
+      }
+    }
+
+    @media (min-width: 1260px){
+      .amazon-mobile-slot{
+        display:none !important;
+      }
+
+      .amazon-pc-rail{
+        position:fixed;
+        top:86px;
+        left:calc(var(--pc-left-gutter, 72px) + var(--home-content-max) + 24px);
+        width:min(280px, calc(100vw - var(--pc-left-gutter, 72px) - var(--home-content-max) - 48px));
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        z-index:10;
+      }
+
+      .amazon-pc-rail:empty{
+        display:none;
       }
     }
 
@@ -579,6 +671,16 @@
       .rank-name{ font-size:.9rem; }
       .rank-value{ font-size:.82rem; }
       .status{ font-size:.78rem; }
+      .amazon-affiliate-card{
+        border-radius:15px;
+        padding:12px 13px 13px;
+      }
+      .amazon-affiliate-title{
+        font-size:.85rem;
+      }
+      .amazon-affiliate-cta{
+        font-size:.75rem;
+      }
       .associate-disclosure{
         font-size:.68rem;
         line-height:1.5;
@@ -639,6 +741,8 @@
           </section>
         </div>
 
+        <div id="amazon-mobile-slot-1" class="amazon-mobile-slot" aria-label="Amazonおすすめ"></div>
+
         <div class="dashboard-two-grid">
           <section class="home-card">
             <div class="home-card-inner">
@@ -666,6 +770,8 @@
             </div>
           </section>
         </div>
+
+        <div id="amazon-mobile-slot-2" class="amazon-mobile-slot" aria-label="Amazonおすすめ"></div>
       </div>
 
       <p class="associate-disclosure">
@@ -674,6 +780,8 @@
 
       <div class="footer-space"></div>
     </main>
+
+    <aside id="amazon-pc-rail" class="amazon-pc-rail" aria-label="Amazonおすすめ"></aside>
   </div>
 
   <script>
@@ -958,6 +1066,66 @@
       card.classList.add("is-visible");
     }
 
+    function normalizeAffiliateItems(items) {
+      if (!Array.isArray(items)) return [];
+
+      const seenLinks = new Set();
+
+      return items
+        .map((item) => {
+          const link = String(item?.link ?? "").trim();
+          const title = String(item?.title ?? "").trim();
+
+          return {
+            no: item?.no ?? "",
+            link: link,
+            title: title || "Amazonの商品を見る"
+          };
+        })
+        .filter((item) => {
+          if (!item.link) return false;
+          if (seenLinks.has(item.link)) return false;
+          seenLinks.add(item.link);
+          return true;
+        });
+    }
+
+    function buildAffiliateCard(item) {
+      return `
+        <a
+          class="amazon-affiliate-card"
+          href="${escapeHtml(item.link)}"
+          target="_blank"
+          rel="nofollow sponsored noopener noreferrer"
+        >
+          <span class="amazon-affiliate-kicker">PR / Amazon</span>
+          <span class="amazon-affiliate-title">${escapeHtml(item.title)}</span>
+          <span class="amazon-affiliate-cta">Amazonで見る</span>
+        </a>
+      `;
+    }
+
+    function renderAffiliateSlots(items) {
+      const pcRail = document.getElementById("amazon-pc-rail");
+      const mobileSlot1 = document.getElementById("amazon-mobile-slot-1");
+      const mobileSlot2 = document.getElementById("amazon-mobile-slot-2");
+
+      const products = normalizeAffiliateItems(items);
+      const selected = shuffleArray(products).slice(0, 2);
+
+      if (pcRail) {
+        pcRail.innerHTML = selected.map(buildAffiliateCard).join("");
+      }
+
+      if (mobileSlot1) {
+        mobileSlot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
+      }
+
+      if (mobileSlot2) {
+        mobileSlot2.innerHTML = selected[1] ? buildAffiliateCard(selected[1]) : "";
+      }
+    }
+
     async function loadIndexData() {
       try {
         const payload = await loadTopJson();
@@ -968,8 +1136,10 @@
         const scoreRankings = Array.isArray(payload?.score_rankings) ? payload.score_rankings.slice(0, 5) : [];
         const prizeRankings = Array.isArray(payload?.prize_rankings) ? payload.prize_rankings.slice(0, 5) : [];
         const hotMcs = Array.isArray(payload?.hot_mcs) ? payload.hot_mcs : [];
+        const indexAf = Array.isArray(payload?.index_af) ? payload.index_af : [];
 
         renderHotMcs(hotMcs);
+        renderAffiliateSlots(indexAf);
 
         renderEventList("future-events", upcomingEvents, "今後開催予定の大会はありません", {
           limit: 2,
