@@ -774,6 +774,78 @@
       white-space: nowrap;
     }
 
+    .mc-affiliate-slot{
+      display:block;
+      width:100%;
+      box-sizing:border-box;
+      margin-top:14px;
+    }
+
+    .mc-affiliate-slot:empty{
+      display:none;
+    }
+
+    .mc-affiliate-card{
+      display:block;
+      width:100%;
+      box-sizing:border-box;
+      padding:14px 16px;
+      border:1px solid #e4d5b7;
+      border-radius:16px;
+      background:#fbf6ea;
+      color:inherit;
+      text-decoration:none !important;
+      box-shadow:0 14px 34px rgba(0,0,0,.08);
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .mc-affiliate-card:hover,
+    .mc-affiliate-card:focus,
+    .mc-affiliate-card:active,
+    .mc-affiliate-card:visited{
+      color:inherit;
+      text-decoration:none !important;
+    }
+
+    .mc-affiliate-card:hover,
+    .mc-affiliate-card:focus-visible{
+      transform:translateY(-1px);
+      border-color:#d3b978;
+      box-shadow:0 16px 30px rgba(17,24,39,.11);
+      outline:none;
+    }
+
+    .mc-affiliate-title{
+      display:block;
+      color:#17191f;
+      font-size:.96rem;
+      font-weight:900;
+      line-height:1.42;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
+
+    .mc-affiliate-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      margin-top:8px;
+      color:#8a611f;
+      font-size:.84rem;
+      font-weight:900;
+      line-height:1.2;
+    }
+
+    .mc-affiliate-cta::after{
+      content:"›";
+      font-size:1.24rem;
+      line-height:.8;
+      transform:translateY(-1px);
+    }
+
     @media (max-width: 640px) {
       .page-top{
         margin-bottom: 14px;
@@ -952,6 +1024,25 @@
         padding: 0 14px;
         border-radius: 10px;
         font-size: 0.84rem;
+      }
+
+      .mc-affiliate-slot{
+        margin-top:12px;
+      }
+
+      .mc-affiliate-card{
+        padding:12px 13px 13px;
+        border-radius:15px;
+      }
+
+      .mc-affiliate-title{
+        font-size:.90rem;
+        line-height:1.38;
+      }
+
+      .mc-affiliate-cta{
+        margin-top:7px;
+        font-size:.80rem;
       }
     }
     .mc-page input.battle-filter-input{
@@ -3681,6 +3772,129 @@
       document.addEventListener("DOMContentLoaded", applyBattleOpponentSmartAlign);
     })();
   </script>
+  <script>
+    (function () {
+      const TOP_JSON_URL = "../data/top.json";
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function shuffleArray(items) {
+        const result = [...items];
+
+        for (let i = result.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = result[i];
+          result[i] = result[j];
+          result[j] = temp;
+        }
+
+        return result;
+      }
+
+      function normalizeAffiliateItems(items) {
+        if (!Array.isArray(items)) return [];
+
+        const seenLinks = new Set();
+
+        return items
+          .map((item) => ({
+            no: item?.no ?? "",
+            link: String(item?.link ?? "").trim(),
+            title: String(item?.title ?? "").trim()
+          }))
+          .filter((item) => {
+            if (!item.link || !item.title) return false;
+            if (seenLinks.has(item.link)) return false;
+
+            seenLinks.add(item.link);
+            return true;
+          });
+      }
+
+      function buildAffiliateCard(item) {
+        return `
+          <a
+            class="mc-affiliate-card"
+            href="${escapeHtml(item.link)}"
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
+          >
+            <span class="mc-affiliate-title">${escapeHtml(item.title)}</span>
+            <span class="mc-affiliate-cta">Amazonで見る</span>
+          </a>
+        `;
+      }
+
+      function createAffiliateSlot(id) {
+        const slot = document.createElement("div");
+        slot.id = id;
+        slot.className = "mc-affiliate-slot";
+        slot.setAttribute("aria-label", "Amazonおすすめ");
+        return slot;
+      }
+
+      function ensureAffiliateSlots() {
+        const overview = document.querySelector(
+          "#mc-tab-overview, .mc-tab-panel[data-tab-panel='overview']"
+        );
+
+        if (!overview) return null;
+
+        const overviewGrid = overview.querySelector(".mc-overview-grid");
+        if (!overviewGrid) return null;
+
+        let slot1 = document.getElementById("mc-affiliate-slot-1");
+        if (!slot1) {
+          slot1 = createAffiliateSlot("mc-affiliate-slot-1");
+          overviewGrid.insertAdjacentElement("afterend", slot1);
+        }
+
+        let slot2 = document.getElementById("mc-affiliate-slot-2");
+        if (!slot2) {
+          slot2 = createAffiliateSlot("mc-affiliate-slot-2");
+          overview.appendChild(slot2);
+        }
+
+        return { slot1, slot2 };
+      }
+
+      function renderAffiliateSlots(items) {
+        const slots = ensureAffiliateSlots();
+        if (!slots) return;
+
+        const products = normalizeAffiliateItems(items);
+        const selected = shuffleArray(products).slice(0, 2);
+
+        slots.slot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
+        slots.slot2.innerHTML = selected[1] ? buildAffiliateCard(selected[1]) : "";
+      }
+
+      async function loadAffiliateItems() {
+        try {
+          const res = await fetch(TOP_JSON_URL, { cache: "no-store" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          const payload = await res.json();
+          const items = Array.isArray(payload?.index_af) ? payload.index_af : [];
+
+          renderAffiliateSlots(items);
+        } catch (error) {
+          console.error("Affiliate load failed:", error);
+          renderAffiliateSlots([]);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", loadAffiliateItems);
+    })();
+  </script>
+
   <script src="../site-header.js"></script>
 </body>
 </html>
