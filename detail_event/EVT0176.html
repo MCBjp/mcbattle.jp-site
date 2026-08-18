@@ -146,6 +146,59 @@
       line-height: 1.48;
     }
 
+    .event-affiliate-slot:empty{
+      display:none;
+    }
+
+    .event-affiliate-card{
+      display:block;
+      background:#fbf6ea !important;
+      border-color:#e4d5b7 !important;
+      color:inherit;
+      text-decoration:none !important;
+    }
+
+    .event-affiliate-card:hover,
+    .event-affiliate-card:focus,
+    .event-affiliate-card:active,
+    .event-affiliate-card:visited{
+      color:inherit;
+      text-decoration:none !important;
+    }
+
+    .event-affiliate-inner{
+      padding-top:14px;
+      padding-bottom:14px;
+    }
+
+    .event-affiliate-title{
+      display:block;
+      color:#17191f;
+      font-size:.96rem;
+      font-weight:900;
+      line-height:1.42;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
+
+    .event-affiliate-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      margin-top:8px;
+      color:#8a611f;
+      font-size:.84rem;
+      font-weight:900;
+      line-height:1.2;
+    }
+
+    .event-affiliate-cta::after{
+      content:"›";
+      font-size:1.24rem;
+      line-height:.8;
+      transform:translateY(-1px);
+    }
+
     .result-block {
       display: block;
       line-height: 1.5;
@@ -858,6 +911,21 @@
         line-height:1.38;
       }
 
+      .event-affiliate-inner{
+        padding-top:12px;
+        padding-bottom:12px;
+      }
+
+      .event-affiliate-title{
+        font-size:.90rem;
+        line-height:1.38;
+      }
+
+      .event-affiliate-cta{
+        margin-top:7px;
+        font-size:.80rem;
+      }
+
       .result-block {
         line-height:1.38;
         font-size:0.84rem;
@@ -1101,6 +1169,8 @@
 </nav>
       </div>
     </section>
+
+    <div id="event-affiliate-slot-1" class="event-affiliate-slot" aria-label="Amazonおすすめ"></div>
 
     <section class="card">
       <div class="event-card-inner">
@@ -1435,6 +1505,8 @@
         </a>
       </div>
     </section>
+
+    <div id="event-affiliate-slot-2" class="event-affiliate-slot" aria-label="Amazonおすすめ"></div>
   </div>
 
   <script>
@@ -1510,6 +1582,105 @@
       window.addEventListener("load", applySmartAlign);
       window.addEventListener("resize", requestApplySmartAlign);
       document.addEventListener("DOMContentLoaded", applySmartAlign);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const TOP_JSON_URL = "../data/top.json";
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function shuffleArray(items) {
+        const result = [...items];
+
+        for (let i = result.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = result[i];
+          result[i] = result[j];
+          result[j] = temp;
+        }
+
+        return result;
+      }
+
+      function normalizeAffiliateItems(items) {
+        if (!Array.isArray(items)) return [];
+
+        const seenLinks = new Set();
+
+        return items
+          .map((item) => {
+            return {
+              no: item?.no ?? "",
+              link: String(item?.link ?? "").trim(),
+              title: String(item?.title ?? "").trim()
+            };
+          })
+          .filter((item) => {
+            if (!item.link || !item.title) return false;
+            if (seenLinks.has(item.link)) return false;
+
+            seenLinks.add(item.link);
+            return true;
+          });
+      }
+
+      function buildAffiliateCard(item) {
+        return `
+          <a
+            class="card event-affiliate-card"
+            href="${escapeHtml(item.link)}"
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
+          >
+            <div class="event-card-inner event-affiliate-inner">
+              <span class="event-affiliate-title">${escapeHtml(item.title)}</span>
+              <span class="event-affiliate-cta">Amazonで見る</span>
+            </div>
+          </a>
+        `;
+      }
+
+      function renderAffiliateSlots(items) {
+        const slot1 = document.getElementById("event-affiliate-slot-1");
+        const slot2 = document.getElementById("event-affiliate-slot-2");
+
+        const products = normalizeAffiliateItems(items);
+        const selected = shuffleArray(products).slice(0, 2);
+
+        if (slot1) {
+          slot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
+        }
+
+        if (slot2) {
+          slot2.innerHTML = selected[1] ? buildAffiliateCard(selected[1]) : "";
+        }
+      }
+
+      async function loadAffiliateItems() {
+        try {
+          const res = await fetch(TOP_JSON_URL, { cache: "no-store" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          const payload = await res.json();
+          const items = Array.isArray(payload?.index_af) ? payload.index_af : [];
+
+          renderAffiliateSlots(items);
+        } catch (error) {
+          console.error("Affiliate load failed:", error);
+          renderAffiliateSlots([]);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", loadAffiliateItems);
     })();
   </script>
 
