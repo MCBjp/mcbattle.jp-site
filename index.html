@@ -127,6 +127,13 @@
       display:flex;
       flex-direction:column;
       gap:12px;
+      margin:0;
+    }
+
+    .main-stack > .dashboard-two-grid,
+    .main-stack > .amazon-mobile-slot{
+      margin-top:0 !important;
+      margin-bottom:0 !important;
     }
 
     .home-card{
@@ -460,10 +467,6 @@
 
     .amazon-affiliate-card{
       display:block;
-      border:1px solid var(--line);
-      border-radius:17px;
-      background:var(--panel);
-      box-shadow:var(--shadow);
       padding:14px 15px 15px;
       transition:
         transform .18s ease,
@@ -667,11 +670,9 @@
       .amazon-mobile-slot .amazon-affiliate-card{
         width:auto;
         margin:0;
-        border-radius:18px;
         background:#fbf6ea;
         border-color:#e4d5b7;
         padding:12px 13px 13px;
-        box-shadow:var(--shadow);
       }
       .amazon-affiliate-title{
         font-size:.85rem;
@@ -1091,7 +1092,7 @@
     function buildAffiliateCard(item) {
       return `
         <a
-          class="amazon-affiliate-card"
+          class="home-card amazon-affiliate-card"
           href="${escapeHtml(item.link)}"
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
