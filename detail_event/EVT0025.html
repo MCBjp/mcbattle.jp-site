@@ -146,6 +146,11 @@
       line-height: 1.48;
     }
 
+    /* Match the normal section rhythm: every block starts 24px after the previous one. */
+    .event-affiliate-slot{
+      margin-top:24px;
+    }
+
     .event-affiliate-slot:empty{
       display:none;
     }
@@ -868,13 +873,16 @@
       pointer-events:none;
     }
 
-    @media (min-width: 1260px) {
+    
+    /* PC affiliate rail scrolls with the document instead of staying fixed.
+       This avoids maintaining a large fixed layer with shadows during scroll. */
+@media (min-width: 1260px) {
       .event-affiliate-slot{
         display:none !important;
       }
 
       .event-affiliate-pc-rail{
-        position:fixed;
+        position:absolute;
         top:260px;
         left:calc(var(--pc-left-gutter, 130px) + var(--content-max, 800px) + 24px);
         width:min(280px, calc(100vw - var(--pc-left-gutter, 130px) - var(--content-max, 800px) - 48px));
