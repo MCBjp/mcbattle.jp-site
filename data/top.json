@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T14:07:52.516Z",
+  "updated_at": "2026-08-18T15:56:44.466Z",
   "recent_events": [
     {
       "event_id": "EVT0162",
@@ -922,5 +922,7 @@
       "link": "https://link.amazon/B0aAYGcEI",
       "title": "SM-58"
     }
-  ]
+  ],
+  "mc_af": {},
+  "event_af": {}
 }
