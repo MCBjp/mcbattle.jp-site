@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17T13:32:46.511Z",
+  "updated_at": "2026-08-18T13:34:53.734Z",
   "recent_events": [
     {
       "event_id": "EVT0162",
@@ -904,6 +904,23 @@
       "mc_yomi": "わにゅうどう",
       "hot_mc": 1,
       "kana_group": "わ"
+    }
+  ],
+  "index_af": [
+    {
+      "no": 1,
+      "link": "https://link.amazon/B0gB8vdI2",
+      "title": ""
+    },
+    {
+      "no": 2,
+      "link": "https://link.amazon/B0cg9KvXC",
+      "title": ""
+    },
+    {
+      "no": 3,
+      "link": "https://link.amazon/B0aAYGcEI",
+      "title": ""
     }
   ]
 }
