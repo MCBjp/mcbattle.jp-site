@@ -579,13 +579,16 @@
       }
     }
 
-    @media (min-width: 1260px){
+    
+    /* PC affiliate rail scrolls with the document instead of staying fixed.
+       This avoids maintaining a large fixed layer with shadows during scroll. */
+@media (min-width: 1260px){
       .amazon-mobile-slot{
         display:none !important;
       }
 
       .amazon-pc-rail{
-        position:fixed;
+        position:absolute;
         top:260px;
         left:calc(var(--pc-left-gutter, 72px) + var(--home-content-max) + 24px);
         width:min(280px, calc(100vw - var(--pc-left-gutter, 72px) - var(--home-content-max) - 48px));
