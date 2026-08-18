@@ -1470,12 +1470,33 @@
         `;
       }
 
-      function renderAffiliateSlots(items) {
+      function selectAffiliateItems(specificItems, fallbackItems, count) {
+        const specific = shuffleArray(normalizeAffiliateItems(specificItems));
+        const fallback = shuffleArray(normalizeAffiliateItems(fallbackItems));
+        const selected = [];
+        const seenLinks = new Set();
+
+        specific.forEach((item) => {
+          if (selected.length >= count) return;
+          if (seenLinks.has(item.link)) return;
+          seenLinks.add(item.link);
+          selected.push(item);
+        });
+
+        fallback.forEach((item) => {
+          if (selected.length >= count) return;
+          if (seenLinks.has(item.link)) return;
+          seenLinks.add(item.link);
+          selected.push(item);
+        });
+
+        return selected;
+      }
+
+      function renderAffiliateSlots(specificItems, fallbackItems) {
         const slot1 = document.getElementById("event-affiliate-slot-1");
         const slot2 = document.getElementById("event-affiliate-slot-2");
-
-        const products = normalizeAffiliateItems(items);
-        const selected = shuffleArray(products).slice(0, 2);
+        const selected = selectAffiliateItems(specificItems, fallbackItems, 2);
 
         if (slot1) {
           slot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
@@ -1492,12 +1513,18 @@
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
           const payload = await res.json();
-          const items = Array.isArray(payload?.index_af) ? payload.index_af : [];
+          const fallbackItems = Array.isArray(payload?.index_af) ? payload.index_af : [];
+          const eventMap = payload?.event_af && typeof payload.event_af === "object"
+            ? payload.event_af
+            : {};
+          const specificItems = Array.isArray(eventMap["EVT0096"])
+            ? eventMap["EVT0096"]
+            : [];
 
-          renderAffiliateSlots(items);
+          renderAffiliateSlots(specificItems, fallbackItems);
         } catch (error) {
           console.error("Affiliate load failed:", error);
-          renderAffiliateSlots([]);
+          renderAffiliateSlots([], []);
         }
       }
 
