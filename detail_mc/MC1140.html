@@ -830,13 +830,16 @@
       transform:translateY(-1px);
     }
 
-    @media (min-width: 1260px) {
+    
+    /* PC affiliate rail scrolls with the document instead of staying fixed.
+       This avoids maintaining a large fixed layer with shadows during scroll. */
+@media (min-width: 1260px) {
       .mc-affiliate-slot{
         display:none !important;
       }
 
       .mc-affiliate-pc-rail{
-        position:fixed;
+        position:absolute;
         top:260px;
         left:calc(var(--pc-left-gutter, 130px) + var(--content-max, 800px) + 24px);
         width:min(280px, calc(100vw - var(--pc-left-gutter, 130px) - var(--content-max, 800px) - 48px));
