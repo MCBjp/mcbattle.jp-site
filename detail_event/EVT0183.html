@@ -150,6 +150,10 @@
       display:none;
     }
 
+    .event-affiliate-pc-rail{
+      display:none;
+    }
+
     .event-affiliate-card{
       display:block;
       background:#fbf6ea !important;
@@ -862,6 +866,32 @@
     .event-neighbor-link.is-disabled{
       opacity:0.35;
       pointer-events:none;
+    }
+
+    @media (min-width: 1260px) {
+      .event-affiliate-slot{
+        display:none !important;
+      }
+
+      .event-affiliate-pc-rail{
+        position:fixed;
+        top:260px;
+        left:calc(var(--pc-left-gutter, 130px) + var(--content-max, 800px) + 24px);
+        width:min(280px, calc(100vw - var(--pc-left-gutter, 130px) - var(--content-max, 800px) - 48px));
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        z-index:10;
+      }
+
+      .event-affiliate-pc-rail:empty{
+        display:none;
+      }
+
+      .event-affiliate-pc-rail .event-affiliate-card{
+        width:100%;
+        margin:0;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1629,6 +1659,8 @@
     <div id="event-affiliate-slot-2" class="event-affiliate-slot" aria-label="Amazonおすすめ"></div>
   </div>
 
+  <aside id="event-affiliate-pc-rail" class="event-affiliate-pc-rail" aria-label="Amazonおすすめ"></aside>
+
   <script>
     (function () {
       const SAFETY_PX = 8;
@@ -1793,9 +1825,14 @@
       }
 
       function renderAffiliateSlots(specificItems, fallbackItems) {
+        const pcRail = document.getElementById("event-affiliate-pc-rail");
         const slot1 = document.getElementById("event-affiliate-slot-1");
         const slot2 = document.getElementById("event-affiliate-slot-2");
         const selected = selectAffiliateItems(specificItems, fallbackItems, 2);
+
+        if (pcRail) {
+          pcRail.innerHTML = selected.map(buildAffiliateCard).join("");
+        }
 
         if (slot1) {
           slot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
