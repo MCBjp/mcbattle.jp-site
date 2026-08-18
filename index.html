@@ -565,6 +565,20 @@
       }
     }
 
+    /* Mobile/tablet: remove the slot wrapper from layout so the affiliate card
+       participates directly in .main-stack spacing. This keeps the vertical
+       gap and left/right edges identical to the surrounding cards. */
+    @media (max-width: 1259px){
+      .main-stack > .amazon-mobile-slot{
+        display:contents;
+      }
+
+      .main-stack > .amazon-mobile-slot > .amazon-affiliate-card{
+        width:100%;
+        margin:0 !important;
+      }
+    }
+
     @media (min-width: 1260px){
       .amazon-mobile-slot{
         display:none !important;
