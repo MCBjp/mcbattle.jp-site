@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-18T15:56:44.466Z",
+  "updated_at": "2026-08-18T21:24:24.737Z",
   "recent_events": [
     {
       "event_id": "EVT0162",
@@ -921,6 +921,96 @@
       "no": 3,
       "link": "https://link.amazon/B0aAYGcEI",
       "title": "SM-58"
+    },
+    {
+      "no": 4,
+      "link": "https://link.amazon/B05sH7Ow5",
+      "title": "SUPERSALT（呂布カルマ）"
+    },
+    {
+      "no": 5,
+      "link": "https://link.amazon/B0fatXG9b",
+      "title": "Be kenja（呂布カルマ）"
+    },
+    {
+      "no": 6,
+      "link": "https://link.amazon/B02uh8YMa",
+      "title": "The Cool Core（呂布カルマ）"
+    },
+    {
+      "no": 7,
+      "link": "https://link.amazon/B0dBd8ATc",
+      "title": "UMB GRAND CHAMPIONSHIP 2015 (DVD)"
+    },
+    {
+      "no": 8,
+      "link": "https://link.amazon/B02E9J1lU",
+      "title": "KING OF KINGS -FINAL UMB(DVD)"
+    },
+    {
+      "no": 9,
+      "link": "https://link.amazon/B02L3haEf",
+      "title": "BATTLE SUMMIT II (DVD)"
+    },
+    {
+      "no": 10,
+      "link": "https://link.amazon/B02rzRJM2",
+      "title": "BATTLE SUMMIT I (DVD)"
+    },
+    {
+      "no": 11,
+      "link": "https://link.amazon/B02b9qDeJ",
+      "title": "凱旋MC Battle -さいたまスーパーアリーナ-"
+    },
+    {
+      "no": 12,
+      "link": "https://link.amazon/B03wcIwLh",
+      "title": "UMB2017 THE CHOICE IS YOURS"
+    },
+    {
+      "no": 13,
+      "link": "https://link.amazon/B04PoeDDV",
+      "title": "MCバトル史から読み解く 日本語ラップ入門"
+    },
+    {
+      "no": 14,
+      "link": "https://link.amazon/B0dQ9GLfv",
+      "title": "凱旋MC Battle -Special 2023- at 東京ガーデンシアター"
+    },
+    {
+      "no": 15,
+      "link": "https://link.amazon/B00ZJY8X1",
+      "title": "UMB2018 THE CHOICE IS YOURS vol.2 (DVD)"
+    },
+    {
+      "no": 16,
+      "link": "https://link.amazon/B0aZzvXLH",
+      "title": "UMB 2006 LIMITED EDITION DOUBLE DISC PACKAGE [DVD]"
+    },
+    {
+      "no": 17,
+      "link": "https://link.amazon/B05LPPSvc",
+      "title": "UMB 2019 GRAND CHAMPIONSHIP Blu-ray&DVD"
+    },
+    {
+      "no": 18,
+      "link": "https://link.amazon/B084VMnie",
+      "title": "漢 a.k.a. GAMI 監修 MCバトル全書"
+    },
+    {
+      "no": 19,
+      "link": "https://link.amazon/B01xikZB2",
+      "title": "UMB 2017 GRAND CHAMPIONSHIP [DVD]"
+    },
+    {
+      "no": 20,
+      "link": "https://link.amazon/B0bGwWAwP",
+      "title": "UMB GRAND CHAMPION SHIP TOUR GUIDE 2005 [DVD]"
+    },
+    {
+      "no": 22,
+      "link": "https://link.amazon/B07vF4tOs",
+      "title": "Akai Professional MPC Sample ポータブル サンプラー"
     }
   ],
   "mc_af": {},
