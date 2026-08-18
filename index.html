@@ -475,18 +475,9 @@
       box-shadow:0 8px 20px rgba(17,24,39,.08);
     }
 
-    .amazon-affiliate-kicker{
-      display:block;
-      color:var(--muted);
-      font-size:.68rem;
-      font-weight:800;
-      line-height:1.2;
-      letter-spacing:.08em;
-    }
-
     .amazon-affiliate-title{
       display:block;
-      margin-top:6px;
+      margin-top:0;
       color:var(--text);
       font-size:.9rem;
       font-weight:900;
@@ -576,7 +567,7 @@
 
       .amazon-pc-rail{
         position:fixed;
-        top:86px;
+        top:180px;
         left:calc(var(--pc-left-gutter, 72px) + var(--home-content-max) + 24px);
         width:min(280px, calc(100vw - var(--pc-left-gutter, 72px) - var(--home-content-max) - 48px));
         display:flex;
@@ -1098,7 +1089,6 @@
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
         >
-          <span class="amazon-affiliate-kicker">PR / Amazon</span>
           <span class="amazon-affiliate-title">${escapeHtml(item.title)}</span>
           <span class="amazon-affiliate-cta">Amazonで見る</span>
         </a>
