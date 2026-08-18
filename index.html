@@ -445,6 +445,7 @@
 
     .amazon-mobile-slot{
       display:block;
+      width:100%;
       margin:0;
     }
 
@@ -567,7 +568,7 @@
 
       .amazon-pc-rail{
         position:fixed;
-        top:180px;
+        top:260px;
         left:calc(var(--pc-left-gutter, 72px) + var(--home-content-max) + 24px);
         width:min(280px, calc(100vw - var(--pc-left-gutter, 72px) - var(--home-content-max) - 48px));
         display:flex;
@@ -662,8 +663,12 @@
       .rank-name{ font-size:.9rem; }
       .rank-value{ font-size:.82rem; }
       .status{ font-size:.78rem; }
-      .amazon-affiliate-card{
-        border-radius:15px;
+      .amazon-mobile-slot .amazon-affiliate-card{
+        width:100%;
+        margin:0;
+        border-radius:18px;
+        background:#fbf6ea;
+        border-color:#e4d5b7;
         padding:12px 13px 13px;
       }
       .amazon-affiliate-title{
