@@ -547,17 +547,51 @@
       }
     }
 
-    /* Mobile/tablet: remove the slot wrapper from layout so the affiliate card
-       participates directly in .main-stack spacing. This keeps the vertical
-       gap and left/right edges identical to the surrounding cards. */
+    /* Mobile/tablet affiliate area:
+       two-column image grid with no card frame.
+       Wide source images automatically span both columns. */
     @media (max-width: 1259px){
       .main-stack > .amazon-mobile-slot{
-        display:contents;
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:10px 12px;
+        width:100%;
+        padding:2px 4px;
+      }
+
+      .main-stack > .amazon-mobile-slot:empty{
+        display:none;
       }
 
       .main-stack > .amazon-mobile-slot > .amazon-affiliate-card{
         width:100%;
         margin:0 !important;
+        padding:0;
+        border:0;
+        border-radius:0;
+        background:transparent;
+        box-shadow:none;
+        overflow:visible;
+      }
+
+      .main-stack > .amazon-mobile-slot > .amazon-affiliate-card:hover{
+        transform:none;
+        border-color:transparent;
+        box-shadow:none;
+      }
+
+      .main-stack > .amazon-mobile-slot > .amazon-affiliate-card.is-wide{
+        grid-column:1 / -1;
+      }
+
+      .main-stack > .amazon-mobile-slot .amazon-affiliate-image{
+        width:100%;
+        height:118px;
+        object-fit:contain;
+      }
+
+      .main-stack > .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
+        height:145px;
       }
     }
 
@@ -670,15 +704,17 @@
       .rank-value{ font-size:.82rem; }
       .status{ font-size:.78rem; }
 
-      .amazon-mobile-slot .amazon-affiliate-card{
-        width:auto;
-        margin:0;
-        padding:8px 10px;
-        background:#fff;
+      .main-stack > .amazon-mobile-slot{
+        gap:9px 10px;
+        padding:0 2px;
       }
 
-      .amazon-mobile-slot .amazon-affiliate-image{
-        height:125px;
+      .main-stack > .amazon-mobile-slot .amazon-affiliate-image{
+        height:112px;
+      }
+
+      .main-stack > .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
+        height:138px;
       }
 
       .associate-disclosure{
@@ -695,8 +731,12 @@
       .event-date-main{ font-size:.79rem; }
       .event-body{ padding-left:10px; }
 
-      .amazon-mobile-slot .amazon-affiliate-image{
-        height:115px;
+      .main-stack > .amazon-mobile-slot .amazon-affiliate-image{
+        height:104px;
+      }
+
+      .main-stack > .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
+        height:130px;
       }
     }
   </style>
@@ -1106,6 +1146,16 @@
         });
     }
 
+    function classifyAffiliateImage(img) {
+      if (!img || !img.naturalWidth || !img.naturalHeight) return;
+
+      const ratio = img.naturalWidth / img.naturalHeight;
+      const card = img.closest(".amazon-affiliate-card");
+      if (!card) return;
+
+      card.classList.toggle("is-wide", ratio >= 1.4);
+    }
+
     function buildAffiliateCard(item) {
       const label = item.txt || "Amazonの商品を見る";
 
@@ -1124,6 +1174,7 @@
             alt="${escapeHtml(label)}"
             loading="lazy"
             decoding="async"
+            onload="classifyAffiliateImage(this)"
           >
         </a>
       `;
@@ -1134,19 +1185,26 @@
       const mobileSlot1 = document.getElementById("amazon-mobile-slot-1");
       const mobileSlot2 = document.getElementById("amazon-mobile-slot-2");
 
-      const products = normalizeAffiliateItems(items);
-      const selected = shuffleArray(products).slice(0, 2);
+      const products = shuffleArray(normalizeAffiliateItems(items));
+      const pcSelected = products.slice(0, 2);
+      const mobileSelected = products.slice(0, 4);
 
       if (pcRail) {
-        pcRail.innerHTML = selected.map(buildAffiliateCard).join("");
+        pcRail.innerHTML = pcSelected.map(buildAffiliateCard).join("");
       }
 
       if (mobileSlot1) {
-        mobileSlot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
+        mobileSlot1.innerHTML = mobileSelected
+          .slice(0, 2)
+          .map(buildAffiliateCard)
+          .join("");
       }
 
       if (mobileSlot2) {
-        mobileSlot2.innerHTML = selected[1] ? buildAffiliateCard(selected[1]) : "";
+        mobileSlot2.innerHTML = mobileSelected
+          .slice(2, 4)
+          .map(buildAffiliateCard)
+          .join("");
       }
     }
 
