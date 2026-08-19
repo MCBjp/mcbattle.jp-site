@@ -760,10 +760,13 @@
     }
 
     .mc-affiliate-slot{
-      display:block;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px 12px;
       width:100%;
       box-sizing:border-box;
       margin-top:14px;
+      padding:0 2px;
     }
 
     .mc-affiliate-slot:empty{
@@ -775,20 +778,13 @@
     }
 
     .mc-affiliate-card{
-      display:block;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       width:100%;
       box-sizing:border-box;
-      padding:14px 16px;
-      border:1px solid #e4d5b7;
-      border-radius:16px;
-      background:#fbf6ea;
       color:inherit;
       text-decoration:none !important;
-      box-shadow:0 14px 34px rgba(0,0,0,.08);
-      transition:
-        transform .18s ease,
-        border-color .18s ease,
-        box-shadow .18s ease;
     }
 
     .mc-affiliate-card:hover,
@@ -799,46 +795,27 @@
       text-decoration:none !important;
     }
 
-    .mc-affiliate-card:hover,
-    .mc-affiliate-card:focus-visible{
-      transform:translateY(-1px);
-      border-color:#d3b978;
-      box-shadow:0 16px 30px rgba(17,24,39,.11);
-      outline:none;
-    }
-
-    .mc-affiliate-title{
+    .mc-affiliate-image{
       display:block;
-      color:#17191f;
-      font-size:.96rem;
-      font-weight:900;
-      line-height:1.42;
-      overflow-wrap:anywhere;
-      word-break:break-word;
+      width:100%;
+      height:118px;
+      object-fit:contain;
     }
 
-    .mc-affiliate-cta{
-      display:inline-flex;
-      align-items:center;
-      gap:5px;
-      margin-top:8px;
-      color:#8a611f;
-      font-size:.84rem;
-      font-weight:900;
-      line-height:1.2;
+    .mc-affiliate-card.is-wide{
+      grid-column:1 / -1;
     }
 
-    .mc-affiliate-cta::after{
-      content:"›";
-      font-size:1.24rem;
-      line-height:.8;
-      transform:translateY(-1px);
+    .mc-affiliate-card.is-wide .mc-affiliate-image{
+      height:145px;
     }
 
-    
-    /* PC affiliate rail scrolls with the document instead of staying fixed.
-       This avoids maintaining a large fixed layer with shadows during scroll. */
-@media (min-width: 1260px) {
+    .mc-affiliate-card.is-hidden-by-layout{
+      display:none !important;
+    }
+
+    /* PC affiliate rail scrolls with the document instead of staying fixed. */
+    @media (min-width: 1260px) {
       .mc-affiliate-slot{
         display:none !important;
       }
@@ -860,10 +837,52 @@
 
       .mc-affiliate-pc-rail .mc-affiliate-card{
         margin:0;
+        padding:12px;
+        border:1px solid #d9dde3;
+        border-radius:19px;
+        background:#fff;
+        box-shadow:
+          0 8px 24px rgba(17,24,39,.08),
+          0 1px 2px rgba(17,24,39,.05);
+        overflow:hidden;
+        transition:
+          transform .18s ease,
+          border-color .18s ease,
+          box-shadow .18s ease;
+      }
+
+      .mc-affiliate-pc-rail .mc-affiliate-card:hover,
+      .mc-affiliate-pc-rail .mc-affiliate-card:focus-visible{
+        transform:translateY(-2px);
+        border-color:#c9ac72;
+        box-shadow:0 10px 24px rgba(17,24,39,.10);
+        outline:none;
+      }
+
+      .mc-affiliate-pc-rail .mc-affiliate-image{
+        height:230px;
+      }
+
+      .mc-affiliate-pc-rail .mc-affiliate-card.is-hidden-by-layout{
+        display:flex !important;
       }
     }
 
     @media (max-width: 640px) {
+      .mc-affiliate-slot{
+        gap:9px 10px;
+        margin-top:14px;
+        padding:0 2px;
+      }
+
+      .mc-affiliate-image{
+        height:112px;
+      }
+
+      .mc-affiliate-card.is-wide .mc-affiliate-image{
+        height:138px;
+      }
+
       .page-top{
         margin-bottom: 14px;
       }
@@ -1066,6 +1085,17 @@
   font-size: 16px !important;
   -webkit-text-size-adjust: 100%;
 }
+
+    @media (max-width: 390px) {
+      .mc-affiliate-image{
+        height:104px;
+      }
+
+      .mc-affiliate-card.is-wide .mc-affiliate-image{
+        height:130px;
+      }
+    }
+
   </style>
 </head>
 
@@ -3352,13 +3382,29 @@
         const seenLinks = new Set();
 
         return items
-          .map((item) => ({
-            no: item?.no ?? "",
-            link: String(item?.link ?? "").trim(),
-            title: String(item?.title ?? "").trim()
-          }))
+          .map((item) => {
+            const link = String(item?.link ?? "").trim();
+            const image = String(
+              item?.image ??
+              item?.image_url ??
+              item?.img ??
+              ""
+            ).trim();
+            const title = String(
+              item?.title ??
+              item?.txt ??
+              ""
+            ).trim();
+
+            return {
+              no: item?.no ?? "",
+              link,
+              image,
+              title
+            };
+          })
           .filter((item) => {
-            if (!item.link || !item.title) return false;
+            if (!item.link || !item.image) return false;
             if (seenLinks.has(item.link)) return false;
 
             seenLinks.add(item.link);
@@ -3366,16 +3412,71 @@
           });
       }
 
+      function updateAffiliateSlotLayout(slot) {
+        if (!slot || !slot.classList.contains("mc-affiliate-slot")) return;
+
+        const cards = Array.from(slot.querySelectorAll(".mc-affiliate-card"));
+        if (!cards.length) return;
+
+        const allFinished = cards.every((card) => {
+          const img = card.querySelector(".mc-affiliate-image");
+          return !img || img.complete;
+        });
+
+        if (!allFinished) return;
+
+        cards.forEach((card) => card.classList.remove("is-hidden-by-layout"));
+
+        const wideCards = cards.filter((card) => card.classList.contains("is-wide"));
+
+        if (wideCards.length) {
+          const chosenWide = wideCards[0];
+
+          cards.forEach((card) => {
+            if (card !== chosenWide) {
+              card.classList.add("is-hidden-by-layout");
+            }
+          });
+        }
+      }
+
+      function classifyAffiliateImage(img) {
+        if (!img) return;
+
+        const card = img.closest(".mc-affiliate-card");
+        if (!card) return;
+
+        if (img.naturalWidth && img.naturalHeight) {
+          const ratio = img.naturalWidth / img.naturalHeight;
+          card.classList.toggle("is-wide", ratio >= 1.4);
+        } else {
+          card.classList.remove("is-wide");
+        }
+
+        updateAffiliateSlotLayout(card.parentElement);
+      }
+
       function buildAffiliateCard(item) {
+        const label = item.title || "Amazonの商品を見る";
+
         return `
           <a
             class="mc-affiliate-card"
             href="${escapeHtml(item.link)}"
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
+            aria-label="${escapeHtml(label)}"
+            title="${escapeHtml(label)}"
           >
-            <span class="mc-affiliate-title">${escapeHtml(item.title)}</span>
-            <span class="mc-affiliate-cta">Amazonで見る</span>
+            <img
+              class="mc-affiliate-image"
+              src="${escapeHtml(item.image)}"
+              alt="${escapeHtml(label)}"
+              loading="lazy"
+              decoding="async"
+              onload="classifyAffiliateImage(this)"
+              onerror="classifyAffiliateImage(this)"
+            >
           </a>
         `;
       }
@@ -3443,18 +3544,19 @@
 
       function renderAffiliateSlots(specificItems, fallbackItems) {
         const slots = ensureAffiliateSlots();
-        const selected = selectAffiliateItems(specificItems, fallbackItems, 2);
+        const selected = selectAffiliateItems(specificItems, fallbackItems, 4);
+        const pcSelected = selected.slice(0, 2);
 
         if (slots.pcRail) {
-          slots.pcRail.innerHTML = selected.map(buildAffiliateCard).join("");
+          slots.pcRail.innerHTML = pcSelected.map(buildAffiliateCard).join("");
         }
 
         if (slots.slot1) {
-          slots.slot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
+          slots.slot1.innerHTML = selected.slice(0, 2).map(buildAffiliateCard).join("");
         }
 
         if (slots.slot2) {
-          slots.slot2.innerHTML = selected[1] ? buildAffiliateCard(selected[1]) : "";
+          slots.slot2.innerHTML = selected.slice(2, 4).map(buildAffiliateCard).join("");
         }
       }
 
