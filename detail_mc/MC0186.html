@@ -827,7 +827,8 @@
         width:min(280px, calc(100vw - var(--pc-left-gutter, 130px) - var(--content-max, 800px) - 48px));
         display:flex;
         flex-direction:column;
-        gap:12px;
+        align-items:center;
+        gap:22px;
         z-index:10;
       }
 
@@ -836,31 +837,37 @@
       }
 
       .mc-affiliate-pc-rail .mc-affiliate-card{
+        width:100%;
         margin:0;
-        padding:12px;
-        border:1px solid #d9dde3;
-        border-radius:19px;
-        background:#fff;
-        box-shadow:
-          0 8px 24px rgba(17,24,39,.08),
-          0 1px 2px rgba(17,24,39,.05);
-        overflow:hidden;
+        padding:0;
+        border:0;
+        border-radius:0;
+        background:transparent;
+        box-shadow:none;
+        overflow:visible;
         transition:
           transform .18s ease,
-          border-color .18s ease,
-          box-shadow .18s ease;
+          opacity .18s ease;
       }
 
       .mc-affiliate-pc-rail .mc-affiliate-card:hover,
       .mc-affiliate-pc-rail .mc-affiliate-card:focus-visible{
         transform:translateY(-2px);
-        border-color:#c9ac72;
-        box-shadow:0 10px 24px rgba(17,24,39,.10);
+        opacity:.92;
         outline:none;
       }
 
       .mc-affiliate-pc-rail .mc-affiliate-image{
-        height:230px;
+        width:min(190px, 100%);
+        height:auto;
+        max-height:270px;
+        object-fit:contain;
+      }
+
+      .mc-affiliate-pc-rail .mc-affiliate-card.is-wide .mc-affiliate-image{
+        width:100%;
+        height:auto;
+        max-height:175px;
       }
 
       .mc-affiliate-pc-rail .mc-affiliate-card.is-hidden-by-layout{
