@@ -147,8 +147,15 @@
     }
 
     /* Match the normal section rhythm: every block starts 24px after the previous one. */
+    /* Keep the same section rhythm while showing image-only affiliate items. */
     .event-affiliate-slot{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px 12px;
+      width:100%;
+      box-sizing:border-box;
       margin-top:24px;
+      padding:0 2px;
     }
 
     .event-affiliate-slot:empty{
@@ -160,9 +167,11 @@
     }
 
     .event-affiliate-card{
-      display:block;
-      background:#fbf6ea !important;
-      border-color:#e4d5b7 !important;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      box-sizing:border-box;
       color:inherit;
       text-decoration:none !important;
     }
@@ -175,37 +184,23 @@
       text-decoration:none !important;
     }
 
-    .event-affiliate-inner{
-      padding-top:14px;
-      padding-bottom:14px;
-    }
-
-    .event-affiliate-title{
+    .event-affiliate-image{
       display:block;
-      color:#17191f;
-      font-size:.96rem;
-      font-weight:900;
-      line-height:1.42;
-      overflow-wrap:anywhere;
-      word-break:break-word;
+      width:100%;
+      height:118px;
+      object-fit:contain;
     }
 
-    .event-affiliate-cta{
-      display:inline-flex;
-      align-items:center;
-      gap:5px;
-      margin-top:8px;
-      color:#8a611f;
-      font-size:.84rem;
-      font-weight:900;
-      line-height:1.2;
+    .event-affiliate-card.is-wide{
+      grid-column:1 / -1;
     }
 
-    .event-affiliate-cta::after{
-      content:"›";
-      font-size:1.24rem;
-      line-height:.8;
-      transform:translateY(-1px);
+    .event-affiliate-card.is-wide .event-affiliate-image{
+      height:145px;
+    }
+
+    .event-affiliate-card.is-hidden-by-layout{
+      display:none !important;
     }
 
     .result-block {
@@ -899,10 +894,52 @@
       .event-affiliate-pc-rail .event-affiliate-card{
         width:100%;
         margin:0;
+        padding:12px;
+        border:1px solid #d9dde3;
+        border-radius:19px;
+        background:#fff;
+        box-shadow:
+          0 8px 24px rgba(17,24,39,.08),
+          0 1px 2px rgba(17,24,39,.05);
+        overflow:hidden;
+        transition:
+          transform .18s ease,
+          border-color .18s ease,
+          box-shadow .18s ease;
+      }
+
+      .event-affiliate-pc-rail .event-affiliate-card:hover,
+      .event-affiliate-pc-rail .event-affiliate-card:focus-visible{
+        transform:translateY(-2px);
+        border-color:#c9ac72;
+        box-shadow:0 10px 24px rgba(17,24,39,.10);
+        outline:none;
+      }
+
+      .event-affiliate-pc-rail .event-affiliate-image{
+        height:230px;
+      }
+
+      .event-affiliate-pc-rail .event-affiliate-card.is-hidden-by-layout{
+        display:flex !important;
       }
     }
 
     @media (max-width: 640px) {
+      .event-affiliate-slot{
+        gap:9px 10px;
+        margin-top:24px;
+        padding:0 2px;
+      }
+
+      .event-affiliate-image{
+        height:112px;
+      }
+
+      .event-affiliate-card.is-wide .event-affiliate-image{
+        height:138px;
+      }
+
       .page-top{
         margin-bottom:10px;
       }
@@ -1128,6 +1165,17 @@
         font-size:0.80rem;
       }
     }
+
+    @media (max-width: 390px) {
+      .event-affiliate-image{
+        height:104px;
+      }
+
+      .event-affiliate-card.is-wide .event-affiliate-image{
+        height:130px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1593,14 +1641,28 @@
 
         return items
           .map((item) => {
+            const link = String(item?.link ?? "").trim();
+            const image = String(
+              item?.image ??
+              item?.image_url ??
+              item?.img ??
+              ""
+            ).trim();
+            const title = String(
+              item?.title ??
+              item?.txt ??
+              ""
+            ).trim();
+
             return {
               no: item?.no ?? "",
-              link: String(item?.link ?? "").trim(),
-              title: String(item?.title ?? "").trim()
+              link,
+              image,
+              title
             };
           })
           .filter((item) => {
-            if (!item.link || !item.title) return false;
+            if (!item.link || !item.image) return false;
             if (seenLinks.has(item.link)) return false;
 
             seenLinks.add(item.link);
@@ -1608,18 +1670,71 @@
           });
       }
 
+      function updateAffiliateSlotLayout(slot) {
+        if (!slot || !slot.classList.contains("event-affiliate-slot")) return;
+
+        const cards = Array.from(slot.querySelectorAll(".event-affiliate-card"));
+        if (!cards.length) return;
+
+        const allFinished = cards.every((card) => {
+          const img = card.querySelector(".event-affiliate-image");
+          return !img || img.complete;
+        });
+
+        if (!allFinished) return;
+
+        cards.forEach((card) => card.classList.remove("is-hidden-by-layout"));
+
+        const wideCards = cards.filter((card) => card.classList.contains("is-wide"));
+
+        if (wideCards.length) {
+          const chosenWide = wideCards[0];
+
+          cards.forEach((card) => {
+            if (card !== chosenWide) {
+              card.classList.add("is-hidden-by-layout");
+            }
+          });
+        }
+      }
+
+      function classifyAffiliateImage(img) {
+        if (!img) return;
+
+        const card = img.closest(".event-affiliate-card");
+        if (!card) return;
+
+        if (img.naturalWidth && img.naturalHeight) {
+          const ratio = img.naturalWidth / img.naturalHeight;
+          card.classList.toggle("is-wide", ratio >= 1.4);
+        } else {
+          card.classList.remove("is-wide");
+        }
+
+        updateAffiliateSlotLayout(card.parentElement);
+      }
+
       function buildAffiliateCard(item) {
+        const label = item.title || "Amazonの商品を見る";
+
         return `
           <a
-            class="card event-affiliate-card"
+            class="event-affiliate-card"
             href="${escapeHtml(item.link)}"
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
+            aria-label="${escapeHtml(label)}"
+            title="${escapeHtml(label)}"
           >
-            <div class="event-card-inner event-affiliate-inner">
-              <span class="event-affiliate-title">${escapeHtml(item.title)}</span>
-              <span class="event-affiliate-cta">Amazonで見る</span>
-            </div>
+            <img
+              class="event-affiliate-image"
+              src="${escapeHtml(item.image)}"
+              alt="${escapeHtml(label)}"
+              loading="lazy"
+              decoding="async"
+              onload="classifyAffiliateImage(this)"
+              onerror="classifyAffiliateImage(this)"
+            >
           </a>
         `;
       }
@@ -1651,18 +1766,19 @@
         const pcRail = document.getElementById("event-affiliate-pc-rail");
         const slot1 = document.getElementById("event-affiliate-slot-1");
         const slot2 = document.getElementById("event-affiliate-slot-2");
-        const selected = selectAffiliateItems(specificItems, fallbackItems, 2);
+        const selected = selectAffiliateItems(specificItems, fallbackItems, 4);
+        const pcSelected = selected.slice(0, 2);
 
         if (pcRail) {
-          pcRail.innerHTML = selected.map(buildAffiliateCard).join("");
+          pcRail.innerHTML = pcSelected.map(buildAffiliateCard).join("");
         }
 
         if (slot1) {
-          slot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
+          slot1.innerHTML = selected.slice(0, 2).map(buildAffiliateCard).join("");
         }
 
         if (slot2) {
-          slot2.innerHTML = selected[1] ? buildAffiliateCard(selected[1]) : "";
+          slot2.innerHTML = selected.slice(2, 4).map(buildAffiliateCard).join("");
         }
       }
 
