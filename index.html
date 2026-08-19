@@ -638,7 +638,26 @@
 
       .container{ width:calc(100% - 24px); }
 
-      .main-stack{ gap:9px; }
+      /* Keep the vertical distance around affiliate rows truly equal.
+         External/global section styles must not add hidden margin/padding. */
+      .main-stack{
+        gap:9px;
+      }
+
+      .main-stack > .dashboard-two-grid{
+        margin:0 !important;
+        padding:0 !important;
+      }
+
+      .main-stack > .dashboard-two-grid > .home-card{
+        margin:0 !important;
+      }
+
+      .main-stack > .amazon-mobile-slot{
+        margin:0 !important;
+        padding-top:0 !important;
+        padding-bottom:0 !important;
+      }
 
       .home-card{ border-radius:18px; }
 
