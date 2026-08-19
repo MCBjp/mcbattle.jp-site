@@ -584,6 +584,10 @@
         grid-column:1 / -1;
       }
 
+      .main-stack > .amazon-mobile-slot > .amazon-affiliate-card.is-hidden-by-layout{
+        display:none !important;
+      }
+
       .main-stack > .amazon-mobile-slot .amazon-affiliate-image{
         width:100%;
         height:118px;
@@ -1165,14 +1169,52 @@
         });
     }
 
-    function classifyAffiliateImage(img) {
-      if (!img || !img.naturalWidth || !img.naturalHeight) return;
+    function updateAffiliateSlotLayout(slot) {
+      if (!slot || !slot.classList.contains("amazon-mobile-slot")) return;
 
-      const ratio = img.naturalWidth / img.naturalHeight;
+      const cards = Array.from(slot.querySelectorAll(".amazon-affiliate-card"));
+      if (!cards.length) return;
+
+      const allFinished = cards.every((card) => {
+        const img = card.querySelector(".amazon-affiliate-image");
+        return !img || img.complete;
+      });
+
+      if (!allFinished) return;
+
+      cards.forEach((card) => {
+        card.classList.remove("is-hidden-by-layout");
+      });
+
+      const wideCards = cards.filter((card) => card.classList.contains("is-wide"));
+
+      // If this slot contains a wide product image, show only one wide image.
+      // Otherwise keep the normal two-column pair.
+      if (wideCards.length) {
+        const chosenWide = wideCards[0];
+
+        cards.forEach((card) => {
+          if (card !== chosenWide) {
+            card.classList.add("is-hidden-by-layout");
+          }
+        });
+      }
+    }
+
+    function classifyAffiliateImage(img) {
+      if (!img) return;
+
       const card = img.closest(".amazon-affiliate-card");
       if (!card) return;
 
-      card.classList.toggle("is-wide", ratio >= 1.4);
+      if (img.naturalWidth && img.naturalHeight) {
+        const ratio = img.naturalWidth / img.naturalHeight;
+        card.classList.toggle("is-wide", ratio >= 1.4);
+      } else {
+        card.classList.remove("is-wide");
+      }
+
+      updateAffiliateSlotLayout(card.parentElement);
     }
 
     function buildAffiliateCard(item) {
@@ -1194,6 +1236,7 @@
             loading="lazy"
             decoding="async"
             onload="classifyAffiliateImage(this)"
+            onerror="classifyAffiliateImage(this)"
           >
         </a>
       `;
