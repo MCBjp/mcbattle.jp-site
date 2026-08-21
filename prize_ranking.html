@@ -262,7 +262,153 @@
       letter-spacing:-.01em;
     }
 
+
+    .prize-affiliate-slot{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px 12px;
+      width:100%;
+      box-sizing:border-box;
+      padding:0 2px;
+    }
+
+    .prize-affiliate-slot:empty,
+    .prize-pc-affiliate-rail:empty{
+      display:none;
+    }
+
+    .prize-affiliate-slot.is-first{
+      margin:0 0 18px;
+    }
+
+    .prize-affiliate-slot.is-last{
+      margin:18px 0 0;
+    }
+
+    .prize-affiliate-card{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      color:inherit;
+      text-decoration:none !important;
+      overflow:visible;
+    }
+
+    .prize-affiliate-card:hover,
+    .prize-affiliate-card:focus,
+    .prize-affiliate-card:active,
+    .prize-affiliate-card:visited{
+      color:inherit;
+      text-decoration:none !important;
+    }
+
+    .prize-affiliate-image{
+      display:block;
+      width:100%;
+      height:118px;
+      object-fit:contain;
+    }
+
+    .prize-affiliate-card.is-wide{
+      grid-column:1 / -1;
+    }
+
+    .prize-affiliate-card.is-wide .prize-affiliate-image{
+      height:145px;
+    }
+
+    .prize-affiliate-card.is-hidden-by-layout{
+      display:none !important;
+    }
+
+    .prize-pc-affiliate-rail{
+      display:none;
+    }
+
+    .associate-disclosure{
+      margin:12px 2px 0;
+      color:#68707d;
+      font-size:.72rem;
+      font-weight:600;
+      line-height:1.55;
+      text-align:center;
+    }
+
+    @media (min-width:1260px){
+      .prize-affiliate-slot{
+        display:none !important;
+      }
+
+      .prize-pc-affiliate-rail{
+        position:absolute;
+        top:260px;
+        left:calc(50% + 324px);
+        width:min(280px, calc(50vw - 348px));
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:22px;
+        z-index:10;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-card{
+        width:100%;
+        transition:
+          transform .18s ease,
+          opacity .18s ease;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-card:hover,
+      .prize-pc-affiliate-rail .prize-affiliate-card:focus-visible{
+        transform:translateY(-2px);
+        opacity:.92;
+        outline:none;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-image{
+        width:min(190px, 100%);
+        height:auto;
+        max-height:270px;
+        object-fit:contain;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-card.is-wide .prize-affiliate-image{
+        width:100%;
+        height:auto;
+        max-height:175px;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-card.is-hidden-by-layout{
+        display:flex !important;
+      }
+    }
     @media (max-width:640px){
+      .prize-affiliate-slot{
+        gap:9px 10px;
+        padding:0 2px;
+      }
+
+      .prize-affiliate-image{
+        height:112px;
+      }
+
+      .prize-affiliate-card.is-wide .prize-affiliate-image{
+        height:138px;
+      }
+
+      .associate-disclosure{
+        font-size:.68rem;
+        line-height:1.5;
+      }
+
       .page-top{
         margin-bottom:12px;
       }
@@ -336,6 +482,17 @@
         font-size:.94rem;
       }
     }
+
+    @media (max-width:390px){
+      .prize-affiliate-image{
+        height:104px;
+      }
+
+      .prize-affiliate-card.is-wide .prize-affiliate-image{
+        height:130px;
+      }
+    }
+
   </style>
 </head>
 
@@ -355,6 +512,8 @@
       <div id="top3" class="top3-list"></div>
     </div>
 
+    <div id="prize-affiliate-slot-1" class="prize-affiliate-slot is-first" aria-label="Amazonおすすめ"></div>
+
     <section class="card">
       <div class="prize-card-inner">
         <p id="prize-status" class="muted"></p>
@@ -371,10 +530,19 @@
         </div>
       </div>
     </section>
+
+    <div id="prize-affiliate-slot-2" class="prize-affiliate-slot is-last" aria-label="Amazonおすすめ"></div>
+
+    <p class="associate-disclosure">
+      Amazonのアソシエイトとして、MCBattle.jpは適格販売により収入を得ています。
+    </p>
   </div>
+
+  <aside id="prize-pc-affiliate-rail" class="prize-pc-affiliate-rail" aria-label="Amazonおすすめ"></aside>
 
   <script>
     const PRIZE_JSON_URL = "./data/prize_rankings.json";
+    const TOP_JSON_URL = "./data/top.json";
 
     async function loadPrizeJson() {
       const res = await fetch(PRIZE_JSON_URL, { cache: "no-store" });
@@ -382,6 +550,167 @@
         throw new Error(`HTTP ${res.status}`);
       }
       return await res.json();
+    }
+
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function shuffleArray(items) {
+      const result = [...items];
+
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+
+      return result;
+    }
+
+    function normalizeAffiliateItems(items) {
+      if (!Array.isArray(items)) return [];
+
+      const seenLinks = new Set();
+
+      return items
+        .map((item) => {
+          const link = String(item?.link ?? "").trim();
+          const image = String(
+            item?.image ??
+            item?.image_url ??
+            item?.img ??
+            ""
+          ).trim();
+          const title = String(
+            item?.title ??
+            item?.txt ??
+            ""
+          ).trim();
+
+          return {
+            no: item?.no ?? "",
+            link,
+            image,
+            title
+          };
+        })
+        .filter((item) => {
+          if (!item.link || !item.image) return false;
+          if (seenLinks.has(item.link)) return false;
+
+          seenLinks.add(item.link);
+          return true;
+        });
+    }
+
+    function updateAffiliateSlotLayout(slot) {
+      if (!slot || !slot.classList.contains("prize-affiliate-slot")) return;
+
+      const cards = Array.from(slot.querySelectorAll(".prize-affiliate-card"));
+      if (!cards.length) return;
+
+      const allFinished = cards.every((card) => {
+        const img = card.querySelector(".prize-affiliate-image");
+        return !img || img.complete;
+      });
+
+      if (!allFinished) return;
+
+      cards.forEach((card) => card.classList.remove("is-hidden-by-layout"));
+
+      const wideCards = cards.filter((card) => card.classList.contains("is-wide"));
+
+      // If a mobile/tablet slot contains a wide image, show only that wide image.
+      // Otherwise keep both products in the two-column grid.
+      if (wideCards.length) {
+        const chosenWide = wideCards[0];
+
+        cards.forEach((card) => {
+          if (card !== chosenWide) {
+            card.classList.add("is-hidden-by-layout");
+          }
+        });
+      }
+    }
+
+    function classifyAffiliateImage(img) {
+      if (!img) return;
+
+      const card = img.closest(".prize-affiliate-card");
+      if (!card) return;
+
+      if (img.naturalWidth && img.naturalHeight) {
+        const ratio = img.naturalWidth / img.naturalHeight;
+        card.classList.toggle("is-wide", ratio >= 1.4);
+      } else {
+        card.classList.remove("is-wide");
+      }
+
+      updateAffiliateSlotLayout(card.parentElement);
+    }
+
+    function buildAffiliateCard(item) {
+      const label = item.title || "Amazonの商品を見る";
+
+      return `
+        <a
+          class="prize-affiliate-card"
+          href="${escapeHtml(item.link)}"
+          target="_blank"
+          rel="nofollow sponsored noopener noreferrer"
+          aria-label="${escapeHtml(label)}"
+          title="${escapeHtml(label)}"
+        >
+          <img
+            class="prize-affiliate-image"
+            src="${escapeHtml(item.image)}"
+            alt="${escapeHtml(label)}"
+            loading="lazy"
+            decoding="async"
+            onload="classifyAffiliateImage(this)"
+            onerror="classifyAffiliateImage(this)"
+          >
+        </a>
+      `;
+    }
+
+    async function loadRankingAffiliate() {
+      const slot1 = document.getElementById("prize-affiliate-slot-1");
+      const slot2 = document.getElementById("prize-affiliate-slot-2");
+      const pcRail = document.getElementById("prize-pc-affiliate-rail");
+
+      try {
+        const res = await fetch(TOP_JSON_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const payload = await res.json();
+        const products = shuffleArray(normalizeAffiliateItems(payload?.index_af));
+        const selected = products.slice(0, 4);
+        const pcSelected = selected.slice(0, 2);
+
+        if (slot1) {
+          slot1.innerHTML = selected.slice(0, 2).map(buildAffiliateCard).join("");
+        }
+
+        if (slot2) {
+          slot2.innerHTML = selected.slice(2, 4).map(buildAffiliateCard).join("");
+        }
+
+        if (pcRail) {
+          pcRail.innerHTML = pcSelected.map(buildAffiliateCard).join("");
+        }
+      } catch (err) {
+        console.error("affiliate load failed:", err);
+        if (slot1) slot1.innerHTML = "";
+        if (slot2) slot2.innerHTML = "";
+        if (pcRail) pcRail.innerHTML = "";
+      }
     }
 
     function toNumber(v) {
@@ -568,6 +897,7 @@
     }
 
     loadPrizePage();
+    loadRankingAffiliate();
   </script>
   <script src="site-header.js"></script>
 </body>
