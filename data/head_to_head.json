@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T12:33:49.587Z",
+  "updated_at": "2026-08-23T11:22:32.129Z",
   "min_matches": 2,
   "total": 439,
   "summaries": [
@@ -173,6 +173,19 @@
       "last_event_name": "口喧嘩祭 SP × KOK2023"
     },
     {
+      "pair_key": "MC0376__MC0395",
+      "mc_id_a": "MC0376",
+      "mc_name_a": "呂布カルマ",
+      "mc_id_b": "MC0395",
+      "mc_name_b": "晋平太",
+      "a_wins": 4,
+      "b_wins": 2,
+      "total_matches": 6,
+      "last_match_date": "2023-07-14",
+      "last_event_id": "EVT0091",
+      "last_event_name": "KING OF KINGS vs 真 ADRENALINE #5"
+    },
+    {
       "pair_key": "MC0283__MC0376",
       "mc_id_a": "MC0283",
       "mc_name_a": "SKRYU",
@@ -277,19 +290,6 @@
       "last_event_name": "凱旋MC battle 東西選抜 春ノ陣　2024"
     },
     {
-      "pair_key": "MC0046__MC0376",
-      "mc_id_a": "MC0046",
-      "mc_name_a": "Authority",
-      "mc_id_b": "MC0376",
-      "mc_name_b": "呂布カルマ",
-      "a_wins": 3,
-      "b_wins": 2,
-      "total_matches": 5,
-      "last_match_date": "2023-12-17",
-      "last_event_id": "EVT0093",
-      "last_event_name": "KING OF KINGS vs 真 ADRENALINE #6"
-    },
-    {
       "pair_key": "MC0214__MC0469",
       "mc_id_a": "MC0214",
       "mc_name_a": "RAWAXXX",
@@ -314,19 +314,6 @@
       "last_match_date": "2023-11-23",
       "last_event_id": "EVT0149",
       "last_event_name": "Spotlight 2023大阪編"
-    },
-    {
-      "pair_key": "MC0376__MC0395",
-      "mc_id_a": "MC0376",
-      "mc_name_a": "呂布カルマ",
-      "mc_id_b": "MC0395",
-      "mc_name_b": "晋平太",
-      "a_wins": 3,
-      "b_wins": 2,
-      "total_matches": 5,
-      "last_match_date": "2023-07-14",
-      "last_event_id": "EVT0091",
-      "last_event_name": "KING OF KINGS vs 真 ADRENALINE #5"
     },
     {
       "pair_key": "MC0214__MC0474",
@@ -522,6 +509,19 @@
       "last_match_date": "2024-02-02",
       "last_event_id": "EVT0094",
       "last_event_name": "渋谷レゲエ祭 vs 真ADRENALINE"
+    },
+    {
+      "pair_key": "MC0046__MC0376",
+      "mc_id_a": "MC0046",
+      "mc_name_a": "Authority",
+      "mc_id_b": "MC0376",
+      "mc_name_b": "呂布カルマ",
+      "a_wins": 3,
+      "b_wins": 1,
+      "total_matches": 4,
+      "last_match_date": "2023-12-17",
+      "last_event_id": "EVT0093",
+      "last_event_name": "KING OF KINGS vs 真 ADRENALINE #6"
     },
     {
       "pair_key": "MC0376__MC0600",
