@@ -1340,15 +1340,20 @@
       updateAffiliateSlotLayout(card.parentElement);
     }
 
+    function formatAffiliateComment(text) {
+      const escaped = escapeHtml(String(text || "").trim());
+      return escaped.replace(/。(?=.)/g, "。<br>");
+    }
+
     function buildAffiliateCard(item) {
       const comment = String(item.txt || "").trim();
       const label = comment || "Amazonの商品を見る";
       const commentHtml = comment
         ? `
           <span class="amazon-affiliate-copy">
-            <span class="amazon-affiliate-kicker">PICK UP</span>
+            <span class="amazon-affiliate-kicker">Pick up Item</span>
             <span class="amazon-affiliate-comment">
-              ${escapeHtml(comment)}<span class="amazon-affiliate-arrow" aria-hidden="true">›</span>
+              ${formatAffiliateComment(comment)}<span class="amazon-affiliate-arrow" aria-hidden="true">›</span>
             </span>
           </span>
         `
