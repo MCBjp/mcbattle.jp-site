@@ -552,13 +552,10 @@
     }
 
     /* Mobile/tablet affiliate area:
-       two-column image grid with no card frame.
-       Wide source images automatically span both columns. */
+       one product per slot, image on the left and txt comment on the right. */
     @media (max-width: 1259px){
       .main-stack .amazon-mobile-slot{
-        display:grid;
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:10px 12px;
+        display:block;
         width:100%;
         padding:2px 4px;
       }
@@ -568,6 +565,10 @@
       }
 
       .main-stack .amazon-mobile-slot > .amazon-affiliate-card{
+        display:grid;
+        grid-template-columns:minmax(0, 42%) minmax(0, 58%);
+        align-items:center;
+        gap:14px;
         width:100%;
         margin:0 !important;
         padding:0;
@@ -576,6 +577,7 @@
         background:transparent;
         box-shadow:none;
         overflow:visible;
+        text-decoration:none;
       }
 
       .main-stack .amazon-mobile-slot > .amazon-affiliate-card:hover{
@@ -584,22 +586,30 @@
         box-shadow:none;
       }
 
-      .main-stack .amazon-mobile-slot > .amazon-affiliate-card.is-wide{
-        grid-column:1 / -1;
-      }
-
-      .main-stack .amazon-mobile-slot > .amazon-affiliate-card.is-hidden-by-layout{
-        display:none !important;
-      }
-
       .main-stack .amazon-mobile-slot .amazon-affiliate-image{
+        display:block;
         width:100%;
-        height:118px;
+        height:138px;
         object-fit:contain;
       }
 
-      .main-stack .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
-        height:145px;
+      .main-stack .amazon-mobile-slot .amazon-affiliate-comment{
+        min-width:0;
+        color:var(--text);
+        font-size:.88rem;
+        font-weight:700;
+        line-height:1.55;
+        text-align:left;
+        overflow-wrap:anywhere;
+      }
+
+      .main-stack .amazon-mobile-slot .amazon-affiliate-card.no-comment{
+        display:flex;
+        justify-content:center;
+      }
+
+      .main-stack .amazon-mobile-slot .amazon-affiliate-card.no-comment .amazon-affiliate-image{
+        width:min(190px, 58%);
       }
     }
 
@@ -627,6 +637,9 @@
       }
 
       .amazon-pc-rail .amazon-affiliate-card{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
         width:100%;
         margin:0;
         padding:0;
@@ -635,6 +648,7 @@
         background:transparent;
         box-shadow:none;
         overflow:visible;
+        text-decoration:none;
         transition:
           transform .18s ease,
           opacity .18s ease;
@@ -660,6 +674,17 @@
         width:100%;
         height:auto;
         max-height:175px;
+      }
+
+      .amazon-pc-rail .amazon-affiliate-comment{
+        width:100%;
+        margin-top:8px;
+        color:var(--text);
+        font-size:.82rem;
+        font-weight:700;
+        line-height:1.5;
+        text-align:left;
+        overflow-wrap:anywhere;
       }
 
       .amazon-pc-rail .amazon-affiliate-card.is-hidden-by-layout{
@@ -769,16 +794,21 @@
       .status{ font-size:.78rem; }
 
       .main-stack .amazon-mobile-slot{
-        gap:9px 10px;
         padding:0 2px;
       }
 
-      .main-stack .amazon-mobile-slot .amazon-affiliate-image{
-        height:112px;
+      .main-stack .amazon-mobile-slot > .amazon-affiliate-card{
+        grid-template-columns:minmax(0, 42%) minmax(0, 58%);
+        gap:12px;
       }
 
-      .main-stack .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
-        height:138px;
+      .main-stack .amazon-mobile-slot .amazon-affiliate-image{
+        height:132px;
+      }
+
+      .main-stack .amazon-mobile-slot .amazon-affiliate-comment{
+        font-size:.84rem;
+        line-height:1.5;
       }
 
       .associate-disclosure{
@@ -1261,11 +1291,15 @@
     }
 
     function buildAffiliateCard(item) {
-      const label = item.txt || "Amazonの商品を見る";
+      const comment = String(item.txt || "").trim();
+      const label = comment || "Amazonの商品を見る";
+      const commentHtml = comment
+        ? `<span class="amazon-affiliate-comment">${escapeHtml(comment)}</span>`
+        : "";
 
       return `
         <a
-          class="home-card amazon-affiliate-card"
+          class="home-card amazon-affiliate-card${comment ? "" : " no-comment"}"
           href="${escapeHtml(item.link)}"
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
@@ -1281,6 +1315,7 @@
             onload="classifyAffiliateImage(this)"
             onerror="classifyAffiliateImage(this)"
           >
+          ${commentHtml}
         </a>
       `;
     }
@@ -1292,7 +1327,7 @@
 
       const products = shuffleArray(normalizeAffiliateItems(items));
       const pcSelected = products.slice(0, 2);
-      const mobileSelected = products.slice(0, 4);
+      const mobileSelected = products.slice(0, 2);
 
       if (pcRail) {
         pcRail.innerHTML = pcSelected.map(buildAffiliateCard).join("");
@@ -1300,14 +1335,14 @@
 
       if (mobileSlot1) {
         mobileSlot1.innerHTML = mobileSelected
-          .slice(0, 2)
+          .slice(0, 1)
           .map(buildAffiliateCard)
           .join("");
       }
 
       if (mobileSlot2) {
         mobileSlot2.innerHTML = mobileSelected
-          .slice(2, 4)
+          .slice(1, 2)
           .map(buildAffiliateCard)
           .join("");
       }
