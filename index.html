@@ -524,6 +524,10 @@
         min-width:0;
       }
 
+      .dashboard-two-grid > .amazon-mobile-slot{
+        grid-column:1 / -1;
+      }
+
       .dashboard-two-grid .home-card-inner{
         padding-left:16px;
         padding-right:16px;
@@ -551,7 +555,7 @@
        two-column image grid with no card frame.
        Wide source images automatically span both columns. */
     @media (max-width: 1259px){
-      .main-stack > .amazon-mobile-slot{
+      .main-stack .amazon-mobile-slot{
         display:grid;
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:10px 12px;
@@ -559,11 +563,11 @@
         padding:2px 4px;
       }
 
-      .main-stack > .amazon-mobile-slot:empty{
+      .main-stack .amazon-mobile-slot:empty{
         display:none;
       }
 
-      .main-stack > .amazon-mobile-slot > .amazon-affiliate-card{
+      .main-stack .amazon-mobile-slot > .amazon-affiliate-card{
         width:100%;
         margin:0 !important;
         padding:0;
@@ -574,27 +578,27 @@
         overflow:visible;
       }
 
-      .main-stack > .amazon-mobile-slot > .amazon-affiliate-card:hover{
+      .main-stack .amazon-mobile-slot > .amazon-affiliate-card:hover{
         transform:none;
         border-color:transparent;
         box-shadow:none;
       }
 
-      .main-stack > .amazon-mobile-slot > .amazon-affiliate-card.is-wide{
+      .main-stack .amazon-mobile-slot > .amazon-affiliate-card.is-wide{
         grid-column:1 / -1;
       }
 
-      .main-stack > .amazon-mobile-slot > .amazon-affiliate-card.is-hidden-by-layout{
+      .main-stack .amazon-mobile-slot > .amazon-affiliate-card.is-hidden-by-layout{
         display:none !important;
       }
 
-      .main-stack > .amazon-mobile-slot .amazon-affiliate-image{
+      .main-stack .amazon-mobile-slot .amazon-affiliate-image{
         width:100%;
         height:118px;
         object-fit:contain;
       }
 
-      .main-stack > .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
+      .main-stack .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
         height:145px;
       }
     }
@@ -694,7 +698,7 @@
         margin:0 !important;
       }
 
-      .main-stack > .amazon-mobile-slot{
+      .main-stack .amazon-mobile-slot{
         margin:0 !important;
         padding-top:0 !important;
         padding-bottom:0 !important;
@@ -764,16 +768,16 @@
       .rank-value{ font-size:.82rem; }
       .status{ font-size:.78rem; }
 
-      .main-stack > .amazon-mobile-slot{
+      .main-stack .amazon-mobile-slot{
         gap:9px 10px;
         padding:0 2px;
       }
 
-      .main-stack > .amazon-mobile-slot .amazon-affiliate-image{
+      .main-stack .amazon-mobile-slot .amazon-affiliate-image{
         height:112px;
       }
 
-      .main-stack > .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
+      .main-stack .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
         height:138px;
       }
 
@@ -792,11 +796,11 @@
       .event-date-main{ font-size:.79rem; }
       .event-body{ padding-left:10px; }
 
-      .main-stack > .amazon-mobile-slot .amazon-affiliate-image{
+      .main-stack .amazon-mobile-slot .amazon-affiliate-image{
         height:104px;
       }
 
-      .main-stack > .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
+      .main-stack .amazon-mobile-slot .amazon-affiliate-card.is-wide .amazon-affiliate-image{
         height:130px;
       }
     }
