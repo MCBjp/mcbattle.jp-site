@@ -613,7 +613,8 @@
         width:min(280px, calc(100vw - var(--pc-left-gutter, 72px) - var(--home-content-max) - 48px));
         display:flex;
         flex-direction:column;
-        gap:12px;
+        align-items:center;
+        gap:22px;
         z-index:10;
       }
 
@@ -621,8 +622,44 @@
         display:none;
       }
 
+      .amazon-pc-rail .amazon-affiliate-card{
+        width:100%;
+        margin:0;
+        padding:0;
+        border:0;
+        border-radius:0;
+        background:transparent;
+        box-shadow:none;
+        overflow:visible;
+        transition:
+          transform .18s ease,
+          opacity .18s ease;
+      }
+
+      .amazon-pc-rail .amazon-affiliate-card:hover,
+      .amazon-pc-rail .amazon-affiliate-card:focus-visible{
+        transform:translateY(-2px);
+        opacity:.92;
+        border-color:transparent;
+        box-shadow:none;
+        outline:none;
+      }
+
       .amazon-pc-rail .amazon-affiliate-image{
-        height:230px;
+        width:min(190px, 100%);
+        height:auto;
+        max-height:270px;
+        object-fit:contain;
+      }
+
+      .amazon-pc-rail .amazon-affiliate-card.is-wide .amazon-affiliate-image{
+        width:100%;
+        height:auto;
+        max-height:175px;
+      }
+
+      .amazon-pc-rail .amazon-affiliate-card.is-hidden-by-layout{
+        display:flex !important;
       }
     }
 
