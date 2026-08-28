@@ -264,9 +264,7 @@
 
 
     .prize-affiliate-slot{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:10px 12px;
+      display:block;
       width:100%;
       box-sizing:border-box;
       padding:0 2px;
@@ -286,13 +284,14 @@
     }
 
     .prize-affiliate-card{
-      display:flex;
+      display:grid;
+      grid-template-columns:minmax(0, 38%) minmax(0, 62%);
       align-items:center;
-      justify-content:center;
+      gap:16px;
       width:100%;
       box-sizing:border-box;
       margin:0;
-      padding:0;
+      padding:4px 2px;
       border:0;
       border-radius:0;
       background:transparent;
@@ -313,16 +312,60 @@
     .prize-affiliate-image{
       display:block;
       width:100%;
-      height:118px;
+      height:126px;
       object-fit:contain;
+      border-radius:10px;
+    }
+
+    .prize-affiliate-copy{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:5px;
+    }
+
+    .prize-affiliate-kicker{
+      color:#9a6a21;
+      font-size:.66rem;
+      font-weight:800;
+      line-height:1;
+      letter-spacing:.12em;
+    }
+
+    .prize-affiliate-comment{
+      min-width:0;
+      color:inherit;
+      font-size:.84rem;
+      font-weight:600;
+      line-height:1.55;
+      text-align:left;
+      overflow-wrap:anywhere;
+    }
+
+    .prize-affiliate-arrow{
+      margin-left:3px;
+      color:#9a6a21;
+      font-size:1rem;
+      font-weight:800;
+      line-height:1;
+    }
+
+    .prize-affiliate-card.no-comment{
+      display:flex;
+      justify-content:center;
+    }
+
+    .prize-affiliate-card.no-comment .prize-affiliate-image{
+      width:min(190px, 58%);
     }
 
     .prize-affiliate-card.is-wide{
-      grid-column:1 / -1;
+      grid-column:auto;
     }
 
     .prize-affiliate-card.is-wide .prize-affiliate-image{
-      height:145px;
+      height:126px;
     }
 
     .prize-affiliate-card.is-hidden-by-layout{
@@ -360,6 +403,9 @@
       }
 
       .prize-pc-affiliate-rail .prize-affiliate-card{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
         width:100%;
         transition:
           transform .18s ease,
@@ -374,10 +420,46 @@
       }
 
       .prize-pc-affiliate-rail .prize-affiliate-image{
-        width:min(190px, 100%);
+        width:min(180px, 100%);
         height:auto;
-        max-height:270px;
+        max-height:250px;
         object-fit:contain;
+        border-radius:10px;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-copy{
+        width:100%;
+        margin-top:8px;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:5px;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-kicker{
+        color:#9a6a21;
+        font-size:.65rem;
+        font-weight:800;
+        line-height:1;
+        letter-spacing:.12em;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-comment{
+        width:100%;
+        color:inherit;
+        font-size:.8rem;
+        font-weight:600;
+        line-height:1.5;
+        text-align:left;
+        overflow-wrap:anywhere;
+      }
+
+      .prize-pc-affiliate-rail .prize-affiliate-arrow{
+        margin-left:3px;
+        color:#9a6a21;
+        font-size:.95rem;
+        font-weight:800;
+        line-height:1;
       }
 
       .prize-pc-affiliate-rail .prize-affiliate-card.is-wide .prize-affiliate-image{
@@ -392,16 +474,21 @@
     }
     @media (max-width:640px){
       .prize-affiliate-slot{
-        gap:9px 10px;
         padding:0 2px;
       }
 
-      .prize-affiliate-image{
-        height:112px;
+      .prize-affiliate-card{
+        grid-template-columns:minmax(0, 38%) minmax(0, 62%);
+        gap:14px;
       }
 
-      .prize-affiliate-card.is-wide .prize-affiliate-image{
-        height:138px;
+      .prize-affiliate-image{
+        height:120px;
+      }
+
+      .prize-affiliate-comment{
+        font-size:.82rem;
+        line-height:1.5;
       }
 
       .associate-disclosure{
@@ -587,18 +674,16 @@
             item?.img ??
             ""
           ).trim();
-          const title = String(
-            item?.title ??
-            item?.txt ??
-            ""
-          ).trim();
+          const title = String(item?.title ?? "").trim();
+            const txt = String(item?.txt ?? "").trim();
 
-          return {
-            no: item?.no ?? "",
-            link,
-            image,
-            title
-          };
+            return {
+              no: item?.no ?? "",
+              link,
+              image,
+              title,
+              txt
+            };
         })
         .filter((item) => {
           if (!item.link || !item.image) return false;
@@ -655,12 +740,28 @@
       updateAffiliateSlotLayout(card.parentElement);
     }
 
+    function formatAffiliateComment(text) {
+      const escaped = escapeHtml(String(text || "").trim());
+      return escaped.replace(/。(?=.)/g, "。<br>");
+    }
+
     function buildAffiliateCard(item) {
-      const label = item.title || "Amazonの商品を見る";
+      const comment = String(item.txt || "").trim();
+      const label = comment || item.title || "Amazonの商品を見る";
+      const commentHtml = comment
+        ? `
+          <span class="prize-affiliate-copy">
+            <span class="prize-affiliate-kicker">Pick up Item</span>
+            <span class="prize-affiliate-comment">
+              ${formatAffiliateComment(comment)}<span class="prize-affiliate-arrow" aria-hidden="true">›</span>
+            </span>
+          </span>
+        `
+        : "";
 
       return `
         <a
-          class="prize-affiliate-card"
+          class="prize-affiliate-card${comment ? "" : " no-comment"}"
           href="${escapeHtml(item.link)}"
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
@@ -676,6 +777,7 @@
             onload="classifyAffiliateImage(this)"
             onerror="classifyAffiliateImage(this)"
           >
+          ${commentHtml}
         </a>
       `;
     }
@@ -691,15 +793,15 @@
 
         const payload = await res.json();
         const products = shuffleArray(normalizeAffiliateItems(payload?.index_af));
-        const selected = products.slice(0, 4);
+        const selected = products.slice(0, 2);
         const pcSelected = selected.slice(0, 2);
 
         if (slot1) {
-          slot1.innerHTML = selected.slice(0, 2).map(buildAffiliateCard).join("");
+          slot1.innerHTML = selected.slice(0, 1).map(buildAffiliateCard).join("");
         }
 
         if (slot2) {
-          slot2.innerHTML = selected.slice(2, 4).map(buildAffiliateCard).join("");
+          slot2.innerHTML = selected.slice(1, 2).map(buildAffiliateCard).join("");
         }
 
         if (pcRail) {
