@@ -770,9 +770,7 @@
     }
 
     .mc-affiliate-slot{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:10px 12px;
+      display:block;
       width:100%;
       box-sizing:border-box;
       margin-top:14px;
@@ -788,13 +786,21 @@
     }
 
     .mc-affiliate-card{
-      display:flex;
+      display:grid;
+      grid-template-columns:minmax(0, 38%) minmax(0, 62%);
       align-items:center;
-      justify-content:center;
+      gap:16px;
       width:100%;
       box-sizing:border-box;
+      margin:0;
+      padding:4px 2px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
       color:inherit;
       text-decoration:none !important;
+      overflow:visible;
     }
 
     .mc-affiliate-card:hover,
@@ -808,16 +814,60 @@
     .mc-affiliate-image{
       display:block;
       width:100%;
-      height:118px;
+      height:126px;
       object-fit:contain;
+      border-radius:10px;
+    }
+
+    .mc-affiliate-copy{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:5px;
+    }
+
+    .mc-affiliate-kicker{
+      color:#9a6a21;
+      font-size:.66rem;
+      font-weight:800;
+      line-height:1;
+      letter-spacing:.12em;
+    }
+
+    .mc-affiliate-comment{
+      min-width:0;
+      color:inherit;
+      font-size:.84rem;
+      font-weight:600;
+      line-height:1.55;
+      text-align:left;
+      overflow-wrap:anywhere;
+    }
+
+    .mc-affiliate-arrow{
+      margin-left:3px;
+      color:#9a6a21;
+      font-size:1rem;
+      font-weight:800;
+      line-height:1;
+    }
+
+    .mc-affiliate-card.no-comment{
+      display:flex;
+      justify-content:center;
+    }
+
+    .mc-affiliate-card.no-comment .mc-affiliate-image{
+      width:min(190px, 58%);
     }
 
     .mc-affiliate-card.is-wide{
-      grid-column:1 / -1;
+      grid-column:auto;
     }
 
     .mc-affiliate-card.is-wide .mc-affiliate-image{
-      height:145px;
+      height:126px;
     }
 
     .mc-affiliate-card.is-hidden-by-layout{
@@ -847,6 +897,9 @@
       }
 
       .mc-affiliate-pc-rail .mc-affiliate-card{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
         width:100%;
         margin:0;
         padding:0;
@@ -868,10 +921,46 @@
       }
 
       .mc-affiliate-pc-rail .mc-affiliate-image{
-        width:min(190px, 100%);
+        width:min(180px, 100%);
         height:auto;
-        max-height:270px;
+        max-height:250px;
         object-fit:contain;
+        border-radius:10px;
+      }
+
+      .mc-affiliate-pc-rail .mc-affiliate-copy{
+        width:100%;
+        margin-top:8px;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:5px;
+      }
+
+      .mc-affiliate-pc-rail .mc-affiliate-kicker{
+        color:#9a6a21;
+        font-size:.65rem;
+        font-weight:800;
+        line-height:1;
+        letter-spacing:.12em;
+      }
+
+      .mc-affiliate-pc-rail .mc-affiliate-comment{
+        width:100%;
+        color:inherit;
+        font-size:.8rem;
+        font-weight:600;
+        line-height:1.5;
+        text-align:left;
+        overflow-wrap:anywhere;
+      }
+
+      .mc-affiliate-pc-rail .mc-affiliate-arrow{
+        margin-left:3px;
+        color:#9a6a21;
+        font-size:.95rem;
+        font-weight:800;
+        line-height:1;
       }
 
       .mc-affiliate-pc-rail .mc-affiliate-card.is-wide .mc-affiliate-image{
@@ -887,17 +976,22 @@
 
     @media (max-width: 640px) {
       .mc-affiliate-slot{
-        gap:9px 10px;
         margin-top:14px;
         padding:0 2px;
       }
 
-      .mc-affiliate-image{
-        height:112px;
+      .mc-affiliate-card{
+        grid-template-columns:minmax(0, 38%) minmax(0, 62%);
+        gap:14px;
       }
 
-      .mc-affiliate-card.is-wide .mc-affiliate-image{
-        height:138px;
+      .mc-affiliate-image{
+        height:120px;
+      }
+
+      .mc-affiliate-comment{
+        font-size:.82rem;
+        line-height:1.5;
       }
 
       .page-top{
@@ -3227,17 +3321,15 @@
               item?.img ??
               ""
             ).trim();
-            const title = String(
-              item?.title ??
-              item?.txt ??
-              ""
-            ).trim();
+            const title = String(item?.title ?? "").trim();
+            const txt = String(item?.txt ?? "").trim();
 
             return {
               no: item?.no ?? "",
               link,
               image,
-              title
+              title,
+              txt
             };
           })
           .filter((item) => {
@@ -3293,12 +3385,28 @@
         updateAffiliateSlotLayout(card.parentElement);
       }
 
+      function formatAffiliateComment(text) {
+        const escaped = escapeHtml(String(text || "").trim());
+        return escaped.replace(/。(?=.)/g, "。<br>");
+      }
+
       function buildAffiliateCard(item) {
-        const label = item.title || "Amazonの商品を見る";
+        const comment = String(item.txt || "").trim();
+        const label = comment || item.title || "Amazonの商品を見る";
+        const commentHtml = comment
+          ? `
+            <span class="mc-affiliate-copy">
+              <span class="mc-affiliate-kicker">Pick up Item</span>
+              <span class="mc-affiliate-comment">
+                ${formatAffiliateComment(comment)}<span class="mc-affiliate-arrow" aria-hidden="true">›</span>
+              </span>
+            </span>
+          `
+          : "";
 
         return `
           <a
-            class="mc-affiliate-card"
+            class="mc-affiliate-card${comment ? "" : " no-comment"}"
             href="${escapeHtml(item.link)}"
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
@@ -3314,6 +3422,7 @@
               onload="classifyAffiliateImage(this)"
               onerror="classifyAffiliateImage(this)"
             >
+            ${commentHtml}
           </a>
         `;
       }
@@ -3381,7 +3490,7 @@
 
       function renderAffiliateSlots(specificItems, fallbackItems) {
         const slots = ensureAffiliateSlots();
-        const selected = selectAffiliateItems(specificItems, fallbackItems, 4);
+        const selected = selectAffiliateItems(specificItems, fallbackItems, 2);
         const pcSelected = selected.slice(0, 2);
 
         if (slots.pcRail) {
@@ -3389,11 +3498,11 @@
         }
 
         if (slots.slot1) {
-          slots.slot1.innerHTML = selected.slice(0, 2).map(buildAffiliateCard).join("");
+          slots.slot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
         }
 
         if (slots.slot2) {
-          slots.slot2.innerHTML = selected.slice(2, 4).map(buildAffiliateCard).join("");
+          slots.slot2.innerHTML = selected[1] ? buildAffiliateCard(selected[1]) : "";
         }
       }
 
