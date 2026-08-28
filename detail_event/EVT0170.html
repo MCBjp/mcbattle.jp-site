@@ -149,9 +149,7 @@
     /* Match the normal section rhythm: every block starts 24px after the previous one. */
     /* Keep the same section rhythm while showing image-only affiliate items. */
     .event-affiliate-slot{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:10px 12px;
+      display:block;
       width:100%;
       box-sizing:border-box;
       margin-top:24px;
@@ -167,13 +165,21 @@
     }
 
     .event-affiliate-card{
-      display:flex;
+      display:grid;
+      grid-template-columns:minmax(0, 38%) minmax(0, 62%);
       align-items:center;
-      justify-content:center;
+      gap:16px;
       width:100%;
       box-sizing:border-box;
+      margin:0;
+      padding:4px 2px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
       color:inherit;
       text-decoration:none !important;
+      overflow:visible;
     }
 
     .event-affiliate-card:hover,
@@ -187,16 +193,60 @@
     .event-affiliate-image{
       display:block;
       width:100%;
-      height:118px;
+      height:126px;
       object-fit:contain;
+      border-radius:10px;
+    }
+
+    .event-affiliate-copy{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:5px;
+    }
+
+    .event-affiliate-kicker{
+      color:#9a6a21;
+      font-size:.66rem;
+      font-weight:800;
+      line-height:1;
+      letter-spacing:.12em;
+    }
+
+    .event-affiliate-comment{
+      min-width:0;
+      color:inherit;
+      font-size:.84rem;
+      font-weight:600;
+      line-height:1.55;
+      text-align:left;
+      overflow-wrap:anywhere;
+    }
+
+    .event-affiliate-arrow{
+      margin-left:3px;
+      color:#9a6a21;
+      font-size:1rem;
+      font-weight:800;
+      line-height:1;
+    }
+
+    .event-affiliate-card.no-comment{
+      display:flex;
+      justify-content:center;
+    }
+
+    .event-affiliate-card.no-comment .event-affiliate-image{
+      width:min(190px, 58%);
     }
 
     .event-affiliate-card.is-wide{
-      grid-column:1 / -1;
+      grid-column:auto;
     }
 
     .event-affiliate-card.is-wide .event-affiliate-image{
-      height:145px;
+      height:126px;
     }
 
     .event-affiliate-card.is-hidden-by-layout{
@@ -893,6 +943,9 @@
       }
 
       .event-affiliate-pc-rail .event-affiliate-card{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
         width:100%;
         margin:0;
         padding:0;
@@ -914,10 +967,46 @@
       }
 
       .event-affiliate-pc-rail .event-affiliate-image{
-        width:min(190px, 100%);
+        width:min(180px, 100%);
         height:auto;
-        max-height:270px;
+        max-height:250px;
         object-fit:contain;
+        border-radius:10px;
+      }
+
+      .event-affiliate-pc-rail .event-affiliate-copy{
+        width:100%;
+        margin-top:8px;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:5px;
+      }
+
+      .event-affiliate-pc-rail .event-affiliate-kicker{
+        color:#9a6a21;
+        font-size:.65rem;
+        font-weight:800;
+        line-height:1;
+        letter-spacing:.12em;
+      }
+
+      .event-affiliate-pc-rail .event-affiliate-comment{
+        width:100%;
+        color:inherit;
+        font-size:.8rem;
+        font-weight:600;
+        line-height:1.5;
+        text-align:left;
+        overflow-wrap:anywhere;
+      }
+
+      .event-affiliate-pc-rail .event-affiliate-arrow{
+        margin-left:3px;
+        color:#9a6a21;
+        font-size:.95rem;
+        font-weight:800;
+        line-height:1;
       }
 
       .event-affiliate-pc-rail .event-affiliate-card.is-wide .event-affiliate-image{
@@ -933,17 +1022,22 @@
 
     @media (max-width: 640px) {
       .event-affiliate-slot{
-        gap:9px 10px;
         margin-top:24px;
         padding:0 2px;
       }
 
-      .event-affiliate-image{
-        height:112px;
+      .event-affiliate-card{
+        grid-template-columns:minmax(0, 38%) minmax(0, 62%);
+        gap:14px;
       }
 
-      .event-affiliate-card.is-wide .event-affiliate-image{
-        height:138px;
+      .event-affiliate-image{
+        height:120px;
+      }
+
+      .event-affiliate-comment{
+        font-size:.82rem;
+        line-height:1.5;
       }
 
       .page-top{
@@ -1563,17 +1657,15 @@
               item?.img ??
               ""
             ).trim();
-            const title = String(
-              item?.title ??
-              item?.txt ??
-              ""
-            ).trim();
+            const title = String(item?.title ?? "").trim();
+            const txt = String(item?.txt ?? "").trim();
 
             return {
               no: item?.no ?? "",
               link,
               image,
-              title
+              title,
+              txt
             };
           })
           .filter((item) => {
@@ -1629,12 +1721,28 @@
         updateAffiliateSlotLayout(card.parentElement);
       }
 
+      function formatAffiliateComment(text) {
+        const escaped = escapeHtml(String(text || "").trim());
+        return escaped.replace(/。(?=.)/g, "。<br>");
+      }
+
       function buildAffiliateCard(item) {
-        const label = item.title || "Amazonの商品を見る";
+        const comment = String(item.txt || "").trim();
+        const label = comment || item.title || "Amazonの商品を見る";
+        const commentHtml = comment
+          ? `
+            <span class="event-affiliate-copy">
+              <span class="event-affiliate-kicker">Pick up Item</span>
+              <span class="event-affiliate-comment">
+                ${formatAffiliateComment(comment)}<span class="event-affiliate-arrow" aria-hidden="true">›</span>
+              </span>
+            </span>
+          `
+          : "";
 
         return `
           <a
-            class="event-affiliate-card"
+            class="event-affiliate-card${comment ? "" : " no-comment"}"
             href="${escapeHtml(item.link)}"
             target="_blank"
             rel="nofollow sponsored noopener noreferrer"
@@ -1650,6 +1758,7 @@
               onload="classifyAffiliateImage(this)"
               onerror="classifyAffiliateImage(this)"
             >
+            ${commentHtml}
           </a>
         `;
       }
@@ -1681,7 +1790,7 @@
         const pcRail = document.getElementById("event-affiliate-pc-rail");
         const slot1 = document.getElementById("event-affiliate-slot-1");
         const slot2 = document.getElementById("event-affiliate-slot-2");
-        const selected = selectAffiliateItems(specificItems, fallbackItems, 4);
+        const selected = selectAffiliateItems(specificItems, fallbackItems, 2);
         const pcSelected = selected.slice(0, 2);
 
         if (pcRail) {
@@ -1689,11 +1798,11 @@
         }
 
         if (slot1) {
-          slot1.innerHTML = selected.slice(0, 2).map(buildAffiliateCard).join("");
+          slot1.innerHTML = selected[0] ? buildAffiliateCard(selected[0]) : "";
         }
 
         if (slot2) {
-          slot2.innerHTML = selected.slice(2, 4).map(buildAffiliateCard).join("");
+          slot2.innerHTML = selected[1] ? buildAffiliateCard(selected[1]) : "";
         }
       }
 
