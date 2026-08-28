@@ -566,12 +566,12 @@
 
       .main-stack .amazon-mobile-slot > .amazon-affiliate-card{
         display:grid;
-        grid-template-columns:minmax(0, 42%) minmax(0, 58%);
+        grid-template-columns:minmax(0, 38%) minmax(0, 62%);
         align-items:center;
-        gap:14px;
+        gap:16px;
         width:100%;
         margin:0 !important;
-        padding:0;
+        padding:4px 2px;
         border:0;
         border-radius:0;
         background:transparent;
@@ -589,18 +589,43 @@
       .main-stack .amazon-mobile-slot .amazon-affiliate-image{
         display:block;
         width:100%;
-        height:138px;
+        height:126px;
         object-fit:contain;
+        border-radius:10px;
+      }
+
+      .main-stack .amazon-mobile-slot .amazon-affiliate-copy{
+        min-width:0;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:5px;
+      }
+
+      .main-stack .amazon-mobile-slot .amazon-affiliate-kicker{
+        color:#9a6a21;
+        font-size:.66rem;
+        font-weight:800;
+        line-height:1;
+        letter-spacing:.12em;
       }
 
       .main-stack .amazon-mobile-slot .amazon-affiliate-comment{
         min-width:0;
         color:var(--text);
-        font-size:.88rem;
-        font-weight:700;
+        font-size:.84rem;
+        font-weight:600;
         line-height:1.55;
         text-align:left;
         overflow-wrap:anywhere;
+      }
+
+      .main-stack .amazon-mobile-slot .amazon-affiliate-arrow{
+        margin-left:3px;
+        color:#9a6a21;
+        font-size:1rem;
+        font-weight:800;
+        line-height:1;
       }
 
       .main-stack .amazon-mobile-slot .amazon-affiliate-card.no-comment{
@@ -664,10 +689,11 @@
       }
 
       .amazon-pc-rail .amazon-affiliate-image{
-        width:min(190px, 100%);
+        width:min(180px, 100%);
         height:auto;
-        max-height:270px;
+        max-height:250px;
         object-fit:contain;
+        border-radius:10px;
       }
 
       .amazon-pc-rail .amazon-affiliate-card.is-wide .amazon-affiliate-image{
@@ -676,15 +702,39 @@
         max-height:175px;
       }
 
-      .amazon-pc-rail .amazon-affiliate-comment{
+      .amazon-pc-rail .amazon-affiliate-copy{
         width:100%;
         margin-top:8px;
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:5px;
+      }
+
+      .amazon-pc-rail .amazon-affiliate-kicker{
+        color:#9a6a21;
+        font-size:.65rem;
+        font-weight:800;
+        line-height:1;
+        letter-spacing:.12em;
+      }
+
+      .amazon-pc-rail .amazon-affiliate-comment{
+        width:100%;
         color:var(--text);
-        font-size:.82rem;
-        font-weight:700;
+        font-size:.8rem;
+        font-weight:600;
         line-height:1.5;
         text-align:left;
         overflow-wrap:anywhere;
+      }
+
+      .amazon-pc-rail .amazon-affiliate-arrow{
+        margin-left:3px;
+        color:#9a6a21;
+        font-size:.95rem;
+        font-weight:800;
+        line-height:1;
       }
 
       .amazon-pc-rail .amazon-affiliate-card.is-hidden-by-layout{
@@ -798,16 +848,16 @@
       }
 
       .main-stack .amazon-mobile-slot > .amazon-affiliate-card{
-        grid-template-columns:minmax(0, 42%) minmax(0, 58%);
-        gap:12px;
+        grid-template-columns:minmax(0, 38%) minmax(0, 62%);
+        gap:14px;
       }
 
       .main-stack .amazon-mobile-slot .amazon-affiliate-image{
-        height:132px;
+        height:120px;
       }
 
       .main-stack .amazon-mobile-slot .amazon-affiliate-comment{
-        font-size:.84rem;
+        font-size:.82rem;
         line-height:1.5;
       }
 
@@ -1294,7 +1344,14 @@
       const comment = String(item.txt || "").trim();
       const label = comment || "Amazonの商品を見る";
       const commentHtml = comment
-        ? `<span class="amazon-affiliate-comment">${escapeHtml(comment)}</span>`
+        ? `
+          <span class="amazon-affiliate-copy">
+            <span class="amazon-affiliate-kicker">PICK UP</span>
+            <span class="amazon-affiliate-comment">
+              ${escapeHtml(comment)}<span class="amazon-affiliate-arrow" aria-hidden="true">›</span>
+            </span>
+          </span>
+        `
         : "";
 
       return `
