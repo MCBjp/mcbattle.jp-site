@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-29T05:34:28.717Z",
+  "updated_at": "2026-08-29T05:56:18.280Z",
   "recent_events": [
     {
       "event_id": "EVT0162",
@@ -1135,8 +1135,22 @@
       "no": 34,
       "link": "https://link.amazon/B07R8Vo7k",
       "title": "ヒップホップのラッパーを目指す人の ラップ入門",
-      "image": "",
+      "image": "https://m.media-amazon.com/images/I/51jzd8BZ1zL.jpg",
       "txt": "ヒップホップのラッパーを目指す人の ラップ入門。おすすめとかではないが、本気なのかよくわからないタイトルが人目を引く。読んでいるところは見られたくない。"
+    },
+    {
+      "no": 35,
+      "link": "https://link.amazon/B0i1sNyyT",
+      "title": "怒れる頭",
+      "image": "https://m.media-amazon.com/images/I/81m4kdqHIWL._SL1500_.jpg",
+      "txt": "10年のサラリーマン生活上京から上京、弟の死まで。全てを書き綴ったDOTAMA初の自伝。"
+    },
+    {
+      "no": 36,
+      "link": "https://link.amazon/B0eVgWmsH",
+      "title": "ブレん人",
+      "image": "https://m.media-amazon.com/images/I/61ABYhmUj4L._SL1000_.jpg",
+      "txt": "呂布カルマ初の書籍、面白くないわけがない。アンリミテッドにも入ってるので気軽に。"
     }
   ],
   "mc_af": {},
