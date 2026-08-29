@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-29T05:56:18.280Z",
+  "updated_at": "2026-08-29T07:35:08.366Z",
   "recent_events": [
     {
       "event_id": "EVT0162",
@@ -1115,7 +1115,7 @@
       "link": "https://link.amazon/B0ge2HHsp",
       "title": "筋トレ×HIPHOPが最強のソリューションである 強く生きるための筋肉と音楽",
       "image": "https://m.media-amazon.com/images/I/91o4mXbBTyL._SL1500_.jpg",
-      "txt": "こういう本いつか出るような気はしてた。ただ間違ったことは言ってない気がする。ただやればよく、ただ続ければいいだけ。"
+      "txt": "こういう本いつか出るような気はしてたが、間違ったことは言ってない気がする。ただやればよく、ただ続ければいいだけ。"
     },
     {
       "no": 32,
@@ -1151,6 +1151,20 @@
       "title": "ブレん人",
       "image": "https://m.media-amazon.com/images/I/61ABYhmUj4L._SL1000_.jpg",
       "txt": "呂布カルマ初の書籍、面白くないわけがない。アンリミテッドにも入ってるので気軽に。"
+    },
+    {
+      "no": 37,
+      "link": "https://link.amazon/B0fA4yNGH",
+      "title": "何者でもない",
+      "image": "https://m.media-amazon.com/images/I/91DgwYU81TL._SL1500_.jpg",
+      "txt": "あまり知られていない般若の自伝。内気だった少年は、いかにして「般若」になったのか。ヒップホップ界随一の異端児・般若、入魂の自叙伝。"
+    },
+    {
+      "no": 38,
+      "link": "https://link.amazon/B0guYdKBe",
+      "title": "XO",
+      "image": "https://m.media-amazon.com/images/I/71OvGGkY3tL._AC_SL1500_.jpg",
+      "txt": "TBHR BossとDJ KRUSHのジョイントアルバム。2026年時点でのBOSS最新作。初回盤はインスト付き。"
     }
   ],
   "mc_af": {},
