@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-08-30T06:38:28.445Z",
+  "updated_at": "2026-08-30T06:46:41.252Z",
   "total": 185,
   "event_details": {
     "EVT0001": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0001",
         "event_name": "UMB2005本戦",
@@ -201,7 +201,7 @@
       "total_matches": 15
     },
     "EVT0002": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0002",
         "event_name": "UMB2006本戦",
@@ -399,7 +399,7 @@
       "total_matches": 15
     },
     "EVT0003": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0003",
         "event_name": "UMB2007本戦",
@@ -597,7 +597,7 @@
       "total_matches": 15
     },
     "EVT0004": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0004",
         "event_name": "UMB2008本戦",
@@ -795,7 +795,7 @@
       "total_matches": 15
     },
     "EVT0005": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0005",
         "event_name": "UMB2009本戦",
@@ -1007,7 +1007,7 @@
       "total_matches": 16
     },
     "EVT0006": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0006",
         "event_name": "UMB2010本戦",
@@ -1205,7 +1205,7 @@
       "total_matches": 15
     },
     "EVT0007": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0007",
         "event_name": "UMB2011本戦",
@@ -1552,7 +1552,7 @@
       "total_matches": 31
     },
     "EVT0008": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0008",
         "event_name": "UMB2012本戦",
@@ -1899,7 +1899,7 @@
       "total_matches": 31
     },
     "EVT0009": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0009",
         "event_name": "UMB2013本戦",
@@ -2246,7 +2246,7 @@
       "total_matches": 31
     },
     "EVT0010": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0010",
         "event_name": "UMB2014本戦",
@@ -2593,7 +2593,7 @@
       "total_matches": 31
     },
     "EVT0011": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0011",
         "event_name": "UMB2015本戦",
@@ -2940,7 +2940,7 @@
       "total_matches": 31
     },
     "EVT0012": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0012",
         "event_name": "UMB2016本戦",
@@ -3436,7 +3436,7 @@
       "total_matches": 47
     },
     "EVT0013": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0013",
         "event_name": "UMB2017本戦",
@@ -3932,7 +3932,7 @@
       "total_matches": 47
     },
     "EVT0014": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0014",
         "event_name": "UMB2018本戦",
@@ -4428,7 +4428,7 @@
       "total_matches": 47
     },
     "EVT0015": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0015",
         "event_name": "UMB2019本戦",
@@ -4924,7 +4924,7 @@
       "total_matches": 47
     },
     "EVT0016": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0016",
         "event_name": "UMB2020本戦",
@@ -5564,7 +5564,7 @@
       "total_matches": 63
     },
     "EVT0017": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0017",
         "event_name": "UMB2021本戦",
@@ -5911,7 +5911,7 @@
       "total_matches": 31
     },
     "EVT0018": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0018",
         "event_name": "UMB2022本戦",
@@ -6335,7 +6335,7 @@
       "total_matches": 39
     },
     "EVT0019": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0019",
         "event_name": "UMB2023本戦",
@@ -6831,7 +6831,7 @@
       "total_matches": 47
     },
     "EVT0020": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0020",
         "event_name": "UMB2024本戦",
@@ -7309,7 +7309,7 @@
       "total_matches": 45
     },
     "EVT0021": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0021",
         "event_name": "UMB2025本戦",
@@ -7769,7 +7769,7 @@
       "total_matches": 43
     },
     "EVT0022": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0022",
         "event_name": "KOK2015本戦",
@@ -7967,7 +7967,7 @@
       "total_matches": 15
     },
     "EVT0023": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0023",
         "event_name": "KOK2016本戦",
@@ -8165,7 +8165,7 @@
       "total_matches": 15
     },
     "EVT0024": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0024",
         "event_name": "KOK2017本戦",
@@ -8363,7 +8363,7 @@
       "total_matches": 15
     },
     "EVT0025": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0025",
         "event_name": "KOK2018本戦",
@@ -8561,7 +8561,7 @@
       "total_matches": 15
     },
     "EVT0026": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0026",
         "event_name": "KOK2019本戦",
@@ -8759,7 +8759,7 @@
       "total_matches": 15
     },
     "EVT0027": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0027",
         "event_name": "KOK2020本戦",
@@ -8957,7 +8957,7 @@
       "total_matches": 15
     },
     "EVT0028": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0028",
         "event_name": "KOK2021本戦",
@@ -9155,7 +9155,7 @@
       "total_matches": 15
     },
     "EVT0029": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0029",
         "event_name": "KOK2022本戦",
@@ -9353,7 +9353,7 @@
       "total_matches": 15
     },
     "EVT0030": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0030",
         "event_name": "KOK2023本戦",
@@ -9551,7 +9551,7 @@
       "total_matches": 15
     },
     "EVT0031": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0031",
         "event_name": "KOK2024本戦",
@@ -9749,7 +9749,7 @@
       "total_matches": 15
     },
     "EVT0032": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0032",
         "event_name": "KOK2025本戦",
@@ -9947,7 +9947,7 @@
       "total_matches": 15
     },
     "EVT0038": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0038",
         "event_name": "戦極MCBATTLE 第34章 ",
@@ -10294,7 +10294,7 @@
       "total_matches": 31
     },
     "EVT0039": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0039",
         "event_name": "戦極MCBATTLE 第36章",
@@ -10456,7 +10456,7 @@
       "total_matches": 11
     },
     "EVT0040": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0040",
         "event_name": "戦極MCBATTLE 第37章",
@@ -10803,7 +10803,7 @@
       "total_matches": 31
     },
     "EVT0041": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0041",
         "event_name": "戦極MCBATTLE 第15章",
@@ -11443,7 +11443,7 @@
       "total_matches": 63
     },
     "EVT0045": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0045",
         "event_name": "口喧嘩祭 SP × KOK2020",
@@ -11939,7 +11939,7 @@
       "total_matches": 47
     },
     "EVT0046": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0046",
         "event_name": "口喧嘩祭 SP × KOK2021",
@@ -12286,7 +12286,7 @@
       "total_matches": 31
     },
     "EVT0047": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0047",
         "event_name": "口喧嘩祭 大阪編",
@@ -12633,7 +12633,7 @@
       "total_matches": 31
     },
     "EVT0048": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0048",
         "event_name": "口喧嘩祭 SP at Zepp Nagoya(2022)",
@@ -12831,7 +12831,7 @@
       "total_matches": 15
     },
     "EVT0049": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0049",
         "event_name": "口喧嘩祭 SP× KOK2022",
@@ -13178,7 +13178,7 @@
       "total_matches": 31
     },
     "EVT0050": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0050",
         "event_name": "口喧嘩祭 SP in CLUB CITTA'",
@@ -13376,7 +13376,7 @@
       "total_matches": 15
     },
     "EVT0051": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0051",
         "event_name": "口喧嘩祭 SP × KOK2023",
@@ -13723,7 +13723,7 @@
       "total_matches": 31
     },
     "EVT0052": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0052",
         "event_name": "口喧嘩祭 SP at Zepp Nagoya(2023)",
@@ -13921,7 +13921,7 @@
       "total_matches": 15
     },
     "EVT0053": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0053",
         "event_name": "凱旋MCbattle東西選抜",
@@ -14417,7 +14417,7 @@
       "total_matches": 47
     },
     "EVT0054": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0054",
         "event_name": "凱旋2019春ノ陣",
@@ -14913,7 +14913,7 @@
       "total_matches": 47
     },
     "EVT0055": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0055",
         "event_name": "凱旋MCbattle夏ノ陣2019",
@@ -15409,7 +15409,7 @@
       "total_matches": 47
     },
     "EVT0057": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0057",
         "event_name": "凱旋MCbattle東西選抜 冬ノ陣2020",
@@ -15905,7 +15905,7 @@
       "total_matches": 47
     },
     "EVT0058": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0058",
         "event_name": "凱旋MCBattle東西選抜 夏ノ陣2020",
@@ -16103,7 +16103,7 @@
       "total_matches": 15
     },
     "EVT0059": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0059",
         "event_name": "凱旋MCbattle×ABEMATV",
@@ -16378,7 +16378,7 @@
       "total_matches": 23
     },
     "EVT0060": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0060",
         "event_name": "凱旋MCbattle Special アリーナの陣",
@@ -16635,7 +16635,7 @@
       "total_matches": 21
     },
     "EVT0061": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0061",
         "event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠横浜",
@@ -16910,7 +16910,7 @@
       "total_matches": 23
     },
     "EVT0062": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0062",
         "event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠名古屋",
@@ -17108,7 +17108,7 @@
       "total_matches": 15
     },
     "EVT0063": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0063",
         "event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠福岡",
@@ -17306,7 +17306,7 @@
       "total_matches": 15
     },
     "EVT0064": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0064",
         "event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠大阪",
@@ -17581,7 +17581,7 @@
       "total_matches": 23
     },
     "EVT0065": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0065",
         "event_name": "凱旋MC battle PIT TOUR 仙台",
@@ -17779,7 +17779,7 @@
       "total_matches": 15
     },
     "EVT0066": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0066",
         "event_name": "凱旋MC battle PIT TOUR 東京",
@@ -17977,7 +17977,7 @@
       "total_matches": 15
     },
     "EVT0067": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0067",
         "event_name": "凱旋MC BATTLE 春のMC BATTLE 三連祭2022",
@@ -18175,7 +18175,7 @@
       "total_matches": 15
     },
     "EVT0068": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0068",
         "event_name": "凱旋MC battle in さいたまスーパーアリーナ",
@@ -18373,7 +18373,7 @@
       "total_matches": 15
     },
     "EVT0069": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0069",
         "event_name": "凱旋MC battle NORTH JAPAN TOUR2023 in 北海道",
@@ -18571,7 +18571,7 @@
       "total_matches": 15
     },
     "EVT0070": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0070",
         "event_name": "凱旋MC battle NORTH JAPAN TOUR2023 in 仙台",
@@ -18769,7 +18769,7 @@
       "total_matches": 15
     },
     "EVT0071": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0071",
         "event_name": "凱旋MC battle THE GIANT KILLING",
@@ -19116,7 +19116,7 @@
       "total_matches": 31
     },
     "EVT0072": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0072",
         "event_name": "凱旋MC battle 大阪ノ陣2023",
@@ -19314,7 +19314,7 @@
       "total_matches": 15
     },
     "EVT0073": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0073",
         "event_name": "凱旋MC battle Special2023",
@@ -19589,7 +19589,7 @@
       "total_matches": 23
     },
     "EVT0074": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0074",
         "event_name": "凱旋MC battle 冬ノ陣2023",
@@ -19787,7 +19787,7 @@
       "total_matches": 15
     },
     "EVT0075": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0075",
         "event_name": "凱旋MC battle THE GIANT KILLING 2",
@@ -20134,7 +20134,7 @@
       "total_matches": 31
     },
     "EVT0076": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0076",
         "event_name": "ADRENALINE2014",
@@ -20481,7 +20481,7 @@
       "total_matches": 31
     },
     "EVT0077": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0077",
         "event_name": "真ADRENALINE2020",
@@ -20720,7 +20720,7 @@
       "total_matches": 19
     },
     "EVT0078": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0078",
         "event_name": "ADRENALINE杯 夏の陣2020",
@@ -20918,7 +20918,7 @@
       "total_matches": 15
     },
     "EVT0079": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0079",
         "event_name": "真ADRENALINE SPECIAL 杯真の陣+KINGDOM2020",
@@ -21116,7 +21116,7 @@
       "total_matches": 15
     },
     "EVT0080": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0080",
         "event_name": "真 ADRENALINE ABEMAノ乱",
@@ -21355,7 +21355,7 @@
       "total_matches": 19
     },
     "EVT0081": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0081",
         "event_name": "KING OF KINGS vs 真ADRENALINE",
@@ -21553,7 +21553,7 @@
       "total_matches": 15
     },
     "EVT0082": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0082",
         "event_name": "KING OF KINGS vs 真ADRENALINE #2",
@@ -21751,7 +21751,7 @@
       "total_matches": 15
     },
     "EVT0083": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0083",
         "event_name": "真 ADRENALINE 福岡ノ乱",
@@ -21940,7 +21940,7 @@
       "total_matches": 14
     },
     "EVT0084": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0084",
         "event_name": "渋谷レゲエ祭 vs 真 ADRENALINE 2021",
@@ -22138,7 +22138,7 @@
       "total_matches": 15
     },
     "EVT0085": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0085",
         "event_name": "KING OF KINGS vs 真 ADRENALINE #3",
@@ -22336,7 +22336,7 @@
       "total_matches": 15
     },
     "EVT0086": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0086",
         "event_name": "真ADRENALINE 春のMC BATTLE 三連祭2022",
@@ -22534,7 +22534,7 @@
       "total_matches": 15
     },
     "EVT0087": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0087",
         "event_name": "渋谷レゲエ祭 vs 真ADRENALINE #2",
@@ -22732,7 +22732,7 @@
       "total_matches": 15
     },
     "EVT0088": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0088",
         "event_name": "KING OF KINGS vs 真 ADRENALINE #4",
@@ -22930,7 +22930,7 @@
       "total_matches": 15
     },
     "EVT0089": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0089",
         "event_name": "真 ADRENALINE 2023 at 渋谷WOMB",
@@ -23128,7 +23128,7 @@
       "total_matches": 15
     },
     "EVT0090": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0090",
         "event_name": "渋谷レゲエ祭 vs 真ADRENALINE 2023",
@@ -23326,7 +23326,7 @@
       "total_matches": 15
     },
     "EVT0091": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0091",
         "event_name": "KING OF KINGS vs 真 ADRENALINE #5",
@@ -23524,7 +23524,7 @@
       "total_matches": 15
     },
     "EVT0092": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0092",
         "event_name": "戦極MCBATTLE vs 真ADRENALINE",
@@ -23722,7 +23722,7 @@
       "total_matches": 15
     },
     "EVT0093": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0093",
         "event_name": "KING OF KINGS vs 真 ADRENALINE #6",
@@ -23920,7 +23920,7 @@
       "total_matches": 15
     },
     "EVT0094": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0094",
         "event_name": "渋谷レゲエ祭 vs 真ADRENALINE",
@@ -24118,7 +24118,7 @@
       "total_matches": 15
     },
     "EVT0095": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0095",
         "event_name": "戦極MCBATTLE 第1章 ",
@@ -24506,7 +24506,7 @@
       "total_matches": 35
     },
     "EVT0096": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0096",
         "event_name": "戦極MCBATTLE 第2章 ",
@@ -24704,7 +24704,7 @@
       "total_matches": 15
     },
     "EVT0097": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0097",
         "event_name": "戦極MCBATTLE 第3章 ",
@@ -24902,7 +24902,7 @@
       "total_matches": 15
     },
     "EVT0098": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0098",
         "event_name": "戦極MCBATTLE 第4章 ",
@@ -25100,7 +25100,7 @@
       "total_matches": 15
     },
     "EVT0099": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0099",
         "event_name": "戦極MCBATTLE 第5章 ",
@@ -25447,7 +25447,7 @@
       "total_matches": 31
     },
     "EVT0100": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0100",
         "event_name": "戦極MCBATTLE 第6章 ",
@@ -25794,7 +25794,7 @@
       "total_matches": 31
     },
     "EVT0101": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0101",
         "event_name": "戦極MCBATTLE 第7章 ",
@@ -26141,7 +26141,7 @@
       "total_matches": 31
     },
     "EVT0102": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0102",
         "event_name": "戦極MCBATTLE 第8章 ",
@@ -26339,7 +26339,7 @@
       "total_matches": 15
     },
     "EVT0103": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0103",
         "event_name": "戦極MCBATTLE 第9章 ",
@@ -26686,7 +26686,7 @@
       "total_matches": 31
     },
     "EVT0104": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0104",
         "event_name": "戦極MCBATTLE 第10章 ",
@@ -26884,7 +26884,7 @@
       "total_matches": 15
     },
     "EVT0105": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0105",
         "event_name": "戦極MCBATTLE 第11章 ",
@@ -27082,7 +27082,7 @@
       "total_matches": 15
     },
     "EVT0106": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0106",
         "event_name": "戦極MCBATTLE 第12章 ",
@@ -27280,7 +27280,7 @@
       "total_matches": 15
     },
     "EVT0107": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0107",
         "event_name": "戦極MCBATTLE 第13章 ",
@@ -27478,7 +27478,7 @@
       "total_matches": 15
     },
     "EVT0109": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0109",
         "event_name": "戦極MCBATTLE 第16章 ",
@@ -28118,7 +28118,7 @@
       "total_matches": 63
     },
     "EVT0110": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0110",
         "event_name": "戦極MCBATTLE 第17章 ",
@@ -28749,7 +28749,7 @@
       "total_matches": 62
     },
     "EVT0111": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0111",
         "event_name": "戦極MCBATTLE 第18章 ",
@@ -29245,7 +29245,7 @@
       "total_matches": 47
     },
     "EVT0112": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0112",
         "event_name": "戦極MCBATTLE 第20章 ",
@@ -29741,7 +29741,7 @@
       "total_matches": 47
     },
     "EVT0113": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0113",
         "event_name": "戦極MCBATTLE 第21章 ",
@@ -30237,7 +30237,7 @@
       "total_matches": 47
     },
     "EVT0114": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0114",
         "event_name": "戦極MCBATTLE 第22章 ",
@@ -30584,7 +30584,7 @@
       "total_matches": 31
     },
     "EVT0115": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0115",
         "event_name": "戦極MCBATTLE 第23章 ",
@@ -30931,7 +30931,7 @@
       "total_matches": 31
     },
     "EVT0116": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0116",
         "event_name": "戦極MCBATTLE 第24章 ",
@@ -31129,7 +31129,7 @@
       "total_matches": 15
     },
     "EVT0117": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0117",
         "event_name": "戦極MCBATTLE 第25章 ",
@@ -31327,7 +31327,7 @@
       "total_matches": 15
     },
     "EVT0118": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0118",
         "event_name": "戦極MCBATTLE 第26章 ",
@@ -31525,7 +31525,7 @@
       "total_matches": 15
     },
     "EVT0119": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0119",
         "event_name": "戦極MCBATTLE 第27章 ",
@@ -31723,7 +31723,7 @@
       "total_matches": 15
     },
     "EVT0120": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0120",
         "event_name": "戦極MCBATTLE 第28章 ",
@@ -31921,7 +31921,7 @@
       "total_matches": 15
     },
     "EVT0121": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0121",
         "event_name": "戦極MCBATTLE 第29章 ",
@@ -32196,7 +32196,7 @@
       "total_matches": 23
     },
     "EVT0122": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0122",
         "event_name": "戦極MCBATTLE 第31章 ",
@@ -32394,7 +32394,7 @@
       "total_matches": 15
     },
     "EVT0123": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0123",
         "event_name": "UMB 2017 THE CHOICE IS YOURS Vol.1",
@@ -32741,7 +32741,7 @@
       "total_matches": 31
     },
     "EVT0124": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0124",
         "event_name": "UMB 2018 THE CHOICE IS YOURS Vol.2",
@@ -33088,7 +33088,7 @@
       "total_matches": 31
     },
     "EVT0125": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0125",
         "event_name": "UMB 2019 THE CHOICE IS YOURS Vol.3",
@@ -33286,7 +33286,7 @@
       "total_matches": 15
     },
     "EVT0126": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0126",
         "event_name": "UMB 2020 THE CHOICE IS YOURS Vol.4",
@@ -33633,7 +33633,7 @@
       "total_matches": 31
     },
     "EVT0127": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0127",
         "event_name": "UMB 2021 THE CHOICE IS YOURS Vol.5",
@@ -33980,7 +33980,7 @@
       "total_matches": 31
     },
     "EVT0128": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0128",
         "event_name": "UMB 2022 THE CHOICE IS YOURS Vol.6",
@@ -34327,7 +34327,7 @@
       "total_matches": 31
     },
     "EVT0129": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0129",
         "event_name": "UMB 2023 THE CHOICE IS YOURS Vol.7",
@@ -34674,7 +34674,7 @@
       "total_matches": 31
     },
     "EVT0130": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0130",
         "event_name": "BATTLE SUMMITⅠ",
@@ -34913,7 +34913,7 @@
       "total_matches": 19
     },
     "EVT0131": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0131",
         "event_name": "BATTLE SUMMITⅡ",
@@ -35111,7 +35111,7 @@
       "total_matches": 15
     },
     "EVT0132": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0132",
         "event_name": "NEO GENESIS MC BATTLE Vol.1",
@@ -35386,7 +35386,7 @@
       "total_matches": 23
     },
     "EVT0133": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0133",
         "event_name": "NEO GENESIS MC BATTLE Vol.2",
@@ -35661,7 +35661,7 @@
       "total_matches": 23
     },
     "EVT0134": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0134",
         "event_name": "NEO GENESIS MC BATTLE Vol.3",
@@ -36008,7 +36008,7 @@
       "total_matches": 31
     },
     "EVT0135": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0135",
         "event_name": "NEO GENESIS MC BATTLE Vol.4",
@@ -36355,7 +36355,7 @@
       "total_matches": 31
     },
     "EVT0136": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0136",
         "event_name": "NEO GENESIS MC BATTLE Vol.5",
@@ -36702,7 +36702,7 @@
       "total_matches": 31
     },
     "EVT0137": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0137",
         "event_name": "NEO GENESIS MC BATTLE Vol.6",
@@ -36977,7 +36977,7 @@
       "total_matches": 23
     },
     "EVT0138": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0138",
         "event_name": "NEO GENESIS MC BATTLE Vol.7",
@@ -37324,7 +37324,7 @@
       "total_matches": 31
     },
     "EVT0139": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0139",
         "event_name": "NEO GENESIS MC BATTLE Vol.8",
@@ -37671,7 +37671,7 @@
       "total_matches": 31
     },
     "EVT0140": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0140",
         "event_name": "NEO GENESIS MC BATTLE Vol.9",
@@ -37946,7 +37946,7 @@
       "total_matches": 23
     },
     "EVT0141": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0141",
         "event_name": "凱旋MC battle 東西選抜 春ノ陣　2024",
@@ -38293,7 +38293,7 @@
       "total_matches": 31
     },
     "EVT0142": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0142",
         "event_name": "凱旋MC battle 夏ノ陣 U-27",
@@ -38568,7 +38568,7 @@
       "total_matches": 23
     },
     "EVT0143": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0143",
         "event_name": "凱旋MC battle Gate24",
@@ -38915,7 +38915,7 @@
       "total_matches": 31
     },
     "EVT0144": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0144",
         "event_name": "Spotlight 2024 関東編",
@@ -39113,7 +39113,7 @@
       "total_matches": 15
     },
     "EVT0145": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0145",
         "event_name": "Spotlight 2019",
@@ -39460,7 +39460,7 @@
       "total_matches": 31
     },
     "EVT0146": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0146",
         "event_name": "Spotlight 2017",
@@ -39807,7 +39807,7 @@
       "total_matches": 31
     },
     "EVT0147": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0147",
         "event_name": "Spotlight 2025",
@@ -40082,7 +40082,7 @@
       "total_matches": 23
     },
     "EVT0148": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0148",
         "event_name": "Spotlight 2024",
@@ -40429,7 +40429,7 @@
       "total_matches": 31
     },
     "EVT0149": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0149",
         "event_name": "Spotlight 2023大阪編",
@@ -40776,7 +40776,7 @@
       "total_matches": 31
     },
     "EVT0150": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0150",
         "event_name": "Spotlight 2023東京編",
@@ -40974,7 +40974,7 @@
       "total_matches": 15
     },
     "EVT0151": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0151",
         "event_name": "Spotlight 2022",
@@ -41172,7 +41172,7 @@
       "total_matches": 15
     },
     "EVT0152": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0152",
         "event_name": "Spotlight 2022関東編",
@@ -41370,7 +41370,7 @@
       "total_matches": 15
     },
     "EVT0153": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0153",
         "event_name": "Spotlight 2021",
@@ -41717,7 +41717,7 @@
       "total_matches": 31
     },
     "EVT0154": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0154",
         "event_name": "Spotlight 2020",
@@ -42064,7 +42064,7 @@
       "total_matches": 31
     },
     "EVT0155": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0155",
         "event_name": "Spotlight 2018",
@@ -42411,7 +42411,7 @@
       "total_matches": 31
     },
     "EVT0156": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0156",
         "event_name": "Spotlight 2016",
@@ -42609,7 +42609,7 @@
       "total_matches": 15
     },
     "EVT0157": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0157",
         "event_name": "Spotlight 2015",
@@ -42807,7 +42807,7 @@
       "total_matches": 15
     },
     "EVT0158": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0158",
         "event_name": "Spotlight 2012",
@@ -43005,7 +43005,7 @@
       "total_matches": 15
     },
     "EVT0159": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0159",
         "event_name": "Spotlight 2010",
@@ -43176,7 +43176,7 @@
       "total_matches": 12
     },
     "EVT0160": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0160",
         "event_name": "Spotlight 2009",
@@ -43297,7 +43297,7 @@
       "total_matches": 7
     },
     "EVT0161": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0161",
         "event_name": "戦極MCBATTLE 第42章",
@@ -43644,7 +43644,7 @@
       "total_matches": 31
     },
     "EVT0162": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0162",
         "event_name": "BATTLE SUMMITⅢ",
@@ -44314,7 +44314,7 @@
       "total_matches": 15
     },
     "EVT0163": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0163",
         "event_name": "戦極MCBATTLE vs THE罵倒",
@@ -44580,7 +44580,7 @@
       "total_matches": 23
     },
     "EVT0164": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0164",
         "event_name": "3150×LUSHBOMU MC BATTLE vol.3",
@@ -45229,7 +45229,7 @@
       "total_matches": 31
     },
     "EVT0165": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0165",
         "event_name": "3150×LUSHBOMU MC BATTLE vol.2",
@@ -45878,7 +45878,7 @@
       "total_matches": 31
     },
     "EVT0166": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0166",
         "event_name": "3150×LUSHBOMU MC BATTLE vol.1",
@@ -46527,7 +46527,7 @@
       "total_matches": 31
     },
     "EVT0167": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0167",
         "event_name": "THE罵倒 2013 GRAND CHAMPIONSHIP",
@@ -46725,7 +46725,7 @@
       "total_matches": 15
     },
     "EVT0168": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0168",
         "event_name": "THE罵倒 2014 GRAND CHAMPIONSHIP",
@@ -46923,7 +46923,7 @@
       "total_matches": 15
     },
     "EVT0169": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0169",
         "event_name": "THE罵倒 2015 GRAND CHAMPIONSHIP",
@@ -47121,7 +47121,7 @@
       "total_matches": 15
     },
     "EVT0170": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0170",
         "event_name": "THE罵倒 2016 GRAND CHAMPIONSHIP",
@@ -47342,7 +47342,7 @@
       "total_matches": 17
     },
     "EVT0171": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0171",
         "event_name": "THE罵倒 2017 GRAND CHAMPIONSHIP",
@@ -47689,7 +47689,7 @@
       "total_matches": 31
     },
     "EVT0172": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0172",
         "event_name": "THE罵倒 2018 GRAND CHAMPIONSHIP",
@@ -48036,7 +48036,7 @@
       "total_matches": 31
     },
     "EVT0173": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0173",
         "event_name": "戦極MCBATTLE 第14章 (Tag match)",
@@ -48998,7 +48998,7 @@
       "total_matches": 23
     },
     "EVT0174": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0174",
         "event_name": "戦極CROSSOVERⅡ / U-22 MCBATTLE SP 3on3",
@@ -49584,7 +49584,7 @@
       "total_matches": 9
     },
     "EVT0175": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0175",
         "event_name": "戦極MCBATTLE 第19章",
@@ -50258,7 +50258,7 @@
       "total_matches": 11
     },
     "EVT0176": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0176",
         "event_name": "戦極CROSSOVERⅣ AsONE×戦極MCBATTLE",
@@ -51089,7 +51089,7 @@
       "total_matches": 19
     },
     "EVT0177": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0177",
         "event_name": "U-22 MCBATTLE 3on3 SP 2020",
@@ -51582,7 +51582,7 @@
       "total_matches": 7
     },
     "EVT0178": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0178",
         "event_name": "戦極東海獏丸祭2 3on3新春スペシャル",
@@ -52075,7 +52075,7 @@
       "total_matches": 7
     },
     "EVT0179": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0179",
         "event_name": "戦極西の2on2 GROOVE On FIGHT2020",
@@ -52609,7 +52609,7 @@
       "total_matches": 11
     },
     "EVT0180": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0180",
         "event_name": "U22 MCBATTLE 3vs3 SP 2021 -THE TRIPOD-",
@@ -53195,7 +53195,7 @@
       "total_matches": 9
     },
     "EVT0181": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0181",
         "event_name": "戦極MCBATTLE 第30章 The 3on3 MATCH",
@@ -53692,7 +53692,7 @@
       "total_matches": 9
     },
     "EVT0182": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0182",
         "event_name": "戦極MCBATTLE 第33章",
@@ -54189,7 +54189,7 @@
       "total_matches": 9
     },
     "EVT0183": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0183",
         "event_name": "戦極MCBATTLE 第35章",
@@ -55272,7 +55272,7 @@
       "total_matches": 27
     },
     "EVT0184": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0184",
         "event_name": "戦極MCBATTLE 第38章",
@@ -55942,7 +55942,7 @@
       "total_matches": 15
     },
     "EVT0185": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0185",
         "event_name": "戦極MCBATTLE 第39章",
@@ -56528,7 +56528,7 @@
       "total_matches": 9
     },
     "EVT0186": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0186",
         "event_name": "戦極MCBATTLE 第41章",
@@ -57475,7 +57475,7 @@
       "total_matches": 23
     },
     "EVT0187": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0187",
         "event_name": "凱旋MC battle KING OF KINGS 2026への陣",
@@ -57822,7 +57822,7 @@
       "total_matches": 31
     },
     "EVT0188": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0188",
         "event_name": "凱旋MC battle 怨念JAP引退ノ陣",
@@ -58097,7 +58097,7 @@
       "total_matches": 23
     },
     "EVT0189": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0189",
         "event_name": "DOPAMINE MC BATTLE第一乱",
@@ -58130,7 +58130,7 @@
       "total_matches": 0
     },
     "EVT0190": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0190",
         "event_name": "凱旋MC Battle GOLDEN TAG 2026",
@@ -58163,7 +58163,7 @@
       "total_matches": 0
     },
     "EVT0191": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0191",
         "event_name": "戦極MCBATTLE 第43章",
@@ -58196,7 +58196,7 @@
       "total_matches": 0
     },
     "EVT0192": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0192",
         "event_name": "3150×LUSHBOMU MC BATTLE vol.4",
@@ -58229,7 +58229,7 @@
       "total_matches": 0
     },
     "EVT0193": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0193",
         "event_name": "UMB2026本戦",
@@ -58262,7 +58262,7 @@
       "total_matches": 0
     },
     "EVT0194": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0194",
         "event_name": "KOK2026本戦",
@@ -58295,7 +58295,7 @@
       "total_matches": 0
     },
     "EVT0195": {
-      "updated_at": "2026-08-30T06:38:28.445Z",
+      "updated_at": "2026-08-30T06:46:41.252Z",
       "event": {
         "event_id": "EVT0195",
         "event_name": "戦極MCBATTLE 第40章",
