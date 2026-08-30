@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-29T07:35:08.366Z",
+  "updated_at": "2026-08-30T06:38:12.888Z",
   "recent_events": [
     {
       "event_id": "EVT0162",
@@ -1165,6 +1165,20 @@
       "title": "XO",
       "image": "https://m.media-amazon.com/images/I/71OvGGkY3tL._AC_SL1500_.jpg",
       "txt": "TBHR BossとDJ KRUSHのジョイントアルバム。2026年時点でのBOSS最新作。初回盤はインスト付き。"
+    },
+    {
+      "no": 39,
+      "link": "https://link.amazon/B03ToYYSp",
+      "title": "マイ・ネーム・イズ…エミネム―暴かれたホワイト・アメリカの病巣",
+      "image": "https://m.media-amazon.com/images/I/41FyWf8lmoL.jpg",
+      "txt": "マイ・ネーム・イズ・エミネム。暴かれたホワイト・アメリカの病巣。エミネム関連本で一番評価の高い一冊。"
+    },
+    {
+      "no": 40,
+      "link": "https://link.amazon/B0a60IBSL",
+      "title": "今日から使える ヒップホップ用語集",
+      "image": "https://m.media-amazon.com/images/I/718lMzc+XNL._SL1500_.jpg",
+      "txt": "日常生活で大活躍。かどうかは別にして、これを読めばMCバトルでわからない用語はほぼなくなる。"
     }
   ],
   "mc_af": {},
