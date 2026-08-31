@@ -566,9 +566,9 @@
 
       .main-stack .amazon-mobile-slot > .amazon-affiliate-card{
         display:grid;
-        grid-template-columns:minmax(0, 38%) minmax(0, 62%);
+        grid-template-columns:minmax(0, 34%) minmax(0, 66%);
         align-items:center;
-        gap:16px;
+        gap:6px;
         width:100%;
         margin:0 !important;
         padding:4px 2px;
@@ -704,7 +704,7 @@
 
       .amazon-pc-rail .amazon-affiliate-copy{
         width:100%;
-        margin-top:8px;
+        margin-top:6px;
         display:flex;
         flex-direction:column;
         align-items:flex-start;
@@ -727,6 +727,10 @@
         line-height:1.5;
         text-align:left;
         overflow-wrap:anywhere;
+        display:-webkit-box;
+        -webkit-box-orient:vertical;
+        -webkit-line-clamp:4;
+        overflow:hidden;
       }
 
       .amazon-pc-rail .amazon-affiliate-arrow{
@@ -848,8 +852,8 @@
       }
 
       .main-stack .amazon-mobile-slot > .amazon-affiliate-card{
-        grid-template-columns:minmax(0, 38%) minmax(0, 62%);
-        gap:14px;
+        grid-template-columns:minmax(0, 34%) minmax(0, 66%);
+        gap:6px;
       }
 
       .main-stack .amazon-mobile-slot .amazon-affiliate-image{
