@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-30T06:46:24.375Z",
-  "total": 955,
+  "updated_at": "2026-10-11T12:31:49.710Z",
+  "total": 961,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -449,6 +449,15 @@
       "mc_name_sub": "",
       "mc_description": "神奈川県横浜市鶴見区出身。大阪Dee Jayコロシアム2005優勝、ROAD TO 横浜レゲエ祭2006優勝。アルバム『ひとりあそびVOL.0』『here I love』など。",
       "mc_yomi": "あられ",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC1161",
+      "mc_name": "ARI",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "あり",
       "hot_mc": 0,
       "kana_group": "あ"
     },
@@ -2352,6 +2361,15 @@
       "kana_group": "か"
     },
     {
+      "mc_id": "MC1159",
+      "mc_name": "curo",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "くろ",
+      "hot_mc": 0,
+      "kana_group": "か"
+    },
+    {
       "mc_id": "MC0999",
       "mc_name": "Clows",
       "mc_name_sub": "",
@@ -2564,6 +2582,15 @@
       "mc_name_sub": "",
       "mc_description": "1981年生まれ、東京都町田市出身。DREAM BOY主宰。アルバム『プロローグ』、フリースタイルダンジョン審査員、舞台・映像作品の音楽監修など。",
       "mc_yomi": "けんざさんきゅうまる",
+      "hot_mc": 0,
+      "kana_group": "か"
+    },
+    {
+      "mc_id": "MC1160",
+      "mc_name": "源治鷹",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "げんじだか",
       "hot_mc": 0,
       "kana_group": "か"
     },
@@ -2968,6 +2995,15 @@
       "mc_name": "SATORU",
       "mc_name_sub": "",
       "mc_description": "1997年生まれ、ブラジル・サンパウロ出身。3歳で日本に移住し、栃木県足利市で育つ。楽曲『MAKA』など。",
+      "mc_yomi": "さとる",
+      "hot_mc": 0,
+      "kana_group": "さ"
+    },
+    {
+      "mc_id": "MC1157",
+      "mc_name": "SATORU WESLEY",
+      "mc_name_sub": "",
+      "mc_description": "",
       "mc_yomi": "さとる",
       "hot_mc": 0,
       "kana_group": "さ"
@@ -4913,6 +4949,15 @@
       "mc_name_sub": "",
       "mc_description": "THE罵倒2017 GRAND CHAMPIONSHIP出場。BIGMOUTH LOUD×THE罵倒茨城予選優勝。",
       "mc_yomi": "でぃーぷへるど",
+      "hot_mc": 0,
+      "kana_group": "た"
+    },
+    {
+      "mc_id": "MC1156",
+      "mc_name": "D-RAM",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "でぃーらむ",
       "hot_mc": 0,
       "kana_group": "た"
     },
@@ -7460,6 +7505,15 @@
       "mc_name_sub": "",
       "mc_description": "滋賀代表としてUMB 2015・2019・2020 GRAND CHAMPIONSHIP出場。UMB滋賀予選を複数回制覇。",
       "mc_yomi": "やまもとびんた",
+      "hot_mc": 0,
+      "kana_group": "や"
+    },
+    {
+      "mc_id": "MC1158",
+      "mc_name": "Yayui",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "やゆい",
       "hot_mc": 0,
       "kana_group": "や"
     },
