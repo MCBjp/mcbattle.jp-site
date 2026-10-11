@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-30T06:46:23.980Z",
-  "total": 185,
+  "updated_at": "2026-10-11T12:31:49.352Z",
+  "total": 183,
   "events": [
     {
       "event_id": "EVT0193",
@@ -754,9 +754,9 @@
       "event_id": "EVT0191",
       "event_name": "戦極MCBATTLE 第43章",
       "event_name_full": "戦極MCBATTLE 第43章",
-      "seo_event_name": "戦極MCBATTLE 第43章",
+      "seo_event_name": "戦極MCBATTLE 第43章 戦極",
       "event_date": "2026-10-11",
-      "prize_money_winner": null,
+      "prize_money_winner": 300000,
       "prize_money_total": null,
       "category_id": "EVTCat004",
       "category_name": "戦極MC BATTLE",
@@ -765,7 +765,7 @@
       "location": "渋谷WoMB",
       "check": "",
       "battle_format": "1on1",
-      "winner_name": ""
+      "winner_name": "Buntes"
     },
     {
       "event_id": "EVT0161",
@@ -1941,23 +1941,6 @@
       "winner_name": "ミメイ"
     },
     {
-      "event_id": "EVT0190",
-      "event_name": "凱旋MC Battle GOLDEN TAG 2026",
-      "event_name_full": "凱旋MC Battle GOLDEN TAG 2026",
-      "seo_event_name": "凱旋MC Battle GOLDEN TAG 2026",
-      "event_date": "2026-09-26",
-      "prize_money_winner": null,
-      "prize_money_total": null,
-      "category_id": "EVTCat005",
-      "category_name": "凱旋MC battle",
-      "category_show_order": 700,
-      "category_description": "怨念JAPを中心に、2017年に渋谷から始まったMCバトルシリーズ。\n若手の勢いと大型会場への拡張力を武器に、短期間で全国規模の注目大会へ成長した。\nYouTube・配信時代のMCバトルを象徴する、エンタメ性と現場感を併せ持つシリーズ。\n",
-      "location": "渋谷WoMB",
-      "check": "",
-      "battle_format": "teams",
-      "winner_name": ""
-    },
-    {
       "event_id": "EVT0187",
       "event_name": "凱旋MC battle KING OF KINGS 2026への陣",
       "event_name_full": "凱旋MC battle KING OF KINGS 2026への陣",
@@ -3129,23 +3112,6 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "ミメイ"
-    },
-    {
-      "event_id": "EVT0189",
-      "event_name": "DOPAMINE MC BATTLE第一乱",
-      "event_name_full": "DOPAMINE MC BATTLE第一乱",
-      "seo_event_name": "DOPAMINE MC BATTLE第一乱",
-      "event_date": "2026-09-11",
-      "prize_money_winner": null,
-      "prize_money_total": null,
-      "category_id": "EVTCat013",
-      "category_name": "DOPAMINE MC BATTLE",
-      "category_show_order": 1100,
-      "category_description": "2026年に新設されたMCバトルイベント。合同会社A.moreが主催であり、ACEなどが運営に関わる。",
-      "location": "渋谷WoMB",
-      "check": "",
-      "battle_format": "team",
-      "winner_name": ""
     }
   ]
 }
