@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-30T06:47:40.589Z",
+  "updated_at": "2026-10-11T12:32:28.246Z",
   "min_matches": 2,
-  "total": 439,
+  "total": 442,
   "summaries": [
     {
       "pair_key": "MC0376__MC0434",
@@ -407,6 +407,19 @@
       "last_event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠横浜"
     },
     {
+      "pair_key": "MC0100__MC0469",
+      "mc_id_a": "MC0100",
+      "mc_name_a": "DOTAMA",
+      "mc_id_b": "MC0469",
+      "mc_name_b": "ミメイ",
+      "a_wins": 2,
+      "b_wins": 2,
+      "total_matches": 4,
+      "last_match_date": "2026-10-11",
+      "last_event_id": "EVT0191",
+      "last_event_name": "戦極MCBATTLE 第43章"
+    },
+    {
       "pair_key": "MC0222__MC0469",
       "mc_id_a": "MC0222",
       "mc_name_a": "NAIKA MC",
@@ -667,6 +680,19 @@
       "last_event_name": "凱旋MCBattle東西選抜 夏ノ陣2020"
     },
     {
+      "pair_key": "MC0455__MC0469",
+      "mc_id_a": "MC0455",
+      "mc_name_a": "L.B.R.L",
+      "mc_id_b": "MC0469",
+      "mc_name_b": "ミメイ",
+      "a_wins": 0,
+      "b_wins": 3,
+      "total_matches": 3,
+      "last_match_date": "2026-10-11",
+      "last_event_id": "EVT0191",
+      "last_event_name": "戦極MCBATTLE 第43章"
+    },
+    {
       "pair_key": "MC0023__MC0214",
       "mc_id_a": "MC0023",
       "mc_name_a": "S-kainê",
@@ -704,19 +730,6 @@
       "last_match_date": "2026-01-10",
       "last_event_id": "EVT0032",
       "last_event_name": "KOK2025本戦"
-    },
-    {
-      "pair_key": "MC0100__MC0469",
-      "mc_id_a": "MC0100",
-      "mc_name_a": "DOTAMA",
-      "mc_id_b": "MC0469",
-      "mc_name_b": "ミメイ",
-      "a_wins": 1,
-      "b_wins": 2,
-      "total_matches": 3,
-      "last_match_date": "2026-01-04",
-      "last_event_id": "EVT0140",
-      "last_event_name": "NEO GENESIS MC BATTLE Vol.9"
     },
     {
       "pair_key": "MC0015__MC0179",
@@ -1980,6 +1993,45 @@
       "last_event_name": "Spotlight 2012"
     },
     {
+      "pair_key": "MC0100__MC0550",
+      "mc_id_a": "MC0100",
+      "mc_name_a": "DOTAMA",
+      "mc_id_b": "MC0550",
+      "mc_name_b": "bunTes",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2026-10-11",
+      "last_event_id": "EVT0191",
+      "last_event_name": "戦極MCBATTLE 第43章"
+    },
+    {
+      "pair_key": "MC0214__MC0467",
+      "mc_id_a": "MC0214",
+      "mc_name_a": "RAWAXXX",
+      "mc_id_b": "MC0467",
+      "mc_name_b": "Yella goat",
+      "a_wins": 2,
+      "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2026-10-11",
+      "last_event_id": "EVT0191",
+      "last_event_name": "戦極MCBATTLE 第43章"
+    },
+    {
+      "pair_key": "MC0214__MC0337",
+      "mc_id_a": "MC0214",
+      "mc_name_a": "RAWAXXX",
+      "mc_id_b": "MC0337",
+      "mc_name_b": "ふぁんく",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2026-10-11",
+      "last_event_id": "EVT0191",
+      "last_event_name": "戦極MCBATTLE 第43章"
+    },
+    {
       "pair_key": "MC0100__MC0617",
       "mc_id_a": "MC0100",
       "mc_name_a": "DOTAMA",
@@ -3001,19 +3053,6 @@
       "mc_name_b": "TERU",
       "a_wins": 2,
       "b_wins": 0,
-      "total_matches": 2,
-      "last_match_date": "2023-11-23",
-      "last_event_id": "EVT0149",
-      "last_event_name": "Spotlight 2023大阪編"
-    },
-    {
-      "pair_key": "MC0455__MC0469",
-      "mc_id_a": "MC0455",
-      "mc_name_a": "L.B.R.L",
-      "mc_id_b": "MC0469",
-      "mc_name_b": "ミメイ",
-      "a_wins": 0,
-      "b_wins": 2,
       "total_matches": 2,
       "last_match_date": "2023-11-23",
       "last_event_id": "EVT0149",
