@@ -1,6 +1,19 @@
 {
-  "updated_at": "2026-08-30T06:46:22.525Z",
+  "updated_at": "2026-10-11T12:31:48.160Z",
   "recent_events": [
+    {
+      "event_id": "EVT0191",
+      "event_name": "戦極MCBATTLE 第43章",
+      "event_name_full": "戦極MCBATTLE 第43章",
+      "seo_event_name": "戦極MCBATTLE 第43章 戦極",
+      "event_date": "2026-10-11",
+      "prize_money_winner": 300000,
+      "prize_money_total": null,
+      "location": "渋谷WoMB",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": "Buntes"
+    },
     {
       "event_id": "EVT0162",
       "event_name": "BATTLE SUMMITⅢ",
@@ -117,52 +130,9 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "DOTAMA"
-    },
-    {
-      "event_id": "EVT0021",
-      "event_name": "UMB2025本戦",
-      "event_name_full": "UMB2025本戦",
-      "seo_event_name": "UMB2025  本戦　Ultimate MC Battle GrandChampionShip",
-      "event_date": "2025-12-29",
-      "prize_money_winner": 1000000,
-      "prize_money_total": null,
-      "location": "渋谷WOMB",
-      "check": "",
-      "battle_format": "1on1",
-      "winner_name": "MC☆ニガリ"
     }
   ],
   "upcoming_events": [
-    {
-      "event_id": "EVT0189",
-      "event_name": "DOPAMINE MC BATTLE第一乱",
-      "event_name_full": "DOPAMINE MC BATTLE第一乱",
-      "seo_event_name": "DOPAMINE MC BATTLE第一乱",
-      "event_date": "2026-09-11",
-      "location": "渋谷WoMB",
-      "check": "",
-      "battle_format": "team"
-    },
-    {
-      "event_id": "EVT0190",
-      "event_name": "凱旋MC Battle GOLDEN TAG 2026",
-      "event_name_full": "凱旋MC Battle GOLDEN TAG 2026",
-      "seo_event_name": "凱旋MC Battle GOLDEN TAG 2026",
-      "event_date": "2026-09-26",
-      "location": "渋谷WoMB",
-      "check": "",
-      "battle_format": "teams"
-    },
-    {
-      "event_id": "EVT0191",
-      "event_name": "戦極MCBATTLE 第43章",
-      "event_name_full": "戦極MCBATTLE 第43章",
-      "seo_event_name": "戦極MCBATTLE 第43章",
-      "event_date": "2026-10-11",
-      "location": "渋谷WoMB",
-      "check": "",
-      "battle_format": "1on1"
-    },
     {
       "event_id": "EVT0192",
       "event_name": "3150×LUSHBOMU MC BATTLE vol.4",
