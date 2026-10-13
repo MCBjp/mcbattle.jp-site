@@ -7,6 +7,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <script>
+    // アフィリエイト表示の一括切り替え。再表示するときは true にする。
+    const AFFILIATE_ENABLED = false;
+    if (!AFFILIATE_ENABLED) {
+      document.documentElement.classList.add("affiliate-disabled");
+    }
+  </script>
+
   <title>賞金ランキング | MCバトル賞金ランキング | MCBattle.jp</title>
   <meta name="description" content="国内MCバトルの獲得賞金ランキングページです。優勝賞金の累計をもとに、各MCの賞金順位を掲載しています。チーム戦の優勝賞金は、優勝チームの所属人数で按分して集計しています。">
   <link rel="canonical" href="https://mcbattle.jp/prize_ranking.html" />
@@ -262,7 +270,6 @@
       letter-spacing:-.01em;
     }
 
-
     .prize-affiliate-slot{
       display:block;
       width:100%;
@@ -281,6 +288,12 @@
 
     .prize-affiliate-slot.is-last{
       margin:18px 0 0;
+    }
+
+    /* AFFILIATE_ENABLED=false の間だけ商品枠を隠す。 */
+    .affiliate-disabled .prize-affiliate-slot,
+    .affiliate-disabled .prize-pc-affiliate-rail{
+      display:none !important;
     }
 
     .prize-affiliate-card{
@@ -463,6 +476,7 @@
         display:flex !important;
       }
     }
+
     @media (max-width:640px){
       .prize-affiliate-slot{
         padding:0 2px;
@@ -657,15 +671,15 @@
             ""
           ).trim();
           const title = String(item?.title ?? "").trim();
-            const txt = String(item?.txt ?? "").trim();
+          const txt = String(item?.txt ?? "").trim();
 
-            return {
-              no: item?.no ?? "",
-              link,
-              image,
-              title,
-              txt
-            };
+          return {
+            no: item?.no ?? "",
+            link,
+            image,
+            title,
+            txt
+          };
         })
         .filter((item) => {
           if (!item.link || !item.image) return false;
@@ -981,7 +995,9 @@
     }
 
     loadPrizePage();
-    loadRankingAffiliate();
+    if (AFFILIATE_ENABLED) {
+      loadRankingAffiliate();
+    }
   </script>
   <script src="site-header.js"></script>
 </body>
