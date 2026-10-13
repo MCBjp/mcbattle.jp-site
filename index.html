@@ -516,6 +516,22 @@
 
     .footer-space{ height:16px; }
 
+    @media (min-width: 768px) and (max-width: 1023px){
+      /* タブレット幅ではカード列が中央配置なので、ヘッダーも同じ幅にする */
+      .home-header-inner{
+        width:min(var(--home-content-max), calc(100% - (var(--page-gutter, 24px) * 2))) !important;
+        margin-left:auto !important;
+        margin-right:auto !important;
+      }
+
+      .home-header-inner > .home-tabs{
+        width:100% !important;
+        max-width:100% !important;
+        margin-left:0 !important;
+        margin-right:auto !important;
+      }
+    }
+
     @media (min-width: 1024px){
       .container{
         width:min(var(--home-content-max), calc(100% - var(--pc-left-gutter, 72px) - var(--page-gutter, 24px)));
@@ -523,10 +539,17 @@
         margin-right:auto;
       }
 
-      /* トップメニューをUpcoming／Recent Eventsのカード列と同じ幅・左端に揃える */
-      .home-tabs-source{
-        width:min(var(--home-content-max), calc(100% - var(--pc-left-gutter, 72px) - var(--page-gutter, 24px))) !important;
+      /* ヘッダー内のメニューを本文カード列と同じ左端・幅に揃える */
+      .home-header-inner{
+        width:min(var(--home-header-max, 1120px), calc(100% - var(--pc-left-gutter, 72px) - var(--page-gutter, 24px))) !important;
         margin-left:var(--pc-left-gutter, 72px) !important;
+        margin-right:auto !important;
+      }
+
+      .home-header-inner > .home-tabs{
+        width:min(var(--home-content-max), 100%) !important;
+        max-width:var(--home-content-max) !important;
+        margin-left:0 !important;
         margin-right:auto !important;
       }
 
