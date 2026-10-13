@@ -15,6 +15,12 @@
     if (!SITE_OPEN) {
       location.replace('./maintenance.html');
     }
+
+    // アフィリエイト表示の一括切り替え。再表示するときは true にする。
+    const AFFILIATE_ENABLED = false;
+    if (!AFFILIATE_ENABLED) {
+      document.documentElement.classList.add("affiliate-disabled");
+    }
   </script>
 
   <title>MCBattle.jp | 国内MCバトル大会・MC・戦績データベース</title>
@@ -463,6 +469,13 @@
 
     .amazon-pc-rail{
       display:none;
+    }
+
+    /* AFFILIATE_ENABLED=false の間だけ商品枠と開示文を隠す。 */
+    .affiliate-disabled .amazon-mobile-slot,
+    .affiliate-disabled .amazon-pc-rail,
+    .affiliate-disabled .associate-disclosure{
+      display:none !important;
     }
 
     /* Affiliate cards are image-only. */
@@ -1427,7 +1440,9 @@
         const indexAf = Array.isArray(payload?.index_af) ? payload.index_af : [];
 
         renderHotMcs(hotMcs);
-        renderAffiliateSlots(indexAf);
+        if (AFFILIATE_ENABLED) {
+          renderAffiliateSlots(indexAf);
+        }
 
         renderEventList("future-events", upcomingEvents, "今後開催予定の大会はありません", {
           limit: 2,
