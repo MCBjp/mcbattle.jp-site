@@ -7,6 +7,14 @@
   <link rel="apple-touch-icon" href="/favicon-180x180.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    // アフィリエイト表示の一括切り替え。再表示するときは true にする。
+    const AFFILIATE_ENABLED = false;
+    if (!AFFILIATE_ENABLED) {
+      document.documentElement.classList.add("affiliate-disabled");
+    }
+  </script>
+
 
   <title>口喧嘩祭 Special × KOK2020 結果 | 優勝 SILENT KILLA JOINT・準優勝 S-kainê | MCBattle.jp</title>
 
@@ -148,6 +156,12 @@
 
     /* Match the normal section rhythm: every block starts 24px after the previous one. */
     /* Keep the same section rhythm while showing image-only affiliate items. */
+    /* AFFILIATE_ENABLED=false の間だけアフィリエイト枠を隠す。 */
+    .affiliate-disabled .event-affiliate-slot,
+    .affiliate-disabled .event-affiliate-pc-rail{
+      display:none !important;
+    }
+
     .event-affiliate-slot{
       display:block;
       width:100%;
@@ -1041,8 +1055,7 @@
       }
 
       .page-top{
-        margin-bottom:10px;
-      }
+        margin-bottom:10px;      }
 
       .page-header-block{
         margin-bottom:10px;
@@ -2102,7 +2115,9 @@
         }
       }
 
-      document.addEventListener("DOMContentLoaded", loadAffiliateItems);
+      if (AFFILIATE_ENABLED) {
+        document.addEventListener("DOMContentLoaded", loadAffiliateItems);
+      }
     })();
   </script>
 
