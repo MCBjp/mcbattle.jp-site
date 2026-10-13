@@ -7,6 +7,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <script>
+    // アフィリエイト表示の一括切り替え。再表示するときは true にする。
+    const AFFILIATE_ENABLED = false;
+    if (!AFFILIATE_ENABLED) {
+      document.documentElement.classList.add("affiliate-disabled");
+    }
+  </script>
+
   <title>スコアランキング | MCバトルスコアランキング | MCBattle.jp</title>
   <meta name="description" content="国内MCバトルのスコアランキングページです。試合結果をもとに算出した独自スコアで、各MCの順位を掲載しています。">
   <link rel="canonical" href="https://mcbattle.jp/score_ranking.html" />
@@ -288,8 +296,6 @@
       letter-spacing:-.01em;
     }
 
-
-
     .score-affiliate-slot{
       display:block;
       width:100%;
@@ -308,6 +314,12 @@
 
     .score-affiliate-slot.is-last{
       margin:18px 0 0;
+    }
+
+    /* AFFILIATE_ENABLED=false の間だけ商品枠を隠す。 */
+    .affiliate-disabled .score-affiliate-slot,
+    .affiliate-disabled .score-pc-affiliate-rail{
+      display:none !important;
     }
 
     .score-affiliate-card{
@@ -490,6 +502,7 @@
         display:flex !important;
       }
     }
+
     @media (max-width:640px){
       .score-affiliate-slot{
         padding:0 2px;
@@ -982,7 +995,9 @@
     }
 
     loadRankingsPage();
-    loadRankingAffiliate();
+    if (AFFILIATE_ENABLED) {
+      loadRankingAffiliate();
+    }
   </script>
   <script src="site-header.js"></script>
 </body>
