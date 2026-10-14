@@ -14,7 +14,7 @@
       return "../";
     }
 
-    return "./";
+    return "/";
   }
 
   function getCurrentSection() {
