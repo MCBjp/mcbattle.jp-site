@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-11T12:32:28.246Z",
+  "updated_at": "2026-10-18T13:05:29.862Z",
   "min_matches": 2,
-  "total": 442,
+  "total": 450,
   "summaries": [
     {
       "pair_key": "MC0376__MC0434",
@@ -121,6 +121,19 @@
       "last_event_name": "戦極MCBATTLE 第28章 "
     },
     {
+      "pair_key": "MC0214__MC0222",
+      "mc_id_a": "MC0214",
+      "mc_name_a": "RAWAXXX",
+      "mc_id_b": "MC0222",
+      "mc_name_b": "NAIKA MC",
+      "a_wins": 4,
+      "b_wins": 2,
+      "total_matches": 6,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
       "pair_key": "MC0100__MC0600",
       "mc_id_a": "MC0100",
       "mc_name_a": "DOTAMA",
@@ -219,19 +232,6 @@
       "mc_name_b": "輪入道",
       "a_wins": 1,
       "b_wins": 4,
-      "total_matches": 5,
-      "last_match_date": "2026-04-26",
-      "last_event_id": "EVT0164",
-      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.3"
-    },
-    {
-      "pair_key": "MC0214__MC0222",
-      "mc_id_a": "MC0214",
-      "mc_name_a": "RAWAXXX",
-      "mc_id_b": "MC0222",
-      "mc_name_b": "NAIKA MC",
-      "a_wins": 3,
-      "b_wins": 2,
       "total_matches": 5,
       "last_match_date": "2026-04-26",
       "last_event_id": "EVT0164",
@@ -405,6 +405,45 @@
       "last_match_date": "2021-06-20",
       "last_event_id": "EVT0061",
       "last_event_name": "凱旋MC Battle 西日本ZEPP TOUR ＠横浜"
+    },
+    {
+      "pair_key": "MC0214__MC0279",
+      "mc_id_a": "MC0214",
+      "mc_name_a": "RAWAXXX",
+      "mc_id_b": "MC0279",
+      "mc_name_b": "SILENT KILLA JOINT",
+      "a_wins": 2,
+      "b_wins": 2,
+      "total_matches": 4,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0214__MC0600",
+      "mc_id_a": "MC0214",
+      "mc_name_a": "RAWAXXX",
+      "mc_id_b": "MC0600",
+      "mc_name_b": "ミステリオ",
+      "a_wins": 3,
+      "b_wins": 1,
+      "total_matches": 4,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0023__MC0214",
+      "mc_id_a": "MC0023",
+      "mc_name_a": "S-kainê",
+      "mc_id_b": "MC0214",
+      "mc_name_b": "RAWAXXX",
+      "a_wins": 2,
+      "b_wins": 2,
+      "total_matches": 4,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
     },
     {
       "pair_key": "MC0100__MC0469",
@@ -693,19 +732,6 @@
       "last_event_name": "戦極MCBATTLE 第43章"
     },
     {
-      "pair_key": "MC0023__MC0214",
-      "mc_id_a": "MC0023",
-      "mc_name_a": "S-kainê",
-      "mc_id_b": "MC0214",
-      "mc_name_b": "RAWAXXX",
-      "a_wins": 2,
-      "b_wins": 1,
-      "total_matches": 3,
-      "last_match_date": "2026-05-23",
-      "last_event_id": "EVT0187",
-      "last_event_name": "凱旋MC battle KING OF KINGS 2026への陣"
-    },
-    {
       "pair_key": "MC0300__MC0451",
       "mc_id_a": "MC0300",
       "mc_name_a": "TERU",
@@ -966,19 +992,6 @@
       "last_event_name": "戦極MCBATTLE 第34章 "
     },
     {
-      "pair_key": "MC0214__MC0600",
-      "mc_id_a": "MC0214",
-      "mc_name_a": "RAWAXXX",
-      "mc_id_b": "MC0600",
-      "mc_name_b": "ミステリオ",
-      "a_wins": 2,
-      "b_wins": 1,
-      "total_matches": 3,
-      "last_match_date": "2024-04-29",
-      "last_event_id": "EVT0144",
-      "last_event_name": "Spotlight 2024 関東編"
-    },
-    {
       "pair_key": "MC0077__MC0373",
       "mc_id_a": "MC0077",
       "mc_name_a": "CHICO CARLITO",
@@ -1010,19 +1023,6 @@
       "mc_name_a": "GOTIT",
       "mc_id_b": "MC0222",
       "mc_name_b": "NAIKA MC",
-      "a_wins": 1,
-      "b_wins": 2,
-      "total_matches": 3,
-      "last_match_date": "2024-01-08",
-      "last_event_id": "EVT0030",
-      "last_event_name": "KOK2023本戦"
-    },
-    {
-      "pair_key": "MC0214__MC0279",
-      "mc_id_a": "MC0214",
-      "mc_name_a": "RAWAXXX",
-      "mc_id_b": "MC0279",
-      "mc_name_b": "SILENT KILLA JOINT",
       "a_wins": 1,
       "b_wins": 2,
       "total_matches": 3,
@@ -1991,6 +1991,110 @@
       "last_match_date": "2012-12-23",
       "last_event_id": "EVT0158",
       "last_event_name": "Spotlight 2012"
+    },
+    {
+      "pair_key": "MC0130__MC0222",
+      "mc_id_a": "MC0130",
+      "mc_name_a": "HIDADDY",
+      "mc_id_b": "MC0222",
+      "mc_name_b": "NAIKA MC",
+      "a_wins": 0,
+      "b_wins": 2,
+      "total_matches": 2,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0159__MC0434",
+      "mc_id_a": "MC0159",
+      "mc_name_a": "K-rush",
+      "mc_id_b": "MC0434",
+      "mc_name_b": "輪入道",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0222__MC0455",
+      "mc_id_a": "MC0222",
+      "mc_name_a": "NAIKA MC",
+      "mc_id_b": "MC0455",
+      "mc_name_b": "L.B.R.L",
+      "a_wins": 2,
+      "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0222__MC0466",
+      "mc_id_a": "MC0222",
+      "mc_name_a": "NAIKA MC",
+      "mc_id_b": "MC0466",
+      "mc_name_b": "Sitissy luvit",
+      "a_wins": 2,
+      "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0023__MC0118",
+      "mc_id_a": "MC0023",
+      "mc_name_a": "S-kainê",
+      "mc_id_b": "MC0118",
+      "mc_name_b": "GIL",
+      "a_wins": 2,
+      "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0279__MC0472",
+      "mc_id_a": "MC0279",
+      "mc_name_a": "SILENT KILLA JOINT",
+      "mc_id_b": "MC0472",
+      "mc_name_b": "崇勲",
+      "a_wins": 1,
+      "b_wins": 1,
+      "total_matches": 2,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0296__MC0434",
+      "mc_id_a": "MC0296",
+      "mc_name_a": "T-TANGG",
+      "mc_id_b": "MC0434",
+      "mc_name_b": "輪入道",
+      "a_wins": 0,
+      "b_wins": 2,
+      "total_matches": 2,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
+    },
+    {
+      "pair_key": "MC0397__MC0469",
+      "mc_id_a": "MC0397",
+      "mc_name_a": "杏地",
+      "mc_id_b": "MC0469",
+      "mc_name_b": "ミメイ",
+      "a_wins": 2,
+      "b_wins": 0,
+      "total_matches": 2,
+      "last_match_date": "2026-10-17",
+      "last_event_id": "EVT0192",
+      "last_event_name": "3150×LUSHBOMU MC BATTLE vol.4"
     },
     {
       "pair_key": "MC0100__MC0550",
