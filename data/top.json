@@ -1,6 +1,19 @@
 {
-  "updated_at": "2026-10-11T12:31:48.160Z",
+  "updated_at": "2026-10-18T13:04:32.317Z",
   "recent_events": [
+    {
+      "event_id": "EVT0192",
+      "event_name": "3150×LUSHBOMU MC BATTLE vol.4",
+      "event_name_full": "3150×LUSHBOMU MC BATTLE vol.4",
+      "seo_event_name": "3150×LUSHBOMU MC BATTLE vol.4",
+      "event_date": "2026-10-17",
+      "prize_money_winner": null,
+      "prize_money_total": null,
+      "location": "心斎橋SUNHALL",
+      "check": "",
+      "battle_format": "1on1",
+      "winner_name": "RAWAXXX"
+    },
     {
       "event_id": "EVT0191",
       "event_name": "戦極MCBATTLE 第43章",
@@ -117,32 +130,9 @@
       "check": "",
       "battle_format": "1on1",
       "winner_name": "T-TANGG"
-    },
-    {
-      "event_id": "EVT0140",
-      "event_name": "NEO GENESIS MC BATTLE Vol.9",
-      "event_name_full": "NEO GENESIS MC BATTLE Vol.9",
-      "seo_event_name": "NEO GENESIS MC BATTLE Vol.9",
-      "event_date": "2026-01-04",
-      "prize_money_winner": 100000,
-      "prize_money_total": null,
-      "location": "HARLEM",
-      "check": "",
-      "battle_format": "1on1",
-      "winner_name": "DOTAMA"
     }
   ],
   "upcoming_events": [
-    {
-      "event_id": "EVT0192",
-      "event_name": "3150×LUSHBOMU MC BATTLE vol.4",
-      "event_name_full": "3150×LUSHBOMU MC BATTLE vol.4",
-      "seo_event_name": "3150×LUSHBOMU MC BATTLE vol.4",
-      "event_date": "2026-10-17",
-      "location": "心斎橋SUNHALL",
-      "check": "",
-      "battle_format": "1on1"
-    },
     {
       "event_id": "EVT0193",
       "event_name": "UMB2026本戦",
@@ -293,15 +283,15 @@
     },
     {
       "rank": 5,
-      "mc_id": "MC0376",
-      "mc_name": "呂布カルマ",
-      "total_prize_money": 10150000
+      "mc_id": "MC0434",
+      "mc_name": "輪入道",
+      "total_prize_money": 10200000
     },
     {
       "rank": 6,
-      "mc_id": "MC0434",
-      "mc_name": "輪入道",
-      "total_prize_money": 10100000
+      "mc_id": "MC0376",
+      "mc_name": "呂布カルマ",
+      "total_prize_money": 10150000
     },
     {
       "rank": 7,
