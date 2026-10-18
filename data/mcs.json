@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-11T12:31:49.710Z",
-  "total": 961,
+  "updated_at": "2026-10-18T13:04:34.501Z",
+  "total": 963,
   "mcs": [
     {
       "mc_id": "MC0040",
@@ -575,6 +575,15 @@
       "mc_name_sub": "",
       "mc_description": "福岡代表としてUMB 2024 GRAND CHAMPIONSHIP出場。",
       "mc_yomi": "あんやすし",
+      "hot_mc": 0,
+      "kana_group": "あ"
+    },
+    {
+      "mc_id": "MC1162",
+      "mc_name": "UNL0ck a.k.a Ryo",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "あんろっく",
       "hot_mc": 0,
       "kana_group": "あ"
     },
@@ -7379,6 +7388,15 @@
       "mc_name_sub": "",
       "mc_description": "D.D.SとのユニットN.E.Nでも活動。アルバム『FAST&SLOW』『LIFE GOES ON』などを発表。",
       "mc_yomi": "むるべ",
+      "hot_mc": 0,
+      "kana_group": "ま"
+    },
+    {
+      "mc_id": "MC1163",
+      "mc_name": "むんく",
+      "mc_name_sub": "",
+      "mc_description": "",
+      "mc_yomi": "むんく",
       "hot_mc": 0,
       "kana_group": "ま"
     },
